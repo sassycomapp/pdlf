@@ -1,24 +1,30 @@
-# pdlf
+# pdlf — The PDLF Environment
 
-**Placeholder — not currently live.**
+The home of the PDLF system — the Project Development Lifecycle Framework —
+scaffolded 2026-09-11 per developer instruction.
 
-`C:\pdlf` is the intended deployment location for the finished PDLF (Program Design Lifecycle
-Framework) tool. It is not there yet — PDLF is still being built, inside `dev-makepdlf`, not
-here.
+## What lives here
 
-This location previously held the remnants of an earlier, abandoned first attempt at building
-PDLF directly on the C drive, before development moved to the proper `dev-makepdlf` project
-structure. That earlier content was moved to `obsolete-2026-08-13/` and later deleted outright
-(see `pdlf-config.yaml`).
+| Path | What it is |
+|---|---|
+| `pdlf-library\` | Canonical technical documentation: ADRs, specifications, explainers, and the register. See `pdlf-library\README.md`. |
+| `app-factory\` | The system's machinery — 46 modules, one per pipeline step (placeholders today; populated by makePDLF, migrated here once when all steps are complete). See `app-factory\README.md`. |
+| `output\` | The producer-routed artifact safety net (transient — copied into the shipping project's folders, then cleared). Not version-controlled. |
 
-**No GitHub connection and no GBrain source exist here as of 2026-09-05.** The `.git` folder
-(pointing at `sassycomapp/pdlf.git`) was removed after direct confirmation that
-`sassycomapp/pdlf` no longer exists on GitHub. The `pdlf` GBrain source was independently
-confirmed already absent from `gbrain sources list` around the same time. This location is now
-genuinely disk-only, matching its intended state until real deployment happens.
+## Connections (live as of 2026-09-11)
 
-When `dev-makepdlf` concludes, the finished PDLF product will be deployed here, and this
-location's real configuration — `opencode.json`, agent role files, GBrain/GStack/skill
-registration — will be built at that time, from scratch.
+- **GitHub:** `sassycomapp/pdlf` (private), branch `main` — initial scaffold pushed 2026-09-11.
+- **GBrain:** source `pdlf` (federated) — registered and synced 2026-09-11; 59 pages, 54 chunks embedded.
+- **Config register:** `pdlf-config.yaml` is registered in
+  `C:\mybizz\mybizz-config-docs\projects-config-register.md`.
 
-See `pdlf-config.yaml` for the exact current state.
+## What deliberately waits
+
+Nothing executes in this location yet. The machinery arrives with the
+app-factory migration when makePDLF completes all 46 steps; the OpenCode
+configuration and agent role files are built at that deployment, not before.
+Until then, the system is developed in the makePDLF environment
+(`C:\dev\dev-makepdlf\makepdlf-project-library`).
+
+See `AGENTS.md` for the standing rules for this location, and
+`pdlf-config.yaml` for the exact current state.
