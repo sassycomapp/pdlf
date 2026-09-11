@@ -48,7 +48,7 @@ of web applications through PDLF) trustworthy and efficient.
 - **The memory system**: GBrain (semantic memory, Postgres, MCP), the
   memory governor (the gate for durable-memory writes, two processes: API
   + worker), `mb-submit-memory` (the governed submission path),
-  `memory-functionality-audit.md` (the health-check procedure, reports to
+  [[memory-functionality-audit]] (the health-check procedure, reports to
   `C:\mybizz\memory-audit-reports\`).
 - **The security systems**: the security-global library (54 documents, seven
   categories, `sec-` prefix — the authority on what "secure" means here);
@@ -138,7 +138,7 @@ boundary is itself a review responsibility**: anything the code references
 must actually ship in `theme/assets`, and anything that must not ship
 (credentials, dev files) must not be inside the four traveling items.
 
-**Structural isolation.** Per `adr-dependency-based-not-multi-tenant.md`
+**Structural isolation.** Per [[adr-dependency-based-not-multi-tenant]]
 (Sealed): each client is a separate Anvil app with its own database —
 cross-client data access is **structurally impossible**, not enforced by
 code. `app_tables` in a dependency server module resolves to the calling
@@ -268,10 +268,10 @@ whole system.
 3. **The ledger is bridge-only.** Never direct WSL psql to the PDLF
    database.
 4. **The ADR travels as context.** No code generation for the five-app
-   platform without `adr-dependency-based-not-multi-tenant.md` supplied
+   platform without [[adr-dependency-based-not-multi-tenant]] supplied
    first.
 5. **Every governed system has a health procedure** — e.g.
-   `memory-functionality-audit.md` for the memory system — and the audit
+   [[memory-functionality-audit]] for the memory system — and the audit
    reports are dated, saved, and appended with their remediation.
 6. **Nothing ships silently.** The shipping boundary is checked, not
    assumed — in both directions.
@@ -280,18 +280,18 @@ whole system.
 
 ## 10. Companion documents
 
-- `memory-master-explainer.md` (mybizz-os-docs repo: `C:\mybizz\mybizz-os-docs\`) — the memory system's four
+- [[memory-master-explainer]] (mybizz-os-docs repo: `C:\mybizz\mybizz-os-docs\`) — the memory system's four
   mechanisms and the governor's processes.
-- `memory-functionality-audit.md` (mybizz-os-docs repo: `C:\mybizz\mybizz-os-docs\`) — the memory-system health
+- [[memory-functionality-audit]] (mybizz-os-docs repo: `C:\mybizz\mybizz-os-docs\`) — the memory-system health
   procedure.
 - `mybizz-config-docs/` — the component suites: `memory-governor/`,
   `mb-submit-memory/`, `mb-compile-rules/`, `mb-sentinel-review/`,
   `graphify/`, `gstack/`, `cupcake/`, and the rest.
-- `adr-dependency-based-not-multi-tenant.md` and
-  `adr-client-instance-readme-five-app-system.md`
+- [[adr-dependency-based-not-multi-tenant]] and
+  [[adr-client-instance-readme-five-app-system]]
   (project-library-global/adr-global) — the structural-isolation and
   client-instance documentation ADRs.
-- `spec-postgres-ledger.md` (makepdlf-project-library) — the ledger
+- [[spec-postgres-ledger]] (makepdlf-project-library) — the ledger
   schema and the bridge connection method.
 
 *End of document.*

@@ -10,8 +10,8 @@ date-created: 2026-09-11
 *The plain narrative of how a work product moves through the PDLF system —
 where it is born, where it lands, how the next step receives it, and where it
 finally rests. The narrative companion to
-`pdlf-spec-artifact-handover.md` (the binding rules) and
-`pdlf-adr-artifact-saving-convention.md` (the decisions).*
+[[pdlf-spec-artifact-handover]] (the binding rules) and
+[[pdlf-adr-artifact-saving-convention]] (the decisions).*
 
 ---
 
@@ -29,7 +29,7 @@ a per-project folder in the user's home directory,
 chosen — it is derived, mechanically, from the git repository the skill ran
 in. Because PDLF always creates each project's repositories under fixed
 names, that derived name is predictable for every project, every run. (The
-full derivation story lives in `pdlf-spec-nomenclature.md`.)
+full derivation story lives in [[pdlf-spec-nomenclature]].)
 
 ## Seen, verified, recorded
 

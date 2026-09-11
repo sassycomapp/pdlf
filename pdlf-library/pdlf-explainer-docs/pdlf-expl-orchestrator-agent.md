@@ -50,7 +50,7 @@ without exception, with no step able to skip its own discipline.
   the artifact exists on disk, records the location in the ledger
   (`artifact_path`), makes the stable and safety-net copies. An expected
   artifact that is missing is a STOP with a formal deviation request — never
-  a silent proceed (per `pdlf-spec-artifact-handover.md`).
+  a silent proceed (per [[pdlf-spec-artifact-handover]]).
 - **Administers the standards:** reads a skill's own definition before
   invoking it — never trusting a name; runs the BFT checkpoint at the level
   the step assigns (Full at every gate, no exceptions); executes the gate

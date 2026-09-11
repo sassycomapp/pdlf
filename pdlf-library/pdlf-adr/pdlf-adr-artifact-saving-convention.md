@@ -142,7 +142,7 @@ disappears quietly.
 
 - The app-factory modules implement this convention step by step as makePDLF
   completes each step; the specification
-  (`pdlf-spec-artifact-handover.md`) is the binding detail modules follow.
+  ([[pdlf-spec-artifact-handover]]) is the binding detail modules follow.
 - Built step files 14 and 15 require the correction described in decision 9
   (tracked: master task list, item 18). Their stale quote of an older skill
   generation's `~/.claude` path is corrected in the same pass — the current

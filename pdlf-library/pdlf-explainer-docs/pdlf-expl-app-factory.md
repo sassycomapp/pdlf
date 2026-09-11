@@ -46,16 +46,16 @@ machinery, this library's documentation, and the output area, all under
 ## What the modules must implement
 
 Every module implements the conventions recorded in this library — above
-all, for its own step, `pdlf-spec-artifact-handover.md`: paste prior
+all, for its own step, [[pdlf-spec-artifact-handover]]: paste prior
 artifacts in full, capture the output path, verify it exists, record it in
 the ledger, make the stable and safety-net copies, and stop with a deviation
 request when something expected is missing. The convention ADR
-(`pdlf-adr-artifact-saving-convention.md`) is the decision record behind
+([[pdlf-adr-artifact-saving-convention]]) is the decision record behind
 those rules.
 
 Module 1 is a special case: it is the orchestrator machinery itself — the
 standing agent that runs every other module (see
-`pdlf-expl-orchestrator-agent.md`).
+[[pdlf-expl-orchestrator-agent]]).
 
 ## Current state
 
