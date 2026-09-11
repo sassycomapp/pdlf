@@ -1,0 +1,57 @@
+---
+project: pdlf
+status: scaffolded_live
+verified: 2026-09-11
+---
+
+local_path: /mnt/c/pdlf
+github_remote: https://github.com/sassycomapp/pdlf.git
+github_branch: main
+
+note: >
+  The PDLF environment — home of the PDLF system (the Project Development
+  Lifecycle Framework). Scaffolded properly 2026-09-11 per developer
+  instruction: pdlf-library (canonical technical documentation with a
+  maintained register), app-factory (46 module placeholders — populated by
+  makePDLF, migrated once when all steps complete), and output (the
+  producer-routed artifact safety net). The system itself is being built in
+  the makePDLF environment (C:\dev\dev-makepdlf\makepdlf-project-library);
+  when makePDLF concludes, its machinery migrates here and the makePDLF
+  project is archived.
+
+folders:
+  pdlf-library:
+    purpose: canonical PDLF-system technical documentation (ADR, specifications, policy, processes, explainers, register)
+    in_scope: yes
+  app-factory:
+    purpose: the system's machinery — one module per pipeline step (placeholders today)
+    in_scope: yes
+  output:
+    purpose: producer-routed artifact safety net (transient — copy-then-clear at ship time)
+    in_scope: no (transient; not version-controlled)
+
+history:
+  abandoned_first_attempt:
+    status: deleted_2026-08-13
+    note: >
+      Moved to obsolete-2026-08-13/, then deleted outright by explicit
+      developer decision — superseded by dev-makepdlf, no future purpose.
+  git_history:
+    status: recreated_2026-09-11
+    note: >
+      A .git folder pointing at sassycomapp/pdlf existed until 2026-09-05,
+      when the by-then-deleted GitHub repo left it orphaned and it was
+      removed by explicit developer decision. Recreated 2026-09-11 when the
+      environment was scaffolded and the repo re-established.
+
+gbrain:
+  source_id: pdlf
+  registered: 2026-09-11
+  federated: true
+
+opencode_config:
+  exists: false
+  note: >
+    To be created when the orchestrator machinery is deployed here
+    (app-factory migration). Nothing executes in this location until then —
+    documented deliberately, not forgotten.
