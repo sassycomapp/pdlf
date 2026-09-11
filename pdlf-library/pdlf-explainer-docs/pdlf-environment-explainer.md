@@ -280,9 +280,9 @@ whole system.
 
 ## 10. Companion documents
 
-- `memory-master-explainer.md` (this repo) — the memory system's four
+- `memory-master-explainer.md` (mybizz-os-docs repo: `C:\mybizz\mybizz-os-docs\`) — the memory system's four
   mechanisms and the governor's processes.
-- `memory-functionality-audit.md` (this repo) — the memory-system health
+- `memory-functionality-audit.md` (mybizz-os-docs repo: `C:\mybizz\mybizz-os-docs\`) — the memory-system health
   procedure.
 - `mybizz-config-docs/` — the component suites: `memory-governor/`,
   `mb-submit-memory/`, `mb-compile-rules/`, `mb-sentinel-review/`,
