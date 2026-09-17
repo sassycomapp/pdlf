@@ -28,6 +28,7 @@ here as their documents land.
 | pdlf-system-explainer | pdlf-explainer-docs/pdlf-system-explainer.md | pdlf-explainer-docs | explainer | Live | Full general PDLF explainer. Moved (not copied) from C:\mybizz\mybizz-os-docs\pdlf-explainer.md by the developer 2026-09-11 — sole home, no duplicate. |
 | README | README.md | (library root) | readme | Live | Library purpose, folder map, category tests, naming rules, deferrals, neighbour relationships. |
 | app-factory-readme | app-factory/README.md | app-factory (C:\pdlf\app-factory\) | readme | Live | App-factory purpose, module-per-step, migration lifecycle. |
+| step-13-readme | pdlf-explainer-docs/pdlf-stepwise/pdlf-step-13/README.md | pdlf-explainer-docs/pdlf-stepwise/pdlf-step-13 | explainer | Live | Reserved-gap note — Step 13 disbanded by design; registered by align-docs 2026-09-17 (relevant, must stay). |
 
 ---
 

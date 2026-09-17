@@ -1,3 +1,10 @@
+---
+document: "Reserved — Step 13"
+doc-id: step-13-readme
+state: Live
+date-created: 2026-09-17
+---
+
 # Reserved — Step 13
 
 Step 13 (`to-spec`) was disbanded: the skill-use principle found it had no
