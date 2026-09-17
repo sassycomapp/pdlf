@@ -16,8 +16,8 @@ a skill, or a module that defines and runs that step.
   completes each step, and migrate into this folder only when all 46 are
   complete. Until then, the live machinery lives in the makePDLF environment.
 - **Modules implement the conventions** in `C:\pdlf\pdlf-library\` — above
-  all `pdlf-spec-artifact-handover.md` and
-  `pdlf-adr-artifact-saving-convention.md`.
+  all `C:\pdlf\pdlf-library\pdlf-specifications\pdlf-spec-artifact-handover.md` and
+  `C:\pdlf\pdlf-library\pdlf-adr\pdlf-adr-artifact-saving-convention.md`.
 - **Module 1** is the orchestrator machinery — the standing agent that runs
   every other module (see `pdlf-library/pdlf-explainer-docs/pdlf-expl-orchestrator-agent.md`).
 - Step 13's module is a reserved gap: that step was disbanded; the number is
