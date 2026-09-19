@@ -23,7 +23,8 @@ particular step. When the PDLF system runs a project, these modules are the
 things that actually run.
 
 The numbering is deliberate and mirrors the steps, including the permanent
-gaps (Step 13 was disbanded; its number is a reserved gap, not an omission).
+gaps (Steps 13 and 25 were disbanded; their numbers are reserved gaps, not
+omissions).
 
 ## Where the modules come from
 

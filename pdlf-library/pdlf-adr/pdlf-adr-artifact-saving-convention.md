@@ -10,8 +10,7 @@ date-created: 2026-09-11
 Date: 2026-09-11
 Status: Accepted
 Origin: developer-directed design session 2026-09-11, building on the
-artifact-saving investigation of 2026-06-25/26
-(`C:\_data-mybizz-mgt\_desktop\artifact-saving-issue\`, 10 documents).
+artifact-saving investigation of 2026-06-25/26.
 
 ---
 
@@ -150,8 +149,6 @@ disappears quietly.
 - An end-to-end live verification of the chain (one governed skill run:
   slug stability, native save, safety-net copy) remains open work, tracked on
   the master task list (item 17).
-- The June investigation folder remains the historical record of why this
-  convention exists; it is not a living document.
 
 ---
 

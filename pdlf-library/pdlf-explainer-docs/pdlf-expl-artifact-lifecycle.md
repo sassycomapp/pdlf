@@ -87,8 +87,7 @@ saved to folders whose names could differ between runs, so a later skill
 would search under one name for a file saved under another, find nothing,
 and continue as if the prior work had never happened — silently. One skill
 asked whether to save and, told no, saved nothing anywhere. A fallback
-folder literally named `unknown` appeared. That investigation — preserved in
-`C:\_data-mybizz-mgt\_desktop\artifact-saving-issue\` — is why the
+folder literally named `unknown` appeared. That investigation is why the
 orchestrator now owns every handoff, why verification precedes every
 advance, why the ledger remembers every location, and why nothing in this
 system is ever allowed to disappear quietly.

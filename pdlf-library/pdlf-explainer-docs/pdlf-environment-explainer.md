@@ -57,8 +57,8 @@ of web applications through PDLF) trustworthy and efficient.
   `mb-compile-rules` (the rule-authoring pipeline).
 - **The supporting tooling**: Graphify (code/document structure knowledge),
   GStack and the other installed skill sets, the documentation suites in
-  `mybizz-config-docs`, the master explainer and this document in
-  `mybizz-os-docs`.
+  `mybizz-config-docs`, the master explainer in `mybizz-os-docs`, and this
+  document in the PDLF library (`C:\pdlf\pdlf-library\`).
 
 **Who it serves.** The developer and the agents, now. Nothing in this
 layer ships to clients or to Anvil. Its outputs flow *into* higher layers

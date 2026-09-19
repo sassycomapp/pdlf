@@ -20,8 +20,8 @@ a skill, or a module that defines and runs that step.
   `C:\pdlf\pdlf-library\pdlf-adr\pdlf-adr-artifact-saving-convention.md`.
 - **Module 1** is the orchestrator machinery — the standing agent that runs
   every other module (see `pdlf-library/pdlf-explainer-docs/pdlf-expl-orchestrator-agent.md`).
-- Step 13's module is a reserved gap: that step was disbanded; the number is
-  kept empty by design.
+- Steps 13 and 25 are reserved gaps: those steps were disbanded; their numbers
+  are kept empty by design.
 - Current state: all module files are placeholders (created 2026-09-11),
   populated step by step as makePDLF completes them. What it is and why it is
   built this way: `pdlf-library/pdlf-explainer-docs/pdlf-expl-app-factory.md`.
