@@ -44,10 +44,11 @@ policies forbid; ADRs record why; processes walk through doing.
 ## What is here now, and what is deferred
 
 Present: the artifact-saving convention ADR, the artifact-and-handover
-specification, the nomenclature specification, four explainers (orchestrator
-agent, artifact lifecycle, app-factory, environment), the objective review,
-and the system explainer. The environment explainer, objective review, and
-system explainer were moved here from `C:\mybizz\mybizz-os-docs\` on
+specification, the nomenclature specification, three explainers (orchestrator
+agent, artifact lifecycle, app-factory), the objective review. The
+environment explainer and system explainer were returned to
+`C:\mybizz\mybizz-os-docs\` on 2026-09-19 per developer instruction; the
+objective review was moved here from `C:\mybizz\mybizz-os-docs\` on
 2026-09-11 (moved, not copied — sole homes, no duplicates).
 
 Deliberately deferred to the makePDLF environment until makePDLF completes:
@@ -61,7 +62,8 @@ app-factory modules when the system is complete.
 - **The makePDLF development project** builds the system and holds its own
   in-development step files, policies, and procedures. This library holds
   what is settled and canonical to the finished system.
-- **[[pdlf-system-explainer]]** (in `pdlf-explainer-docs/`) is the full
+- **[[pdlf-explainer]]** (now `pdlf-explainer.md` in `C:\mybizz\mybizz-os-docs\`,
+  returned 2026-09-19) is the full
   general explainer of PDLF, moved here from `C:\mybizz\mybizz-os-docs\` on
   2026-09-11 — this is its sole home; no duplicate exists elsewhere.
 - **[[pdlf-objective-review]]** assesses PDLF against the comparable

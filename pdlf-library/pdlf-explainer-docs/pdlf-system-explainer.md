@@ -6,6 +6,7 @@ date-created: 2026-09-05
 ---
 
 # PDLF — The Project Development Lifecycle Framework
+
 *What it is, where it came from, why it exists, and what it does for you*
 
 ---
@@ -22,12 +23,12 @@ PDLF — the Project Development Lifecycle Framework — is not a tool in the wa
 
 It runs on OpenCode as its execution engine, and it coordinates four distinct capability layers, each doing a genuinely different job:
 
-| Layer | What it is | What it contributes |
-|---|---|---|
-| **Workflow** | GStack skills | Structured planning reviews, design consultation, QA, code review, shipping |
-| **Engineering discipline** | Matt Pocock skills | Domain modeling, ticket generation, architecture health, triage |
-| **Ledger** | PostgreSQL (`pdlf` database) | The single, referentially-enforced source of truth for every step, gate, deviation, and thinking checkpoint |
-| **Memory** | GBrain | A persistent knowledge base, queried before every step, synced after every task |
+| Layer                      | What it is                   | What it contributes                                                                                         |
+| -------------------------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| **Workflow**               | GStack skills                | Structured planning reviews, design consultation, QA, code review, shipping                                 |
+| **Engineering discipline** | Matt Pocock skills           | Domain modeling, ticket generation, architecture health, triage                                             |
+| **Ledger**                 | PostgreSQL (`pdlf` database) | The single, referentially-enforced source of truth for every step, gate, deviation, and thinking checkpoint |
+| **Memory**                 | GBrain                       | A persistent knowledge base, queried before every step, synced after every task                             |
 
 Underneath all four layers sits one governing relationship, stated as plainly as possible: **the developer is the decision-maker. The agent executes. The ledger records. GBrain remembers.** Every mechanism described in this document exists to keep that relationship intact — to make sure the agent never quietly becomes the decision-maker, that nothing the agent does goes unrecorded, and that nothing learned is ever lost.
 
@@ -139,46 +140,46 @@ The pipeline moves through five phases, each with a clear entry condition (the p
 
 Section 7 later covers, in detail, only the steps that invoke an external GStack, Matt Pocock, or Magdoub skill — a deliberately narrow slice. Most of the pipeline is not that: it's manual work the developer does directly in the Anvil IDE, gate steps OpenCode evaluates itself, or agent-native work needing no external skill at all. Leaving those steps as unnamed gaps would understate how much of PDLF's actual rigor lives outside the skill table. Here is every step, in full:
 
-| Step | Type | What happens |
-|---|---|---|
-| 11 | OpenCode | Init — foundation checks, folder structure, project registration. Handles new-project and existing-project entry differently at this one step only (Section 6, "Entry"). |
-| 12 | Skill (conditional) | `/office-hours` — structured six-question idea interview. RUN/SKIP decision. |
-| 14 | Skill | `/plan-ceo-review` — leadership-priorities lens on the plan. |
-| 15 | Skill | `/plan-eng-review` — engineering-feasibility lens on the plan. |
-| 16 | Skill + GATE | `domain-modeling` — locks domain vocabulary and ADRs. Gate: `domain-locked`. |
-| 17 | Manual | Developer creates the actual Anvil data tables in the Anvil IDE. |
-| 18 | Manual | Pull the resulting schema to local. |
-| 19 | Skill | `to-tickets` — breaks the locked plan into tracer-bullet tickets. |
-| 20 | Skill | `/design-consultation` — produces the design direction document. |
-| 21 | Gate (OpenCode-native) | Concept sanity audit — full coherence check across everything decided so far. Gate: `concept-locked`. |
-| 22 | Tool | Magdoub wireframe skill, Phase 1 — structural black-and-white wireframes. |
-| 23 | Skill | `/plan-design-review` — design-coherence lens. |
-| 24 | Skill | `/plan-devex-review` — developer-experience lens. |
-| 26 | Tool + GATE | Magdoub wireframe skill, Phase 2 — polished wireframes. Gate: `wireframes-approved`. |
-| 27 | OpenCode (deferred) | Screen production — currently deferred, not yet active in the pipeline. |
-| 28 | External (deferred) | Screen-to-PNG conversion — currently deferred, not yet active in the pipeline. |
-| 29 | Manual | Developer + Anvil AI build the actual UI forms in the Anvil IDE. |
-| 30 | Manual | Pull the resulting forms to local. |
-| 31 | OpenCode | Scaffold planning — plans the physical build structure before it's created. |
-| 32 | Manual | Developer builds the physical scaffold in the Anvil IDE. |
-| 33 | Manual | Pull the physical scaffold to local. |
-| 34 | Gate (OpenCode-native) | Architecture sanity audit — confirms the physical build genuinely matches the locked architecture, before any feature code is written. Gate: `architecture-verified`. |
-| 35 | Agent loop | The feature build loop itself, run feature-by-feature — see the dedicated subsection above. |
-| 35A | OpenCode | Local-scope `pip-audit` plus broader test coverage, within the same feature cycle as 35. |
-| 36 | Skill | `/design-review` — retests the feature's design, run after remediation. |
-| 37 | Skill | `/review` — code review, findings persisted to a named path. |
-| 38 | Skill | `/qa` — automated QA driving a real headless browser. |
-| 38A | OpenCode | Captures Anvil's own native `pip-audit` result, if the server environment was rebuilt this cycle. |
-| 39 | Skill + GATE | `triage` — processes review/QA findings. Gate: `build-verified`, evaluated once per feature. |
-| 40 | Skill (optional) | `improve-codebase-architecture` — read-only architecture health scan for this feature. RUN/SKIP decision, once per feature cycle. |
-| 40B | OpenCode (conditional) | Applies only the specific fixes the developer approved from Step 40's findings. Runs only if Step 40 ran and found something. |
-| 41 | Skill | `/ship` — shipping mechanics. |
-| 42 | Manual | Publish to Staging — currently flagged for rebuild (see the Five-App Structure discussion, Section 2A onward; this step models a staging/production split the platform doesn't actually have). |
-| 42A | Skill | Full integration/E2E suite at staging — currently flagged for rebuild, same reason as Step 42. |
-| 43 | Skill | Staging smoke test — currently flagged for rebuild, same reason as Step 42. |
-| 44 | Manual + GATE | Promote to Production — currently flagged for rebuild, same reason as Step 42. Gate: `production-released`. |
-| 45 | Skill | `/canary` — production monitoring. |
-| 46 | LEARN + GATE | The LEARN junction — see the dedicated subsection below. Gate: `released`. |
+| Step | Type                   | What happens                                                                                                                                                                                   |
+| ---- | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 11   | OpenCode               | Init — foundation checks, folder structure, project registration. Handles new-project and existing-project entry differently at this one step only (Section 6, "Entry").                       |
+| 12   | Skill (conditional)    | `/office-hours` — structured six-question idea interview. RUN/SKIP decision.                                                                                                                   |
+| 14   | Skill                  | `/plan-ceo-review` — leadership-priorities lens on the plan.                                                                                                                                   |
+| 15   | Skill                  | `/plan-eng-review` — engineering-feasibility lens on the plan.                                                                                                                                 |
+| 16   | Skill + GATE           | `domain-modeling` — locks domain vocabulary and ADRs. Gate: `domain-locked`.                                                                                                                   |
+| 17   | Manual                 | Developer creates the actual Anvil data tables in the Anvil IDE.                                                                                                                               |
+| 18   | Manual                 | Pull the resulting schema to local.                                                                                                                                                            |
+| 19   | Skill                  | `to-tickets` — breaks the locked plan into tracer-bullet tickets.                                                                                                                              |
+| 20   | Skill                  | `/design-consultation` — produces the design direction document.                                                                                                                               |
+| 21   | Gate (OpenCode-native) | Concept sanity audit — full coherence check across everything decided so far. Gate: `concept-locked`.                                                                                          |
+| 22   | Tool                   | Magdoub wireframe skill, Phase 1 — structural black-and-white wireframes.                                                                                                                      |
+| 23   | Skill                  | `/plan-design-review` — design-coherence lens.                                                                                                                                                 |
+| 24   | Skill                  | `/plan-devex-review` — developer-experience lens.                                                                                                                                              |
+| 26   | Tool + GATE            | Magdoub wireframe skill, Phase 2 — polished wireframes. Gate: `wireframes-approved`.                                                                                                           |
+| 27   | OpenCode (deferred)    | Screen production — currently deferred, not yet active in the pipeline.                                                                                                                        |
+| 28   | External (deferred)    | Screen-to-PNG conversion — currently deferred, not yet active in the pipeline.                                                                                                                 |
+| 29   | Manual                 | Developer + Anvil AI build the actual UI forms in the Anvil IDE.                                                                                                                               |
+| 30   | Manual                 | Pull the resulting forms to local.                                                                                                                                                             |
+| 31   | OpenCode               | Scaffold planning — plans the physical build structure before it's created.                                                                                                                    |
+| 32   | Manual                 | Developer builds the physical scaffold in the Anvil IDE.                                                                                                                                       |
+| 33   | Manual                 | Pull the physical scaffold to local.                                                                                                                                                           |
+| 34   | Gate (OpenCode-native) | Architecture sanity audit — confirms the physical build genuinely matches the locked architecture, before any feature code is written. Gate: `architecture-verified`.                          |
+| 35   | Agent loop             | The feature build loop itself, run feature-by-feature — see the dedicated subsection above.                                                                                                    |
+| 35A  | OpenCode               | Local-scope `pip-audit` plus broader test coverage, within the same feature cycle as 35.                                                                                                       |
+| 36   | Skill                  | `/design-review` — retests the feature's design, run after remediation.                                                                                                                        |
+| 37   | Skill                  | `/review` — code review, findings persisted to a named path.                                                                                                                                   |
+| 38   | Skill                  | `/qa` — automated QA driving a real headless browser.                                                                                                                                          |
+| 38A  | OpenCode               | Captures Anvil's own native `pip-audit` result, if the server environment was rebuilt this cycle.                                                                                              |
+| 39   | Skill + GATE           | `triage` — processes review/QA findings. Gate: `build-verified`, evaluated once per feature.                                                                                                   |
+| 40   | Skill (optional)       | `improve-codebase-architecture` — read-only architecture health scan for this feature. RUN/SKIP decision, once per feature cycle.                                                              |
+| 40B  | OpenCode (conditional) | Applies only the specific fixes the developer approved from Step 40's findings. Runs only if Step 40 ran and found something.                                                                  |
+| 41   | Skill                  | `/ship` — shipping mechanics.                                                                                                                                                                  |
+| 42   | Manual                 | Publish to Staging — currently flagged for rebuild (see the Five-App Structure discussion, Section 2A onward; this step models a staging/production split the platform doesn't actually have). |
+| 42A  | Skill                  | Full integration/E2E suite at staging — currently flagged for rebuild, same reason as Step 42.                                                                                                 |
+| 43   | Skill                  | Staging smoke test — currently flagged for rebuild, same reason as Step 42.                                                                                                                    |
+| 44   | Manual + GATE          | Promote to Production — currently flagged for rebuild, same reason as Step 42. Gate: `production-released`.                                                                                    |
+| 45   | Skill                  | `/canary` — production monitoring.                                                                                                                                                             |
+| 46   | LEARN + GATE           | The LEARN junction — see the dedicated subsection below. Gate: `released`.                                                                                                                     |
 
 A few numbers are deliberately absent from this table, not overlooked: Step 1 is the orchestrator itself, not a pipeline step in this sense. Steps 2 and 3 belonged to an earlier existing-project audit model that was retired outright — existing-project entry is now handled inside Step 11 itself, as noted in "Entry" above. Steps 4 through 10 are formally reserved for future use, currently undefined. Step 13 (`to-spec`) and Step 25 (`prototype`) were both removed after the skill-use principle found neither had a genuine downstream consumer — the exact example named in Section 3's discussion of that principle.
 
@@ -236,25 +237,25 @@ PDLF does not build its own review, testing, memory, or design tooling from scra
 
 Now, the three skills invoked at specific, named points in the pipeline:
 
-| Step | Skill invoked | What it actually contributes |
-|---|---|---|
-| 12 | GStack `/office-hours` | A structured, six-question interview format — genuinely better than a freeform conversational exchange for surfacing an idea's real shape early. |
-| 14 | GStack `/plan-ceo-review` | A leadership-priorities lens on the plan — does this actually serve what the project is meant to achieve. |
-| 15 | GStack `/plan-eng-review` | An engineering-feasibility lens — is the plan actually buildable as stated, before any commitment is made to it. |
-| 16 | Matt Pocock `domain-modeling` (via `/grill-with-docs`) | Locks a shared, precise domain vocabulary and produces the ADRs that will govern the project — the foundation everything downstream builds on. |
-| 19 | Matt Pocock `to-tickets` | Breaks a locked plan into concrete, individually buildable tracer-bullet tickets, rather than one undifferentiated block of "build the feature." |
-| 20 | GStack `/design-consultation` | Structured design-system consultation, producing the actual design direction document. |
-| 22 | Magdoub wireframe skill (Phase 1) | Fast, structural black-and-white wireframes — validating layout and flow before any visual polish is invested. |
-| 23 | GStack `/plan-design-review` | A design-coherence lens on the plan, distinct from the engineering and leadership lenses that already ran. |
-| 24 | GStack `/plan-devex-review` | A developer-experience lens — how the resulting build will actually feel to work with and extend. |
-| 26 | Magdoub wireframe skill (Phase 2) | Refined, polished wireframes, built only once the underlying structure from Phase 1 is already approved — avoiding wasted polish on a structure that might still change. |
-| 36 | GStack `/design-review` | A genuine retest of the feature's design as it will actually ship, run after remediation rather than before. |
-| 37 | GStack `/review` | Structured code review, required to persist its findings to a named, checkable path rather than simply asserting a pass. |
-| 38 | GStack `/qa` | Automated QA that drives an actual headless browser — something the agent genuinely cannot do unaided at all, making this one of the clearest cases where a specialized skill earns its place outright. |
-| 39 | Matt Pocock `triage` | Categorizes, verifies, and labels every finding surfaced by review and QA, feeding the `build-verified` gate directly. |
-| 40 | Matt Pocock `improve-codebase-architecture` | An optional, strictly read-only architecture health scan — surfaces findings for your review, never applies anything itself. |
-| 41 | GStack `/ship` | Handles the actual shipping mechanics once a feature (or the whole project) is ready to move forward. |
-| 45 | GStack `/canary` | Canary-style monitoring once something reaches production. |
+| Step | Skill invoked                                          | What it actually contributes                                                                                                                                                                            |
+| ---- | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 12   | GStack `/office-hours`                                 | A structured, six-question interview format — genuinely better than a freeform conversational exchange for surfacing an idea's real shape early.                                                        |
+| 14   | GStack `/plan-ceo-review`                              | A leadership-priorities lens on the plan — does this actually serve what the project is meant to achieve.                                                                                               |
+| 15   | GStack `/plan-eng-review`                              | An engineering-feasibility lens — is the plan actually buildable as stated, before any commitment is made to it.                                                                                        |
+| 16   | Matt Pocock `domain-modeling` (via `/grill-with-docs`) | Locks a shared, precise domain vocabulary and produces the ADRs that will govern the project — the foundation everything downstream builds on.                                                          |
+| 19   | Matt Pocock `to-tickets`                               | Breaks a locked plan into concrete, individually buildable tracer-bullet tickets, rather than one undifferentiated block of "build the feature."                                                        |
+| 20   | GStack `/design-consultation`                          | Structured design-system consultation, producing the actual design direction document.                                                                                                                  |
+| 22   | Magdoub wireframe skill (Phase 1)                      | Fast, structural black-and-white wireframes — validating layout and flow before any visual polish is invested.                                                                                          |
+| 23   | GStack `/plan-design-review`                           | A design-coherence lens on the plan, distinct from the engineering and leadership lenses that already ran.                                                                                              |
+| 24   | GStack `/plan-devex-review`                            | A developer-experience lens — how the resulting build will actually feel to work with and extend.                                                                                                       |
+| 26   | Magdoub wireframe skill (Phase 2)                      | Refined, polished wireframes, built only once the underlying structure from Phase 1 is already approved — avoiding wasted polish on a structure that might still change.                                |
+| 36   | GStack `/design-review`                                | A genuine retest of the feature's design as it will actually ship, run after remediation rather than before.                                                                                            |
+| 37   | GStack `/review`                                       | Structured code review, required to persist its findings to a named, checkable path rather than simply asserting a pass.                                                                                |
+| 38   | GStack `/qa`                                           | Automated QA that drives an actual headless browser — something the agent genuinely cannot do unaided at all, making this one of the clearest cases where a specialized skill earns its place outright. |
+| 39   | Matt Pocock `triage`                                   | Categorizes, verifies, and labels every finding surfaced by review and QA, feeding the `build-verified` gate directly.                                                                                  |
+| 40   | Matt Pocock `improve-codebase-architecture`            | An optional, strictly read-only architecture health scan — surfaces findings for your review, never applies anything itself.                                                                            |
+| 41   | GStack `/ship`                                         | Handles the actual shipping mechanics once a feature (or the whole project) is ready to move forward.                                                                                                   |
+| 45   | GStack `/canary`                                       | Canary-style monitoring once something reaches production.                                                                                                                                              |
 
 Three things about this table are worth noticing rather than skimming past. First, notice how many steps in the pipeline are *not* on it — initialization, the sanity-audit gates, scaffold planning, the build loop itself, the LEARN step. Those steps are handled by the agent directly, deliberately, because cross-referencing markdown documents or running a structured build loop is genuinely well within what the agent can already do — inventing or invoking a skill for those steps would have been complexity without any real benefit, which is exactly what the skill-use principle exists to prevent. Second, notice that no single skill family runs the whole show. GStack owns the structured-review and shipping mechanics. Matt Pocock owns the deeper engineering disciplines — vocabulary, ticketing, triage, architecture health. Magdoub owns visual iteration. Each is a narrow, selectively-called library contributing exactly what it does best, not a competing pipeline PDLF has to reconcile with its own. Third, and easy to miss precisely because they don't appear as named rows in a step table: GBrain and `anvil-agent-references` are working underneath every single one of these steps and several more besides — one supplying memory at every step without exception, the other supplying the platform-specific ground truth the coding steps actually build against. The five components together, not any one of them alone, are what make up PDLF's actual skill library.
 

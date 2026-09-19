@@ -48,8 +48,8 @@ of web applications through PDLF) trustworthy and efficient.
 - **The memory system**: GBrain (semantic memory, Postgres, MCP), the
   memory governor (the gate for durable-memory writes, two processes: API
   + worker), `mb-submit-memory` (the governed submission path),
-  [[memory-functionality-audit]] (the health-check procedure, reports to
-  `C:\mybizz\memory-audit-reports\`).
+    [[memory-functionality-audit]] (the health-check procedure, reports to
+    `C:\mybizz\memory-audit-reports\`).
 - **The security systems**: the security-global library (54 documents, seven
   categories, `sec-` prefix — the authority on what "secure" means here);
   Cupcake (mechanical policy enforcement, reactivated 2026-09-08); Sentinel
