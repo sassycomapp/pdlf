@@ -1,10 +1,7 @@
 ---
-document: "PDLF — The Life of an Artifact"
-doc-id: pdlf-expl-artifact-lifecycle
-state: Live
-date-created: 2026-09-11
+title: "pdlf-expl-artifact-lifecycle"
+doc-id: "pdlf-expl-artifact-lifecycle"
 ---
-
 # PDLF — The Life of an Artifact
 
 *The plain narrative of how a work product moves through the PDLF system —

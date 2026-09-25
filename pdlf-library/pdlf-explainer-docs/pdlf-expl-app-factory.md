@@ -1,10 +1,7 @@
 ---
-document: "PDLF — The App Factory"
-doc-id: pdlf-expl-app-factory
-state: Live
-date-created: 2026-09-11
+title: "pdlf-expl-app-factory"
+doc-id: "pdlf-expl-app-factory"
 ---
-
 # PDLF — The App Factory
 
 *What the app-factory is: the actual machinery of the PDLF system, one module

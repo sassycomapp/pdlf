@@ -1,10 +1,7 @@
 ---
-document: "PDLF Library"
-doc-id: README
-state: Live
-date-created: 2026-09-11
+title: "README"
+doc-id: "README"
 ---
-
 # PDLF Library
 
 The canonical technical documentation home of the PDLF system — the running

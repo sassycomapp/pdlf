@@ -1,10 +1,7 @@
 ---
-document: "PDLF — Artifact and Handover Specification"
-doc-id: pdlf-spec-artifact-handover
-state: Live
-date-created: 2026-09-11
+title: "pdlf-spec-artifact-handover"
+doc-id: "pdlf-spec-artifact-handover"
 ---
-
 # PDLF — Artifact and Handover Specification
 
 Canonical binding technical truth for how artifacts are produced, captured,

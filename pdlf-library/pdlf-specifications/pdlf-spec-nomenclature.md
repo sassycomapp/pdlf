@@ -1,10 +1,7 @@
 ---
-document: "PDLF — Nomenclature Specification"
-doc-id: pdlf-spec-nomenclature
-state: Live
-date-created: 2026-09-11
+title: "pdlf-spec-nomenclature"
+doc-id: "pdlf-spec-nomenclature"
 ---
-
 # PDLF — Nomenclature Specification
 
 Canonical naming rules for the PDLF system: project slugs, the GStack-derived

@@ -1,10 +1,7 @@
 ---
-document: "Register — PDLF Library"
-doc-id: pdlf-register
-state: Live
-date-created: 2026-09-11
+title: "pdlf-register"
+doc-id: "pdlf-register"
 ---
-
 # Register — PDLF Library
 
 One row per real document in `C:\pdlf\pdlf-library\` (and the app-factory

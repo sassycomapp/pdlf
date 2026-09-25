@@ -1,10 +1,7 @@
 ---
-document: "App Factory — PDLF Machinery"
-doc-id: app-factory-readme
-state: Live
-date-created: 2026-09-11
+title: "README"
+doc-id: "README"
 ---
-
 # App Factory — PDLF Machinery
 
 The executable machinery of the PDLF system: forty-six modules, one per

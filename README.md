@@ -1,3 +1,7 @@
+---
+title: "README"
+doc-id: "README"
+---
 # pdlf — The PDLF Environment
 
 The home of the PDLF system — the Project Development Lifecycle Framework —

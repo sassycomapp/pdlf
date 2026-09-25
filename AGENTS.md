@@ -1,3 +1,7 @@
+---
+title: "AGENTS"
+doc-id: "AGENTS"
+---
 # AGENTS.md — pdlf (the PDLF environment)
 
 **What this location is.** `C:\pdlf` is the home of the PDLF system — the

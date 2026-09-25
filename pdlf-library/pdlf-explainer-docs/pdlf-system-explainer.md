@@ -1,10 +1,7 @@
 ---
-document: "PDLF — The Project Development Lifecycle Framework"
-doc-id: pdlf-system-explainer
-state: Live
-date-created: 2026-09-05
+title: "pdlf-system-explainer"
+doc-id: "pdlf-system-explainer"
 ---
-
 # PDLF — The Project Development Lifecycle Framework
 
 *What it is, where it came from, why it exists, and what it does for you*

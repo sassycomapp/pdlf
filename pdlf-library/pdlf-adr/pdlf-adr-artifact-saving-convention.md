@@ -1,10 +1,7 @@
 ---
-document: "PDLF — Artifact-Saving Convention"
-doc-id: pdlf-adr-artifact-saving-convention
-state: Live
-date-created: 2026-09-11
+title: "pdlf-adr-artifact-saving-convention"
+doc-id: "pdlf-adr-artifact-saving-convention"
 ---
-
 # PDLF — Artifact-Saving Convention
 
 Date: 2026-09-11

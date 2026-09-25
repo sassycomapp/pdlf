@@ -1,10 +1,7 @@
 ---
-document: "PDLF — The Orchestrator Agent (Step 1)"
-doc-id: pdlf-expl-orchestrator-agent
-state: Live
-date-created: 2026-09-11
+title: "pdlf-expl-orchestrator-agent"
+doc-id: "pdlf-expl-orchestrator-agent"
 ---
-
 # PDLF — The Orchestrator Agent (Step 1)
 
 *What the orchestrator agent is, which is Step 1, and what its function is,
