@@ -1,6 +1,6 @@
 ---
 title: "pdlf-spec-artifact-handover"
-doc-id: "pdlf-spec-artifact-handover"
+doc-id: "mb-f1745959"
 ---
 # PDLF — Artifact and Handover Specification
 

@@ -1,6 +1,6 @@
 ---
 title: "pdlf-expl-artifact-lifecycle"
-doc-id: "pdlf-expl-artifact-lifecycle"
+doc-id: "mb-c1ab879e"
 ---
 # PDLF — The Life of an Artifact
 

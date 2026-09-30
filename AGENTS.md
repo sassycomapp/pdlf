@@ -1,6 +1,6 @@
 ---
 title: "AGENTS"
-doc-id: "AGENTS"
+doc-id: "mb-a65c6e3a"
 ---
 # AGENTS.md — pdlf (the PDLF environment)
 
@@ -19,7 +19,6 @@ artifact safety net.
 | `pdlf-library\` | The PDLF library — canonical technical documentation: ADRs, specifications, policies, processes, explainers, and the register. See `pdlf-library\README.md`. |
 | `app-factory\` | The system's machinery — 46 modules, one per pipeline step. Placeholders today; populated by makePDLF and migrated here once, when all steps are complete. See `app-factory\README.md`. |
 | `output\` | The artifact safety net — producer-routed local copies (`pdlf-output-gstack\`, `pdlf-output-pocock\`). Transient: copied into the shipping project's folders, then cleared. Not version-controlled. |
-| `pdlf-config.yaml` | This location's config file — registered in `C:\mybizz\mybizz-config-docs\projects-config-register.md`. |
 
 ## Standing rules for this location
 

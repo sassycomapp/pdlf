@@ -1,6 +1,6 @@
 ---
 title: "pdlf-spec-nomenclature"
-doc-id: "pdlf-spec-nomenclature"
+doc-id: "mb-4c33cf0d"
 ---
 # PDLF — Nomenclature Specification
 

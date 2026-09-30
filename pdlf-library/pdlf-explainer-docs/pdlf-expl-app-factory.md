@@ -1,6 +1,6 @@
 ---
 title: "pdlf-expl-app-factory"
-doc-id: "pdlf-expl-app-factory"
+doc-id: "mb-bcfa10bb"
 ---
 # PDLF — The App Factory
 
