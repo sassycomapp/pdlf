@@ -1,6 +1,7 @@
 ---
 title: "pdlf-system-explainer"
 doc-id: "mb-4aed4ae2"
+updated: "2026-10-01"
 ---
 # PDLF — The Project Development Lifecycle Framework
 

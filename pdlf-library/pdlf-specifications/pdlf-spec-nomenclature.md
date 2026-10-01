@@ -1,6 +1,7 @@
 ---
 title: "pdlf-spec-nomenclature"
 doc-id: "mb-4c33cf0d"
+updated: "2026-10-01"
 ---
 # PDLF — Nomenclature Specification
 

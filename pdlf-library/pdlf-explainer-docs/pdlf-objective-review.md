@@ -1,6 +1,7 @@
 ---
 title: "pdlf-objective-review"
 doc-id: "mb-29fe353f"
+updated: "2026-10-01"
 ---
 # PDLF — An Objective Review
 *Assessed against the current landscape of AI-agent software development frameworks*

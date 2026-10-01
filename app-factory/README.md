@@ -1,6 +1,7 @@
 ---
 title: "README"
 doc-id: "mb-ab3dbf19"
+updated: "2026-10-01"
 ---
 # App Factory — PDLF Machinery
 

@@ -1,6 +1,7 @@
 ---
 title: "AGENTS"
 doc-id: "mb-a65c6e3a"
+updated: "2026-10-01"
 ---
 # AGENTS.md — pdlf (the PDLF environment)
 
