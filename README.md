@@ -12,7 +12,7 @@ scaffolded 2026-09-11 per developer instruction.
 
 | Path | What it is |
 |---|---|
-| `pdlf-library\` | Canonical technical documentation: ADRs, specifications, explainers, and the register. See `pdlf-library\README.md`. |
+| `pdlf-library\` | Canonical technical documentation: ADRs, specifications, explainers, and the register The use of registers has been discontinued. Please review. See `pdlf-library\README.md`. |
 | `app-factory\` | The system's machinery — 46 modules, one per pipeline step (placeholders today; populated by makePDLF, migrated here once when all steps are complete). See `app-factory\README.md`. |
 | `output\` | The producer-routed artifact safety net (transient — copied into the shipping project's folders, then cleared). Not version-controlled. |
 
@@ -20,8 +20,8 @@ scaffolded 2026-09-11 per developer instruction.
 
 - **GitHub:** `sassycomapp/pdlf` (private), branch `main` — initial scaffold pushed 2026-09-11.
 - **GBrain:** source `pdlf` (federated) — registered and synced 2026-09-11; 59 pages, 54 chunks embedded.
-- **Config register:** `pdlf-config.yaml` is registered in
-  `C:\mybizz\mybizz-config-docs\projects-config-register.md`.
+- **Config register The use of registers has been discontinued. Please review:** `pdlf-config.yaml` is registered in
+  `C:\mybizz\mybizz-config-docs\projects-config-register.md` The use of registers has been discontinued. Please review.
 
 ## What deliberately waits
 

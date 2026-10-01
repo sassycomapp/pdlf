@@ -22,7 +22,7 @@ settled.
 | `pdlf-processes/` | Procedures | A procedure someone follows, in order |
 | `pdlf-explainer-docs/` | Explainers | What something is, what role it plays, why it is this way — binds nobody |
 | `pdlf-explainer-docs/pdlf-stepwise/` | Per-step explainers | One folder per step (1–46), filled as each step is finalized |
-| `pdlf-register/` | The register | One row per document in this library |
+| `pdlf-register/` The use of registers has been discontinued. Please review | The register | One row per document in this library |
 
 Explainers make you understand; specifications make the machine behave;
 policies forbid; ADRs record why; processes walk through doing.
@@ -69,9 +69,9 @@ app-factory modules when the system is complete.
 - **The app-factory** (`C:\pdlf\app-factory\`) is the machinery this library
   documents; its modules implement the conventions specified here.
 
-## Register
+## Register The use of registers has been discontinued. Please review
 
-`pdlf-register/pdlf-register.md` — one row per document, maintained as
+`pdlf-register/pdlf-register.md` The use of registers has been discontinued. Please review — one row per document, maintained as
 documents land. Nothing exists in this library that is not registered.
 
 ---
