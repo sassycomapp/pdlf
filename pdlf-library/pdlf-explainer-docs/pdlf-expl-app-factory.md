@@ -1,6 +1,7 @@
 ---
 title: "pdlf-expl-app-factory"
 doc-id: "mb-bcfa10bb"
+updated: "2026-10-01"
 ---
 # PDLF — The App Factory
 
@@ -44,16 +45,16 @@ machinery, this library's documentation, and the output area, all under
 ## What the modules must implement
 
 Every module implements the conventions recorded in this library — above
-all, for its own step, [[pdlf-spec-artifact-handover]]: paste prior
+all, for its own step, [[[pdlf:pdlf-library/pdlf-specifications/pdlf-spec-artifact-handover]]](C:/pdlf/pdlf-library/pdlf-specifications/pdlf-spec-artifact-handover.md): paste prior
 artifacts in full, capture the output path, verify it exists, record it in
 the ledger, make the stable and safety-net copies, and stop with a deviation
 request when something expected is missing. The convention ADR
-([[pdlf-adr-artifact-saving-convention]]) is the decision record behind
+([[[pdlf:pdlf-library/pdlf-adr/pdlf-adr-artifact-saving-convention]]](C:/pdlf/pdlf-library/pdlf-adr/pdlf-adr-artifact-saving-convention.md)) is the decision record behind
 those rules.
 
 Module 1 is a special case: it is the orchestrator machinery itself — the
 standing agent that runs every other module (see
-[[pdlf-expl-orchestrator-agent]]).
+[[[pdlf:pdlf-library/pdlf-explainer-docs/pdlf-expl-orchestrator-agent]]](C:/pdlf/pdlf-library/pdlf-explainer-docs/pdlf-expl-orchestrator-agent.md)).
 
 ## Current state
 

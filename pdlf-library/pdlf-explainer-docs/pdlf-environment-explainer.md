@@ -1,6 +1,7 @@
 ---
 title: "pdlf-environment-explainer"
 doc-id: "mb-d5d01778"
+updated: "2026-10-01"
 ---
 # The Environment Explainer — the pre-makePDLF, makePDLF, PDLF, and shipped layers
 
@@ -135,7 +136,7 @@ boundary is itself a review responsibility**: anything the code references
 must actually ship in `theme/assets`, and anything that must not ship
 (credentials, dev files) must not be inside the four traveling items.
 
-**Structural isolation.** Per [[adr-dependency-based-not-multi-tenant]]
+**Structural isolation.** Per [[[default:adr-global/adr-dependency-based-not-multi-tenant]]](C:/dev/project-library-global/adr-global/adr-dependency-based-not-multi-tenant.md)
 (Sealed): each client is a separate Anvil app with its own database —
 cross-client data access is **structurally impossible**, not enforced by
 code. `app_tables` in a dependency server module resolves to the calling
@@ -265,7 +266,7 @@ whole system.
 3. **The ledger is bridge-only.** Never direct WSL psql to the PDLF
    database.
 4. **The ADR travels as context.** No code generation for the five-app
-   platform without [[adr-dependency-based-not-multi-tenant]] supplied
+   platform without [[[default:adr-global/adr-dependency-based-not-multi-tenant]]](C:/dev/project-library-global/adr-global/adr-dependency-based-not-multi-tenant.md) supplied
    first.
 5. **Every governed system has a health procedure** — e.g.
    memory-functionality-audit for the memory system — and the audit
@@ -277,18 +278,18 @@ whole system.
 
 ## 10. Companion documents
 
-- [[memory-master-explainer]] (mybizz-os-docs repo: `C:\mybizz\mybizz-os-docs\`) — the memory system's four
+- [[[mybizz-os-docs:os-reference-docs/memory-master-explainer]]](C:/mybizz/mybizz-os-docs/os-reference-docs/memory-master-explainer.md) (mybizz-os-docs repo: `C:\mybizz\mybizz-os-docs\`) — the memory system's four
   mechanisms and the governor's processes.
 - memory-functionality-audit (mybizz-os-docs repo: `C:\mybizz\mybizz-os-docs\`) — the memory-system health
   procedure.
 - `mybizz-config-docs/` — the component suites: `memory-governor/`,
   `mb-submit-memory/`, `mb-compile-rules/`, `mb-sentinel-review/`,
   `graphify/`, `gstack/`, `cupcake/`, and the rest.
-- [[adr-dependency-based-not-multi-tenant]] and
-  [[adr-client-instance-readme-five-app-system]]
+- [[[default:adr-global/adr-dependency-based-not-multi-tenant]]](C:/dev/project-library-global/adr-global/adr-dependency-based-not-multi-tenant.md) and
+  [[[default:adr-global/adr-client-instance-readme-five-app-system]]](C:/dev/project-library-global/adr-global/adr-client-instance-readme-five-app-system.md)
   (project-library-global/adr-global) — the structural-isolation and
   client-instance documentation ADRs.
-- [[spec-postgres-ledger]] (makepdlf-project-library) — the ledger
+- [[[makepdlf-project-library:specifications-local/spec-postgres-ledger]]](C:/dev/dev-makepdlf/makepdlf-project-library/specifications-local/spec-postgres-ledger.md) (makepdlf-project-library) — the ledger
   schema and the bridge connection method.
 
 *End of document.*

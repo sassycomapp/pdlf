@@ -1,14 +1,15 @@
 ---
 title: "pdlf-spec-artifact-handover"
 doc-id: "mb-f1745959"
+updated: "2026-10-01"
 ---
 # PDLF — Artifact and Handover Specification
 
 Canonical binding technical truth for how artifacts are produced, captured,
 handed over between steps, copied to the safety net, and archived at ship
 time. Implements `pdlf-adr-artifact-saving-convention`. For the naming rules:
-[[pdlf-spec-nomenclature]]. For the narrative account:
-[[pdlf-expl-artifact-lifecycle]].
+[[[pdlf:pdlf-library/pdlf-specifications/pdlf-spec-nomenclature]]](C:/pdlf/pdlf-library/pdlf-specifications/pdlf-spec-nomenclature.md). For the narrative account:
+[[[pdlf:pdlf-library/pdlf-explainer-docs/pdlf-expl-artifact-lifecycle]]](C:/pdlf/pdlf-library/pdlf-explainer-docs/pdlf-expl-artifact-lifecycle.md).
 
 Facts marked "verified 2026-09-11" were checked directly against the live
 environment on that date. Unverified expectations are marked as such and must
@@ -25,7 +26,7 @@ All GStack skills save under a per-project folder:
     ~/.gstack/projects/<gstack-slug>/…
 
 The `<gstack-slug>` is resolved at the start of every skill run by
-`gstack-slug` (see [[pdlf-spec-nomenclature]] for the derivation chain).
+`gstack-slug` (see [[[pdlf:pdlf-library/pdlf-specifications/pdlf-spec-nomenclature]]](C:/pdlf/pdlf-library/pdlf-specifications/pdlf-spec-nomenclature.md) for the derivation chain).
 Current preambles invoke it as:
 
     eval "$($GSTACK_BIN/gstack-slug 2>/dev/null)" 2>/dev/null || true
@@ -181,7 +182,7 @@ proceed, never an assumption that the skill "probably wrote it."
 | 1 | Built steps 14–15: legacy `gstack-outputs\` folder name; missing `{slug}-` copy prefix; stale quote of an older skill generation's `~/.claude` path in Step 14's description (current skill source verified clean 2026-09-11) | Correction tracked — master task list, item 18 |
 | 2 | End-to-end live verification of the chain (one governed skill run: slug stability, native save, safety-net copy) never performed on the current install | Open — master task list, item 17 |
 | 3 | GStack pinned at 1.58.1.0; upstream at 1.81.0.0 (23 minor versions behind). Upstream fixes may change save behavior | Watched — version upgrade is a separate decision |
-| 4 | Slug cache never reconciles against the git remote; stale entries possible (observed on a placeholder project; heal tracked) | Watched — heal rule in [[pdlf-spec-nomenclature]] |
+| 4 | Slug cache never reconciles against the git remote; stale entries possible (observed on a placeholder project; heal tracked) | Watched — heal rule in [[[pdlf:pdlf-library/pdlf-specifications/pdlf-spec-nomenclature]]](C:/pdlf/pdlf-library/pdlf-specifications/pdlf-spec-nomenclature.md) |
 | 5 | makePDLF's `output-staging\` folder has no routing rule | Open — dev-side decision |
 
 ---
