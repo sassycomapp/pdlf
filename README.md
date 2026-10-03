@@ -1,7 +1,7 @@
 ---
 title: "README"
 doc-id: "mb-eba493f3"
-updated: "2026-10-01"
+updated: "2026-10-03"
 ---
 # pdlf — The PDLF Environment
 
@@ -20,8 +20,7 @@ scaffolded 2026-09-11 per developer instruction.
 
 - **GitHub:** `sassycomapp/pdlf` (private), branch `main` — initial scaffold pushed 2026-09-11.
 - **GBrain:** source `pdlf` (federated) — registered and synced 2026-09-11; 59 pages, 54 chunks embedded.
-- **Config register The use of registers has been discontinued. Please review:** `pdlf-config.yaml` is registered in
-  `C:\mybizz\mybizz-config-docs\projects-config-register.md` The use of registers has been discontinued. Please review.
+- **Config:** `pdlf-config.yaml` at the repository root holds the exact current state.
 
 ## What deliberately waits
 
