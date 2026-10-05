@@ -1,7 +1,7 @@
 ---
 title: "README"
 doc-id: "mb-5220bac9"
-updated: "2026-10-01"
+updated: "2026-10-05"
 ---
 # PDLF Library
 
@@ -22,7 +22,6 @@ settled.
 | `pdlf-processes/` | Procedures | A procedure someone follows, in order |
 | `pdlf-explainer-docs/` | Explainers | What something is, what role it plays, why it is this way — binds nobody |
 | `pdlf-explainer-docs/pdlf-stepwise/` | Per-step explainers | One folder per step (1–46), filled as each step is finalized |
-| `pdlf-register/` The use of registers has been discontinued. Please review | The register | One row per document in this library |
 
 Explainers make you understand; specifications make the machine behave;
 policies forbid; ADRs record why; processes walk through doing.
@@ -69,10 +68,9 @@ app-factory modules when the system is complete.
 - **The app-factory** (`C:\pdlf\app-factory\`) is the machinery this library
   documents; its modules implement the conventions specified here.
 
-## Register The use of registers has been discontinued. Please review
+## Finding documents
 
-`pdlf-register/pdlf-register.md` The use of registers has been discontinued. Please review — one row per document, maintained as
-documents land. Nothing exists in this library that is not registered.
+Documents are found by GBrain search.
 
 ---
 

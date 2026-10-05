@@ -1,7 +1,7 @@
 ---
 title: "README"
 doc-id: "mb-eba493f3"
-updated: "2026-10-03"
+updated: "2026-10-05"
 ---
 # pdlf — The PDLF Environment
 
@@ -12,7 +12,7 @@ scaffolded 2026-09-11 per developer instruction.
 
 | Path | What it is |
 |---|---|
-| `pdlf-library\` | Canonical technical documentation: ADRs, specifications, explainers, and the register The use of registers has been discontinued. Please review. See `pdlf-library\README.md`. |
+| `pdlf-library\` | Canonical technical documentation: ADRs, specifications, explainers. See `pdlf-library\README.md`. |
 | `app-factory\` | The system's machinery — 46 modules, one per pipeline step (placeholders today; populated by makePDLF, migrated here once when all steps are complete). See `app-factory\README.md`. |
 | `output\` | The producer-routed artifact safety net (transient — copied into the shipping project's folders, then cleared). Not version-controlled. |
 

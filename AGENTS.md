@@ -1,7 +1,7 @@
 ---
 title: "AGENTS"
 doc-id: "mb-a65c6e3a"
-updated: "2026-10-01"
+updated: "2026-10-05"
 ---
 # AGENTS.md — pdlf (the PDLF environment)
 
@@ -17,7 +17,7 @@ artifact safety net.
 
 | Path | What it is |
 |---|---|
-| `pdlf-library\` | The PDLF library — canonical technical documentation: ADRs, specifications, policies, processes, explainers, and the register The use of registers has been discontinued. Please review. See `pdlf-library\README.md`. |
+| `pdlf-library\` | The PDLF library — canonical technical documentation: ADRs, specifications, policies, processes, explainers. See `pdlf-library\README.md`. |
 | `app-factory\` | The system's machinery — 46 modules, one per pipeline step. Placeholders today; populated by makePDLF and migrated here once, when all steps are complete. See `app-factory\README.md`. |
 | `output\` | The artifact safety net — producer-routed local copies (`pdlf-output-gstack\`, `pdlf-output-pocock\`). Transient: copied into the shipping project's folders, then cleared. Not version-controlled. |
 
@@ -46,5 +46,5 @@ superseded content with no future use). A `.git` folder pointing at
 `sassycomapp/pdlf` existed until 2026-09-05, when the by-then-deleted GitHub
 repo left it orphaned and it was removed by explicit developer decision. The
 environment was scaffolded properly on 2026-09-11 per developer instruction:
-the library (with its register The use of registers has been discontinued. Please review), the app-factory placeholders, the output
+the library, the app-factory placeholders, the output
 area, and the re-established GitHub repository.
