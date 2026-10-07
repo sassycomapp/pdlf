@@ -1,7 +1,7 @@
 ---
 title: "pdlf-expl-orchestrator-agent"
 doc-id: "mb-a75ee721"
-updated: "2026-10-01"
+updated: "2026-10-07"
 ---
 # PDLF — The Orchestrator Agent (Step 1)
 
@@ -54,12 +54,9 @@ without exception, with no step able to skip its own discipline.
   the step assigns (Full at every gate, no exceptions); executes the gate
   ceremony; enforces the deviation mechanism (three options, developer
   decides, every outcome recorded).
-- **Asks, never assumes:** the two end-of-step housekeeping questions,
-  separately, every step, never combined, never run automatically. The
-  documentation skills and the heavier maintenance runs are asked about at
-  their proper checkpoints rather than after every step — the exact schedule
-  is defined with the closeout process while it is developed in the makePDLF
-  environment.
+- **Asks, never assumes:** at the end of every step it asks the developer to run
+  `/mb-close-out`, the one close-out process: session page, facts, project
+  documents, governor review queue, commit all. It never runs it automatically.
 - **Stops and waits** at the end of every step, presenting the Step Receipt
   and waiting for the developer's "continue." It never advances on its own.
 
