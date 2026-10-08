@@ -1,7 +1,7 @@
 ---
 title: "README"
 doc-id: "mb-5220bac9"
-updated: "2026-10-05"
+updated: "2026-10-08"
 ---
 # PDLF Library
 
@@ -59,7 +59,7 @@ app-factory modules when the system is complete.
 - **The makePDLF development project** builds the system and holds its own
   in-development step files, policies, and procedures. This library holds
   what is settled and canonical to the finished system.
-- **[[[mybizz-os-docs:os-reference-docs/pdlf-explainer]]](C:/mybizz/mybizz-os-docs/os-reference-docs/pdlf-explainer.md)** (now `pdlf-explainer.md` in `C:\mybizz\mybizz-os-docs\`,
+- **[[[pdlf:pdlf-library/pdlf-explainer-docs/pdlf-explainer]]](C:/pdlf/pdlf-library/pdlf-explainer-docs/pdlf-explainer.md)** (now `pdlf-explainer.md` in `C:\mybizz\mybizz-os-docs\`,
   returned 2026-09-19) is the full
   general explainer of PDLF, moved here from `C:\mybizz\mybizz-os-docs\` on
   2026-09-11 — this is its sole home; no duplicate exists elsewhere.
