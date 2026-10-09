@@ -1,0 +1,98 @@
+---
+title: "pdlf-discovery"
+updated: "2026-10-09"
+doc-id: "mb-8ba337a3"
+---
+# PDLF Discovery
+
+Version: v13
+
+## Purpose
+
+This document holds everything learned while scoping PDLF and the process of making it (makePDLF). The scope is written from it once discovery is complete.
+
+Rule: nothing is deleted. A superseded item is struck through and stays visible.
+
+## 1. Decisions
+
+1. makePDLF is not a separate project. It is the process of making PDLF, so PDLF and makePDLF are scoped together.
+2. The end is a functional PDLF system. makePDLF is a means to that end.
+3. Everything kept must be pragmatic and functional. Nothing is kept for ceremony or posterity alone.
+4. Credo: simple, secure, robust, fit for purpose.
+4a. PDLF is not a project. It is an implemented system, like mybizz-os. Its facts: GBrain source `pdlf` (federated); GitHub repository `pdlf` (private); local path `C:\pdlf`; WSL path `/mnt/c/pdlf`; no code repository. The projects are the applications PDLF builds (`mb-3-cs`, `mb4ecom`, `mb5pdlf`).
+4b. Working rule: no WSL commands, OpenCode prompts or instructions until the point under discussion is settled and agreed.
+5. Discovery comes before scope. David gives intent; Claude, as Chief Engineer, advises on what is practical and efficient and settles technical design.
+6. ~~In the end only PDLF exists. makePDLF is disposed of (deleted) once PDLF is built.~~ Under proposal 3b, makePDLF is deleted now, once its content is migrated and verified.
+7. Sorting rule for every makePDLF file and folder: it is either runtime (PDLF needs it to run, so it moves to `C:\pdlf`) or build-only (needed only while making PDLF, so it is deleted with makePDLF). Anything that is neither goes to `obsolete/` now.
+8. Each module is self-contained: it holds the finished step and everything only that step needs. Anything several modules need about how PDLF itself works lives once in `C:\pdlf\pdlf-library`. Nothing a module needs may stay in makePDLF.
+8c. Everything about PDLF is being redesigned except the steps already designed. `makepdlf-project-library\stepwise\` is protected: this redesign does not change it. `run-plan.md` and `workflow.md` describe the steps, so both live in `stepwise/`. Designing the steps is not part of the work at this stage.
+8b. The pre-project files are split by what they are: the blank set of three (brief, scoping ideas, constraints and notes) is part of PDLF and ships with it, because more than one step reads it; the filled-in Daily Intentions Tracker set is the brief of the test application, so it belongs to `mb5pdlf` (`mb5pdlf-project-library\pre-project\`). Both leave `C:\_data-mybizz-exempt\pre-project\`. The blank set is rewritten to match the current pipeline (it still refers to a 17-stage pipeline and old paths).
+8a. Knowledge split, one home per kind: `C:\pdlf\pdlf-library` holds how PDLF works (its own process, rules and machinery); `project-library-global` holds what a good application is (Anvil knowledge, standards, specifications, ADRs). A fact belongs to one of the two, never both.
+9. This document is build-only, so it lives in makePDLF (`C:\dev\dev-makepdlf\makepdlf-project-library\docs-local\`), not in `C:\pdlf`. ~~Location `C:\pdlf\pdlf-library\`.~~
+
+## 2. Discoveries
+
+1. Step 1 is the orchestrator, which runs all the steps in sequence. It is not a step of the pipeline.
+2. Steps 2 to 10 were left open in case something had to happen before the pipeline starts. Only the orchestrator was ever placed there.
+3. The pipeline's real first step is Step 11.
+4. Steps 13 and 25 were dropped as development went on. Step numbers do not always match content, because the steps are still being developed.
+5. A PDLF module is one fully developed makePDLF step, wrapped up as a single unit. The orchestrator runs the modules in order, from the first to the last, and in doing so develops the Anvil application.
+5a. How PDLF runs: the developer decides on an application to build and starts the orchestrator. The first pipeline step (currently Step 11) defines the application's brief, and everything else follows from it. PDLF runs inside OpenCode, using the OpenCode Build agent and its underlying model.
+5c. Two ways an application enters PDLF: a new application with no prior context starts from the three pre-project files (`01-project-brief.md`, `02-scoping-ideas.md`, `03-constraints-and-notes.md`), which act as its scoping documents; an existing, partly developed application (such as `mb-3-cs`) brings its own context instead. The three files are currently held, as a filled-in example (Daily Intentions Tracker for `mb5pdlf`), in the out-of-scope folder `C:\_data-mybizz-exempt\pre-project\`.
+5b. `project-library-global` is the central repository of all knowledge PDLF draws on, including Anvil knowledge. makePDLF depends on it now; when makePDLF is deleted, it stays as the standard by which PDLF develops applications. It is permanent and is neither part of makePDLF nor moved into `C:\pdlf`.
+6. There are two designs of PDLF that do not match:
+   - The workshop builds step files in `makepdlf-project-library/stepwise/`, and `deployment-procedure.md` copies them to `C:\pdlf\stepwise`, which does not exist.
+   - `C:\pdlf` has an `app-factory` with 46 module placeholders (`module-1` to `module-46`) and a library with explainer folders for steps 1 to 46, including the unused steps 2 to 10, 13 and 25.
+7. The same subjects are defined in more than one place:
+   - Nomenclature: `C:\pdlf\pdlf-library\pdlf-specifications\pdlf-spec-nomenclature.md` and the workshop's `specifications-local/spec-nomenclature.md`.
+   - Close-out: `C:\pdlf\pdlf-library\pdlf-processes\pdlf-proc-stepwise-closeout.md`, the workshop's end-of-step housekeeping, and the mybizz-os skill `/mb-close-out`.
+7a. The designed steps (11, 12, 14, 15, 16) depend on shared PDLF machinery that today lives only in makePDLF: `spec-execution-discipline`, `spec-bft`, `spec-gate-procedure`, `spec-postgres-ledger`, `spec-nomenclature`, `step-conditional-state-policy`, `pol-skill-invocation`, `pol-memory-and-knowledge`, and the templates (step receipt, ISA, BFT cheatsheet). This shared machinery is the structure PDLF must have before any module can be built.
+7b. The designed steps still carry pre-mybizz-os assumptions: per-step commit and push questions, `gbrain dream` at every step, devlog-index and judgement-trail entries, a six-table ledger (it has seven), `project-inventory.md` (deleted) and `C:\pdlf\registry\projects.json` (gone). These are step-design matters, recorded here and left untouched until the steps are worked on.
+7c. Links in makePDLF point at makePDLF paths (`C:/dev/dev-makepdlf/...`). Copying files to `C:\pdlf` later would mean rewriting every link and reference.
+8. `judgement-trail.md` is written by hand by the OpenCode agent at each checkpoint and task completion, under project `AGENTS.md` rule 13. Nothing generates it, and its template's "generated view" wording is wrong. Its six entries all record workshop work outside the steps, which `/mb-close-out` (governed memory) and the global `AGENTS.md` now cover.
+9. `docs-local/devlog-index.md` still exists (modified 2026-10-09 07:07) alongside `obsolete/devlog-index.md`.
+10. `C:\dev\dev-root\docmap.md` is a mybizz-os document rebuilt by `build-docmap.py`. It is outside PDLF.
+
+## 3. Open questions
+
+1. Step numbering: renumber so that the orchestrator is unnumbered and the pipeline steps run 1, 2, 3 … with no gaps (David's idea: Steps 11 to 46 become 1 to 35)?
+   Chief Engineer's recommendation: yes, but once only, at the end of scoping when the step list is settled. Renumbering now would have to be redone each time a step is added or dropped. It is cheapest before PDLF is deployed and while the ledger is empty.
+2. ~~Which design is PDLF: the `stepwise/` step files, the `C:\pdlf` app-factory modules, or the modules as the packaged form of the step files?~~ Resolved by decisions 6 to 8: `stepwise/` is where steps are built; the modules in `C:\pdlf\app-factory` are what runs.
+3. Which single place defines nomenclature, and which single close-out process applies?
+4. Does a project built by PDLF need its own judgement trail, or do the ledger and the step receipts cover it?
+3b. Migrate now (David's proposal, 2026-10-09, supersedes 3a): move everything from makePDLF into `C:\pdlf` now, delete makePDLF completely (folder, GBrain source, GitHub repo), then tidy PDLF into the wanted shape and build from there. One system, one repository, one bump in the road.
+   Chief Engineer's method: (1) Inventory every place outside makePDLF that names it: `commit-all.sh`, GBrain sources and the dream-eligible list, links in other repositories, `repo-organization.md`, the skills catalog, `/mb-close-out`, the GStack project slug, and the makePDLF `.env` (it holds the ledger connection on port 5433, which PDLF needs). (2) Move the makePDLF content as one block into a holding folder in `C:\pdlf`, keeping its inner layout, so a single prefix rewrite repairs every link at once (`makepdlf-project-library:` and `C:/dev/dev-makepdlf/makepdlf-project-library/` become the `pdlf` equivalents). (3) Verify: the commit hook reports no broken links and a GBrain search finds the moved content in the `pdlf` source. (4) Only then delete makePDLF: the GBrain source, the local folder, and last the GitHub repository, which cannot be undone. (5) Tidy inside `C:\pdlf`, where the commit hook follows renames by `doc-id`.
+3b-status (2026-10-09): David copied the whole of `C:\dev\dev-makepdlf\makepdlf-project-library` to `C:\pdlf\makepdlf-project-library` (the holding folder). Order from here: (1) remove the copied `.git` folder and tool folders from the copy, and keep `.env` out of Git; (2) rewrite the makePDLF links in the copy and in every other repository; (3) take makePDLF out of `commit-all.sh` and GBrain, then run `commit-all.sh`; (4) archive or delete the GitHub repository and delete the original folder; (5) tidy `C:\pdlf`. `commit-all.sh` is not run before (1) and (2): the copied `.git` would be committed as a repository inside the `pdlf` repository, and the commit hook would stop on the broken links.
+3b-step1 (approved 2026-10-09): delete from the copy `.git`, `.scratch`, `obsolete`, `.cupcake`, `.gstack`, `.opencode`, `.out-of-scope`, `output-gstack`, `output-matt-skills`, `workspace`, `README.md`, `.gbrain-source`, `.gitignore`, `AGENTS.md`, `INDEX.md`, `instructions.md`, `opencode.json`. `.env` moves to `C:\pdlf\.env` and is listed in `C:\pdlf\.gitignore`. `output-opencode` stays for now (it holds a report). ~~Open question 3c~~ resolved by this list.
+3a. ~~Build PDLF in place (David's proposal, 2026-10-09):~~ Superseded by 3b. stop treating makePDLF as something to be completed and then deployed; keep makePDLF as the read-only context reference and build PDLF directly in `C:\pdlf`, so links and references are correct from the start.
+   Chief Engineer's recommendation: yes, with three rules. (1) One-way flow: material is read from makePDLF and written new into `C:\pdlf`; nothing in makePDLF is edited to match. (2) Once a piece exists in `C:\pdlf`, that is the only live version; the makePDLF original is reference only. (3) Build the shared library first (discovery 7a), then the orchestrator, then one module per step. Consequences: `deployment-procedure.md` becomes obsolete, and decision 7's "moves to `C:\pdlf`" becomes "is rebuilt in `C:\pdlf`".
+3c. What is left behind in the migration? Recommendation: leave `obsolete/`, `.scratch/`, `.out-of-scope/`, `workspace/`, the empty `output-*` folders and the empty code-repo shell `makepdlf/` behind; the daily backup keeps them. Migrate only live material.
+3d. GitHub repository: delete, or archive (read-only, hidden from work, can be restored)? Recommendation: archive at migration, delete after one Sunday maintenance cycle with no problems found.
+4a. ~~Wording check: the first step "defines the application tribute book" (dictated). Is this the project brief?~~ Resolved: it is the set of three pre-project files (discovery 5c).
+4b. Is the Daily Intentions Tracker still the intended test application for `mb5pdlf`?
+5. ~~Is running `mb-project-docs` on makePDLF worth it?~~ Superseded by decision 4a: `mb-project-docs` serves projects; PDLF is a system and is documented the way mybizz-os systems are.
+6. ~~Does the `pdlf` GBrain source cover the whole of `C:\pdlf`?~~ Decided 2026-10-09: yes, the `pdlf` source covers `C:\pdlf` and all its contents. `C:\pdlf\makepdlf-project-library` is a holding folder only; its content is absorbed into PDLF's own structure and the folder then disappears. Original reasoning: yes, so that a link's slug is always the path from `C:\pdlf`, the same rule as every other repository. The existing explainer link (`pdlf:pdlf-explainer-docs/...` pointing into `pdlf-library`) does not fit that rule and is fixed in the tidy-up.
+7. Link rewrite form for the migrated material, once 6 is settled: `makepdlf-project-library:` becomes `pdlf:makepdlf-project-library/`, and `C:/dev/dev-makepdlf/makepdlf-project-library/` becomes `C:/pdlf/makepdlf-project-library/`. About 107 files, in the copy and in other repositories. The holding-folder links are temporary but necessary: once they are valid and committed, moving files inside `C:\pdlf` during absorption is followed by the commit hook (by `doc-id`), so links update themselves from then on.
+8-status (2026-10-09): (a) done, `pdlf` covers `/mnt/c/pdlf`; (b) done, links rewritten in about 107 files; (c) done, three dead or moved links repaired; (d) makePDLF removed from `commit-all.sh`, `rollout-all.sh`, `mb-doc-check.sources` and `finish.py`, GBrain source `makepdlf-project-library` removed; first `commit-all` blocked `pdlf` on two links (the explainer link written without `pdlf-library/`, and a plain link to the retired `bft-system-derived`), being repaired. This document lives at `C:\pdlf\pdlf-library\pdlf-discovery.md`; numbered browser-download copies are removed. Follow-up after (f): remove makePDLF from the installed skills `mb-project-docs`, `mb-config-opencode` and `mb-config-anvil-agent-references`, by editing their sources.
+8. Sequence agreed 2026-10-09; Claude leads; terminal preferred over OpenCode. At (e) the makePDLF GitHub repository is deleted entirely (not archived) and the makePDLF GBrain source is deregistered. ~~Open question 3d~~ resolved. Sequence: (a) check the `pdlf` source really covers `C:\pdlf`, and widen it if not; (b) rewrite the links; (c) list any links whose target no longer exists (for example the deleted `AGENTS.md` copy and `obsolete/`); (d) take makePDLF out of `commit-all.sh` and GBrain, then run `commit-all.sh`; (e) deal with the makePDLF GitHub repository and delete the original folder; (f) absorb the holding folder into PDLF's structure.
+
+## 4. Task list (carried from makepdlf-housekeeping-tasklist v2)
+
+### Done
+1. `bft-system-derived.md` moved to `obsolete/`.
+2. `devlog-index.md` moved to `obsolete/`.
+3. `run-plan.md` and `step-mapping.md` moved back to `stepwise/`.
+4. `skill-index.md` moved to `obsolete/`, superseded by `C:\mybizz\mybizz-os-docs\os-reference-docs\skills-catalog.md`.
+5. `matt-pocock-skills-local-reference.md` and `matt-pocock-skills-pdlf-compliance.md` stay in makePDLF, because they describe how PDLF uses those skills.
+6. `deployment-procedure.md` stays in `docs-local`.
+
+### Open
+7. Workshop `judgement-trail.md`: move to `obsolete/` (recommended), after confirming its two standing rules are in the global `AGENTS.md`. Awaiting David's decision.
+8. Leftover `docs-local/devlog-index.md`: delete (recommended). Awaiting David's decision.
+9. `devlog-index` references in the project `AGENTS.md` (rule 13), the step files and `templates-local/devlog-index-template.md`. Awaiting David's decision on whether this is in scope.
+10. ~~`workflow.md`: check that nothing in it is missing from the step files and `run-plan.md`, then move it to `obsolete/`.~~ Superseded by decision 8c: `workflow.md` moves from `docs-local` to `stepwise/`, beside `run-plan.md`. Decided 2026-10-09.
+11. ~~`C:\dev\dev-root\docmap.md`: decide its location.~~ Outside PDLF; goes to the master task list.
+
+### After discovery
+12. Run `mb-project-docs` on makePDLF.
+13. Review `docs-local/docmap.md` and `docs-local/system-description.md` against the files from item 12.
