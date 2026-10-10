@@ -37,7 +37,7 @@ for abbreviation in test mode.
 
 ## Reference Files
 
-| `[[[pdlf:makepdlf-project-library/policy-local/step-conditional-state-policy]]](C:/pdlf/makepdlf-project-library/policy-local/step-conditional-state-policy.md)` | Steps flagged test-mode eligible |
+| `[[[pdlf:pdlf-library/policy-local/pol-step-conditional-state]]](C:/pdlf/pdlf-library/policy-local/pol-step-conditional-state.md)` | Steps flagged test-mode eligible |
 | Standards Library | Step 20 (M3 design) |
 
 ---
