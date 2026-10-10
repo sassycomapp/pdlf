@@ -5,7 +5,7 @@ doc-id: "mb-8325f58e"
 ---
 # PDLF Intent Map
 
-Version: v08 (O1–O5 corrected; O7 nomenclature written)
+Version: v09 (L2 and L3 closed; Anvil findings in pol-anvil-platform)
 
 ## How to read this map
 
@@ -70,7 +70,7 @@ Section K lists the questions raised by this review.
 | D3 | A module is one finished step, packaged as a single unit. `app-factory/` holds 46 placeholders (`module-01` to `module-46`), kept until their step is built. | Explainer | Decided |
 | D4 | Steps are designed in `stepwise/`. `run-plan.md` decides order; `step-mapping.md` says what each step is; `workflow.md` describes the steps. `stepwise/` is read-only until step design resumes. | Explainer, Rule | Decided |
 | D5 | ~~Step renumbering (orchestrator unnumbered, pipeline steps 1, 2, 3 … with no gaps): done once, at the end of scoping.~~ Rejected: the current numbering is kept, because Steps 2 to 10 are entry points (D1). | Step | Decided |
-| D6 | Two repositories per application: code and documentation. Only part of the code repository returns to Anvil (`anvil.yaml`, `client_code`, `server_code`, `theme`; to be confirmed against Anvil); the rest is kept out. Re-entry reads both repositories directly; no third repository. | Explainer, Rule | Decided (Anvil list to confirm) |
+| D6 | Two repositories per application: code and documentation. Everything committed to the code repository goes to Anvil; `.gitignore` keeps local-only material out. Anvil uses only `anvil.yaml`, `client_code`, `server_code` and `theme`; `theme/assets` and `client_code` are public. Client documents may be served from `theme/assets/docs`; videos are hosted on YouTube. Re-entry reads both repositories directly; no third repository. | Explainer, Rule | Decided |
 | D7 | No `CLAUDE.md` in PDLF; `AGENTS.md` is the single instruction file. A PDLF `opencode.json` is written when the orchestrator is designed. | Explainer | Decided |
 
 ## E. Knowledge and standards
@@ -211,10 +211,14 @@ Resolutions: K1 `project-library-global` stays where it is (A7). K2 proof added 
 | # | Action | Priority |
 |---|---|---|
 | L1 | Prove that Cupcake stops gate-jumping when PDLF runs: once the orchestrator exists, an agent deliberately attempts to pass a gate without approval, and Cupcake must block it. | Critical |
-| L2 | Confirm against the Anvil documentation exactly which parts of a code repository return to Anvil (D6). | Normal |
-| L3 | Note the missing images in `anvil-docs` when Anvil standards are reviewed (E7). | Normal |
+| L2 | ~~Confirm against the Anvil documentation exactly which parts of a code repository return to Anvil (D6).~~ Resolved: see D6 and `pol-anvil-platform`. | Done |
+| L3 | ~~Note the missing images in `anvil-docs` when Anvil standards are reviewed (E7).~~ Struck: no action needed. | Done |
 | L4 | Testing is a component of its own, to be designed (David, 2026-10-10): the testing disciplines are reviewed and investigated first, then the standard is written for `project-library-global`. Inputs: `anvil_cop_testing.md` (its philosophy only; its multi-tenant pattern, Factory Droid and dev-log references are excluded) and further information from David. `pol-testing-and-quality` is updated then. | Normal |
 | L5 | ~~Nomenclature (O7): needs the contents of `pdlf-library/specifications-local/spec-nomenclature.md` and `spec-nomenclature-b.md`. Also: the `project-library-global` nomenclature specification is titled "Mybizz CS" and holds `mb-3-cs`-specific content in a project-agnostic library, which breaks E2.~~ Resolved: see E9. | Done |
+| L6 | Remove makePDLF references from the installed skills `mb-project-docs`, `mb-config-opencode` and `mb-config-anvil-agent-references`, by editing their sources. | Normal |
+| L7 | PostgreSQL clean-up: the duplicate Windows PostgreSQL service, the `pgvector_user` role, and leftover experiment objects in the `postgres` database. | Normal |
+| L8 | Change the ledger passwords in `.env`, which are weak and were shown in chat. | Normal |
+| L9 | Record the dev-root docmap on the master task list. | Normal |
 
 ## P. Writing status (2026-10-10)
 

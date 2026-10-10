@@ -22,11 +22,26 @@ Every application has two repositories:
 - **the code repository**, which is the Anvil app (App 1, the development workspace): `anvil.yaml`, `client_code/`, `server_code/`, `theme/`;
 - **the documentation repository**, which holds everything else: documents, decisions, PDLF records.
 
-They are never mixed: no documents in the code repository, no code in the documentation repository.
+They are never mixed: no project documents in the code repository, no code in the documentation repository. Client-facing material that the application itself serves to its users, such as help documents, is part of the application, not project documentation; it lives in `theme/assets` under the rules below.
 
-### What travels to Anvil
+### What goes to Anvil
 
-Only `anvil.yaml`, `client_code`, `server_code` and `theme` travel to Anvil, and within `theme` only `theme/assets`. Everything else stays local and is kept out of what Anvil receives. Every review checks this boundary: everything the code needs is inside those items, and nothing that must not ship (credentials, development files) is. This list is to be confirmed against Anvil's documentation.
+An Anvil application is its Git repository. Everything committed to the code repository is pushed to Anvil and stored there; nothing stays behind except what `.gitignore` excludes. `.gitignore` therefore keeps out everything local-only: `.env`, credentials, `__pycache__`, test output and development files.
+
+Anvil uses only `anvil.yaml`, `client_code/`, `server_code/` and `theme/` (within `theme/`: `assets/`, `parameters.yaml` and `templates.yaml`). Other committed files, such as tests or a README, are stored by Anvil but not used. Only the Python and YAML files in `client_code/` and `server_code/` run.
+
+Two parts are public:
+
+- **`theme/assets/`.** Every file in it is served at `<app-url>/_/theme/<path>`, and anyone with the link can open it, without logging in.
+- **`client_code/`.** It runs in the user's browser, where it can be read.
+
+Nothing secret, internal or for paying clients only ever goes in either. Material that must be restricted to logged-in users is served from the server side; how is decided in steps work. Every review checks these boundaries.
+
+### Client documents and videos
+
+**Documents.** Client-facing documents, such as user guides, may be placed in `theme/assets/docs/`. Anvil does not block this: each document is served by link and can be opened from the application. They are public, as above.
+
+**Videos.** Explainer videos are hosted on YouTube and linked or embedded in the application. They are not placed in `theme/assets/`. Anvil would serve them, but every asset is stored in the Git repository, so large video files would be carried by every clone and push and would make the five apps of a business heavy over time. Anvil's documentation states no size limit for assets, and large videos there are untested.
 
 ### The five-app structure
 
