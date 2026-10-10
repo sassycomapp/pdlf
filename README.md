@@ -1,34 +1,38 @@
 ---
 title: "README"
 doc-id: "mb-eba493f3"
-updated: "2026-10-05"
+updated: "2026-10-10"
 ---
-# pdlf — The PDLF Environment
+# PDLF
 
-The home of the PDLF system — the Project Development Lifecycle Framework —
-scaffolded 2026-09-11 per developer instruction.
+PDLF (Project Development Lifecycle Framework) is an implemented system, not a project. It builds Anvil applications. The developer chooses an application and starts PDLF's orchestrator in OpenCode; the orchestrator then runs the modules in order, one per pipeline step, from the application's definition to its release. The applications PDLF builds are the projects. PDLF itself has no code repository.
 
-## What lives here
+PDLF draws its knowledge and standards, Anvil knowledge included, from `project-library-global`, a separate and permanent repository. This repository holds only how PDLF itself works.
 
-| Path | What it is |
+## Connections
+
+| Item | Value |
 |---|---|
-| `pdlf-library\` | Canonical technical documentation: ADRs, specifications, explainers. See `pdlf-library\README.md`. |
-| `app-factory\` | The system's machinery — 46 modules, one per pipeline step (placeholders today; populated by makePDLF, migrated here once when all steps are complete). See `app-factory\README.md`. |
-| `output\` | The producer-routed artifact safety net (transient — copied into the shipping project's folders, then cleared). Not version-controlled. |
+| GitHub | `sassycomapp/pdlf` (private), branch `main` |
+| GBrain | source `pdlf` (federated), covering all of `C:\pdlf` |
+| Local path | `C:\pdlf` (WSL `/mnt/c/pdlf`) |
 
-## Connections (live as of 2026-09-11)
+## Folders
 
-- **GitHub:** `sassycomapp/pdlf` (private), branch `main` — initial scaffold pushed 2026-09-11.
-- **GBrain:** source `pdlf` (federated) — registered and synced 2026-09-11; 59 pages, 54 chunks embedded.
-- **Config:** `pdlf-config.yaml` at the repository root holds the exact current state.
+| Folder | What it holds |
+|---|---|
+| `app-factory/` | One module per pipeline step number. A module is a finished step packaged as a single unit; until its step is built, the module file is a placeholder. See `app-factory/README.md`. |
+| `stepwise/` | The step design: one file per step, with build notes and decision trees, plus `run-plan.md` (execution order), `step-mapping.md` (what each step is) and `workflow.md`. |
+| `pdlf-library/` | The shared machinery every module relies on: ADRs, specifications, policies, processes, templates, explainers and supporting documents. See `pdlf-library/README.md`. |
+| `output/` | Temporary copies of the artifacts produced while one project runs through PDLF, kept by producing tool in `output-gstack/`, `output-opencode/` and `output-pocock/`. Each artifact is copied into the project's own folders, then cleared from here. Not version-controlled. |
+| `desktop/` | The developer's working documents for the current work. |
+| `obsolete/` | Retired files. |
 
-## What deliberately waits
+## Files at the top
 
-Nothing executes in this location yet. The machinery arrives with the
-app-factory migration when makePDLF completes all 46 steps; the OpenCode
-configuration and agent role files are built at that deployment, not before.
-Until then, the system is developed in the makePDLF environment
-(`C:\dev\dev-makepdlf\makepdlf-project-library`).
-
-See `AGENTS.md` for the standing rules for this location, and
-`pdlf-config.yaml` for the exact current state.
+| File | Purpose |
+|---|---|
+| `AGENTS.md` | Standing rules for any agent working here. Read it before starting. |
+| `.env` | Connection settings and passwords for the PDLF ledger. Never committed. |
+| `.gitignore` | Keeps `output/`, `.env` and compiled Python files out of Git. |
+| `.gbrain-source` | Names this repository's GBrain source (`pdlf`). |
