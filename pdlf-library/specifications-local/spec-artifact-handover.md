@@ -9,7 +9,7 @@ Canonical binding technical truth for how artifacts are produced, captured,
 handed over between steps, copied to the safety net, and archived at ship
 time. Implements `pdlf-adr-artifact-saving-convention`. For the naming rules:
 [[[pdlf:pdlf-library/specifications-local/spec-nomenclature-b]]](C:/pdlf/pdlf-library/specifications-local/spec-nomenclature-b.md). For the narrative account:
-[[[pdlf:pdlf-library/pdlf-explainer-docs/artifact-lifecycle-explainer]]](C:/pdlf/pdlf-library/pdlf-explainer-docs/artifact-lifecycle%20explainer.md).
+[[[pdlf:obsolete/artifact-lifecycle-explainer]]](C:/pdlf/obsolete/artifact-lifecycle-explainer.md).
 
 Facts marked "verified 2026-09-11" were checked directly against the live
 environment on that date. Unverified expectations are marked as such and must

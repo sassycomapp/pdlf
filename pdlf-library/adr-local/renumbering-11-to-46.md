@@ -45,7 +45,7 @@ renumbered again" — is superseded. A later decision fixed canonical step numbe
 permanent identifiers: they never indicate execution order (that lives exclusively in
 the mapping documents' `Execution Order` column), and new steps are added via a letter
 suffix on the nearest preceding number (e.g., `35A`, `40B`) rather than renumbering
-existing files. [[[pdlf:pdlf-library/policy-local/pol-stepwise|Policy: Stepwise]]](C:/pdlf/pdlf-library/policy-local/pol-stepwise.md) Section C records this as an explicit supersession of
+existing files. [[[pdlf:pdlf-library/docs-local/stepwise-development-process|Policy: Stepwise]]](C:/pdlf/pdlf-library/docs-local/stepwise-development-process.md) Section C records this as an explicit supersession of
 its own earlier "numbering is fluid" stance. This ADR's original Decision and Context
 are left unedited as the historical record of why 11–46 was chosen in the first place;
 only the "will be renumbered again" expectation is retracted.

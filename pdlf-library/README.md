@@ -1,7 +1,7 @@
 ---
 title: "README"
 doc-id: "mb-5220bac9"
-updated: "2026-10-08"
+updated: "2026-10-10"
 ---
 # PDLF Library
 
@@ -63,7 +63,7 @@ app-factory modules when the system is complete.
   returned 2026-09-19) is the full
   general explainer of PDLF, moved here from `C:\mybizz\mybizz-os-docs\` on
   2026-09-11 — this is its sole home; no duplicate exists elsewhere.
-- **[[[pdlf:pdlf-library/pdlf-explainer-docs/pdlf-objective-review]]](C:/pdlf/pdlf-library/pdlf-explainer-docs/pdlf-objective-review.md)** assesses PDLF against the comparable
+- **[[[pdlf:obsolete/pdlf-objective-review]]](C:/pdlf/obsolete/pdlf-objective-review.md)** assesses PDLF against the comparable
   frameworks in the field.
 - **The app-factory** (`C:\pdlf\app-factory\`) is the machinery this library
   documents; its modules implement the conventions specified here.
