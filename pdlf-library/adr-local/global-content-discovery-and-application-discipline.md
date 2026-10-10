@@ -20,7 +20,7 @@ agent encounters it. Two problems needed solving, not one:
 
 1. **Discovery** — how does a step or skill know which global files are relevant to its
    current task? No systematic mechanism existed; the only routing found was a small,
-incomplete step-to-spec table migrated into [[[pdlf:pdlf-library/specifications-local/spec-nomenclature|Spec: Nomenclature]]](C:/pdlf/pdlf-library/specifications-local/spec-nomenclature.md) from the retired
+incomplete step-to-spec table migrated into [[[default:specifications-global/spec-nomenclature|Spec: Nomenclature]]](C:/dev/project-library-global/specifications-global/spec-nomenclature.md) from the retired
     `spec-architecture.md`.
 
 2. **Application, and the sharper risk underneath it** — even once GBrain returns relevant
@@ -77,7 +77,7 @@ checkable, not merely stated.
   authorizes.
 - Every step file built from Phase B onward whose domain touches global content (Steps 17,
   20, 22, 26, 27, 35, 35A, 37, 38, 41–45 at minimum, per the existing partial mapping in
-   [[[pdlf:pdlf-library/specifications-local/spec-nomenclature|Spec: Nomenclature]]](C:/pdlf/pdlf-library/specifications-local/spec-nomenclature.md)) must build this sequence into its own procedure when it is
+   [[[default:specifications-global/spec-nomenclature|Spec: Nomenclature]]](C:/dev/project-library-global/specifications-global/spec-nomenclature.md)) must build this sequence into its own procedure when it is
   written or rebuilt — not retrofitted in bulk now. This is deferred work, consistent with
   the existing agreement to handle Steps 17–46 one at a time as each phase is reached. This
   ADR exists so that deferred work has a defined target to build toward, not so the target

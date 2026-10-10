@@ -5,73 +5,64 @@ updated: "2026-10-10"
 ---
 # PDLF Policy — Sequential Enforcement and Deviation
 
-**Binding.** The agent must comply at every step. No exceptions without a deviation request.
+**Binding.** The agent must comply at every step. Nothing is skipped without a recorded decision.
 
 ---
 
 ## What
 
-### Step execution is sequential and hard-gated
+### Steps run in order
 
-Every step follows the 13-point execution sequence defined in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md). The agent cannot
-proceed to step N+1 until step N is verified complete. This is a structural constraint, not a
-checklist.
+Every step follows the execution sequence in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md). The orchestrator does not start a step until the steps it depends on are complete in the ledger ([[[pdlf:stepwise/run-plan|Run Plan]]](C:/pdlf/stepwise/run-plan.md)).
 
-A step is verified complete when: its expected output exists, its BFT checkpoint passed at
-the assigned level, its ledger row is written, and its Step Receipt is generated.
+A step is complete when its expected output exists, its thinking checkpoint is answered, its ledger row is written and its Step Receipt is produced.
 
-### Gate procedure
+### Every change is approved
 
-At each of the seven gates, the execution sequence expands:
-- Full BFT regardless of assigned level
-- Complete maintenance (git push project-library + code repo, GBrain sync + embed)
-- Gate summary presented in visually distinct block format
-- Explicit developer approval required before proceeding — the agent does not move past a
-  gate without it
+Every change PDLF makes needs David's approval, until David says that a particular approval is no longer needed. The agent never reduces the approvals it asks for.
 
-### Deviation mechanism
+### Gates
 
-If the agent cannot complete a step, it does not skip silently. It presents a deviation request:
+At each gate:
+
+1. the full thinking checkpoint is answered, whatever the step's usual level;
+2. the gate summary is presented in its distinct format;
+3. the agent waits for David's explicit yes or no;
+4. only after a yes is the gate recorded as passed, and David is asked to run `/mb-close-out`.
+
+The agent never passes a gate without David's yes. Cupcake enforces this. A passed gate is never silently undone; reopening it is a recorded decision. The procedure is in [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md).
+
+### Deviations
+
+If the agent cannot complete a step as written, it stops and presents a deviation request:
 
 ```
 DEVIATION REQUEST — Step N
 
-Prescribed tool: <skill name>
+Prescribed: <skill or action>
 Status: BLOCKED
-Reason: <specific reason>
+Reason: <specific reason, in plain language>
 
 Options:
-  A) Authorize deviation — <alternative action>
-  B) Do not authorize — attempt to resolve the blocker
-  C) Skip this step — proceed to step N+1
-     Impact: <what is lost>
+  A) Authorize an alternative — <what would be done instead, and what it costs>
+  B) Resolve the blocker — <what is needed>
+  C) Skip this step — <what is lost>
 
 Your decision? (A/B/C)
 ```
 
-The agent never decides to deviate. It always asks the developer with justification.
+The agent never chooses for David. Every deviation is recorded in the `deviations` table: what happened, the options presented, the decision and when.
 
-**All deviations are recorded** in the `deviations` table with the description, options
-presented, decision, and timestamp.
+A disagreement between what the agent finds in the files and what David says is true is raised at once and settled the same way.
 
 ---
 
 ## Why
 
-The developer is a non-technical builder who relies on the agent's judgment. Without sequential
-enforcement, the agent can skip steps, deviate silently, or do work that should be done by a
-specialized skill. The developer catches none of this.
-
-The Step Receipt (generated from the ledger row) is the direct answer to the "black box"
-fear: every action has a contemporaneous record, not a narrative gloss written afterward.
+Without enforced order, an agent can skip a step, deviate quietly, or do work a skill should do, and David would not see it. Ordered steps, explicit gates and recorded deviations make every decision visible and every skip deliberate.
 
 ---
 
 ## Where
 
-Every step in the PDLF pipeline. The execution sequence is defined in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md).
-The gate procedure is defined in [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md). The deviation mechanism
-is defined in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md).
-
-**Source:** [[[pdlf:pdlf-library/specifications-local/spec-skill-design|Spec: Skill Design]]](C:/pdlf/pdlf-library/specifications-local/spec-skill-design.md) §5, [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md),
-[[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md).
+Every step. Gate steps follow [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md).

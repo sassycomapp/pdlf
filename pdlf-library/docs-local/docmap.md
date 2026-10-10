@@ -347,7 +347,7 @@ duplicated here. Retired since the prior docmap versions: `bft-checkpoint-cheats
 (no longer present anywhere — verified absent system-wide 2026-09-23), `step-13-to-spec.md`
 (confirmed non-existent anywhere). Corrected since the
 prior docmap versions: [[[pdlf:pdlf-library/policy-local/pol-bft-discipline|Policy: BFT Discipline]]](C:/pdlf/pdlf-library/policy-local/pol-bft-discipline.md),
-[[[pdlf:pdlf-library/templates-local/bft-checkpoint-cheatsheet-v2|BFT Checkpoint Cheatsheet v2]]](C:/pdlf/pdlf-library/templates-local/bft-checkpoint-cheatsheet-v2.md), [[[pdlf:pdlf-library/docs-local/deployment-procedure|Deployment Procedure]]](C:/pdlf/pdlf-library/docs-local/deployment-procedure.md), [[[pdlf:pdlf-library/specifications-local/spec-nomenclature|Spec: Nomenclature]]](C:/pdlf/pdlf-library/specifications-local/spec-nomenclature.md)
+[[[pdlf:pdlf-library/templates-local/bft-checkpoint-cheatsheet-v2|BFT Checkpoint Cheatsheet v2]]](C:/pdlf/pdlf-library/templates-local/bft-checkpoint-cheatsheet-v2.md), [[[pdlf:pdlf-library/docs-local/deployment-procedure|Deployment Procedure]]](C:/pdlf/pdlf-library/docs-local/deployment-procedure.md), [[[default:specifications-global/spec-nomenclature|Spec: Nomenclature]]](C:/dev/project-library-global/specifications-global/spec-nomenclature.md)
 (a Stepwise File Naming section and two tables migrated from the retired
 architecture documentation). Steps 11, 14, 15, 16 rebuilt and verified against real skill
 source. Two testing checklists added 2026-07-18: [[[pdlf:pdlf-library/templates-local/chk-pdlf-self-test|PDLF Self-Test Checklist]]](C:/pdlf/pdlf-library/templates-local/chk-pdlf-self-test.md) (local, tests

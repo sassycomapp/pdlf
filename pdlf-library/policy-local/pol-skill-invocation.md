@@ -5,92 +5,30 @@ updated: "2026-10-10"
 ---
 # PDLF Policy — Skill Invocation
 
-**Binding.** The agent must comply whenever a skill is invoked during the pipeline.
+**Binding.** The agent must comply whenever a PDLF step involves work that a skill covers.
 
 ---
 
 ## What
 
-### Skill-use principle
-
-A GStack or Matt Pocock skill is invoked **only** when it performs a task better than OpenCode
-could do directly with the model. If a task is simple enough that OpenCode can do it natively,
-no skill is invoked — the orchestrator just does the work.
-
-Every skill named in the Step Table is there because it was checked against this principle and
-found to add real, unique value. A skill's presence in the table must always be justified, not
-assumed.
-
-### Read before invoke
-
-Before invoking any skill, the agent reads that skill's own SKILL.md to confirm it is the right
-tool. **Never trust a skill name alone.** Two rounds of self-assessment have documented real
-mapping errors caused by trusting a skill name instead of reading its content:
-
-**July 2026 (v5):**
-- `/autoplan` is a pipeline orchestrator, not a standalone tool — using it AND individual reviews
-  is redundant
-- `/spec` creates GitHub issues, not project framing
-- `/design-review` needs a live URL — it cannot run before the app is running
-- `/grill-me` is stateless `/grill-with-docs` — redundant if `/grill-with-docs` already ran
-- `/codebase-design` is reference vocabulary, not a file-producing skill
-
-**July 2026 (v6, this pass):**
-- `to-prd`/`to-spec` (formerly Step 13) had no confirmed downstream consumer — verified
-  directly against [[[pdlf:stepwise/step-14-plan-ceo-review|Step 14 Plan Ceo Review]]](C:/pdlf/stepwise/step-14-plan-ceo-review.md)'s GBrain query schema, which does not reference an
-  issue-tracker or spec artifact at all. Removed.
-- `prototype` (formerly Step 25) was optional and non-chained, with no consumer anywhere
-  downstream. Removed.
-- `/review` and [[[pdlf:stepwise/step-38-qa|/qa]]](C:/pdlf/stepwise/step-38-qa.md) (Steps 37, 38) were assumed to persist their findings for [[[pdlf:stepwise/step-39-triage|triage]]](C:/pdlf/stepwise/step-39-triage.md)
-  (Step 39) to act on. GStack's own repository states this behavior is unverified even by
-  the maintainer. Both steps now explicitly require writing findings to a specified artifact
-  path, verified by OpenCode before the step is marked complete — the assumption is no longer
-  trusted un-checked.
-
-These errors were only caught by reading the actual skill files, not by trusting what a skill's
-name or reputation implied. The rule is not optional.
-
-### Progressive disclosure
-
-The PDLF orchestrator skill is deliberately lean — step table and control loop only. Detailed
-procedures (testing, sanity audits, Anvil mechanics, execution discipline, BFT reference,
-gate procedure) live in separate stepwise files loaded at the step that needs them. Do not
-inline reference file content into the orchestrator.
-
-### Agent never does a skill's job manually
-
-If the Step Table prescribes a skill, the agent invokes it. If the skill cannot be invoked,
-the agent presents a deviation request — it does not silently do the work manually. The
-developer decides whether the manual alternative is acceptable.
-
-### Output routing
-
-Skills save where they are designed. The orchestrator does not override a skill's default
-save location. The project's AGENTS.md governs where copies of each producer's output are
-stored.
+1. **Skills take precedence.** When a skill in PDLF's library covers a task, the agent uses that skill. It never improvises the task itself, and never does a skill's job by hand.
+2. **A skill earns its place.** A skill joins the library only if it serves PDLF's objectives better than any alternative. The library holds nothing superfluous and lacks nothing needed. The skills catalog in mybizz-os ([[[mybizz-os-docs:os-reference-docs/skills-catalog|Skills Catalog]]](C:/mybizz/mybizz-os-docs/os-reference-docs/skills-catalog.md)) is the single register of installed skills; which skill each step uses is set in that step's design.
+3. **Read before invoking.** Before invoking a skill, the agent reads the skill's own file to confirm it is the right tool and how it behaves. A skill's name is never trusted on its own.
+4. **User-invoked skills are asked for.** When a skill can only be started by the user, the agent asks David to start it. It never simulates the skill.
+5. **When a skill cannot run.** If the prescribed skill cannot be invoked, the agent raises a deviation ([[[pdlf:pdlf-library/policy-local/pol-sequential-enforcement-and-deviation|Policy: Sequential Enforcement and Deviation]]](C:/pdlf/pdlf-library/policy-local/pol-sequential-enforcement-and-deviation.md)). It does not quietly do the work another way.
+6. **Outputs.** A skill saves where it is designed to save. The orchestrator does not change that; it captures the location, records it, and writes the copy to `output/` ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md)).
+7. **Lean orchestrator.** The orchestrator holds only the step pattern and the step order. Each step's detail lives in its own step file and module, loaded when that step runs.
 
 ---
 
 ## Why
 
-Stated directly by the developer. Proven by documented errors across two review passes. The
-skill-use principle retroactively simplified an entire sub-project: the two sanity-audit gates
-don't need custom skills — cross-referencing markdown documents is well within OpenCode's
-native capability. They are documented procedures, not skills, saving development effort and
-avoiding unnecessary tool dependencies. The same principle, applied a second time in July 2026,
-removed two more skills from the live pipeline.
+A skill in the library has been chosen because it does its task well and in a known way. If the agent improvises instead, the result depends on the agent's judgement in that moment, which is exactly what David cannot check. Using the skill every time makes the work repeatable and its quality known.
+
+A skill's name is an unreliable guide to what it does. Reading the skill's own file is the only way to know.
 
 ---
 
 ## Where
 
-Every step in the pipeline where the Step Table names a skill. Invocation procedure at
-[[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md).
-
-**Source:** [[[pdlf:pdlf-library/specifications-local/spec-skill-design|Spec: Skill Design]]](C:/pdlf/pdlf-library/specifications-local/spec-skill-design.md) §2.3, §2.5, §2.12, [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md),
-`skill/agents-self-assessment-20260701.md` (retired, verified absent).
-
----
-
-*Updated 2026-07-12: removed stale references to `to-prd` and `/prototype` as live examples
-(both now removed from the pipeline); added the v6 self-assessment findings.*
+Every step whose task a skill covers. The invocation procedure is in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md).

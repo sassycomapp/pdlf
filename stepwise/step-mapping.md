@@ -145,7 +145,7 @@ and dependencies, see [[[pdlf:stepwise/run-plan|Run Plan]]](C:/pdlf/stepwise/run
 | [[[pdlf:pdlf-library/specifications-local/spec-bft\|Spec: BFT]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md) | Every step | BFT questions, levels, gate rule, anti-rubber-stamping |
 | [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure\|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md) | Gate steps (16, 21, 26, 34, 39, 44, 46) | Gate ceremony, full maintenance, ledger integrity check, approval flow |
 | [[[pdlf:pdlf-library/policy-local/pol-step-conditional-state\|Step Conditional State Policy]]](C:/pdlf/pdlf-library/policy-local/pol-step-conditional-state.md) | Step 12 | Conditional step states (complete / skipped), downstream propagation |
-| [[[pdlf:pdlf-library/specifications-local/spec-nomenclature\|Spec: Nomenclature]]](C:/pdlf/pdlf-library/specifications-local/spec-nomenclature.md) | Every step | Naming and path conventions, authoritative |
+| [[[default:specifications-global/spec-nomenclature\|Spec: Nomenclature]]](C:/dev/project-library-global/specifications-global/spec-nomenclature.md) | Every step | Naming and path conventions, authoritative |
 
 ---
 

@@ -107,7 +107,7 @@ not something either skill surfaces.
 
 - **`TODOS.md` path unconfirmed.** Assumed `dev-{slug}\{slug}-project-library\TODOS.md`
   (root-of-docs-repo level) pending developer confirmation. Not in
-  [[[pdlf:pdlf-library/specifications-local/spec-nomenclature|Spec: Nomenclature]]](C:/pdlf/pdlf-library/specifications-local/spec-nomenclature.md) yet — add it there once confirmed.
+  [[[default:specifications-global/spec-nomenclature|Spec: Nomenclature]]](C:/dev/project-library-global/specifications-global/spec-nomenclature.md) yet — add it there once confirmed.
 - **Plan file continuity** (above) — genuinely open, may only resolve on a
   live run.
 - Whether Step 16's own skill source needs the same direct-read treatment
@@ -122,7 +122,7 @@ not something either skill surfaces.
 - No automatic memory-governor submission — asked, via the `mb-submit-memory` skill only
 - No Step 13 references anywhere in this file
 - No "Branch A/B" language — described plainly instead
-- Naming follows [[[pdlf:pdlf-library/specifications-local/spec-nomenclature|Spec: Nomenclature]]](C:/pdlf/pdlf-library/specifications-local/spec-nomenclature.md)'s Stepwise File Naming table: bare
+- Naming follows [[[default:specifications-global/spec-nomenclature|Spec: Nomenclature]]](C:/dev/project-library-global/specifications-global/spec-nomenclature.md)'s Stepwise File Naming table: bare
   `step-15-` prefix on build notes and decision tree, skill name only in the
   step file's own filename
 

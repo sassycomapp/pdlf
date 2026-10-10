@@ -8,7 +8,7 @@ updated: "2026-10-10"
 Canonical binding technical truth for how artifacts are produced, captured,
 handed over between steps, copied to the safety net, and archived at ship
 time. Implements `pdlf-adr-artifact-saving-convention`. For the naming rules:
-[[[pdlf:pdlf-library/specifications-local/spec-nomenclature-b]]](C:/pdlf/pdlf-library/specifications-local/spec-nomenclature-b.md). For the narrative account:
+[[[default:specifications-global/spec-nomenclature]]](C:/dev/project-library-global/specifications-global/spec-nomenclature.md). For the narrative account:
 [[[pdlf:obsolete/artifact-lifecycle-explainer]]](C:/pdlf/obsolete/artifact-lifecycle-explainer.md).
 
 Facts marked "verified 2026-09-11" were checked directly against the live
@@ -26,7 +26,7 @@ All GStack skills save under a per-project folder:
     ~/.gstack/projects/<gstack-slug>/…
 
 The `<gstack-slug>` is resolved at the start of every skill run by
-`gstack-slug` (see [[[pdlf:pdlf-library/specifications-local/spec-nomenclature-b]]](C:/pdlf/pdlf-library/specifications-local/spec-nomenclature-b.md) for the derivation chain).
+`gstack-slug` (see [[[default:specifications-global/spec-nomenclature]]](C:/dev/project-library-global/specifications-global/spec-nomenclature.md) for the derivation chain).
 Current preambles invoke it as:
 
     eval "$($GSTACK_BIN/gstack-slug 2>/dev/null)" 2>/dev/null || true
@@ -182,7 +182,7 @@ proceed, never an assumption that the skill "probably wrote it."
 | 1 | Built steps 14–15: legacy `gstack-outputs\` folder name; missing `{slug}-` copy prefix; stale quote of an older skill generation's `~/.claude` path in Step 14's description (current skill source verified clean 2026-09-11) | Correction tracked — master task list, item 18 |
 | 2 | End-to-end live verification of the chain (one governed skill run: slug stability, native save, safety-net copy) never performed on the current install | Open — master task list, item 17 |
 | 3 | GStack pinned at 1.58.1.0; upstream at 1.81.0.0 (23 minor versions behind). Upstream fixes may change save behavior | Watched — version upgrade is a separate decision |
-| 4 | Slug cache never reconciles against the git remote; stale entries possible (observed on a placeholder project; heal tracked) | Watched — heal rule in [[[pdlf:pdlf-library/specifications-local/spec-nomenclature-b]]](C:/pdlf/pdlf-library/specifications-local/spec-nomenclature-b.md) |
+| 4 | Slug cache never reconciles against the git remote; stale entries possible (observed on a placeholder project; heal tracked) | Watched — heal rule in [[[default:specifications-global/spec-nomenclature]]](C:/dev/project-library-global/specifications-global/spec-nomenclature.md) |
 | 5 | makePDLF's `output-staging\` folder has no routing rule | Open — dev-side decision |
 
 ---

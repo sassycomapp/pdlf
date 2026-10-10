@@ -101,7 +101,7 @@ modes. No separate check needed in Step 16 itself.
   covering both repos instead of one.
 - No Step 3 / disposition-table / the retired `sop-existing-project-resume-audit.md`
   references anywhere in this file
-- Naming follows [[[pdlf:pdlf-library/specifications-local/spec-nomenclature|Spec: Nomenclature]]](C:/pdlf/pdlf-library/specifications-local/spec-nomenclature.md)'s Stepwise File Naming table
+- Naming follows [[[default:specifications-global/spec-nomenclature|Spec: Nomenclature]]](C:/dev/project-library-global/specifications-global/spec-nomenclature.md)'s Stepwise File Naming table
 
 ## Later decisions
 

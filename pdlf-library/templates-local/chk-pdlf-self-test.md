@@ -96,7 +96,7 @@ per your explicit instruction — not a one-time pass.
 | 5.1 | No broken or doubled file paths | Grep for repeated path segments (e.g. `specifications-local/specifications-local/`) |
 | 5.2 | No two files claim the same canonical status for the same information | Check for competing "this is the map/index/source of truth" documents |
 | 5.3 | No dead references to retired or non-existent files | Cross-check every file path cited in every document against what actually exists |
-| 5.4 | Naming matches [[[pdlf:pdlf-library/specifications-local/spec-nomenclature\|Spec: Nomenclature]]](C:/pdlf/pdlf-library/specifications-local/spec-nomenclature.md) | Check filenames against its Stepwise File Naming and Repo & Path Conventions tables |
+| 5.4 | Naming matches [[[default:specifications-global/spec-nomenclature\|Spec: Nomenclature]]](C:/dev/project-library-global/specifications-global/spec-nomenclature.md) | Check filenames against its Stepwise File Naming and Repo & Path Conventions tables |
 | 5.5 | No document describes a retired mechanism as current | Check for the disposition-audit model, Steps 2–3, `to-prd`/`to-spec` as live, the old staging/production model — the recurring classes of staleness found this session |
 | 5.6 | Cross-references are bidirectional where the relationship warrants it | Check that a file frequently pointed to also points back where useful (e.g. [[[pdlf:stepwise/run-plan\|Run Plan]]](C:/pdlf/stepwise/run-plan.md) ↔ [[[pdlf:stepwise/step-mapping\|Step Mapping]]](C:/pdlf/stepwise/step-mapping.md)) |
 

@@ -5,96 +5,60 @@ updated: "2026-10-10"
 ---
 # PDLF Policy — Anvil Platform
 
-**Binding.** The agent must comply whenever interacting with an Anvil-connected project. No
-exceptions — platform constraints are hard.
+**Binding.** The agent must comply whenever it works on an Anvil application. These rules reflect how Anvil works and have no exceptions.
 
 ---
 
 ## What
 
-### anvil.yaml is sacred
+### `anvil.yaml` is never written
 
-Never write to `anvil.yaml`. Never. It is Anvil-managed configuration. Any task that appears
-to require editing it must stop and request explicit developer authorization. This includes:
-create, edit, reformat, regenerate, normalize, merge-edit, patch, or include in bulk refactors.
+The agent never creates, edits, reformats, regenerates, merges or patches `anvil.yaml`. Anvil manages it. A task that seems to need a change to it stops and asks David.
 
-### Two-repo separation
+### Two repositories
 
-Every PDLF-managed Anvil project has two git repositories:
-- **Project-library repo:** docs, ADRs, process artifacts, templates, outputs. The agent's
-  working home for all documentation and PDLF ceremony.
-- **Code repo:** The Anvil-connected app. Contains `anvil.yaml`, `client_code/`,
-  `server_code/`, `theme/`.
+Every application has two repositories:
 
-The two repos are never mixed. Docs never go in the code repo. Code never goes in the
-library repo.
+- **the code repository**, which is the Anvil app (App 1, the development workspace): `anvil.yaml`, `client_code/`, `server_code/`, `theme/`;
+- **the documentation repository**, which holds everything else: documents, decisions, PDLF records.
 
-### Deployment is manual and environment-scoped
+They are never mixed: no documents in the code repository, no code in the documentation repository.
 
-**Flagged for rebuild, 2026-07-18:** the release sequence below models a staging/production
-environment split that does not apply to this platform. The platform uses the Five-App
-Structure — PDLF operates entirely within the development-workspace app, which is
-structurally never a dependency for any live client instance. Real publishing happens via
-a `develop` → `stable` GitHub merge, performed by the operator, outside PDLF's own
-pipeline. Full reasoning: [[[pdlf:pdlf-library/adr-local/no-staging-environment-five-app-isolation|ADR: No Staging Environment Five App Isolation]]](C:/pdlf/pdlf-library/adr-local/no-staging-environment-five-app-isolation.md). The
-sequence below is not yet corrected — treat as pending, not authoritative.
+### What travels to Anvil
 
-Anvil deploys via named Deployment Environments, each with its own URL, branch/commit pointer,
-database, and Uplink keys. Publishing is a deliberate human action in the Anvil IDE — there
-is no auto-publish on git push.
+Only `anvil.yaml`, `client_code`, `server_code` and `theme` travel to Anvil, and within `theme` only `theme/assets`. Everything else stays local and is kept out of what Anvil receives. Every review checks this boundary: everything the code needs is inside those items, and nothing that must not ship (credentials, development files) is. This list is to be confirmed against Anvil's documentation.
 
-**Release sequence (Steps 41–45):**
-1. [[[pdlf:stepwise/step-41-ship|/ship]]](C:/pdlf/stepwise/step-41-ship.md) pushes code to the branch. Stops there.
-2. Manual: developer publishes to Staging environment only.
-3. Full integration/E2E suite run against Staging (Step 42A) — verifies cross-feature behavior
-   before the smoke test, which alone was assessed as too thin a check before Production.
-4. Staging smoke test.
-5. Manual: developer promotes to Production.
-6. Production canary.
+### The five-app structure
 
-**Rollback** is re-pointing an environment to a prior commit — not `git revert` (which doesn't
-un-publish an app).
+Every application follows [[[default:specifications-global/spec-five-app-architecture-model|Five-App Architecture Model]]](C:/dev/project-library-global/specifications-global/spec-five-app-architecture-model.md):
 
-### Pull-to-local junctures
+- All development happens in App 1.
+- Release is the `develop` → `stable` merge that updates `master_template` (App 2). David performs it, as a gated step. There is no separate staging or production environment.
+- Client instances (App 4) are cloned from `blank_client_template` (App 3) and run on `master_template`. The agent never adds a form or server module to a client instance: doing so silently and permanently cuts that instance off from future updates.
 
-The Anvil-connected code repo is pulled to local after every point where physical Anvil-side
-work occurred and local work depends on it:
+### No multi-tenancy
 
-| After Step | Trigger |
+No application is ever multi-tenant. Every client has its own app instance and its own database. The agent never writes code that shares one database between clients and separates them by filtering on a client or instance field. This decision is sealed: [[[default:adr-global/adr-dependency-based-not-multi-tenant|ADR: Dependency-Based, Not Multi-Tenant]]](C:/dev/project-library-global/adr-global/adr-dependency-based-not-multi-tenant.md). It is given to the agent as context before any code is written.
+
+### Pull to local
+
+The code repository is pulled to local after every step where work was done in the Anvil editor, before local work continues:
+
+| Pull | After |
 |---|---|
-| 18 | Data tables created in Anvil |
-| 30 | UI forms built in Anvil |
-| 33 | Scaffolding built in Anvil |
-| Per feature cycle (Step 35) | Each Level 2 test pass |
-
-### Environment-aware code
-
-Code branches on `anvil.app.environment.name` to run identically across environments without
-per-deploy edits. Staging and Production use separate databases confirmed by environment check.
+| Step 18 | Data tables created in Anvil at Step 17. |
+| Step 30 | UI forms built in Anvil at Step 29. |
+| Step 33 | The scaffold built in Anvil at Step 32. |
+| Each feature cycle | The feature's connected test, run against Anvil. |
 
 ---
 
 ## Why
 
-These are not negotiable platform constraints — they reflect how Anvil.works actually works.
-The deployment model (manual publish, per-environment configuration, environment-aware code)
-is Anvil's native mechanic. GStack's default [[[pdlf:stepwise/step-41-ship|/ship]]](C:/pdlf/stepwise/step-41-ship.md) → `/land-and-deploy` pipeline assumes a
-CI/CD model Anvil does not have. PDLF's release sequence respects the platform. The Step 42A
-integration/E2E addition reflects a direct finding that a smoke test alone verifies too little
-before a Production promotion — cross-feature interactions need a real check at Staging first.
+These are Anvil's own mechanics. Anvil publishes from a Git branch, manages its own configuration file, and serves each client from its own app. Rules that ignore this produce code that works elsewhere but fails on Anvil, or client instances that silently stop receiving updates.
 
 ---
 
 ## Where
 
-Steps 17–45 (all Anvil-IDE interactions and deployment). This policy is itself the
-detailed reference — there is no separate mechanics file. An earlier reference to
-`stepwise/step-6-24-anvil-integration.md` was removed 2026-07-18: investigated and
-confirmed that file was never created, and its intended content already lives here.
-
-**Source:** Anvil.works deployment documentation
-(verified 2026-07-10), [[[pdlf:pdlf-library/specifications-local/spec-skill-design|Spec: Skill Design]]](C:/pdlf/pdlf-library/specifications-local/spec-skill-design.md) §2.7, §2.10, §2.11.
-
----
-
-*Updated 2026-07-12: release sequence extended with Step 42A (Staging integration/E2E suite).*
+Every step that touches an Anvil application. Steps 42 to 44 still model a staging and production split that Anvil, under the five-app structure, does not have; they are rebuilt around the `develop` → `stable` release in steps work. The reasoning is in [[[pdlf:pdlf-library/adr-local/no-staging-environment-five-app-isolation|ADR: No Staging Environment Five App Isolation]]](C:/pdlf/pdlf-library/adr-local/no-staging-environment-five-app-isolation.md).

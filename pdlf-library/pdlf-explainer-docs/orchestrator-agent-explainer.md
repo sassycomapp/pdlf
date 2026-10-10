@@ -1,86 +1,33 @@
 ---
-title: "pdlf-expl-orchestrator-agent"
+title: "orchestrator-agent-explainer"
 doc-id: "mb-a75ee721"
 updated: "2026-10-10"
 ---
-# PDLF — The Orchestrator Agent (Step 1)
+# PDLF — The Orchestrator (Step 1)
 
-*What the orchestrator agent is, which is Step 1, and what its function is,
-how it works, and why it exists.*
+## What it is
 
----
+The orchestrator is the agent that carries an application through PDLF, from the first question to release. It is Step 1, and its module is `module-01`. It is not a step of the pipeline in the same sense as Steps 11 to 46: it is what runs them. A skill runs once and finishes; the orchestrator stays in charge until the build is done.
 
-## 1. What it is
+The orchestrator never runs on its own. It is David's tool. It stops for David at every point where a real decision belongs to him.
 
-The orchestrator is the running agent that carries a project through the
-entire PDLF pipeline, one step at a time, from first contact to release. It
-is Step 1 — not a pipeline step in the same sense as Steps 11–46, but the
-thing that makes all of them run. It is deliberately **not** a run-once
-skill: a skill runs, produces its output, and is finished. The orchestrator
-never finishes until the project does. It is the standing authority that
-executes every step, administers every standard, and stops for the developer
-at every point where a real decision belongs to a human.
+## Why it exists
 
-## 2. Why it exists
+**For David.** David cannot personally verify the agent's code. Someone has to hold the discipline so that he does not have to. The orchestrator checks, verifies, stops and asks, so that David's trust rests on structure rather than hope.
 
-Two reasons, one practical and one structural.
+**For the steps.** Every step repeats the same pattern. If each step file carried its own copy, the copies would drift and one would eventually skip something. The orchestrator owns that pattern once. Step files say *what* a step does; the orchestrator enforces *how* every step is carried out, identically.
 
-**Practical:** the developer is non-technical and cannot personally verify
-the agent's work. Someone has to hold the discipline so the developer does
-not have to. That someone is the orchestrator — it checks, it verifies, it
-stops, it asks. It is the mechanism that makes the developer's trust
-structural rather than hopeful.
+## What it does
 
-**Structural:** every pipeline step repeats the same skeleton — query
-memory, assemble inputs, invoke or execute, capture the output, verify it
-exists, record it, report, stop and wait. Today that skeleton exists only as
-duplicated text inside each individual step file. The orchestrator is the
-single owner of that skeleton. The step files define **what** each step
-does; the orchestrator enforces **how** every step is executed — identically,
-without exception, with no step able to skip its own discipline.
+- **Establishes the entry point.** It asks David what kind of work this is (a new application, a new feature, an update, returning to another app of a five-app set) and from his answers chooses where to begin and which modules to run.
+- **Runs the modules in order.** It follows [[[pdlf:stepwise/run-plan|Run Plan]]](C:/pdlf/stepwise/run-plan.md) and checks the ledger before every step; it never decides the order itself and never skips a step.
+- **Owns the handoffs.** It passes the full text of earlier outputs into each skill, captures where each output was saved, confirms it exists, records it in the ledger and writes the copy to `output/`. A missing output stops the step with a deviation ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md)).
+- **Applies the rules.** It reads a skill's own file before invoking it; uses the library's skill for every task a skill covers; runs each step's thinking checkpoint; carries out the gate procedure; and handles every deviation by setting out the options and letting David decide.
+- **Explains and stops.** After every step it explains in plain language what was done and why, presents the Step Receipt, and waits.
+- **Asks for close-out.** At the end of every step it asks David to run `/mb-close-out`. It never runs close-out itself, and it never commits or pushes.
 
-## 3. What it does
+Only the orchestrator, carrying out a PDLF step, writes to the ledger.
 
-- **Runs every step in order**, per the dependency table — never deciding
-  sequence itself, never skipping.
-- **Owns the handoff contract:** pastes the full text of prior artifacts into
-  each skill invocation, captures the output path the skill reports, verifies
-  the artifact exists on disk, records the location in the ledger
-  (`artifact_path`), makes the stable and safety-net copies. An expected
-  artifact that is missing is a STOP with a formal deviation request — never
-  a silent proceed (per [[[pdlf:pdlf-library/specifications-local/spec-artifact-handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md)).
-- **Administers the standards:** reads a skill's own definition before
-  invoking it — never trusting a name; runs the BFT checkpoint at the level
-  the step assigns (Full at every gate, no exceptions); executes the gate
-  ceremony; enforces the deviation mechanism (three options, developer
-  decides, every outcome recorded).
-- **Asks, never assumes:** at the end of every step it asks the developer to run
-  `/mb-close-out`, the one close-out process: session page, facts, project
-  documents, governor review queue, commit all. It never runs it automatically.
-- **Stops and waits** at the end of every step, presenting the Step Receipt
-  and waiting for the developer's "continue." It never advances on its own.
+## Status
 
-## 4. How it works
-
-The orchestrator reads each step file as that step's own authority. The step
-file defines the step's procedure, inputs, outputs, and handoffs; the
-orchestrator supplies the uniform execution machinery around it: the opening
-GBrain query (read-only, every step), the routing (skill invocation, manual
-action, optional decision, or gate), the verification, the ledger write, the
-receipt, and the stop. The ledger is the memory between steps and between
-sessions; the receipts are the developer-facing readout; and only the
-orchestrator, operating through a real PDLF step, ever writes to the ledger.
-
-## 5. Status — defined, not yet built
-
-This document defines the orchestrator's role and behavior. Its executable
-form does not exist yet: Step 1's file in the makePDLF environment is
-currently an empty placeholder, and the machinery that will run this role is
-app-factory Module 1, to be produced when makePDLF builds Step 1. The
-implementation shape (how the standing agent is configured and wired in
-OpenCode) is a design decision to be made at that build — informed by this
-explainer, the handover specification, and the built steps it will run.
-
----
-
-*End of pdlf-expl-orchestrator-agent*
+This document defines the orchestrator's role. Its executable form does not exist yet: `stepwise/step-01-orchestrator.md` and `app-factory/module-01.md` are placeholders. How the orchestrator is configured in OpenCode (including PDLF's own `opencode.json`) is decided when Step 1 is designed, in steps work.

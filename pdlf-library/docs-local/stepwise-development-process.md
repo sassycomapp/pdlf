@@ -57,7 +57,7 @@ they implemented — existing-project entry is handled inside Step 11 itself.
 - `skill/SKILL-v4.md` — absorbed into stepwise files. No longer exists as standalone.
 - `docs-local/skill-workflow-table.md` — absorbed into stepwise files. No longer exists as standalone.
 - `policy-local/pol-stepwise.md` — this file. Working document defining the stepwise process.
-- [[[pdlf:pdlf-library/specifications-local/spec-skill-design|Spec: Skill Design]]](C:/pdlf/pdlf-library/specifications-local/spec-skill-design.md) — design rationale (reference only, not runtime). `spec-architecture.md`, formerly listed here, was retired 2026-07-18 — its accurate content was migrated into [[[pdlf:pdlf-library/specifications-local/spec-nomenclature|Spec: Nomenclature]]](C:/pdlf/pdlf-library/specifications-local/spec-nomenclature.md).
+- [[[pdlf:pdlf-library/specifications-local/spec-skill-design|Spec: Skill Design]]](C:/pdlf/pdlf-library/specifications-local/spec-skill-design.md) — design rationale (reference only, not runtime). `spec-architecture.md`, formerly listed here, was retired 2026-07-18 — its accurate content was migrated into [[[default:specifications-global/spec-nomenclature|Spec: Nomenclature]]](C:/dev/project-library-global/specifications-global/spec-nomenclature.md).
 
 ## F. Shared Reference Documents
 
