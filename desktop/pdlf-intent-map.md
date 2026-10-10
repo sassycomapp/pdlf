@@ -5,7 +5,7 @@ doc-id: "mb-8325f58e"
 ---
 # PDLF Intent Map
 
-Version: v09 (L2 and L3 closed; Anvil findings in pol-anvil-platform)
+Version: v10 (L6 to L9 closed)
 
 ## How to read this map
 
@@ -215,10 +215,10 @@ Resolutions: K1 `project-library-global` stays where it is (A7). K2 proof added 
 | L3 | ~~Note the missing images in `anvil-docs` when Anvil standards are reviewed (E7).~~ Struck: no action needed. | Done |
 | L4 | Testing is a component of its own, to be designed (David, 2026-10-10): the testing disciplines are reviewed and investigated first, then the standard is written for `project-library-global`. Inputs: `anvil_cop_testing.md` (its philosophy only; its multi-tenant pattern, Factory Droid and dev-log references are excluded) and further information from David. `pol-testing-and-quality` is updated then. | Normal |
 | L5 | ~~Nomenclature (O7): needs the contents of `pdlf-library/specifications-local/spec-nomenclature.md` and `spec-nomenclature-b.md`. Also: the `project-library-global` nomenclature specification is titled "Mybizz CS" and holds `mb-3-cs`-specific content in a project-agnostic library, which breaks E2.~~ Resolved: see E9. | Done |
-| L6 | Remove makePDLF references from the installed skills `mb-project-docs`, `mb-config-opencode` and `mb-config-anvil-agent-references`, by editing their sources. | Normal |
-| L7 | PostgreSQL clean-up: the duplicate Windows PostgreSQL service, the `pgvector_user` role, and leftover experiment objects in the `postgres` database. | Normal |
-| L8 | Change the ledger passwords in `.env`, which are weak and were shown in chat. | Normal |
-| L9 | Record the dev-root docmap on the master task list. | Normal |
+| L6 | ~~Remove makePDLF references from the installed skills `mb-project-docs`, `mb-config-opencode` and `mb-config-anvil-agent-references`, by editing their sources.~~ Done: makePDLF removed from the live documents and skills; only dated history records still name it. | Done |
+| L7 | ~~PostgreSQL clean-up: the duplicate Windows PostgreSQL service, the `pgvector_user` role, and leftover experiment objects in the `postgres` database.~~ Done: duplicate service deleted, leftover extensions removed; the role was already gone. | Done |
+| L8 | ~~Change the ledger passwords in `.env`, which are weak and were shown in chat.~~ Done: both ledger passwords changed; `.env` and `pgpass.conf` updated; logins verified. | Done |
+| L9 | ~~Record the dev-root docmap on the master task list.~~ Done: recorded on the master task list. | Done |
 
 ## P. Writing status (2026-10-10)
 
