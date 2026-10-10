@@ -110,7 +110,7 @@ Stable copies are the PDLF-controlled, deterministically named copies a later
 step reads when the native path is unavailable or mode-dependent.
 
 - Naming: `{slug}-step-NN-filename.md` (decision 5 of the convention ADR) —
-  for example `makepdlf-step-14-ceo-plan.md`.
+  for example `mb5pdlf-step-14-ceo-plan.md`.
 - The built steps 14–15 predate this convention: they write
   `gstack-outputs\step-14-ceo-plan.md`, `step-15-eng-plan.md`,
   `step-15-test-plan.md` (legacy folder name, no slug prefix). Both aspects
@@ -129,12 +129,6 @@ step reads when the native path is unavailable or mode-dependent.
 | PDLF environment (system phase) | GStack skills | `C:\pdlf\output\pdlf-output-gstack\` |
 | PDLF environment (system phase) | Matt Pocock skills | `C:\pdlf\output\pdlf-output-pocock\` |
 | PDLF environment (system phase) | OpenCode-native | `C:\pdlf\output\pdlf-output-opencode\` (when created) |
-| makePDLF environment (exception phase) | GStack skills | `output-gstack\` in the makepdlf docs repo |
-| makePDLF environment (exception phase) | OpenCode direct | `output-opencode\` |
-| makePDLF environment (exception phase) | Matt Pocock skills | `output-matt-skills\` |
-
-The makePDLF environment also holds an `output-staging\` folder whose routing
-is not yet defined — flagged, not assigned (dev project decision).
 
 5.2 **Copy procedure:** after the stable copy exists, copy it into the
 safety-net folder named `{slug}-filename` (§4 naming, same filename rule),
@@ -183,7 +177,6 @@ proceed, never an assumption that the skill "probably wrote it."
 | 2 | End-to-end live verification of the chain (one governed skill run: slug stability, native save, safety-net copy) never performed on the current install | Open — master task list, item 17 |
 | 3 | GStack pinned at 1.58.1.0; upstream at 1.81.0.0 (23 minor versions behind). Upstream fixes may change save behavior | Watched — version upgrade is a separate decision |
 | 4 | Slug cache never reconciles against the git remote; stale entries possible (observed on a placeholder project; heal tracked) | Watched — heal rule in [[[default:specifications-global/spec-nomenclature]]](C:/dev/project-library-global/specifications-global/spec-nomenclature.md) |
-| 5 | makePDLF's `output-staging\` folder has no routing rule | Open — dev-side decision |
 
 ---
 

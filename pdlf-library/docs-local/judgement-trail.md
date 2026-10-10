@@ -3,7 +3,7 @@ title: "judgement-trail"
 doc-id: "mb-5244d864"
 updated: "2026-10-10"
 ---
-# Judgement Trail — PDLF (makepdlf)
+# Judgement Trail — PDLF
 Flagged issues, developer decisions, and approved deviations, extracted from the ledger as they occur. Newest at top.
 
 - **[COMPLETION]** (20260929T105449+0200) — Model inventory document created per developer instruction at `C:\data-mybizz-mgt\Models\model inventory.md` (`title`/`doc-id` = "model inventory", `date-created` per ADR build-artefact timestamp standard). — Content source: live inspection only — `~/.local/share/opencode/auth.json`, `~/.gbrain/config.json`, `gbrain config show`, `~/.gbrain/audit/dream-budget-2026-W40.jsonl` and `dream-budget-2026-W28.jsonl`, environment variable names. — Developer correction applied before write: gbrain 0.46.1.0 does not support re-ranking and ZeroEntropy is deprecated; recorded as "Not in use — key may remain registered but nothing consumes it", superseding the session's earlier ZeroEntropy-reranker inference; correction record embedded in the document. — Write path: initial file-tool attempt blocked by Cupcake (target outside project, no grant); developer issued `granted /mnt/c/data-mybizz-mgt/models count=2`; write then succeeded (1 of 2 used, second unused). — Deviation: four pre-drafted trail entries (ledger mount / work census / migration-suite creation / archival, dated 2026-12-01 to 2026-12-07) were NOT written — target `~/projects/ledger/judgement-trail.md` does not exist, the referenced `~/work/...` paths do not exist, and the entry dates post-date today (2026-09-29, confirmed on both WSL and Windows clocks). Drafts discarded as unverifiable; flagged to developer in-session.

@@ -30,9 +30,8 @@ Non-secret reference for all PDLF system configuration. Secrets live in `.env` (
 | PDLF system home | `/mnt/c/pdlf/` | Project-agnostic: skill, stepwise, registry, templates |
 | System skill (active) | none — the deployed instance at `/mnt/c/pdlf/` was restructured; the `~/.config/opencode/skills/pdlf/` symlink no longer exists | Development consolidated in this repo (see Stepwise skills row). Verified 2026-09-18 |
 | Slug → path resolution | GBrain search | The former `/mnt/c/pdlf/registry/projects.json` no longer exists — verified 2026-09-18 |
-| Dev workspace | `/mnt/c/dev/dev-makepdlf/` | PDLF development project |
-| Stepwise skills (source) | `/mnt/c/dev/dev-makepdlf/makepdlf-project-library/stepwise/` | 46 step skills + 5 shared references |
-| Templates | `/mnt/c/dev/dev-makepdlf/makepdlf-project-library/templates-local/` | BFT cheatsheet, ISA template, receipt templates |
+| Stepwise skills | `/mnt/c/pdlf/stepwise/` | 46 step skills + 5 shared references |
+| Templates | `/mnt/c/pdlf/pdlf-library/templates-local/` | BFT cheatsheet, ISA template, receipt templates |
 | Project template | `/mnt/c/dev/project-template/dev-(SLUG)/(slug)-project-library/` | Folder skeleton used at Step 11 init |
 | Project library (global) | `/mnt/c/dev/project-library-global/` | Shared specs, ADRs, policies, SOPs, standards, templates — referenced directly, never copied
 
@@ -40,24 +39,22 @@ Non-secret reference for all PDLF system configuration. Secrets live in `.env` (
 
 | Setting | Value | Source |
 |---|---|---|
-| Config file | `/mnt/c/dev/dev-makepdlf/makepdlf-project-library/opencode.json` | Project-level |
-| Default agent | `plan` | opencode.json |
-| Permissions | edit=ask, webfetch=ask, bash=ask, external `C:\dev\**`=allow | opencode.json |
+| Project config | None yet: `C:\pdlf\opencode.json` is written when the orchestrator is designed; until then the global OpenCode configuration applies | — |
 
 ## GStack Configuration
 
 | Setting | Value |
 |---|---|
 | Binary path | `/home/dev-p/.config/opencode/skills/gstack/bin/` |
-| Project slug | `sassycomapp-dev-makepdlf` |
-| GStack home | `~/.gstack/projects/sassycomapp-dev-makepdlf/` |
+| Project slug | `sassycomapp-pdlf` (derived from the GitHub repository) |
+| GStack home | `~/.gstack/projects/sassycomapp-pdlf/` |
 
 ## GBrain Configuration
 
 | Setting | Value |
 |---|---|
-| Source ID (this project) | `makepdlf-project-library` |
-| Repo path | `/mnt/c/dev/dev-makepdlf/makepdlf-project-library` |
+| Source ID (this project) | `pdlf` |
+| Repo path | `/mnt/c/pdlf` |
 | Source ID (project-library-global) | `project-library-global` |
 | Repo path | `/mnt/c/dev/project-library-global` |
 | GitHub remote (project-library-global) | `https://github.com/sassycomapp/project-library-global` (public) |

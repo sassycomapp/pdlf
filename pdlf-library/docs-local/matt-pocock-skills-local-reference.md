@@ -5,7 +5,7 @@ updated: "2026-10-10"
 ---
 # PDLF — Matt Pocock Skills Local Reference
 
-**Purpose:** PDLF-specific integration points, artifact governance, and project paths for Matt Pocock skills within the dev-makepdlf workspace.
+**Purpose:** PDLF-specific integration points, artifact governance, and project paths for Matt Pocock skills within PDLF.
 
 **Source:** Extracted from `system-description(check).md` (2026-07-12 research pass). Updated 2026-07-13 to reflect current step numbering and configuration.
 
@@ -63,4 +63,4 @@ GitHub repo (`https://github.com/sassycomapp/mb5pdlf-project-library`, local pat
 | mb-3-cs project-library | `sassycomapp-project-library` — **known legacy exception**, does not follow the standard form |
 | mb4ecom project-library | `sassycomapp-mb4ecom-project-library` |
 | mb5pdlf project-library | `sassycomapp-mb5pdlf-project-library` |
-| dev-makepdlf | `sassycomapp-makepdlf-project-library` |
+| pdlf | `sassycomapp-pdlf` |

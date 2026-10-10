@@ -72,12 +72,8 @@ across both environments.
    recovery. The native artifact and the ledger record remain the primary
    truth. The safety net may be lost without losing the chain.
 
-4. **The exception — makePDLF.** While the PDLF system is still being built,
-   makePDLF's runs cannot be routed by the PDLF system (which does not yet
-   exist). makePDLF's outputs therefore save in the makePDLF environment's own
-   output folders (per that project's own artifact governance). This exception
-   ends when makePDLF completes: its output folders are copied across to the
-   makePDLF project before that project is archived.
+4. **No exception.** Every run, including PDLF's own development, routes its
+   safety-net copies to the PDLF environment's output folders (decision 9).
 
 5. **Copy naming — `{slug}-filename`.** Every safety-net copy carries the
    project's canonical short slug as a filename prefix, so an archived set is
@@ -106,8 +102,6 @@ across both environments.
    - **PDLF environment (system phase):** `C:\pdlf\output\pdlf-output-gstack`,
      `C:\pdlf\output\pdlf-output-pocock` (Matt Pocock skills), and
      `pdlf-output-opencode` for OpenCode-native outputs when created.
-   - **makePDLF environment (exception phase):** the project's own governance
-     names — `output-gstack\`, `output-opencode\`, `output-matt-skills\`.
    - The `gstack-outputs\` references in built step files 14 and 15 are a
      legacy of the pre-convention naming and are corrected to
      `output-gstack\` in those files (tracked: master task list, item 18).
@@ -117,8 +111,7 @@ across both environments.
 10. **The `{slug}` value — settled.** In decision 5's `{slug}-filename`, the
     slug is the project's canonical short slug — the developer-supplied
     project slug from Step 11, which the ledger, the folder structure, and
-    every project document already use (for the PDLF system's own builder
-    runs: `makepdlf`). The longer GStack-derived name remains a derived fact
+    every project document already use. The longer GStack-derived name remains a derived fact
     recorded in the nomenclature specification, not the basis for filenames.
 
 ## Rationale
@@ -137,8 +130,8 @@ disappears quietly.
 
 ## Consequences
 
-- The app-factory modules implement this convention step by step as makePDLF
-  completes each step; the specification
+- The app-factory modules implement this convention step by step as each step
+  is built; the specification
   ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md)) is the binding detail modules follow.
 - Built step files 14 and 15 require the correction described in decision 9
   (tracked: master task list, item 18). Their stale quote of an older skill

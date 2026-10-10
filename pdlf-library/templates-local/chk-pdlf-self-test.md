@@ -7,7 +7,7 @@ updated: "2026-10-10"
 
 **Location:** `checklists-local\chk-pdlf-self-test.md`
 
-**Scope:** Tests `C:\pdlf` (and, until deployment, `dev-makepdlf`) per se — the orchestration
+**Scope:** Tests `C:\pdlf` per se — the orchestration
 system itself. Does not test any Anvil application PDLF builds. For that, see
 the retired `chk-anvil-app-testing.md` (global, `specifications-global\`).
 

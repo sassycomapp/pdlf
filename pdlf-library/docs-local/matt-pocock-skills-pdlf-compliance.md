@@ -45,11 +45,10 @@ updated: "2026-10-10"
 
 ### A. Which repo(s) need `setup-matt-pocock-skills` — RESOLVED
 Confirmed `.scratch/` locations:
-- `C:\dev\dev-makepdlf\.scratch` — exists
 - `C:\dev\dev-mb5pdlf\mb5pdlf-project-library\.scratch` — exists
 - `C:\dev\dev-mb5pdlf\mb5pdlf` (code repo) — **no `.scratch`**
 
-All four in-pipeline skills ([[[pdlf:stepwise/step-16-domain-modeling|Step 16 Domain Modeling]]](C:/pdlf/stepwise/step-16-domain-modeling.md), [[[pdlf:stepwise/step-19-to-tickets|Step 19 to Tickets]]](C:/pdlf/stepwise/step-19-to-tickets.md), `triage`, [[[pdlf:stepwise/step-40-improve-codebase-architecture|Step 40 Improve Codebase Architecture]]](C:/pdlf/stepwise/step-40-improve-codebase-architecture.md)) currently write into the **project-library (docs) repo**, not the code repo. So `setup-matt-pocock-skills` needs to run in exactly two places per project: `dev-makepdlf` (for building PDLF itself) and `{project}-project-library` (for all four in-pipeline skills). **The code repo does not need setup run in it** — nothing currently writes Matt Pocock output there. Re-check this if a future skill is added that writes directly into the code repo.
+All four in-pipeline skills ([[[pdlf:stepwise/step-16-domain-modeling|Step 16 Domain Modeling]]](C:/pdlf/stepwise/step-16-domain-modeling.md), [[[pdlf:stepwise/step-19-to-tickets|Step 19 to Tickets]]](C:/pdlf/stepwise/step-19-to-tickets.md), `triage`, [[[pdlf:stepwise/step-40-improve-codebase-architecture|Step 40 Improve Codebase Architecture]]](C:/pdlf/stepwise/step-40-improve-codebase-architecture.md)) currently write into the **project-library (docs) repo**, not the code repo. So `setup-matt-pocock-skills` needs to run in exactly two places per project: `pdlf` (for building PDLF itself) and `{project}-project-library` (for all four in-pipeline skills). **The code repo does not need setup run in it** — nothing currently writes Matt Pocock output there. Re-check this if a future skill is added that writes directly into the code repo.
 
 ### B. The `grilling` dependency gap — RESOLVED, no import
 Two of your five in-scope skills have documented branches into the `grilling` interview loop:
@@ -92,4 +91,4 @@ Evaluated: BMAD-METHOD, GitHub Spec Kit, OpenSpec, GSD, Superpowers.
 
 ---
 
-*Reference v2 — supersedes the general-catalog version. Reconciled against [[[pdlf:pdlf-library/docs-local/system-description|System Description]]](C:/pdlf/pdlf-library/docs-local/system-description.md) (v3.1) and [[[pdlf:pdlf-library/docs-local/matt-pocock-skills-local-reference|Matt Pocock Skills Local Reference]]](C:/pdlf/pdlf-library/docs-local/matt-pocock-skills-local-reference.md).*
+*Reference v2 — supersedes the general-catalog version. Reconciled against [[[pdlf:obsolete/system-description|System Description]]](C:/pdlf/obsolete/system-description.md) (v3.1) and [[[pdlf:pdlf-library/docs-local/matt-pocock-skills-local-reference|Matt Pocock Skills Local Reference]]](C:/pdlf/pdlf-library/docs-local/matt-pocock-skills-local-reference.md).*

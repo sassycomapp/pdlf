@@ -34,7 +34,7 @@ that goes to `C:\pdlf`.
 
 2. **Receipt path corrected.** The step receipt is saved at
    `dev-{slug}\{slug}-project-library\pdlf\step-{N}-receipt.md`. There is no `outputs`
-   subfolder. Two older documents ([[[pdlf:pdlf-library/docs-local/docmap|Docmap]]](C:/pdlf/pdlf-library/docs-local/docmap.md), and the original `step-11-output.md`)
+   subfolder. Two older documents ([[[pdlf:obsolete/docmap|Docmap]]](C:/pdlf/obsolete/docmap.md), and the original `step-11-output.md`)
    showed an `outputs` subfolder — both were wrong and are superseded by this decision.
 
 3. **BFT level confirmed as Full.** Step 11 creates the project's structural foundation —
