@@ -1,7 +1,7 @@
 ---
 title: "step-15-build-notes"
 doc-id: "mb-af7b2095"
-updated: "2026-10-10"
+updated: "2026-10-11"
 ---
 # Step 15 (plan-eng-review) — Build Notes
 
@@ -25,7 +25,7 @@ Every prior draft of this step (including the one carried into
 `docs-local/todo-makepdlf.md` §3.2, marked `[COMPLETE 2026-07-10]`) assumed
 [[[pdlf:stepwise/step-15-plan-eng-review|/plan-eng-review]]](C:/pdlf/stepwise/step-15-plan-eng-review.md) produces five separate documents: [[[mb-3-cs-project-library:docs-local/architecture|architecture]]](C:/dev/dev-mb-3-cs/mb-3-cs-project-library/docs-local/architecture.md) (mb-3-cs project library),
 [[[mb-3-cs-project-library:docs-standard-local/integration-architecture|integration-architecture]]](C:/dev/dev-mb-3-cs/mb-3-cs-project-library/docs-standard-local/integration-architecture.md) (mb-3-cs project library), the retired `security-architecture-canonical.md`,
-[[[mb-3-cs-project-library:docs-standard-local/globals-contract|globals-contract]]](C:/dev/dev-mb-3-cs/mb-3-cs-project-library/docs-standard-local/globals-contract.md) (mb-3-cs project library), [[[mb-3-cs-project-library:docs-local/authoritative-schema|authoritative-schema]]](C:/dev/dev-mb-3-cs/mb-3-cs-project-library/docs-local/authoritative-schema.md) (mb-3-cs project library). Read [[[pdlf:stepwise/skill-source-reference/plan-eng-review-review-sections|Plan Eng Review Review Sections]]](C:/pdlf/stepwise/skill-source-reference/plan-eng-review-review-sections.md)
+[[[mb-3-cs-project-library:docs-standard-local/globals-contract|globals-contract]]](C:/dev/dev-mb-3-cs/mb-3-cs-project-library/docs-standard-local/globals-contract.md) (mb-3-cs project library), [[[mb-3-cs-project-library:docs-local/authoritative-schema|authoritative-schema]]](C:/dev/dev-mb-3-cs/mb-3-cs-project-library/docs-local/authoritative-schema.md) (mb-3-cs project library). Read Plan Eng Review Review Sections
 directly (925 lines, full source, not excerpts) — none of these filenames
 appear anywhere in the skill. Searched every `.md` reference in the file;
 only two exist: `TODOS.md` (referenced, not created by this skill) and the

@@ -1,7 +1,7 @@
 ---
 title: "pol-sequential-enforcement-and-deviation"
 doc-id: "mb-bdadd132"
-updated: "2026-10-10"
+updated: "2026-10-11"
 ---
 # PDLF Policy — Sequential Enforcement and Deviation
 
@@ -13,7 +13,7 @@ updated: "2026-10-10"
 
 ### Steps run in order
 
-Every step follows the execution sequence in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md). The orchestrator does not start a step until the steps it depends on are complete in the ledger ([[[pdlf:stepwise/run-plan|Run Plan]]](C:/pdlf/stepwise/run-plan.md)).
+Every step follows the execution sequence in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md). The orchestrator does not start a step until the steps it depends on are complete in the ledger ([[[pdlf:pdlf-library/docs-local/orchestrator-run-plan|Run Plan]]](C:/pdlf/pdlf-library/docs-local/orchestrator-run-plan.md)).
 
 A step is complete when its expected output exists, its thinking checkpoint is answered, its ledger row is written and its Step Receipt is produced.
 

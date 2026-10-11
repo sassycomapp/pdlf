@@ -1,7 +1,7 @@
 ---
 title: "stepwise-decomposition-model"
 doc-id: "mb-bd17f7b3"
-updated: "2026-10-10"
+updated: "2026-10-11"
 ---
 # ADR — Stepwise Decomposition Model
 
@@ -23,7 +23,7 @@ together.
 
 Each numbered step (11–46) becomes its own stepwise skill file in `stepwise/`. Five
 shared reference documents ([[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md), [[[pdlf:pdlf-library/specifications-local/spec-bft|Spec Bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md),
-[[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md), `INDEX.md`, [[[pdlf:stepwise/run-plan|Run Plan]]](C:/pdlf/stepwise/run-plan.md)) provide single-source-of-truth
+[[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md), `INDEX.md`, [[[pdlf:pdlf-library/docs-local/orchestrator-run-plan|Run Plan]]](C:/pdlf/pdlf-library/docs-local/orchestrator-run-plan.md)) provide single-source-of-truth
 procedures that individual stepwise files reference via context pointers. This follows
 the `writing-great-skills` information hierarchy: push shared material to disclosed
 reference, keep step-specific content in-skill.
@@ -38,7 +38,7 @@ reference, keep step-specific content in-skill.
 - Renumbering starts at 11; slots 1 and 4–10 remain reserved for future steps, slots
   2–3 are now defined as the existing-project entry branch (see
   the retired `sop-existing-project-resume-audit.md`).
-- The orchestrator (SKILL-v5) loads stepwise files in execution order per [[[pdlf:stepwise/run-plan|Run Plan]]](C:/pdlf/stepwise/run-plan.md),
+- The orchestrator (SKILL-v5) loads stepwise files in execution order per [[[pdlf:pdlf-library/docs-local/orchestrator-run-plan|Run Plan]]](C:/pdlf/pdlf-library/docs-local/orchestrator-run-plan.md),
   not numerical sequence.
 - The clean 11–46 numbering has since been extended with lettered sub-steps for
 in-loop insertions (`35A`, `38A`, `40B`, `42A`) rather than further renumbering —

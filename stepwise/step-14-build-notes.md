@@ -1,7 +1,7 @@
 ---
 title: "step-14-build-notes"
 doc-id: "mb-3e9404a6"
-updated: "2026-10-10"
+updated: "2026-10-11"
 ---
 # Step 14 (plan-ceo-review) — Build Notes
 
@@ -40,7 +40,7 @@ handoff does. One procedure, not two.
 ## Skill-source findings — confirmed, not assumed
 
 `SKILL.md` and `SKILL.md.tmpl` for [[[pdlf:stepwise/step-14-plan-ceo-review|/plan-ceo-review]]](C:/pdlf/stepwise/step-14-plan-ceo-review.md) were read directly (not
-inferred from [[[pdlf:stepwise/skill-source-reference/plan-eng-review-review-sections|Plan Eng Review Review Sections]]](C:/pdlf/stepwise/skill-source-reference/plan-eng-review-review-sections.md)/`manifest.json` alone, which only cover the
+inferred from Plan Eng Review Review Sections/`manifest.json` alone, which only cover the
 11-section review gated behind Step 0). Three findings changed what the old
 draft assumed:
 
@@ -86,7 +86,7 @@ resolve where that check belongs.
 ## Learnings
 
 - **Reading a skill's `SKILL.md` directly, not just its section manifest,
-  matters.** `manifest.json` + [[[pdlf:stepwise/skill-source-reference/plan-eng-review-review-sections|Plan Eng Review Review Sections]]](C:/pdlf/stepwise/skill-source-reference/plan-eng-review-review-sections.md) alone would have left the
+  matters.** `manifest.json` + Plan Eng Review Review Sections alone would have left the
   design-doc preemption requirement, the mode-dependent persistence split, and
   the correct GStack path all unverified. All three were only findable in the
   actual `SKILL.md`.

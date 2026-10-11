@@ -1,7 +1,7 @@
 ---
 title: "stepwise-development-process"
 doc-id: "mb-311cf022"
-updated: "2026-10-10"
+updated: "2026-10-11"
 ---
 # Stepwise Working Document
 
@@ -41,7 +41,7 @@ history:
 - ~~Do not hard-code or assume any numbering scheme at this stage.~~
 
 **Current convention:** Canonical step numbers are now fixed identifiers and are no longer
-fluid. They never indicate execution order — execution order lives exclusively in [[[pdlf:stepwise/run-plan|Run Plan]]](C:/pdlf/stepwise/run-plan.md). New steps inserted between existing canonical numbers use a letter suffix
+fluid. They never indicate execution order — execution order lives exclusively in [[[pdlf:pdlf-library/docs-local/orchestrator-run-plan|Run Plan]]](C:/pdlf/pdlf-library/docs-local/orchestrator-run-plan.md). New steps inserted between existing canonical numbers use a letter suffix
 on the nearest preceding number (e.g., `35A`, `40B`) rather than renumbering. Slots 1 and
 4–10 remain reserved. Slots 2–3 were briefly defined for an existing-project
 registration/audit branch, then retired 2026-07-18 along with the disposition-audit model
@@ -64,8 +64,8 @@ they implemented — existing-project entry is handled inside Step 11 itself.
 - [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md) — 13-point execution sequence, step-type routing, deviation mechanism.
 - [[[pdlf:pdlf-library/specifications-local/spec-bft|Spec: BFT]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md) — Six BFT questions, levels, gate rule, anti-rubber-stamping.
 - [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md) — Gate ceremony, seven gates, approval flow.
-- [[[pdlf:stepwise/step-mapping|Step Mapping]]](C:/pdlf/stepwise/step-mapping.md) — Step number → file → phase → handler → gate lookup. Folded in what used to be a separate `INDEX.md`, 2026-07-18.
-- [[[pdlf:stepwise/run-plan|Run Plan]]](C:/pdlf/stepwise/run-plan.md) — Execution order decision tree; the sole authority on sequence.
+- [[[pdlf:pdlf-library/docs-local/pdlf-built-report|Step Mapping]]](C:/pdlf/pdlf-library/docs-local/pdlf-built-report.md) — Step number → file → phase → handler → gate lookup. Folded in what used to be a separate `INDEX.md`, 2026-07-18.
+- [[[pdlf:pdlf-library/docs-local/orchestrator-run-plan|Run Plan]]](C:/pdlf/pdlf-library/docs-local/orchestrator-run-plan.md) — Execution order decision tree; the sole authority on sequence.
 
 ## G. Skill Ecosystem
 

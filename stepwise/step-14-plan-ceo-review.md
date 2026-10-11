@@ -1,7 +1,7 @@
 ---
 title: "step-14-plan-ceo-review"
 doc-id: "mb-d8e24e43"
-updated: "2026-10-10"
+updated: "2026-10-11"
 ---
 ## Task Execution Order
 
@@ -122,7 +122,7 @@ followed by an 11-section deep review covering architecture, error/rescue map,
 security/threat model, data flow & interaction edge cases, code quality,
 tests, observability, database/state management, API design,
 performance/scalability, and design/UX. Confirmed against the actual
-[[[pdlf:stepwise/skill-source-reference/plan-eng-review-review-sections|Plan Eng Review Review Sections]]](C:/pdlf/stepwise/skill-source-reference/plan-eng-review-review-sections.md) skill source: sections 1–11 are mandatory, non-skippable,
+Plan Eng Review Review Sections skill source: sections 1–11 are mandatory, non-skippable,
 and each stops for `AskUserQuestion` per finding rather than batching findings
 into a single plan write (the "anti-shortcut clause").
 

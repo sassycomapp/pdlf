@@ -1,7 +1,7 @@
 ---
 title: "orchestrator-agent-explainer"
 doc-id: "mb-a75ee721"
-updated: "2026-10-10"
+updated: "2026-10-11"
 ---
 # PDLF — The Orchestrator (Step 1)
 
@@ -20,7 +20,7 @@ The orchestrator never runs on its own. It is David's tool. It stops for David a
 ## What it does
 
 - **Establishes the entry point.** It asks David what kind of work this is (a new application, a new feature, an update, returning to another app of a five-app set) and from his answers chooses where to begin and which modules to run.
-- **Runs the modules in order.** It follows [[[pdlf:stepwise/run-plan|Run Plan]]](C:/pdlf/stepwise/run-plan.md) and checks the ledger before every step; it never decides the order itself and never skips a step.
+- **Runs the modules in order.** It follows [[[pdlf:pdlf-library/docs-local/orchestrator-run-plan|Run Plan]]](C:/pdlf/pdlf-library/docs-local/orchestrator-run-plan.md) and checks the ledger before every step; it never decides the order itself and never skips a step.
 - **Owns the handoffs.** It passes the full text of earlier outputs into each skill, captures where each output was saved, confirms it exists, records it in the ledger and writes the copy to `output/`. A missing output stops the step with a deviation ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md)).
 - **Applies the rules.** It reads a skill's own file before invoking it; uses the library's skill for every task a skill covers; runs each step's thinking checkpoint; carries out the gate procedure; and handles every deviation by setting out the options and letting David decide.
 - **Explains and stops.** After every step it explains in plain language what was done and why, presents the Step Receipt, and waits.

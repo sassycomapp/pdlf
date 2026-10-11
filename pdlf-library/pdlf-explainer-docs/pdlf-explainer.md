@@ -1,7 +1,7 @@
 ---
 title: "pdlf-explainer"
 doc-id: "mb-4ba5a053"
-updated: "2026-10-10"
+updated: "2026-10-11"
 ---
 # PDLF — How It Works
 
@@ -62,7 +62,7 @@ Why the same pattern everywhere: a pattern written once and enforced by the orch
 
 ### Phases and gates
 
-The pipeline runs in phases. Each phase ends at a gate: a hard stop where David approves a commitment before anything is built on it. The gates in the current step design are `domain-locked`, `concept-locked`, `wireframes-approved`, `architecture-verified`, `build-verified` (once per feature), `production-released` and `released`. Which gates exist, where they sit and why is settled in steps work; [[[pdlf:stepwise/step-mapping|Step Mapping]]](C:/pdlf/stepwise/step-mapping.md) holds the current list.
+The pipeline runs in phases. Each phase ends at a gate: a hard stop where David approves a commitment before anything is built on it. The gates in the current step design are `domain-locked`, `concept-locked`, `wireframes-approved`, `architecture-verified`, `build-verified` (once per feature), `production-released` and `released`. Which gates exist, where they sit and why is settled in steps work; [[[pdlf:pdlf-library/docs-local/pdlf-built-report|Step Mapping]]](C:/pdlf/pdlf-library/docs-local/pdlf-built-report.md) holds the current list.
 
 At a gate, the orchestrator presents a gate summary and waits for David's explicit yes or no. A passed gate is never silently undone; reopening it is a recorded decision. PDLF never passes a gate without David's approval, and Cupcake enforces this. The procedure is in [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md).
 
@@ -157,8 +157,8 @@ PDLF builds for Anvil.works only. The rules are in [[[pdlf:pdlf-library/policy-l
 | What PDLF is for | [[[pdlf:pdlf-library/pdlf-explainer-docs/pdlf-intent\|PDLF Statement of Intent]]](C:/pdlf/pdlf-library/pdlf-explainer-docs/pdlf-intent.md) |
 | The modules | [[[pdlf:pdlf-library/pdlf-explainer-docs/app-factory-explainer\|App Factory Explainer]]](C:/pdlf/pdlf-library/pdlf-explainer-docs/app-factory-explainer.md) |
 | The orchestrator | [[[pdlf:pdlf-library/pdlf-explainer-docs/orchestrator-agent-explainer\|Orchestrator Agent Explainer]]](C:/pdlf/pdlf-library/pdlf-explainer-docs/orchestrator-agent-explainer.md) |
-| Step order | [[[pdlf:stepwise/run-plan\|Run Plan]]](C:/pdlf/stepwise/run-plan.md) |
-| What each step is | [[[pdlf:stepwise/step-mapping\|Step Mapping]]](C:/pdlf/stepwise/step-mapping.md) |
+| Step order | [[[pdlf:pdlf-library/docs-local/orchestrator-run-plan\|Run Plan]]](C:/pdlf/pdlf-library/docs-local/orchestrator-run-plan.md) |
+| What each step is | [[[pdlf:pdlf-library/docs-local/pdlf-built-report\|Step Mapping]]](C:/pdlf/pdlf-library/docs-local/pdlf-built-report.md) |
 | The binding rules | [[[pdlf:pdlf-library/policy-local/pol-index\|Policy Index]]](C:/pdlf/pdlf-library/policy-local/pol-INDEX.md) |
 | The execution sequence in detail | [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline\|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md) |
 | Configuration | [[[pdlf:pdlf-library/docs-local/config\|PDLF Configuration]]](C:/pdlf/pdlf-library/docs-local/config.md) |
