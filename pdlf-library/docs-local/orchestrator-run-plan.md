@@ -5,15 +5,15 @@ updated: "2026-10-11"
 ---
 # PDLF Run Plan
 
-**Purpose:** This file is the execution-order decision tree for the PDLF stepwise package.
-While step numbers are stable identifiers (see `INDEX.md`), they do not define execution
+**Purpose:** This file is the execution-order decision tree for PDLF's steps.
+While step numbers are stable identifiers, they do not define execution
 order. This file defines which step fires next based on project state, gate outcomes,
 and optional step decisions. The PDLF orchestrator loads this file to determine the next
 step.
 
 **Use:** The orchestrator consults this file after each step completes. Based on the
 current step, project mode (full/test), gate outcomes, and developer decisions, it
-determines the next step and loads the corresponding stepwise skill.
+determines the next step and loads the corresponding step's module.
 
 ---
 
@@ -34,7 +34,7 @@ what material a step starts from. Step 11 itself already asks whether the projec
 or existing and handles the two cases internally (repo creation and templating vs.
 confirming what already exists). Step 12 does the same: new-project entry works from the
 three pre-project files; existing-project entry works from the whole existing
-project-library, read via GBrain. See [[[pdlf:stepwise/step-12-office-hours|Step 12: Office Hours]]](C:/pdlf/stepwise/step-12-office-hours.md) for the full mechanics.
+project-library, read via GBrain. See [[[pdlf:app-factory/phase-b-discover-and-define/12-office-hours|Step 12: Office Hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/12-office-hours.md) for the full mechanics.
 
 Submitting an existing project to PDLF means redeveloping it around its canonical
 concept — not auditing, maintaining, or correcting what already exists. From Step 12
@@ -50,11 +50,12 @@ Entry into the next phase requires the preceding phase's gate to pass.
 
 | Phase | Steps | Entry Condition | Exit Gate |
 |---|---|---|---|
-| Phase A — Discover & Define | 11, 12, 14, 15, 16 | Init complete (Step 11) | `domain-locked` (Step 16) |
-| Phase B — Design & Plan | 17–24, 26–28 | `domain-locked` passed | `concept-locked` (Step 21), `wireframes-approved` (Step 26) |
-| Phase C — Scaffold & Assemble | 29–34 | `wireframes-approved` passed | `architecture-verified` (Step 34) |
-| Phase D — Build & Verify | 35, 35A, 40, 40B, 36, 37, 38, 38A, 39 | `architecture-verified` passed | `build-verified` (Step 39, end of per-feature loop) |
-| Phase E — Ship & Monitor | 41, 42, 42A, 43–46 | `build-verified` passed (all features) | `production-released` (Step 44), `released` (Step 46) |
+| Phase A — Init | 1–10 | Developer starts work | Entry point chosen (Step 1) |
+| Phase B — Discover & Define | 11, 12, 14, 15, 16 | Init complete (Step 11) | `domain-locked` (Step 16) |
+| Phase C — Design & Plan | 17–24, 26–28 | `domain-locked` passed | `concept-locked` (Step 21), `wireframes-approved` (Step 26) |
+| Phase D — Scaffold & Assemble | 29–34 | `wireframes-approved` passed | `architecture-verified` (Step 34) |
+| Phase E — Build & Verify | 35, 35A, 40, 40B, 36, 37, 38, 38A, 39 | `architecture-verified` passed | `build-verified` (Step 39, end of per-feature loop) |
+| Phase F — Ship & Monitor | 41, 42, 42A, 43–46 | `build-verified` passed (all features) | `production-released` (Step 44), `released` (Step 46) |
 
 Step 13 (`to-spec`) and Step 25 (`prototype`) have been removed from the pipeline. They do
 not appear in any phase and have no dependency entries below.

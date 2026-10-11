@@ -11,12 +11,11 @@ This document explains how PDLF works: its parts, how a build runs, and why it r
 
 ## 1. The parts of PDLF
 
-PDLF lives at `C:\pdlf`. It has five parts, and each does one job.
+PDLF lives at `C:\pdlf`. It has four parts, and each does one job.
 
 | Part | Where | What it does |
 |---|---|---|
-| The modules | `app-factory/` | One module per pipeline step. A module is a finished step, packaged as one unit. The modules are what actually runs. |
-| The step design | `stepwise/` | Where each step is designed before it becomes a module. `run-plan.md` decides the order of steps; `step-mapping.md` says what each step is and who handles it. |
+| The app factory | `app-factory/` | One folder per phase. Each holds its steps' files, where each step is designed, and one module file per step: the finished step, compiled into one unit. The modules are what actually runs. |
 | The library | `pdlf-library/` | The machinery every module shares: specifications, policies, decisions (ADRs), processes, templates and these explainers. |
 | The orchestrator | Step 1 (module 01) | Runs a build. It establishes where to begin, runs the modules in order, and stops for David at every decision. |
 | The ledger | PostgreSQL database `pdlf` | PDLF's record of each build: steps done, gates passed, deviations decided. |

@@ -1,13 +1,13 @@
 ---
 title: "spec-execution-discipline"
 doc-id: "mb-913cd6af"
-updated: "2026-10-10"
+updated: "2026-10-11"
 ---
 # PDLF Execution Discipline
 
 **Purpose:** This file is the single source of truth for how every PDLF step executes. Each
-stepwise skill file (step-11 through step-46) references this document rather than inlining
-the execution sequence. When a stepwise skill says "Follow the execution sequence in
+step file (11 through 46) references this document rather than inlining
+the execution sequence. When a step file says "Follow the execution sequence in
 specifications-local/spec-execution-discipline.md," the agent loads this file and runs the procedure below.
 
 **Use:** The orchestrator loads this file at every step. The agent applies the 13-point

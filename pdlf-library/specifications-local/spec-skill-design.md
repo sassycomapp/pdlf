@@ -1,7 +1,7 @@
 ---
 title: "spec-skill-design"
 doc-id: "mb-1202aaa9"
-updated: "2026-10-10"
+updated: "2026-10-11"
 ---
 # PDLF Skill — Design Specification
 
@@ -92,8 +92,8 @@ OpenCode could do directly with the model.
 - Proven by example: the two sanity-audit gates (21, 34) don't need custom skills —
   cross-referencing markdown documents is well within OpenCode's native capability. They are
   documented procedures, not skills.
-- Conversely, [[[pdlf:stepwise/step-12-office-hours|/office-hours]]](C:/pdlf/stepwise/step-12-office-hours.md) is a skill because its six-question structured interview is
-  genuinely better than OpenCode asking questions conversationally. [[[pdlf:stepwise/step-38-qa|/qa]]](C:/pdlf/stepwise/step-38-qa.md) is a skill because
+- Conversely, [[[pdlf:app-factory/phase-b-discover-and-define/12-office-hours|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/12-office-hours.md) is a skill because its six-question structured interview is
+  genuinely better than OpenCode asking questions conversationally. [[[pdlf:app-factory/phase-e-build-and-verify/38-qa|/qa]]](C:/pdlf/app-factory/phase-e-build-and-verify/38-qa.md) is a skill because
   it drives a headless browser — something OpenCode cannot do at all.
 
 **Rejected:** Invoking a skill at every step by default, regardless of whether it adds value.
@@ -141,7 +141,7 @@ PDLF calls them selectively, in sequence — they are narrow libraries, not perp
   PDLF runs those reviews at different stages for different reasons.
 - A follow-up review confirmed GStack also ships its own native `/spec` skill, functionally
   overlapping with Matt's `to-spec`, and that GStack's own skills are not designed to consume
-  Matt's skill outputs by default (verified directly against [[[pdlf:stepwise/step-14-plan-ceo-review|Step 14 Plan Ceo Review]]](C:/pdlf/stepwise/step-14-plan-ceo-review.md)'s GBrain query
+  Matt's skill outputs by default (verified directly against [[[pdlf:app-factory/phase-b-discover-and-define/14-plan-ceo-review|Step 14 Plan Ceo Review]]](C:/pdlf/app-factory/phase-b-discover-and-define/14-plan-ceo-review.md)'s GBrain query
   schema). This reinforced rather than contradicted the "libraries, not pipelines" framing —
   each skill's output must be deliberately routed to whatever consumes it; nothing is
   automatically wired together across the two toolsets.
@@ -185,7 +185,7 @@ GStack's generic pipeline below remains accurate rationale for why Anvil needed 
 different; it just doesn't yet reflect what that something now is. Steps 42–44 pending
 rebuild.
 
-**Decision (historical):** Steps 41–45 are rewritten for Anvil's deployment model. GStack's [[[pdlf:stepwise/step-41-ship|/ship]]](C:/pdlf/stepwise/step-41-ship.md) (scope
+**Decision (historical):** Steps 41–45 are rewritten for Anvil's deployment model. GStack's [[[pdlf:app-factory/phase-f-ship-and-monitor/41-ship|/ship]]](C:/pdlf/app-factory/phase-f-ship-and-monitor/41-ship.md) (scope
 narrowed: stops at push, no PR assumption) → manual Staging publish (42) → Staging smoke test
 (43) → manual Production promotion (44) → Production canary (45).
 
@@ -198,7 +198,7 @@ narrowed: stops at push, no PR assumption) → manual Staging publish (42) → S
 - The Staging smoke test (43) catches problems on live infrastructure before promoting to
   Production — a safety net GStack's default flow doesn't provide for Anvil.
 
-**Rejected:** GStack's default [[[pdlf:stepwise/step-41-ship|/ship]]](C:/pdlf/stepwise/step-41-ship.md) → `/land-and-deploy` pipeline. Would require Anvil to
+**Rejected:** GStack's default [[[pdlf:app-factory/phase-f-ship-and-monitor/41-ship|/ship]]](C:/pdlf/app-factory/phase-f-ship-and-monitor/41-ship.md) → `/land-and-deploy` pipeline. Would require Anvil to
 have a CI pipeline, which it doesn't.
 
 **Note (2026-07-12):** A full integration/E2E step (42A) was added between the Staging publish
@@ -224,25 +224,25 @@ build, test, and signoff cycle per feature. Each cycle gets its own `steps` row 
 specification.
 
 **Addendum (2026-07-12):** The loop this section describes was found to have two structural
-defects on review, both corrected: (1) the [[[pdlf:stepwise/step-40-improve-codebase-architecture|Step 40 Improve Codebase Architecture]]](C:/pdlf/stepwise/step-40-improve-codebase-architecture.md) skill and any
+defects on review, both corrected: (1) the [[[pdlf:app-factory/phase-e-build-and-verify/40-improve-codebase-architecture|Step 40 Improve Codebase Architecture]]](C:/pdlf/app-factory/phase-e-build-and-verify/40-improve-codebase-architecture.md) skill and any
 resulting remediation were being applied *after* the code-review/QA retest steps, meaning
 shipped code could include unverified post-remediation changes — the `build-verified` gate
 was moved from Step 40 to Step 39 and the loop reordered (35 → 35A → 40 → 40B → 36 → 37 →
 38 → 38A → 39 → gate) so remediation is always retested before the gate. (2) Steps 37/38
-(`/review`, [[[pdlf:stepwise/step-38-qa|/qa]]](C:/pdlf/stepwise/step-38-qa.md)) were assumed to persist their findings for Step 39 ([[[pdlf:stepwise/step-39-triage|triage]]](C:/pdlf/stepwise/step-39-triage.md)) to act on,
+(`/review`, [[[pdlf:app-factory/phase-e-build-and-verify/38-qa|/qa]]](C:/pdlf/app-factory/phase-e-build-and-verify/38-qa.md)) were assumed to persist their findings for Step 39 ([[[pdlf:app-factory/phase-e-build-and-verify/39-triage|triage]]](C:/pdlf/app-factory/phase-e-build-and-verify/39-triage.md)) to act on,
 but GStack's own repository states this behavior is unverified even by the maintainer — both
 steps now explicitly require writing to a specified artifact path, verified by OpenCode
 before the step is marked complete, rather than relying on unconfirmed skill behavior.
 
 ### 2.9 Test-mode with synthesized flag propagation
 
-**Decision:** A `test` project mode shortens [[[pdlf:stepwise/step-20-design-consultation|/design-consultation]]](C:/pdlf/stepwise/step-20-design-consultation.md) (Step 20). The
+**Decision:** A `test` project mode shortens [[[pdlf:app-factory/phase-c-design-and-plan/20-design-consultation|/design-consultation]]](C:/pdlf/app-factory/phase-c-design-and-plan/20-design-consultation.md) (Step 20). The
 `synthesized = true` flag is recorded in the ledger and propagates forward — any step consuming
-a synthesized artifact shows an INPUT NOTICE warning on its own receipt. Step 12 ([[[pdlf:stepwise/step-12-office-hours|/office-hours]]](C:/pdlf/stepwise/step-12-office-hours.md))
+a synthesized artifact shows an INPUT NOTICE warning on its own receipt. Step 12 ([[[pdlf:app-factory/phase-b-discover-and-define/12-office-hours|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/12-office-hours.md))
 is NOT test-mode-eligible — it is a simple yes/no decision gate.
 
 **Why:**
-- Full [[[pdlf:stepwise/step-20-design-consultation|/design-consultation]]](C:/pdlf/stepwise/step-20-design-consultation.md) on a throwaway test project is tedium that produces no real value.
+- Full [[[pdlf:app-factory/phase-c-design-and-plan/20-design-consultation|/design-consultation]]](C:/pdlf/app-factory/phase-c-design-and-plan/20-design-consultation.md) on a throwaway test project is tedium that produces no real value.
 - The propagation rule ensures a shortcut at Step 20 is visible at Step 22 — a developer
   glancing at a later receipt should not have to remember that Step 20 was abbreviated.
 - Step 12 was removed from test-mode eligibility because the yes/no gate is already the
@@ -283,7 +283,7 @@ their source documents.
 described below (Steps 2–3, SKIP/RE-RUN/RUN-AS-NEW disposition audit) was replaced by a
 simpler principle: an existing project is redeveloped around its canonical concept, not
 audited step-by-step. Every step always runs, for every project; what differs is only the
-material a step starts from. See `[[step-12-office-hours]]` for where the distinction
+material a step starts from. See `[[12-office-hours]]` for where the distinction
 actually lives now. The rationale below is retained the same way v1–v5 are retained in
 the Evolution table — as a record of what was tried and why it was superseded, not as an
 account of current behavior.
@@ -323,7 +323,7 @@ a worse failure mode. **Status:** design complete, unvalidated against a real pr
 | v3 | 24 steps | Refined execution discipline | GBrain query/sync rules, deviation mechanism, BFT per step, output routing. |
 | v4 | 36 steps (26 step numbers + 11 sub-steps) | Postgres ledger | Progressive disclosure, skill-use principle, two new gates, feature-by-feature build loop, Anvil-specific release sequence, test-mode propagation. |
 | v5 | 36 steps (11-46, 10 reserved) | Stepwise decomposition | Monolith SKILL-v4.md absorbed into stepwise skill files + 5 shared references. YAML front matter, task execution order. Renumbered from 0-25/sub to 11-46. |
-| v6 | Same numbering, revised value chain | Stepwise decomposition, corrected | `to-spec` (13) and `prototype` (25) removed on skill-use-principle grounds; `to-issues` renamed [[[pdlf:stepwise/step-19-to-tickets\|Step 19 to Tickets]]](C:/pdlf/stepwise/step-19-to-tickets.md) (19); `build-verified` gate moved 40→39; lettered sub-steps 35A/38A/40B/42A added; existing-project entry branch defined (Steps 2–3); Step 37/38 artifact-persistence requirement added. |
+| v6 | Same numbering, revised value chain | Stepwise decomposition, corrected | `to-spec` (13) and `prototype` (25) removed on skill-use-principle grounds; `to-issues` renamed [[[pdlf:app-factory/phase-c-design-and-plan/19-to-tickets\|Step 19 to Tickets]]](C:/pdlf/app-factory/phase-c-design-and-plan/19-to-tickets.md) (19); `build-verified` gate moved 40→39; lettered sub-steps 35A/38A/40B/42A added; existing-project entry branch defined (Steps 2–3); Step 37/38 artifact-persistence requirement added. |
 
 Each version discarded prior work when a better design emerged. The state file, devlog file, and
 completion report were all built in v2, then fully retired in v4 when the ledger proved superior.
@@ -339,7 +339,7 @@ has been superseded by the v5 stepwise decomposition:
 
 | Artifact | Purpose | Location |
 |---|---|---|
-| **Stepwise files** | Each step is a self-contained skill with YAML front matter, task execution order, inputs/outputs, and reference pointers | `stepwise/step-{NN}-{name}.md` |
+| **Stepwise files** | Each step is a self-contained skill with YAML front matter, task execution order, inputs/outputs, and reference pointers | `app-factory/phase-{letter}-{name}/{NN}-{name}.md` (moved from `stepwise/` 2026-10-11) |
 | **Shared references** | Single-source-of-truth procedures shared by all stepwise files | `[[spec-execution-discipline]]`, `[[spec-bft]]`, `[[spec-gate-procedure]]`, `[[step-mapping]]`, `[[run-plan]]` — `INDEX.md` was folded into `[[step-mapping]]` and the retired `sop-existing-project-resume-audit.md` was retired with the disposition-audit model, both 2026-07-18 |
 | **spec-skill-design.md** (this file) | Why — design rationale, rejected alternatives, tradeoffs | `specifications-local/` |
 

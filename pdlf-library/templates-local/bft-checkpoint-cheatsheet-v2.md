@@ -1,7 +1,7 @@
 ---
 title: "bft-checkpoint-cheatsheet-v2"
 doc-id: "mb-a25e8e8d"
-updated: "2026-10-10"
+updated: "2026-10-11"
 ---
 # BFT Checkpoint — Cheat Sheet v2
 
@@ -99,7 +99,7 @@ Two questions:
 
 ## Step → BFT Level Mapping
 
-### Phase A — Discover & Define (Steps 11–16)
+### Phase B — Discover & Define (Steps 11–16)
 
 | Step | Name | Type | BFT | Rationale |
 |---|---|---|---|---|
@@ -109,7 +109,7 @@ Two questions:
 | 15 | /plan-eng-review | Skill | **Full** | Architecture, data flow, edge cases — technical decisions |
 | 16 | /grill-with-docs (domain-modeling) | Skill + GATE | **Full** | Domain glossary + ADRs lock the data model. GATE `domain-locked` — full BFT mandatory |
 
-### Phase B — Design & Plan (Steps 17–28)
+### Phase C — Design & Plan (Steps 17–28)
 
 | Step | Name | Type | BFT | Rationale |
 |---|---|---|---|---|
@@ -125,7 +125,7 @@ Two questions:
 | 27 | Screen Production | OpenCode | **Full** | Screen HTML from wireframes — visual fidelity decisions, two-stage compliance check |
 | 28 | Screen → PNG | External tool | **None** | Pure mechanical HTML-to-PNG conversion. Zero judgment. |
 
-### Phase C — Scaffold & Assemble (Steps 29–34)
+### Phase D — Scaffold & Assemble (Steps 29–34)
 
 | Step | Name | Type | BFT | Rationale |
 |---|---|---|---|---|
@@ -136,7 +136,7 @@ Two questions:
 | 33 | Pull to local | Manual | **None** | Pure mechanical `git pull`. Zero judgment. |
 | 34 | Architectural sanity audit | Gate (OpenCode) | **Full** | GATE `architecture-verified`. Confirms physical Anvil build matches locked architecture. |
 
-### Phase D — Build & Verify (Steps 35–40)
+### Phase E — Build & Verify (Steps 35–40)
 
 | Step | Name | Type | BFT | Rationale |
 |---|---|---|---|---|
@@ -150,7 +150,7 @@ Two questions:
 | 38A | Dependency scan confirm | OpenCode (per feature cycle) | **None** | Records Anvil's own native pip-audit result — capture only, no judgment |
 | 39 | triage | Skill + GATE | **Full** | Labels, comments, issue-tracker updates from Steps 37–38 findings. GATE `build-verified` fires here (moved from Step 40 — [[[pdlf:pdlf-library/adr-local/two-gate-extension]]](C:/pdlf/pdlf-library/adr-local/two-gate-extension.md)) — full BFT mandatory regardless of the table's usual Light assignment for triage-type work. |
 
-### Phase E — Ship & Monitor (Steps 41–46)
+### Phase F — Ship & Monitor (Steps 41–46)
 
 | Step | Name | Type | BFT | Rationale |
 |---|---|---|---|---|
@@ -186,4 +186,4 @@ deleted) and Step 25 (`prototype`, retired); corrected Step 19 name (`to-tickets
 Step count corrected from 28/6/5 (39 total) to 27/7/6 (40 total, reflecting the 4 added
 steps net of the 2 removed). Source: de Bono Master Thinker's Handbook (summarised at
 bft-system-derived). Step list cross-checked against the current
-stepwise files, not SKILL-v4.md (obsolete).*
+step files, not SKILL-v4.md (obsolete).*

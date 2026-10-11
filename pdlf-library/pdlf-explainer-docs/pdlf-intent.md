@@ -1,6 +1,6 @@
 ---
 title: "pdlf-intent"
-updated: "2026-10-10"
+updated: "2026-10-11"
 doc-id: "mb-ac926d36"
 ---
 # PDLF — Statement of Intent
@@ -73,7 +73,9 @@ PDLF runs inside OpenCode, through the OpenCode Build agent and its model.
 
 **The orchestrator** is a step: Step 1. It asks David the questions that establish the entry point, then runs the modules selected for that entry, in order, and stops at every gate. Its exact form is designed in steps work.
 
-**Steps and modules.** A step is designed in `stepwise/`. There, `run-plan.md` decides the order of the steps, `step-mapping.md` says what each step is, and `workflow.md` describes them. When a step is finished, it is packaged as a module: a single, self-contained unit that holds the finished step and everything only that step needs. Anything several modules need about how PDLF itself works lives once, in `pdlf-library`. `app-factory/` holds one placeholder per step, `module-01` to `module-46`, and each placeholder stays untouched until its step is built. Which modules run depends on the entry point; not every step runs for every kind of work.
+**Steps and modules.** Every step lives in `app-factory/`, in the folder of its phase: `phase-a-init` (1 to 10), `phase-b-discover-and-define` (11 to 16), `phase-c-design-and-plan` (17 to 28), `phase-d-scaffold-and-assemble` (29 to 34), `phase-e-build-and-verify` (35 to 40b) and `phase-f-ship-and-monitor` (41 to 46); a `phase-g` folder is added for the remaining apps when they are designed. A step's files are named by its number: `11-init.md` is the step itself. When a step is finished, it is compiled into its module file, `11-module.md`, in the same folder: a single, self-contained unit that holds the finished step and everything only that step needs. Until then the module file is a placeholder. Anything several modules need about how PDLF itself works lives once, in `pdlf-library`.
+
+**Three documents steer the build.** `pdlf-build-plan.md`, at the top of `app-factory/`, is the blueprint: what each step must achieve and the rules every step is built to; it is retired to `obsolete/` when PDLF is built. `pdlf-built-report.md` (in `pdlf-library/docs-local/`) records what has been built, step by step, and is kept as the record of what PDLF consists of. `orchestrator-run-plan.md` (in `pdlf-library/docs-local/`) is the order in which the orchestrator runs the steps, including the per-feature loop. Which modules run depends on the entry point; not every step runs for every kind of work.
 
 **Numbering.** The current step numbers are kept, because Steps 2 to 10 are reserved for entry points. Steps 13 and 25 are not used.
 
@@ -145,9 +147,9 @@ These claims are earned by real builds, starting with the test application, not 
 
 ## 13. Where PDLF lives
 
-`C:\pdlf` holds the whole system. `AGENTS.md` and `README.md` sit at the top, beside `.env`, which is never committed. `stepwise/` holds the step designs and is read-only until step design resumes. `app-factory/` holds the module placeholders. `pdlf-library/` holds PDLF's own documentation: its explainers, policies, specifications, decision records, processes and templates. `output/` holds the artifact copies for the application currently being built, and is never committed. `obsolete/` holds retired documents. `desktop/` holds working files.
+`C:\pdlf` holds the whole system. `AGENTS.md` and `README.md` sit at the top, beside `.env`, which is never committed. `app-factory/` holds the build: the phase folders with their step files and module files, and the build plan. `pdlf-library/` holds PDLF's own documentation: its explainers, policies, specifications, decision records, processes and templates. `output/` holds the artifact copies for the application currently being built, and is never committed. `obsolete/` holds retired documents. `desktop/` holds working files.
 
-`AGENTS.md` carries four standing rules: all PDLF work happens in `C:\pdlf`; `stepwise/` is read-only until step design resumes; `app-factory/` placeholders are not touched until their step is built; and `output/` serves one application at a time.
+`AGENTS.md` carries three standing rules: all PDLF work happens in `C:\pdlf`; a module file is written only by compiling its step's files, on the developer's instruction; and `output/` serves one application at a time.
 
 The detail of how PDLF works is in the [[[pdlf:pdlf-library/pdlf-explainer-docs/pdlf-explainer|PDLF Explainer]]](C:/pdlf/pdlf-library/pdlf-explainer-docs/pdlf-explainer.md), the [[[pdlf:pdlf-library/pdlf-explainer-docs/app-factory-explainer|App Factory Explainer]]](C:/pdlf/pdlf-library/pdlf-explainer-docs/app-factory-explainer.md), the [[[pdlf:pdlf-library/pdlf-explainer-docs/orchestrator-agent-explainer|Orchestrator Agent Explainer]]](C:/pdlf/pdlf-library/pdlf-explainer-docs/orchestrator-agent-explainer.md) and the binding rules listed in the [[[pdlf:pdlf-library/policy-local/pol-index|Policy Index]]](C:/pdlf/pdlf-library/policy-local/pol-INDEX.md).
 

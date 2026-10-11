@@ -1,7 +1,7 @@
 ---
 title: "two-gate-extension"
 doc-id: "mb-69dcaa24"
-updated: "2026-10-10"
+updated: "2026-10-11"
 ---
 # ADR — Two-Gate Extension
 
@@ -37,9 +37,9 @@ the production publish its own hard checkpoint.
 - Two additional stops in the pipeline. The developer judged these worth their cost
   given prior experience of what breaks without them.
 - The sanity audit procedures for both new gates live in the step files themselves:
-  [[[pdlf:stepwise/step-21-concept-sanity-audit|Step 21 Concept Sanity Audit]]](C:/pdlf/stepwise/step-21-concept-sanity-audit.md) (the earlier
+  [[[pdlf:app-factory/phase-c-design-and-plan/21-concept-sanity-audit|Step 21 Concept Sanity Audit]]](C:/pdlf/app-factory/phase-c-design-and-plan/21-concept-sanity-audit.md) (the earlier
   `step-8a-15c-sanity-audit-procedures.md` was retired with the legacy stepwise files) and
-  [[[pdlf:stepwise/step-34-architectural-sanity-audit|Step 34 Architectural Sanity Audit]]](C:/pdlf/stepwise/step-34-architectural-sanity-audit.md).
+  [[[pdlf:app-factory/phase-d-scaffold-and-assemble/34-architectural-sanity-audit|Step 34 Architectural Sanity Audit]]](C:/pdlf/app-factory/phase-d-scaffold-and-assemble/34-architectural-sanity-audit.md).
 - Each gate follows the expanded gate ceremony defined in [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md).
 
 ---

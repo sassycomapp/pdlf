@@ -1,7 +1,7 @@
 ---
 title: "pol-testing-and-quality"
 doc-id: "mb-6296454f"
-updated: "2026-10-10"
+updated: "2026-10-11"
 ---
 # PDLF Policy — Testing and Quality
 
@@ -81,7 +81,7 @@ Remediation (40B) is retested by 36–38, not shipped straight through — this 
 
 ### Artifact persistence requirement (new, 2026-07-12)
 
-`/review` (Step 37) and [[[pdlf:stepwise/step-38-qa|/qa]]](C:/pdlf/stepwise/step-38-qa.md) (Step 38) are **required** to write their findings to a
+`/review` (Step 37) and [[[pdlf:app-factory/phase-e-build-and-verify/38-qa|/qa]]](C:/pdlf/app-factory/phase-e-build-and-verify/38-qa.md) (Step 38) are **required** to write their findings to a
 specified artifact path as part of invocation — this is not assumed to happen as a side
 effect of running the skill. OpenCode verifies the artifact exists before marking either
 step complete; its absence is a step failure requiring developer attention, not a silent
@@ -91,7 +91,7 @@ without an explicit check.
 
 ### Code review and QA (Steps 36–38)
 
-Every feature cycle goes through `/design-review` (visual), `/review` (structural), and [[[pdlf:stepwise/step-38-qa|/qa]]](C:/pdlf/stepwise/step-38-qa.md)
+Every feature cycle goes through `/design-review` (visual), `/review` (structural), and [[[pdlf:app-factory/phase-e-build-and-verify/38-qa|/qa]]](C:/pdlf/app-factory/phase-e-build-and-verify/38-qa.md)
 (functional + regression) before its `build-verified` gate. These are GStack skills — they
 drive a headless browser for live-site testing, which OpenCode cannot do directly.
 
@@ -135,6 +135,6 @@ and confirmed no such file was ever created; its intended content already lives 
 gone; its Sections 4–5 shape survives only in the description above) directly into
 Steps 35A, 36, 37, 38, and 39 themselves, so running those steps actually exercises the
 checklist rather than the checklist sitting separately from the pipeline. Addressed when
-Phase D is reached.
+Phase E is reached.
 
 **Source:** [[[pdlf:pdlf-library/specifications-local/spec-skill-design|Spec: Skill Design]]](C:/pdlf/pdlf-library/specifications-local/spec-skill-design.md) §2.8, §2.6.

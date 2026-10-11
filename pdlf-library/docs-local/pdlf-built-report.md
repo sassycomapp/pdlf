@@ -7,37 +7,37 @@ updated: "2026-10-11"
 
 ## Preamble
 
-This document records what has been built of PDLF so far, step by step. It states facts only: for each step, its files and whether it has been built; and, once it is built, what it does, what it produces and what was decided while building it. What each step must achieve is in `pdlf-build-plan.md` (in `stepwise/`); this report never repeats it.
+This document records what has been built of PDLF so far, step by step. It states facts only: for each step, its files and whether it has been built; and, once it is built, what it does, what it produces and what was decided while building it. What each step must achieve is in `pdlf-build-plan.md` (at the top of `app-factory/`); this report never repeats it.
 
 The steps are listed in the same order and under the same phases as the build plan, so the two can be read side by side. Every step has an entry, whether or not any work has been done on it yet, so that each piece of work is recorded in its place as it happens.
 
-Each entry is updated whenever its step is built, corrected or packaged. A step is recorded as built when its step file is complete. It is finished when it has also been packaged as its module in `app-factory/`. Steps 11, 12, 14, 15 and 16 are built; no module has been packaged yet.
+Each entry is updated whenever its step is built, corrected or packaged. A step is recorded as built when its step file is complete. It is finished when it has also been compiled into its module file (`NN-module.md`) in its phase folder. Steps 11, 12, 14, 15 and 16 are built; no module has been packaged yet.
 
 This report is kept after PDLF is built, as the record of what PDLF consists of.
 
 ## The Built Report
 
-### Before the pipeline
+### Phase A — Init
 
 #### Step 1: Orchestrator
 
-**File:** `stepwise/step-01-orchestrator.md`
+**File:** `app-factory/phase-a-init/01-orchestrator.md`
 
 **Status:** Old draft, written before `pdlf-intent.md`. Not yet designed.
 
 #### Steps 2 to 10: Entry points
 
-**File:** none.
+**Files:** `app-factory/phase-a-init/04-undefined.md` to `10-undefined.md` (placeholders; 2 and 3 have no file).
 
 **Status:** Not yet designed.
 
-### Phase A — Discover and Define
+### Phase B — Discover and Define
 
 #### Step 11: Init
 
 **Status:** Built. Last changed 2026-08-25.
 
-**Files:** `stepwise/step-11-init.md` (the step), `stepwise/step-11-build-notes.md`, `stepwise/step-11-project-inventory-build-notes.md`, `stepwise/step-11-decision-tree-v2.html`.
+**Files:** `app-factory/phase-b-discover-and-define/11-init.md` (the step), `app-factory/phase-b-discover-and-define/11-build-notes.md`, `app-factory/phase-b-discover-and-define/11-project-inventory-build-notes.md`, `app-factory/phase-b-discover-and-define/11-decision-tree-v2.html`.
 
 **Carried out by:** OpenCode.
 
@@ -53,7 +53,7 @@ This report is kept after PDLF is built, as the record of what PDLF consists of.
 
 **Status:** Built. Last changed 2026-08-25.
 
-**Files:** `stepwise/step-12-office-hours.md` (the step), `stepwise/step-12-build-notes.md`, `stepwise/step-12-decision-tree.html`.
+**Files:** `app-factory/phase-b-discover-and-define/12-office-hours.md` (the step), `app-factory/phase-b-discover-and-define/12-build-notes.md`, `app-factory/phase-b-discover-and-define/12-decision-tree.html`.
 
 **Carried out by:** OpenCode, with GStack `/office-hours` if the developer chooses.
 
@@ -73,7 +73,7 @@ This report is kept after PDLF is built, as the record of what PDLF consists of.
 
 **Status:** Built. Last changed 2026-08-25.
 
-**Files:** `stepwise/step-14-plan-ceo-review.md` (the step), `stepwise/step-14-build-notes.md`, `stepwise/step-14-decision-tree.html`.
+**Files:** `app-factory/phase-b-discover-and-define/14-plan-ceo-review.md` (the step), `app-factory/phase-b-discover-and-define/14-build-notes.md`, `app-factory/phase-b-discover-and-define/14-decision-tree.html`.
 
 **Carried out by:** GStack `/plan-ceo-review`.
 
@@ -89,7 +89,7 @@ This report is kept after PDLF is built, as the record of what PDLF consists of.
 
 **Status:** Built. Last changed 2026-08-25.
 
-**Files:** `stepwise/step-15-plan-eng-review.md` (the step), `stepwise/step-15-build-notes.md`, `stepwise/step-15-decision-tree.html`.
+**Files:** `app-factory/phase-b-discover-and-define/15-plan-eng-review.md` (the step), `app-factory/phase-b-discover-and-define/15-build-notes.md`, `app-factory/phase-b-discover-and-define/15-decision-tree.html`.
 
 **Carried out by:** GStack `/plan-eng-review`.
 
@@ -105,7 +105,7 @@ This report is kept after PDLF is built, as the record of what PDLF consists of.
 
 **Status:** Built. Last changed 2026-08-27.
 
-**Files:** `stepwise/step-16-domain-modeling.md` (the step), `stepwise/step-16-build-notes.md`, `stepwise/step-16-decision-tree.html`.
+**Files:** `app-factory/phase-b-discover-and-define/16-domain-modeling.md` (the step), `app-factory/phase-b-discover-and-define/16-build-notes.md`, `app-factory/phase-b-discover-and-define/16-decision-tree.html`.
 
 **Carried out by:** Matt Pocock `/grill-with-docs`, which runs a `/grilling` interview using `/domain-modeling`.
 
@@ -117,53 +117,53 @@ This report is kept after PDLF is built, as the record of what PDLF consists of.
 
 **Decided while building:** `/domain-modeling` cannot run on its own, so the step invokes `/grill-with-docs`; the skill's default file locations are overridden to the project's own; no separate reconciliation mode is needed for an existing application, because the skill checks the code whenever code exists; the security review was added before the gate, and its run is proven by its ledger record, not assumed.
 
-### Phase B — Design and Plan
+### Phase C — Design and Plan
 
 #### Step 17: Create Anvil data tables
 
-**File:** `stepwise/step-17-create-anvil-data-tables.md`
+**File:** `app-factory/phase-c-design-and-plan/17-create-anvil-data-tables.md`
 
 **Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
 
 #### Step 18: Pull to local
 
-**File:** `stepwise/step-18-pull-to-local.md`
+**File:** `app-factory/phase-c-design-and-plan/18-pull-to-local.md`
 
 **Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
 
 #### Step 19: To tickets
 
-**File:** `stepwise/step-19-to-tickets.md`
+**File:** `app-factory/phase-c-design-and-plan/19-to-tickets.md`
 
 **Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
 
 #### Step 20: Design consultation
 
-**File:** `stepwise/step-20-design-consultation.md`
+**File:** `app-factory/phase-c-design-and-plan/20-design-consultation.md`
 
 **Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
 
 #### Step 21: Concept sanity audit
 
-**File:** `stepwise/step-21-concept-sanity-audit.md`
+**File:** `app-factory/phase-c-design-and-plan/21-concept-sanity-audit.md`
 
 **Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
 
 #### Step 22: Wireframes, phase 1
 
-**File:** `stepwise/step-22-wireframe-phase-1.md`
+**File:** `app-factory/phase-c-design-and-plan/22-wireframe-phase-1.md`
 
 **Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
 
 #### Step 23: Plan design review
 
-**File:** `stepwise/step-23-plan-design-review.md`
+**File:** `app-factory/phase-c-design-and-plan/23-plan-design-review.md`
 
 **Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
 
 #### Step 24: Plan developer-experience review
 
-**File:** `stepwise/step-24-plan-devex-review.md`
+**File:** `app-factory/phase-c-design-and-plan/24-plan-devex-review.md`
 
 **Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
 
@@ -173,161 +173,161 @@ This report is kept after PDLF is built, as the record of what PDLF consists of.
 
 #### Step 26: Wireframes, phase 2
 
-**File:** `stepwise/step-26-wireframe-phase-2.md`
+**File:** `app-factory/phase-c-design-and-plan/26-wireframe-phase-2.md`
 
 **Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
 
 #### Step 27: Screen production
 
-**File:** `stepwise/step-27-screen-production.md`
+**File:** `app-factory/phase-c-design-and-plan/27-screen-production.md`
 
 **Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
 
 #### Step 28: Screen to PNG
 
-**File:** `stepwise/step-28-screen-to-png.md`
+**File:** `app-factory/phase-c-design-and-plan/28-screen-to-png.md`
 
 **Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
 
-### Phase C — Scaffold and Assemble
+### Phase D — Scaffold and Assemble
 
 #### Step 29: Build UI forms
 
-**File:** `stepwise/step-29-build-ui-forms.md`
+**File:** `app-factory/phase-d-scaffold-and-assemble/29-build-ui-forms.md`
 
 **Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
 
 #### Step 30: Pull to local
 
-**File:** `stepwise/step-30-pull-to-local.md`
+**File:** `app-factory/phase-d-scaffold-and-assemble/30-pull-to-local.md`
 
 **Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
 
 #### Step 31: Scaffold planning
 
-**File:** `stepwise/step-31-scaffold-planning.md`
+**File:** `app-factory/phase-d-scaffold-and-assemble/31-scaffold-planning.md`
 
 **Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
 
 #### Step 32: Physical scaffold build
 
-**File:** `stepwise/step-32-physical-scaffold-build.md`
+**File:** `app-factory/phase-d-scaffold-and-assemble/32-physical-scaffold-build.md`
 
 **Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
 
 #### Step 33: Pull to local
 
-**File:** `stepwise/step-33-pull-to-local.md`
+**File:** `app-factory/phase-d-scaffold-and-assemble/33-pull-to-local.md`
 
 **Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
 
 #### Step 34: Architectural sanity audit
 
-**File:** `stepwise/step-34-architectural-sanity-audit.md`
+**File:** `app-factory/phase-d-scaffold-and-assemble/34-architectural-sanity-audit.md`
 
 **Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
 
-### Phase D — Build and Verify
+### Phase E — Build and Verify
 
 #### Step 35: Build
 
-**File:** `stepwise/step-35-build-loop.md`
+**File:** `app-factory/phase-e-build-and-verify/35-build-loop.md`
 
 **Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
 
 #### Step 35A: Testing
 
-**File:** `stepwise/step-35A-testing.md`
+**File:** `app-factory/phase-e-build-and-verify/35a-testing.md`
 
 **Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
 
 #### Step 36: Design review
 
-**File:** `stepwise/step-36-design-review.md`
+**File:** `app-factory/phase-e-build-and-verify/36-design-review.md`
 
 **Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
 
 #### Step 37: Code review
 
-**File:** `stepwise/step-37-review.md`
+**File:** `app-factory/phase-e-build-and-verify/37-review.md`
 
 **Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
 
 #### Step 38: Quality testing
 
-**File:** `stepwise/step-38-qa.md`
+**File:** `app-factory/phase-e-build-and-verify/38-qa.md`
 
 **Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
 
 #### Step 38A: Dependency check
 
-**File:** `stepwise/step-38A-dependency-scan-confirm.md`
+**File:** `app-factory/phase-e-build-and-verify/38a-dependency-scan-confirm.md`
 
 **Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
 
 #### Step 39: Triage
 
-**File:** `stepwise/step-39-triage.md`
+**File:** `app-factory/phase-e-build-and-verify/39-triage.md`
 
 **Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
 
 #### Step 40: Architecture scan
 
-**File:** `stepwise/step-40-improve-codebase-architecture.md`
+**File:** `app-factory/phase-e-build-and-verify/40-improve-codebase-architecture.md`
 
 **Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
 
 #### Step 40B: Approved fixes
 
-**File:** `stepwise/step-40B-remediation.md`
+**File:** `app-factory/phase-e-build-and-verify/40b-remediation.md`
 
 **Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
 
-### Phase E — Ship and Monitor
+### Phase F — Ship and Monitor
 
 #### Step 41: Ship
 
-**File:** `stepwise/step-41-ship.md`
+**File:** `app-factory/phase-f-ship-and-monitor/41-ship.md`
 
 **Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
 
 #### Step 42: Publish to staging
 
-**File:** `stepwise/step-42-publish-to-staging.md`
+**File:** `app-factory/phase-f-ship-and-monitor/42-publish-to-staging.md`
 
 **Status:** Old draft. Still describes staging, which PDLF does not have; to be rebuilt.
 
 #### Step 42A: Staging integration tests
 
-**File:** `stepwise/step-42A-staging-integration-e2e.md`
+**File:** `app-factory/phase-f-ship-and-monitor/42a-staging-integration-e2e.md`
 
 **Status:** Old draft. Still describes staging, which PDLF does not have; to be rebuilt.
 
 #### Step 43: Staging smoke test
 
-**File:** `stepwise/step-43-staging-smoke-test.md`
+**File:** `app-factory/phase-f-ship-and-monitor/43-staging-smoke-test.md`
 
 **Status:** Old draft. Still describes staging, which PDLF does not have; to be rebuilt.
 
 #### Step 44: Release
 
-**File:** `stepwise/step-44-promote-to-production.md`
+**File:** `app-factory/phase-f-ship-and-monitor/44-promote-to-production.md`
 
 **Status:** Old draft. Still describes staging, which PDLF does not have; to be rebuilt.
 
 #### Step 45: Production check
 
-**File:** `stepwise/step-45-canary-production.md`
+**File:** `app-factory/phase-f-ship-and-monitor/45-canary-production.md`
 
 **Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
 
 #### Step 46: Learning
 
-**File:** `stepwise/step-46-LEARN-junction.md`
+**File:** `app-factory/phase-f-ship-and-monitor/46-learn-junction.md`
 
 **Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
 
-### After Step 46: the remaining apps
+### Phase G — Remaining apps
 
 **File:** none.
 

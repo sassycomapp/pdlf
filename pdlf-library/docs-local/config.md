@@ -1,7 +1,7 @@
 ---
 title: "config"
 doc-id: "mb-dea37a55"
-updated: "2026-10-10"
+updated: "2026-10-11"
 ---
 # PDLF System Configuration
 
@@ -27,10 +27,10 @@ Non-secret reference for all PDLF system configuration. Secrets live in `.env` (
 
 | Setting | Path | Notes |
 |---|---|---|
-| PDLF system home | `/mnt/c/pdlf/` | Project-agnostic: skill, stepwise, registry, templates |
-| System skill (active) | none — the deployed instance at `/mnt/c/pdlf/` was restructured; the `~/.config/opencode/skills/pdlf/` symlink no longer exists | Development consolidated in this repo (see Stepwise skills row). Verified 2026-09-18 |
+| PDLF system home | `/mnt/c/pdlf/` | Project-agnostic: app factory, library, templates |
+| System skill (active) | none — the deployed instance at `/mnt/c/pdlf/` was restructured; the `~/.config/opencode/skills/pdlf/` symlink no longer exists | Development consolidated in this repo (see App factory row). Verified 2026-09-18 |
 | Slug → path resolution | GBrain search | The former `/mnt/c/pdlf/registry/projects.json` no longer exists — verified 2026-09-18 |
-| Stepwise skills | `/mnt/c/pdlf/stepwise/` | 46 step skills + 5 shared references |
+| App factory | `/mnt/c/pdlf/app-factory/` | One folder per phase; step files and module files |
 | Templates | `/mnt/c/pdlf/pdlf-library/templates-local/` | BFT cheatsheet, ISA template, receipt templates |
 | Project template | `/mnt/c/dev/project-template/dev-(SLUG)/(slug)-project-library/` | Folder skeleton used at Step 11 init |
 | Project library (global) | `/mnt/c/dev/project-library-global/` | Shared specs, ADRs, policies, SOPs, standards, templates — referenced directly, never copied
@@ -90,4 +90,4 @@ powershell.exe -Command '$env:PGPASSWORD="..."; & "C:\Program Files\PostgreSQL\1
 | Reranker | ZeroEntropy | ✓ confirmed active |
 ---
 
-*Config version 2.1. Last updated: 2026-09-18. Reflects v5 stepwise decomposition architecture.*
+*Config version 2.1. Last updated: 2026-09-18. Reflects the app-factory phase folders (2026-10-11).*

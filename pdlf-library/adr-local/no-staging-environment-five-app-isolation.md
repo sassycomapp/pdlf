@@ -1,7 +1,7 @@
 ---
 title: "adr-no-staging-environment-five-app-isolation"
 doc-id: "mb-5b1e8fd8"
-updated: "2026-10-10"
+updated: "2026-10-11"
 ---
 # ADR — PDLF Does Not Need a Staging/Production Environment Split
 
@@ -18,7 +18,7 @@ updated: "2026-10-10"
 Anvil natively supports "Deployment Environments" — a mechanism where a single app can
 have multiple environments (e.g. Development, Staging, Production), each tracking a
 different branch or commit, each with its own URL and its own Data Tables. PDLF's
-original Phase E design (Steps 42–44) was modeled on this generic mechanism: publish to
+original Phase F design (Steps 42–44) was modeled on this generic mechanism: publish to
 a staging environment, run integration/smoke tests there, then promote to a production
 environment via a gate.
 

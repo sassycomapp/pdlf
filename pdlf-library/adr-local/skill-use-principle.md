@@ -1,7 +1,7 @@
 ---
 title: "skill-use-principle"
 doc-id: "mb-5a21b240"
-updated: "2026-10-10"
+updated: "2026-10-11"
 ---
 # ADR — Skill-Use Principle
 
@@ -32,8 +32,8 @@ confirm it is the right tool. Never trust a skill name alone.
 - The two sanity-audit gates (Steps 21 and 34) are OpenCode-native procedures, not
   custom skills — cross-referencing markdown documents is well within OpenCode's
   native capability.
-- Conversely, [[[pdlf:stepwise/step-38-qa|/qa]]](C:/pdlf/stepwise/step-38-qa.md) IS a skill because it drives a headless browser — something
-  OpenCode cannot do at all. [[[pdlf:stepwise/step-12-office-hours|/office-hours]]](C:/pdlf/stepwise/step-12-office-hours.md) IS a skill because its six-question
+- Conversely, [[[pdlf:app-factory/phase-e-build-and-verify/38-qa|/qa]]](C:/pdlf/app-factory/phase-e-build-and-verify/38-qa.md) IS a skill because it drives a headless browser — something
+  OpenCode cannot do at all. [[[pdlf:app-factory/phase-b-discover-and-define/12-office-hours|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/12-office-hours.md) IS a skill because its six-question
   structured interview is better than conversational questioning.
 - The "read before invoke" rule has documented evidence of preventing real errors.
 - The GStack `/autoplan` (runs CEO/Eng/Design reviews all at once) is explicitly NOT

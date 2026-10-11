@@ -1,7 +1,7 @@
 ---
 title: "pdlf-todo"
 doc-id: "mb-13a3fbc9"
-updated: "2026-10-10"
+updated: "2026-10-11"
 ---
 # Active PDLF To-Do List
 
@@ -21,7 +21,7 @@ Steps 17–46 (excluding 42/42A/43/44, see A2) are audited and rebuilt one at a 
 
 ### A2. Rebuild Steps 42, 42A, 43, 44
 
-These steps currently model a staging/production environment split that does not apply to this platform. Rebuild them around the actual publishing mechanism: a `develop` → `stable` GitHub merge, performed by the operator, outside PDLF's own pipeline. See [[[pdlf:pdlf-library/adr-local/no-staging-environment-five-app-isolation|ADR No Staging Environment Five App Isolation]]](C:/pdlf/pdlf-library/adr-local/no-staging-environment-five-app-isolation.md) for full reasoning. Deferred to Phase E.
+These steps currently model a staging/production environment split that does not apply to this platform. Rebuild them around the actual publishing mechanism: a `develop` → `stable` GitHub merge, performed by the operator, outside PDLF's own pipeline. See [[[pdlf:pdlf-library/adr-local/no-staging-environment-five-app-isolation|ADR No Staging Environment Five App Isolation]]](C:/pdlf/pdlf-library/adr-local/no-staging-environment-five-app-isolation.md) for full reasoning. Deferred to Phase F.
 
 ---
 
@@ -35,7 +35,7 @@ Rule and enforcement mechanism decided 2026-07-19 — see
 working, so the mechanism is usable, not just designed. Remaining work: build the
 five-step sequence and citation requirement into each relevant step file (17, 20, 22, 26,
 27, 35, 35A, 37, 38, 41–45 at minimum) as that step is written or rebuilt. Deferred to
-Phase B onward, same treatment as A2.
+Phase C onward, same treatment as A2.
 
 > **Changed since:** This is a rule for building each step, not a separate task; it is applied as part of A1. Since it was written, GBrain was upgraded to 0.59.18.0, every documentation repository became a federated source so one search covers everything, and cross-repository links now use the standard form `[[[source-id:slug]]](C:/full/path.md)`, written by agents as `[[name]]` and converted by the `mb-doc-check` commit hook. The five-step sequence must be checked against that setup before it is built into any step.
 
@@ -71,8 +71,8 @@ The final, real end-to-end proof that the governed memory pipeline works togethe
 Both testing checklists ([[[pdlf:pdlf-library/templates-local/chk-pdlf-self-test|Chk Pdlf Self Test]]](C:/pdlf/pdlf-library/templates-local/chk-pdlf-self-test.md) exists; the earlier
 `chk-anvil-app-testing.md` was retired and is no longer on disk anywhere —
 verified 2026-09-18) are referenced from [[[pdlf:pdlf-library/policy-local/pol-testing-and-quality|pol-testing-and-quality]]](C:/pdlf/pdlf-library/policy-local/pol-testing-and-quality.md), but
-their checks are not yet built into the actual stepwise files that do
-testing work. Deferred to Phase D, when those step files are rebuilt.
+their checks are not yet built into the actual step files that do
+testing work. Deferred to Phase E, when those step files are rebuilt.
 
 The testing suite implemented in PDLF is to be relooked at the same time, not separately. Real, preserved seed material exists from an earlier MB-3-CS testing iteration (test taxonomy, a working Anvil-context test technique, real Anvil/M3-specific pass/fail criteria) — see [[[pdlf:pdlf-library/docs-local/pdlf-testing-seed-material/pdlf-testing-seed-material-readme|Seed Material (from MB-3-CS)]]](C:/pdlf/pdlf-library/docs-local/pdlf-testing-seed-material/pdlf-testing-seed-material-README.md) for what's there and how to use it when this work is actually picked up.
 

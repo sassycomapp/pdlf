@@ -1,13 +1,13 @@
 ---
 title: "spec-bft"
 doc-id: "mb-5251e43f"
-updated: "2026-10-10"
+updated: "2026-10-11"
 ---
 # PDLF BFT Reference
 
 **Purpose:** This file is the single source of truth for applying de Bono's BODY Frame
 Thinking (BFT) to PDLF steps. It defines the six questions, the three application levels,
-and the anti-rubber-stamping rule. Every stepwise skill file references this document:
+and the anti-rubber-stamping rule. Every step file references this document:
 "Apply BFT per specifications-local/spec-bft.md at the step's assigned level."
 
 **Use:** At substep 7 of the execution sequence, the agent consults this file. For Full

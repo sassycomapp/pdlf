@@ -1,7 +1,7 @@
 ---
 title: "README"
 doc-id: "mb-eba493f3"
-updated: "2026-10-10"
+updated: "2026-10-11"
 ---
 # PDLF
 
@@ -21,8 +21,7 @@ PDLF draws its knowledge and standards, Anvil knowledge included, from `project-
 
 | Folder | What it holds |
 |---|---|
-| `app-factory/` | One module per pipeline step number. A module is a finished step packaged as a single unit; until its step is built, the module file is a placeholder. See `app-factory/README.md`. |
-| `stepwise/` | The step design: one file per step, with build notes and decision trees, plus `run-plan.md` (execution order), `step-mapping.md` (what each step is) and `workflow.md`. |
+| `app-factory/` | The build, one folder per phase (`phase-a-init` to `phase-f-ship-and-monitor`). Each phase folder holds its numbered step files and one module file per step: `11-init.md` is the step, `11-module.md` is the step compiled into a single unit; until then the module file is a placeholder. `pdlf-build-plan.md` sits at the top. See `app-factory/README.md`. |
 | `pdlf-library/` | The shared machinery every module relies on: ADRs, specifications, policies, processes, templates, explainers and supporting documents. See `pdlf-library/README.md`. |
 | `output/` | Temporary copies of the artifacts produced while one project runs through PDLF, kept by producing tool in `output-gstack/`, `output-opencode/` and `output-pocock/`. Each artifact is copied into the project's own folders, then cleared from here. Not version-controlled. |
 | `desktop/` | The developer's working documents for the current work. |

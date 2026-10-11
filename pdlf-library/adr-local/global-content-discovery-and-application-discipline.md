@@ -1,7 +1,7 @@
 ---
 title: "adr-global-content-discovery-and-application-discipline"
 doc-id: "mb-c0174316"
-updated: "2026-10-10"
+updated: "2026-10-11"
 ---
 # ADR — Global Content Discovery and Application Discipline
 
@@ -75,7 +75,7 @@ checkable, not merely stated.
 - [[[pdlf:pdlf-library/policy-local/pol-memory-and-knowledge|Policy: Memory and Knowledge]]](C:/pdlf/pdlf-library/policy-local/pol-memory-and-knowledge.md) gains a new binding subsection formalizing the five-step
   sequence and the citation requirement. See that policy for the operational rule this ADR
   authorizes.
-- Every step file built from Phase B onward whose domain touches global content (Steps 17,
+- Every step file built from Phase C onward whose domain touches global content (Steps 17,
   20, 22, 26, 27, 35, 35A, 37, 38, 41–45 at minimum, per the existing partial mapping in
    [[[default:specifications-global/spec-nomenclature|Spec: Nomenclature]]](C:/dev/project-library-global/specifications-global/spec-nomenclature.md)) must build this sequence into its own procedure when it is
   written or rebuilt — not retrofitted in bulk now. This is deferred work, consistent with

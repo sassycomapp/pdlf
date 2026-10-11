@@ -21,7 +21,7 @@ together.
 
 ## Decision
 
-Each numbered step (11–46) becomes its own stepwise skill file in `stepwise/`. Five
+Each numbered step (11–46) becomes its own stepwise skill file in `stepwise/` (since 2026-10-11: its own step file in its phase folder in `app-factory/`). Five
 shared reference documents ([[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md), [[[pdlf:pdlf-library/specifications-local/spec-bft|Spec Bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md),
 [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md), `INDEX.md`, [[[pdlf:pdlf-library/docs-local/orchestrator-run-plan|Run Plan]]](C:/pdlf/pdlf-library/docs-local/orchestrator-run-plan.md)) provide single-source-of-truth
 procedures that individual stepwise files reference via context pointers. This follows

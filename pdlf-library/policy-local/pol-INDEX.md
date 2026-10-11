@@ -1,7 +1,7 @@
 ---
 title: "pol-INDEX"
 doc-id: "mb-65973e87"
-updated: "2026-10-10"
+updated: "2026-10-11"
 ---
 # PDLF Policy Index
 
@@ -19,4 +19,4 @@ Each policy states **what** the rule is, **why** it exists and **where** it appl
 | [[[pdlf:pdlf-library/policy-local/pol-bft-discipline\|Policy: BFT Discipline]]](C:/pdlf/pdlf-library/policy-local/pol-bft-discipline.md) | Thinking checkpoints. |
 | [[[pdlf:pdlf-library/policy-local/pol-step-conditional-state\|Policy: Step Conditional State]]](C:/pdlf/pdlf-library/policy-local/pol-step-conditional-state.md) | How optional and shortened steps are recorded and flagged downstream. |
 
-The process for designing steps is not a policy; it is [[[pdlf:pdlf-library/docs-local/stepwise-development-process|Stepwise Development Process]]](C:/pdlf/pdlf-library/docs-local/stepwise-development-process.md).
+The process for designing steps is not a policy; it is [[[pdlf:obsolete/stepwise-development-process|Stepwise Development Process]]](C:/pdlf/obsolete/stepwise-development-process.md).
