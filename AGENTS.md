@@ -16,7 +16,7 @@ The global `AGENTS.md` (`~/.config/opencode/AGENTS.md`) governs everything this 
 | Folder | What it holds |
 |---|---|
 | `app-factory/` | The build, one folder per phase (`phase-a-init` to `phase-f-ship-and-monitor`). Each holds its numbered step files (`11-init.md`, `11-build-notes.md` and so on) and one module file per step (`11-module.md`), plus `pdlf-build-plan.md` at the top. See `app-factory/README.md`. |
-| `pdlf-library/` | The shared machinery: ADRs, specifications, policies, processes, templates, explainers. See `pdlf-library/README.md`. |
+| `pdlf-library/` | The shared machinery: ADRs, specifications, policies, templates, explainers and working documents. See `pdlf-library/README.md`. |
 | `output/` | Temporary artifact copies for the project currently in the pipeline, by producing tool: `output-gstack/`, `output-opencode/`, `output-pocock/`. Not version-controlled. |
 | `desktop/` | The developer's working documents. |
 | `obsolete/` | Retired files. |
