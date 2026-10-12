@@ -54,7 +54,9 @@ C:\dev\dev-{slug}\
 
 Each code repository is one Anvil application and synchronises with Anvil through GitHub. The project library holds everything else for all of the business's apps: documents, decisions and PDLF records. Code and documentation are never mixed. One project library serves the whole business because its apps share one design, one vocabulary and one set of decisions; anything specific to one app has its own folder inside the library. The project library is the project's GBrain source.
 
-No project data is stored in PDLF; all project data is stored in the project folders at `C:\dev\`. The only exception is the temporary artifact copies in `C:\pdlf\output\`, which are cleared once they reach the project's own folders.
+No project data is stored in PDLF; all project data is stored in the project folders at `C:\dev\`.
+
+**Step outputs.** Every project library holds a folder `pdlf-outputs\`, with one folder per step, named as in the app factory: `a01\` to `a10\`, `b11\` to `b16\`, `c17\` to `c28\`, `d29\` to `d34\`, `e35\` to `e40b\` and `f41\` to `f46\`, including `b13\` and `c25\`. Everything a step produces for that project is kept in its folder, whichever skill produced it: the step's receipt, a copy of every artifact a skill saved elsewhere (GStack, for example, saves in its own place), and the artifacts of skills that are told where to save (such as Archify, the Magdoub wireframe skills and Sentinel), which save there directly. Each file name begins with the slug and the step, for example `mb5pdlf-b15-test-plan.md`, so the skill and step that produced it are clear. Step 11 creates the folders for a new project.
 
 The business slug carries no hyphens. The existing MB-3-CS folders are still named `mb-3-cs` and are renamed to `mb3cs` separately; the existing code repository `mb-3-cs` becomes `mb3cs-app-1`.
 
@@ -146,7 +148,7 @@ PDLF runs inside OpenCode, through the OpenCode Build agent and its model.
 
 **Instruction files.** `AGENTS.md` is PDLF's single instruction file; there is no `CLAUDE.md`. A PDLF `opencode.json` is written when the orchestrator is designed, because only then is it known what PDLF needs beyond the global settings.
 
-**Artifacts.** Every artifact is written to its canonical place, and a copy is also written to `output/` for David's convenience. `output/` serves one application at a time; each copy is copied into the application's own folders, its arrival is verified, and only then is it cleared from `output/`.
+**Artifacts.** Every artifact is written to its canonical place. Where that place is outside the project's step folder, a copy is also written to the step folder (section 1), so that each step's outputs for a project are all in one place.
 
 ### 6. Knowledge, skills, learning and records
 
@@ -197,8 +199,8 @@ Every step is built to these rules. They are stated once here and not repeated i
 - **The developer approves every change.** The step explains each decision in plain language, never jumps a gate, and never passes one without the developer's approval.
 - **Skills take precedence.** When a skill in PDLF's library covers a task, the step uses it and does not improvise.
 - **Deviations are decided by the developer.** If the step cannot be done as written, it stops, sets out the options and what each costs, and the developer decides. The decision is recorded in the ledger.
-- **It leaves its record:** a row in the ledger, its BFT record at its level, and a Step Receipt at `dev-{slug}\{slug}-project-library\pdlf\step-NN-receipt.md`.
-- **Every artifact goes to its canonical place,** with a copy in `C:\pdlf\output\` for the developer's convenience.
+- **It leaves its record:** a row in the ledger, its BFT record at its level, and a Step Receipt at `{slug}-project-library\pdlf-outputs\{step}\{slug}-{step}-receipt.md`.
+- **Every artifact goes to its canonical place,** with a copy in the step's output folder, `{slug}-project-library\pdlf-outputs\{step}\`, when its canonical place is elsewhere.
 - **The agent never commits or pushes.** Close-out is `/mb-close-out`, run when the developer asks for it; new knowledge and every lesson reach GBrain only through the memory governor and `mb-submit-memory`.
 - **No application is ever multi-tenant.** Every step that shapes data or code keeps each client's application and database separate.
 

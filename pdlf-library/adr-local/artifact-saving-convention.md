@@ -1,7 +1,7 @@
 ---
 title: "pdlf-adr-artifact-saving-convention"
 doc-id: "mb-353516c1"
-updated: "2026-10-10"
+updated: "2026-10-12"
 ---
 # PDLF — Artifact-Saving Convention
 
@@ -53,6 +53,8 @@ below consolidate how artifacts are saved, handed over, copied, and archived
 across both environments.
 
 ## Decision
+
+**Current status:** the safety-net output area in `C:\pdlf\output\`, with its routing, archival and folder names (decision 9), is replaced by one output folder per step in each project library, `{slug}-project-library\pdlf-outputs\{step}\`, as set out in the system build plan (section 1) and [[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md). The other decisions stand.
 
 1. **Skills save where they natively save.** No third-party skill is modified
    to change where it writes. GStack, Matt Pocock, and Magdoub skills keep

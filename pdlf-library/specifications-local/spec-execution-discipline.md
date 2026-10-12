@@ -27,7 +27,7 @@ Every step follows this sequence. The agent never skips a substep without a devi
 6. Verify the expected output exists. If missing: STOP, present a deviation request.
 7. Run BFT checkpoint at the step's assigned level (Full / Light / None) per `[[spec-bft]]`.
 8. Write the `steps` ledger row (step_number, status, artifact_path, synthesized, etc.).
-9. Generate and save the Step Receipt to `dev-{slug}\{slug}-project-library\pdlf\step-{N}-receipt.md`.
+9. Generate and save the Step Receipt to `{slug}-project-library\pdlf-outputs\{step}\{slug}-{step}-receipt.md`.
 10. Ask the two housekeeping questions — separately, never combined, never auto-run:
     - "Commit and push to GitHub?"
     - "Sync/embed GBrain?"

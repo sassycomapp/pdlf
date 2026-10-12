@@ -126,7 +126,7 @@ When a step cannot be done as written, the agent never decides what to do. It st
 
 ## 7. Artifacts
 
-Each step's outputs (plans, reviews, designs, reports) are written to their canonical place: inside the application's documentation repository, or where a skill saves by design. A copy of each is also written to `C:\pdlf\output/`, sorted by the tool that produced it, so David can find the current build's outputs in one place. `output/` serves one application at a time and is not kept in Git. The rules are in [[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md).
+Each step's outputs (plans, reviews, designs, reports) are written to their canonical place: inside the application's project library, or where a skill saves by design. Every project library has one output folder per step, `pdlf-outputs\{step}\`, and a copy of each output saved elsewhere is written there, so that everything a step produced for that application is in one place. Nothing an application produces is kept in `C:\pdlf`. The rules are in [[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md).
 
 ## 8. Thinking checkpoints (BFT)
 

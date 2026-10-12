@@ -1,7 +1,7 @@
 ---
 title: "step-receipt-template"
 doc-id: "mb-c0c99119"
-updated: "2026-10-10"
+updated: "2026-10-12"
 ---
 # PDLF Step Receipt Template
 
@@ -13,7 +13,7 @@ receipt.
 **Where it's shown:** Inline, in the conversation, at the end of every step — this is what you
 review before deciding whether to say "continue."
 
-**Where it's also saved:** As a file, `dev-{slug}\{slug}-project-library\pdlf\step-{step_number}-receipt.md`, so
+**Where it's also saved:** As a file, `{slug}-project-library\pdlf-outputs\{step}\{slug}-{step}-receipt.md`, so
 the full run has a readable, git-tracked history alongside the queryable ledger.
 
 ---
@@ -162,4 +162,4 @@ Type "continue" to proceed to the next step, or raise anything you want changed 
 
 *Step Receipt template version 1.0. Consumes: `steps`, `gates`, `bft_records`, `deviations`
 tables from the `pdlf` Postgres database. Produces: inline chat output +
-`dev-{slug}\{slug}-project-library\pdlf\step-{step_number}-receipt.md`.*
+`{slug}-project-library\pdlf-outputs\{step}\{slug}-{step}-receipt.md`.*

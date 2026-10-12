@@ -68,7 +68,7 @@ contradict a decision already made (see §2.3), the invocation preempts it.
 - `to-tickets`, `triage` → `.scratch/` by default; PDLF overrides as each
   step prescribes.
 - OpenCode-native outputs save to the path each step file prescribes
-  (receipts: `pdlf\step-NN-receipt.md`).
+  (receipts: `{slug}-project-library\pdlf-outputs\{step}\{slug}-{step}-receipt.md`).
 
 ## 2. The handoff contract
 
@@ -98,50 +98,25 @@ renamed, moved, or edited by PDLF.
 3. Verify the artifact exists on disk at the captured path.
 4. Write the ledger `steps` row with `artifact_path` = the captured path.
 5. Generate and save the Step Receipt at
-   `dev-{slug}\{slug}-project-library\pdlf\step-NN-receipt.md`.
-6. Make the stable copy (§4) and the safety-net copy (§5).
-7. Verify both copies exist.
+   `{slug}-project-library\pdlf-outputs\{step}\{slug}-{step}-receipt.md`.
+6. Make the step-folder copy (§4) of every artifact saved outside the step folder.
+7. Verify every copy exists.
 8. If any expected artifact is missing: STOP and raise a deviation request
    per the execution discipline. Never proceed silently.
 
-## 4. Stable copies
+## 4. The step output folder
 
-Stable copies are the PDLF-controlled, deterministically named copies a later
-step reads when the native path is unavailable or mode-dependent.
+Every project library holds `pdlf-outputs\`, with one folder per step (`a01\` to `f46\`, named as in the app factory). Everything a step produces for that project is kept in its step folder:
 
-- Naming: `{slug}-step-NN-filename.md` (decision 5 of the convention ADR) —
-  for example `mb5pdlf-step-14-ceo-plan.md`.
-- The built steps 14–15 predate this convention: they write
-  `gstack-outputs\step-14-ceo-plan.md`, `step-15-eng-plan.md`,
-  `step-15-test-plan.md` (legacy folder name, no slug prefix). Both aspects
-  are corrected in those files as part of convention adoption (tracked:
-  master task list, item 18).
-- A stable copy is a snapshot of that step's state; a later step that appends
-  to the native file updates the stable copy after its append (built Step 15
-  does this for Step 14's plan file).
+- the Step Receipt, `{slug}-{step}-receipt.md`;
+- a copy of every artifact a skill saved elsewhere (for example in GStack's own save location), named `{slug}-{step}-filename`, for example `mb5pdlf-b14-ceo-plan.md`;
+- the artifacts of skills that are told where to save (such as Archify, the Magdoub wireframe skills and Sentinel), which save into the step folder directly.
 
-## 5. Safety-net routing and ship-time archival
+The step-folder copy is the copy a later step reads when a skill's own save location is unavailable or depends on the skill's mode. It is a snapshot of that step's state; a later step that appends to a skill's own file updates the copy after its append.
 
-5.1 **Routing — per environment:**
+## 5. No outputs in PDLF
 
-| Environment / phase | Producer | Destination |
-|---|---|---|
-| PDLF environment (system phase) | GStack skills | `C:\pdlf\output\pdlf-output-gstack\` |
-| PDLF environment (system phase) | Matt Pocock skills | `C:\pdlf\output\pdlf-output-pocock\` |
-| PDLF environment (system phase) | OpenCode-native | `C:\pdlf\output\pdlf-output-opencode\` (when created) |
-
-5.2 **Copy procedure:** after the stable copy exists, copy it into the
-safety-net folder named `{slug}-filename` (§4 naming, same filename rule),
-confirm the copy landed, and state both locations in the step's output.
-
-5.3 **Ship-time archival (binding procedure):**
-
-1. Copy every safety-net copy for the shipping project into that project's
-   own folders (the project's output folders / archive location).
-2. Verify each copy arrived — list and compare counts and sizes.
-3. Only after verification: clear `C:\pdlf\output\` (or the exception-phase
-   equivalent) for the next project.
-4. Never clear before verification. Nothing is ever silently lost.
+Nothing an application produces is kept in `C:\pdlf`. There is no separate output area to copy into or clear: the step folders in the project library are the one place where each step's outputs are collected, and they are kept with the project.
 
 ## 6. Mode-dependent persistence
 

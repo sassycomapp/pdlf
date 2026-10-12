@@ -1,7 +1,7 @@
 ---
 title: "pol-skill-invocation"
 doc-id: "mb-507292ab"
-updated: "2026-10-10"
+updated: "2026-10-12"
 ---
 # PDLF Policy — Skill Invocation
 
@@ -16,7 +16,7 @@ updated: "2026-10-10"
 3. **Read before invoking.** Before invoking a skill, the agent reads the skill's own file to confirm it is the right tool and how it behaves. A skill's name is never trusted on its own.
 4. **User-invoked skills are asked for.** When a skill can only be started by the user, the agent asks David to start it. It never simulates the skill.
 5. **When a skill cannot run.** If the prescribed skill cannot be invoked, the agent raises a deviation ([[[pdlf:pdlf-library/policy-local/pol-sequential-enforcement-and-deviation|Policy: Sequential Enforcement and Deviation]]](C:/pdlf/pdlf-library/policy-local/pol-sequential-enforcement-and-deviation.md)). It does not quietly do the work another way.
-6. **Outputs.** A skill saves where it is designed to save. The orchestrator does not change that; it captures the location, records it, and writes the copy to `output/` ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md)).
+6. **Outputs.** A skill saves where it is designed to save. The orchestrator does not change that; it captures the location, records it, and writes a copy to the step's output folder in the project library ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md)).
 7. **Lean orchestrator.** The orchestrator holds only the step pattern and the step order. Each step's detail lives in its own step file and module, loaded when that step runs.
 
 ---
