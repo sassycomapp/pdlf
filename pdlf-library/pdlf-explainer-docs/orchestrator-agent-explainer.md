@@ -1,13 +1,13 @@
 ---
 title: "orchestrator-agent-explainer"
 doc-id: "mb-a75ee721"
-updated: "2026-10-11"
+updated: "2026-10-12"
 ---
 # PDLF — The Orchestrator (Step 1)
 
 ## What it is
 
-The orchestrator is the agent that carries an application through PDLF, from the first question to release. It is Step 1, and its module is `01-module`. It is not a step of the pipeline in the same sense as Steps 11 to 46: it is what runs them. A skill runs once and finishes; the orchestrator stays in charge until the build is done.
+The orchestrator is the agent that carries an application through PDLF, from the first question to release. It is Step 1, and its module is `a01-module`. It is not a step of the pipeline in the same sense as Steps 11 to 46: it is what runs them. A skill runs once and finishes; the orchestrator stays in charge until the build is done.
 
 The orchestrator never runs on its own. It is David's tool. It stops for David at every point where a real decision belongs to him.
 
@@ -30,4 +30,4 @@ Only the orchestrator, carrying out a PDLF step, writes to the ledger.
 
 ## Status
 
-This document defines the orchestrator's role. Its executable form does not exist yet: `app-factory/phase-a-init/01-orchestrator.md` and `app-factory/phase-a-init/01-module.md` are placeholders. How the orchestrator is configured in OpenCode (including PDLF's own `opencode.json`) is decided when Step 1 is designed, in steps work.
+This document defines the orchestrator's role. Its executable form does not exist yet: `app-factory/phase-a-init/01-orchestrator.md` is an old draft and `app-factory/phase-a-init/a01-module.md` is empty. How the orchestrator is configured in OpenCode (including PDLF's own `opencode.json`) is decided when Step 1 is designed, in steps work.

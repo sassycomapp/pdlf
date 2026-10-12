@@ -1,15 +1,15 @@
 ---
 title: "app-factory-explainer"
 doc-id: "mb-bcfa10bb"
-updated: "2026-10-11"
+updated: "2026-10-12"
 ---
 # PDLF — The App Factory
 
 ## What it is
 
-The app factory (`C:\pdlf\app-factory\`) holds PDLF's build, one folder per phase: `phase-a-init`, `phase-b-discover-and-define`, `phase-c-design-and-plan`, `phase-d-scaffold-and-assemble`, `phase-e-build-and-verify` and `phase-f-ship-and-monitor`. Each phase folder holds its steps' files (`16-domain-modeling.md` and so on) and one module file per step (`16-module.md`). A module is one finished step, compiled into a single unit. When PDLF builds an application, the modules are what run.
+The app factory (`C:\pdlf\app-factory\`) holds PDLF's build, one folder per phase: `phase-a-init`, `phase-b-discover-and-define`, `phase-c-design-and-plan`, `phase-d-scaffold-and-assemble`, `phase-e-build-and-verify` and `phase-f-ship-and-monitor`. Each phase folder holds the set of six for each of its steps: its build plan, config, reference, explainer, decision tree and module (`b16-build-plan.md` to `b16-module.md`). A module is one finished step, compiled into a single unit. When PDLF builds an application, the modules are what run.
 
-The numbers follow the step numbers exactly, so module 16 is always Step 16. Module 01 is the orchestrator, which runs the others. Modules 02 to 10 are the entry points for work on existing applications (new features, updates, returning to another app of a five-app set). Modules 11 to 46 are the pipeline that builds an application. Numbers 13 and 25 are not used; their module files are kept. Inserted steps carry a lowercase letter: 35a, 38a, 40b and 42a.
+Each name is the phase letter followed by the step number, so `b16-module.md` is always Step 16. Module `a01` is the orchestrator, which runs the others. Modules 02 to 10 are the entry points for work on existing applications (new features, updates, returning to another app of a five-app set). Modules 11 to 46 are the pipeline that builds an application. Numbers 13 and 25 are not used; each keeps a placeholder file. Inserted steps carry a lowercase letter after the number, only to keep the files in order: 35a, 38a, 40b and 42a.
 
 ## How it works
 
@@ -23,4 +23,4 @@ Keeping each step as its own module means a step can be built, tested and correc
 
 ## What has to happen
 
-A step is designed in its phase folder. When that design is finished and David instructs it, the step's files are compiled into its module file beside them. Until then the module file stays a placeholder (rule 2 of `C:\pdlf\AGENTS.md`). Modules are built one at a time, not in bulk.
+A step is designed in its phase folder. When that design is finished and David instructs it, its config, reference, explainer and decision tree are compiled into its module beside them. Until then the module is empty (rule 2 of `C:\pdlf\AGENTS.md`). Modules are built one at a time, not in bulk.
