@@ -1,7 +1,7 @@
 ---
 title: "run-plan"
 doc-id: "mb-03239097"
-updated: "2026-10-11"
+updated: "2026-10-12"
 ---
 # PDLF Run Plan
 
@@ -34,7 +34,7 @@ what material a step starts from. Step 11 itself already asks whether the projec
 or existing and handles the two cases internally (repo creation and templating vs.
 confirming what already exists). Step 12 does the same: new-project entry works from the
 three pre-project files; existing-project entry works from the whole existing
-project-library, read via GBrain. See [[[pdlf:app-factory/phase-b-discover-and-define/12-office-hours|Step 12: Office Hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/12-office-hours.md) for the full mechanics.
+project-library, read via GBrain. See [[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|Step 12: Office Hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md) for the full mechanics.
 
 Submitting an existing project to PDLF means redeveloping it around its canonical
 concept — not auditing, maintaining, or correcting what already exists. From Step 12

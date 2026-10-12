@@ -1,7 +1,7 @@
 ---
 title: "pol-testing-and-quality"
 doc-id: "mb-6296454f"
-updated: "2026-10-11"
+updated: "2026-10-12"
 ---
 # PDLF Policy — Testing and Quality
 
@@ -81,7 +81,7 @@ Remediation (40B) is retested by 36–38, not shipped straight through — this 
 
 ### Artifact persistence requirement (new, 2026-07-12)
 
-`/review` (Step 37) and [[[pdlf:app-factory/phase-e-build-and-verify/38-qa|/qa]]](C:/pdlf/app-factory/phase-e-build-and-verify/38-qa.md) (Step 38) are **required** to write their findings to a
+`/review` (Step 37) and [[[pdlf:app-factory/phase-e-build-and-verify/e38-reference|/qa]]](C:/pdlf/app-factory/phase-e-build-and-verify/e38-reference.md) (Step 38) are **required** to write their findings to a
 specified artifact path as part of invocation — this is not assumed to happen as a side
 effect of running the skill. OpenCode verifies the artifact exists before marking either
 step complete; its absence is a step failure requiring developer attention, not a silent
@@ -91,7 +91,7 @@ without an explicit check.
 
 ### Code review and QA (Steps 36–38)
 
-Every feature cycle goes through `/design-review` (visual), `/review` (structural), and [[[pdlf:app-factory/phase-e-build-and-verify/38-qa|/qa]]](C:/pdlf/app-factory/phase-e-build-and-verify/38-qa.md)
+Every feature cycle goes through `/design-review` (visual), `/review` (structural), and [[[pdlf:app-factory/phase-e-build-and-verify/e38-reference|/qa]]](C:/pdlf/app-factory/phase-e-build-and-verify/e38-reference.md)
 (functional + regression) before its `build-verified` gate. These are GStack skills — they
 drive a headless browser for live-site testing, which OpenCode cannot do directly.
 

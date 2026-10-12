@@ -1,7 +1,7 @@
 ---
 title: "matt-pocock-skills-local-reference"
 doc-id: "mb-b97bfee0"
-updated: "2026-10-11"
+updated: "2026-10-12"
 ---
 # PDLF — Matt Pocock Skills Local Reference
 
@@ -28,10 +28,10 @@ updated: "2026-10-11"
 
 | PDLF Step | Matt Pocock Skill | Notes |
 |---|---|---|
-| Step 16 | `/grill-with-docs` (using [[[pdlf:app-factory/phase-b-discover-and-define/16-domain-modeling\|Step 16 Domain Modeling]]](C:/pdlf/app-factory/phase-b-discover-and-define/16-domain-modeling.md) internally) | Domain glossary + ADRs, gate `domain-locked` |
-| Step 19 | [[[pdlf:app-factory/phase-c-design-and-plan/19-to-tickets\|Step 19 to Tickets]]](C:/pdlf/app-factory/phase-c-design-and-plan/19-to-tickets.md) | Breaks locked plan into tracer-bullet tickets |
+| Step 16 | `/grill-with-docs` (using [[[pdlf:app-factory/phase-b-discover-and-define/b16-reference\|Step 16 Domain Modeling]]](C:/pdlf/app-factory/phase-b-discover-and-define/b16-reference.md) internally) | Domain glossary + ADRs, gate `domain-locked` |
+| Step 19 | [[[pdlf:app-factory/phase-c-design-and-plan/c19-reference\|Step 19 to Tickets]]](C:/pdlf/app-factory/phase-c-design-and-plan/c19-reference.md) | Breaks locked plan into tracer-bullet tickets |
 | Step 39 | `triage` | Processes findings from Steps 36–38, gate `build-verified` |
-| Step 40 | [[[pdlf:app-factory/phase-e-build-and-verify/40-improve-codebase-architecture\|Step 40 Improve Codebase Architecture]]](C:/pdlf/app-factory/phase-e-build-and-verify/40-improve-codebase-architecture.md) | Optional architecture health scan, read-only |
+| Step 40 | [[[pdlf:app-factory/phase-e-build-and-verify/e40-reference\|Step 40 Improve Codebase Architecture]]](C:/pdlf/app-factory/phase-e-build-and-verify/e40-reference.md) | Optional architecture health scan, read-only |
 
 Previously removed skills: `to-spec` (old Step 13), `prototype` (old Step 25) — removed per the skill-use principle.
 
@@ -41,11 +41,11 @@ Previously removed skills: `to-spec` (old Step 13), `prototype` (old Step 25) �
 
 | Skill | Destination |
 |---|---|
-| [[[pdlf:app-factory/phase-b-discover-and-define/16-domain-modeling\|Step 16 Domain Modeling]]](C:/pdlf/app-factory/phase-b-discover-and-define/16-domain-modeling.md), `grill-with-docs` | `CONTEXT.md` + `adr-local/` |
-| [[[pdlf:app-factory/phase-c-design-and-plan/19-to-tickets\|Step 19 to Tickets]]](C:/pdlf/app-factory/phase-c-design-and-plan/19-to-tickets.md) | `.scratch/` |
+| [[[pdlf:app-factory/phase-b-discover-and-define/b16-reference\|Step 16 Domain Modeling]]](C:/pdlf/app-factory/phase-b-discover-and-define/b16-reference.md), `grill-with-docs` | `CONTEXT.md` + `adr-local/` |
+| [[[pdlf:app-factory/phase-c-design-and-plan/c19-reference\|Step 19 to Tickets]]](C:/pdlf/app-factory/phase-c-design-and-plan/c19-reference.md) | `.scratch/` |
 | `triage` | `triage_findings` ledger table (`.scratch/` is transient input, not authoritative) |
 | `setup-matt-pocock-skills` | `agents/` + AGENTS.md |
-| `handoff`, [[[pdlf:app-factory/phase-e-build-and-verify/40-improve-codebase-architecture\|Step 40 Improve Codebase Architecture]]](C:/pdlf/app-factory/phase-e-build-and-verify/40-improve-codebase-architecture.md) | `%TEMP%` + `matt-skills-output/` |
+| `handoff`, [[[pdlf:app-factory/phase-e-build-and-verify/e40-reference\|Step 40 Improve Codebase Architecture]]](C:/pdlf/app-factory/phase-e-build-and-verify/e40-reference.md) | `%TEMP%` + `matt-skills-output/` |
 | `teach` | `C:\mybizz\matt-pocock-skills-source\skills\productivity\teach` |
 | Others | Ask before saving |
 

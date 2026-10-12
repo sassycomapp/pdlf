@@ -1,7 +1,7 @@
 ---
 title: "step-conditional-state-policy"
 doc-id: "mb-5a62c5ff"
-updated: "2026-10-11"
+updated: "2026-10-12"
 ---
 # PDLF Conditional Step State Policy
 
@@ -42,13 +42,13 @@ values and downstream propagation.
 
 Step 12 is a simple yes/no decision gate. The developer chooses:
 
-- **Yes:** Run [[[pdlf:app-factory/phase-b-discover-and-define/12-office-hours|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/12-office-hours.md) → `status = "complete"`, `synthesized = false`.
-  Design doc produced by [[[pdlf:app-factory/phase-b-discover-and-define/12-office-hours|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/12-office-hours.md).
+- **Yes:** Run [[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md) → `status = "complete"`, `synthesized = false`.
+  Design doc produced by [[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md).
 - **No:** OpenCode synthesizes a design doc from the pre-project documents →
   `status = "complete"`, `synthesized = true`. Design doc produced by OpenCode.
 
 Step 12 always produces a design document. The `synthesized` flag indicates
-whether it came from [[[pdlf:app-factory/phase-b-discover-and-define/12-office-hours|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/12-office-hours.md) or from OpenCode's synthesis. There is no
+whether it came from [[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md) or from OpenCode's synthesis. There is no
 `skipped` state for Step 12 — the step always completes with an artifact.
 
 There is no abbreviation offer for Step 12. The developer either runs the full
@@ -58,7 +58,7 @@ skill or OpenCode synthesizes from the pre-project docs.
 
 Step 20 offers abbreviation when `projects.mode = "test"`:
 
-- **Full:** Run complete [[[pdlf:app-factory/phase-c-design-and-plan/20-design-consultation|/design-consultation]]](C:/pdlf/app-factory/phase-c-design-and-plan/20-design-consultation.md) → `status = "complete"`, `synthesized = false`
+- **Full:** Run complete [[[pdlf:app-factory/phase-c-design-and-plan/c20-reference|/design-consultation]]](C:/pdlf/app-factory/phase-c-design-and-plan/c20-reference.md) → `status = "complete"`, `synthesized = false`
 - **Abbreviated:** Run collapsed version → `status = "complete"`, `synthesized = true`
 - **Skip:** Developer declines entirely → `status = "skipped"`, `synthesized = false`
 
@@ -89,9 +89,9 @@ full propagation mechanism.
 In full mode (`projects.mode = "full"`):
 
 - Abbreviation offers are never presented
-- Step 12: yes/no gate still applies (developer can decline [[[pdlf:app-factory/phase-b-discover-and-define/12-office-hours|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/12-office-hours.md) and OpenCode synthesizes)
+- Step 12: yes/no gate still applies (developer can decline [[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md) and OpenCode synthesizes)
 - Step 20: runs fully or is skipped (if conditional)
-- The `synthesized` flag can still be set for Step 12 (OpenCode synthesis when [[[pdlf:app-factory/phase-b-discover-and-define/12-office-hours|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/12-office-hours.md) declined)
+- The `synthesized` flag can still be set for Step 12 (OpenCode synthesis when [[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md) declined)
 
 ---
 
@@ -99,10 +99,10 @@ In full mode (`projects.mode = "full"`):
 
 This policy resolves todo item 5.2 (define "third state" for Step 12).
 
-The original question: "the developer says no to [[[pdlf:app-factory/phase-b-discover-and-define/12-office-hours|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/12-office-hours.md) at all (using
+The original question: "the developer says no to [[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md) at all (using
 only the pre-project docs) — that's different from `synthesized`."
 
-Answer: when the developer declines [[[pdlf:app-factory/phase-b-discover-and-define/12-office-hours|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/12-office-hours.md), OpenCode synthesizes a
+Answer: when the developer declines [[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md), OpenCode synthesizes a
 design doc from the pre-project documents. This is the `synthesized` state —
 an artifact IS produced, but by OpenCode, not by the skill. Step 12 always
 produces a design doc; the `synthesized` flag indicates its provenance.

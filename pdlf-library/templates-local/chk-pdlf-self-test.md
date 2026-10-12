@@ -1,7 +1,7 @@
 ---
 title: "chk-pdlf-self-test"
 doc-id: "mb-afcdd367"
-updated: "2026-10-11"
+updated: "2026-10-12"
 ---
 # Checklist — PDLF Self-Test Suite
 
@@ -82,7 +82,7 @@ Run whenever a step file is built, rebuilt, or reviewed — not a one-time pass.
 | # | Check | Method |
 |---|---|---|
 | 4.1 | Every skill name in the step file exists at its claimed source, under that name | Fetch the real `SKILL.md` (GStack or Matt Pocock) and confirm |
-| 4.2 | The skill is actually invocable the way the step file assumes (user-invoked vs. model-invoked, standalone vs. wrapped) | Read the skill's own description/frontmatter — do not infer from its name, per the [[[pdlf:app-factory/phase-b-discover-and-define/16-domain-modeling\|Step 16 Domain Modeling]]](C:/pdlf/app-factory/phase-b-discover-and-define/16-domain-modeling.md)/`grill-with-docs` precedent |
+| 4.2 | The skill is actually invocable the way the step file assumes (user-invoked vs. model-invoked, standalone vs. wrapped) | Read the skill's own description/frontmatter — do not infer from its name, per the [[[pdlf:app-factory/phase-b-discover-and-define/b16-reference\|Step 16 Domain Modeling]]](C:/pdlf/app-factory/phase-b-discover-and-define/b16-reference.md)/`grill-with-docs` precedent |
 | 4.3 | If the skill is a thin wrapper, every skill it delegates to is also accounted for | Read the wrapper's body in full |
 | 4.4 | Recheck cadence: skills are copied files, not a live plugin — upstream changes don't propagate automatically | Periodic manual diff against upstream `main` for every skill PDLF depends on; no fixed interval defined yet, needs a decision |
 

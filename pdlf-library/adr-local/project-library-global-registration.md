@@ -1,7 +1,7 @@
 ---
 title: "project-library-global-registration"
 doc-id: "mb-445b1f4d"
-updated: "2026-10-11"
+updated: "2026-10-12"
 ---
 # ADR — project-library-global Becomes a Registered Foundational Component
 
@@ -46,8 +46,8 @@ proceeds once GBrain reflects the update.
     `project-library-global` as one of its scoped sources, alongside `{slug}` and
     `{slug}-project-library` — see the updated [[[pdlf:pdlf-library/policy-local/pol-memory-and-knowledge|Policy: Memory and Knowledge]]](C:/pdlf/pdlf-library/policy-local/pol-memory-and-knowledge.md).
 - Local/global conflict-checking becomes possible at Steps 14 and 15 (CEO review, Eng
-  review) — see [[[pdlf:app-factory/phase-b-discover-and-define/14-build-notes|Step 14 Build Notes]]](C:/pdlf/app-factory/phase-b-discover-and-define/14-build-notes.md) and
-  [[[pdlf:app-factory/phase-b-discover-and-define/15-build-notes|Step 15 Build Notes]]](C:/pdlf/app-factory/phase-b-discover-and-define/15-build-notes.md).
+  review) — see [[[pdlf:app-factory/phase-b-discover-and-define/b14-build-plan|Step 14 Build Notes]]](C:/pdlf/app-factory/phase-b-discover-and-define/b14-build-plan.md) and
+  [[[pdlf:app-factory/phase-b-discover-and-define/b15-build-plan|Step 15 Build Notes]]](C:/pdlf/app-factory/phase-b-discover-and-define/b15-build-plan.md).
 - This applies to existing-project entry too: an old project-library brought into PDLF
   for redevelopment may contain years of decisions made before this rule existed. Nothing
   here makes that retroactively non-compliant — the check applies going forward, from

@@ -1,7 +1,7 @@
 ---
 title: "matt-pocock-skills-pdlf-compliance"
 doc-id: "mb-86e5409b"
-updated: "2026-10-11"
+updated: "2026-10-12"
 ---
 # Matt Pocock Skills — PDLF Compliance & Dependency Reference
 **Supersedes the earlier general-catalog audit. Scoped to the 5 skills PDLF actually uses.**
@@ -14,12 +14,12 @@ updated: "2026-10-11"
 | Skill | Used at | Type | Wrapper or Fat |
 |---|---|---|---|
 | `setup-matt-pocock-skills` | Once per repo, before any other engineering skill | User-invoked | Fat (config generator) |
-| [[[pdlf:app-factory/phase-b-discover-and-define/16-domain-modeling\|Step 16 Domain Modeling]]](C:/pdlf/app-factory/phase-b-discover-and-define/16-domain-modeling.md) | Step 16 (invoked via `/grill-with-docs`) | Model-invoked | Fat, self-contained |
-| [[[pdlf:app-factory/phase-c-design-and-plan/19-to-tickets\|Step 19 to Tickets]]](C:/pdlf/app-factory/phase-c-design-and-plan/19-to-tickets.md) | Step 19 | User-invoked | Fat, self-contained |
+| [[[pdlf:app-factory/phase-b-discover-and-define/b16-reference\|Step 16 Domain Modeling]]](C:/pdlf/app-factory/phase-b-discover-and-define/b16-reference.md) | Step 16 (invoked via `/grill-with-docs`) | Model-invoked | Fat, self-contained |
+| [[[pdlf:app-factory/phase-c-design-and-plan/c19-reference\|Step 19 to Tickets]]](C:/pdlf/app-factory/phase-c-design-and-plan/c19-reference.md) | Step 19 | User-invoked | Fat, self-contained |
 | `triage` | Step 39 | User-invoked | Fat, **has an unresolved dependency — see §2** |
-| [[[pdlf:app-factory/phase-e-build-and-verify/40-improve-codebase-architecture\|Step 40 Improve Codebase Architecture]]](C:/pdlf/app-factory/phase-e-build-and-verify/40-improve-codebase-architecture.md) | Step 40 (optional) | User-invoked | Fat, **has an unresolved dependency — see §2** |
+| [[[pdlf:app-factory/phase-e-build-and-verify/e40-reference\|Step 40 Improve Codebase Architecture]]](C:/pdlf/app-factory/phase-e-build-and-verify/e40-reference.md) | Step 40 (optional) | User-invoked | Fat, **has an unresolved dependency — see §2** |
 
-`to-spec`/`to-prd` and `prototype` are correctly removed — no action needed, and their absence doesn't break anything since nothing downstream consumes them. `to-issues` is a stale name for [[[pdlf:app-factory/phase-c-design-and-plan/19-to-tickets|Step 19 to Tickets]]](C:/pdlf/app-factory/phase-c-design-and-plan/19-to-tickets.md); fix the artifact governance table.
+`to-spec`/`to-prd` and `prototype` are correctly removed — no action needed, and their absence doesn't break anything since nothing downstream consumes them. `to-issues` is a stale name for [[[pdlf:app-factory/phase-c-design-and-plan/c19-reference|Step 19 to Tickets]]](C:/pdlf/app-factory/phase-c-design-and-plan/c19-reference.md); fix the artifact governance table.
 
 ---
 
@@ -48,14 +48,14 @@ Confirmed `.scratch/` locations:
 - `C:\dev\dev-mb5pdlf\mb5pdlf-project-library\.scratch` — exists
 - `C:\dev\dev-mb5pdlf\mb5pdlf` (code repo) — **no `.scratch`**
 
-All four in-pipeline skills ([[[pdlf:app-factory/phase-b-discover-and-define/16-domain-modeling|Step 16 Domain Modeling]]](C:/pdlf/app-factory/phase-b-discover-and-define/16-domain-modeling.md), [[[pdlf:app-factory/phase-c-design-and-plan/19-to-tickets|Step 19 to Tickets]]](C:/pdlf/app-factory/phase-c-design-and-plan/19-to-tickets.md), `triage`, [[[pdlf:app-factory/phase-e-build-and-verify/40-improve-codebase-architecture|Step 40 Improve Codebase Architecture]]](C:/pdlf/app-factory/phase-e-build-and-verify/40-improve-codebase-architecture.md)) currently write into the **project-library (docs) repo**, not the code repo. So `setup-matt-pocock-skills` needs to run in exactly two places per project: `pdlf` (for building PDLF itself) and `{project}-project-library` (for all four in-pipeline skills). **The code repo does not need setup run in it** — nothing currently writes Matt Pocock output there. Re-check this if a future skill is added that writes directly into the code repo.
+All four in-pipeline skills ([[[pdlf:app-factory/phase-b-discover-and-define/b16-reference|Step 16 Domain Modeling]]](C:/pdlf/app-factory/phase-b-discover-and-define/b16-reference.md), [[[pdlf:app-factory/phase-c-design-and-plan/c19-reference|Step 19 to Tickets]]](C:/pdlf/app-factory/phase-c-design-and-plan/c19-reference.md), `triage`, [[[pdlf:app-factory/phase-e-build-and-verify/e40-reference|Step 40 Improve Codebase Architecture]]](C:/pdlf/app-factory/phase-e-build-and-verify/e40-reference.md)) currently write into the **project-library (docs) repo**, not the code repo. So `setup-matt-pocock-skills` needs to run in exactly two places per project: `pdlf` (for building PDLF itself) and `{project}-project-library` (for all four in-pipeline skills). **The code repo does not need setup run in it** — nothing currently writes Matt Pocock output there. Re-check this if a future skill is added that writes directly into the code repo.
 
 ### B. The `grilling` dependency gap — RESOLVED, no import
 Two of your five in-scope skills have documented branches into the `grilling` interview loop:
-- [[[pdlf:app-factory/phase-e-build-and-verify/40-improve-codebase-architecture|Step 40 Improve Codebase Architecture]]](C:/pdlf/app-factory/phase-e-build-and-verify/40-improve-codebase-architecture.md) — ends with "...then grill through whichever one you pick."
+- [[[pdlf:app-factory/phase-e-build-and-verify/e40-reference|Step 40 Improve Codebase Architecture]]](C:/pdlf/app-factory/phase-e-build-and-verify/e40-reference.md) — ends with "...then grill through whichever one you pick."
 - `triage` — independently documented as "categorise, verify, **grill if needed**, and write agent-ready briefs."
 
-Neither `grilling` nor its wrappers (`grill-me`, `grill-with-docs`) will be imported. Tested against the one selection criterion PDLF actually uses — does this fit a real need OpenCode can't already do itself — it fails: PDLF's own execution discipline already has an equivalent mechanism (a step that can't complete presents a deviation request with three options, never deciding unilaterally). **Action: route the "grill if needed" branches in `triage` and [[[pdlf:app-factory/phase-e-build-and-verify/40-improve-codebase-architecture|Step 40 Improve Codebase Architecture]]](C:/pdlf/app-factory/phase-e-build-and-verify/40-improve-codebase-architecture.md) into PDLF's existing deviation-request flow instead of a Matt Pocock skill.** `grill-with-docs` was considered and rejected specifically — it's user-invoked only (`disable-model-invocation: true`), so it can't fire automatically mid-step in the first place, and it redundantly bundles in [[[pdlf:app-factory/phase-b-discover-and-define/16-domain-modeling|Step 16 Domain Modeling]]](C:/pdlf/app-factory/phase-b-discover-and-define/16-domain-modeling.md), which PDLF already runs standalone at Step 16.
+Neither `grilling` nor its wrappers (`grill-me`, `grill-with-docs`) will be imported. Tested against the one selection criterion PDLF actually uses — does this fit a real need OpenCode can't already do itself — it fails: PDLF's own execution discipline already has an equivalent mechanism (a step that can't complete presents a deviation request with three options, never deciding unilaterally). **Action: route the "grill if needed" branches in `triage` and [[[pdlf:app-factory/phase-e-build-and-verify/e40-reference|Step 40 Improve Codebase Architecture]]](C:/pdlf/app-factory/phase-e-build-and-verify/e40-reference.md) into PDLF's existing deviation-request flow instead of a Matt Pocock skill.** `grill-with-docs` was considered and rejected specifically — it's user-invoked only (`disable-model-invocation: true`), so it can't fire automatically mid-step in the first place, and it redundantly bundles in [[[pdlf:app-factory/phase-b-discover-and-define/b16-reference|Step 16 Domain Modeling]]](C:/pdlf/app-factory/phase-b-discover-and-define/b16-reference.md), which PDLF already runs standalone at Step 16.
 
 ### C. Stale table entry — orphaned reference
 This originally pointed to "a separate correction instruction file for the exact edit."
