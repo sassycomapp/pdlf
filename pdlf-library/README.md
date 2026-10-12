@@ -1,21 +1,21 @@
 ---
 title: "README"
 doc-id: "mb-5220bac9"
-updated: "2026-10-11"
+updated: "2026-10-12"
 ---
 # PDLF Library
 
 The PDLF library holds the shared machinery every module in `app-factory/` relies on: the decisions, specifications, policies, templates, explainers and working documents of the PDLF system. Knowledge and standards that are not specific to PDLF, Anvil knowledge included, live in `project-library-global`, not here.
 
-## The intent comes first
+## The build plan comes first
 
-[[[pdlf:pdlf-library/pdlf-explainer-docs/pdlf-intent|PDLF Intent]]](C:/pdlf/pdlf-library/pdlf-explainer-docs/pdlf-intent.md) is the single statement of what PDLF is meant to be. Where any document disagrees with it, the intent wins and the other document is corrected.
+[[[pdlf:app-factory/pdlf-build-plan|PDLF Build Plan]]](C:/pdlf/app-factory/pdlf-build-plan.md) is the single statement of what PDLF is meant to be and how it is built. Where any document disagrees with it, the build plan wins and the other document is corrected.
 
 ## Folders
 
 | Folder | What it holds | The test for putting a document here |
 |---|---|---|
-| `pdlf-explainer-docs/` | Explainers, including `pdlf-intent.md` | It says what something is and why. It binds nobody. |
+| `pdlf-explainer-docs/` | Explainers | It says what something is and why. It binds nobody. |
 | `adr-local/` | Architecture decision records | It records a decision that was made, with its reasoning. |
 | `specifications-local/` | Specifications (`spec-` prefix) | It states exact paths, rules and requirements the machinery must meet. |
 | `policy-local/` | Policies (`pol-` prefix), listed in `pol-INDEX.md` | It is a rule the agent must obey. |

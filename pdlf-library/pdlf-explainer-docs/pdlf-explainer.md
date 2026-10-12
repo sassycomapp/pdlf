@@ -1,11 +1,11 @@
 ---
 title: "pdlf-explainer"
 doc-id: "mb-4ba5a053"
-updated: "2026-10-11"
+updated: "2026-10-12"
 ---
 # PDLF — How It Works
 
-This document explains how PDLF works: its parts, how a build runs, and why it runs that way. What PDLF is for, and what it must always be, is stated in [[[pdlf:pdlf-library/pdlf-explainer-docs/pdlf-intent|PDLF Statement of Intent]]](C:/pdlf/pdlf-library/pdlf-explainer-docs/pdlf-intent.md). Where the two seem to disagree, the statement of intent is right and this document is corrected.
+This document explains how PDLF works: its parts, how a build runs, and why it runs that way. What PDLF is for, and what it must always be, is stated in [[[pdlf:app-factory/pdlf-build-plan|PDLF Build Plan]]](C:/pdlf/app-factory/pdlf-build-plan.md). Where the two seem to disagree, the build plan is right and this document is corrected.
 
 ---
 
@@ -153,7 +153,7 @@ PDLF builds for Anvil.works only. The rules are in [[[pdlf:pdlf-library/policy-l
 
 | Subject | Document |
 |---|---|
-| What PDLF is for | [[[pdlf:pdlf-library/pdlf-explainer-docs/pdlf-intent\|PDLF Statement of Intent]]](C:/pdlf/pdlf-library/pdlf-explainer-docs/pdlf-intent.md) |
+| What PDLF is for | [[[pdlf:app-factory/pdlf-build-plan\|PDLF Build Plan]]](C:/pdlf/app-factory/pdlf-build-plan.md) |
 | The modules | [[[pdlf:pdlf-library/pdlf-explainer-docs/app-factory-explainer\|App Factory Explainer]]](C:/pdlf/pdlf-library/pdlf-explainer-docs/app-factory-explainer.md) |
 | The orchestrator | [[[pdlf:pdlf-library/pdlf-explainer-docs/orchestrator-agent-explainer\|Orchestrator Agent Explainer]]](C:/pdlf/pdlf-library/pdlf-explainer-docs/orchestrator-agent-explainer.md) |
 | Step order | [[[pdlf:pdlf-library/docs-local/orchestrator-run-plan\|Run Plan]]](C:/pdlf/pdlf-library/docs-local/orchestrator-run-plan.md) |

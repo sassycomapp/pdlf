@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Step 16 — Domain Modeling Decision Tree (Final)</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    background: #f5f5f4;
+    padding: 32px;
+    margin: 0;
+  }
+  h1 { font-size: 19px; color: #1a1a1a; margin: 0 0 20px 0; }
+  .diagram-wrap {
+    background: white;
+    border-radius: 10px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    overflow-x: auto;
+  }
+  .mermaid { display: flex; justify-content: center; }
+</style>
+</head>
+<body>
+
+<h1>Step 16 — Domain Modeling Decision Tree (Final)</h1>
+
+<div class="diagram-wrap">
+  <div class="mermaid">
+flowchart TD
+    Start(["Step 15 complete → Step 16 begins"]) --> Q1["Query GBrain<br/>(automatic, read-only)"]
+    Q1 --> A1["Assemble context:<br/>Step 15 plan artifact<br/>Step 15 Test Plan Artifact"]
+    A1 --> Mode{"Entry mode?"}
+
+    Mode -->|"New project"| N1["No existing CONTEXT.md/ADRs.<br/>No code exists yet at this<br/>point in the pipeline."]
+    Mode -->|"Existing project"| E1["Add existing CONTEXT.md +<br/>adr-local\ contents (if present)<br/>+ current code to context,<br/>flagged as prior material"]
+
+    N1 --> Inv1
+    E1 --> Inv1
+
+    Inv1["Invoke /grill-with-docs.<br/>Paste all context in full text.<br/>State file destinations explicitly<br/>(override skill's own default paths)."]
+    Inv1 --> Inv2["/grill-with-docs runs /grilling<br/>using /domain-modeling inline —<br/>NOT /domain-modeling run alone<br/>(it has no standalone session)"]
+
+    Inv2 --> G1["Walk Step 15's plan as a tree<br/>of decisions, one at a time.<br/>Recommended answer given.<br/>Wait for developer response<br/>before continuing."]
+
+    G1 --> D1["Challenge terms against<br/>existing glossary"]
+    D1 --> D2["Sharpen vague/overloaded terms"]
+    D2 --> D3["Stress-test relationships with<br/>concrete edge-case scenarios"]
+    D3 --> D4{"Code exists to<br/>check against?"}
+    D4 -->|"Yes (existing-project entry)"| D5["Cross-reference stated behavior<br/>against actual code.<br/>Surface contradictions —<br/>this IS the reconciliation,<br/>no separate mode needed."]
+    D4 -->|"No (new-project entry)"| D6["Discipline idle —<br/>nothing to check yet"]
+
+    D5 --> U1
+    D6 --> U1
+
+    U1["Update CONTEXT.md inline<br/>as each term resolves —<br/>never batched. Glossary only,<br/>no implementation detail."]
+    U1 --> ADR{"Decision clears all three:<br/>hard to reverse?<br/>surprising without context?<br/>result of real trade-off?"}
+    ADR -->|"Yes, all three"| ADR1["Offer an ADR.<br/>dev-{slug}\{slug}-project-library\<br/>adr-local\000N-{slug}.md"]
+    ADR -->|"No — missing any one"| ADR2["Skip the ADR.<br/>Most decisions land here."]
+
+    ADR1 --> Sent1
+    ADR2 --> Sent1
+
+    Sent1["Invoke mb-sentinel-review<br/>(step 16, Low/Medium scrutiny):<br/>sensitive data or security-relevant<br/>entities being created?"]
+    Sent1 --> Sent2{"Outcome?"}
+    Sent2 -->|"CLEAR"| Verify
+    Sent2 -->|"FLAG or ESCALATE"| Sent3["STOP. Present finding to developer.<br/>Part of what's approved at the gate,<br/>not discovered afterward."]
+    Sent3 --> Verify
+
+    Verify{"CONTEXT.md exists?<br/>Any offered ADRs exist?"}
+    Verify -->|"No, expected but missing"| Dev1["DEVIATION REQUEST"]
+    Verify -->|"Yes"| RowCheck{"Real triage_findings row<br/>exists for this step_id?<br/>(clear/needs-triage/needs-info)"}
+    Dev1 --> RowCheck
+    RowCheck -->|"No"| Dev2["DEVIATION REQUEST.<br/>Proof Sentinel actually ran —<br/>never assumed from item 7's<br/>instruction alone."]
+    RowCheck -->|"Yes"| Gate1["GATE: domain-locked<br/>Full BFT override —<br/>all six questions, regardless<br/>of this step's assigned level"]
+    Dev2 --> Gate1
+
+    Gate1 --> Summary["Present gate summary block"]
+    Summary --> Approve{"Developer approves?"}
+
+    Approve -->|"Yes"| House["Ledger row + approval timestamp.<br/>THEN, only now, ask separately<br/>(both repos, since Step 16<br/>touches code AND docs repo):<br/>— commit and push?<br/>— run end-of-step memory sequence?<br/>&nbsp;&nbsp;— use mb-submit-memory skill<br/>&nbsp;&nbsp;(CONTEXT.md + each real ADR,<br/>&nbsp;&nbsp;individually, never batched)<br/>&nbsp;&nbsp;— run gbrain dream (real, not dry-run)<br/>&nbsp;&nbsp;— run gbrain eval suspected-contradictions<br/>&nbsp;&nbsp;— review findings, STOP on high-severity"]
+    House --> Pass["Gate passes.<br/>Continue to Step 17 (Phase B begins)."]
+    Approve -->|"No"| Block["Gate blocked.<br/>Stop, record blocker.<br/>No housekeeping asked —<br/>nothing approved yet to commit or remember.<br/>Pipeline does not advance."]
+
+    classDef note fill:#eef2ff,stroke:#4f46e5,stroke-width:1px;
+    classDef fixed fill:#f0fdf4,stroke:#16a34a,stroke-width:1px;
+    classDef warn fill:#fef2f2,stroke:#dc2626,stroke-width:1px;
+    class D5 fixed;
+    class Inv2 fixed;
+    class Dev1,Block warn;
+  </div>
+</div>
+
+<script>
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis' } });
+</script>
+
+</body>
+</html>
