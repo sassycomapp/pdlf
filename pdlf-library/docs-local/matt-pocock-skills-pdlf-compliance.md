@@ -14,10 +14,8 @@ updated: "2026-10-12"
 | Skill | Used at | Type | Wrapper or Fat |
 |---|---|---|---|
 | `setup-matt-pocock-skills` | Once per repo, before any other engineering skill | User-invoked | Fat (config generator) |
-| [[[pdlf:app-factory/phase-b-discover-and-define/b16-reference\|Step 16 Domain Modeling]]](C:/pdlf/app-factory/phase-b-discover-and-define/b16-reference.md) | Step 16 (invoked via `/grill-with-docs`) | Model-invoked | Fat, self-contained |
-| [[[pdlf:app-factory/phase-c-design-and-plan/c19-reference\|Step 19 to Tickets]]](C:/pdlf/app-factory/phase-c-design-and-plan/c19-reference.md) | Step 19 | User-invoked | Fat, self-contained |
-| `triage` | Step 39 | User-invoked | Fat, **has an unresolved dependency — see §2** |
-| [[[pdlf:app-factory/phase-e-build-and-verify/e40-reference\|Step 40 Improve Codebase Architecture]]](C:/pdlf/app-factory/phase-e-build-and-verify/e40-reference.md) | Step 40 (optional) | User-invoked | Fat, **has an unresolved dependency — see §2** |
+
+Skills used at a particular step are recorded in that step's config (Steps 16, 19, 39 and 40).
 
 `to-spec`/`to-prd` and `prototype` are correctly removed — no action needed, and their absence doesn't break anything since nothing downstream consumes them. `to-issues` is a stale name for [[[pdlf:app-factory/phase-c-design-and-plan/c19-reference|Step 19 to Tickets]]](C:/pdlf/app-factory/phase-c-design-and-plan/c19-reference.md); fix the artifact governance table.
 
@@ -51,11 +49,7 @@ Confirmed `.scratch/` locations:
 All four in-pipeline skills ([[[pdlf:app-factory/phase-b-discover-and-define/b16-reference|Step 16 Domain Modeling]]](C:/pdlf/app-factory/phase-b-discover-and-define/b16-reference.md), [[[pdlf:app-factory/phase-c-design-and-plan/c19-reference|Step 19 to Tickets]]](C:/pdlf/app-factory/phase-c-design-and-plan/c19-reference.md), `triage`, [[[pdlf:app-factory/phase-e-build-and-verify/e40-reference|Step 40 Improve Codebase Architecture]]](C:/pdlf/app-factory/phase-e-build-and-verify/e40-reference.md)) currently write into the **project-library (docs) repo**, not the code repo. So `setup-matt-pocock-skills` needs to run in exactly two places per project: `pdlf` (for building PDLF itself) and `{project}-project-library` (for all four in-pipeline skills). **The code repo does not need setup run in it** — nothing currently writes Matt Pocock output there. Re-check this if a future skill is added that writes directly into the code repo.
 
 ### B. The `grilling` dependency gap — RESOLVED, no import
-Two of your five in-scope skills have documented branches into the `grilling` interview loop:
-- [[[pdlf:app-factory/phase-e-build-and-verify/e40-reference|Step 40 Improve Codebase Architecture]]](C:/pdlf/app-factory/phase-e-build-and-verify/e40-reference.md) — ends with "...then grill through whichever one you pick."
-- `triage` — independently documented as "categorise, verify, **grill if needed**, and write agent-ready briefs."
-
-Neither `grilling` nor its wrappers (`grill-me`, `grill-with-docs`) will be imported. Tested against the one selection criterion PDLF actually uses — does this fit a real need OpenCode can't already do itself — it fails: PDLF's own execution discipline already has an equivalent mechanism (a step that can't complete presents a deviation request with three options, never deciding unilaterally). **Action: route the "grill if needed" branches in `triage` and [[[pdlf:app-factory/phase-e-build-and-verify/e40-reference|Step 40 Improve Codebase Architecture]]](C:/pdlf/app-factory/phase-e-build-and-verify/e40-reference.md) into PDLF's existing deviation-request flow instead of a Matt Pocock skill.** `grill-with-docs` was considered and rejected specifically — it's user-invoked only (`disable-model-invocation: true`), so it can't fire automatically mid-step in the first place, and it redundantly bundles in [[[pdlf:app-factory/phase-b-discover-and-define/b16-reference|Step 16 Domain Modeling]]](C:/pdlf/app-factory/phase-b-discover-and-define/b16-reference.md), which PDLF already runs standalone at Step 16.
+Held in the build plans of Steps 39 and 40, the steps it concerns.
 
 ### C. Stale table entry — orphaned reference
 This originally pointed to "a separate correction instruction file for the exact edit."
@@ -63,18 +57,8 @@ That file is not present in the current document set. Either it was never delive
 it's been lost. Flagged rather than silently dropped — content of the original correction
 is unknown.
 
-### D. `triage` state-machine duplication — RESOLVED, and now confirmed shipped
-
-**Solution: treat `triage` as a pure computation step feeding the ledger, exactly like Step 38A already does for CI results.** This is not a new pattern — it's the same consolidation precedent your own pipeline already established one step earlier in the same loop.
-
-**Status update:** this proposal is no longer just a recommendation — `triage_findings` is
-a live table in [[[pdlf:pdlf-library/specifications-local/spec-postgres-ledger|Spec: Postgres Ledger]]](C:/pdlf/pdlf-library/specifications-local/spec-postgres-ledger.md)'s current seven-table schema, with exactly the
-columns proposed below. This section is kept for its rationale, not as an open action item.
-
-1. Add a `triage_findings` table to the `pdlf` ledger: one row per finding, scoped to the feature's Step 39 row. Columns: `finding_id`, `source_step` (36/37/38), `triage_label` (Matt's existing five values — `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`; no new vocabulary), `resolution_note`, `resolved_by`, `resolved_at`.
-2. Step 39 runs `triage`, gets its label output in `.scratch/`, and immediately upserts it into `triage_findings`. Per the Step Receipt principle (the receipt IS the ledger row, not a gloss), the triage label IS the `triage_label` column — not a standing file.
-3. The `.scratch/` output is transient computation input, consumed once — same status as raw CI logs at 38A, not treated as authoritative afterward.
-4. `build-verified` gate evaluation becomes a pure ledger query: passes only when every `triage_findings` row for that feature is `wontfix` or has a non-null `resolved_at`. Consistent with principle 3 and with how every other gate in the system is FK-enforced rather than file-checked.
+### D. `triage` state-machine duplication — RESOLVED
+Held in Step 39's build plan, the step it concerns.
 
 ---
 

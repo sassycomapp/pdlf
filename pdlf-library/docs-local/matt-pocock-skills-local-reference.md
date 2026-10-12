@@ -26,12 +26,7 @@ updated: "2026-10-12"
 
 ## PDLF integration points
 
-| PDLF Step | Matt Pocock Skill | Notes |
-|---|---|---|
-| Step 16 | `/grill-with-docs` (using [[[pdlf:app-factory/phase-b-discover-and-define/b16-reference\|Step 16 Domain Modeling]]](C:/pdlf/app-factory/phase-b-discover-and-define/b16-reference.md) internally) | Domain glossary + ADRs, gate `domain-locked` |
-| Step 19 | [[[pdlf:app-factory/phase-c-design-and-plan/c19-reference\|Step 19 to Tickets]]](C:/pdlf/app-factory/phase-c-design-and-plan/c19-reference.md) | Breaks locked plan into tracer-bullet tickets |
-| Step 39 | `triage` | Processes findings from Steps 36–38, gate `build-verified` |
-| Step 40 | [[[pdlf:app-factory/phase-e-build-and-verify/e40-reference\|Step 40 Improve Codebase Architecture]]](C:/pdlf/app-factory/phase-e-build-and-verify/e40-reference.md) | Optional architecture health scan, read-only |
+Each step that uses a Matt Pocock skill records it in its own config: currently Steps 16, 19, 39 and 40.
 
 Previously removed skills: `to-spec` (old Step 13), `prototype` (old Step 25) — removed per the skill-use principle.
 

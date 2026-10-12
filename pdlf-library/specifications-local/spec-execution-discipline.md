@@ -1,7 +1,7 @@
 ---
 title: "spec-execution-discipline"
 doc-id: "mb-913cd6af"
-updated: "2026-10-11"
+updated: "2026-10-12"
 ---
 # PDLF Execution Discipline
 
@@ -99,11 +99,7 @@ with description, options presented, decision, and timestamp. The developer deci
 
 ## Synthesized Flag Propagation
 
-When a project is in `test` mode, Step 20 is eligible for abbreviation. If the
-developer chooses an abbreviated or skipped run, the step's `synthesized` flag is set to
-`true` (abbreviated) or the step's `status` is set to `"skipped"` in the ledger.
-Step 12 is a simple yes/no decision gate — not test-mode-eligible. See
-`[[step-conditional-state-policy]]` for the full state definitions.
+Which steps may be abbreviated in `test` mode, and how, is stated in each step's own build plan. An abbreviated run sets the step's `synthesized` flag to `true`; a skipped run sets its `status` to `"skipped"` in the ledger.
 
 **Downstream propagation:** Before invoking any step, the agent checks whether any of the
 step numbers listed in that step's `inputs_used` correspond to a ledger row with

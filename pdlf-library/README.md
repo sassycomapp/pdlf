@@ -26,7 +26,7 @@ The PDLF library holds the shared machinery every module in `app-factory/` relie
 
 - `app-factory/pdlf-build-plan.md`: the blueprint for building PDLF.
 - `docs-local/pdlf-built-report.md`: what has been built.
-- `docs-local/orchestrator-run-plan.md`: the order the orchestrator runs the steps.
+- `app-factory/phase-a-init/a01-build-plan.md`: Step 1's build plan, which holds the order the orchestrator runs the steps.
 
 ## Finding documents
 

@@ -1,7 +1,7 @@
 ---
 title: "pol-anvil-platform"
 doc-id: "mb-f219a912"
-updated: "2026-10-10"
+updated: "2026-10-12"
 ---
 # PDLF Policy — Anvil Platform
 
@@ -61,9 +61,7 @@ The code repository is pulled to local after every step where work was done in t
 
 | Pull | After |
 |---|---|
-| Step 18 | Data tables created in Anvil at Step 17. |
-| Step 30 | UI forms built in Anvil at Step 29. |
-| Step 33 | The scaffold built in Anvil at Step 32. |
+| Each step that works in the Anvil editor | The pull named in that step's own build plan. |
 | Each feature cycle | The feature's connected test, run against Anvil. |
 
 ---
@@ -76,4 +74,4 @@ These are Anvil's own mechanics. Anvil publishes from a Git branch, manages its 
 
 ## Where
 
-Every step that touches an Anvil application. Steps 42 to 44 still model a staging and production split that Anvil, under the five-app structure, does not have; they are rebuilt around the `develop` → `stable` release in steps work. The reasoning is in [[[pdlf:pdlf-library/adr-local/no-staging-environment-five-app-isolation|ADR: No Staging Environment Five App Isolation]]](C:/pdlf/pdlf-library/adr-local/no-staging-environment-five-app-isolation.md).
+Every step that touches an Anvil application.

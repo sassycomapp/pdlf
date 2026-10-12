@@ -155,8 +155,8 @@ PDLF builds for Anvil.works only. The rules are in [[[pdlf:pdlf-library/policy-l
 |---|---|
 | What PDLF is for | [[[pdlf:app-factory/pdlf-build-plan\|PDLF Build Plan]]](C:/pdlf/app-factory/pdlf-build-plan.md) |
 | The modules | [[[pdlf:pdlf-library/pdlf-explainer-docs/app-factory-explainer\|App Factory Explainer]]](C:/pdlf/pdlf-library/pdlf-explainer-docs/app-factory-explainer.md) |
-| The orchestrator | [[[pdlf:pdlf-library/pdlf-explainer-docs/orchestrator-agent-explainer\|Orchestrator Agent Explainer]]](C:/pdlf/pdlf-library/pdlf-explainer-docs/orchestrator-agent-explainer.md) |
-| Step order | [[[pdlf:pdlf-library/docs-local/orchestrator-run-plan\|Run Plan]]](C:/pdlf/pdlf-library/docs-local/orchestrator-run-plan.md) |
+| The orchestrator | [[[pdlf:app-factory/phase-a-init/a01-explainer\|Orchestrator Agent Explainer]]](C:/pdlf/app-factory/phase-a-init/a01-explainer.md) |
+| Step order | [[[pdlf:app-factory/phase-a-init/a01-build-plan\|Run Plan]]](C:/pdlf/app-factory/phase-a-init/a01-build-plan.md) |
 | What each step is | [[[pdlf:pdlf-library/docs-local/pdlf-built-report\|Step Mapping]]](C:/pdlf/pdlf-library/docs-local/pdlf-built-report.md) |
 | The binding rules | [[[pdlf:pdlf-library/policy-local/pol-index\|Policy Index]]](C:/pdlf/pdlf-library/policy-local/pol-INDEX.md) |
 | The execution sequence in detail | [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline\|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md) |

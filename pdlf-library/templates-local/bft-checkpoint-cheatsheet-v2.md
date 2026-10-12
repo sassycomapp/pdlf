@@ -1,7 +1,7 @@
 ---
 title: "bft-checkpoint-cheatsheet-v2"
 doc-id: "mb-a25e8e8d"
-updated: "2026-10-11"
+updated: "2026-10-12"
 ---
 # BFT Checkpoint — Cheat Sheet v2
 
@@ -99,68 +99,7 @@ Two questions:
 
 ## Step → BFT Level Mapping
 
-### Phase B — Discover & Define (Steps 11–16)
-
-| Step | Name | Type | BFT | Rationale |
-|---|---|---|---|---|
-| 11 | Init | OpenCode | **Full** | Creates project structure, ledger, registry entry — architectural foundation decisions |
-| 12 | /office-hours | Skill (conditional) | **Full** | Six-question product interview shapes everything that follows |
-| 14 | /plan-ceo-review | Skill | **Full** | Scope and ambition review — strategic decisions |
-| 15 | /plan-eng-review | Skill | **Full** | Architecture, data flow, edge cases — technical decisions |
-| 16 | /grill-with-docs (domain-modeling) | Skill + GATE | **Full** | Domain glossary + ADRs lock the data model. GATE `domain-locked` — full BFT mandatory |
-
-### Phase C — Design & Plan (Steps 17–28)
-
-| Step | Name | Type | BFT | Rationale |
-|---|---|---|---|---|
-| 17 | Create Anvil data tables | Manual | **Light** | Schema is already locked by ADRs from step 16. Build follows blueprint. |
-| 18 | Pull to local | Manual | **None** | Pure mechanical `git pull`. Zero judgment. |
-| 19 | to-tickets | Skill | **Full** | Decomposing locked plan into dependency-ordered tracer-bullet tickets — decomposition decisions |
-| 20 | /design-consultation | Skill | **Full** | Creates full design system — aesthetic, colour, typography, spacing, motion decisions |
-| 21 | Concept sanity audit | Gate (OpenCode) | **Full** | GATE `concept-locked`. Cross-references plan, CEO, Eng, domain model, DESIGN.md for contradictions. Scope freeze. |
-| 22 | wireframe Phase 1 | Tool | **Full** | Generates 5 UX approaches — design direction decisions |
-| 23 | /plan-design-review | Skill | **Full** | Rates design dimensions 0–10, identifies gaps — design review decisions |
-| 24 | /plan-devex-review | Skill | **Full** | API/CLI/SDK friction analysis — DX strategy decisions |
-| 26 | wireframe Phase 2 | Tool + GATE | **Full** | Final polished colour variants. GATE `wireframes-approved` — full BFT mandatory |
-| 27 | Screen Production | OpenCode | **Full** | Screen HTML from wireframes — visual fidelity decisions, two-stage compliance check |
-| 28 | Screen → PNG | External tool | **None** | Pure mechanical HTML-to-PNG conversion. Zero judgment. |
-
-### Phase D — Scaffold & Assemble (Steps 29–34)
-
-| Step | Name | Type | BFT | Rationale |
-|---|---|---|---|---|
-| 29 | Build UI forms (Anvil IDE) | Manual | **Light** | Anvil AI builds UI from approved screens. Design locked at step 21/26. Developer guides, not designs. |
-| 30 | Pull to local | Manual | **None** | Pure mechanical `git pull`. Zero judgment. |
-| 31 | Scaffold planning | OpenCode | **Full** | Plans module/function structure — structural architecture decisions |
-| 32 | Physical scaffold build | Manual | **Light** | Creates empty stubs following step 31's plan. Implementation, not design. |
-| 33 | Pull to local | Manual | **None** | Pure mechanical `git pull`. Zero judgment. |
-| 34 | Architectural sanity audit | Gate (OpenCode) | **Full** | GATE `architecture-verified`. Confirms physical Anvil build matches locked architecture. |
-
-### Phase E — Build & Verify (Steps 35–40)
-
-| Step | Name | Type | BFT | Rationale |
-|---|---|---|---|---|
-| 35.N | Build feature N | Agent loop (each issue) | **Full** | Writes production code — every feature cycle has logic, integration, and verification decisions |
-| 35A | Testing (local pip-audit + broader) | OpenCode | **Light** | Dev/test-tooling dependency scan + coverage — mechanical execution of a locked test plan, not a design decision |
-| 40 | improve-codebase-architecture | Skill (optional, per feature cycle) | **Light** | Read-only report, no code touched, no gate here (moved to 39 — see [[[pdlf:pdlf-library/adr-local/two-gate-extension]]](C:/pdlf/pdlf-library/adr-local/two-gate-extension.md)). Optional recommendation, not a judgment-heavy step in itself. |
-| 40B | Remediation | OpenCode (conditional) | **Light** | Applies only developer-approved fixes from Step 40 — scoped execution, not open design |
-| 36 | /design-review | Skill | **Full** | Live-site visual audit, post-remediation retest — design quality decisions |
-| 37 | /review | Skill | **Full** | Pre-landing code review — structural quality decisions |
-| 38 | /qa | Skill | **Full** | Systematic QA testing + bug fixing — quality and regression decisions |
-| 38A | Dependency scan confirm | OpenCode (per feature cycle) | **None** | Records Anvil's own native pip-audit result — capture only, no judgment |
-| 39 | triage | Skill + GATE | **Full** | Labels, comments, issue-tracker updates from Steps 37–38 findings. GATE `build-verified` fires here (moved from Step 40 — [[[pdlf:pdlf-library/adr-local/two-gate-extension]]](C:/pdlf/pdlf-library/adr-local/two-gate-extension.md)) — full BFT mandatory regardless of the table's usual Light assignment for triage-type work. |
-
-### Phase F — Ship & Monitor (Steps 41–46)
-
-| Step | Name | Type | BFT | Rationale |
-|---|---|---|---|---|
-| 41 | /ship (scope narrowed) | Skill | **Light** | Version bump, CHANGELOG, commit, push. Mostly mechanical but CHANGELOG writing has judgment. |
-| 42 | Publish to Staging | Manual | **None** | Click "Publish" in Anvil IDE. Zero judgment. |
-| 42A | Staging integration/E2E | Skill/OpenCode | **Light** | Full integration/E2E suite against staging — executes a locked test plan, not a design decision |
-| 43 | /qa or /canary at Staging | Skill | **Full** | Smoke test against live Staging — verification decisions before production promotion |
-| 44 | Promote to Production | Manual + GATE | **Full** | GATE `production-released`. Commits the app to real users. Full BFT mandatory. |
-| 45 | /canary at Production | Skill | **Full** | Post-deploy monitoring loop — production health decisions |
-| 46 | LEARN junction | OpenCode + GATE | **Full** | Retrospective, learnings, ISA update. GATE `released` (jointly with 45). Full BFT — last checkpoint of the cycle. |
+Each step's BFT level, with its reason, is recorded in that step's config (`{letter}{number}-config.md`).
 
 ---
 

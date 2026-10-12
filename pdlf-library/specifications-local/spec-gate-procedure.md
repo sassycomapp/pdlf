@@ -1,7 +1,7 @@
 ---
 title: "spec-gate-procedure"
 doc-id: "mb-e1c94b00"
-updated: "2026-10-10"
+updated: "2026-10-12"
 ---
 # PDLF Gate Procedure
 
@@ -67,15 +67,7 @@ The agent does not proceed past a gate without explicit approval:
 
 ## The Seven Gates
 
-| Gate | After Step | What is Locked |
-|---|---|---|
-| `domain-locked` | 16 | Domain model locked, PRD reviewed, ADRs written. No new terms without formal reopening. |
-| `concept-locked` | 21 | Full concept coherence audit passed. Scope frozen. No new feature may be added without formally reopening this gate. |
-| `wireframes-approved` | 26 | Wireframes approved, design system complete. Visual direction locked. |
-| `architecture-verified` | 34 | Data tables, UI forms, and scaffolding confirmed to match the locked architecture. No code-writing begins without this gate passing. |
-| `build-verified` | 39 | Build complete, architecture scan and any developer-approved remediation applied and retested, design review done, code review done, QA passed, triage complete for this feature cycle. Evaluated once per feature — the pipeline does not advance to Step 41 until every feature has individually passed this gate. Features are known-good baselines. |
-| `production-released` | 44 | Staging smoke test passed, same commit promoted to Production, databases confirmed separate. App is live. |
-| `released` | 45 + 46 | Production deployed, initial canary passed, LEARN complete, ISA Verification/Changelog updated. Cycle closed. |
+Each gate, the step it follows and what it locks are recorded in that step's config (`{letter}{number}-config.md`). The gates currently sit after Steps 16, 21, 26, 34, 39, 44 and 45 with 46.
 
 ---
 

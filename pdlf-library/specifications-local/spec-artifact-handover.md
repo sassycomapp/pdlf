@@ -1,7 +1,7 @@
 ---
 title: "pdlf-spec-artifact-handover"
 doc-id: "mb-f1745959"
-updated: "2026-10-10"
+updated: "2026-10-12"
 ---
 # PDLF — Artifact and Handover Specification
 
@@ -173,7 +173,6 @@ proceed, never an assumption that the skill "probably wrote it."
 
 | # | Item | Status |
 |---|---|---|
-| 1 | Built steps 14–15: legacy `gstack-outputs\` folder name; missing `{slug}-` copy prefix; stale quote of an older skill generation's `~/.claude` path in Step 14's description (current skill source verified clean 2026-09-11) | Correction tracked — master task list, item 18 |
 | 2 | End-to-end live verification of the chain (one governed skill run: slug stability, native save, safety-net copy) never performed on the current install | Open — master task list, item 17 |
 | 3 | GStack pinned at 1.58.1.0; upstream at 1.81.0.0 (23 minor versions behind). Upstream fixes may change save behavior | Watched — version upgrade is a separate decision |
 | 4 | Slug cache never reconciles against the git remote; stale entries possible (observed on a placeholder project; heal tracked) | Watched — heal rule in [[[default:specifications-global/spec-nomenclature]]](C:/dev/project-library-global/specifications-global/spec-nomenclature.md) |

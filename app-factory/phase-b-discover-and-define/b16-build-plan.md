@@ -146,3 +146,80 @@ modes. No separate check needed in Step 16 itself.
    gate procedure may begin — no row, no gate, a deviation request instead. Items 9
    through 15 renumbered from the prior 8 through 14 as a result; one further stale
    cross-reference ("asked at item 14") corrected to item 15.
+
+## From `pdlf-build-plan.md`: step entry
+
+### Phase B — Discover and Define
+
+Ends with the gate `domain-locked` (Step 16).
+
+#### Step 16: Domain modeling
+
+**Must achieve:** the application's vocabulary fixed, so that a term means the same thing in every later step, and the decisions that are hard to reverse recorded, before Phase C builds on them.
+
+**Starts from:** Step 15's plan and test plan; for an existing application, its existing `CONTEXT.md`, decision records and code, marked as prior material.
+
+**Produces:** `CONTEXT.md` (the glossary) and any decision records in `adr-local\`, in the documentation repository.
+
+**Carried out by:** Matt Pocock `/grill-with-docs`, which runs a `/grilling` interview using `/domain-modeling`.
+
+**Must be built so that:**
+- the skill is told the project's own file locations, in place of its defaults;
+- the interview settles one decision at a time, gives a recommended answer and waits for the developer; each settled term is written to `CONTEXT.md` at once, as a glossary only, with no implementation detail;
+- a decision record is offered only for a decision that is hard to reverse, surprising without context and the result of a real trade-off;
+- for an existing application, what the documents say is checked against the code, and contradictions are shown to the developer;
+- the security review `mb-sentinel-review` checks for sensitive data or security-relevant entities before the gate; a finding stops the step and goes to the developer; the review's record in the ledger is checked, so that its run is proven, not assumed.
+
+**BFT level:** Full (gate).
+
+**Gate:** `domain-locked`: the vocabulary and decisions are locked; no new terms without reopening the gate.
+
+**References:** [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md).
+
+## From `pdlf-phase-b-review.md`: findings for this step
+
+## Purpose
+
+This document reviews Phase B of PDLF (Steps 11, 12, 14, 15 and 16) as a case study, before Phases C to F are built. It looks at what was done wrong, what could have been done better, how Phase B should be corrected, and how the method should change for Phase C. It judges Phase B against `pdlf-intent.md`, against the principles of mybizz-os, and against the skills catalogue. It is not a plan for Phase C.
+
+The evidence is the five step files, their build notes and decision trees, the build plan, the built report, the old `workflow.md`, the old step mapping, and `skills-catalog.md`.
+
+## 1. What we did wrong
+
+**1.1 We built the steps before we had stated the intent.** The order was step file first, build notes second and intent last. Every step therefore carries assumptions that the intent later reversed: housekeeping questions at the end of every step, a ledger with six tables, a project registry and a project inventory that no longer exist, makePDLF paths and prefixes, the devlog and judgement trail, and the old rule "use a skill only when it beats OpenCode". None of these were careless; they were right when written and became wrong when the intent was settled. The cost is that all five steps now need repair before they can be packaged.
+
+**1.2 We called the steps "built" without ever running them.** Not one of the five steps has been run against a real application. Several open questions can only be answered by a run: whether `/plan-eng-review` finds "the active plan file" inside OpenCode, where `TODOS.md` belongs, and whether the statement that "a design doc already exists" really stops GStack from re-offering `/office-hours`. mybizz-os's own principle is "present is not working, and completed is not worked". By that principle, Phase B is designed, not built.
+
+**1.3 Each step repeats the rules that apply to every step.** Every step file spells out, in its own words, the GBrain search, the ledger row, the Step Receipt, the BFT, the two housekeeping questions and a five-action memory sequence. The same rule is written five times, slightly differently each time, so one change (such as moving close-out to `/mb-close-out`) has to be made in five places and is easily missed in one. This breaks "one fact, one home".
+
+**1.4 Each step ran its own memory and dream cycle.** The housekeeping asked, at every step, to run `gbrain dream` and `gbrain eval suspected-contradictions`. In mybizz-os, the dream cycle is a long, heavy process run on Sundays after the diagnostic, with a manual review afterwards. Running it after every step would have cost hours across a build and buried the developer in reviews. The intent's close-out rule replaces this.
+
+**1.5 We wrapped outside skills without first reading them.** Three steps were designed from a skill's name or summary and were wrong: Step 15 assumed five architecture documents that the skill never produces; Step 16 invoked `/domain-modeling`, which cannot run on its own; and Step 14 used the wrong GStack save path. Each mistake was caught later, by reading the skill's source, and written down as a lesson in the build notes, three times over. The lesson was never turned into a rule before the next step was designed.
+
+**1.6 Lessons went into build notes, where nobody reads them.** Each step's build notes end with "Learnings". The intent says a lesson is written into the source that the next build reads. The build notes are not that source: they are history. The lessons from Phase B ("read the skill's source first", "paste context into the skill, because it does not read our folders", "state file destinations explicitly") belong in the build plan's rules.
+
+**1.7 Anvil and our own standards are almost absent from Phase B.** The intent's second success criterion is that Anvil's standards are applied throughout. Phase B locks the architecture (Step 15) and the domain model (Step 16) without once using Anvil's own skills. The catalogue's Anvil skill `data-models` says it should be used "before choosing an architecture for persisted domain data", which is exactly what Steps 15 and 16 do. Likewise, the only use of `project-library-global` is a vague "local/global conflict check"; no step names which standard it applies.
+
+**1.9 One step improvises where a skill exists.** Step 12 tells OpenCode to "query the developer diligently" until the scope is clear. The catalogue has a skill for exactly that, `grilling` (and `grill-me`), which Step 16 already uses. Under the intent's rule that skills take precedence, Step 12 should use it.
+
+## 2. What we could have done better
+
+**2.1 Too many documents per step.** Each step has a step file, build notes and a decision tree, and was also described in `workflow.md` and the step mapping. That is five places for one step, and they drifted apart. The decision trees are hand-written pictures of the step's action list, so they are a second copy of it. One step file, one build-plan entry and one built-report entry are enough.
+
+**2.4 The biggest commitments in Phase B are not gated.** Phase B's only gate is at Step 16. Yet the concept (Step 12) and the scope (Step 14) are the commitments everything else rests on. They are approved inside their steps, but not as gates, and the concept is only locked formally at Step 21.
+
+**2.5 Skill choices were made step by step, not from the catalogue.** Each step picked the skill that came to mind. The catalogue was never read as a whole to ask: which installed skill best serves this step, and which skill is installed but unused?
+
+## 3. How Phase B should be corrected
+
+1. **Bring all five steps into line with the intent's rules:** close-out by `/mb-close-out`, the agent never commits, seven ledger tables, no registry or inventory, artifact copies to `C:\pdlf\output\`, no devlog or judgement trail, skills take precedence.
+
+2. **Remove the repeated rules from the step files.** Each step file states only what is particular to it and points to the rules every step follows.
+
+3. **Give every skill a standard context pack** at invocation: the five-app structure, the no-multi-tenancy decision, the Material 3 design standard, and the `project-library-global` standards the step applies.
+
+4. **Add Anvil's `data-models` skill to Steps 15 and 16,** where the architecture and the domain model are fixed.
+
+9. **Run Phase B on the test application** (the Daily Intentions Tracker in `mb5pdlf`), answer the open questions from the run, and only then record the steps as finished.
+
+10. **Move the lessons out of the build notes** into the build plan's rules, then retire the build notes and decision trees.

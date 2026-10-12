@@ -70,7 +70,7 @@ Section 3 Execution, below. Item 3.5 is a document-grep and stays with Claude.
 | # | Check | Method |
 |---|---|---|
 | 3.1 | All seven tables exist: `projects`, `steps`, `gates`, `deviations`, `bft_records`, `isc`, `triage_findings` | `\dt` or equivalent against the live database |
-| 3.2 | Sequencing is enforced by the orchestrator against [[[pdlf:pdlf-library/docs-local/orchestrator-run-plan\|Run Plan]]](C:/pdlf/pdlf-library/docs-local/orchestrator-run-plan.md)'s dependency table, not by a database FK — confirmed 2026-07-18 there is no inter-step constraint at the schema level, by design. Verify OpenCode actually checks dependencies before writing a step's ledger row | Attempt a real or simulated out-of-order step invocation through the normal PDLF flow (not a raw insert); confirm OpenCode blocks or flags it before writing |
+| 3.2 | Sequencing is enforced by the orchestrator against [[[pdlf:app-factory/phase-a-init/a01-build-plan\|Run Plan]]](C:/pdlf/app-factory/phase-a-init/a01-build-plan.md)'s dependency table, not by a database FK — confirmed 2026-07-18 there is no inter-step constraint at the schema level, by design. Verify OpenCode actually checks dependencies before writing a step's ledger row | Attempt a real or simulated out-of-order step invocation through the normal PDLF flow (not a raw insert); confirm OpenCode blocks or flags it before writing |
 | 3.3 | `build-verified`'s `triage_findings` query returns correct pass/fail | Seed a feature's findings with a mix of `wontfix`/resolved/open rows; confirm the gate query matches [[[pdlf:pdlf-library/specifications-local/spec-postgres-ledger\|Spec: Postgres Ledger]]](C:/pdlf/pdlf-library/specifications-local/spec-postgres-ledger.md)'s stated logic exactly |
 | 3.4 | `deviations` captures description, options presented, and decision correctly | Trigger a real or seeded deviation; confirm all three fields are populated, not just the decision |
 | 3.5 | No document anywhere states a table count other than seven | Grep the live document set for "six tables" — this exact error has recurred three times already this session |
@@ -98,7 +98,7 @@ per your explicit instruction — not a one-time pass.
 | 5.3 | No dead references to retired or non-existent files | Cross-check every file path cited in every document against what actually exists |
 | 5.4 | Naming matches [[[default:specifications-global/spec-nomenclature\|Spec: Nomenclature]]](C:/dev/project-library-global/specifications-global/spec-nomenclature.md) | Check filenames against its Stepwise File Naming and Repo & Path Conventions tables |
 | 5.5 | No document describes a retired mechanism as current | Check for the disposition-audit model, Steps 2–3, `to-prd`/`to-spec` as live, the old staging/production model — the recurring classes of staleness found this session |
-| 5.6 | Cross-references are bidirectional where the relationship warrants it | Check that a file frequently pointed to also points back where useful (e.g. [[[pdlf:pdlf-library/docs-local/orchestrator-run-plan\|Run Plan]]](C:/pdlf/pdlf-library/docs-local/orchestrator-run-plan.md) ↔ [[[pdlf:pdlf-library/docs-local/pdlf-built-report\|Step Mapping]]](C:/pdlf/pdlf-library/docs-local/pdlf-built-report.md)) |
+| 5.6 | Cross-references are bidirectional where the relationship warrants it | Check that a file frequently pointed to also points back where useful (e.g. [[[pdlf:app-factory/phase-a-init/a01-build-plan\|Run Plan]]](C:/pdlf/app-factory/phase-a-init/a01-build-plan.md) ↔ [[[pdlf:pdlf-library/docs-local/pdlf-built-report\|Step Mapping]]](C:/pdlf/pdlf-library/docs-local/pdlf-built-report.md)) |
 
 ## 6. Deviation Mechanism
 
@@ -127,7 +127,7 @@ a real project's rows.
 
 2. **Check 3.2, corrected 2026-07-18:** No inter-step FK exists at the database level, by
    design — confirmed via live test, see [[[pdlf:pdlf-library/specifications-local/spec-postgres-ledger|Spec: Postgres Ledger]]](C:/pdlf/pdlf-library/specifications-local/spec-postgres-ledger.md) Principle 2. This check
-   no longer tests a raw insert. Instead: confirm [[[pdlf:pdlf-library/docs-local/orchestrator-run-plan|Run Plan]]](C:/pdlf/pdlf-library/docs-local/orchestrator-run-plan.md)'s Step Dependencies table
+   no longer tests a raw insert. Instead: confirm [[[pdlf:app-factory/phase-a-init/a01-build-plan|Run Plan]]](C:/pdlf/app-factory/phase-a-init/a01-build-plan.md)'s Step Dependencies table
    is the sole enforcement mechanism, and that no step file's own procedure attempts to
    write a ledger row without first consulting it. This is a documentation/procedure check,
    not a database check — reassign to Section 5 (Documentation Consistency) on this

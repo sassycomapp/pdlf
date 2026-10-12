@@ -89,12 +89,6 @@ pass. This requirement exists because GStack's own repository states that its sk
 claimed persistence behavior is unverified even by the maintainer — it cannot be relied on
 without an explicit check.
 
-### Code review and QA (Steps 36–38)
-
-Every feature cycle goes through `/design-review` (visual), `/review` (structural), and [[[pdlf:app-factory/phase-e-build-and-verify/e38-reference|/qa]]](C:/pdlf/app-factory/phase-e-build-and-verify/e38-reference.md)
-(functional + regression) before its `build-verified` gate. These are GStack skills — they
-drive a headless browser for live-site testing, which OpenCode cannot do directly.
-
 ---
 
 ## Why

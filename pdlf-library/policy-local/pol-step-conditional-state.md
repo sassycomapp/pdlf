@@ -38,32 +38,7 @@ values and downstream propagation.
 
 ## Step Eligibility
 
-### Step 12 — /office-hours (conditional, NOT test-mode-eligible)
-
-Step 12 is a simple yes/no decision gate. The developer chooses:
-
-- **Yes:** Run [[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md) → `status = "complete"`, `synthesized = false`.
-  Design doc produced by [[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md).
-- **No:** OpenCode synthesizes a design doc from the pre-project documents →
-  `status = "complete"`, `synthesized = true`. Design doc produced by OpenCode.
-
-Step 12 always produces a design document. The `synthesized` flag indicates
-whether it came from [[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md) or from OpenCode's synthesis. There is no
-`skipped` state for Step 12 — the step always completes with an artifact.
-
-There is no abbreviation offer for Step 12. The developer either runs the full
-skill or OpenCode synthesizes from the pre-project docs.
-
-### Step 20 — /design-consultation (test-mode-eligible)
-
-Step 20 offers abbreviation when `projects.mode = "test"`:
-
-- **Full:** Run complete [[[pdlf:app-factory/phase-c-design-and-plan/c20-reference|/design-consultation]]](C:/pdlf/app-factory/phase-c-design-and-plan/c20-reference.md) → `status = "complete"`, `synthesized = false`
-- **Abbreviated:** Run collapsed version → `status = "complete"`, `synthesized = true`
-- **Skip:** Developer declines entirely → `status = "skipped"`, `synthesized = false`
-
-In full mode, the abbreviation offer is never presented. Step 20 runs fully or
-is skipped.
+Which steps are conditional, and how each behaves, is stated in that step's own build plan (currently Steps 12 and 20).
 
 ---
 
@@ -89,9 +64,6 @@ full propagation mechanism.
 In full mode (`projects.mode = "full"`):
 
 - Abbreviation offers are never presented
-- Step 12: yes/no gate still applies (developer can decline [[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md) and OpenCode synthesizes)
-- Step 20: runs fully or is skipped (if conditional)
-- The `synthesized` flag can still be set for Step 12 (OpenCode synthesis when [[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md) declined)
 
 ---
 

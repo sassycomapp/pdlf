@@ -268,3 +268,70 @@ reference to a "the retired `spec-execution-discipline-build-notes.md`" was to a
 mis-categorized and later retired — the rule was properly relocated into that policy,
 not left as a standalone note). That policy can now use this file's `project-inventory.md`
 integration as the authoritative lookup for exact GBrain source names.
+
+## From `pdlf-build-plan.md`: step entry
+
+### Phase B — Discover and Define
+
+Ends with the gate `domain-locked` (Step 16).
+
+#### Step 11: Init
+
+**Must achieve:** a sound foundation for the application: its code and documentation repositories exist, are linked to GitHub and registered in GBrain, the documentation repository has the standard folder structure, and the application has its record in the ledger. Works for a new application and for an existing one.
+
+**Starts from:** the developer's answers (new or existing; the slug; the GitHub repository addresses, and for an existing application the local paths); the project template at `C:\dev\project-template\dev-(SLUG)\`; the ledger.
+
+**Produces:** the code repository `dev-{slug}\{slug}\` and the documentation repository `dev-{slug}\{slug}-project-library\`, both linked to GitHub; their GBrain sources, `{slug}` and `{slug}-code`; the `projects` row in the ledger; for a new application, the three pre-project files in `pre-project\`.
+
+**Carried out by:** OpenCode.
+
+**Must be built so that:**
+- it asks first whether the application is new or existing, and runs one procedure for both, differing only in how the repositories are obtained and checked;
+- the code repository always comes from Anvil, which creates it when the app is created; the agent never creates it, and asks the developer to create the app first if there is no address yet;
+- the documentation repository is created on GitHub only with the developer's permission;
+- for an existing application, only genuinely missing folders are created, nothing existing is changed, and broken links or registrations are corrected only with permission;
+- global reference files are never copied into the project; they are referenced where they live;
+- it checks the ledger is reachable with all seven tables, and that `project-library-global` is registered in GBrain;
+- it ends with a self-audit that reports any error and corrects nothing without permission.
+
+**BFT level:** Full.
+
+**References:** [[[pdlf:pdlf-library/specifications-local/spec-postgres-ledger|Spec: Postgres Ledger]]](C:/pdlf/pdlf-library/specifications-local/spec-postgres-ledger.md), [[[default:specifications-global/spec-five-app-architecture-model|Five-App Architecture Model]]](C:/dev/project-library-global/specifications-global/spec-five-app-architecture-model.md).
+
+## From `pdlf-phase-b-review.md`: findings for this step
+
+## Purpose
+
+This document reviews Phase B of PDLF (Steps 11, 12, 14, 15 and 16) as a case study, before Phases C to F are built. It looks at what was done wrong, what could have been done better, how Phase B should be corrected, and how the method should change for Phase C. It judges Phase B against `pdlf-intent.md`, against the principles of mybizz-os, and against the skills catalogue. It is not a plan for Phase C.
+
+The evidence is the five step files, their build notes and decision trees, the build plan, the built report, the old `workflow.md`, the old step mapping, and `skills-catalog.md`.
+
+## 1. What we did wrong
+
+**1.1 We built the steps before we had stated the intent.** The order was step file first, build notes second and intent last. Every step therefore carries assumptions that the intent later reversed: housekeeping questions at the end of every step, a ledger with six tables, a project registry and a project inventory that no longer exist, makePDLF paths and prefixes, the devlog and judgement trail, and the old rule "use a skill only when it beats OpenCode". None of these were careless; they were right when written and became wrong when the intent was settled. The cost is that all five steps now need repair before they can be packaged.
+
+**1.2 We called the steps "built" without ever running them.** Not one of the five steps has been run against a real application. Several open questions can only be answered by a run: whether `/plan-eng-review` finds "the active plan file" inside OpenCode, where `TODOS.md` belongs, and whether the statement that "a design doc already exists" really stops GStack from re-offering `/office-hours`. mybizz-os's own principle is "present is not working, and completed is not worked". By that principle, Phase B is designed, not built.
+
+**1.3 Each step repeats the rules that apply to every step.** Every step file spells out, in its own words, the GBrain search, the ledger row, the Step Receipt, the BFT, the two housekeeping questions and a five-action memory sequence. The same rule is written five times, slightly differently each time, so one change (such as moving close-out to `/mb-close-out`) has to be made in five places and is easily missed in one. This breaks "one fact, one home".
+
+**1.4 Each step ran its own memory and dream cycle.** The housekeeping asked, at every step, to run `gbrain dream` and `gbrain eval suspected-contradictions`. In mybizz-os, the dream cycle is a long, heavy process run on Sundays after the diagnostic, with a manual review afterwards. Running it after every step would have cost hours across a build and buried the developer in reviews. The intent's close-out rule replaces this.
+
+**1.6 Lessons went into build notes, where nobody reads them.** Each step's build notes end with "Learnings". The intent says a lesson is written into the source that the next build reads. The build notes are not that source: they are history. The lessons from Phase B ("read the skill's source first", "paste context into the skill, because it does not read our folders", "state file destinations explicitly") belong in the build plan's rules.
+
+## 2. What we could have done better
+
+**2.1 Too many documents per step.** Each step has a step file, build notes and a decision tree, and was also described in `workflow.md` and the step mapping. That is five places for one step, and they drifted apart. The decision trees are hand-written pictures of the step's action list, so they are a second copy of it. One step file, one build-plan entry and one built-report entry are enough.
+
+**2.5 Skill choices were made step by step, not from the catalogue.** Each step picked the skill that came to mind. The catalogue was never read as a whole to ask: which installed skill best serves this step, and which skill is installed but unused?
+
+## 3. How Phase B should be corrected
+
+1. **Bring all five steps into line with the intent's rules:** close-out by `/mb-close-out`, the agent never commits, seven ledger tables, no registry or inventory, artifact copies to `C:\pdlf\output\`, no devlog or judgement trail, skills take precedence.
+
+2. **Remove the repeated rules from the step files.** Each step file states only what is particular to it and points to the rules every step follows.
+
+3. **Give every skill a standard context pack** at invocation: the five-app structure, the no-multi-tenancy decision, the Material 3 design standard, and the `project-library-global` standards the step applies.
+
+9. **Run Phase B on the test application** (the Daily Intentions Tracker in `mb5pdlf`), answer the open questions from the run, and only then record the steps as finished.
+
+10. **Move the lessons out of the build notes** into the build plan's rules, then retire the build notes and decision trees.

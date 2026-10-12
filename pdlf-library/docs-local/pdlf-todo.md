@@ -1,7 +1,7 @@
 ---
 title: "pdlf-todo"
 doc-id: "mb-13a3fbc9"
-updated: "2026-10-11"
+updated: "2026-10-12"
 ---
 # Active PDLF To-Do List
 
@@ -21,7 +21,7 @@ Steps 17–46 (excluding 42/42A/43/44, see A2) are audited and rebuilt one at a 
 
 ### A2. Rebuild Steps 42, 42A, 43, 44
 
-These steps currently model a staging/production environment split that does not apply to this platform. Rebuild them around the actual publishing mechanism: a `develop` → `stable` GitHub merge, performed by the operator, outside PDLF's own pipeline. See [[[pdlf:pdlf-library/adr-local/no-staging-environment-five-app-isolation|ADR No Staging Environment Five App Isolation]]](C:/pdlf/pdlf-library/adr-local/no-staging-environment-five-app-isolation.md) for full reasoning. Deferred to Phase F.
+Held in the build plans of Steps 42, 42A, 43 and 44.
 
 ---
 
@@ -68,15 +68,7 @@ The final, real end-to-end proof that the governed memory pipeline works togethe
 
 ### C1. Integrate Suite A and Suite B into Steps 35A, 36, 37, 38, 39, and relook the testing suite
 
-Both testing checklists ([[[pdlf:pdlf-library/templates-local/chk-pdlf-self-test|Chk Pdlf Self Test]]](C:/pdlf/pdlf-library/templates-local/chk-pdlf-self-test.md) exists; the earlier
-`chk-anvil-app-testing.md` was retired and is no longer on disk anywhere —
-verified 2026-09-18) are referenced from [[[pdlf:pdlf-library/policy-local/pol-testing-and-quality|pol-testing-and-quality]]](C:/pdlf/pdlf-library/policy-local/pol-testing-and-quality.md), but
-their checks are not yet built into the actual step files that do
-testing work. Deferred to Phase E, when those step files are rebuilt.
-
-The testing suite implemented in PDLF is to be relooked at the same time, not separately. Real, preserved seed material exists from an earlier MB-3-CS testing iteration (test taxonomy, a working Anvil-context test technique, real Anvil/M3-specific pass/fail criteria) — see [[[pdlf:pdlf-library/docs-local/pdlf-testing-seed-material/pdlf-testing-seed-material-readme|Seed Material (from MB-3-CS)]]](C:/pdlf/pdlf-library/docs-local/pdlf-testing-seed-material/pdlf-testing-seed-material-README.md) for what's there and how to use it when this work is actually picked up.
-
-> **Changed since:** The earlier lists carried the Suite A/B integration and the testing relook as two separate items; they are one job and are merged here.
+Held in the build plans of Steps 35A, 36, 37, 38 and 39.
 
 ---
 

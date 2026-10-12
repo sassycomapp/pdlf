@@ -205,34 +205,9 @@ have a CI pipeline, which it doesn't.
 (42) and the smoke test (43) — the smoke test alone was assessed as too thin to be the only
 verification step before Production promotion.
 
-### 2.8 Feature-by-feature build loop for Step 35
+### 2.8 Feature-by-feature build loop
 
-**Decision:** Step 35 is not a single pass. It is a loop over each issue from Step 19 — one
-build, test, and signoff cycle per feature. Each cycle gets its own `steps` row (35.1, 35.2...).
-
-**Why:**
-- Built on mb-3-cs's already-validated three-level testing methodology (pure logic → Uplink
-  integration → manual verification), not invented for PDLF.
-- The developer was emphatic: "code all in one" is "a really fast way to land in trouble...
-  deep trouble that you cannot dig your way out of."
-- Each signed-off feature is a known-good baseline. Later breakage is attributable to
-  something done after signoff, not to the feature itself.
-- Two backups per feature (pre-integration and post-success) — stricter than it looks, and
-  deliberate.
-
-**Rejected:** Building all features in one pass. The testing policy document is the detailed
-specification.
-
-**Addendum (2026-07-12):** The loop this section describes was found to have two structural
-defects on review, both corrected: (1) the [[[pdlf:app-factory/phase-e-build-and-verify/e40-reference|Step 40 Improve Codebase Architecture]]](C:/pdlf/app-factory/phase-e-build-and-verify/e40-reference.md) skill and any
-resulting remediation were being applied *after* the code-review/QA retest steps, meaning
-shipped code could include unverified post-remediation changes — the `build-verified` gate
-was moved from Step 40 to Step 39 and the loop reordered (35 → 35A → 40 → 40B → 36 → 37 →
-38 → 38A → 39 → gate) so remediation is always retested before the gate. (2) Steps 37/38
-(`/review`, [[[pdlf:app-factory/phase-e-build-and-verify/e38-reference|/qa]]](C:/pdlf/app-factory/phase-e-build-and-verify/e38-reference.md)) were assumed to persist their findings for Step 39 ([[[pdlf:app-factory/phase-e-build-and-verify/e39-reference|triage]]](C:/pdlf/app-factory/phase-e-build-and-verify/e39-reference.md)) to act on,
-but GStack's own repository states this behavior is unverified even by the maintainer — both
-steps now explicitly require writing to a specified artifact path, verified by OpenCode
-before the step is marked complete, rather than relying on unconfirmed skill behavior.
+The build loop's design is held in Step 35's own build plan (`e35-build-plan.md`).
 
 ### 2.9 Test-mode with synthesized flag propagation
 

@@ -12,7 +12,7 @@ The app factory holds PDLF's build: every step of the pipeline, in the phase it 
 | Folder | Steps | What the phase does |
 |---|---|---|
 | `phase-a-init/` | 01–10 | 01 is the orchestrator, which runs every other module. 02–10 are the entry points for work on existing applications. |
-| `phase-b-discover-and-define/` | 11–16 | Defines the application. Also holds `pdlf-phase-b-review.md`. |
+| `phase-b-discover-and-define/` | 11–16 | Defines the application. |
 | `phase-c-design-and-plan/` | 17–28 | Designs and plans the application. |
 | `phase-d-scaffold-and-assemble/` | 29–34 | Builds the application's scaffold. |
 | `phase-e-build-and-verify/` | 35–40b | Builds the application and verifies it. |
@@ -35,4 +35,4 @@ The app factory holds PDLF's build: every step of the pipeline, in the phase it 
 
 ## The build plan
 
-`pdlf-build-plan.md` sits at the top of this folder. It is the blueprint for building PDLF. What has been built is recorded in `pdlf-library/docs-local/pdlf-built-report.md`, and the order the orchestrator runs the steps is in `pdlf-library/docs-local/orchestrator-run-plan.md`. When PDLF is built, the build plan moves to `obsolete/`.
+`pdlf-build-plan.md` sits at the top of this folder. It is the blueprint for building PDLF. What has been built is recorded in `pdlf-library/docs-local/pdlf-built-report.md`, and the order the orchestrator runs the steps is in Step 1's build plan, `phase-a-init/a01-build-plan.md`. When PDLF is built, the build plan moves to `obsolete/`.
