@@ -1,7 +1,6 @@
 ---
-
 title: "pdlf-overview-v4"
-updated: "2026-10-12"
+updated: "2026-10-13"
 
 doc-id: "mb-4afc2cc8"
 ---
@@ -20,8 +19,6 @@ An application goes through PDLF in six movements:
 4. **Phase E (Steps 35 to 40B): build it one feature at a time.** Each feature is built, tested, reviewed and signed off before the next begins.
 5. **Phase F (Steps 41 to 46): release and learn.** Release, test the whole application, check it after release, and capture lessons.
 6. **Seven gates along the way stop PDLF until David approves:** domain locked (16), concept locked (21), wireframes approved (26), architecture verified (34), build verified for each feature (39), released to production (44), and released (46).
-
-
 
 ## Phase A: the orchestrator and the entry points
 
