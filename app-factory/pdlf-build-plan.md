@@ -39,15 +39,15 @@ David is a project manager acting as developer. He reads code but is not a progr
 
 The credo for PDLF, and for everything in it, is: **simple, secure, robust, fit for purpose.** Nothing is kept for ceremony, and nothing is kept for posterity.
 
-**What a project is.** A project is one Mybizz business that PDLF develops. Each project lives in its own folder at `C:\dev\dev-{slug}\`, where the slug is the business's short name (for example `mb3cs`, `mb4ecom`, `mb5pdlf`). Every project folder holds the same scaffold:
+**What a project is.** A project is one Mybizz business that PDLF develops. Each project lives in its own folder at `C:\dev\dev-{slug}\`, where the slug is the business's short name (for example `mb-3-cs`, `mb-4-ecom`, `mb-5-pdlf`). Every project folder holds the same scaffold:
 
 ```
 C:\dev\dev-{slug}\
   README.md
-  {slug}-app-1             code repository of App 1, the development workspace
-  {slug}-app-2             code repository of App 2, master_template
-  {slug}-app-3             code repository of App 3, blank_client_template
-  {slug}-app-5             code repository of App 5, the management tooling
+  {slug}-app1              code repository of App 1, the development workspace
+  {slug}-app2              code repository of App 2, master_template
+  {slug}-app3              code repository of App 3, blank_client_template
+  {slug}-app5              code repository of App 5, the management tooling
   {slug}-project-library   the project library: the working documentation for the whole business
   wip                      David's temporary working folder; not part of the project
 ```
@@ -56,9 +56,9 @@ Each code repository is one Anvil application and synchronises with Anvil throug
 
 No project data is stored in PDLF; all project data is stored in the project folders at `C:\dev\`.
 
-**Step outputs.** Every project library holds a folder `pdlf-outputs\`, with one folder per step, named as in the app factory: `a01\` to `a10\`, `b11\` to `b16\`, `c17\` to `c28\`, `d29\` to `d34\`, `e35\` to `e40b\` and `f41\` to `f46\`, including `b13\` and `c25\`. Everything a step produces for that project is kept in its folder, whichever skill produced it: the step's receipt, a copy of every artifact a skill saved elsewhere (GStack, for example, saves in its own place), and the artifacts of skills that are told where to save (such as Archify, the Magdoub wireframe skills and Sentinel), which save there directly. Each file name begins with the slug and the step, for example `mb5pdlf-b15-test-plan.md`, so the skill and step that produced it are clear. Step 11 creates the folders for a new project.
+**Step outputs.** Every project library holds a folder `pdlf-outputs\`, with one folder per step, named as in the app factory: `a01\` to `a10\`, `b11\` to `b16\`, `c17\` to `c28\`, `d29\` to `d34\`, `e35\` to `e40b\` and `f41\` to `f46\`, including `b13\` and `c25\`. Everything a step produces for that project is kept in its folder, whichever skill produced it: the step's receipt, a copy of every artifact a skill saved elsewhere (GStack, for example, saves in its own place), and the artifacts of skills that are told where to save (such as Archify, the Magdoub wireframe skills and Sentinel), which save there directly. Each file name begins with the slug, the step and the run (`app` for the whole application, or the feature's short name), for example `mb-5-pdlf-b15-app-test-plan.md`, so the step and the run that produced it are clear and a feature never overwrites the application's files. Step 11 creates the folders for a new project.
 
-The business slug carries no hyphens. The existing MB-3-CS folders are still named `mb-3-cs` and are renamed to `mb3cs` separately; the existing code repository `mb-3-cs` becomes `mb3cs-app-1`.
+The business slug is the business's short name as recorded at Step 11, all lowercase, with its hyphens kept. Each app's folder and repository is named `{slug}-app{n}`, with no descriptive word. App 4 lives on the client's own Anvil account and has no folder. Application code is never a GBrain source: agents read it directly from the app folder.
 
 ### 2. Control and gates
 
@@ -102,7 +102,7 @@ PDLF builds many Anvil applications, each a separate business of Mybizz. Every b
 
 **Quality.** Every feature is built, tested and signed off by David before the next feature begins. Each feature is tested at three levels: its logic on its own, then connected to the live Anvil application, then by hand in the browser. The findings of every review and every quality check are written to a file; a review that left no file did not happen. How PDLF tests is designed as a component of its own (section 9).
 
-**First builds.** A small test application, the Daily Intentions Tracker, goes through PDLF first, in `mb5pdlf`, so that PDLF's own faults are found cheaply, before they can damage a real business. It can be extended if it proves too small to test PDLF fully. `mb3cs` (Mybizz CS, consulting and services) follows, then the other Mybizz businesses, such as `mb4ecom` (e-commerce).
+**First builds.** A small test application, the Daily Intentions Tracker, goes through PDLF first, in `mb-5-pdlf`, so that PDLF's own faults are found cheaply, before they can damage a real business. It can be extended if it proves too small to test PDLF fully. `mb-3-cs` (Mybizz CS, consulting and services) follows, then the other Mybizz businesses, such as `mb-4-ecom` (e-commerce).
 
 ### 4. Entry points
 
@@ -203,7 +203,7 @@ Every step is built to these rules. They are stated once here and not repeated i
 - **The developer approves every change.** The step explains each decision in plain language, never jumps a gate, and never passes one without the developer's approval.
 - **Skills take precedence.** When a skill in PDLF's library covers a task, the step uses it and does not improvise.
 - **Deviations are decided by the developer.** If the step cannot be done as written, it stops, sets out the options and what each costs, and the developer decides. The decision is recorded in the ledger.
-- **It leaves its record:** a row in the ledger, its BFT record at its level, and a Step Receipt at `{slug}-project-library\pdlf-outputs\{step}\{slug}-{step}-receipt.md`.
+- **It leaves its record:** a row in the ledger, its BFT record at its level, and a Step Receipt at `{slug}-project-library\pdlf-outputs\{step}\{slug}-{step}-{run}-receipt.md`.
 - **Every artifact goes to its canonical place,** with a copy in the step's output folder, `{slug}-project-library\pdlf-outputs\{step}\`, when its canonical place is elsewhere.
 - **The agent never commits or pushes.** Close-out is `/mb-close-out`, run when the developer asks for it; new knowledge and every lesson reach GBrain only through the memory governor and `mb-submit-memory`.
 - **No application is ever multi-tenant.** Every step that shapes data or code keeps each client's application and database separate.

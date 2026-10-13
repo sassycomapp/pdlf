@@ -24,9 +24,10 @@ updated: "2026-10-13"
    file destinations explicitly at invocation (see § File Placement) —
    `/grill-with-docs` defaults to `CONTEXT.md` + `docs/adr/` at repo root;
    PDLF overrides both locations rather than accepting the default.
-4. `/grill-with-docs` runs `/grilling` (walks the plan as a tree of
-   decisions, resolving one at a time, recommended answer given, waits for
-   developer response before continuing) using [[[pdlf:app-factory/phase-b-discover-and-define/b16-reference|/domain-modeling]]](C:/pdlf/app-factory/phase-b-discover-and-define/b16-reference.md)'s
+4. `/grill-with-docs` runs `/grilling` (maps the plan as a tree of
+   decisions and asks every question that can be asked at that point, in one
+   round, each with a recommended answer, then waits for the developer; PDLF
+   never limits or reshapes the skill's questions) using [[[pdlf:app-factory/phase-b-discover-and-define/b16-reference|/domain-modeling]]](C:/pdlf/app-factory/phase-b-discover-and-define/b16-reference.md)'s
    disciplines inline: challenge terms against the existing glossary,
    sharpen vague/overloaded terms, stress-test relationships with concrete
    scenarios, and — **existing-project entry only** — cross-reference stated

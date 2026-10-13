@@ -1,7 +1,7 @@
 ---
 title: "pdlf-spec-artifact-handover"
 doc-id: "mb-f1745959"
-updated: "2026-10-12"
+updated: "2026-10-13"
 ---
 # PDLF — Artifact and Handover Specification
 
@@ -68,7 +68,7 @@ contradict a decision already made (see §2.3), the invocation preempts it.
 - `to-tickets`, `triage` → `.scratch/` by default; PDLF overrides as each
   step prescribes.
 - OpenCode-native outputs save to the path each step file prescribes
-  (receipts: `{slug}-project-library\pdlf-outputs\{step}\{slug}-{step}-receipt.md`).
+  (receipts: `{slug}-project-library\pdlf-outputs\{step}\{slug}-{step}-{run}-receipt.md`).
 
 ## 2. The handoff contract
 
@@ -87,8 +87,21 @@ earlier step already settled (built Steps 12 and 14 both apply this).
 from the skill's own reported output — not an assumed path.
 
 2.4 **Never modify the native file.** GStack-native artifacts stay where the
-skill wrote them. Copies (§5) are separate files; the native file is never
+skill wrote them. Copies (§4) are separate files; the native file is never
 renamed, moved, or edited by PDLF.
+
+2.5 **GStack skills start from the project library.** Every GStack skill PDLF
+invokes in Phase B is started from the project library,
+`C:\dev\dev-{slug}\{slug}-project-library`. Its GStack slug is therefore always
+`sassycomapp-{slug}-project-library`, and every GStack skill finds the others'
+files in the same place. The code of an existing application reaches the skill
+by being pasted in, never through the skill's own audit of a code repository.
+Why: Phase B produces documents, not code, and the project library is where
+those documents belong.
+
+2.6 **The context pack.** Every skill invocation also receives, after the step's
+own handoff material, the full text of the files listed in
+[[[pdlf:pdlf-library/specifications-local/spec-skill-context-pack|Spec: Skill Context Pack]]](C:/pdlf/pdlf-library/specifications-local/spec-skill-context-pack.md).
 
 ## 3. Capture–verify–record procedure (every step, in order)
 
@@ -98,7 +111,7 @@ renamed, moved, or edited by PDLF.
 3. Verify the artifact exists on disk at the captured path.
 4. Write the ledger `steps` row with `artifact_path` = the captured path.
 5. Generate and save the Step Receipt at
-   `{slug}-project-library\pdlf-outputs\{step}\{slug}-{step}-receipt.md`.
+   `{slug}-project-library\pdlf-outputs\{step}\{slug}-{step}-{run}-receipt.md`.
 6. Make the step-folder copy (§4) of every artifact saved outside the step folder.
 7. Verify every copy exists.
 8. If any expected artifact is missing: STOP and raise a deviation request
@@ -108,9 +121,11 @@ renamed, moved, or edited by PDLF.
 
 Every project library holds `pdlf-outputs\`, with one folder per step (`a01\` to `f46\`, named as in the app factory). Everything a step produces for that project is kept in its step folder:
 
-- the Step Receipt, `{slug}-{step}-receipt.md`;
-- a copy of every artifact a skill saved elsewhere (for example in GStack's own save location), named `{slug}-{step}-filename`, for example `mb5pdlf-b14-ceo-plan.md`;
+- the Step Receipt, `{slug}-{step}-{run}-receipt.md`;
+- a copy of every artifact a skill saved elsewhere (for example in GStack's own save location), named `{slug}-{step}-{run}-{name}`;
 - the artifacts of skills that are told where to save (such as Archify, the Magdoub wireframe skills and Sentinel), which save into the step folder directly.
+
+**The run.** `{run}` is `app` when the work is the whole application, or the feature's short name (the feature slug from the entry record) when the work is a feature or an update. For example `mb-5-pdlf-b14-app-ceo-plan.md` and `mb-5-pdlf-b14-reminders-ceo-plan.md`. Why: the feature path runs Steps 12 to 16 again for every feature, so a name without the run would be overwritten, and each feature's outputs stay beside the application's.
 
 The step-folder copy is the copy a later step reads when a skill's own save location is unavailable or depends on the skill's mode. It is a snapshot of that step's state; a later step that appends to a skill's own file updates the copy after its append.
 

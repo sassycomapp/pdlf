@@ -50,7 +50,7 @@ A lesson that belongs to one application never goes into `project-library-global
 
 ### Self-healing
 
-When a step fails, or David corrects something, the agent proposes the fix to the source that caused the problem. David approves or rejects it. An approved fix is made in that source, and the fact is recorded in GBrain through `mb-submit-memory`.
+When a step fails, or David corrects something, the agent proposes the fix to the source that caused the problem, before the step stops. It names the lesson and its home (`project-library-global`, the PDLF step, rule or specification concerned, or the application's `docs-local`). David approves or rejects it. An approved fix is made in that source, and the fact is recorded in GBrain through `mb-submit-memory` at close-out.
 
 ### Other projects
 

@@ -1,7 +1,7 @@
 ---
 title: "spec-bft"
 doc-id: "mb-5251e43f"
-updated: "2026-10-11"
+updated: "2026-10-13"
 ---
 # PDLF BFT Reference
 
@@ -46,7 +46,8 @@ What gives this movement, energy, leverage?
 - **Habit Muscle:** Which cliches or ready-made patterns were used? Were they appropriate
   or lazy?
 - **Channel Muscle:** Which existing channels (tools, APIs, skills) were used? Could others
-  have been used more effectively?
+  have been used more effectively? Name every `project-library-global` file the step read and
+  applied, by its name, so that compliance can be checked rather than claimed.
 - **Motivation Muscle:** What was the driving force behind the step's decisions?
 
 Question: Which muscle was dominant? Was that the right one to lead with?
@@ -93,7 +94,9 @@ Communication triad: Why should they listen? Where are they at? What do you want
 Two questions:
 - **Good in itself?** Will it work? Is it sound? What are the risks and dangers?
 - **Good for this project?** Does it fit purpose, values, resources, and timeline?
-- **Consequences** of running this forward in time. What happens downstream?
+- **Consequences** of running this forward in time. What happens downstream? State the one
+  downstream consequence that worries you most, and why. A decision whose cost appears only in a
+  later phase is the main risk, and this is where it is looked at.
 
 ---
 

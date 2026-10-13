@@ -1,7 +1,7 @@
 ---
 title: "spec-postgres-ledger"
 doc-id: "mb-dcf9c65e"
-updated: "2026-10-10"
+updated: "2026-10-13"
 ---
 # PDLF Postgres Ledger Specification
 
@@ -84,14 +84,13 @@ Seven tables in schema `public`, owned by `pdlf_agent`, referentially enforced:
 
 | Column | Type | Nullable | Default | Notes |
 |---|---|---|---|---|
-| `slug` | text | NO | — | Primary key. Project identifier (e.g., `mb5pdlf`) |
+| `slug` | text | NO | — | Primary key. The business slug, hyphens kept (e.g., `mb-5-pdlf`) |
 | `project_name` | text | NO | — | Human-readable name |
 | `mode` | text | NO | — | `full` or `test` (CHECK `projects_mode_check`) |
 | `library_path` | text | YES | — | Path to the project's project-library repo |
-| `code_path` | text | YES | — | Path to the project's Anvil-connected code repo |
-| `anvil_slug` | text | YES | — | Anvil app slug |
-| `gbrain_source_docs` | text | YES | — | GBrain source ID for the project-library repo |
-| `gbrain_source_code` | text | YES | — | GBrain source ID for the code repo |
+| `gbrain_source_docs` | text | YES | — | GBrain source ID for the project library (`{slug}-project-library`) |
+| `app1_path`, `app2_path`, `app3_path`, `app5_path` | text | YES | — | Local path of each app's code repository (`C:\dev\dev-{slug}\{slug}-app{n}`). App 4 lives on the client's own Anvil account and has no path |
+| `app1_address`, `app2_address`, `app3_address`, `app5_address` | text | YES | — | Each app's Anvil address. App 2's is recorded at release |
 | `is_active` | boolean | NO | `true` | Whether project is currently active |
 | `created_at` | timestamptz | NO | `now()` | When the project row was created |
 
@@ -107,8 +106,10 @@ Primary key: `slug`. Referenced by `steps`, `gates`, `deviations`, `bft_records`
 | `step_number` | text | NO | — | Step number (11–46, plus lettered sub-steps). **Text, not integer** — text supports lettered sub-steps (e.g. `35A`) |
 | `sort_order` | numeric | NO | — | Numeric ordering value for the step |
 | `phase` | text | YES | — | Phase label |
+| `run` | text | NO | `'app'` | `app` for the whole application, or the feature's short name for a feature or an update |
+| `app_number` | smallint | NO | `1` | The app the row concerns: 1, 2, 3 or 5 (CHECK) |
 | `step_type` | text | NO | — | `skill`, `manual`, `optional`, or `gate` (CHECK; lowercase values) |
-| `skill_family` | text | YES | — | `gstack`, `matt-skills`, `opencode`, `manual`, or NULL (CHECK) |
+| `skill_family` | text | YES | — | `gstack`, `matt-skills`, `opencode`, `manual`, `anvil`, `mybizz` (Sentinel and the mybizz-os skills), `security`, or NULL (CHECK) |
 | `skill_name` | text | YES | — | The invoked skill |
 | `inputs_used` | jsonb | YES | — | Input artifacts/steps consumed by this step |
 | `artifact_path` | text | YES | — | Path to step output artifact |
@@ -122,7 +123,7 @@ Primary key: `slug`. Referenced by `steps`, `gates`, `deviations`, `bft_records`
 | `gbrain_query` | text | YES | — | The GBrain query fired at substep 1 |
 | `gbrain_results` | text | YES | — | Summary of the query results |
 
-UNIQUE constraint: (`project_slug`, `step_number`). The only foreign key on `steps` is
+UNIQUE constraint: (`project_slug`, `step_number`, `run`), so the feature path can run Steps 12 to 16 again for every feature. The only foreign key on `steps` is
 `project_slug` — there is no inter-step constraint (see Principle 2).
 
 ### `gates`
@@ -199,7 +200,7 @@ missing from this spec: the `triage_label` CHECK also allows `clear`
 | `id` | serial | Primary key |
 | `step_id` | integer | FK → `steps(id)`. Identifies which feature-cycle execution this finding belongs to. |
 | `finding_id` | text | Stable identifier from Steps 37-38 findings. No companion table — confirmed against the full seven-table schema list; free-standing identifier. |
-| `source_step` | text | Which step produced this finding: `16, 17, 19, 20, 21, 34, 35, 36, 37, 38, 39, 45, 46` — widened from the original `36, 37, 38` to support Sentinel-originated findings from earlier steps |
+| `source_step` | text | Which step produced this finding: `11, 12, 14, 15, 16, 17, 19, 20, 21, 34, 35, 36, 37, 38, 39, 45, 46` (CHECK). Must equal Sentinel's step table |
 | `triage_label` | text | One of: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`, `clear` (CHECK includes all six) |
 | `resolution_note` | text | How the finding was resolved (developer-provided) |
 | `resolved_by` | text | Who resolved it |

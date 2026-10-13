@@ -20,8 +20,9 @@ maintain the domain model**." It's infrastructure other skills call into.
 
 Actual user-invocable skill: `/grill-with-docs`. Its entire `SKILL.md` body:
 "Run a `/grilling` session, using the [[[pdlf:app-factory/phase-b-discover-and-define/b16-reference|/domain-modeling]]](C:/pdlf/app-factory/phase-b-discover-and-define/b16-reference.md) skill." `/grilling`
-is the interview engine (tree of decisions, one at a time, recommended
-answer, waits for feedback); [[[pdlf:app-factory/phase-b-discover-and-define/b16-reference|/domain-modeling]]](C:/pdlf/app-factory/phase-b-discover-and-define/b16-reference.md) fires inline during that
+is the interview engine (it maps the decisions as a tree and asks every
+question that can be asked at that point, in one round, each with a recommended
+answer, then waits for the developer); [[[pdlf:app-factory/phase-b-discover-and-define/b16-reference|/domain-modeling]]](C:/pdlf/app-factory/phase-b-discover-and-define/b16-reference.md) fires inline during that
 interview whenever a term needs sharpening or an ADR is warranted.
 
 ## Correction 2 — "reconciliation mode" had nothing left to attach to
@@ -142,9 +143,10 @@ Ends with the gate `domain-locked` (Step 16).
 
 **Must be built so that:**
 - the skill is told the project's own file locations, in place of its defaults;
-- the interview settles one decision at a time, gives a recommended answer and waits for the developer; each settled term is written to `CONTEXT.md` at once, as a glossary only, with no implementation detail;
+- the interview runs as the skill is designed: each round asks every question that can be asked at that point, each with a recommended answer, and waits for the developer; PDLF never limits or reshapes the skill's questions; each settled term is written to `CONTEXT.md` at once, as a glossary only, with no implementation detail;
 - a decision record is offered only for a decision that is hard to reverse, surprising without context and the result of a real trade-off;
 - for an existing application, what the documents say is checked against the code, and contradictions are shown to the developer;
+- Anvil's `data-models` skill is read and used to check that the vocabulary and the data design agree: every entity named in `CONTEXT.md` has a clear owner and place in the data design, and the data design uses only the vocabulary's terms;
 - the security review `mb-sentinel-review` checks for sensitive data or security-relevant entities before the gate; a finding stops the step and goes to the developer; the review's record in the ledger is checked, so that its run is proven, not assumed.
 
 **BFT level:** Full (gate).

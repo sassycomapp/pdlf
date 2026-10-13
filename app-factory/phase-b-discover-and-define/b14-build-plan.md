@@ -143,7 +143,9 @@ Ends with the gate `domain-locked` (Step 16).
 - before the skill runs, OpenCode compares what the review touches with `project-library-global`: the global standard wins unless the developer approves a deviation;
 - the developer chooses the scope mode (expansion, selective expansion, hold scope or reduction), and every finding is put to the developer one at a time, never in a batch;
 - the plan is captured in every mode: the skill saves it itself only in the two expansion modes, so in the other two OpenCode saves it;
-- Step 12's input notice is carried forward if its design doc was synthesized.
+- Step 12's input notice is carried forward if its design doc was synthesized;
+- the security review `mb-sentinel-review` runs on the step's output at Medium scrutiny, against the documents Sentinel names for Step 14; a Flag or Escalate stops the step and goes to the developer; before the step finishes, its `triage_findings` row is checked, so that the review's run is proven, not assumed;
+- the `secure-software-engineering` skill, given the context pack, writes the security requirements at the level of the business into the CEO plan: what data the app holds, whose it is, who may see or change it, and what must never leak.
 
 **BFT level:** Full.
 

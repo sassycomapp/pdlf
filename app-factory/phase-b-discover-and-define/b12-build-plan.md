@@ -114,7 +114,9 @@ Ends with the gate `domain-locked` (Step 16).
 - the design doc is always written, in a fixed structure (problem, demand, status quo, target user, constraints, approaches, recommendation, open questions, success criteria), before `/office-hours` is offered;
 - if the developer accepts `/office-hours`, the full draft is pasted into it, so that it skips its interview but still challenges the premise and the alternatives; its result becomes the working copy, and its own file is never moved;
 - the ledger records whether the design doc was synthesized without `/office-hours`, so that later steps carry an input notice;
-- it hands four items to Step 14: both design docs, the `/office-hours` result if any, and its Step Receipt.
+- it hands four items to Step 14: both design docs, the `/office-hours` result if any, and its Step Receipt;
+- the security review `mb-sentinel-review` runs on the step's output at Medium scrutiny, against the documents Sentinel names for Step 12; a Flag or Escalate stops the step and goes to the developer; before the step finishes, its `triage_findings` row is checked, so that the review's run is proven, not assumed;
+- the design doc's Constraints section states the platform's security facts from the context pack: one app and one database per client, the server holds authority, client code is public.
 
 **BFT level:** Full.
 

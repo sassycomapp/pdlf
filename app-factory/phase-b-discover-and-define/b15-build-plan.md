@@ -165,7 +165,10 @@ Ends with the gate `domain-locked` (Step 16).
 - the skill's scope challenge stops for the developer when the plan is large (8 or more files, or 2 or more new services);
 - each finding in the four reviews (architecture, code quality, tests, performance) is put to the developer one at a time;
 - the second opinion from another AI is informational only: nothing from it is adopted without the developer's approval;
-- the findings are captured by OpenCode itself, so the step does not depend on the skill finding a plan file to write into.
+- the findings are captured by OpenCode itself, so the step does not depend on the skill finding a plan file to write into;
+- Anvil's `data-models` skill is read and used as the method for all persisted data, before the architecture for it is chosen: its design steps apply (identify the domain objects, table ownership and trust boundaries; choose the data shape; decide where behaviour belongs), its code steps do not, because no code exists yet; its defaults become rules of the data design: tables default to no client access, data rules live on model classes or in server code and never in forms, and any view the client can see is deliberately restricted;
+- the security review `mb-sentinel-review` runs on the step's output at High scrutiny, against the documents Sentinel names for Step 15; a Flag or Escalate stops the step and goes to the developer; before the step finishes, its `triage_findings` row is checked, so that the review's run is proven, not assumed;
+- the `secure-software-engineering` skill, given the context pack, writes the threat model and the explicit list of trust boundaries required by `sec-requirements-architecture-review.md`, each boundary matched to the `security-global` document that governs it and assigned to whoever is responsible; Step 34 later verifies the built skeleton against this list.
 
 **BFT level:** Full.
 

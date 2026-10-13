@@ -242,7 +242,9 @@ Ends with the gate `domain-locked` (Step 16).
 - for an existing application, only genuinely missing folders are created, nothing existing is changed, and broken links or registrations are corrected only with permission;
 - global reference files are never copied into the project; they are referenced where they live;
 - it checks the ledger is reachable with all seven tables, and that `project-library-global` is registered in GBrain;
-- it ends with a self-audit that reports any error and corrects nothing without permission.
+- it ends with a self-audit that reports any error and corrects nothing without permission;
+- the security review `mb-sentinel-review` runs on the step's output at High scrutiny, against the documents Sentinel names for Step 11; a Flag or Escalate stops the step and goes to the developer; before the step finishes, its `triage_findings` row is checked, so that the review's run is proven, not assumed;
+- the secrets and access of every repository it sets up are part of that review, because the app repositories are public.
 
 **BFT level:** Full.
 

@@ -1,7 +1,7 @@
 ---
 title: "c17-build-plan"
 doc-id: "mb-2b6de0f2"
-updated: "2026-10-12"
+updated: "2026-10-13"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -15,6 +15,9 @@ Ends with the gates `concept-locked` (Step 21) and `wireframes-approved` (Step 2
 **Must achieve:** The data tables are built in Anvil from the domain model and the ADRs.
 
 **Carried out by:** The developer, by hand in the Anvil editor.
+
+**Must be built so that:**
+- Anvil's `anvil-yaml` skill is never used to write `anvil.yaml`, because no agent ever writes `anvil.yaml` (Anvil manages it); the tables are created by the developer in the Anvil editor, and the agent only reads `anvil.yaml` after it is pulled to local, to verify the tables exist.
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 
