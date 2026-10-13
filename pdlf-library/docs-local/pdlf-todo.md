@@ -30,7 +30,7 @@ Held in the build plans of Steps 42, 42A, 43 and 44.
 ### B1. Global-content query-fetch-apply sequence
 
 Rule and enforcement mechanism decided 2026-07-19 — see
-[[[pdlf:pdlf-library/policy-local/global-content-discovery-and-application-discipline|ADR Global Content Discovery and Application Discipline]]](C:/pdlf/pdlf-library/policy-local/global-content-discovery-and-application-discipline.md) and
+[[[pdlf:pdlf-library/adr-local/global-content-discovery-and-application-discipline|ADR Global Content Discovery and Application Discipline]]](C:/pdlf/pdlf-library/adr-local/global-content-discovery-and-application-discipline.md) and
 [[[pdlf:pdlf-library/policy-local/pol-memory-and-knowledge|Pol Memory and Knowledge]]](C:/pdlf/pdlf-library/policy-local/pol-memory-and-knowledge.md). `project-library-global`'s GBrain registration is confirmed
 working, so the mechanism is usable, not just designed. Remaining work: build the
 five-step sequence and citation requirement into each relevant step file (17, 20, 22, 26,
