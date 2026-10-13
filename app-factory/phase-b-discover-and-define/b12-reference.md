@@ -1,7 +1,7 @@
 ---
 title: "b12-reference"
 doc-id: "mb-585a9d95"
-updated: "2026-10-12"
+updated: "2026-10-13"
 ---
 
 ## From `12-office-hours.md`
@@ -87,22 +87,9 @@ updated: "2026-10-12"
 11. Write the Step 12 ledger row with `completed_at`.
 12. Save the Step Receipt to `dev-{slug}\{slug}-project-library\pdlf\step-12-receipt.md`.
 13. Apply BFT per [[[pdlf:pdlf-library/specifications-local/spec-bft|Spec: BFT]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md) at **Full**.
-14. Ask separately: "Commit and push to GitHub?"
-15. Ask separately: "Run the end-of-step memory sequence?" This covers five actions, in
-    this exact order, every time — do not skip any of them and do not reorder them:
-    (1) invoke the `mb-submit-memory` skill for `design-doc-first-concept.md` and for
-    `design-doc.md`, each as its own separate submission, using the `pdlf_step_sync`
-    credential — this is a PDLF step's own routine housekeeping, not a developer's
-    independent, ad-hoc request — these are the only two real,
-    developer-relevant files this step produces; (2) run `gbrain dream` for real —
-    NEVER `--dry-run`; a dry run writes nothing at all and is not a valid substitute for
-    this step; (3) run `gbrain eval suspected-contradictions` immediately afterward —
-    this does NOT run automatically as part of `gbrain dream` and must be invoked as its
-    own separate command; (4) read what that command reports; (5) if anything is marked
-    high-severity, STOP and present it to the developer before continuing. Do not
-    resolve, dismiss, or silently proceed past a high-severity finding.
-16. Present the Step Receipt to the developer. Stop, wait for "continue."
-17. Ask: "Continue to step 14?"
+14. Explain what was done and why, and present the Step Receipt. Stop and ask the
+    developer to run `/mb-close-out`. Wait for "continue."
+15. Ask: "Continue to step 14?"
 
 ---
 
@@ -182,12 +169,10 @@ OpenCode is always the orchestrator. Invoke skills only when they beat OpenCode 
 For execution sequence: `[[spec-execution-discipline]]`
 For BFT procedure: `[[spec-bft]]`
 
-GBrain querying is automatic and read-only. Getting new content into durable memory is a
-write action and is never automatic — always asked. It goes through the `mb-submit-memory`
-skill and the five-action sequence described at item 15, never GStack `/sync-gbrain`.
+GBrain searching is automatic and read-only. New content reaches durable memory only at
+close-out, through `/mb-close-out`, run when the developer asks for it.
 
-Git operations (commit, push) are permission-only, per the global AGENTS.md —
-never automatic, never run without the developer's explicit approval first.
+The agent never commits or pushes; only the developer commits, with `commit-all`.
 
-The ledger row, Step Receipt, and devlog-index/judgement-trail entries are the complete
-checkpoint. No separate state file or completion report.
+The ledger row, the BFT record and the Step Receipt are the complete checkpoint. No
+separate state file or completion report.

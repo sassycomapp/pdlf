@@ -1,7 +1,7 @@
 ---
 title: "config"
 doc-id: "mb-dea37a55"
-updated: "2026-10-11"
+updated: "2026-10-13"
 ---
 # PDLF System Configuration
 
@@ -62,7 +62,7 @@ Non-secret reference for all PDLF system configuration. Secrets live in `.env` (
 
 `project-library-global` registration confirmed 2026-07-19 — real GitHub remote exists,
 GBrain source registered. This is what makes
-[[[pdlf:pdlf-library/adr-local/global-content-discovery-and-application-discipline|ADR Global Content Discovery and Application Discipline]]](C:/pdlf/pdlf-library/adr-local/global-content-discovery-and-application-discipline.md)'s discovery mechanism
+[[[pdlf:pdlf-library/policy-local/global-content-discovery-and-application-discipline|ADR Global Content Discovery and Application Discipline]]](C:/pdlf/pdlf-library/policy-local/global-content-discovery-and-application-discipline.md)'s discovery mechanism
 actually usable, not just designed.
 
 Every project PDLF builds also registers two further sources: `project-library-global`

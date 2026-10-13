@@ -1,7 +1,7 @@
 ---
 title: "pol-memory-and-knowledge"
 doc-id: "mb-d07a9e52"
-updated: "2026-10-12"
+updated: "2026-10-13"
 ---
 # PDLF Policy — Memory and Knowledge
 
@@ -30,7 +30,9 @@ Every step starts with a GBrain search on its subject. Searching is automatic an
 3. Read the actual files in full.
 4. Apply what those files say.
 
-A step that applies a `project-library-global` standard names the file it read and applied, in its Step Receipt or thinking checkpoint. A claim of compliance that cannot be checked is not compliance. The reasoning is in [[[pdlf:pdlf-library/adr-local/global-content-discovery-and-application-discipline|ADR: Global Content Discovery and Application Discipline]]](C:/pdlf/pdlf-library/adr-local/global-content-discovery-and-application-discipline.md).
+The search covers the federated documentation sources (one search covers the project library `{slug}-project-library`, `default`, which is `project-library-global`, and `pdlf`). A step that needs Anvil knowledge also names `anvil-agent-references-code`. Application code is never a GBrain source; the agent reads it directly from the app folder.
+
+A step that applies a `project-library-global` standard names the file it read and applied, in its Step Receipt or thinking checkpoint. A claim of compliance that cannot be checked is not compliance. The reasoning is in [[[pdlf:pdlf-library/policy-local/global-content-discovery-and-application-discipline|ADR: Global Content Discovery and Application Discipline]]](C:/pdlf/pdlf-library/policy-local/global-content-discovery-and-application-discipline.md).
 
 ### Writing to memory
 

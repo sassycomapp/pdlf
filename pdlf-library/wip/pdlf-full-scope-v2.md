@@ -1,7 +1,7 @@
 ---
 title: "pdlf-full-scope-v1"
 updated: "2026-10-13"
-doc-id: "mb-91b5f528"
+doc-id: "mb-0201eaaf"
 ---
 
 # PDLF Full Scope, V1 (work in progress)
@@ -61,17 +61,17 @@ Phase A (the orchestrator and the entry points) is not yet designed. This sectio
 
 **Designed.** `/pdlf-init` starts the orchestrator (Step 1). The orchestrator offers the entry points and David chooses exactly one. The build plan (section 4) says where each one joins the pipeline:
 
-| Entry point | App | Where it joins Phase B |
-|---|---|---|
-| 02 `new-app-no-context` | App 1 | Step 11, at the project slug question. |
-| 03 `new-app-with-context` | App 1 | Step 11, at the repository questions. |
-| 04 `add-feature-main-app` | App 1 | Health check, then the feature path from Step 12. |
-| 05 `update-main-app` | App 1 | Health check. A change to what the app does takes the feature path from Step 12; any other update goes to the step David names. |
-| 06 `compile-master-template` | App 2 | Not Phase B (a step near the end of the pipeline). |
-| 07 `create-client-template` | App 3 | "Probably Step 11", still to be settled. |
-| 08 `create-management-app` | App 5 | "Probably Step 11", still to be settled. |
-| 09 `add-feature-management-app` | App 3 or 5 | Health check, then the feature path from Step 12. |
-| 10 `update-management-app` | App 3 or 5 | As 05, for App 3 or App 5. |
+| Entry point                     | App        | Where it joins Phase B                                                                                                           |
+| ------------------------------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| 02 `new-app-no-context`         | App 1      | Step 11, at the project slug question.                                                                                           |
+| 03 `new-app-with-context`       | App 1      | Step 11, at the repository questions.                                                                                            |
+| 04 `add-feature-main-app`       | App 1      | Health check, then the feature path from Step 12.                                                                                |
+| 05 `update-main-app`            | App 1      | Health check. A change to what the app does takes the feature path from Step 12; any other update goes to the step David names.  |
+| 06 `compile-master-template`    | App 2      | Not Phase B (a step near the end of the pipeline).                                                                               |
+| 07 `create-client-template`     | App 3      | Step 11, at the project slug question or the repository questions, Depending on whether there is existing context or not         |
+| 08 `create-management-app`      | App 5      | Step 11, at the project slug question or the repository questions, Depending on whether there is existing context or not         |
+| 09 `add-feature-management-app` | App 3 or 5 | Health check, then the feature path from Step 12.                                                                                |
+| 10 `update-management-app`      | App 3 or 5 | Health check. A change to what the app does takes the feature path from Step 12; any other update goes to the step David names.. |
 
 **Proposal: the entry record.** Every Phase B step behaves differently depending on how the work entered PDLF. So before Step 11 or Step 12 runs, the orchestrator must have established, and written to the ledger, these facts, which this document calls the entry record:
 
@@ -157,14 +157,14 @@ Why the pack matters most in Phase B: Phase B fixes the concept, the scope, the 
 
 **Proposal: security across Phase B.**
 
-| Step | What is done | With what | Why here |
-|---|---|---|---|
-| 12 | The design doc's Constraints section states the platform's security facts: one app and one database per client, server-side authority, public client code. | The Anvil context pack | The concept must not assume anything the platform forbids. |
-| 14 | Security requirements at the level of the business: what data the app holds, whose it is, who may see or change it, what must never leak. Written into the CEO plan. | `secure-software-engineering` (requirements part), given the context pack | Requirements belong with scope: they change what is built. |
-| 14 | Sentinel review, Medium: "Does the chosen scope create data or capabilities that need protection, and are they in the security requirements?" | `mb-sentinel-review` | A scope that adds payments or personal data must be seen before engineering begins. |
-| 15 | Threat model and the explicit trust-boundary list required by `sec-requirements-architecture-review.md`, each boundary matched to its governing `security-global` document. | `secure-software-engineering` (threat-model part) | This is where the architecture is locked. |
-| 15 | Sentinel review, High: "Where are the trust boundaries, and is each one governed and assigned?" | `mb-sentinel-review` | Step 34 then verifies the built skeleton against this list, instead of discovering it. |
-| 16 | Existing Sentinel review, Low/Medium: sensitive data or security-relevant entities in the vocabulary. | `mb-sentinel-review` | Unchanged. |
+| Step | What is done                                                                                                                                                                | With what                                                                 | Why here                                                                               |
+| ---- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| 12   | The design doc's Constraints section states the platform's security facts: one app and one database per client, server-side authority, public client code.                  | The Anvil context pack                                                    | The concept must not assume anything the platform forbids.                             |
+| 14   | Security requirements at the level of the business: what data the app holds, whose it is, who may see or change it, what must never leak. Written into the CEO plan.        | `secure-software-engineering` (requirements part), given the context pack | Requirements belong with scope: they change what is built.                             |
+| 14   | Sentinel review, Medium: "Does the chosen scope create data or capabilities that need protection, and are they in the security requirements?"                               | `mb-sentinel-review`                                                      | A scope that adds payments or personal data must be seen before engineering begins.    |
+| 15   | Threat model and the explicit trust-boundary list required by `sec-requirements-architecture-review.md`, each boundary matched to its governing `security-global` document. | `secure-software-engineering` (threat-model part)                         | This is where the architecture is locked.                                              |
+| 15   | Sentinel review, High: "Where are the trust boundaries, and is each one governed and assigned?"                                                                             | `mb-sentinel-review`                                                      | Step 34 then verifies the built skeleton against this list, instead of discovering it. |
+| 16   | Existing Sentinel review, Low/Medium: sensitive data or security-relevant entities in the vocabulary.                                                                       | `mb-sentinel-review`                                                      | Unchanged.                                                                             |
 
 This needs three changes outside Phase B, each for David's approval: rows for Steps 14 and 15 in Sentinel's step table; 14 and 15 added to the `source_step` check in the ledger; and the gate proof (a real `triage_findings` row) extended to Steps 14 and 15. The `secure-software-engineering` skill names "design multi-tenant trust boundaries" among its uses, so it must always receive the context pack: in PDLF there is no multi-tenant boundary to design.
 
@@ -241,6 +241,7 @@ The rules behind it, and why (Designed): the agent never creates a code reposito
 **P11.1 Step 11 is reshaped around the entry record, with three routes and one common end.**
 
 *Route A, a new business (entry 02).*
+
 1. Ask for the slug (lowercase, no hyphens), the business's name, its domain (for example `mb3cs.site`) and the mode (`full` or `test`).
 2. Run the foundation checks (P11.4).
 3. Create the project folder `C:\dev\dev-{slug}\` from the template, with the whole scaffold: `README.md`, the four app folders, `{slug}-project-library` and `wip`. David prefers the full structure in place from the start; the app folders for Apps 2, 3 and 5 stay empty placeholders until those apps exist.
@@ -481,32 +482,32 @@ Why this step exists (Designed, accepted by David): an agent has no memory betwe
 
 ### B.8 What Phase B hands to Phase C
 
-| What | Canonical place | Copy | Read by |
-|---|---|---|---|
-| Design doc (working) and first concept | `docs-local\design-doc.md`, `docs-local\design-doc-first-concept.md` | `pdlf-outputs\b12\` | 14, 15, 20, 21 (and 46, for drift) |
-| CEO plan, with test scope and security requirements | GStack's folder (expansion modes) or OpenCode's capture | `pdlf-outputs\b14\` | 15, 19, 21 |
-| Engineering plan | Captured by OpenCode | `pdlf-outputs\b15\` | 16, 19, 21, 31, 34 |
-| Test Plan Artifact | GStack's folder | `pdlf-outputs\b15\` | 35, 38 |
-| Data design | `docs-local\data-design.md` | `pdlf-outputs\b15\` | 17, 31, 34 |
-| Trust-boundary list | `docs-local\trust-boundaries.md` | `pdlf-outputs\b15\` | 17, 34, and Sentinel at every later step |
-| Glossary | `CONTEXT.md` (project library root) | `pdlf-outputs\b16\` | every later step |
-| Decision records | `adr-local\adr-{name}.md` | `pdlf-outputs\b16\` | 17, 21, 34 |
-| ISA and ISC rows | `docs-local\isa.md`; `isc` table | `pdlf-outputs\b16\` | 26, 35, 39, 46 |
-| Gate `domain-locked` | `gates` table | — | the orchestrator, before Step 17 |
+| What                                                | Canonical place                                                      | Copy                | Read by                                  |
+| --------------------------------------------------- | -------------------------------------------------------------------- | ------------------- | ---------------------------------------- |
+| Design doc (working) and first concept              | `docs-local\design-doc.md`, `docs-local\design-doc-first-concept.md` | `pdlf-outputs\b12\` | 14, 15, 20, 21 (and 46, for drift)       |
+| CEO plan, with test scope and security requirements | GStack's folder (expansion modes) or OpenCode's capture              | `pdlf-outputs\b14\` | 15, 19, 21                               |
+| Engineering plan                                    | Captured by OpenCode                                                 | `pdlf-outputs\b15\` | 16, 19, 21, 31, 34                       |
+| Test Plan Artifact                                  | GStack's folder                                                      | `pdlf-outputs\b15\` | 35, 38                                   |
+| Data design                                         | `docs-local\data-design.md`                                          | `pdlf-outputs\b15\` | 17, 31, 34                               |
+| Trust-boundary list                                 | `docs-local\trust-boundaries.md`                                     | `pdlf-outputs\b15\` | 17, 34, and Sentinel at every later step |
+| Glossary                                            | `CONTEXT.md` (project library root)                                  | `pdlf-outputs\b16\` | every later step                         |
+| Decision records                                    | `adr-local\adr-{name}.md`                                            | `pdlf-outputs\b16\` | 17, 21, 34                               |
+| ISA and ISC rows                                    | `docs-local\isa.md`; `isc` table                                     | `pdlf-outputs\b16\` | 26, 35, 39, 46                           |
+| Gate `domain-locked`                                | `gates` table                                                        | —                   | the orchestrator, before Step 17         |
 
 This resolves three of Phase C's open points from the Phase B side: Step 17's "TDD cluster" becomes the data design (P15.1); Step 21's "Step 13 specification" is not needed, because Step 21 compares the design doc, CEO plan, engineering plan, glossary and decision records; Step 19's "disposition table" for existing projects does not exist, because an existing application runs every step. Phase C's own files are corrected when Phase C is scoped.
 
 ### B.9 David's known gaps, and where each is answered
 
-| Gap | Where in Phase B |
-|---|---|
-| Sentinel throughout the pipeline | B.2.7: Steps 14, 15 and 16 (P14.5, P15.2) |
-| `secure-software-engineering` throughout | B.2.7: Step 14 (requirements, P14.4) and Step 15 (threat model, P15.2) |
-| Anvil's own skills throughout | B.2.8: `data-models` at Steps 15 and 16 (P15.1, P16.2); the Material 3 documents at 12 and 14; the Anvil `AGENTS.md` template (P11.6) |
-| The no-shared-database rule given to every skill | B.2.5, the Anvil context pack, pasted at every invocation |
-| Step 11 reshaped for all entry points | B.1 (entry record, health check) and P11.1 to P11.5 |
-| Apps 2 to 5 | B.1; P11.1 Route C; P11.2 (07 to `phase-g`, 08 through all of Phase B); B.2.9 (ledger holds every app) |
-| Learning through the memory governor and `mb-submit-memory` | B.2.11 (Phase B's part); Step 46 is Phase F's scope |
+| Gap                                                         | Where in Phase B                                                                                                                      |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Sentinel throughout the pipeline                            | B.2.7: Steps 14, 15 and 16 (P14.5, P15.2)                                                                                             |
+| `secure-software-engineering` throughout                    | B.2.7: Step 14 (requirements, P14.4) and Step 15 (threat model, P15.2)                                                                |
+| Anvil's own skills throughout                               | B.2.8: `data-models` at Steps 15 and 16 (P15.1, P16.2); the Material 3 documents at 12 and 14; the Anvil `AGENTS.md` template (P11.6) |
+| The no-shared-database rule given to every skill            | B.2.5, the Anvil context pack, pasted at every invocation                                                                             |
+| Step 11 reshaped for all entry points                       | B.1 (entry record, health check) and P11.1 to P11.5                                                                                   |
+| Apps 2 to 5                                                 | B.1; P11.1 Route C; P11.2 (07 to `phase-g`, 08 through all of Phase B); B.2.9 (ledger holds every app)                                |
+| Learning through the memory governor and `mb-submit-memory` | B.2.11 (Phase B's part); Step 46 is Phase F's scope                                                                                   |
 
 ### B.10 Decisions for David
 

@@ -79,9 +79,9 @@ flowchart TD
     Gate1 --> Summary["Present gate summary block"]
     Summary --> Approve{"Developer approves?"}
 
-    Approve -->|"Yes"| House["Ledger row + approval timestamp.<br/>THEN, only now, ask separately<br/>(both repos, since Step 16<br/>touches code AND docs repo):<br/>— commit and push?<br/>— run end-of-step memory sequence?<br/>&nbsp;&nbsp;— use mb-submit-memory skill<br/>&nbsp;&nbsp;(CONTEXT.md + each real ADR,<br/>&nbsp;&nbsp;individually, never batched)<br/>&nbsp;&nbsp;— run gbrain dream (real, not dry-run)<br/>&nbsp;&nbsp;— run gbrain eval suspected-contradictions<br/>&nbsp;&nbsp;— review findings, STOP on high-severity"]
+    Approve -->|"Yes"| House["Gate row and ledger row<br/>with approval timestamp.<br/>Explain what was done and why.<br/>Stop. Ask David to run /mb-close-out."]
     House --> Pass["Gate passes.<br/>Continue to Step 17 (Phase C begins)."]
-    Approve -->|"No"| Block["Gate blocked.<br/>Stop, record blocker.<br/>No housekeeping asked —<br/>nothing approved yet to commit or remember.<br/>Pipeline does not advance."]
+    Approve -->|"No"| Block["Gate blocked.<br/>Stop, record blocker.<br/>Pipeline does not advance."]
 
     classDef note fill:#eef2ff,stroke:#4f46e5,stroke-width:1px;
     classDef fixed fill:#f0fdf4,stroke:#16a34a,stroke-width:1px;

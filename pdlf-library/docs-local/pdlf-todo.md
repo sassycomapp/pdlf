@@ -1,7 +1,7 @@
 ---
 title: "pdlf-todo"
 doc-id: "mb-13a3fbc9"
-updated: "2026-10-12"
+updated: "2026-10-13"
 ---
 # Active PDLF To-Do List
 
@@ -30,7 +30,7 @@ Held in the build plans of Steps 42, 42A, 43 and 44.
 ### B1. Global-content query-fetch-apply sequence
 
 Rule and enforcement mechanism decided 2026-07-19 — see
-[[[pdlf:pdlf-library/adr-local/global-content-discovery-and-application-discipline|ADR Global Content Discovery and Application Discipline]]](C:/pdlf/pdlf-library/adr-local/global-content-discovery-and-application-discipline.md) and
+[[[pdlf:pdlf-library/policy-local/global-content-discovery-and-application-discipline|ADR Global Content Discovery and Application Discipline]]](C:/pdlf/pdlf-library/policy-local/global-content-discovery-and-application-discipline.md) and
 [[[pdlf:pdlf-library/policy-local/pol-memory-and-knowledge|Pol Memory and Knowledge]]](C:/pdlf/pdlf-library/policy-local/pol-memory-and-knowledge.md). `project-library-global`'s GBrain registration is confirmed
 working, so the mechanism is usable, not just designed. Remaining work: build the
 five-step sequence and citation requirement into each relevant step file (17, 20, 22, 26,
@@ -38,23 +38,6 @@ five-step sequence and citation requirement into each relevant step file (17, 20
 Phase C onward, same treatment as A2.
 
 > **Changed since:** This is a rule for building each step, not a separate task; it is applied as part of A1. Since it was written, GBrain was upgraded to 0.59.18.0, every documentation repository became a federated source so one search covers everything, and cross-repository links now use the standard form `[[[source-id:slug]]](C:/full/path.md)`, written by agents as `[[name]]` and converted by the `mb-doc-check` commit hook. The five-step sequence must be checked against that setup before it is built into any step.
-
-### B2. End-of-step housekeeping: governed memory writes, dream cycle, commit and push
-
-Original rule: two related, recurring per-step items, applied together as each new step file is built:
-
-- **Governed memory writes.** Every step's own housekeeping question ("sync/embed GBrain?") must invoke the real, governed pipeline (`mb-submit-memory`, using the `pdlf_step_sync` credential) rather than the older, ungoverned raw sync. Already applied to Steps 11, 12, 14, 15, 16. Needs applying to every step from 17 through 46 (excluding the retired Step 13) as each is actually built.
-- **Dream-cycle discipline.** At the end of every step, after the governed memory-write sequence, run: `gbrain dream` for real (never `--dry-run`), then `gbrain eval suspected-contradictions` immediately afterward (does not run automatically), then review the findings. Already applied to the same five steps (11, 12, 14, 15, 16). Same remaining scope: Steps 17–46 as each is built.
-
-> **Superseded — governed memory writes:** End-of-step housekeeping is now the OpenCode skill `/mb-close-out`, which the developer runs on demand after every PDLF step. It saves governed memory, processes the memory governor's review queue and updates the project documents through `mb-project-docs`, using the existing scripts and skills. Steps no longer carry their own memory-write sequence; each step ends by telling the developer to run `/mb-close-out`.
->
-> **Superseded — dream cycle:** The dream cycle never runs by itself and is not run at the end of a step. The developer runs it during Sunday maintenance, prompted by the 9 a.m. Google Calendar reminder that lists every maintenance task in order.
->
-> **Superseded — commit and push inside steps:** Agents never commit or push to Git, and no Git grant exists (global `AGENTS.md`). The developer runs `commit-all.sh` in the WSL terminal, which commits every documentation repository, updates GBrain and pushes.
-
-### B3. Remove obsolete housekeeping from the steps already built
-
-> **Changed since:** Follows from B2. The dream-cycle instructions written into Steps 11, 12, 14, 15 and 16 must be removed. The commit-and-push questions in Step 11 (items 18 and 22) and in the other built steps must be removed. Each of these steps must instead end by telling the developer to run `/mb-close-out`.
 
 ### B4. End-to-end proof of the governed memory pipeline
 

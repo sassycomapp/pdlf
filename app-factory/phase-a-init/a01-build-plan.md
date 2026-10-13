@@ -1,7 +1,7 @@
 ---
 title: "a01-build-plan"
 doc-id: "mb-114d842c"
-updated: "2026-10-12"
+updated: "2026-10-13"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -13,6 +13,12 @@ updated: "2026-10-12"
 **Must achieve:** started by `/pdlf-init`, offers David the entry points in Steps 2 to 10, establishes the application (and, where it applies, the step to start from), runs the health check for an existing app, then runs the selected steps in order and stops at every gate for David's approval (section 4).
 
 **Carried out by:** OpenCode, as the orchestrator. Designed in parts, alongside the steps it runs.
+
+**Must be built so that** (settled with the Phase B scope):
+- it offers the entry points 02 to 10 and David chooses exactly one; where each joins the pipeline is the table in section 4 of [[[pdlf:app-factory/pdlf-build-plan|PDLF Build Plan]]](C:/pdlf/app-factory/pdlf-build-plan.md);
+- before Step 11 or Step 12 runs, it establishes the entry record and writes it to the ledger as section 4 sets out, asking David for the feature or update statement and its short name;
+- for entries 04 to 10 it runs [[[pdlf:pdlf-library/operating-procedures/sop-health-check|SOP: Health Check]]](C:/pdlf/pdlf-library/operating-procedures/sop-health-check.md) first, and starts no work until every check passes;
+- for entry 07 it runs Step 11 and does not run Steps 12 to 16, because App 3 has nothing to design.
 
 ## From `orchestrator-run-plan.md`: the whole run plan
 

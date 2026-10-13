@@ -1,7 +1,7 @@
 ---
 title: "pdlf-full-scope-v1"
 updated: "2026-10-13"
-doc-id: "mb-1dd5339e"
+doc-id: "mb-91b5f528"
 ---
 
 # PDLF Full Scope, V1 (work in progress)
@@ -61,17 +61,17 @@ Phase A (the orchestrator and the entry points) is not yet designed. This sectio
 
 **Designed.** `/pdlf-init` starts the orchestrator (Step 1). The orchestrator offers the entry points and David chooses exactly one. The build plan (section 4) says where each one joins the pipeline:
 
-| Entry point                     | App        | Where it joins Phase B                                                                                                           |
-| ------------------------------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| 02 `new-app-no-context`         | App 1      | Step 11, at the project slug question.                                                                                           |
-| 03 `new-app-with-context`       | App 1      | Step 11, at the repository questions.                                                                                            |
-| 04 `add-feature-main-app`       | App 1      | Health check, then the feature path from Step 12.                                                                                |
-| 05 `update-main-app`            | App 1      | Health check. A change to what the app does takes the feature path from Step 12; any other update goes to the step David names.  |
-| 06 `compile-master-template`    | App 2      | Not Phase B (a step near the end of the pipeline).                                                                               |
-| 07 `create-client-template`     | App 3      | Step 11, at the project slug question or the repository questions, Depending on whether there is existing context or not         |
-| 08 `create-management-app`      | App 5      | Step 11, at the project slug question or the repository questions, Depending on whether there is existing context or not         |
-| 09 `add-feature-management-app` | App 3 or 5 | Health check, then the feature path from Step 12.                                                                                |
-| 10 `update-management-app`      | App 3 or 5 | Health check. A change to what the app does takes the feature path from Step 12; any other update goes to the step David names.. |
+| Entry point                     | App        | Where it joins Phase B                                                                                                          |
+| ------------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| 02 `new-app-no-context`         | App 1      | Step 11, at the project slug question.                                                                                          |
+| 03 `new-app-with-context`       | App 1      | Step 11, at the repository questions.                                                                                           |
+| 04 `add-feature-main-app`       | App 1      | Health check, then the feature path from Step 12.                                                                               |
+| 05 `update-main-app`            | App 1      | Health check. A change to what the app does takes the feature path from Step 12; any other update goes to the step David names. |
+| 06 `compile-master-template`    | App 2      | Not Phase B (a step near the end of the pipeline).                                                                              |
+| 07 `create-client-template`     | App 3      | "Probably Step 11", still to be settled.                                                                                        |
+| 08 `create-management-app`      | App 5      | "Probably Step 11", still to be settled.                                                                                        |
+| 09 `add-feature-management-app` | App 3 or 5 | Health check, then the feature path from Step 12.                                                                               |
+| 10 `update-management-app`      | App 3 or 5 | As 05, for App 3 or App 5.                                                                                                      |
 
 **Proposal: the entry record.** Every Phase B step behaves differently depending on how the work entered PDLF. So before Step 11 or Step 12 runs, the orchestrator must have established, and written to the ledger, these facts, which this document calls the entry record:
 
@@ -100,6 +100,8 @@ These rules apply to all five steps. They are stated once here, as the build pla
 **Proposal.** Correct both specifications in one change, before Phase B is built: the execution sequence ends with "explain, stop, ask David to run `/mb-close-out`"; the gate ceremony becomes full BFT, ledger integrity check, gate summary, David's explicit yes or no, gate row, then the request for close-out. The gate summary no longer reports a push, because the agent never pushes.
 
 #### B.2.2 Searching GBrain with the real source names
+
+
 
 **Designed.** Every step starts with a GBrain search that names its sources explicitly, normally `{slug}`, `{slug}-project-library` and `project-library-global`, and reads the real file behind every result before applying it. A step that applies a `project-library-global` standard names the file it read in its receipt or BFT answer (ADR: Global Content Discovery and Application Discipline).
 

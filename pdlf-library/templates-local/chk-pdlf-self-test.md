@@ -1,7 +1,7 @@
 ---
 title: "chk-pdlf-self-test"
 doc-id: "mb-afcdd367"
-updated: "2026-10-12"
+updated: "2026-10-13"
 ---
 # Checklist — PDLF Self-Test Suite
 
@@ -41,7 +41,7 @@ Run per step file, or against a live step execution.
 | 1.5 | BFT run at the step's assigned level, with non-boilerplate answers | Cross-check [[[pdlf:pdlf-library/templates-local/bft-checkpoint-cheatsheet-v2\|BFT Checkpoint Cheatsheet v2]]](C:/pdlf/pdlf-library/templates-local/bft-checkpoint-cheatsheet-v2.md)'s assigned level; for a live run, confirm each answer is specific to the step, not generic |
 | 1.6 | Ledger row matches [[[pdlf:pdlf-library/specifications-local/spec-postgres-ledger\|Spec: Postgres Ledger]]](C:/pdlf/pdlf-library/specifications-local/spec-postgres-ledger.md)'s schema exactly | Compare the step's ledger-write substep against the real `steps` table columns |
 | 1.7 | Step Receipt generated from the ledger row, not composed separately | Confirm the receipt substep says "generate from the row just written," not "write a summary" |
-| 1.8 | The two housekeeping questions asked separately, never combined, never auto-run | Confirm both appear as distinct substeps late in the sequence |
+| 1.8 | The step ends by asking the developer to run `/mb-close-out`, and never commits, pushes or writes memory itself | Confirm the last substeps are explain, stop and the request for `/mb-close-out`, with no commit, push, memory or dream-cycle action |
 | 1.9 | The step stops and waits for "continue" | Confirm the final substep is a stop, not an automatic advance |
 
 ## 2. Gate Integrity
@@ -52,7 +52,7 @@ Run per gate (`domain-locked`, `concept-locked`, `wireframes-approved`,
 | # | Check | Method |
 |---|---|---|
 | 2.1 | Full BFT applies regardless of the step's assigned level in the cheatsheet | Confirm the gate step's file explicitly overrides to Full |
-| 2.2 | Full maintenance actually runs: git push both repos + `/sync-gbrain` | Confirm the gate procedure step lists both actions, using `/sync-gbrain`, not raw `gbrain` commands |
+| 2.2 | The gate commits, pushes and syncs nothing | Confirm the gate procedure has no commit, push or GBrain sync, and ends with the request for `/mb-close-out` |
 | 2.3 | Gate summary block matches the format in [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure\|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md) | Compare presented output against the template |
 | 2.4 | Developer approval required before advancing | Confirm no path exists from gate to next step without an explicit yes |
 | 2.5 | A failed gate blocks the pipeline, not just that one step | Confirm the "No" branch stops and records a blocker, not a silent retry |

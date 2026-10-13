@@ -1,7 +1,7 @@
 ---
 title: "b16-reference"
 doc-id: "mb-741c244a"
-updated: "2026-10-12"
+updated: "2026-10-13"
 ---
 
 ## From `16-domain-modeling.md`
@@ -9,8 +9,10 @@ updated: "2026-10-12"
 ## Task Execution Order
 
 1. Query GBrain for context relevant to domain terminology and prior
-   decisions (automatic, read-only). Sources nominated explicitly: `{slug}`,
-   `{slug}-project-library`, `project-library-global`.
+   decisions (automatic, read-only), across the federated documentation sources:
+   `{slug}-project-library`, `default` (`project-library-global`) and `pdlf`, plus
+   `anvil-agent-references-code` for Anvil knowledge. Application code is read directly
+   from the app folder.
 2. Assemble context to paste into the invocation:
    - Step 15's plan artifact (`output-gstack\makepdlf-step-15-eng-plan.md` and/or the
      GStack-native file, per Step 15's own mode-dependent persistence)
@@ -67,29 +69,11 @@ updated: "2026-10-12"
     `CONTEXT.md`'s path.
 13. Save Step Receipt to `dev-{slug}\{slug}-project-library\pdlf\step-16-receipt.md`.
 14. Present the gate summary block. Stop, wait for explicit developer approval
-    (yes/no). Do NOT perform any git operation or any memory submission before this
-    approval is given — this is the one place in the whole PDLF pipeline where that
-    rule was previously, silently broken, and it is corrected here: the gate runs its
-    full ceremony to this point, and nothing further happens without an explicit yes.
-15. If approved: write the ledger row with a gate-approval timestamp. Then, and only
-    then, ask the two end-of-step housekeeping questions, separately, in the same form
-    every other step uses — with one genuine content difference, not a procedural one:
-    since Step 16 is the one step that touches both the code repo and the docs repo,
-    both questions cover both repos, where an ordinary step's covers only one.
-    - Ask: "Commit and push both repos to GitHub?"
-    - Ask: "Run the end-of-step memory sequence?" This is five actions, in order,
-      every time: (1) invoke the `mb-submit-memory` skill, using the
-      `pdlf_step_sync` credential — this is a PDLF step's own routine housekeeping,
-      not a developer's independent, ad-hoc request — for `CONTEXT.md`, and
-      separately for each real ADR written at item 6, if any — each its own
-      individual submission, never batched together; (2) run `gbrain dream` for
-      real, NEVER `--dry-run`; (3) run `gbrain eval suspected-contradictions`
-      immediately afterward; (4) read what it reports; (5) if anything is marked
-      high-severity, STOP and present it to the developer before continuing.
+    (yes/no).
+15. If approved: write the gate row and the ledger row with a gate-approval timestamp.
+    Explain what was done and why, stop, and ask the developer to run `/mb-close-out`.
     Continue to Step 17.
-16. If not approved: gate blocked, agent stops, records the blocker. Do NOT ask the
-    housekeeping questions and do NOT submit anything through `mb-submit-memory` — an
-    unapproved gate has nothing ready to commit or remember yet. Pipeline does not
+16. If not approved: gate blocked, agent stops, records the blocker. Pipeline does not
     advance.
 
 ---
@@ -163,7 +147,7 @@ process, applied to hard-to-reverse architecture calls instead.
 |---|---|---|
 | Domain glossary | `dev-{slug}\{slug}-project-library\CONTEXT.md` | Created if missing (new entry) or reconciled in place (existing entry). Glossary only — no implementation detail. |
 | ADRs | `dev-{slug}\{slug}-project-library\adr-local\000N-{slug}.md` | Only for decisions clearing the three-part test. Not one per decision. |
-| Gate `domain-locked` | `gates` table | Full BFT, gate summary, developer approval required, then housekeeping (both repos) |
+| Gate `domain-locked` | `gates` table | Full BFT, gate summary, developer approval required, then the request for `/mb-close-out` |
 | Step Receipt | `dev-{slug}\{slug}-project-library\pdlf\step-16-receipt.md` | No `outputs` subfolder |
 | BFT record | — | Full (gate override) |
 
@@ -201,13 +185,10 @@ For execution sequence: [[[pdlf:pdlf-library/specifications-local/spec-execution
 For BFT procedure: [[[pdlf:pdlf-library/specifications-local/spec-bft|Spec: BFT]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md)
 For gate procedure: [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md)
 
-GBrain is queried automatically at substep 1. Getting new content into durable memory is
-never automatic — it is asked at item 15, only after the gate has been explicitly
-approved, through the `mb-submit-memory` skill and the five-action sequence described
-there, never GStack `/sync-gbrain` and never folded into gate maintenance itself. This
-step is the one place in the whole pipeline where housekeeping questions cover both
-repos rather than one, since Step 16 is the one step that touches both.
+GBrain searching is automatic and read-only. New content reaches durable memory only at
+close-out, through `/mb-close-out`, run when the developer asks for it.
 
-The ledger row, Step Receipt, and devlog-index/judgement-trail are the
-complete checkpoint. No separate state file, devlog file, or completion
-report.
+The agent never commits or pushes; only the developer commits, with `commit-all`.
+
+The ledger row, the BFT record and the Step Receipt are the complete checkpoint. No
+separate state file, devlog file or completion report.

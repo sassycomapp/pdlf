@@ -1,7 +1,7 @@
 ---
 title: "b14-build-plan"
 doc-id: "mb-4d5937f5"
-updated: "2026-10-12"
+updated: "2026-10-13"
 ---
 
 ## From `14-build-notes.md`
@@ -26,7 +26,8 @@ Captured during discussion, before this step file was rebuilt. Points to carry f
 8–9. Capture and copy the plan artifact to `gstack-outputs\step-14-ceo-plan.md`
 10. Verify outputs exist; deviation request if missing
 11–13. Ledger row, Step Receipt, BFT Full
-14–17. Housekeeping questions, present receipt, ask to continue
+14. Explain, present the Step Receipt, stop and ask David to run `/mb-close-out`
+15. Ask to continue
 
 ## Core principle — no branch on Step 12's provenance
 
@@ -116,36 +117,10 @@ resolve where that check belongs.
 
 - No `<project-library>` placeholder — use `dev-{slug}\{slug}-project-library`
   in prose, full absolute path in any literal command
-- No automatic git operations anywhere — every commit/push is asked
-- No automatic memory-governor submission — asked, via the `mb-submit-memory` skill only
+- The agent never commits or pushes. Every step ends by explaining what was done, stopping and asking David to run `/mb-close-out`.
 - No Step 13 references anywhere in this file — purged per the handover's
   explicit requirement
 - No "Branch A/B" language — described plainly instead
-
-## Later decisions
-
-1. **`/sync-gbrain` replaced with the `mb-submit-memory` skill, submitting through the
-   memory governor.** Same system-wide change as Steps 11 and 12 (master task list,
-   items 9.2 and 9.4, which names `[[14-plan-ceo-review]]` directly). Applied here
-   to this step's one `/sync-gbrain` mention, item 15. Both of this step's real
-   artifacts get submitted, individually: the stable copy at
-   `gstack-outputs\step-14-ceo-plan.md`, which exists in every mode, and the real
-   GStack-native plan file, which only exists for SCOPE EXPANSION and SELECTIVE
-   EXPANSION — for HOLD SCOPE and SCOPE REDUCTION, only the stable copy is submitted,
-   since nothing else was written. Also fixed while touching this section: the old
-   `[[14-plan-ceo-review]]` Reference section pointed to "substep 10" for the
-   syncing question — item 10 is actually the deviation-request line, not the
-   housekeeping question, which is item 15. Corrected.
-2. **`gbrain dream` and `gbrain eval suspected-contradictions` added to end-of-step
-   housekeeping.** Master task list, item 9.8 — applies to every step. Run for real,
-   never as a dry run. `gbrain eval suspected-contradictions` does not run
-   automatically as part of `gbrain dream` and must be invoked as its own separate
-   command every time.
-3. **`mb-submit-memory` skill built and installed, 2026-08-25.** Same skill used at
-   Steps 11 and 12 — queries GBrain for related content, forms a real confidence score
-   and contradiction judgment using a concrete, bounded method, reports its findings,
-   and only submits after explicit developer approval. See the skill's own file for the
-   full procedure.
 
 ## From `pdlf-build-plan.md`: step entry
 
@@ -189,8 +164,6 @@ The evidence is the five step files, their build notes and decision trees, the b
 **1.2 We called the steps "built" without ever running them.** Not one of the five steps has been run against a real application. Several open questions can only be answered by a run: whether `/plan-eng-review` finds "the active plan file" inside OpenCode, where `TODOS.md` belongs, and whether the statement that "a design doc already exists" really stops GStack from re-offering `/office-hours`. mybizz-os's own principle is "present is not working, and completed is not worked". By that principle, Phase B is designed, not built.
 
 **1.3 Each step repeats the rules that apply to every step.** Every step file spells out, in its own words, the GBrain search, the ledger row, the Step Receipt, the BFT, the two housekeeping questions and a five-action memory sequence. The same rule is written five times, slightly differently each time, so one change (such as moving close-out to `/mb-close-out`) has to be made in five places and is easily missed in one. This breaks "one fact, one home".
-
-**1.4 Each step ran its own memory and dream cycle.** The housekeeping asked, at every step, to run `gbrain dream` and `gbrain eval suspected-contradictions`. In mybizz-os, the dream cycle is a long, heavy process run on Sundays after the diagnostic, with a manual review afterwards. Running it after every step would have cost hours across a build and buried the developer in reviews. The intent's close-out rule replaces this.
 
 **1.5 We wrapped outside skills without first reading them.** Three steps were designed from a skill's name or summary and were wrong: Step 15 assumed five architecture documents that the skill never produces; Step 16 invoked `/domain-modeling`, which cannot run on its own; and Step 14 used the wrong GStack save path. Each mistake was caught later, by reading the skill's source, and written down as a lesson in the build notes, three times over. The lesson was never turned into a rule before the next step was designed.
 

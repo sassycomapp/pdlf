@@ -1,7 +1,7 @@
 ---
 title: "spec-skill-design"
 doc-id: "mb-1202aaa9"
-updated: "2026-10-12"
+updated: "2026-10-13"
 ---
 # PDLF Skill — Design Specification
 
@@ -330,9 +330,8 @@ Supporting documents (policies, templates, ADRs) are loaded by the orchestrator 
    verifies, reports.
 3. **No step is skipped without a deviation request.** The developer must explicitly authorize
    any deviation.
-4. **The two housekeeping questions (commit/push, GBrain sync) are asked separately, every step,
-   never auto-run, never combined.** Restated here and in SKILL-v4.md §5.1 because it's easy for
-   an agent to quietly forget across a long session.
+4. **The agent never commits or pushes.** Every step ends by asking the developer to run
+   `/mb-close-out`; only the developer commits, with `commit-all`.
 5. **A skill is never invoked without first reading its own SKILL.md.** Names mislead — the
    self-assessments have documented multiple real errors caused by trusting a skill name instead
    of its content.

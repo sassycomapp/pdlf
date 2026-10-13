@@ -1,7 +1,7 @@
 ---
 title: "README"
 doc-id: "mb-5220bac9"
-updated: "2026-10-12"
+updated: "2026-10-13"
 ---
 # PDLF Library
 
@@ -19,6 +19,7 @@ The PDLF library holds the shared machinery every module in `app-factory/` relie
 | `adr-local/` | Architecture decision records | It records a decision that was made, with its reasoning. |
 | `specifications-local/` | Specifications (`spec-` prefix) | It states exact paths, rules and requirements the machinery must meet. |
 | `policy-local/` | Policies (`pol-` prefix), listed in `pol-INDEX.md` | It is a rule the agent must obey. |
+| `operating-procedures/` | Standard operating procedures (`sop-` prefix) | It is a procedure the agent carries out the same way every time, such as the health check. |
 | `templates-local/` | Templates | It is a blank form a step fills in, such as a step receipt. |
 | `docs-local/` | Working documents of the system | It tracks the system's state: configuration, build progress, run order, to-do list, judgement trail, reference material. |
 

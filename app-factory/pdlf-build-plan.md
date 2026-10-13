@@ -1,7 +1,7 @@
 ---
 title: "pdlf-build-plan"
 doc-id: "mb-64817b10"
-updated: "2026-10-12"
+updated: "2026-10-13"
 ---
 # PDLF Build Plan
 
@@ -113,18 +113,22 @@ David starts PDLF by running `/pdlf-init` in OpenCode. This starts Step 1, the o
 | Step | Entry point | App worked on | Where the work joins the pipeline |
 |---|---|---|---|
 | 02 | `new-app-no-context` | App 1 | Step 11, at the project slug question. |
-| 03 | `new-app-with-context` | App 1 | Step 11, at the four repository questions. The application may be partly developed but has not yet run through PDLF; the orchestrator establishes what context material exists. |
-| 04 | `add-feature-main-app` | App 1 | The feature path (below). |
-| 05 | `update-main-app` | App 1 | The update path (below). |
-| 06 | `compile-master-template` | App 2 | A step near the end of the pipeline. To be settled. |
-| 07 | `create-client-template` | App 3 | Probably Step 11. To be settled. |
-| 08 | `create-management-app` | App 5 | Probably Step 11. To be settled. |
-| 09 | `add-feature-management-app` | App 3 or App 5 | The feature path (below). |
-| 10 | `update-management-app` | App 3 or App 5 | The update path (below). |
+| 03 | `new-app-with-context` | App 1 | Step 11, at the repository questions. The application may be partly developed but has not yet run through PDLF; the orchestrator establishes what context material exists. |
+| 04 | `add-feature-main-app` | App 1 | Health check, then the feature path (below). |
+| 05 | `update-main-app` | App 1 | Health check, then the update path (below). |
+| 06 | `compile-master-template` | App 2 | A step near the end of the pipeline, not Phase B. |
+| 07 | `create-client-template` | App 3 | Step 11, at the project slug question or the repository questions, depending on whether there is existing context or not. Steps 12 to 16 do not run for App 3. |
+| 08 | `create-management-app` | App 5 | Step 11, at the project slug question or the repository questions, depending on whether there is existing context or not. |
+| 09 | `add-feature-management-app` | App 3 or App 5 | Health check, then the feature path (below). |
+| 10 | `update-management-app` | App 3 or App 5 | Health check, then the update path (below). |
 
 For every entry point except 02 and 03, the orchestrator asks David questions to establish which application is meant, and for 04, 05, 09 and 10 also where the work begins.
 
-**Health check.** Every entry point that works on an app that already exists (04 to 10) first checks the app's setup: its repositories exist and are linked, it is registered in GBrain, and it has its record in the ledger. No work starts on a broken setup. Step 11 is not repeated.
+**Why Steps 12 to 16 do not run for App 3.** App 3 holds only App 1's data table schema, one startup module and its dependency on App 2. There is nothing in it to design.
+
+**The entry record.** Before Step 11 or Step 12 runs, the orchestrator establishes the entry record: the entry point chosen; the business slug and the app worked on (1, 3 or 5); the path (a whole application, a feature or an update); for a feature or an update, a short statement of it in David's words and a short name for it (the feature slug), which the orchestrator asks David for; and the project's mode, `full` or `test`. For entries 04 to 10 the orchestrator writes the entry record at once to the ledger row of the step where the entry joins. For entries 02 and 03 no business row exists yet, so the orchestrator passes the entry record to Step 11, which writes the business row first and then the entry record. The mode is kept in the business row, because it belongs to the business, not to one entry. Every step reads the entry record from the ledger and never asks David again for what it already says.
+
+**Health check.** Every entry point that works on an app that already exists (04 to 10) first runs the health check, the standard procedure [[[pdlf:pdlf-library/operating-procedures/sop-health-check|SOP: Health Check]]](C:/pdlf/pdlf-library/operating-procedures/sop-health-check.md). Step 11 runs the same procedure as its closing self-audit. No work starts until every check passes. Step 11 is not repeated.
 
 **The feature path.** A new feature is scoped, but the application is not re-scoped. The work starts at Step 12, which describes the feature and checks it against the application's existing design, then runs through the reviews and domain modelling of Steps 14 to 16 at the size of the feature.
 
@@ -195,7 +199,7 @@ Why: each step is complex enough to need its own plan, and one plan for every st
 
 Every step is built to these rules. They are stated once here and not repeated in each step. Every step follows [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md), applies [[[pdlf:pdlf-library/specifications-local/spec-bft|Spec: BFT]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md), and names things per [[[default:specifications-global/spec-nomenclature|Spec: Nomenclature]]](C:/dev/project-library-global/specifications-global/spec-nomenclature.md). References that apply to particular steps are named at those steps.
 
-- **It starts with a GBrain search** of the sources it needs, named explicitly (normally `{slug}`, `{slug}-project-library` and `project-library-global`), and it reads the actual file a search points to before applying it.
+- **It starts with a GBrain search** of the federated documentation sources (one search covers the project library `{slug}-project-library`, `default`, which is `project-library-global`, and `pdlf`). A step that needs Anvil knowledge also names `anvil-agent-references-code`. Application code is never searched in GBrain; it is read directly from the app folder. The step reads the actual file a search points to before applying it.
 - **The developer approves every change.** The step explains each decision in plain language, never jumps a gate, and never passes one without the developer's approval.
 - **Skills take precedence.** When a skill in PDLF's library covers a task, the step uses it and does not improvise.
 - **Deviations are decided by the developer.** If the step cannot be done as written, it stops, sets out the options and what each costs, and the developer decides. The decision is recorded in the ledger.
@@ -206,7 +210,7 @@ Every step is built to these rules. They are stated once here and not repeated i
 
 ### 9. What is still to be settled
 
-- **Steps work:** the orchestrator's form and its `opencode.json`; where entry points 06, 07 and 08 join the pipeline; which gates exist, where they sit and what each approves; the place and weight of the BFT thinking checkpoints; which `project-library-global` standard each step applies; whether applications receive a `CLAUDE.md`; the steps that build the remaining apps in `phase-g`; and the design of every step, one at a time, with Steps 42 to 44 rebuilt around the release by cloning App 1 into App 2. The step entries in each step's build plan were written before the four-repository scaffold and the clone release; each is corrected to them when its step is designed, Step 11 first. The detailed list is kept in [[[pdlf:pdlf-library/docs-local/pdlf-todo|Active PDLF To-Do List]]](C:/pdlf/pdlf-library/docs-local/pdlf-todo.md).
+- **Steps work:** the orchestrator's form and its `opencode.json`; where entry point 06 joins the pipeline; which gates exist, where they sit and what each approves; the place and weight of the BFT thinking checkpoints; which `project-library-global` standard each step applies; whether applications receive a `CLAUDE.md`; the steps that build the remaining apps in `phase-g`; and the design of every step, one at a time, with Steps 42 to 44 rebuilt around the release by cloning App 1 into App 2. The step entries in each step's build plan were written before the four-repository scaffold and the clone release; each is corrected to them when its step is designed, Step 11 first. The detailed list is kept in [[[pdlf:pdlf-library/docs-local/pdlf-todo|Active PDLF To-Do List]]](C:/pdlf/pdlf-library/docs-local/pdlf-todo.md).
 - **The Cupcake proof:** once the orchestrator exists, an agent deliberately attempts to pass a gate without approval, and Cupcake must block it.
 - **Testing:** designed as a component of its own, starting from a review of the testing disciplines.
 

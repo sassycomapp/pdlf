@@ -1,7 +1,7 @@
 ---
 title: "spec-execution-discipline"
 doc-id: "mb-913cd6af"
-updated: "2026-10-12"
+updated: "2026-10-13"
 ---
 # PDLF Execution Discipline
 
@@ -10,16 +10,16 @@ step file (11 through 46) references this document rather than inlining
 the execution sequence. When a step file says "Follow the execution sequence in
 specifications-local/spec-execution-discipline.md," the agent loads this file and runs the procedure below.
 
-**Use:** The orchestrator loads this file at every step. The agent applies the 13-point
-sequence to the current step, does not skip substeps without a deviation request.
+**Use:** The orchestrator loads this file at every step. The agent applies the execution
+sequence to the current step and does not skip a substep without a deviation request.
 
 ---
 
-## 13-Point Execution Sequence
+## Execution Sequence
 
 Every step follows this sequence. The agent never skips a substep without a deviation request.
 
-1. Query GBrain for context relevant to this step's domain.
+1. Search GBrain for context relevant to this step's domain, across the federated documentation sources (one search covers the project library `{slug}-project-library`, `default`, which is `project-library-global`, and `pdlf`), adding `anvil-agent-references-code` when the step needs Anvil knowledge. Read the actual file each result points to. Application code is read directly from the app folder, never through GBrain.
 2. Check step type: SKILL / MANUAL / OPTIONAL / GATE.
 3. If OPTIONAL: present recommendation + justification, wait for RUN/SKIP decision.
 4. If MANUAL: present instructions + references, wait for "done," verify.
@@ -28,10 +28,8 @@ Every step follows this sequence. The agent never skips a substep without a devi
 7. Run BFT checkpoint at the step's assigned level (Full / Light / None) per `[[spec-bft]]`.
 8. Write the `steps` ledger row (step_number, status, artifact_path, synthesized, etc.).
 9. Generate and save the Step Receipt to `{slug}-project-library\pdlf-outputs\{step}\{slug}-{step}-receipt.md`.
-10. Ask the two housekeeping questions — separately, never combined, never auto-run:
-    - "Commit and push to GitHub?"
-    - "Sync/embed GBrain?"
-11. STOP and report to the developer.
+10. Explain to the developer, in plain language, what was done and why, and show the Step Receipt.
+11. STOP and ask the developer to run `/mb-close-out`.
 12. Wait for "continue" to proceed to the next step.
 
 Applies to every step, including OpenCode-native steps. Feature cycles inside Step 35 each
@@ -67,8 +65,8 @@ work manually.
 
 ### Gate Steps
 
-Gate steps follow the expanded gate procedure defined in `[[spec-gate-procedure]]`. Full BFT,
-full maintenance, gate summary block, and explicit developer approval.
+Gate steps follow the expanded gate procedure defined in `[[spec-gate-procedure]]`: Full BFT,
+gate summary block, and explicit developer approval.
 
 ---
 
@@ -126,24 +124,26 @@ written, and its Step Receipt is saved.
 
 ---
 
-## Housekeeping
+## Commits and Memory
 
-GBrain querying runs automatically at substep 1. Querying is read-only — no side effects.
-GBrain syncing is a write operation asked at substep 10, never auto-run. The two housekeeping
-questions are asked separately, every step, never combined.
+GBrain searching runs automatically at substep 1. Searching is read-only and has no side effects.
+The agent never commits or pushes. Only the developer commits,
+with `commit-all`. Close-out is `/mb-close-out`, run when the developer asks for it; new knowledge
+and every lesson reach GBrain only through the memory governor and `mb-submit-memory`.
 
 ---
 
 ## Output Routing
 
-Skill outputs route per the project's own AGENTS.md. PDLF's own process artifacts go to
-`dev-{slug}\{slug}-project-library\pdlf\`.
+Every artifact is written to its canonical place. Where that place is outside the step's output
+folder, a copy is also written to `{slug}-project-library\pdlf-outputs\{step}\`, so that each
+step's outputs for a project are all in one place.
 
 ---
 
 ## Checkpoint Writing
 
-The ledger row, Step Receipt, and devlog-index/judgement-trail entries are the complete
-checkpoint. No separate state file, devlog file, or completion report. The Step Receipt
+The ledger row, the BFT record and the Step Receipt are the complete checkpoint. No separate
+state file, devlog file or completion report. The Step Receipt
 is generated from the ledger row just written — it IS the ledger row, formatted for reading.
 Never compose a receipt separately.

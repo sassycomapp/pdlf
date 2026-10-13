@@ -1,13 +1,25 @@
 ---
 title: "a03-build-plan"
 doc-id: "mb-9d12b137"
-updated: "2026-10-12"
+updated: "2026-10-13"
 ---
 
-## From `pdlf-build-plan.md`: step entry
+## Step entry
 
 ### Phase A — Init
 
-#### Steps 2 to 10: Entry points
+#### Step 3: Entry point `new-app-with-context`
 
-**Must achieve:** one entry point each, as listed in section 4: 02 `new-app-no-context`, 03 `new-app-with-context`, 04 `add-feature-main-app`, 05 `update-main-app`, 06 `compile-master-template`, 07 `create-client-template`, 08 `create-management-app`, 09 `add-feature-management-app`, 10 `update-management-app`. Each is designed when its path through the pipeline is designed.
+**Must achieve:** the entry for a new application that brings its own context: it may be partly developed but has not yet run through PDLF.
+
+**App worked on:** App 1.
+
+**Joins the pipeline:** Step 11, at the repository questions.
+
+**Health check first:** No. The app has not yet been set up by PDLF, so Step 11 sets it up and ends with the health check as its self-audit.
+
+**The orchestrator asks David:** What context material exists; then hands over to Step 11.
+
+**Entry record:** established and written to the ledger as section 4 of [[[pdlf:app-factory/pdlf-build-plan|PDLF Build Plan]]](C:/pdlf/app-factory/pdlf-build-plan.md) sets out.
+
+**Carried out by:** the orchestrator (Step 1).

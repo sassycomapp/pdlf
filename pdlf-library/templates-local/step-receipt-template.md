@@ -1,7 +1,7 @@
 ---
 title: "step-receipt-template"
 doc-id: "mb-c0c99119"
-updated: "2026-10-12"
+updated: "2026-10-13"
 ---
 # PDLF Step Receipt Template
 
@@ -72,10 +72,9 @@ gates:        {raw gates row, if applicable}
 bft_records:  {raw bft_records row, if applicable}
 deviations:   {raw deviations row, if applicable}
 
-## Housekeeping (asked every step, separately — never combined, never auto-run)
+## Close-out
 
-1. Commit and push this step's changes to GitHub? (y/n)
-2. Sync and embed this step's artifacts to GBrain? (y/n)
+Please run `/mb-close-out` when you are ready.
 
 ## Blockers
 
@@ -136,10 +135,9 @@ Gate: domain-locked
 Passed: true
 Approved at: 2026-07-04 14:11:03+00
 
-## Housekeeping (asked every step, separately — never combined, never auto-run)
+## Close-out
 
-1. Commit and push this step's changes to GitHub? (y/n)
-2. Sync and embed this step's artifacts to GBrain? (y/n)
+Please run `/mb-close-out` when you are ready.
 
 ## Blockers
 

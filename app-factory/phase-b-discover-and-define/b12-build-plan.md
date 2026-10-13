@@ -1,7 +1,7 @@
 ---
 title: "b12-build-plan"
 doc-id: "mb-19064cbb"
-updated: "2026-10-12"
+updated: "2026-10-13"
 ---
 
 ## From `12-build-notes.md`
@@ -54,15 +54,8 @@ GStack-native file.
 11. Write ledger row
 12. Save Step Receipt to `dev-{slug}\{slug}-project-library\pdlf\step-12-receipt.md`
 13. Apply BFT — Full
-14. Ask separately: commit and push?
-15. Ask separately: "Run the end-of-step memory sequence?" This is five actions, in
-    order, every time: (1) invoke `mb-submit-memory` for `design-doc-first-concept.md`
-    and for `design-doc.md`, each as its own separate submission; (2) run `gbrain dream`
-    for real, NEVER `--dry-run`; (3) run `gbrain eval suspected-contradictions`
-    immediately afterward; (4) read what it reports; (5) if anything is marked
-    high-severity, STOP and present it to the developer before continuing.
-16. Present Step Receipt, stop, wait for "continue"
-17. Ask: continue to Step 14?
+14. Explain what was done and why, present the Step Receipt, stop and ask David to run `/mb-close-out`
+15. Ask: continue to Step 14?
 
 **Handoff:** Step 14 must run, taking into context together: `design-doc.md`,
 `design-doc-first-concept.md`, the [[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md) output file (if it ran), and the
@@ -97,32 +90,7 @@ the material a step starts from, never whether the step runs.
 
 - No `<project-library>` placeholder — use `dev-{slug}\{slug}-project-library` in prose, full
   absolute path in any literal command
-- No automatic git operations anywhere — every commit/push is asked
-- No automatic memory-governor submission — asked, via the `mb-submit-memory` skill only
-
-## Later decisions
-
-1. **`/sync-gbrain` replaced with the `mb-submit-memory` skill, submitting through the
-   memory governor.** Same system-wide change as Step 11 (master task list, items 9.2
-   and 9.4, which names `[[12-office-hours]]` directly). The old `/sync-gbrain`
-   command reads whatever files happen to be sitting in a registered folder with nothing
-   checking them first — which could silently undo a decision the memory governor
-   already made about a piece of content. Applied here to this step's one `/sync-gbrain`
-   mention, item 15. Both real files this step produces —
-   `design-doc-first-concept.md` and `design-doc.md` — are submitted individually, each
-   its own separate call. No boilerplate-versus-real-content question applies here the
-   way it did at Step 11: both of these files are genuine, synthesized content, never
-   copied template text.
-2. **`gbrain dream` and `gbrain eval suspected-contradictions` added to end-of-step
-   housekeeping.** Master task list, item 9.8 — applies to every step, not just Step 11.
-   Run for real, never as a dry run; a dry run writes nothing and cannot serve as a
-   check. `gbrain eval suspected-contradictions` does not run automatically as part of
-   `gbrain dream` and must be invoked as its own separate command every time.
-3. **`mb-submit-memory` skill built and installed, 2026-08-25.** Same skill used at
-   Step 11 — it queries GBrain for related content, forms a real confidence score and
-   contradiction judgment using a concrete, bounded method, reports its findings, and
-   only submits after explicit developer approval. See the skill's own file for the full
-   procedure.
+- The agent never commits or pushes. Every step ends by explaining what was done, stopping and asking David to run `/mb-close-out`.
 
 ## From `pdlf-build-plan.md`: step entry
 
@@ -167,8 +135,6 @@ The evidence is the five step files, their build notes and decision trees, the b
 **1.2 We called the steps "built" without ever running them.** Not one of the five steps has been run against a real application. Several open questions can only be answered by a run: whether `/plan-eng-review` finds "the active plan file" inside OpenCode, where `TODOS.md` belongs, and whether the statement that "a design doc already exists" really stops GStack from re-offering `/office-hours`. mybizz-os's own principle is "present is not working, and completed is not worked". By that principle, Phase B is designed, not built.
 
 **1.3 Each step repeats the rules that apply to every step.** Every step file spells out, in its own words, the GBrain search, the ledger row, the Step Receipt, the BFT, the two housekeeping questions and a five-action memory sequence. The same rule is written five times, slightly differently each time, so one change (such as moving close-out to `/mb-close-out`) has to be made in five places and is easily missed in one. This breaks "one fact, one home".
-
-**1.4 Each step ran its own memory and dream cycle.** The housekeeping asked, at every step, to run `gbrain dream` and `gbrain eval suspected-contradictions`. In mybizz-os, the dream cycle is a long, heavy process run on Sundays after the diagnostic, with a manual review afterwards. Running it after every step would have cost hours across a build and buried the developer in reviews. The intent's close-out rule replaces this.
 
 **1.6 Lessons went into build notes, where nobody reads them.** Each step's build notes end with "Learnings". The intent says a lesson is written into the source that the next build reads. The build notes are not that source: they are history. The lessons from Phase B ("read the skill's source first", "paste context into the skill, because it does not read our folders", "state file destinations explicitly") belong in the build plan's rules.
 

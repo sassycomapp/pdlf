@@ -1,7 +1,7 @@
 ---
 title: "b11-build-plan"
 doc-id: "mb-4f446919"
-updated: "2026-10-12"
+updated: "2026-10-13"
 ---
 
 ## From `11-build-notes.md`
@@ -77,14 +77,9 @@ The decision tree's "self-audit, correct any errors immediately" step surfaces p
 immediately, but does not fix anything without asking first. Confirmed directly, and
 consistent with the global AGENTS.md's default-to-ask and no-rubber-stamping rules.
 
-## Resolved — no automatic git operations, ever
+## Resolved — the agent never commits or pushes
 
-There is never an automatic, unasked commit or push, at any stage, for any reason. The
-early setup check (items 18–19) is an early *ask*, not an automatic action — the agent
-requests permission right after GBrain registration, rather than waiting until
-end-of-step housekeeping. This preserves the original intent (catching a broken setup
-immediately) without violating the global AGENTS.md rule that git operations are always
-permission-only.
+Only David commits, with `commit-all`. Step 11 ends, like every step, by explaining what was done, stopping and asking David to run `/mb-close-out`.
 
 ## Resolved — new-project entry never invents a code repo
 
@@ -172,56 +167,11 @@ detail in [[[pdlf:app-factory/phase-b-discover-and-define/b11-build-plan|Step 11
    not the per-project scaffold template, since existing-project entry never fetches that
    template at all. Confirmed.
 
-2. **Git commit and push is asked, not automatic.** Only `git init` (creating the empty
-   repo) runs automatically. The actual commit and push only happen when the developer
-   answers yes to the housekeeping question — matching the policy that commit/push is
-   never auto-run. Confirmed.
-
-3. **GStack `/sync-gbrain` is kept, not replaced with raw commands.** Initially removed
-   on skill-use-principle grounds (a plain `gbrain sync`/`gbrain embed` command seemed to
-   do the same job without a skill wrapper). Reversed on developer's direct experience:
-   the GStack skill has proven more thorough and reliable than raw commands, which have
-   struggled in practice. The housekeeping question now invokes `/sync-gbrain` against
-   both the doc source and code source.
-
-   **Superseded — see entry 4 below.** This decision no longer holds. `/sync-gbrain` is
-   removed from Step 11 entirely, replaced by the memory-governor sequence.
-
 ---
 
 ## Later decisions
 
-1. **`/sync-gbrain` replaced with the `mb-submit-memory` skill, submitting through the
-   memory governor.** The old `/sync-gbrain` command reads whatever files happen to be
-   sitting in a registered folder, with nothing checking them first — which means it
-   could silently undo a decision the memory governor had already made about a piece of
-   content. This is a system-wide change (master task list, item 9.2), applied here to
-   Step 11's two `/sync-gbrain` mentions: item 19 (the early check) and item 22
-   (end-of-step housekeeping). Item 19 now invokes the `mb-submit-memory` skill against
-   any real, developer-written content. Item 22's second housekeeping question is now a
-   five-step sequence rather than a single command: commit and push to GitHub; invoke
-   `mb-submit-memory` for each real file; run `gbrain dream` for real (a dry run writes
-   nothing and cannot serve as a check); run `gbrain eval suspected-contradictions`
-   immediately afterward; review what it reports, with real attention to anything
-   marked high-severity. Only real, developer-written content goes through
-   `mb-submit-memory` — the templated boilerplate Step 11 copies at item 7 (`AGENTS.md`,
-   `README.md`, `CLAUDE.md`, `opencode.json`) carries nothing genuinely new to check and
-   is never submitted. Confirmed with the developer this also covers the existing-project
-   case, where many pre-existing files might need submitting at once — no special
-   handling needed, since `mb-submit-memory` already enumerates a folder's real files and
-   submits each individually, one at a time, per its own governing skill file.
-
-   **Skill built and installed, 2026-08-25.** The `mb-submit-memory` skill itself did not
-   exist when the decision above was first made — item 19 and item 22 originally said
-   only "hand content to the memory governor," a real gap with no concrete mechanism
-   behind it. Rather than leave that as a standing gap to revisit later, the skill was
-   written in full and installed before this file was finalized: it queries GBrain for
-   related content, forms a real confidence score and contradiction judgment using a
-   concrete, bounded method (not left to improvisation), reports its findings, and only
-   submits to the memory governor's real API after explicit developer approval. See the
-   skill's own file for the full procedure.
-
-2. **No `Instructions.md` for folders created at item 12.** A standing freeze (master
+1. **No `Instructions.md` for folders created at item 12.** A standing freeze (master
    task list, item 2.2) is currently in effect on creating any further `Instructions.md`
    files anywhere, until a decided format lands. Item 12 (existing-project entry) can
    create genuinely missing folders — the one case in this step where a folder is
@@ -313,8 +263,6 @@ The evidence is the five step files, their build notes and decision trees, the b
 **1.2 We called the steps "built" without ever running them.** Not one of the five steps has been run against a real application. Several open questions can only be answered by a run: whether `/plan-eng-review` finds "the active plan file" inside OpenCode, where `TODOS.md` belongs, and whether the statement that "a design doc already exists" really stops GStack from re-offering `/office-hours`. mybizz-os's own principle is "present is not working, and completed is not worked". By that principle, Phase B is designed, not built.
 
 **1.3 Each step repeats the rules that apply to every step.** Every step file spells out, in its own words, the GBrain search, the ledger row, the Step Receipt, the BFT, the two housekeeping questions and a five-action memory sequence. The same rule is written five times, slightly differently each time, so one change (such as moving close-out to `/mb-close-out`) has to be made in five places and is easily missed in one. This breaks "one fact, one home".
-
-**1.4 Each step ran its own memory and dream cycle.** The housekeeping asked, at every step, to run `gbrain dream` and `gbrain eval suspected-contradictions`. In mybizz-os, the dream cycle is a long, heavy process run on Sundays after the diagnostic, with a manual review afterwards. Running it after every step would have cost hours across a build and buried the developer in reviews. The intent's close-out rule replaces this.
 
 **1.6 Lessons went into build notes, where nobody reads them.** Each step's build notes end with "Learnings". The intent says a lesson is written into the source that the next build reads. The build notes are not that source: they are history. The lessons from Phase B ("read the skill's source first", "paste context into the skill, because it does not read our folders", "state file destinations explicitly") belong in the build plan's rules.
 

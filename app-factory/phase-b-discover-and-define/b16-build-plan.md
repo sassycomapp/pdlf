@@ -1,7 +1,7 @@
 ---
 title: "b16-build-plan"
 doc-id: "mb-625b446e"
-updated: "2026-10-12"
+updated: "2026-10-13"
 ---
 
 ## From `16-build-notes.md`
@@ -94,37 +94,14 @@ modes. No separate check needed in Step 16 itself.
 
 - No `<project-library>` placeholder — `dev-{slug}\{slug}-project-library`
   in prose, full absolute path in any literal command
-- No automatic git operations, anywhere, ever — including at this step's own gate.
-  **Corrected 2026-08-25:** this convention previously read "gate maintenance
-  commit/push is part of the gate ceremony itself... not a separate ask" — that was
-  itself a violation of the no-automatic-git-operations rule stated in the very same
-  bullet, and it was the one place in the whole pipeline where this rule was silently
-  broken. Commit/push (and memory submission) at Step 16 are now asked, separately,
-  only after the gate has been explicitly approved — same as every other step, just
-  covering both repos instead of one.
+- The agent never commits or pushes. Every step ends by explaining what was done, stopping and asking David to run `/mb-close-out`.
 - No Step 3 / disposition-table / the retired `sop-existing-project-resume-audit.md`
   references anywhere in this file
 - Naming follows [[[default:specifications-global/spec-nomenclature|Spec: Nomenclature]]](C:/dev/project-library-global/specifications-global/spec-nomenclature.md)'s Stepwise File Naming table
 
 ## Later decisions
 
-1. **Gate-housekeeping ordering corrected, 2026-08-25.** Master task list, item 9.3.
-   The real step file had "full maintenance: commit + push both repos, GBrain sync +
-   embed on both sources" running before the gate summary was even presented for
-   approval — a genuine defect, contradicting the rule stated explicitly elsewhere in
-   this document set. Fixed: the gate now runs its full ceremony through explicit
-   developer approval first; only after approval are the two housekeeping questions
-   asked, separately, each covering both the code repo and the docs repo.
-2. **`/sync-gbrain` replaced with the `mb-submit-memory` skill, submitting through the
-   memory governor.** `CONTEXT.md` and each real ADR (if any) are submitted
-   individually, each its own separate call — never batched together, even though
-   Step 16 can produce a genuinely variable number of ADRs.
-3. **`gbrain dream` and `gbrain eval suspected-contradictions` added to end-of-step
-   housekeeping.** Run for real, never as a dry run.
-4. **`mb-submit-memory` skill built and installed, 2026-08-25.** Queries GBrain for
-   related content, forms a real confidence score and contradiction judgment, reports
-   its findings, and only submits after explicit developer approval.
-5. **`mb-sentinel-review` invoked at item 7, 2026-08-27.** Step 16 matches
+1. **`mb-sentinel-review` invoked at item 7, 2026-08-27.** Step 16 matches
    the retired `sentinel-security-system-plan.md` Section 9's own table exactly — "Domain model,"
    Low/Medium scrutiny, "sensitive data or security-relevant entities being created?"
    Placed after `CONTEXT.md` is updated (item 5) and ADRs are offered (item 6), before
@@ -134,7 +111,7 @@ modes. No separate check needed in Step 16 itself.
    Renumbered items 7 through 14 to 8 through 15 to accommodate this insertion; one
    stale cross-reference ("asked at item 13") corrected to item 14 in the Reference
    section as a result.
-6. **Two real gaps found and closed, 2026-08-27.** First: a CLEAR outcome from
+2. **Two real gaps found and closed, 2026-08-27.** First: a CLEAR outcome from
    `mb-sentinel-review` left no durable record — nothing to prove the review ever ran,
    once the conversation ended. Fixed: `triage_label` gained a sixth allowed value,
    `'clear'`, via a real migration, and the skill now writes a resolved row on CLEAR,
@@ -191,8 +168,6 @@ The evidence is the five step files, their build notes and decision trees, the b
 **1.2 We called the steps "built" without ever running them.** Not one of the five steps has been run against a real application. Several open questions can only be answered by a run: whether `/plan-eng-review` finds "the active plan file" inside OpenCode, where `TODOS.md` belongs, and whether the statement that "a design doc already exists" really stops GStack from re-offering `/office-hours`. mybizz-os's own principle is "present is not working, and completed is not worked". By that principle, Phase B is designed, not built.
 
 **1.3 Each step repeats the rules that apply to every step.** Every step file spells out, in its own words, the GBrain search, the ledger row, the Step Receipt, the BFT, the two housekeeping questions and a five-action memory sequence. The same rule is written five times, slightly differently each time, so one change (such as moving close-out to `/mb-close-out`) has to be made in five places and is easily missed in one. This breaks "one fact, one home".
-
-**1.4 Each step ran its own memory and dream cycle.** The housekeeping asked, at every step, to run `gbrain dream` and `gbrain eval suspected-contradictions`. In mybizz-os, the dream cycle is a long, heavy process run on Sundays after the diagnostic, with a manual review afterwards. Running it after every step would have cost hours across a build and buried the developer in reviews. The intent's close-out rule replaces this.
 
 **1.5 We wrapped outside skills without first reading them.** Three steps were designed from a skill's name or summary and were wrong: Step 15 assumed five architecture documents that the skill never produces; Step 16 invoked `/domain-modeling`, which cannot run on its own; and Step 14 used the wrong GStack save path. Each mistake was caught later, by reading the skill's source, and written down as a lesson in the build notes, three times over. The lesson was never turned into a rule before the next step was designed.
 

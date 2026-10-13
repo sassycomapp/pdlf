@@ -1,7 +1,7 @@
 ---
 title: "b11-reference"
 doc-id: "mb-71ad6f4f"
-updated: "2026-10-12"
+updated: "2026-10-13"
 ---
 
 ## From `11-init.md`
@@ -66,32 +66,13 @@ updated: "2026-10-12"
     not, register it. Runs every Step 11 invocation, regardless of entry mode —
     `project-library-global` is shared infrastructure, not per-project, so this is not a
     one-time bootstrap tucked elsewhere; Step 11 is where it's verified every time.
-18. → Decision point: ask the developer's permission to commit and push both repos now,
-    as an early check that the setup is correct. If approved, do so and surface any
-    errors immediately. If declined, proceed — this is not repeated automatically later;
-    it is asked again as ordinary housekeeping at item 22.
-19. → Decision point: ask the developer's permission to use the `mb-submit-memory`
-    skill now, against any real, developer-written content produced so far, as the same
-    kind of early check. If approved, invoke `/mb-submit-memory (path)` for each real
-    file, using the `pdlf_step_sync` credential — this is a PDLF step's own routine
-    housekeeping, not a developer's independent, ad-hoc request, and the credential
-    used must say so honestly — and surface any errors immediately.
-20. Insert a `projects` row in the Postgres ledger (slug, name, mode, paths, GBrain
+18. Insert a `projects` row in the Postgres ledger (slug, name, mode, paths, GBrain
     source IDs, `is_active = true`).
-21. Self-audit everything above. Surface any errors or inconsistencies immediately. Do
+19. Self-audit everything above. Surface any errors or inconsistencies immediately. Do
     not correct anything found here without the developer's explicit permission first.
-22. Follow the execution sequence in `[[spec-execution-discipline]]`
-    — Step Receipt, BFT, and the two end-of-step housekeeping questions, asked here
-    regardless of what was decided at items 18–19 — then stop and report. The second
-    housekeeping question is now a five-step sequence, not a single sync command:
-    (1) commit and push to GitHub; (2) invoke `/mb-submit-memory (path)` for each real,
-    developer-written file produced during this step, using the `pdlf_step_sync`
-    credential (see item 19's note — this is PDLF's own housekeeping, not an ad-hoc
-    request); (3) run `gbrain dream` for real,
-    not a dry run — a dry run writes nothing and cannot serve as a check; (4) run
-    `gbrain eval suspected-contradictions` immediately afterward; (5) review what that
-    command reports, paying real attention to anything marked high-severity.
-23. Apply BFT per `[[spec-bft]]` at **Full** — init creates the
+20. Follow the execution sequence in `[[spec-execution-discipline]]`: Step Receipt, BFT,
+    explain what was done and why, stop, and ask the developer to run `/mb-close-out`.
+21. Apply BFT per `[[spec-bft]]` at **Full** — init creates the
     project's architectural foundation.
 
 ---
@@ -104,10 +85,8 @@ repo URL and creates the docs repo from scratch; existing entry asks for both UR
 both local paths, then verifies and corrects the links. Everything from item 15 onward is
 identical regardless of entry mode.
 
-No git operation — commit, push, or repo creation — ever runs without the developer's
-explicit permission, at any point in this step. This applies even to the early setup
-check at items 17–18, which is an early *ask*, not an automatic action; it exists purely
-to surface a broken setup immediately rather than at the very end.
+The agent never commits or pushes; only the developer commits, with `commit-all`. Creating
+a repository runs only with the developer's explicit permission.
 
 ## Inputs Required
 
@@ -118,10 +97,7 @@ to surface a broken setup immediately rather than at the very end.
 - Project template at `C:\dev\project-template\dev-(SLUG)\` (new entry only)
 - Postgres ledger reachable
 - Developer permission for: creating the docs repo (new entry); correcting a broken
-  link or missing GBrain registration (existing entry); the early
-  `mb-submit-memory` check; the end-of-step five-step housekeeping sequence
-  (commit/push, `mb-submit-memory`, `gbrain dream`, `gbrain eval suspected-contradictions`,
-  review)
+  link or missing GBrain registration (existing entry)
 
 ## Outputs
 
@@ -166,14 +142,10 @@ For execution sequence: `[[spec-execution-discipline]]`
 For BFT procedure: `[[spec-bft]]`
 For the WSL→Windows Postgres bridge pattern: [[[pdlf:pdlf-library/specifications-local/spec-postgres-ledger|Spec: Postgres Ledger]]](C:/pdlf/pdlf-library/specifications-local/spec-postgres-ledger.md)
 
-GBrain querying is automatic and read-only. Getting new content into durable memory is a
-write action and is never automatic — always asked, at both the early check (items
-18–19) and end-of-step housekeeping (item 22). It now goes through the `mb-submit-memory`
-skill and the five-step sequence described at item 22, not GStack `/sync-gbrain`.
+GBrain searching is automatic and read-only. New content reaches durable memory only at
+close-out, through `/mb-close-out`, run when the developer asks for it.
 
-Git operations (commit, push, repo creation) are permission-only at every point in this
-step, per the global AGENTS.md — never automatic, never run without the
-developer's explicit approval first.
+The agent never commits or pushes; only the developer commits, with `commit-all`.
 
-The ledger row, Step Receipt, and devlog-index/judgement-trail entries are the complete
-checkpoint. No separate state file or completion report.
+The ledger row, the BFT record and the Step Receipt are the complete checkpoint. No
+separate state file or completion report.

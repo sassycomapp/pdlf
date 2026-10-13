@@ -1,7 +1,7 @@
 ---
 title: "b14-reference"
 doc-id: "mb-708686df"
-updated: "2026-10-12"
+updated: "2026-10-13"
 ---
 
 ## From `14-plan-ceo-review.md`
@@ -9,8 +9,8 @@ updated: "2026-10-12"
 ## Task Execution Order
 
 1. Query GBrain for context relevant to scope and strategy review (automatic,
-   read-only). Sources nominated explicitly: `{slug}`, `{slug}-project-library`,
-   `project-library-global`.
+   read-only), across the federated documentation sources: `{slug}-project-library`,
+   `default` (`project-library-global`) and `pdlf`.
 2. Check Step 12's `synthesized` flag in the ledger. If `true`, this step's receipt
    will carry an INPUT NOTICE per [[[pdlf:pdlf-library/policy-local/pol-step-conditional-state|Step Conditional State Policy]]](C:/pdlf/pdlf-library/policy-local/pol-step-conditional-state.md), and item 5
    below applies (design doc not present at the skill's canonical path).
@@ -55,22 +55,9 @@ copy at `output-gstack\`. If missing: STOP, present a deviation request per
 12. Save Step Receipt to `dev-{slug}\{slug}-project-library\pdlf\step-14-receipt.md`.
 13. Apply BFT per [[[pdlf:pdlf-library/specifications-local/spec-bft|Spec: BFT]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md) at **Full** (scope and
     ambition review, strategic decisions).
-14. Ask separately: "Commit and push to GitHub?"
-15. Ask separately: "Run the end-of-step memory sequence?" This is five actions, in
-    order, every time: (1) invoke the `mb-submit-memory` skill, using the
-    `pdlf_step_sync` credential — this is a PDLF step's own routine housekeeping, not a
-    developer's independent, ad-hoc request — for
-    `output-gstack\makepdlf-step-14-ceo-plan.md` — this file exists in every mode and is always
-    submitted; ALSO invoke `mb-submit-memory` the same way for the real GStack-native
-    plan file if
-    this run's mode was SCOPE EXPANSION or SELECTIVE EXPANSION — that file only exists
-    for those two modes, so for HOLD SCOPE or SCOPE REDUCTION, only the first submission
-    happens; (2) run `gbrain dream` for real, NEVER `--dry-run`; (3) run `gbrain eval
-    suspected-contradictions` immediately afterward; (4) read what it reports; (5) if
-    anything is marked high-severity, STOP and present it to the developer before
-    continuing.
-16. Present the Step Receipt. Stop, wait for "continue."
-17. Ask: "Continue to Step 15?"
+14. Explain what was done and why, and present the Step Receipt. Stop and ask the
+    developer to run `/mb-close-out`. Wait for "continue."
+15. Ask: "Continue to Step 15?"
 
 ---
 
@@ -247,8 +234,6 @@ step whose `inputs_used` includes Step 12 — Steps 15, 19, and 21.
 | Ledger row | `steps` table — `step_number = 14`, `status`, `synthesized`, `artifact_path` |
 | Step Receipt | `dev-{slug}\{slug}-project-library\pdlf\step-14-receipt.md` |
 | BFT record | `bft_records` table — Full |
-| Devlog index | `dev-{slug}\{slug}-project-library\pdlf\devlog-index.md` — updated |
-| Judgement trail | `dev-{slug}\{slug}-project-library\pdlf\judgement-trail.md` — updated |
 
 ---
 
@@ -265,14 +250,13 @@ For BFT procedure: [[[pdlf:pdlf-library/specifications-local/spec-bft|Spec: BFT]
 For conditional-state definitions: [[[pdlf:pdlf-library/policy-local/pol-step-conditional-state|Step Conditional State Policy]]](C:/pdlf/pdlf-library/policy-local/pol-step-conditional-state.md)
 For ledger schema: [[[pdlf:pdlf-library/specifications-local/spec-postgres-ledger|Spec: Postgres Ledger]]](C:/pdlf/pdlf-library/specifications-local/spec-postgres-ledger.md)
 
-GBrain is queried automatically at substep 1. Getting new content into durable memory is
-never auto-run — it is asked at item 15, through the `mb-submit-memory` skill and the
-five-action sequence described there, never GStack `/sync-gbrain`. The two housekeeping
-questions are asked separately, every step, never combined, never auto-run.
+GBrain searching is automatic and read-only. New content reaches durable memory only at
+close-out, through `/mb-close-out`, run when the developer asks for it.
 
-The ledger row, Step Receipt, and devlog-index/judgement-trail are the
-complete checkpoint. No separate state file, devlog file, or completion
-report.
+The agent never commits or pushes; only the developer commits, with `commit-all`.
+
+The ledger row, the BFT record and the Step Receipt are the complete checkpoint. No
+separate state file, devlog file or completion report.
 
 Skills save where designed. PDLF process artifacts go to
 `dev-{slug}\{slug}-project-library\pdlf\`.

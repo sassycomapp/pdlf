@@ -68,9 +68,8 @@ flowchart TD
     Conv2 -->|"Yes"| Conv3["Deviation request"]
     Conv2 -->|"No"| Conv4["Write ledger row<br/>Save Step Receipt<br/>Apply BFT — Full"]
     Conv3 --> Conv4
-    Conv4 --> Conv5["Ask: commit and push?<br/>Ask: run end-of-step memory sequence?<br/>— use mb-submit-memory skill<br/>— run gbrain dream (real, not dry-run)<br/>— run gbrain eval suspected-contradictions<br/>— review findings, STOP on high-severity<br/>(asked separately, never automatic)"]
-    Conv5 --> Conv6["Present Step Receipt.<br/>Stop, wait for 'continue'."]
-    Conv6 --> Conv7["Ask: continue to Step 14?"]
+    Conv4 --> Conv5["Explain what was done and why.<br/>Present Step Receipt.<br/>Stop. Ask David to run /mb-close-out.<br/>Wait for continue."]
+    Conv5 --> Conv7["Ask: continue to Step 14?"]
 
     Conv7 --> H1["Step 14 MUST run —<br/>not optional, not skippable"]
     H1 --> H2["Takes into context, together:<br/>design-doc.md<br/>design-doc-first-concept.md<br/>/office-hours output file, if it ran<br/>Step 12 Step Receipt"]

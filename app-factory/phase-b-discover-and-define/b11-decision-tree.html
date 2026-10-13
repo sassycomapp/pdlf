@@ -51,12 +51,12 @@ flowchart TD
     Conv1 --> Merge["AGENT: updates AGENTS.md (local)<br/>sets up system files:<br/>.git, .gitignore, .opencode, GStack<br/>sets up Matt Pocock skills"]
     E5 --> Merge
 
-    Merge --> GBrainStep["AGENT: registers {slug}-project-library<br/>and {slug} repos in GBrain.<br/>ASKS: commit and push both repos now,<br/>to verify the setup?<br/>ASKS: use mb-submit-memory skill<br/>now, to verify?<br/>(early ask, not automatic —<br/>catches setup errors immediately if approved)"]
+    Merge --> GBrainStep["AGENT: registers {slug}-project-library<br/>and {slug} repos in GBrain."]
     GBrainStep --> Ledger["AGENT: inserts projects row<br/>in Postgres ledger.<br/>Adds registry entry"]
     Ledger --> Inventory["AGENT: checks C:\dev\project-inventory.md.<br/>No entry → adds one.<br/>Entry exists → verifies against reality,<br/>surfaces any mismatch to developer.<br/>(Not applied to dev-makepdlf or C:\pdlf)"]
     Inventory --> Audit["AGENT: self-audits everything above —<br/>surfaces any errors immediately,<br/>developer permission required to correct"]
-    Audit --> House["AGENT: end-of-step housekeeping questions<br/>— commit and push<br/>— use mb-submit-memory skill<br/>— run gbrain dream (real, not dry-run)<br/>— run gbrain eval suspected-contradictions<br/>— review findings"]
-    House --> End(["Stop and report.<br/>Hand off per entry mode."])
+    Audit --> House["Explain what was done and why.<br/>Present Step Receipt.<br/>Stop. Ask David to run /mb-close-out.<br/>Wait for continue."]
+    House --> End(["Hand off per entry mode."])
   </div>
 </div>
 

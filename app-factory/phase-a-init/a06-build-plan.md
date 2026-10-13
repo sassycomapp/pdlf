@@ -1,13 +1,25 @@
 ---
 title: "a06-build-plan"
 doc-id: "mb-370e9733"
-updated: "2026-10-12"
+updated: "2026-10-13"
 ---
 
-## From `pdlf-build-plan.md`: step entry
+## Step entry
 
 ### Phase A — Init
 
-#### Steps 2 to 10: Entry points
+#### Step 6: Entry point `compile-master-template`
 
-**Must achieve:** one entry point each, as listed in section 4: 02 `new-app-no-context`, 03 `new-app-with-context`, 04 `add-feature-main-app`, 05 `update-main-app`, 06 `compile-master-template`, 07 `create-client-template`, 08 `create-management-app`, 09 `add-feature-management-app`, 10 `update-management-app`. Each is designed when its path through the pipeline is designed.
+**Must achieve:** the entry for releasing App 1's approved code into App 2, `master_template`.
+
+**App worked on:** App 2.
+
+**Joins the pipeline:** A step near the end of the pipeline, not Phase B. Where exactly is settled when that step is designed.
+
+**Health check first:** Yes, before anything else. The procedure is [[[pdlf:pdlf-library/operating-procedures/sop-health-check|SOP: Health Check]]](C:/pdlf/pdlf-library/operating-procedures/sop-health-check.md).
+
+**The orchestrator asks David:** Which application.
+
+**Entry record:** established and written to the ledger as section 4 of [[[pdlf:app-factory/pdlf-build-plan|PDLF Build Plan]]](C:/pdlf/app-factory/pdlf-build-plan.md) sets out.
+
+**Carried out by:** the orchestrator (Step 1).

@@ -1,7 +1,7 @@
 ---
 title: "adr-global-content-discovery-and-application-discipline"
 doc-id: "mb-c0174316"
-updated: "2026-10-11"
+updated: "2026-10-13"
 ---
 # ADR — Global Content Discovery and Application Discipline
 
@@ -34,9 +34,10 @@ incomplete step-to-spec table migrated into [[[default:specifications-global/spe
 
 ## Decision
 
-**Discovery mechanism: GBrain semantic query, scoped to `project-library-global`, not a
-hand-maintained static map.** [[[pdlf:pdlf-library/policy-local/pol-memory-and-knowledge|Policy: Memory and Knowledge]]](C:/pdlf/pdlf-library/policy-local/pol-memory-and-knowledge.md)'s existing scoping rule already
-requires every GBrain query to nominate `project-library-global` as a source — this ADR
+**Discovery mechanism: GBrain semantic query covering `project-library-global` (GBrain source
+`default`), not a hand-maintained static map.** [[[pdlf:pdlf-library/policy-local/pol-memory-and-knowledge|Policy: Memory and Knowledge]]](C:/pdlf/pdlf-library/policy-local/pol-memory-and-knowledge.md)'s existing rule already
+requires every GBrain query to cover the federated documentation sources, which include
+`project-library-global` (source `default`) — this ADR
 confirms that scoped query is the intended discovery path, not a rejected half-measure. A
 static per-step map (the kind partially built in `spec-nomenclature.md`) does not scale to
 98 files across 7 folders and would itself become a second source of truth to keep in sync
@@ -48,8 +49,8 @@ at the point of need, avoids that.
 The full required sequence for any step whose domain touches `project-library-global`:
 
 1. Task begins.
-2. GBrain query, scoped to `project-library-global` (and the project's own sources, per
-   existing policy).
+2. GBrain query across the federated documentation sources, which include
+   `project-library-global` (source `default`) and the project's own library.
 3. GBrain returns indications — which global files are relevant, not their authoritative
    content.
 4. The agent fetches and reads the actual indicated file(s) in full.
@@ -90,6 +91,6 @@ checkable, not merely stated.
   finding for later, not assumed now.
 - Registration dependency: **resolved 2026-07-19.** `project-library-global` has a real
   GitHub remote (`https://github.com/sassycomapp/project-library-global`, public) and is
-  registered as a GBrain source (`project-library-global` →
-  `/mnt/c/dev/project-library-global`). The mechanism this ADR describes is now actually
+  registered as the federated GBrain source `default` →
+  `/mnt/c/dev/project-library-global`. The mechanism this ADR describes is now actually
   usable, not just designed.

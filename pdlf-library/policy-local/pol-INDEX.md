@@ -1,7 +1,7 @@
 ---
 title: "pol-INDEX"
 doc-id: "mb-65973e87"
-updated: "2026-10-11"
+updated: "2026-10-13"
 ---
 # PDLF Policy Index
 
@@ -18,5 +18,6 @@ Each policy states **what** the rule is, **why** it exists and **where** it appl
 | [[[pdlf:pdlf-library/policy-local/pol-testing-and-quality\|Policy: Testing and Quality]]](C:/pdlf/pdlf-library/policy-local/pol-testing-and-quality.md) | Three test levels, backups, feature sign-off, review findings. |
 | [[[pdlf:pdlf-library/policy-local/pol-bft-discipline\|Policy: BFT Discipline]]](C:/pdlf/pdlf-library/policy-local/pol-bft-discipline.md) | Thinking checkpoints. |
 | [[[pdlf:pdlf-library/policy-local/pol-step-conditional-state\|Policy: Step Conditional State]]](C:/pdlf/pdlf-library/policy-local/pol-step-conditional-state.md) | How optional and shortened steps are recorded and flagged downstream. |
+| [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline\|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md) and [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure\|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md) | The step pattern every step follows, and the gate ceremony. Stated in these specifications, not copied here. |
 
 The process for designing steps is not a policy; it is [[[pdlf:obsolete/stepwise-development-process|Stepwise Development Process]]](C:/pdlf/obsolete/stepwise-development-process.md).
