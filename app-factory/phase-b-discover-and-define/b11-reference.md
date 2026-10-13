@@ -3,149 +3,53 @@ title: "b11-reference"
 doc-id: "mb-71ad6f4f"
 updated: "2026-10-13"
 ---
+# Step 11 — Init: Reference
 
-## From `11-init.md`
+What the agent does at Step 11, in order. Agent-facing. Fixed values: [[[pdlf:app-factory/phase-b-discover-and-define/b11-config|Step 11 Configuration]]](C:/pdlf/app-factory/phase-b-discover-and-define/b11-config.md). The pattern every step follows (search, read, verify, BFT, ledger row, receipt, explain, stop, close-out) is in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md) and is not repeated here.
 
-## Task Execution Order
+## 1. Start
 
-1. Ask the developer: is this a new project or an existing project?
-2. Ask the developer for the project slug.
-3. Verify the Postgres ledger is reachable. Confirm the `pdlf` database and all six
-   tables (`projects`, `steps`, `gates`, `deviations`, `bft_records`, `isc`) exist. Use
-   the WSL→Windows bridge pattern (see Reference).
-4. → If **new project**: follow items 5–10, then continue at item 16.
-   → If **existing project**: skip to item 11.
+1. Read the entry record. Choose the route: **A** for entry 02, **B** for entry 03, **C** for entries 07 and 08.
+2. Run the foundation checks in the configuration. If any fails: stop and raise a deviation. Nothing is created before all pass.
 
-### New-project entry
+## 2. Route A — a new business (entry 02)
 
-5. Ask the developer for the GitHub code repo URL.
-6. → Decision point: if no URL is available, instruct the developer to set up the app in
-   Anvil first — Anvil creates the code repo automatically when the app is created there
-   — then provide the URL. Repeat item 5 until a URL is supplied. The agent never
-   creates the code repo itself.
-7. Copy the project template from `C:\dev\project-template\dev-(SLUG)\` to
-   `C:\dev\dev-{slug}\`, applying slug substitution throughout — folder names and file
-   contents, including AGENTS.md, README.md, CLAUDE.md, opencode.json.
-8. Link the GitHub code repo to the local code repo at `dev-{slug}\{slug}\`.
-9. → Decision point: ask the developer's permission to create a new GitHub repository,
-   `{slug}-project-library`, for the docs repo. On approval, create it and link it to the
-   local docs repo at `dev-{slug}\{slug}-project-library\`.
-10. Ask the developer to supply the three pre-project files (`[[01-project-brief]]`,
-    `[[02-scoping-ideas]]`, `[[03-constraints-and-notes]]`) with content specific to this
-    project, and to place them into
-    `dev-{slug}\{slug}-project-library\pre-project\`. Other project-specific material
-    goes into the appropriate canonical folder, not `pre-project\`.
+3. Ask David for the slug (the business's short name, lowercase, hyphens kept), the business's name, its domain and the mode (`full` or `test`).
+4. Copy `C:\dev\project-template\dev-(SLUG)\` to `C:\dev\dev-{slug}\`. Replace `(SLUG)` and `(slug)` in every folder and file name, and `{slug}` and `{project-name}` in every file. Remove every `doc-id` line from the copied documents.
+5. App 1. Use the `wizard` skill to give David exact numbered instructions: create the app in his Anvil account, connect it to GitHub as `sassycomapp/{slug}-app1`, and give the agent its address. Wait for the address.
+6. Remove `{slug}-app1\.gitkeep`, then clone the address into `{slug}-app1`. Check the clone holds `anvil.yaml`. If not: stop and raise a deviation. Never write `anvil.yaml`.
+7. Write App 1's `AGENTS.md` from `C:\mybizz\anvil-agent-references\AGENTS.md`, with its resource paths pointed at `C:\mybizz\anvil-agent-references\`. Write its `.gitignore` from the baseline in the configuration.
+8. Ask David's permission to create the private GitHub repository `sassycomapp/{slug}-project-library`. If he refuses: stop; there is no project without it. On approval: create it and link `{slug}-project-library` to it.
+9. Copy the three blank pre-project files into `pre-project\`, replacing `{project-name}` and removing any `doc-id` line. Ask David to fill them in.
+10. Continue at section 5.
 
-### Existing-project entry
+## 3. Route B — an application with context (entry 03)
 
-11. Ask the developer for: the GitHub code repo URL, the GitHub docs repo URL, the local
-    code repo path, and the local docs repo path.
-12. Compare the local docs repo's folder structure against the canonical folder list
-    (see the template at `C:\dev\project-template\dev-(SLUG)\project-library\`). Create
-    only the folders that are genuinely missing. Never modify, move, or overwrite
-    anything already present. Do not add an `Instructions.md` file to any folder created
-    here — a standing freeze is in effect on creating further `Instructions.md` files
-    anywhere, until a decided format lands.
-13. → Decision point: inspect the GitHub code repo. Verify the GitHub↔local link for
-    both the code repo and the docs repo. If either link is broken or missing, ask the
-    developer's permission before correcting it.
-14. → Decision point: verify the GBrain registration for both the code repo and the docs
-    repo. If either is missing, ask the developer's permission before establishing it.
-15. Ask the developer to confirm the data integrity of the local code repo and the local
-    docs repo.
+11. Ask David for the GitHub address and local path of every repository the business has: each app that exists and the project library.
+12. Check each repository is linked to its GitHub address, and each app folder holds `anvil.yaml`. Report every broken link. Correct one only with David's permission.
+13. Compare the business folder and the project library with the template. Create only folders that are missing, including any missing `pdlf-outputs\` step folder and `pdlf-tickets\`. Change nothing that exists.
+14. For each app folder without an `AGENTS.md` or `.gitignore`, propose them as in item 7, and write them only with David's permission.
+15. If the business or a repository still uses an old name, report it. Never rename anything.
+16. Ask David to confirm the data in each repository is sound.
+17. Continue at section 5.
 
-### Convergence — common to both entry modes
+## 4. Route C — a new app in an existing business (entries 07 and 08)
 
-16. Update the local AGENTS.md in the docs repo. Set up system files: `.git`,
-    `.gitignore`, `.opencode`, GStack configuration. Set up Matt Pocock skills
-    configuration.
-17. Register the GBrain doc source for `{slug}` and the GBrain code source for
-    `{slug}-code`, if not already registered — this adds the source only; it does not
-    sync or embed.
-17a. Check whether `project-library-global` is already registered as a GBrain source. If
-    not, register it. Runs every Step 11 invocation, regardless of entry mode —
-    `project-library-global` is shared infrastructure, not per-project, so this is not a
-    one-time bootstrap tucked elsewhere; Step 11 is where it's verified every time.
-18. Insert a `projects` row in the Postgres ledger (slug, name, mode, paths, GBrain
-    source IDs, `is_active = true`).
-19. Self-audit everything above. Surface any errors or inconsistencies immediately. Do
-    not correct anything found here without the developer's explicit permission first.
-20. Follow the execution sequence in `[[spec-execution-discipline]]`: Step Receipt, BFT,
-    explain what was done and why, stop, and ask the developer to run `/mb-close-out`.
-21. Apply BFT per `[[spec-bft]]` at **Full** — init creates the
-    project's architectural foundation.
+18. Run [[[pdlf:pdlf-library/operating-procedures/sop-health-check|SOP: Health Check]]](C:/pdlf/pdlf-library/operating-procedures/sop-health-check.md) on the business. If any check fails: stop.
+19. For the app being created (App 3 for entry 07, App 5 for entry 08), do items 5 to 7 with that app's number.
+20. Record the app's path and Anvil address in the `projects` row. Do not touch the project library.
+21. Continue at item 26.
 
----
+## 5. Common to routes A and B
 
-## Description
+22. Run `setup-matt-pocock-skills` in the project library, giving it the fixed answers in the configuration. Pass the context pack. David confirms. Never create a `CLAUDE.md`. In route B, run it only if `docs\agents\` is missing or differs from the fixed answers.
+23. Register the project library in GBrain as the federated source `{slug}-project-library`, unless it is already registered.
+24. Give David the exact lines that add `{slug}-project-library` to `mb-doc-check.sources` and to `commit-all.sh`, and the command that installs the commit hook. Wait until he confirms they are done.
+25. Write or update the `projects` row: slug, name, mode, `library_path`, `gbrain_source_docs` and the path and Anvil address of every app known so far.
 
-Runs a single unified procedure for both new and existing project entry. The two modes
-differ only in how the two repos are obtained and verified — new entry asks for the code
-repo URL and creates the docs repo from scratch; existing entry asks for both URLs and
-both local paths, then verifies and corrects the links. Everything from item 15 onward is
-identical regardless of entry mode.
+## 6. The end, for every route
 
-The agent never commits or pushes; only the developer commits, with `commit-all`. Creating
-a repository runs only with the developer's explicit permission.
-
-## Inputs Required
-
-- New-vs-existing determination (from the developer)
-- Project slug (from the developer)
-- GitHub code repo URL (from the developer, both entry modes)
-- GitHub docs repo URL and both local paths (from the developer, existing entry only)
-- Project template at `C:\dev\project-template\dev-(SLUG)\` (new entry only)
-- Postgres ledger reachable
-- Developer permission for: creating the docs repo (new entry); correcting a broken
-  link or missing GBrain registration (existing entry)
-
-## Outputs
-
-- Local code repo and docs repo folders on disk, linked to GitHub — freshly created and
-  templated (new entry) or confirmed and corrected (existing entry)
-- `projects` row in the Postgres ledger
-- GBrain sources registered for both repos
-- GBrain source registered for `project-library-global`, if not already registered
-- Updated local `AGENTS.md`, system files, and Matt Pocock skills configuration
-- Pre-project files placed in `dev-{slug}\{slug}-project-library\pre-project\`
-  (new entry only)
-- Step Receipt at `dev-{slug}\{slug}-project-library\pdlf\step-11-receipt.md`
-- BFT record — Full
-
-## Step Table
-
-| Step | Type | Gate | Handled By |
-|---|---|---|---|
-| 11 | Init | | OpenCode |
-
----
-
-## Handoff
-
-Both entry modes hand off directly to Step 12 ([[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md)). There is no separate
-existing-project audit step — that model is retired. Step 12 itself reads different
-source material depending on entry mode: new-project entry works from the three
-pre-project files; existing-project entry works from the whole existing project-library.
-
-- **New-project entry:** the three pre-project files are pre-loaded into Step 12's
-  prompt.
-- **Existing-project entry:** the existing project-library, registered as a GBrain
-  source at item 17 above, is what Step 12 reads from.
-
----
-
-## Reference
-
-OpenCode is always the orchestrator. Invoke skills only when they beat OpenCode directly.
-
-For execution sequence: `[[spec-execution-discipline]]`
-For BFT procedure: `[[spec-bft]]`
-For the WSL→Windows Postgres bridge pattern: [[[pdlf:pdlf-library/specifications-local/spec-postgres-ledger|Spec: Postgres Ledger]]](C:/pdlf/pdlf-library/specifications-local/spec-postgres-ledger.md)
-
-GBrain searching is automatic and read-only. New content reaches durable memory only at
-close-out, through `/mb-close-out`, run when the developer asks for it.
-
-The agent never commits or pushes; only the developer commits, with `commit-all`.
-
-The ledger row, the BFT record and the Step Receipt are the complete checkpoint. No
-separate state file or completion report.
+26. Run `mb-sentinel-review` for Step 11 at High scrutiny on what this step created. On Flag or Escalate: stop and present it to David. Check the review's `triage_findings` row exists.
+27. Run [[[pdlf:pdlf-library/operating-procedures/sop-health-check|SOP: Health Check]]](C:/pdlf/pdlf-library/operating-procedures/sop-health-check.md) as the self-audit. Report every failure. Fix nothing without David's permission.
+28. Write the Step 11 `steps` row with the ledger values in the configuration, the Step Receipt and the Full BFT record.
+29. Explain what was done and why, present the Step Receipt, stop, and ask David to run `/mb-close-out`.

@@ -51,7 +51,7 @@ updated: "2026-10-13"
    something discovered afterward. Do not proceed to item 8 with an open
    `FLAG` or `ESCALATE` still unresolved.
 8. Verify `CONTEXT.md` exists at
-   `dev-{slug}\{slug}-project-library\CONTEXT.md` and any ADRs exist at
+   `dev-{slug}\{slug}-project-library\docs-local\CONTEXT.md` and any ADRs exist at
    `dev-{slug}\{slug}-project-library\adr-local\000N-{slug}.md`. If missing
    when expected: STOP, present a deviation request per
    `[[spec-execution-discipline]]`.
@@ -114,7 +114,7 @@ everywhere else in this system:
 
 | Artifact | Matt's default | PDLF location |
 |---|---|---|
-| Glossary | `CONTEXT.md` (repo root) | `dev-{slug}\{slug}-project-library\CONTEXT.md` |
+| Glossary | `CONTEXT.md` (repo root) | `dev-{slug}\{slug}-project-library\docs-local\CONTEXT.md` |
 | ADRs | `docs/adr/000N-{slug}.md` | `dev-{slug}\{slug}-project-library\adr-local\000N-{slug}.md` |
 
 Matt's numbering-plus-descriptive-slug filename convention is kept
@@ -146,7 +146,7 @@ process, applied to hard-to-reverse architecture calls instead.
 
 | Artifact | Location | Notes |
 |---|---|---|
-| Domain glossary | `dev-{slug}\{slug}-project-library\CONTEXT.md` | Created if missing (new entry) or reconciled in place (existing entry). Glossary only — no implementation detail. |
+| Domain glossary | `dev-{slug}\{slug}-project-library\docs-local\CONTEXT.md` | Created if missing (new entry) or reconciled in place (existing entry). Glossary only — no implementation detail. |
 | ADRs | `dev-{slug}\{slug}-project-library\adr-local\000N-{slug}.md` | Only for decisions clearing the three-part test. Not one per decision. |
 | Gate `domain-locked` | `gates` table | Full BFT, gate summary, developer approval required, then the request for `/mb-close-out` |
 | Step Receipt | `dev-{slug}\{slug}-project-library\pdlf\step-16-receipt.md` | No `outputs` subfolder |

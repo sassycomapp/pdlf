@@ -2,67 +2,60 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Step 11 — Init Decision Tree (v2)</title>
+<title>Step 11 — Init Decision Tree</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
 <style>
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-    background: #f5f5f4;
-    padding: 32px;
-    margin: 0;
-  }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; background: #f5f5f4; padding: 32px; margin: 0; }
   h1 { font-size: 19px; color: #1a1a1a; margin: 0 0 20px 0; }
-  .diagram-wrap {
-    background: white;
-    border-radius: 10px;
-    padding: 24px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-    overflow-x: auto;
-  }
+  .diagram-wrap { background: white; border-radius: 10px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); overflow-x: auto; }
   .mermaid { display: flex; justify-content: center; }
 </style>
 </head>
 <body>
-
-<h1>Step 11 — Init Decision Tree (v3, current)</h1>
-
+<h1>Step 11 — Init Decision Tree (matches b11-reference)</h1>
 <div class="diagram-wrap">
   <div class="mermaid">
 flowchart TD
-    Start(["Start: /pdlf invocation"]) --> Ask{"ASK: new or existing?"}
+    Start(["Entry record from the orchestrator"]) --> Checks{"Foundation checks pass?<br/>ledger, GBrain, Anvil skills, Phase B skills"}
+    Checks -->|"No"| Dev1["Stop: deviation"]
+    Checks -->|"Yes"| Route{"Which entry?"}
 
-    Ask -->|"New"| N2["AGENT: project slug?"]
-    N2 --> N3["USER provides slug,<br/>e.g. mb5pdlf"]
-    N3 --> N4{"AGENT: GitHub<br/>code repo URL?"}
-    N4 -->|"No URL yet"| N5["AGENT instructs developer:<br/>set up the app in Anvil first,<br/>then provide the code repo URL"]
-    N5 --> N4
-    N4 -->|"URL provided"| N6["AGENT: copies project-template to C:\\dev<br/>creates dev-{slug}<br/>applies slug substitution"]
-    N6 --> N7["AGENT: links GitHub {slug}<br/>(code repo) to local<br/>dev-{slug}\\{slug}"]
-    N7 --> N8["AGENT: creates {slug}-project-library<br/>on GitHub (docs repo)<br/>links to local<br/>dev-{slug}\\{slug}-project-library"]
-    N8 --> Conv1["USER: loads project-specific<br/>data into project-library"]
+    Route -->|"02: new business"| A1["Ask slug, name, domain, mode"]
+    A1 --> A2["Copy project template to C:\dev\dev-{slug}<br/>replace names, remove doc-ids"]
+    A2 --> A3["wizard: David creates App 1 in Anvil<br/>and connects it to GitHub"]
+    A3 --> A4{"Clone holds anvil.yaml?"}
+    A4 -->|"No"| Dev2["Stop: deviation"]
+    A4 -->|"Yes"| A5["App 1: Anvil AGENTS.md and .gitignore"]
+    A5 --> A6{"David approves the private<br/>project library on GitHub?"}
+    A6 -->|"No"| Stop1(["Stop: no project without it"])
+    A6 -->|"Yes"| A7["Create and link it<br/>place blank pre-project files"]
+    A7 --> Common
 
-    Ask -->|"Existing"| E1["AGENT asks:<br/>GitHub code repo URL?<br/>GitHub docs repo URL?<br/>Local code repo path?<br/>Local docs repo path?"]
-    E1 --> E2["USER provides all four"]
-    E2 --> E1b["AGENT compares local docs repo<br/>against canonical folder list.<br/>Creates only genuinely missing folders —<br/>never modifies or overwrites what exists."]
-    E1b --> E3["AGENT tests and corrects<br/>(with developer permission):<br/>inspects GitHub code repo<br/>verifies GitHub↔local code link<br/>verifies GitHub↔local docs link"]
-    E3 --> E4["AGENT tests and corrects<br/>(with developer permission):<br/>verifies GBrain code repo registration<br/>verifies GBrain docs repo registration"]
-    E4 --> E5["USER verifies data integrity of:<br/>local code repo<br/>local docs repo"]
+    Route -->|"03: with context"| B1["Ask address and path of every repository"]
+    B1 --> B2["Check links and anvil.yaml<br/>correct only with permission"]
+    B2 --> B3["Create only missing folders<br/>change nothing; report old names"]
+    B3 --> B4["David confirms the data is sound"]
+    B4 --> Common
 
-    Conv1 --> Merge["AGENT: updates AGENTS.md (local)<br/>sets up system files:<br/>.git, .gitignore, .opencode, GStack<br/>sets up Matt Pocock skills"]
-    E5 --> Merge
+    Route -->|"07 or 08: new app"| C1{"Health check passes?"}
+    C1 -->|"No"| Stop2(["Stop"])
+    C1 -->|"Yes"| C2["wizard: David creates App 3 or App 5<br/>clone, AGENTS.md, .gitignore"]
+    C2 --> C3["Record the app in the projects row"]
+    C3 --> End
 
-    Merge --> GBrainStep["AGENT: registers {slug}-project-library<br/>and {slug} repos in GBrain."]
-    GBrainStep --> Ledger["AGENT: inserts projects row<br/>in Postgres ledger.<br/>Adds registry entry"]
-    Ledger --> Inventory["AGENT: checks C:\dev\project-inventory.md.<br/>No entry → adds one.<br/>Entry exists → verifies against reality,<br/>surfaces any mismatch to developer.<br/>(Not applied to dev-makepdlf or C:\pdlf)"]
-    Inventory --> Audit["AGENT: self-audits everything above —<br/>surfaces any errors immediately,<br/>developer permission required to correct"]
-    Audit --> House["Explain what was done and why.<br/>Present Step Receipt.<br/>Stop. Ask David to run /mb-close-out.<br/>Wait for continue."]
-    House --> End(["Hand off per entry mode."])
+    Common["Matt Pocock setup with PDLF's answers<br/>register project library in GBrain"] --> Hook["David adds the library to the commit hook<br/>and commit-all, and confirms"]
+    Hook --> Row["Write the projects row"]
+    Row --> End
+
+    End["Sentinel review, High"] --> Sen{"Clear?"}
+    Sen -->|"Flag or Escalate"| Stop3(["Stop: David decides"])
+    Sen -->|"Clear"| HC["Health check as self-audit<br/>report, fix nothing without permission"]
+    HC --> Rec["Ledger row, Step Receipt, Full BFT"]
+    Rec --> Close(["Explain, stop, ask David to run /mb-close-out"])
   </div>
 </div>
-
 <script>
   mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis' } });
 </script>
-
 </body>
 </html>

@@ -20,12 +20,12 @@ Run every check, in this order, for the business `{slug}` and every app folder i
 
 1. **The ledger is reachable.** Connect to database `pdlf` on port 5433 through the PowerShell bridge in [[[pdlf:pdlf-library/specifications-local/spec-postgres-ledger|Spec: Postgres Ledger]]](C:/pdlf/pdlf-library/specifications-local/spec-postgres-ledger.md). All seven tables exist: `projects`, `steps`, `gates`, `deviations`, `bft_records`, `isc`, `triage_findings`.
 2. **The business row matches the disk.** The `projects` row for `{slug}` exists, and every path and GBrain source name it records exists on disk and in GBrain under that name.
-3. **Each app folder is a linked Anvil app.** For each of `{slug}-app1`, `{slug}-app2`, `{slug}-app3` and `{slug}-app5` that exists under `C:\dev\dev-{slug}\`: it is a Git repository, its remote is `https://github.com/sassycomapp/{slug}-app{n}`, and it holds `anvil.yaml`.
+3. **Each app folder is a linked Anvil app.** For each of `{slug}-app1`, `{slug}-app2`, `{slug}-app3` and `{slug}-app5` that has been created (an app folder holding only the template's placeholder is an app not yet created, and is skipped): it is a Git repository, its remote is `https://github.com/sassycomapp/{slug}-app{n}`, and it holds `anvil.yaml`.
 4. **Each app folder is up to date.** After `git fetch`, the folder is not behind GitHub, so nothing made in the Anvil editor is waiting to be pulled.
 5. **Each app folder keeps secrets out.** Its `.gitignore` excludes `.env`, credentials and test output.
-6. **The project library is sound.** `C:\dev\dev-{slug}\{slug}-project-library` is a Git repository linked to `https://github.com/sassycomapp/{slug}-project-library`, has its standard folders, and has `pdlf-outputs\` with one folder per step.
+6. **The project library is sound.** `C:\dev\dev-{slug}\{slug}-project-library` is a Git repository linked to `https://github.com/sassycomapp/{slug}-project-library`, has every folder of the project template (`C:\dev\project-template\dev-(SLUG)\(slug)-project-library\`), including `pdlf-tickets\` and `pdlf-outputs\` with one folder per step.
 7. **The project library is registered and committed.** It is the GBrain source `{slug}-project-library`, it has the commit hook, and it is on the `commit-all` list.
-8. **The Matt Pocock configuration is right.** The project's Matt Pocock skills configuration points to the project library's `CONTEXT.md` and `adr-local`.
+8. **The Matt Pocock configuration is right.** The project's Matt Pocock skills configuration points to the project library's `docs-local\CONTEXT.md` and `adr-local`.
 
 ## What it reports
 

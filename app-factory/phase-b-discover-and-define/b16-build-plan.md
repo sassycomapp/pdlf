@@ -137,7 +137,7 @@ Ends with the gate `domain-locked` (Step 16).
 
 **Starts from:** Step 15's plan and test plan; for an existing application, its existing `CONTEXT.md`, decision records and code, marked as prior material.
 
-**Produces:** `CONTEXT.md` (the glossary) and any decision records in `adr-local\`, in the documentation repository.
+**Produces:** `docs-local\CONTEXT.md` (the glossary) and any decision records in `adr-local\`, in the documentation repository.
 
 **Carried out by:** Matt Pocock `/grill-with-docs`, which runs a `/grilling` interview using `/domain-modeling`.
 
