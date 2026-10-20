@@ -1,7 +1,7 @@
 ---
 title: "matt-pocock-skills-pdlf-compliance"
 doc-id: "mb-86e5409b"
-updated: "2026-10-12"
+updated: "2026-10-20"
 ---
 # Matt Pocock Skills — PDLF Compliance & Dependency Reference
 **Supersedes the earlier general-catalog audit. Scoped to the 5 skills PDLF actually uses.**
@@ -75,4 +75,4 @@ Evaluated: BMAD-METHOD, GitHub Spec Kit, OpenSpec, GSD, Superpowers.
 
 ---
 
-*Reference v2 — supersedes the general-catalog version. Reconciled against [[[pdlf:obsolete/system-description|System Description]]](C:/pdlf/obsolete/system-description.md) (v3.1) and [[[pdlf:pdlf-library/docs-local/matt-pocock-skills-local-reference|Matt Pocock Skills Local Reference]]](C:/pdlf/pdlf-library/docs-local/matt-pocock-skills-local-reference.md).*
+*Reference v2 — supersedes the general-catalog version. Reconciled against [[pdlf:obsolete/system-description|System Description]] (v3.1) and [[[pdlf:pdlf-library/docs-local/matt-pocock-skills-local-reference|Matt Pocock Skills Local Reference]]](C:/pdlf/pdlf-library/docs-local/matt-pocock-skills-local-reference.md).*

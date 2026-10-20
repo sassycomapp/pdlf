@@ -1,7 +1,7 @@
 ---
 title: "adr-global-content-discovery-and-application-discipline"
 doc-id: "mb-c0174316"
-updated: "2026-10-13"
+updated: "2026-10-20"
 ---
 # ADR — Global Content Discovery and Application Discipline
 
@@ -42,7 +42,7 @@ confirms that scoped query is the intended discovery path, not a rejected half-m
 static per-step map (the kind partially built in `spec-nomenclature.md`) does not scale to
 98 files across 7 folders and would itself become a second source of truth to keep in sync
 — the same duplication failure found and corrected repeatedly elsewhere in this document
-set (two [[[pdlf:obsolete/docmap|Docmap]]](C:/pdlf/obsolete/docmap.md)s, two todo lists, `ADR-0007` vs. real filenames). GBrain queried live,
+set (two [[pdlf:obsolete/docmap|Docmap]]s, two todo lists, `ADR-0007` vs. real filenames). GBrain queried live,
 at the point of need, avoids that.
 
 **Application discipline: query → indication → fetch → apply. Never query → paraphrase.**

@@ -1,7 +1,7 @@
 ---
 title: "pdlf-spec-artifact-handover"
 doc-id: "mb-f1745959"
-updated: "2026-10-13"
+updated: "2026-10-20"
 ---
 # PDLF — Artifact and Handover Specification
 
@@ -9,7 +9,7 @@ Canonical binding technical truth for how artifacts are produced, captured,
 handed over between steps, copied to the safety net, and archived at ship
 time. Implements `pdlf-adr-artifact-saving-convention`. For the naming rules:
 [[[default:specifications-global/spec-nomenclature]]](C:/dev/project-library-global/specifications-global/spec-nomenclature.md). For the narrative account:
-[[[pdlf:obsolete/artifact-lifecycle-explainer]]](C:/pdlf/obsolete/artifact-lifecycle-explainer.md).
+[[pdlf:obsolete/artifact-lifecycle-explainer]].
 
 Facts marked "verified 2026-09-11" were checked directly against the live
 environment on that date. Unverified expectations are marked as such and must

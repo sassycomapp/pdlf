@@ -1,7 +1,7 @@
 ---
 title: "pol-INDEX"
 doc-id: "mb-65973e87"
-updated: "2026-10-13"
+updated: "2026-10-20"
 ---
 # PDLF Policy Index
 
@@ -20,4 +20,4 @@ Each policy states **what** the rule is, **why** it exists and **where** it appl
 | [[[pdlf:pdlf-library/policy-local/pol-step-conditional-state\|Policy: Step Conditional State]]](C:/pdlf/pdlf-library/policy-local/pol-step-conditional-state.md) | How optional and shortened steps are recorded and flagged downstream. |
 | [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline\|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md) and [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure\|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md) | The step pattern every step follows, and the gate ceremony. Stated in these specifications, not copied here. |
 
-The process for designing steps is not a policy; it is [[[pdlf:obsolete/stepwise-development-process|Stepwise Development Process]]](C:/pdlf/obsolete/stepwise-development-process.md).
+The process for designing steps is not a policy; it is [[pdlf:obsolete/stepwise-development-process|Stepwise Development Process]].
