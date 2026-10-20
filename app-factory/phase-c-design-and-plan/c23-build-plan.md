@@ -1,7 +1,7 @@
 ---
 title: "c23-build-plan"
 doc-id: "mb-780ca546"
-updated: "2026-10-12"
+updated: "2026-10-20"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -12,9 +12,14 @@ Ends with the gates `concept-locked` (Step 21) and `wireframes-approved` (Step 2
 
 #### Step 23: Plan design review
 
-**Must achieve:** Rates the design for usability and identifies gaps.
+**Must achieve:** Rates the chosen wireframes and `DESIGN.md` for usability and identifies gaps.
 
 **Carried out by:** GStack, using `/plan-design-review`.
+
+**Skills.** Every skill's output is used by the step named after the arrow.
+- `/plan-design-review` (GStack) → the findings, which are the optimisation goal of Step 26.
+
+**Testing:** every finding is either fixed at Step 26 or declined by the developer, and the review file records which.
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

@@ -1,7 +1,7 @@
 ---
 title: "d33-build-plan"
 doc-id: "mb-b57f0c0c"
-updated: "2026-10-12"
+updated: "2026-10-20"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -15,6 +15,11 @@ Ends with the gate `architecture-verified` (Step 34).
 **Must achieve:** The code repository is pulled to local after the scaffold is built.
 
 **Carried out by:** The developer, by hand.
+
+**Skills.** Every skill's output is used by the step named after the arrow.
+- The shared pull procedure of Step 18: after the push, the developer pulls App 1 so that local and Anvil match, including any formatting Anvil applied.
+
+**Testing:** the pull shows no change other than Anvil's formatting.
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

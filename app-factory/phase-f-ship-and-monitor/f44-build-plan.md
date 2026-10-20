@@ -1,24 +1,26 @@
 ---
 title: "f44-build-plan"
 doc-id: "mb-c7cb929d"
-updated: "2026-10-12"
+updated: "2026-10-20"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
 
 ### Phase F — Ship and Monitor
 
-Ends with the gates `production-released` (Step 44) and `released` (Step 46). Steps 42 to 44 still describe a staging and production split that PDLF does not have; they are rebuilt around the `develop` → `stable` release.
+Ends with the gates `production-released` (Step 44) and `released` (Step 46). The release is the clone of App 1's approved code into App 2, `master_template`, which every client instance depends on.
 
 #### Step 44: Release
 
-**Must achieve:** Still describes promoting staging to production; to be rebuilt as the `develop` → `stable` release to `master_template`, which the developer performs.
+**Must achieve:** The developer confirms the release, on the results of Steps 41 to 43.
 
-**Carried out by:** The developer, by hand.
+**Carried out by:** The developer, at the gate.
 
 **Gate:** `production-released`: the application is released.
 
 **References:** [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md).
+
+**Skills.** None: the gate reads the results of Steps 41, 42A and 43 and the open findings in `triage_findings`; an open finding blocks it.
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

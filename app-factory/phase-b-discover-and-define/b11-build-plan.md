@@ -1,7 +1,7 @@
 ---
 title: "b11-build-plan"
 doc-id: "mb-4f446919"
-updated: "2026-10-13"
+updated: "2026-10-20"
 ---
 # Step 11 — Init: Build Plan
 
@@ -43,6 +43,18 @@ Ends with the gate `domain-locked` (Step 16).
 **BFT level:** Full, because Step 11 makes the structural decisions everything else stands on.
 
 **References:** [[[pdlf:pdlf-library/specifications-local/spec-postgres-ledger|Spec: Postgres Ledger]]](C:/pdlf/pdlf-library/specifications-local/spec-postgres-ledger.md), [[[default:specifications-global/spec-five-app-architecture-model|Five-App Architecture Model]]](C:/dev/project-library-global/specifications-global/spec-five-app-architecture-model.md), [[[pdlf:pdlf-library/specifications-local/spec-skill-context-pack|Spec: Skill Context Pack]]](C:/pdlf/pdlf-library/specifications-local/spec-skill-context-pack.md).
+
+**Skills.** Every skill's output is used by the step named after the arrow.
+- `setup-matt-pocock-skills` (Matt Pocock): configures Matt's skills for the business, once → every later Matt Pocock skill.
+- `wizard` (Matt Pocock): numbered instructions for creating each app in Anvil → the clone of each app's repository.
+- `graphify`: for an existing application (route B), builds the code graph of the existing app → Steps 12 and 16.
+- `/cso` (GStack), static scan: for an existing application (route B), scans the existing public repositories for secrets → this step's Sentinel review; a secret found is removed before the step ends.
+- `mb-sentinel-review`, High → `triage_findings`, checked before the step finishes.
+- Foundation checks add: the Anvil command-line tool `anvil` is installed (every Anvil skill validates with it from Step 17 on); every skill listed in this section and in Steps 12 to 16 is installed.
+
+**Layers with no skill:** display (no design exists yet); GStack workflow (the step only sets up). **Testing:** the health check self-audit.
+
+**Standards:** [[[default:specifications-global/spec-five-app-architecture-model|Five-App Architecture Model]]](C:/dev/project-library-global/specifications-global/spec-five-app-architecture-model.md).
 
 ## Why it is built this way
 

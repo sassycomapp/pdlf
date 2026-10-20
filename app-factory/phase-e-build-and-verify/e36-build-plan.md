@@ -1,7 +1,7 @@
 ---
 title: "e36-build-plan"
 doc-id: "mb-06eb6076"
-updated: "2026-10-12"
+updated: "2026-10-20"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -14,9 +14,14 @@ Steps 35 to 40B run once per feature, one feature at a time; the run plan govern
 
 **Must achieve:** A visual audit of the feature as it will ship, after any fixes from Step 40B.
 
-**Carried out by:** GStack, using `/design-review`.
+**Carried out by:** OpenCode, with GStack `browse`.
 
 **Runs:** once per feature.
+
+**Skills.** Every skill's output is used by the step named after the arrow.
+- `browse` (GStack): screenshots of the feature as it runs → compared with the approved screen PNG from Step 28 and stage 2 of the two-stage check in the screen and wireframe production standards → `step-36-findings.md`, including a clean-pass statement, then Step 39.
+
+**Not used:** GStack `/design-review`, because it commits each fix itself; agents never commit.
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

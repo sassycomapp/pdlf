@@ -1,7 +1,7 @@
 ---
 title: "e35a-build-plan"
 doc-id: "mb-cc2d83a1"
-updated: "2026-10-12"
+updated: "2026-10-20"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -17,6 +17,11 @@ Steps 35 to 40B run once per feature, one feature at a time; the run plan govern
 **Carried out by:** OpenCode.
 
 **Runs:** once per feature.
+
+**Skills.** Every skill's output is used by the step named after the arrow.
+- `tdd` (Matt Pocock): extends the feature's tests to the edge cases in Step 15's test plan → Step 38.
+- `pip-audit` (a tool, not a skill) checks the development and test tools → `triage_findings`.
+- `/cso --supply-chain` (GStack): checks the feature's dependencies and tooling for supply-chain risk → `triage_findings`.
 
 ## From `pdlf-todo.md`: item C1
 

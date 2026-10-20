@@ -1,14 +1,14 @@
 ---
 title: "f46-build-plan"
 doc-id: "mb-9d39104e"
-updated: "2026-10-12"
+updated: "2026-10-20"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
 
 ### Phase F — Ship and Monitor
 
-Ends with the gates `production-released` (Step 44) and `released` (Step 46). Steps 42 to 44 still describe a staging and production split that PDLF does not have; they are rebuilt around the `develop` → `stable` release.
+Ends with the gates `production-released` (Step 44) and `released` (Step 46). The release is the clone of App 1's approved code into App 2, `master_template`, which every client instance depends on.
 
 #### Step 46: Learning
 
@@ -19,6 +19,13 @@ Ends with the gates `production-released` (Step 44) and `released` (Step 46). St
 **Gate:** `released`: the build cycle closes.
 
 **References:** [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md).
+
+**Skills.** Every skill's output is used by the step named after the arrow.
+- `/retro` (GStack): what the build taught, from its history → the lessons.
+- `/learn` (GStack): exports what GStack's own skills learned during this build → the lessons.
+- `mb-submit-memory`: each approved lesson, once written into the source the next build reads, is submitted as a governed fact → GBrain, for the next build.
+
+**Not used:** GStack `/context-save`; the ledger already records where a build stands.
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

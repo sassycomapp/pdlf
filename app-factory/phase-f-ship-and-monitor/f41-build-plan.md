@@ -1,20 +1,30 @@
 ---
 title: "f41-build-plan"
 doc-id: "mb-4042f695"
-updated: "2026-10-12"
+updated: "2026-10-20"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
 
 ### Phase F — Ship and Monitor
 
-Ends with the gates `production-released` (Step 44) and `released` (Step 46). Steps 42 to 44 still describe a staging and production split that PDLF does not have; they are rebuilt around the `develop` → `stable` release.
+Ends with the gates `production-released` (Step 44) and `released` (Step 46). The release is the clone of App 1's approved code into App 2, `master_template`, which every client instance depends on.
 
-#### Step 41: Ship
+#### Step 41: Release readiness
 
-**Must achieve:** Tests, versions and records the release, and pushes it; it stops at the push.
+**Must achieve:** Proves App 1 is ready to release: every feature has passed `build-verified`, the whole test suite passes, the pre-release security assessment is clean, and the release notes are written. The developer commits, tags and pushes App 1.
 
-**Carried out by:** GStack, using `/ship`.
+**Carried out by:** OpenCode; the developer commits, tags and pushes.
+
+**Skills.** Every skill's output is used by the step named after the arrow.
+- `tdd` (Matt Pocock): the full test suite at levels 1 and 2 → the readiness report.
+- `security-audit-methodology` (Magnus919): the pre-release part of Step 15's security assessment plan → the readiness report.
+- `/cso` (GStack), full static scan of App 1 → the readiness report.
+- `wizard` (Matt Pocock): the developer's instructions to commit, tag the release version and push App 1 → Step 42.
+
+**Not used:** GStack `/ship`, because it commits, pushes and opens a pull request itself; agents never commit or push.
+
+**Testing:** the whole suite passes; any failure returns its feature to Step 35.
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

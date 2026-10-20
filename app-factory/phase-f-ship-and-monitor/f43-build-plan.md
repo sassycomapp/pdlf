@@ -1,20 +1,24 @@
 ---
 title: "f43-build-plan"
 doc-id: "mb-7ecf0cbd"
-updated: "2026-10-12"
+updated: "2026-10-20"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
 
 ### Phase F — Ship and Monitor
 
-Ends with the gates `production-released` (Step 44) and `released` (Step 46). Steps 42 to 44 still describe a staging and production split that PDLF does not have; they are rebuilt around the `develop` → `stable` release.
+Ends with the gates `production-released` (Step 44) and `released` (Step 46). The release is the clone of App 1's approved code into App 2, `master_template`, which every client instance depends on.
 
-#### Step 43: Staging smoke test
+#### Step 43: Client instance check
 
-**Must achieve:** Still describes a smoke test on staging. To be rebuilt.
+**Must achieve:** The test client instance (App 4) works on the new release, and its health baseline is recorded.
 
-**Carried out by:** GStack, using `/qa` or `/canary`.
+**Carried out by:** GStack, using `/qa-only` and `/canary`.
+
+**Skills.** Every skill's output is used by the step named after the arrow.
+- `/qa-only` (GStack), quick tier: smoke test of the test client instance → Step 44.
+- `/canary` (GStack): records the instance's health baseline → Step 45.
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

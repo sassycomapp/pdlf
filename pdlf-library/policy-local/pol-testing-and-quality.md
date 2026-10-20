@@ -1,7 +1,7 @@
 ---
 title: "pol-testing-and-quality"
 doc-id: "mb-6296454f"
-updated: "2026-10-12"
+updated: "2026-10-20"
 ---
 # PDLF Policy — Testing and Quality
 
@@ -69,9 +69,9 @@ The full sequence, in order:
 35A — Testing: CI checks + broader test coverage.
 40  — Architecture scan (optional, read-only report).
 40B — Apply developer-approved remediation from Step 40, if any.
-36  — /design-review — retest, post-remediation.
-37  — /review — structural code review.
-38  — /qa — functional + regression testing.
+36  — design check with GStack browse against the approved screens — retest, post-remediation.
+37  — Matt Pocock code-review and GStack /cso --diff — standards, spec and security review.
+38  — GStack /qa-only — functional + regression testing, report only.
 38A — CI/pipeline results consolidated.
 39  — triage — processes findings from 36–38. build-verified gate evaluated here.
 ```
@@ -81,13 +81,7 @@ Remediation (40B) is retested by 36–38, not shipped straight through — this 
 
 ### Artifact persistence requirement (new, 2026-07-12)
 
-`/review` (Step 37) and [[[pdlf:app-factory/phase-e-build-and-verify/e38-reference|/qa]]](C:/pdlf/app-factory/phase-e-build-and-verify/e38-reference.md) (Step 38) are **required** to write their findings to a
-specified artifact path as part of invocation — this is not assumed to happen as a side
-effect of running the skill. OpenCode verifies the artifact exists before marking either
-step complete; its absence is a step failure requiring developer attention, not a silent
-pass. This requirement exists because GStack's own repository states that its skills'
-claimed persistence behavior is unverified even by the maintainer — it cannot be relied on
-without an explicit check.
+Steps 36, 37 and 38 each write their findings to `step-36-findings.md`, `step-37-findings.md` and `step-38-findings.md`, including a clean-pass statement. OpenCode verifies each file exists before marking its step complete; a missing file is a step failure requiring developer attention, not a silent pass. None of these steps fixes anything: every fix is decided at Step 39 and made at Step 35, because agents never commit.
 
 ---
 

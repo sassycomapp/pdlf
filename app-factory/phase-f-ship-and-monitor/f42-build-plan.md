@@ -1,20 +1,27 @@
 ---
 title: "f42-build-plan"
 doc-id: "mb-204ff45b"
-updated: "2026-10-12"
+updated: "2026-10-20"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
 
 ### Phase F — Ship and Monitor
 
-Ends with the gates `production-released` (Step 44) and `released` (Step 46). Steps 42 to 44 still describe a staging and production split that PDLF does not have; they are rebuilt around the `develop` → `stable` release.
+Ends with the gates `production-released` (Step 44) and `released` (Step 46). The release is the clone of App 1's approved code into App 2, `master_template`, which every client instance depends on.
 
-#### Step 42: Publish to staging
+#### Step 42: Release to App 2
 
-**Must achieve:** Still describes publishing to a staging environment, which PDLF does not have. To be rebuilt.
+**Must achieve:** App 1's tagged release is cloned into App 2, `master_template`. This reaches every client instance at once.
 
-**Carried out by:** The developer, by hand.
+**Carried out by:** The developer, after approving the release.
+
+**Skills.** Every skill's output is used by the step named after the arrow.
+- `wizard` (Matt Pocock): the developer's instructions to push App 1's tagged release into App 2's repository, and to roll back by pushing the previous tag → Step 42A.
+
+**Testing:** App 2's code matches App 1's tag exactly.
+
+**Standards:** [[[default:specifications-global/spec-five-app-architecture-model|Five-App Architecture Model]]](C:/dev/project-library-global/specifications-global/spec-five-app-architecture-model.md), [[[default:specifications-global/spec-deployment|Deployment]]](C:/dev/project-library-global/specifications-global/spec-deployment.md).
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

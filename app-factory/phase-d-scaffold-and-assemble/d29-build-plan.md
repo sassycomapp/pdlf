@@ -1,7 +1,7 @@
 ---
 title: "d29-build-plan"
 doc-id: "mb-095646a3"
-updated: "2026-10-12"
+updated: "2026-10-20"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -15,6 +15,14 @@ Ends with the gate `architecture-verified` (Step 34).
 **Must achieve:** The forms are built in Anvil from the approved wireframes.
 
 **Carried out by:** The developer with Anvil's AI, by hand in the Anvil editor.
+
+**Skills.** Every skill's output is used by the step named after the arrow.
+- `wizard` (Matt Pocock): the developer's instructions for each form: which wireframe HTML, screen HTML and screen PNG to give Anvil's AI, in what order, and the theme values from `DESIGN.md` (brand colour first in `theme/parameters.yaml`, the logo) → the forms, then Step 30.
+- Anvil's AI in the Anvil editor builds each form from those three inputs and wires its components, using Anvil's own skills.
+
+**Testing:** every approved screen has a form. **Layers with no skill:** security (forms hold no data rules; Step 34 checks this).
+
+**Standards:** [[[default:specifications-global/spec-anvil-platform-standards|Anvil Platform Standards]]](C:/dev/project-library-global/specifications-global/spec-anvil-platform-standards.md) section 9, [[[default:specifications-global/spec-ui-standards|UI Standards]]](C:/dev/project-library-global/specifications-global/spec-ui-standards.md), [[[default:specifications-global/spec-material-3-theme|Material 3 Theme]]](C:/dev/project-library-global/specifications-global/spec-material-3-theme.md).
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

@@ -1,7 +1,7 @@
 ---
 title: "a01-build-plan"
 doc-id: "mb-114d842c"
-updated: "2026-10-13"
+updated: "2026-10-20"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -71,7 +71,7 @@ Entry into the next phase requires the preceding phase's gate to pass.
 |---|---|---|---|
 | Phase A — Init | 1–10 | Developer starts work | Entry point chosen (Step 1) |
 | Phase B — Discover & Define | 11, 12, 14, 15, 16 | Init complete (Step 11) | `domain-locked` (Step 16) |
-| Phase C — Design & Plan | 17–24, 26–28 | `domain-locked` passed | `concept-locked` (Step 21), `wireframes-approved` (Step 26) |
+| Phase C — Design & Plan | 17–23, 26–28 | `domain-locked` passed | `concept-locked` (Step 21), `wireframes-approved` (Step 26) |
 | Phase D — Scaffold & Assemble | 29–34 | `wireframes-approved` passed | `architecture-verified` (Step 34) |
 | Phase E — Build & Verify | 35, 35A, 40, 40B, 36, 37, 38, 38A, 39 | `architecture-verified` passed | `build-verified` (Step 39, end of per-feature loop) |
 | Phase F — Ship & Monitor | 41, 42, 42A, 43–46 | `build-verified` passed (all features) | `production-released` (Step 44), `released` (Step 46) |
@@ -96,13 +96,12 @@ checks the ledger before advancing.
 | 18 | 17 |
 | 19 | 14, 15, 16, 17 |
 | 20 | 12 |
-| 21 | 14, 15, 16, 20 |
-| 22 | 20 |
+| 21 | 14, 15, 16, 19, 20 |
+| 22 | 19, 20, 21 |
 | 23 | 19, 20, 22 |
-| 24 | 23 |
-| 26 | 22 |
-| 27 | 26 (deferred — skip unless explicitly requested) |
-| 28 | 27 (deferred) |
+| 26 | 22, 23 |
+| 27 | 26 |
+| 28 | 27 |
 | 29 | 22, 26, 27, 28 |
 | 30 | 29 |
 | 31 | 15, 16, 21, 30 |

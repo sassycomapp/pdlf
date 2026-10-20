@@ -1,7 +1,7 @@
 ---
 title: "e40b-build-plan"
 doc-id: "mb-b74e415a"
-updated: "2026-10-12"
+updated: "2026-10-20"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -17,3 +17,7 @@ Steps 35 to 40B run once per feature, one feature at a time; the run plan govern
 **Carried out by:** OpenCode.
 
 **Runs:** once per feature.
+
+**Skills.** Every skill's output is used by the step named after the arrow.
+- `codebase-design` (Matt Pocock) and the Anvil skills for the code touched: only the approved fixes are applied → Step 36.
+- `tdd` (Matt Pocock): every test of the feature is rerun after the fixes → Step 36.

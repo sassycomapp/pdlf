@@ -1,7 +1,7 @@
 ---
 title: "d30-build-plan"
 doc-id: "mb-0bbaa200"
-updated: "2026-10-12"
+updated: "2026-10-20"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -15,6 +15,12 @@ Ends with the gate `architecture-verified` (Step 34).
 **Must achieve:** The code repository is pulled to local after the forms are built.
 
 **Carried out by:** The developer, by hand.
+
+**Skills.** Every skill's output is used by the step named after the arrow.
+- The shared pull procedure of Step 18.
+- `client-forms` (Anvil): validates every pulled form with `anvil --json validate` → Step 31.
+
+**Testing:** every form validates, and every approved screen has its form locally.
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

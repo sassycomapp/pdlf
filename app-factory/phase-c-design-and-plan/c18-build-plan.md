@@ -1,7 +1,7 @@
 ---
 title: "c18-build-plan"
 doc-id: "mb-1d6a836c"
-updated: "2026-10-12"
+updated: "2026-10-20"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -15,6 +15,13 @@ Ends with the gates `concept-locked` (Step 21) and `wireframes-approved` (Step 2
 **Must achieve:** The code repository is pulled to local after the tables are built.
 
 **Carried out by:** The developer, by hand.
+
+**Skills.** Every skill's output is used by the step named after the arrow.
+- `wizard` (Matt Pocock): the developer's pull instructions → the local repository the next step reads.
+
+**Shared procedure.** Steps 18, 30 and 33 run this one procedure: the developer pulls App 1's repository to local after work in the Anvil editor; the agent checks that the change it expects is present and stops with a deviation if not. Steps 30 and 33 refer to this step's procedure and do not repeat it.
+
+**Testing:** the expected change is present locally. **Layers with no skill:** all others; the step only moves code.
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

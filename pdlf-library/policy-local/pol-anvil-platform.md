@@ -1,7 +1,7 @@
 ---
 title: "pol-anvil-platform"
 doc-id: "mb-f219a912"
-updated: "2026-10-12"
+updated: "2026-10-20"
 ---
 # PDLF Policy — Anvil Platform
 
@@ -11,9 +11,9 @@ updated: "2026-10-12"
 
 ## What
 
-### `anvil.yaml` is never written
+### `anvil.yaml` is changed only through Anvil's skill
 
-The agent never creates, edits, reformats, regenerates, merges or patches `anvil.yaml`. Anvil manages it. A task that seems to need a change to it stops and asks David.
+The agent changes `anvil.yaml` only through Anvil's `anvil-yaml` skill, which Anvil issues for that purpose, and validates every change with `anvil --json validate anvil.yaml`. It never changes `dependencies`; David changes them in the Anvil editor. A schema change reaches the live app only when David applies it in Anvil's Data Tables view.
 
 ### Two repositories
 
@@ -48,7 +48,7 @@ Nothing secret, internal or for paying clients only ever goes in either. Materia
 Every application follows [[[default:specifications-global/spec-five-app-architecture-model|Five-App Architecture Model]]](C:/dev/project-library-global/specifications-global/spec-five-app-architecture-model.md):
 
 - All development happens in App 1.
-- Release is the `develop` → `stable` merge that updates `master_template` (App 2). David performs it, as a gated step. There is no separate staging or production environment.
+- Release is the clone of App 1's approved, tagged code into App 2, `master_template`. David performs it at Step 42. There is no separate staging or production environment.
 - Client instances (App 4) are cloned from `blank_client_template` (App 3) and run on `master_template`. The agent never adds a form or server module to a client instance: doing so silently and permanently cuts that instance off from future updates.
 
 ### No multi-tenancy

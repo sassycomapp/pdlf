@@ -1,7 +1,7 @@
 ---
 title: "c28-build-plan"
 doc-id: "mb-1873894a"
-updated: "2026-10-12"
+updated: "2026-10-20"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -12,9 +12,16 @@ Ends with the gates `concept-locked` (Step 21) and `wireframes-approved` (Step 2
 
 #### Step 28: Screen to PNG
 
-**Must achieve:** Converts the screens to images. Deferred: runs only if the developer asks for it.
+**Must achieve:** Renders each screen HTML to a PNG image. Step 29 needs it, because Anvil's AI builds a form from the wireframe, the screen HTML and the screen PNG together.
 
-**Carried out by:** An external tool.
+**Carried out by:** GStack, using `browse`.
+
+**Skills.** Every skill's output is used by the step named after the arrow.
+- `browse` (GStack): opens each screen HTML in a headless browser and saves a screenshot → Step 29.
+
+**Testing:** one PNG exists for every screen, beside its HTML.
+
+**Standards:** [[[default:specifications-global/spec-anvil-platform-standards|Anvil Platform Standards]]](C:/dev/project-library-global/specifications-global/spec-anvil-platform-standards.md) section 9.
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

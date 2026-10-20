@@ -1,7 +1,7 @@
 ---
 title: "e38-build-plan"
 doc-id: "mb-8b5ce355"
-updated: "2026-10-12"
+updated: "2026-10-20"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -14,9 +14,15 @@ Steps 35 to 40B run once per feature, one feature at a time; the run plan govern
 
 **Must achieve:** Tests the feature, and checks that earlier features still work. Findings are written to `step-38-findings.md`, including a clean-pass statement.
 
-**Carried out by:** GStack, using `/qa`.
+**Carried out by:** GStack, using `/qa-only`.
 
 **Runs:** once per feature.
+
+**Skills.** Every skill's output is used by the step named after the arrow.
+- `/qa-only` (GStack): tests the feature and every earlier feature in a real browser, report only → `step-38-findings.md`, including a clean-pass statement, then Step 39.
+- `mb-sentinel-review`, High → `triage_findings`.
+
+**Not used:** GStack `/qa`, because it commits its own fixes; agents never commit.
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

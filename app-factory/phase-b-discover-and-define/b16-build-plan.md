@@ -1,7 +1,7 @@
 ---
 title: "b16-build-plan"
 doc-id: "mb-625b446e"
-updated: "2026-10-13"
+updated: "2026-10-20"
 ---
 
 ## From `16-build-notes.md`
@@ -154,6 +154,16 @@ Ends with the gate `domain-locked` (Step 16).
 **Gate:** `domain-locked`: the vocabulary and decisions are locked; no new terms without reopening the gate.
 
 **References:** [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md).
+
+**Skills.** Every skill's output is used by the step named after the arrow.
+- `grill-with-docs`, `grilling`, `domain-modeling` (Matt Pocock) → `CONTEXT.md` and the ADRs, then every later step.
+- `data-models` (Anvil): checks that the vocabulary and the data design agree → Step 17's tables.
+- `graphify`: for an existing application, checks what the documents say against the code → the contradictions shown to the developer.
+- `prototype` (Matt Pocock), only when an entity's life cycle is uncertain → `CONTEXT.md` and the ADRs.
+- `mb-archify-scope`, then `archify`: the domain map (entities and their relationships) → the developer at the gate, then Step 17.
+- `mb-sentinel-review`, Low/Medium → `triage_findings`.
+
+**Testing:** every entity in `CONTEXT.md` has an owner and a place in the data design. **Vocabulary home:** `CONTEXT.md` holds the terms of this application only; terms common to every application, every system and PDLF are in [[[default:specifications-global/spec-nomenclature|Spec: Nomenclature]]](C:/dev/project-library-global/specifications-global/spec-nomenclature.md).
 
 ## From `pdlf-phase-b-review.md`: findings for this step
 

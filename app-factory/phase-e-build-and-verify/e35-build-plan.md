@@ -1,7 +1,7 @@
 ---
 title: "e35-build-plan"
 doc-id: "mb-7c6d6f2b"
-updated: "2026-10-12"
+updated: "2026-10-20"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -17,6 +17,19 @@ Steps 35 to 40B run once per feature, one feature at a time; the run plan govern
 **Carried out by:** OpenCode.
 
 **Runs:** once per feature.
+
+**Skills.** Every skill's output is used by the step named after the arrow.
+- `tdd` (Matt Pocock): each behaviour named for this ticket in `scaffold-plan.md` is built test-first; level 1 tests the pure logic alone → level 2, then Step 35A.
+- `server-code`, `client-modules`, `client-forms` and `data-models` (Anvil): every change to server code, client modules, forms and data flow follows the matching Anvil skill and is validated with `anvil --json validate` → level 2.
+- `codebase-design` (Matt Pocock): the code stays within the modules and seams of `scaffold-plan.md` → Steps 37 and 40.
+- `diagnosing-bugs` (Matt Pocock): whenever a test at any level fails, the root cause is found before any fix → the fix, then the level is rerun.
+- `secure-software-engineering` (Magnus919): the ticket's security acceptance criteria are built and tested → Step 37.
+- `wizard` (Matt Pocock): the developer's instructions for the backup, the commit and push of App 1 before level 2, and the level 3 check in the browser → level 2 and the sign-off.
+- `mb-sentinel-review`, High → `triage_findings`.
+
+**Not used:** Matt's `implement`, because it commits its own work and runs its own code review; agents never commit, and the code review is Step 37.
+
+**Standards:** [[[default:specifications-global/spec-testing-methodology-standards|Testing Methodology Standards]]](C:/dev/project-library-global/specifications-global/spec-testing-methodology-standards.md), [[[default:specifications-global/spec-anvil-platform-standards|Anvil Platform Standards]]](C:/dev/project-library-global/specifications-global/spec-anvil-platform-standards.md) sections 2, 3 and 6 (Uplink).
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

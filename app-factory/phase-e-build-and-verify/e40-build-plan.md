@@ -1,7 +1,7 @@
 ---
 title: "e40-build-plan"
 doc-id: "mb-71500d0b"
-updated: "2026-10-12"
+updated: "2026-10-20"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -17,6 +17,10 @@ Steps 35 to 40B run once per feature, one feature at a time; the run plan govern
 **Carried out by:** Matt Pocock, using `improve-codebase-architecture`.
 
 **Runs:** once per feature.
+
+**Skills.** Every skill's output is used by the step named after the arrow.
+- `improve-codebase-architecture` (Matt Pocock), read-only, when the developer chooses to run it → the findings, then Step 40B.
+- `graphify`: the code graph from Step 34, refreshed for this feature, gives the scan its evidence of coupling → the findings.
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

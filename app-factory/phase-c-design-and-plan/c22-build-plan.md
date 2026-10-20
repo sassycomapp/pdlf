@@ -1,7 +1,7 @@
 ---
 title: "c22-build-plan"
 doc-id: "mb-70132173"
-updated: "2026-10-12"
+updated: "2026-10-20"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -12,9 +12,17 @@ Ends with the gates `concept-locked` (Step 21) and `wireframes-approved` (Step 2
 
 #### Step 22: Wireframes, phase 1
 
-**Must achieve:** Produces the structural wireframes, in black and white.
+**Must achieve:** Produces the wireframes for every screen the tickets need: five options per screen, in black and white with Clean and Polished colour variants. The developer chooses one option per screen.
 
 **Carried out by:** The Magdoub wireframe skill.
+
+**Skills.** Every skill's output is used by the step named after the arrow.
+- `wireframe` (Magdoub), scope "wireframes and visuals", one run per screen, from the tickets, the flows and `design-context.md` → the developer's choice of option, then Steps 23 and 26.
+- The skill writes to `wireframe\` in the project library, its canonical place; a copy goes to `pdlf-outputs\c22\`.
+
+**Testing:** stage 1 of the two-stage check (wireframe fidelity) in the screen and wireframe production standards.
+
+**Standards:** [[[default:specifications-global/spec-screen-and-wireframe-production-standards|Screen and Wireframe Production Standards]]](C:/dev/project-library-global/specifications-global/spec-screen-and-wireframe-production-standards.md).
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

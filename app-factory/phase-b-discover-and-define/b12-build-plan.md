@@ -1,7 +1,7 @@
 ---
 title: "b12-build-plan"
 doc-id: "mb-19064cbb"
-updated: "2026-10-13"
+updated: "2026-10-20"
 ---
 
 ## From `12-build-notes.md`
@@ -121,6 +121,16 @@ Ends with the gate `domain-locked` (Step 16).
 **BFT level:** Full.
 
 **References:** [[[pdlf:pdlf-library/policy-local/pol-step-conditional-state|Step Conditional State Policy]]](C:/pdlf/pdlf-library/policy-local/pol-step-conditional-state.md).
+
+**Skills.** Every skill's output is used by the step named after the arrow.
+- `grilling` (Matt Pocock): for a new application, the interview that questions the developer until the scope is adequately described → the design doc.
+- `graphify`: for an existing application, the code graph from Step 11, used to separate the durable concept from what followed from it → the design doc.
+- `/office-hours` (GStack), if the developer chooses → the working design doc, then Step 14.
+- `mb-sentinel-review`, Medium → `triage_findings`.
+
+**Layers with no skill:** development (no Anvil design yet); display (flows are drawn at Step 15). **Testing:** every success criterion in the design doc is measurable → Step 15's test plan.
+
+**Standards:** [[[default:docs-standard-global/docstd-business-requirements-document|Business Requirements Document]]](C:/dev/project-library-global/docs-standard-global/docstd-business-requirements-document.md): the design doc also covers its stakeholders and risks. [[[default:specifications-global/spec-regulatory-compliance-baseline|Regulatory Compliance Baseline]]](C:/dev/project-library-global/specifications-global/spec-regulatory-compliance-baseline.md): its mandatory POPIA facts go into the Constraints section.
 
 ## From `pdlf-phase-b-review.md`: findings for this step
 

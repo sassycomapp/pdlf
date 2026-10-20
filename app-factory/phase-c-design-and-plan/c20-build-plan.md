@@ -1,7 +1,7 @@
 ---
 title: "c20-build-plan"
 doc-id: "mb-696b4ce8"
-updated: "2026-10-12"
+updated: "2026-10-20"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -15,6 +15,16 @@ Ends with the gates `concept-locked` (Step 21) and `wireframes-approved` (Step 2
 **Must achieve:** Builds the application's design system (`DESIGN.md`) on Material 3 and David's design standards. In a test run, the developer may abbreviate or skip it.
 
 **Carried out by:** GStack, using `/design-consultation`.
+
+**Skills.** Every skill's output is used by the step named after the arrow.
+- `/design-consultation` (GStack), held strictly to Material 3: it chooses only what the M3 standards leave open (brand colour, type pairing within the M3 scale) → `DESIGN.md`, then Steps 22, 26, 27 and 29.
+- `client-forms` (Anvil), styling reference: the brand colour is recorded as the first entry for `theme/parameters.yaml` → Step 29.
+- `mb-sentinel-review`, Medium/High → `triage_findings`.
+- The step writes `wireframe/brain/design-context.md` in the project library from `DESIGN.md`, so the Magdoub wireframe skill starts from the application's own design → Step 22.
+
+**Testing:** the palette meets the accessibility rules of the screen production standard (contrast, dark mode).
+
+**Standards:** [[[default:specifications-global/spec-m3-design-standards|M3 Design Standards]]](C:/dev/project-library-global/specifications-global/spec-m3-design-standards.md), [[[default:specifications-global/spec-material-3-theme|Material 3 Theme]]](C:/dev/project-library-global/specifications-global/spec-material-3-theme.md), [[[default:specifications-global/spec-ui-standards|UI Standards]]](C:/dev/project-library-global/specifications-global/spec-ui-standards.md), [[[default:specifications-global/spec-m3_component_mapping|M3 Component Mapping]]](C:/dev/project-library-global/specifications-global/spec-m3_component_mapping.md), and Anvil's own M3 documentation in `C:\mybizz\anvil-agent-references\docs\m3`.
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

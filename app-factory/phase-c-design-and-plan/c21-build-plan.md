@@ -1,7 +1,7 @@
 ---
 title: "c21-build-plan"
 doc-id: "mb-00f53c9a"
-updated: "2026-10-12"
+updated: "2026-10-20"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -19,6 +19,13 @@ Ends with the gates `concept-locked` (Step 21) and `wireframes-approved` (Step 2
 **Gate:** `concept-locked`: the concept is locked; no new feature without reopening the gate.
 
 **References:** [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md).
+
+**Skills.** No installed skill cross-checks documents for contradictions, so OpenCode does this step.
+- `mb-sentinel-review`, Medium → `triage_findings`.
+
+**Inputs:** the CEO plan, the reviewed plan and test plan, the threat model, `CONTEXT.md` and the ADRs, the tickets and flows from Step 19, and `DESIGN.md`.
+
+**Testing:** every pair of inputs is checked, and the report names each pair checked → the developer at the gate.
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

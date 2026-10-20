@@ -1,7 +1,7 @@
 ---
 title: "pdlf-explainer"
 doc-id: "mb-4ba5a053"
-updated: "2026-10-12"
+updated: "2026-10-20"
 ---
 # PDLF — How It Works
 
@@ -77,7 +77,7 @@ Review and QA findings are always written to a file, including a statement when 
 
 ### Finishing
 
-PDLF builds the whole five-app structure of the business in one pipeline. It releases the application to `master_template` through the `develop` → `stable` merge, which David performs as a gated step. It then builds the remaining apps of the set, including one verified client instance, the provisioning procedure, and the README every client instance must carry. The steps after Step 46 that build the remaining apps are added in steps work.
+PDLF builds the whole five-app structure of the business in one pipeline. It releases the application to `master_template` by cloning App 1's approved code into App 2, which David performs as a gated step. It then builds the remaining apps of the set, including one verified client instance, the provisioning procedure, and the README every client instance must carry. The steps after Step 46 that build the remaining apps are added in steps work.
 
 ## 3. The ledger
 
@@ -144,7 +144,7 @@ PDLF builds for Anvil.works only. The rules are in [[[pdlf:pdlf-library/policy-l
 
 - **Two repositories per application.** The code repository is the Anvil app (App 1, the development workspace). The documentation repository holds everything else. They are never mixed.
 - **What goes to Anvil.** Everything committed to the code repository is pushed to Anvil; `.gitignore` keeps local-only material, such as `.env`, out. Anvil uses only `anvil.yaml`, `client_code`, `server_code` and `theme`. `theme/assets` and `client_code` are public, so nothing secret or internal goes there. Client documents may be served from `theme/assets/docs`; explainer videos are hosted on YouTube.
-- **`anvil.yaml` is never written by an agent.** Anvil manages it.
+- **`anvil.yaml` is changed only through Anvil's `anvil-yaml` skill**, validated with `anvil --json validate`; David applies schema changes in Anvil's Data Tables view.
 - **No multi-tenancy, ever.** Every client has its own app instance and its own database. No code shares one database between clients and separates them by filtering. AI agents reach for that pattern by default, so it is given to them as context before any code is written: [[[default:adr-global/adr-dependency-based-not-multi-tenant|ADR: Dependency-Based, Not Multi-Tenant]]](C:/dev/project-library-global/adr-global/adr-dependency-based-not-multi-tenant.md).
 - **Never add forms or server modules to a client instance.** A client instance runs on `master_template`; anything added directly to it silently and permanently cuts it off from future updates: [[[default:specifications-global/spec-five-app-architecture-model|Five-App Architecture Model]]](C:/dev/project-library-global/specifications-global/spec-five-app-architecture-model.md).
 - **Material 3.** Every application uses Anvil's Material 3 theme and David's design standards in `project-library-global`. Design moves in approved stages: structural wireframes, then polished wireframes, then screens.

@@ -1,7 +1,7 @@
 ---
 title: "b14-build-plan"
 doc-id: "mb-4d5937f5"
-updated: "2026-10-13"
+updated: "2026-10-20"
 ---
 
 ## From `14-build-notes.md`
@@ -150,6 +150,16 @@ Ends with the gate `domain-locked` (Step 16).
 **BFT level:** Full.
 
 **References:** [[[pdlf:pdlf-library/policy-local/pol-step-conditional-state|Step Conditional State Policy]]](C:/pdlf/pdlf-library/policy-local/pol-step-conditional-state.md).
+
+**Skills.** Every skill's output is used by the step named after the arrow.
+- `/plan-ceo-review` (GStack) → the CEO plan, then Step 15.
+- `secure-software-engineering` (Magnus919): business-level security requirements → the CEO plan, then Step 15's threat model.
+- `mb-sentinel-review`, Medium → `triage_findings`.
+- Every scope expansion the developer accepts is checked against `anvil-docs` (`C:\dev\project-library-global\anvil-docs`), so the plan promises nothing Anvil cannot do → the CEO plan.
+
+**Layers with no skill:** display; engineering support (the skill already puts each finding to the developer one at a time). **Testing:** the CEO plan names what must be tested and why → Step 15's test plan.
+
+**Standards:** [[[default:docs-standard-global/docstd-product-requirements-document|Product Requirements Document]]](C:/dev/project-library-global/docs-standard-global/docstd-product-requirements-document.md) (goals, non-goals, out of scope). [[[default:specifications-global/spec-regulatory-compliance-baseline|Regulatory Compliance Baseline]]](C:/dev/project-library-global/specifications-global/spec-regulatory-compliance-baseline.md): the CEO plan states whether GDPR and PCI DSS apply.
 
 ## From `pdlf-phase-b-review.md`: findings for this step
 

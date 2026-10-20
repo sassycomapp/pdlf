@@ -1,7 +1,7 @@
 ---
 title: "b15-build-plan"
 doc-id: "mb-9f7cd52b"
-updated: "2026-10-13"
+updated: "2026-10-20"
 ---
 
 ## From `15-build-notes.md`
@@ -171,6 +171,22 @@ Ends with the gate `domain-locked` (Step 16).
 - the `secure-software-engineering` skill, given the context pack, writes the threat model and the explicit list of trust boundaries required by `sec-requirements-architecture-review.md`, each boundary matched to the `security-global` document that governs it and assigned to whoever is responsible; Step 34 later verifies the built skeleton against this list.
 
 **BFT level:** Full.
+
+**Skills.** Every skill's output is used by the step named after the arrow.
+- `/plan-eng-review` (GStack) → the reviewed plan and the test plan, then Steps 16, 31, 34, 35 and 38.
+- `data-models` (Anvil): the method for all persisted data → the reviewed plan, then Steps 16 and 17.
+- `codebase-design` (Matt Pocock): the logic is designed as deep modules at clean seams, separate from Anvil code → Step 31's scaffold plan and Step 35's logic-alone tests.
+- `secure-software-engineering` (Magnus919): the threat model and the list of trust boundaries → Step 34.
+- `security-audit-methodology` (Magnus919): the plan of security assessments the build receives → Steps 34, 35a and the release steps.
+- `mb-sentinel-review`, High → `triage_findings`.
+- `mb-archify-scope`, then `archify`: the architecture and data-flow diagrams of the reviewed plan, which replace the skill's text diagrams as the approved picture → Step 34 and the video creation suite.
+- `prototype` (Matt Pocock), logic branch, only when a status flow is uncertain → its verdict goes into the reviewed plan.
+- `research` (Matt Pocock), only when an Anvil fact is not answered by `anvil-agent-references` or `anvil-docs` → its findings file goes into the reviewed plan.
+- The plan is reviewed for platform fit against `anvil-docs` and the Anvil platform standards: background tasks, server functions, access rules and integrations → the reviewed plan.
+
+**Testing:** the test plan has the shape in the testing methodology standard, section 6, across the three levels.
+
+**Standards:** [[[default:specifications-global/spec-five-app-architecture-model|Five-App Architecture Model]]](C:/dev/project-library-global/specifications-global/spec-five-app-architecture-model.md), [[[default:specifications-global/spec-anvil-platform-standards|Anvil Platform Standards]]](C:/dev/project-library-global/specifications-global/spec-anvil-platform-standards.md), [[[default:specifications-global/spec-security-architecture|Security Architecture]]](C:/dev/project-library-global/specifications-global/spec-security-architecture.md), [[[default:specifications-global/spec-observability|Observability]]](C:/dev/project-library-global/specifications-global/spec-observability.md), [[[default:specifications-global/spec-testing-methodology-standards|Testing Methodology Standards]]](C:/dev/project-library-global/specifications-global/spec-testing-methodology-standards.md), [[[default:docs-standard-global/docstd-software-requirements-specification|Software Requirements Specification]]](C:/dev/project-library-global/docs-standard-global/docstd-software-requirements-specification.md).
 
 ## From `pdlf-phase-b-review.md`: findings for this step
 

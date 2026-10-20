@@ -1,7 +1,7 @@
 ---
 title: "d34-build-plan"
 doc-id: "mb-08fb22cb"
-updated: "2026-10-12"
+updated: "2026-10-20"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -19,6 +19,16 @@ Ends with the gate `architecture-verified` (Step 34).
 **Gate:** `architecture-verified`: the structure is verified and coding may begin.
 
 **References:** [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md).
+
+**Skills.** Every skill's output is used by the step named after the arrow.
+- `graphify`: builds the code graph of the scaffold → the comparison with `scaffold-plan.md` and Step 15's architecture diagram, then Steps 35 and 40.
+- `data-models` (Anvil): checks the tables, model classes and client access against the data design → the audit report.
+- `secure-software-engineering` (Magnus919): verifies the skeleton against Step 15's list of trust boundaries → the audit report.
+- `security-audit-methodology` (Magnus919): runs the architecture part of Step 15's security assessment plan → the audit report.
+- `mb-sentinel-review`, Very High → `triage_findings`; an open finding blocks the gate.
+- `anvil --json validate .` over the whole app → the audit report.
+
+**Testing:** the whole app validates; every table, form and stub traces to a locked decision.
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

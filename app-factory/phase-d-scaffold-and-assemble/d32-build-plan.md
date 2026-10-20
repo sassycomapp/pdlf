@@ -1,7 +1,7 @@
 ---
 title: "d32-build-plan"
 doc-id: "mb-b5303e24"
-updated: "2026-10-12"
+updated: "2026-10-20"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -12,9 +12,15 @@ Ends with the gate `architecture-verified` (Step 34).
 
 #### Step 32: Physical scaffold build
 
-**Must achieve:** The empty modules and functions are created in Anvil from the scaffold plan.
+**Must achieve:** The empty modules and functions are created from the scaffold plan and reach Anvil.
 
-**Carried out by:** The developer, by hand in the Anvil editor.
+**Carried out by:** OpenCode writes the empty modules locally; the developer commits and pushes App 1.
+
+**Skills.** Every skill's output is used by the step named after the arrow.
+- `server-code` and `client-modules` (Anvil): write each empty module and function exactly as `scaffold-plan.md` names it, and validate each with `anvil --json validate` → the push, then Step 33.
+- `wizard` (Matt Pocock): the developer's instructions for committing and pushing App 1 → Step 33.
+
+**Testing:** every stub in `scaffold-plan.md` exists and validates; nothing exists that the plan does not name.
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

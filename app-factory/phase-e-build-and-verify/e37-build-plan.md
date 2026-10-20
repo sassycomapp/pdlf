@@ -1,7 +1,7 @@
 ---
 title: "e37-build-plan"
 doc-id: "mb-78301dea"
-updated: "2026-10-12"
+updated: "2026-10-20"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -14,9 +14,16 @@ Steps 35 to 40B run once per feature, one feature at a time; the run plan govern
 
 **Must achieve:** Reviews the feature's code for bugs that would break in use. Findings are written to `step-37-findings.md`, including a clean-pass statement.
 
-**Carried out by:** GStack, using `/review`.
+**Carried out by:** Matt Pocock, using `code-review`, with GStack `/cso`.
 
 **Runs:** once per feature.
+
+**Skills.** Every skill's output is used by the step named after the arrow.
+- `code-review` (Matt Pocock): reviews the feature's changes against the project's standards (the Anvil standards in `project-library-global` and the Anvil skills' rules) and against its ticket → `step-37-findings.md`, then Step 39.
+- `/cso --diff` (GStack): a security review of this feature's changes only → `step-37-findings.md`.
+- `mb-sentinel-review`, Very High → `triage_findings`.
+
+**Not used:** GStack `/review`, because it applies fixes itself; fixes are decided at Step 39 and made at Step 35.
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

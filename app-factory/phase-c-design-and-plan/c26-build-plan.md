@@ -1,7 +1,7 @@
 ---
 title: "c26-build-plan"
 doc-id: "mb-220a58b2"
-updated: "2026-10-12"
+updated: "2026-10-20"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -12,13 +12,19 @@ Ends with the gates `concept-locked` (Step 21) and `wireframes-approved` (Step 2
 
 #### Step 26: Wireframes, phase 2
 
-**Must achieve:** Produces the polished wireframes.
+**Must achieve:** Produces the approved wireframe of every screen: the chosen option, refined with the findings of Step 23.
 
 **Carried out by:** The Magdoub wireframe skill.
 
 **Gate:** `wireframes-approved`: the wireframes are approved and Phase C ends.
 
 **References:** [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md).
+
+**Skills.** Every skill's output is used by the step named after the arrow.
+- `wireframe` (Magdoub), run again per screen, with the chosen option recorded in `design-context.md` so that its safe option extends it, and the Step 23 findings as the optimisation goal → the gate, then Steps 27 and 29.
+- The Clean variant is the visual reference for screens. A Polished effect that breaks the M3 standards is not carried into screens.
+
+**Testing:** stage 1 of the two-stage check again, against the approved option.
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

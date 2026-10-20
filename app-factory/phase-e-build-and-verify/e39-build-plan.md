@@ -1,7 +1,7 @@
 ---
 title: "e39-build-plan"
 doc-id: "mb-011df646"
-updated: "2026-10-12"
+updated: "2026-10-20"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -21,6 +21,10 @@ Steps 35 to 40B run once per feature, one feature at a time; the run plan govern
 **Gate:** `build-verified`, for this feature: it is signed off and the next feature may start. Step 41 cannot begin until every feature has passed.
 
 **References:** [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md).
+
+**Skills.** Every skill's output is used by the step named after the arrow.
+- `triage` (Matt Pocock): sorts every finding from Steps 35A to 38A with its five labels → `triage_findings`, which decides the `build-verified` gate.
+- A finding labelled for a fix returns the feature to Step 35, where `diagnosing-bugs` finds its root cause.
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 
