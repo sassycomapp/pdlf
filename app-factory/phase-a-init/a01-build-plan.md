@@ -1,7 +1,7 @@
 ---
 title: "a01-build-plan"
 doc-id: "mb-114d842c"
-updated: "2026-10-20"
+updated: "2026-10-21"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -19,6 +19,12 @@ updated: "2026-10-20"
 - before Step 11 or Step 12 runs, it establishes the entry record and writes it to the ledger as section 4 sets out, asking David for the feature or update statement and its short name;
 - for entries 04 to 10 it runs [[[pdlf:pdlf-library/operating-procedures/sop-health-check|SOP: Health Check]]](C:/pdlf/pdlf-library/operating-procedures/sop-health-check.md) first, and starts no work until every check passes;
 - for entry 07 it runs Step 11 and does not run Steps 12 to 16, because App 3 has nothing to design.
+
+**Skills.** The orchestrator runs the steps; each step names its own skills. At run time it uses none itself.
+- [[[pdlf:pdlf-library/operating-procedures/sop-health-check|SOP: Health Check]]](C:/pdlf/pdlf-library/operating-procedures/sop-health-check.md) for entries 04 to 10 → the step where the entry joins.
+- When the orchestrator's agent file and PDLF's `opencode.json` are written, `writing-for-agents` (Matt Pocock) is used, because they are instructions for an agent.
+
+**Testing:** the Cupcake proof in section 9 of the system build plan: an agent attempts to pass a gate without approval, and Cupcake must block it.
 
 ## From `orchestrator-run-plan.md`: the whole run plan
 

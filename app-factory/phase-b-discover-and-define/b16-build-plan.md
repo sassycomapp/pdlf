@@ -1,7 +1,7 @@
 ---
 title: "b16-build-plan"
 doc-id: "mb-625b446e"
-updated: "2026-10-20"
+updated: "2026-10-21"
 ---
 
 ## From `16-build-notes.md`
@@ -148,6 +148,8 @@ Ends with the gate `domain-locked` (Step 16).
 - for an existing application, what the documents say is checked against the code, and contradictions are shown to the developer;
 - Anvil's `data-models` skill is read and used to check that the vocabulary and the data design agree: every entity named in `CONTEXT.md` has a clear owner and place in the data design, and the data design uses only the vocabulary's terms;
 - the security review `mb-sentinel-review` checks for sensitive data or security-relevant entities before the gate; a finding stops the step and goes to the developer; the review's record in the ledger is checked, so that its run is proven, not assumed.
+- for an existing application, an existing `CONTEXT.md` is reconciled with the application's authoritative schema before any term is locked;
+- the term "multi-tenant" is never used for the five-app model, because the model gives every client its own app and database;
 
 **BFT level:** Full (gate).
 

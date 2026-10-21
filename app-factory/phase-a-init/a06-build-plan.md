@@ -1,7 +1,7 @@
 ---
 title: "a06-build-plan"
 doc-id: "mb-370e9733"
-updated: "2026-10-13"
+updated: "2026-10-21"
 ---
 
 ## Step entry
@@ -14,7 +14,7 @@ updated: "2026-10-13"
 
 **App worked on:** App 2.
 
-**Joins the pipeline:** A step near the end of the pipeline, not Phase B. Where exactly is settled when that step is designed.
+**Joins the pipeline:** Step 41, release readiness, then Steps 42 to 44, the release by cloning App 1's tagged code into App 2.
 
 **Health check first:** Yes, before anything else. The procedure is [[[pdlf:pdlf-library/operating-procedures/sop-health-check|SOP: Health Check]]](C:/pdlf/pdlf-library/operating-procedures/sop-health-check.md).
 
@@ -23,3 +23,5 @@ updated: "2026-10-13"
 **Entry record:** established and written to the ledger as section 4 of [[[pdlf:app-factory/pdlf-build-plan|PDLF Build Plan]]](C:/pdlf/app-factory/pdlf-build-plan.md) sets out.
 
 **Carried out by:** the orchestrator (Step 1).
+
+**Skills.** None. The orchestrator asks David its questions and writes the entry record → the step where the entry joins.

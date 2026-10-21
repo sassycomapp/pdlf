@@ -1,7 +1,7 @@
 ---
 title: "pdlf-todo"
 doc-id: "mb-13a3fbc9"
-updated: "2026-10-20"
+updated: "2026-10-21"
 ---
 # Active PDLF To-Do List
 
@@ -63,9 +63,9 @@ Held in the build plans of Steps 35A, 36, 37, 38 and 39.
 
 ## E. Skills scoping (Pass 1)
 
-### E1. Verify Phases B to F against the installed copies
+### E1. Verify Pass 1 against the installed copies
 
-Phases B and C were scoped from the issuers' published sources (GStack `c580561`, Matt Pocock `5beb35b`, Anvil `14b1967`, Magdoub wireframe at its GitHub head). Run the verification command from the Phase B session, compare the installed copies, the two Magnus919 skill files, the Anvil CLI and the GBrain results with Steps 11–46, and correct any step that does not match. Step 17 depends on the Anvil CLI (`anvil --json validate`) being installed.
+Phases B and C were scoped from the issuers' published sources (GStack `c580561`, Matt Pocock `5beb35b`, Anvil `14b1967`, Magdoub wireframe at its GitHub head). Run the verification command from the Phase B session, compare the installed copies, the two Magnus919 skill files, the Anvil CLI and the GBrain results with Steps 01–46, and correct any step that does not match. Step 17 depends on the Anvil CLI (`anvil --json validate`) being installed.
 
 ### E2. Anvil's `$app-testing` skill
 
@@ -79,10 +79,59 @@ Step 18 holds the one pull procedure that Steps 30 and 33 use. Examine whether t
 
 Step 24 is not used and has `c24-placeholder.md`. Delete `c24-build-plan.md`, `c24-config.md`, `c24-reference.md`, `c24-explainer.md`, `c24-decision-tree.html` and `c24-module.md` from `C:\pdlf\app-factory\phase-c-design-and-plan\`.
 
-### E5. Pass 1, Phase A
+### E5. Pass 3
 
-Scope Phase A by the skills scoping strategy.
+Design the testing scheme, user help documentation and video documentation. The testing scheme covers what Pass 2 found the steps cannot yet test: payment and email webhooks against the gateways' test modes, scheduled tasks, AI features, and the per-instance schema migration.
+
+### E7. Sort `mb-3-cs` decisions out of `project-library-global`
+
+Decisions and specifications that apply to `mb-3-cs` alone (tiers, onboarding, payment gateway rules, the ClauseBuilder, the "Mybizz CS" screen and UI standards, the Vault build sequence) move to `mb-3-cs-project-library`; what applies to every Mybizz business, `mb-4-ecom` included, stays global. Done at Step 15 of the first `mb-3-cs` build, where Step 15 lists them.
+
+### E8. Cloudflare R2
+
+`mb-3-cs` and `mb-4-ecom` offload webhook payloads, logs and backups to Cloudflare R2. Cloudflare is registered Deferred in the skills catalog; it is documented with `mb-sysdoc-creator` before the first step that uses it.
 
 ### E6. Correct the release mechanism in the no-staging ADR
 
 `adr-local/no-staging-environment-five-app-isolation.md` still names the `develop` → `stable` merge as the release. The release is the clone of App 1's tagged code into App 2 (Step 42). Correct the ADR's mechanism lines; its decision, no staging environment, stands.
+
+---
+
+## F. PDLF and its applications (`mb-3-cs`, `mb-4-ecom`)
+
+### F1. Align both project libraries with the project template
+
+`mb-3-cs-project-library` and `mb-4-ecom-project-library` were made before the project template. Bring each to the template's structure (`docs-local`, `adr-local`, `pdlf-outputs` with one folder per step, `pdlf-tickets`, `pre-project`, the Matt Pocock configuration in `docs\agents`) without changing any existing content. `mb-4-ecom` has `adr` and `docs` where the template has `adr-local` and `docs-local`. Done by Step 11, route B, when each application first enters PDLF; until then, nothing is moved.
+
+### F2. Correct the stale `mb-3-cs` documents
+
+These state things that are no longer true: `docs-local\CONTEXT.md` (folders under `C:\projects\`, the repository name `mb-3-cs`, the old to-do list, "currently 3 ADRs"); `docs-local\gstack-artifact-governance.md` (folders `gstack-outputs`, `docs`, `adr`, `wireframes`, which PDLF's step folders replace); `policy-local\development-policy.md` (VS Code with Continue.dev, the `master`/`dev` branching model); `docs-local\architecture.md` and `docs-local\INDEX.md` (the `develop` → `stable` release, `CONTEXT.md` described as empty). Correct each to the current setup, or retire it where PDLF replaces it.
+
+### F3. Settle the `mb-3-cs` table count
+
+`authoritative-schema.md` and App 1 have 44 tables; `adr-local\schema-scope-reduction.md` and `adr-local\blank-client-template.md` state 36; `architecture.md` states 43. The authoritative schema is the source of truth; correct the other documents to it, or record a decision where the count is meant to differ.
+
+### F4. Settle the calendar's use of `HTMLTemplate`
+
+`docs-local\calendar-feature-spec.md` builds the month grid with `HTMLTemplate`, which `adr-htmltemplate-use` bans. Redesign the month grid with M3 components, or record an approved deviation. Settled before the calendar's ticket reaches Step 22.
+
+### F5. Add a schema migration log to the project template
+
+Step 17 records every schema change in the project library's schema migration log, and Steps 41 and 42 read it. Add the log, empty, to `C:\dev\project-template\dev-(SLUG)\(slug)-project-library\docs-local\`, and to both existing project libraries.
+
+### F6. A home for release specifications
+
+`mb-3-cs` keeps its V2 and V3 specifications in folders `V2` and `V3`. Give release specifications one home in the project template (one folder per version under `docs-local\releases\`), so Step 04 and Step 19 always find a release's specification in the same place, and move V2 and V3 there.
+
+### F7. Remove the source archives from `mb-4-ecom-project-library`
+
+`docs\medusa-develop.zip` (61 MB) and `docs\rea-main.zip` (16 MB) are third-party source archives inside a documentation repository. Keep them outside the repository (for example in `C:\dev\dev-mb-4-ecom\wip`), and keep in the library only a note of where they are and what they are for, so the repository and GBrain hold documentation only. Step 12's `research` reads them from there.
+
+### F8. Correct "multi-tenant" in the `mb-4-ecom` reports
+
+`docs\report from discussion with gemini.md` (and the copy in `mb-3-cs-project-library\docs-local\See what can be used from this report.md`) call the five-app structure "multi-tenant". Mark the term as wrong for the model, so no agent reads it as permission for a shared database, and remove the duplicate copy from the `mb-3-cs` library.
+
+### F9. Shared architecture, written once
+
+`mb-3-cs` and `mb-4-ecom` share the five-app structure, the Vault, payments, webhooks, Brevo email, App 5 and Cloudflare R2. Everything they share lives once in `project-library-global`; each project library holds only what is particular to its application. This is the rule item E7 applies.
+

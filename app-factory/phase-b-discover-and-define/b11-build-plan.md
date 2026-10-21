@@ -1,7 +1,7 @@
 ---
 title: "b11-build-plan"
 doc-id: "mb-4f446919"
-updated: "2026-10-20"
+updated: "2026-10-21"
 ---
 # Step 11 — Init: Build Plan
 
@@ -28,7 +28,7 @@ Ends with the gate `domain-locked` (Step 16).
 - for a new business, the template is copied with `(SLUG)`, `(slug)`, `{slug}` and `{project-name}` replaced, and every `doc-id` line removed from the copied documents, so each project's documents get their own identity at their first commit;
 - an app's code repository always comes from Anvil: David creates the app in his Anvil account and connects it to GitHub as `{slug}-app{n}`; the agent gives him exact numbered instructions made with the `wizard` skill, then removes the folder's placeholder and clones the repository into it; it checks the clone holds `anvil.yaml` and never writes to it;
 - every app folder gets an `AGENTS.md` built from Anvil's own template (`C:\mybizz\anvil-agent-references\AGENTS.md`), with its resource paths pointed at that folder, and a `.gitignore` that keeps out `.env`, credentials, `__pycache__`, test output and development files, because everything committed is pushed to Anvil;
-- the project library is created on GitHub as a private repository only with David's permission; David's refusal stops the step, because there is no project without it;
+- the project library is created on GitHub as a public repository only with David's permission; David's refusal stops the step, because there is no project without it;
 - the blank pre-project files are placed in `pre-project\` for a new application, and David is asked to fill them in;
 - the Matt Pocock setup runs `setup-matt-pocock-skills` in the project library with PDLF's answers fixed in advance, so David only confirms: tickets are local markdown files in `pdlf-tickets\`; the five standard triage labels; single context, with the glossary at `docs-local\CONTEXT.md` and decisions in `adr-local\`; the skill never creates a `CLAUDE.md`;
 - the project library is registered in GBrain as the federated source `{slug}-project-library`;
@@ -62,6 +62,6 @@ Ends with the gate `domain-locked` (Step 16).
 - **Foundation checks first.** A missing tool found at Step 15 costs a half-finished review; found at Step 11 it costs nothing.
 - **Anvil creates the code repository.** An Anvil app's repository must come from Anvil, or Anvil cannot synchronise with it.
 - **The template is copied without document identities.** Otherwise every project would share the template's identities, and the commit hook would treat different projects' documents as one.
-- **Tickets in the private library.** The app repositories are public; tickets describe internal plans.
+- **Tickets in the project library.** Tickets are documentation, so they live with the business's documents, never in an app's code.
 - **Commit coverage confirmed before the end.** A project library outside the hook would be committed without identities, link repair or a GBrain update.
 - **Nothing existing is changed.** An existing application's material is David's.

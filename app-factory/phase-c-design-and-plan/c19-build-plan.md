@@ -1,7 +1,7 @@
 ---
 title: "c19-build-plan"
 doc-id: "mb-de445841"
-updated: "2026-10-20"
+updated: "2026-10-21"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -25,6 +25,10 @@ Ends with the gates `concept-locked` (Step 21) and `wireframes-approved` (Step 2
 **Inputs:** the CEO plan, the reviewed plan, the test plan, `CONTEXT.md` and the ADRs.
 
 **Testing:** each ticket names its acceptance tests from Step 15's test plan → Step 35.
+
+**Must be built so that:**
+- every shared custom component is its own ticket, ahead of the tickets that use it;
+- for a feature release (V2, V3 and later), the whole release specification is broken into tickets, and the release carries its version;
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

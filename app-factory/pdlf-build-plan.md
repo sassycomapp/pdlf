@@ -1,7 +1,7 @@
 ---
 title: "pdlf-build-plan"
 doc-id: "mb-64817b10"
-updated: "2026-10-20"
+updated: "2026-10-21"
 ---
 # PDLF Build Plan
 
@@ -116,7 +116,7 @@ David starts PDLF by running `/pdlf-init` in OpenCode. This starts Step 1, the o
 | 03 | `new-app-with-context` | App 1 | Step 11, at the repository questions. The application may be partly developed but has not yet run through PDLF; the orchestrator establishes what context material exists. |
 | 04 | `add-feature-main-app` | App 1 | Health check, then the feature path (below). |
 | 05 | `update-main-app` | App 1 | Health check, then the update path (below). |
-| 06 | `compile-master-template` | App 2 | A step near the end of the pipeline, not Phase B. |
+| 06 | `compile-master-template` | App 2 | Step 41, then the release in Steps 42 to 44. |
 | 07 | `create-client-template` | App 3 | Step 11, at the project slug question or the repository questions, depending on whether there is existing context or not. Steps 12 to 16 do not run for App 3. |
 | 08 | `create-management-app` | App 5 | Step 11, at the project slug question or the repository questions, depending on whether there is existing context or not. |
 | 09 | `add-feature-management-app` | App 3 or App 5 | Health check, then the feature path (below). |
@@ -210,7 +210,7 @@ Every step is built to these rules. They are stated once here and not repeated i
 
 ### 9. What is still to be settled
 
-- **Steps work:** the orchestrator's form and its `opencode.json`; where entry point 06 joins the pipeline; which gates exist, where they sit and what each approves; the place and weight of the BFT thinking checkpoints; which `project-library-global` standard each step applies; whether applications receive a `CLAUDE.md`; the steps that build the remaining apps in `phase-g`; and the design of every step, one at a time. The step entries in each step's build plan were written before the four-repository scaffold and the clone release; each is corrected to them when its step is designed, Step 11 first. The detailed list is kept in [[[pdlf:pdlf-library/docs-local/pdlf-todo|Active PDLF To-Do List]]](C:/pdlf/pdlf-library/docs-local/pdlf-todo.md).
+- **Steps work:** the orchestrator's form and its `opencode.json`; which gates exist, where they sit and what each approves; the place and weight of the BFT thinking checkpoints; which `project-library-global` standard each step applies; whether applications receive a `CLAUDE.md`; the steps that build the remaining apps in `phase-g`; and the design of every step, one at a time. The step entries in each step's build plan were written before the four-repository scaffold and the clone release; each is corrected to them when its step is designed, Step 11 first. The detailed list is kept in [[[pdlf:pdlf-library/docs-local/pdlf-todo|Active PDLF To-Do List]]](C:/pdlf/pdlf-library/docs-local/pdlf-todo.md).
 - **The Cupcake proof:** once the orchestrator exists, an agent deliberately attempts to pass a gate without approval, and Cupcake must block it.
 - **Testing:** designed as a component of its own, starting from a review of the testing disciplines.
 
@@ -242,4 +242,4 @@ Every step's entry is held in its own build plan, `{letter}{number}-build-plan.m
 
 ### Phase G — Remaining apps
 
-**Must achieve:** the steps that build the rest of the five-app set in the same pipeline: `blank_client_template`, the first client instance with the provisioning procedure and the README every instance carries, and the management tooling. Not yet designed.
+**Must achieve:** the steps that build the rest of the five-app set in the same pipeline: `blank_client_template`, the first client instance with the provisioning procedure and the README every instance carries, and the management tooling. Provisioning a client instance follows [[[default:specifications-global/spec-client-activation-runbook|Client Instance Activation Runbook]]](C:/dev/project-library-global/specifications-global/spec-client-activation-runbook.md), with `wizard` instructions for every manual step. App 5 receives the client instances' health metrics, as the observability ADR sets out. Not yet designed.

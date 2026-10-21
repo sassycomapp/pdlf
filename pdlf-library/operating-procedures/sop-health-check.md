@@ -1,6 +1,6 @@
 ---
 title: "sop-health-check"
-updated: "2026-10-13"
+updated: "2026-10-21"
 doc-id: "mb-af372f72"
 ---
 # SOP: Health Check
@@ -26,6 +26,7 @@ Run every check, in this order, for the business `{slug}` and every app folder i
 6. **The project library is sound.** `C:\dev\dev-{slug}\{slug}-project-library` is a Git repository linked to `https://github.com/sassycomapp/{slug}-project-library`, has every folder of the project template (`C:\dev\project-template\dev-(SLUG)\(slug)-project-library\`), including `pdlf-tickets\` and `pdlf-outputs\` with one folder per step.
 7. **The project library is registered and committed.** It is the GBrain source `{slug}-project-library`, it has the commit hook, and it is on the `commit-all` list.
 8. **The Matt Pocock configuration is right.** The project's Matt Pocock skills configuration points to the project library's `docs-local\CONTEXT.md` and `adr-local`.
+9. **The Anvil command-line tool answers.** `anvil version` runs, because every Anvil skill validates its work with `anvil --json validate`.
 
 ## What it reports
 

@@ -1,7 +1,7 @@
 ---
 title: "f41-build-plan"
 doc-id: "mb-4042f695"
-updated: "2026-10-20"
+updated: "2026-10-21"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -25,6 +25,12 @@ Ends with the gates `production-released` (Step 44) and `released` (Step 46). Th
 **Not used:** GStack `/ship`, because it commits, pushes and opens a pull request itself; agents never commit or push.
 
 **Testing:** the whole suite passes; any failure returns its feature to Step 35.
+
+**Must be built so that:**
+- a release is one version of the application (V1, V2 and so on) and carries every feature of that version;
+- when the release changes the schema, its migration plan for App 3 and every client instance exists before the release continues;
+- the compliance documents named in the CEO plan exist before a first release;
+- `benchmark` (GStack) records the performance baseline of the public pages → Step 45;
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

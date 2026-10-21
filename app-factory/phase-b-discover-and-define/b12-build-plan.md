@@ -1,7 +1,7 @@
 ---
 title: "b12-build-plan"
 doc-id: "mb-19064cbb"
-updated: "2026-10-20"
+updated: "2026-10-21"
 ---
 
 ## From `12-build-notes.md`
@@ -117,6 +117,8 @@ Ends with the gate `domain-locked` (Step 16).
 - it hands four items to Step 14: both design docs, the `/office-hours` result if any, and its Step Receipt;
 - the security review `mb-sentinel-review` runs on the step's output at Medium scrutiny, against the documents Sentinel names for Step 12; a Flag or Escalate stops the step and goes to the developer; before the step finishes, its `triage_findings` row is checked, so that the review's run is proven, not assumed;
 - the design doc's Constraints section states the platform's security facts from the context pack: one app and one database per client, the server holds authority, client code is public.
+- for an existing application, every existing document is prior material to check, not fact: strategy, pricing and positioning documents feed the concept, and a document that names folders, repositories, tools or a release method that no longer exist is reported to the developer;
+- when the application follows a reference design (for `mb-4-ecom`, Medusa.js), Matt Pocock's `research` reads the reference against its primary sources and writes its findings to the project library, so the design doc builds on the reference, not on memory;
 
 **BFT level:** Full.
 

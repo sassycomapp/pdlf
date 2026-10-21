@@ -1,7 +1,7 @@
 ---
 title: "e38-build-plan"
 doc-id: "mb-8b5ce355"
-updated: "2026-10-20"
+updated: "2026-10-21"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -23,6 +23,9 @@ Steps 35 to 40B run once per feature, one feature at a time; the run plan govern
 - `mb-sentinel-review`, High → `triage_findings`.
 
 **Not used:** GStack `/qa`, because it commits its own fixes; agents never commit.
+
+**Must be built so that:**
+- `/qa-only` tests the public pages signed out as well as the admin pages signed in;
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

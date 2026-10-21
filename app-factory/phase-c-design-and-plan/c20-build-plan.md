@@ -1,7 +1,7 @@
 ---
 title: "c20-build-plan"
 doc-id: "mb-696b4ce8"
-updated: "2026-10-20"
+updated: "2026-10-21"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -25,6 +25,9 @@ Ends with the gates `concept-locked` (Step 21) and `wireframes-approved` (Step 2
 **Testing:** the palette meets the accessibility rules of the screen production standard (contrast, dark mode).
 
 **Standards:** [[[default:specifications-global/spec-m3-design-standards|M3 Design Standards]]](C:/dev/project-library-global/specifications-global/spec-m3-design-standards.md), [[[default:specifications-global/spec-material-3-theme|Material 3 Theme]]](C:/dev/project-library-global/specifications-global/spec-material-3-theme.md), [[[default:specifications-global/spec-ui-standards|UI Standards]]](C:/dev/project-library-global/specifications-global/spec-ui-standards.md), [[[default:specifications-global/spec-m3_component_mapping|M3 Component Mapping]]](C:/dev/project-library-global/specifications-global/spec-m3_component_mapping.md), and Anvil's own M3 documentation in `C:\mybizz\anvil-agent-references\docs\m3`.
+
+**Must be built so that:**
+- `DESIGN.md` names the components the application may not use: those outside the M3 dependency, Anvil Extras and `HTMLTemplate`;
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

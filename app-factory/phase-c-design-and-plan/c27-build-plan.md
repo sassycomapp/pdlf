@@ -1,7 +1,7 @@
 ---
 title: "c27-build-plan"
 doc-id: "mb-868a7285"
-updated: "2026-10-20"
+updated: "2026-10-21"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -24,6 +24,9 @@ Ends with the gates `concept-locked` (Step 21) and `wireframes-approved` (Step 2
 **Testing:** both stages of the two-stage check (wireframe fidelity, then standard compliance).
 
 **Standards:** [[[default:specifications-global/spec-screen-and-wireframe-production-standards|Screen and Wireframe Production Standards]]](C:/dev/project-library-global/specifications-global/spec-screen-and-wireframe-production-standards.md), [[[default:specifications-global/spec-screen-production-standard|Screen Production Standard]]](C:/dev/project-library-global/specifications-global/spec-screen-production-standard.md), [[[default:specifications-global/spec-m3_component_mapping|M3 Component Mapping]]](C:/dev/project-library-global/specifications-global/spec-m3_component_mapping.md).
+
+**Must be built so that:**
+- no screen uses a component that `DESIGN.md` excludes;
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

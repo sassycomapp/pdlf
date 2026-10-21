@@ -1,7 +1,7 @@
 ---
 title: "a04-build-plan"
 doc-id: "mb-cb089222"
-updated: "2026-10-13"
+updated: "2026-10-21"
 ---
 
 ## Step entry
@@ -23,3 +23,8 @@ updated: "2026-10-13"
 **Entry record:** established and written to the ledger as section 4 of [[[pdlf:app-factory/pdlf-build-plan|PDLF Build Plan]]](C:/pdlf/app-factory/pdlf-build-plan.md) sets out.
 
 **Carried out by:** the orchestrator (Step 1).
+
+**Skills.** None. The orchestrator asks David its questions and writes the entry record → the step where the entry joins.
+
+**Must be built so that:**
+- the feature statement may be a whole release specification (for example V2), which Step 19 breaks into tickets;

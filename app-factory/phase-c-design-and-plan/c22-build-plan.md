@@ -1,7 +1,7 @@
 ---
 title: "c22-build-plan"
 doc-id: "mb-70132173"
-updated: "2026-10-20"
+updated: "2026-10-21"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -23,6 +23,9 @@ Ends with the gates `concept-locked` (Step 21) and `wireframes-approved` (Step 2
 **Testing:** stage 1 of the two-stage check (wireframe fidelity) in the screen and wireframe production standards.
 
 **Standards:** [[[default:specifications-global/spec-screen-and-wireframe-production-standards|Screen and Wireframe Production Standards]]](C:/dev/project-library-global/specifications-global/spec-screen-and-wireframe-production-standards.md).
+
+**Must be built so that:**
+- every shared custom component is wireframed on its own, before the screens that use it;
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

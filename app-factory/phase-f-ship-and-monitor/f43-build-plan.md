@@ -1,7 +1,7 @@
 ---
 title: "f43-build-plan"
 doc-id: "mb-7ecf0cbd"
-updated: "2026-10-20"
+updated: "2026-10-21"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -19,6 +19,9 @@ Ends with the gates `production-released` (Step 44) and `released` (Step 46). Th
 **Skills.** Every skill's output is used by the step named after the arrow.
 - `/qa-only` (GStack), quick tier: smoke test of the test client instance → Step 44.
 - `/canary` (GStack): records the instance's health baseline → Step 45.
+
+**Must be built so that:**
+- every client instance that received the release is checked, not only the test client;
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

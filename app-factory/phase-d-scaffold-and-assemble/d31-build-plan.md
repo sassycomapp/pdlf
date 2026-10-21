@@ -1,7 +1,7 @@
 ---
 title: "d31-build-plan"
 doc-id: "mb-ea170848"
-updated: "2026-10-20"
+updated: "2026-10-21"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -25,6 +25,9 @@ Ends with the gate `architecture-verified` (Step 34).
 **Inputs:** the reviewed plan, `CONTEXT.md` and the ADRs, the concept audit, the tickets and the pulled forms.
 
 **Standards:** [[[default:specifications-global/spec-anvil-platform-standards|Anvil Platform Standards]]](C:/dev/project-library-global/specifications-global/spec-anvil-platform-standards.md) sections 2 and 3 (server function pattern, three-tier module pattern with pure logic).
+
+**Must be built so that:**
+- every shared custom component is a module of its own in `scaffold-plan.md`, built before the forms that use it;
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

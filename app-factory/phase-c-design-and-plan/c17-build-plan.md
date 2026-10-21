@@ -1,7 +1,7 @@
 ---
 title: "c17-build-plan"
 doc-id: "mb-2b6de0f2"
-updated: "2026-10-20"
+updated: "2026-10-21"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -21,6 +21,7 @@ Ends with the gates `concept-locked` (Step 21) and `wireframes-approved` (Step 2
 - every new table defaults to `client: none`, as `data-models` and `anvil-yaml` require;
 - the developer pushes the change and applies the schema in Anvil's Data Tables view, following numbered instructions the agent writes with `wizard`;
 - after Step 18, the agent compares the tables in `anvil.yaml` with the data design and stops with a deviation on any difference.
+- every schema change is recorded in the project library's schema migration log for the release, so Step 41 can check that a migration plan exists;
 
 **Skills.** Every skill's output is used by the step named after the arrow.
 - `data-models` (Anvil): table ownership, model classes and client access → the schema, then Steps 29, 31 and 35.

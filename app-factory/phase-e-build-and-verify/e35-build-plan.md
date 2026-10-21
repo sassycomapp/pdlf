@@ -1,7 +1,7 @@
 ---
 title: "e35-build-plan"
 doc-id: "mb-7c6d6f2b"
-updated: "2026-10-20"
+updated: "2026-10-21"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -30,6 +30,9 @@ Steps 35 to 40B run once per feature, one feature at a time; the run plan govern
 **Not used:** Matt's `implement`, because it commits its own work and runs its own code review; agents never commit, and the code review is Step 37.
 
 **Standards:** [[[default:specifications-global/spec-testing-methodology-standards|Testing Methodology Standards]]](C:/dev/project-library-global/specifications-global/spec-testing-methodology-standards.md), [[[default:specifications-global/spec-anvil-platform-standards|Anvil Platform Standards]]](C:/dev/project-library-global/specifications-global/spec-anvil-platform-standards.md) sections 2, 3 and 6 (Uplink).
+
+**Must be built so that:**
+- webhook handlers are tested against each gateway's test mode, and scheduled tasks are tested with a controlled clock, until Pass 3 sets the testing scheme;
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

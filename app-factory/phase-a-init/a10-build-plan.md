@@ -1,7 +1,7 @@
 ---
 title: "a10-build-plan"
 doc-id: "mb-47feff2f"
-updated: "2026-10-13"
+updated: "2026-10-21"
 ---
 
 ## Step entry
@@ -23,3 +23,7 @@ updated: "2026-10-13"
 **Entry record:** established and written to the ledger as section 4 of [[[pdlf:app-factory/pdlf-build-plan|PDLF Build Plan]]](C:/pdlf/app-factory/pdlf-build-plan.md) sets out.
 
 **Carried out by:** the orchestrator (Step 1).
+
+**Skills.**
+- `diagnosing-bugs` (Matt Pocock): when the update corrects a fault, the root cause is found before the work starts → the step David names, usually Step 35.
+- Otherwise none: the orchestrator asks David its questions and writes the entry record → the step where the entry joins.

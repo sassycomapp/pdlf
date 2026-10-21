@@ -1,7 +1,7 @@
 ---
 title: "b15-build-plan"
 doc-id: "mb-9f7cd52b"
-updated: "2026-10-20"
+updated: "2026-10-21"
 ---
 
 ## From `15-build-notes.md`
@@ -169,6 +169,11 @@ Ends with the gate `domain-locked` (Step 16).
 - Anvil's `data-models` skill is read and used as the method for all persisted data, before the architecture for it is chosen: its design steps apply (identify the domain objects, table ownership and trust boundaries; choose the data shape; decide where behaviour belongs), its code steps do not, because no code exists yet; its defaults become rules of the data design: tables default to no client access, data rules live on model classes or in server code and never in forms, and any view the client can see is deliberately restricted;
 - the security review `mb-sentinel-review` runs on the step's output at High scrutiny, against the documents Sentinel names for Step 15; a Flag or Escalate stops the step and goes to the developer; before the step finishes, its `triage_findings` row is checked, so that the review's run is proven, not assumed;
 - the `secure-software-engineering` skill, given the context pack, writes the threat model and the explicit list of trust boundaries required by `sec-requirements-architecture-review.md`, each boundary matched to the `security-global` document that governs it and assigned to whoever is responsible; Step 34 later verifies the built skeleton against this list.
+- the platform-fit review names, for every external service the plan uses (payment gateways, email, AI providers, accounting, storage), its credentials' home in the Vault, its webhooks and their handling, and the Anvil server package it needs, and confirms the package runs on Anvil's server Python;
+- every webhook follows the webhook architecture ADR (immediate 200, processing in a background task, idempotent by transaction id); every scheduled task follows the real-time and background-task ADR;
+- the management endpoints that App 5 calls exist from the first release, secured as the management visibility ADR sets out;
+- every AI feature is an enhancement that fails gracefully, never a dependency of core operation;
+- every decision in `project-library-global` that applies to this application alone is listed for the developer, so it can be moved to the project library;
 
 **BFT level:** Full.
 
@@ -186,7 +191,7 @@ Ends with the gate `domain-locked` (Step 16).
 
 **Testing:** the test plan has the shape in the testing methodology standard, section 6, across the three levels.
 
-**Standards:** [[[default:specifications-global/spec-five-app-architecture-model|Five-App Architecture Model]]](C:/dev/project-library-global/specifications-global/spec-five-app-architecture-model.md), [[[default:specifications-global/spec-anvil-platform-standards|Anvil Platform Standards]]](C:/dev/project-library-global/specifications-global/spec-anvil-platform-standards.md), [[[default:specifications-global/spec-security-architecture|Security Architecture]]](C:/dev/project-library-global/specifications-global/spec-security-architecture.md), [[[default:specifications-global/spec-observability|Observability]]](C:/dev/project-library-global/specifications-global/spec-observability.md), [[[default:specifications-global/spec-testing-methodology-standards|Testing Methodology Standards]]](C:/dev/project-library-global/specifications-global/spec-testing-methodology-standards.md), [[[default:docs-standard-global/docstd-software-requirements-specification|Software Requirements Specification]]](C:/dev/project-library-global/docs-standard-global/docstd-software-requirements-specification.md).
+**Standards:** [[[default:specifications-global/spec-five-app-architecture-model|Five-App Architecture Model]]](C:/dev/project-library-global/specifications-global/spec-five-app-architecture-model.md), [[[default:specifications-global/spec-anvil-platform-standards|Anvil Platform Standards]]](C:/dev/project-library-global/specifications-global/spec-anvil-platform-standards.md), [[[default:specifications-global/spec-security-architecture|Security Architecture]]](C:/dev/project-library-global/specifications-global/spec-security-architecture.md), [[[default:specifications-global/spec-observability|Observability]]](C:/dev/project-library-global/specifications-global/spec-observability.md), [[[default:specifications-global/spec-testing-methodology-standards|Testing Methodology Standards]]](C:/dev/project-library-global/specifications-global/spec-testing-methodology-standards.md), [[[default:docs-standard-global/docstd-software-requirements-specification|Software Requirements Specification]]](C:/dev/project-library-global/docs-standard-global/docstd-software-requirements-specification.md), [[[default:specifications-global/spec-integration|Integration]]](C:/dev/project-library-global/specifications-global/spec-integration.md), [[[default:specifications-global/spec-api-specification|API Specification]]](C:/dev/project-library-global/specifications-global/spec-api-specification.md), [[[default:specifications-global/spec-vault-system|Vault System]]](C:/dev/project-library-global/specifications-global/spec-vault-system.md), [[[default:adr-global/adr-webhook-architecture|Webhook Architecture]]](C:/dev/project-library-global/adr-global/adr-webhook-architecture.md), [[[default:adr-global/adr-real-time-and-background-tasks|Real-Time and Background Tasks]]](C:/dev/project-library-global/adr-global/adr-real-time-and-background-tasks.md), [[[default:adr-global/adr-mybizz-management-visibility|Mybizz Management Visibility]]](C:/dev/project-library-global/adr-global/adr-mybizz-management-visibility.md).
 
 ## From `pdlf-phase-b-review.md`: findings for this step
 

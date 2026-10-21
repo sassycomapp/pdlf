@@ -1,7 +1,7 @@
 ---
 title: "f42-build-plan"
 doc-id: "mb-204ff45b"
-updated: "2026-10-20"
+updated: "2026-10-21"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -17,11 +17,17 @@ Ends with the gates `production-released` (Step 44) and `released` (Step 46). Th
 **Carried out by:** The developer, after approving the release.
 
 **Skills.** Every skill's output is used by the step named after the arrow.
-- `wizard` (Matt Pocock): the developer's instructions to push App 1's tagged release into App 2's repository, and to roll back by pushing the previous tag → Step 42A.
+- `wizard` (Matt Pocock): the developer's instructions to push App 1's tagged release into App 2's repository, and to roll back as below → Step 42A.
 
 **Testing:** App 2's code matches App 1's tag exactly.
 
 **Standards:** [[[default:specifications-global/spec-five-app-architecture-model|Five-App Architecture Model]]](C:/dev/project-library-global/specifications-global/spec-five-app-architecture-model.md), [[[default:specifications-global/spec-deployment|Deployment]]](C:/dev/project-library-global/specifications-global/spec-deployment.md).
+
+**Must be built so that:**
+- before the clone, every client instance is backed up;
+- when the release changes the schema, the developer applies it to App 3 and then to every client instance, following `wizard` instructions made from the migration plan;
+- a high-risk release may be rolled out first to some client instances by version tag, then to the rest, as the deployment specification sets out;
+- rollback re-points App 2 to the last good commit and republishes, as the deployment specification sets out; a schema change is rolled back by hand in each client instance;
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 
