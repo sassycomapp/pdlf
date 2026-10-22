@@ -45,10 +45,6 @@ The final, real end-to-end proof that the governed memory pipeline works togethe
 
 ## C. Testing
 
-### C1. Install the test tools
-
-Install the tools of the test suite in WSL, with the developer's approval, at the versions the developer approves, and record each version in the tools table of `project-library-global\test-suite\ts-method.md`. About 0.8 GB.
-
 ### C2. Prove the test suite on `mb-5-pdlf`
 
 `mb-5-pdlf` holds no application until the Daily Intentions Tracker is built through PDLF. When it is, Step 11 runs PR-09 to prove the local runtime, both Uplink connections, the `TEST_` users with second factors and the mail catcher; each later step then runs its test specification. Correct any test, template or tool that does not work as written before another application relies on it.
