@@ -1,7 +1,7 @@
 ---
 title: "adr-no-staging-environment-five-app-isolation"
 doc-id: "mb-5b1e8fd8"
-updated: "2026-10-11"
+updated: "2026-10-22"
 ---
 # ADR — PDLF Does Not Need a Staging/Production Environment Split
 
@@ -37,29 +37,29 @@ apps with a dependency chain between them:
 | App | Role | Ever seen by real users? |
 |---|---|---|
 | App 1 — `mb-3-cs` (or equivalent, e.g. `mb4ecom`) | Development workspace. All feature development happens here. | **No.** Explicit key rule: "This is the authoring environment, not the publishing environment. It is never a dependency for any client instance." |
-| App 2 — `master_template` | The sole source of server logic and UI for every client. Tracks the `stable` GitHub branch. | No — clients depend on it, but it is never given to a client directly. |
+| App 2 — `master_template` | The sole source of server logic and UI for every client. Receives App 1's tagged releases, pushed into its repository by the developer at Step 42. | No — clients depend on it, but it is never given to a client directly. |
 | App 3 — `blank_client_template` | Clone source for provisioning new clients. Updated only on schema change. | No. |
 | App 4 — `[client-name]-cs` | One per paying client. Depends on App 2. This is the only app real users ever touch. | **Yes — this is production, for real.** |
 | App 5 — `Mybizz_management` | Platform-operator tooling. Deferred, post-launch. | No (operator-only). |
 
-PDLF operates entirely inside App 1. Every push PDLF makes during a build cycle lands on
-the `develop` branch of App 1's code repo. App 1 is structurally excluded from ever being
+Every build step works inside App 1. Every push a build step makes lands in App 1's code
+repo. App 1 is structurally excluded from ever being
 a dependency for a client instance — this isn't a policy PDLF has to enforce, it's a
 property of how the platform's apps are wired together.
 
 ## Why this settles the question
 
 Real users are only ever exposed to App 4, and App 4 only ever changes when App 2 updates,
-and App 2 only updates when a human deliberately merges `develop` → `stable` on GitHub.
-That merge is a separate, operator-controlled action. It is not a step PDLF's pipeline
-performs, and no step in PDLF's pipeline as currently modeled even reaches it.
+and App 2 only updates when the developer deliberately pushes App 1's tagged release into
+App 2's repository at Step 42, after approving the release. No agent performs that action;
+it is the developer's alone.
 
 This means the risk a staging environment exists to prevent — a broken push reaching a
 live user before anyone reviews it — cannot happen through PDLF's own pipeline, at all,
 regardless of whether the app already has paying clients (like `mb4ecom`) or is brand
 new. This is not a timing argument ("there are no users yet, for now"). It is a
 structural isolation the platform's own architecture enforces, permanently, for as long
-as PDLF only ever pushes to App 1.
+as only the developer releases into App 2.
 
 ## The developer's mitigation strategy is correctly scoped as a result
 
@@ -80,23 +80,15 @@ for purpose.
 
 ## Decision
 
-PDLF does not model a staging/production environment split. PDLF operates entirely
-within the development-workspace app (App 1) and never publishes directly to anything a
-real user can reach. The `develop` → `stable` merge that actually exposes changes to
-clients is an operator action outside PDLF's pipeline, not a PDLF step.
+PDLF does not model a staging/production environment split. Build steps work only
+within the development-workspace app (App 1) and never publish to anything a real user can
+reach. The release that exposes changes to clients is Step 42: the developer pushes App 1's
+tagged release into App 2. Testing before release runs on the Anvil App Server on the
+developer's computer and on a test client instance.
 
 ## Consequences
 
-- **Steps 42, 42A, 43, and 44, as currently drafted, no longer match this platform's
-  actual publishing mechanism.** They describe staging-environment mechanics (publish to
-  staging, staging E2E, staging smoke test, promote-to-production gate) that don't apply
-  here. These steps need to be rebuilt around what actually happens after a feature is
-  signed off in App 1 — up to and possibly including the point where the operator
-  decides to merge `develop` → `stable`. Not yet rebuilt as of this ADR; logged on the
-  Active-PDLF ToDo list.
-- The `production-released` gate (currently positioned at Step 44) will need to be
-  re-anchored to whatever event actually corresponds to "real users can now see this" —
-  almost certainly the `develop` → `stable` merge, not any action PDLF itself performs.
+- Steps 42, 42A, 43 and 44 are built around the release into App 2: Step 42 releases, Step 42A tests every feature on App 2 as released, Step 43 checks the test client instance on the new release, and at Step 44 the developer confirms the release, on the results of Steps 41 to 43 (the `production-released` gate).
 - This ADR is the reference to cite the next time the staging/environment question comes
   up, rather than re-deriving the argument from scratch.
 - Applies specifically to platforms built on this Five-App dependency model. If PDLF is

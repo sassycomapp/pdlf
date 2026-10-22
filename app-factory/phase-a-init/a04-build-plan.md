@@ -1,7 +1,7 @@
 ---
 title: "a04-build-plan"
 doc-id: "mb-cb089222"
-updated: "2026-10-21"
+updated: "2026-10-22"
 ---
 
 ## Step entry
@@ -27,4 +27,4 @@ updated: "2026-10-21"
 **Skills.** None. The orchestrator asks David its questions and writes the entry record → the step where the entry joins.
 
 **Must be built so that:**
-- the feature statement may be a whole release specification (for example V2), which Step 19 breaks into tickets;
+- the feature statement may be a whole release specification (for example V2), kept in the project library at `docs-local\releases\v2\`, which Step 19 breaks into tickets;

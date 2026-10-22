@@ -41,9 +41,8 @@ At Step 35 a failure stops the work until it is fixed. From Step 35A on, it is r
 
 ## 6. What has to happen
 
-1. The developer approves installing the test tools listed in [[[default:test-suite/ts-method]]](C:/dev/project-library-global/test-suite/ts-method.md).
-2. The suite is proven on the first application PDLF builds, the Daily Intentions Tracker in `mb-5-pdlf`: test PR-09 at Step 11 proves the test environment, and each later step proves its own tests. No other application relies on the suite before then.
-3. Each entry of [[[default:test-suite/ts-rule-soundness-register]]](C:/dev/project-library-global/test-suite/ts-rule-soundness-register.md) is corrected at its source with the developer's approval.
+1. The suite is proven on the first application PDLF builds, the Daily Intentions Tracker in `mb-5-pdlf`: test PR-09 at Step 11 proves the test environment, and each later step proves its own tests. No other application relies on the suite before then.
+2. Any rule found contradictory, out of date or unsafe is entered in [[[default:test-suite/ts-rule-soundness-register]]](C:/dev/project-library-global/test-suite/ts-rule-soundness-register.md), corrected at its source with the developer's approval, and then removed from the register.
 
 ## Why it works this way
 

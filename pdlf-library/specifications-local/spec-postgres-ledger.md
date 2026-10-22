@@ -1,7 +1,7 @@
 ---
 title: "spec-postgres-ledger"
 doc-id: "mb-dcf9c65e"
-updated: "2026-10-13"
+updated: "2026-10-22"
 ---
 # PDLF Postgres Ledger Specification
 
@@ -200,7 +200,7 @@ missing from this spec: the `triage_label` CHECK also allows `clear`
 | `id` | serial | Primary key |
 | `step_id` | integer | FK → `steps(id)`. Identifies which feature-cycle execution this finding belongs to. |
 | `finding_id` | text | Stable identifier from Steps 37-38 findings. No companion table — confirmed against the full seven-table schema list; free-standing identifier. |
-| `source_step` | text | Which step produced this finding: `11, 12, 14, 15, 16, 17, 19, 20, 21, 34, 35, 36, 37, 38, 39, 45, 46` (CHECK). Must equal Sentinel's step table |
+| `source_step` | text | Which step produced this finding: `11, 12, 14, 15, 16, 17, 19, 20, 21, 34, 35, 35A, 36, 37, 38, 38A, 39, 40, 41, 42A, 43, 44, 45, 46` (CHECK). Every step that records a finding: Sentinel's steps and the steps whose test specifications record test failures |
 | `triage_label` | text | One of: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`, `clear` (CHECK includes all six) |
 | `resolution_note` | text | How the finding was resolved (developer-provided) |
 | `resolved_by` | text | Who resolved it |
