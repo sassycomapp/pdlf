@@ -1,7 +1,7 @@
 ---
 title: "a03-build-plan"
 doc-id: "mb-9d12b137"
-updated: "2026-10-21"
+updated: "2026-10-22"
 ---
 
 ## Step entry
@@ -25,3 +25,6 @@ updated: "2026-10-21"
 **Carried out by:** the orchestrator (Step 1).
 
 **Skills.** None at the entry itself. The orchestrator searches GBrain for the application's existing documents and lists them for David to confirm, so the context material is named, not guessed → Steps 11 and 12. Step 11 builds the code graph of the existing app with `graphify`.
+
+**Must be built so that:**
+- where the application is built from a reference platform (for `mb-4-ecom`, Medusa), the reference's analysis, made outside the Mybizz process (for example with REA), is listed as context material for Step 12;

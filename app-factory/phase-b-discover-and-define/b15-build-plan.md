@@ -1,7 +1,7 @@
 ---
 title: "b15-build-plan"
 doc-id: "mb-9f7cd52b"
-updated: "2026-10-21"
+updated: "2026-10-22"
 ---
 
 ## From `15-build-notes.md`
@@ -174,6 +174,14 @@ Ends with the gate `domain-locked` (Step 16).
 - the management endpoints that App 5 calls exist from the first release, secured as the management visibility ADR sets out;
 - every AI feature is an enhancement that fails gracefully, never a dependency of core operation;
 - every decision in `project-library-global` that applies to this application alone is listed for the developer, so it can be moved to the project library;
+- where the application is built from a reference platform, the reference's layers are mapped to Anvil: API routes to server functions and HTTP endpoints, workflows to server functions on pure-logic modules, modules and data models to Data Tables with model classes, events and scheduled jobs to background and scheduled tasks, locking to Data Tables transactions, file storage to the client's R2 buckets; the reference's technology is not carried over;
+- every lifecycle with states (for example cart, order, payment, fulfilment, booking) is designed as an explicit state machine and proven with `prototype` (logic branch) before the design is locked;
+- the schema is designed up front: every core table carries a metadata column for client-level attributes, client-defined attributes use attribute tables, and later changes add only new tables or nullable columns; no code creates or alters tables;
+- anything that differs between clients is data set through the application's settings, never code in the client instance;
+- the client's cold data (raw webhook payloads, logs, backups) goes to its own R2 buckets, with an index row and a retention period in the Data Tables; the exit export writes all the client's data to its bucket, per [[[default:adr-global/adr-client-r2-storage-and-exit-handover|Client R2 Storage and Exit Handover]]](C:/dev/project-library-global/adr-global/adr-client-r2-storage-and-exit-handover.md);
+- every background task fits the background-task limits of the Hobby tier, on which every client starts;
+- every client instance pushes a heartbeat of its health and resource use to App 5; App 5 never polls;
+- the plan is checked against every aspect in [[[default:policy-global/pol-common-aspects-for-mybizz-anvil-applications|Common Aspects for Mybizz Anvil Applications]]](C:/dev/project-library-global/policy-global/pol-common-aspects-for-mybizz-anvil-applications.md); a deviation is allowed only where the business domain requires it and is recorded as an ADR in the project library;
 
 **BFT level:** Full.
 

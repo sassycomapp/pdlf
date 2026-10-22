@@ -1,7 +1,7 @@
 ---
 title: "f41-build-plan"
 doc-id: "mb-4042f695"
-updated: "2026-10-21"
+updated: "2026-10-22"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -31,6 +31,7 @@ Ends with the gates `production-released` (Step 44) and `released` (Step 46). Th
 - when the release changes the schema, its migration plan for App 3 and every client instance exists before the release continues;
 - the compliance documents named in the CEO plan exist before a first release;
 - `benchmark` (GStack) records the performance baseline of the public pages → Step 45;
+- for the first release, the exit export is proven on the test client: all its data lands in its R2 bucket;
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

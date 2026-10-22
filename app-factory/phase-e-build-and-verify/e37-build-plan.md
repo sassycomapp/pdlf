@@ -1,7 +1,7 @@
 ---
 title: "e37-build-plan"
 doc-id: "mb-78301dea"
-updated: "2026-10-20"
+updated: "2026-10-22"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -24,6 +24,9 @@ Steps 35 to 40B run once per feature, one feature at a time; the run plan govern
 - `mb-sentinel-review`, Very High → `triage_findings`.
 
 **Not used:** GStack `/review`, because it applies fixes itself; fixes are decided at Step 39 and made at Step 35.
+
+**Must be built so that:**
+- `code-review` also checks the code against [[[default:policy-global/pol-common-aspects-for-mybizz-anvil-applications|Common Aspects for Mybizz Anvil Applications]]](C:/dev/project-library-global/policy-global/pol-common-aspects-for-mybizz-anvil-applications.md);
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

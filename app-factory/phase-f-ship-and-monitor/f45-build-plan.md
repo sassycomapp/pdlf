@@ -1,7 +1,7 @@
 ---
 title: "f45-build-plan"
 doc-id: "mb-1628cc4a"
-updated: "2026-10-20"
+updated: "2026-10-22"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -19,6 +19,9 @@ Ends with the gates `production-released` (Step 44) and `released` (Step 46). Th
 **Skills.** Every skill's output is used by the step named after the arrow.
 - `/canary` (GStack): watches App 2 and the test client instance against the baseline from Step 43 → Step 46.
 - `mb-sentinel-review`, Medium → `triage_findings`.
+
+**Must be built so that:**
+- App 5 reads each client instance's heartbeat and flags any client that needs a higher plan tier;
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

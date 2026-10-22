@@ -1,7 +1,7 @@
 ---
 title: "e35-build-plan"
 doc-id: "mb-7c6d6f2b"
-updated: "2026-10-21"
+updated: "2026-10-22"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -33,6 +33,8 @@ Steps 35 to 40B run once per feature, one feature at a time; the run plan govern
 
 **Must be built so that:**
 - webhook handlers are tested against each gateway's test mode, and scheduled tasks are tested with a controlled clock, until Pass 3 sets the testing scheme;
+- every webhook stores its raw payload in the client's R2 bucket and an index row in the Data Tables, and is idempotent by transaction id; every outbound call retries with backoff when rate-limited;
+- every state transition of a lifecycle is tested with `tdd`;
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

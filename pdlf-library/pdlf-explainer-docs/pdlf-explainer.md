@@ -1,7 +1,7 @@
 ---
 title: "pdlf-explainer"
 doc-id: "mb-4ba5a053"
-updated: "2026-10-20"
+updated: "2026-10-22"
 ---
 # PDLF — How It Works
 
@@ -146,6 +146,9 @@ PDLF builds for Anvil.works only. The rules are in [[[pdlf:pdlf-library/policy-l
 - **What goes to Anvil.** Everything committed to the code repository is pushed to Anvil; `.gitignore` keeps local-only material, such as `.env`, out. Anvil uses only `anvil.yaml`, `client_code`, `server_code` and `theme`. `theme/assets` and `client_code` are public, so nothing secret or internal goes there. Client documents may be served from `theme/assets/docs`; explainer videos are hosted on YouTube.
 - **`anvil.yaml` is changed only through Anvil's `anvil-yaml` skill**, validated with `anvil --json validate`; David applies schema changes in Anvil's Data Tables view.
 - **No multi-tenancy, ever.** Every client has its own app instance and its own database. No code shares one database between clients and separates them by filtering. AI agents reach for that pattern by default, so it is given to them as context before any code is written: [[[default:adr-global/adr-dependency-based-not-multi-tenant|ADR: Dependency-Based, Not Multi-Tenant]]](C:/dev/project-library-global/adr-global/adr-dependency-based-not-multi-tenant.md).
+- **Each client has its own Anvil account, starting on the Hobby tier, and its own R2 storage.** When a client exits, all its data is written to its R2 bucket and it leaves with that bucket: [[[default:adr-global/adr-client-r2-storage-and-exit-handover|Client R2 Storage and Exit Handover]]](C:/dev/project-library-global/adr-global/adr-client-r2-storage-and-exit-handover.md).
+- **Mybizz applications share everything they can.** `mb-3-cs`, `mb-4-ecom` and later applications are built the same way wherever their business domains allow, in both directions: [[[default:policy-global/pol-common-aspects-for-mybizz-anvil-applications|Common Aspects for Mybizz Anvil Applications]]](C:/dev/project-library-global/policy-global/pol-common-aspects-for-mybizz-anvil-applications.md).
+- **A reference platform supplies the domain, never the technology.** An application built from a reference (for `mb-4-ecom`, Medusa) takes its business domain and workflows, analysed outside the Mybizz process, and rebuilds them in Python for Anvil.
 - **Never add forms or server modules to a client instance.** A client instance runs on `master_template`; anything added directly to it silently and permanently cuts it off from future updates: [[[default:specifications-global/spec-five-app-architecture-model|Five-App Architecture Model]]](C:/dev/project-library-global/specifications-global/spec-five-app-architecture-model.md).
 - **Material 3.** Every application uses Anvil's Material 3 theme and David's design standards in `project-library-global`. Design moves in approved stages: structural wireframes, then polished wireframes, then screens.
 

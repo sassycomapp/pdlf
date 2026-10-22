@@ -1,7 +1,7 @@
 ---
 title: "b14-build-plan"
 doc-id: "mb-4d5937f5"
-updated: "2026-10-21"
+updated: "2026-10-22"
 ---
 
 ## From `14-build-notes.md`
@@ -147,6 +147,7 @@ Ends with the gate `domain-locked` (Step 16).
 - the security review `mb-sentinel-review` runs on the step's output at Medium scrutiny, against the documents Sentinel names for Step 14; a Flag or Escalate stops the step and goes to the developer; before the step finishes, its `triage_findings` row is checked, so that the review's run is proven, not assumed;
 - the `secure-software-engineering` skill, given the context pack, writes the security requirements at the level of the business into the CEO plan: what data the app holds, whose it is, who may see or change it, and what must never leak.
 - the CEO plan states which of the compliance documents the regulatory compliance baseline requires before go-live this application needs, so Step 41 can check them;
+- the CEO plan includes the client's exit: all the client's data handed over in the client's own R2 bucket, per [[[default:adr-global/adr-client-r2-storage-and-exit-handover|Client R2 Storage and Exit Handover]]](C:/dev/project-library-global/adr-global/adr-client-r2-storage-and-exit-handover.md);
 
 **BFT level:** Full.
 

@@ -1,7 +1,7 @@
 ---
 title: "pdlf-todo"
 doc-id: "mb-13a3fbc9"
-updated: "2026-10-21"
+updated: "2026-10-22"
 ---
 # Active PDLF To-Do List
 
@@ -45,9 +45,17 @@ The final, real end-to-end proof that the governed memory pipeline works togethe
 
 ## C. Testing
 
-### C1. Integrate Suite A and Suite B into Steps 35A, 36, 37, 38, 39, and relook the testing suite
+### C1. Install the test tools
 
-Held in the build plans of Steps 35A, 36, 37, 38 and 39.
+Install the tools of the test suite in WSL, with the developer's approval, at the versions the developer approves, and record each version in the tools table of `project-library-global\test-suite\ts-method.md`. About 0.8 GB.
+
+### C2. Prove the test suite on `mb-5-pdlf`
+
+`mb-5-pdlf` holds no application until the Daily Intentions Tracker is built through PDLF. When it is, Step 11 runs PR-09 to prove the local runtime, both Uplink connections, the `TEST_` users with second factors and the mail catcher; each later step then runs its test specification. Correct any test, template or tool that does not work as written before another application relies on it.
+
+### C3. Apply the rule soundness register's source changes
+
+Each entry of `project-library-global\test-suite\ts-rule-soundness-register.md` names a source document to correct. Each is corrected with the developer's approval and its entry removed. They include widening the ledger's `triage_findings.source_step` check (RS-11), and pointing `pol-testing-and-quality.md` and `spec-testing-methodology-standards.md` to the test suite (RS-02, RS-07, RS-08, RS-13).
 
 ---
 
@@ -69,19 +77,19 @@ Phases B and C were scoped from the issuers' published sources (GStack `c580561`
 
 ### E2. Anvil's `$app-testing` skill
 
-Anvil's `data-models` and `server-code` skills call `$app-testing`, and `anvil-yaml` calls `anvil db apply-schema --force`, to test against the agent's temporary database. `$app-testing` is not yet published in `anvil-agent-references`. It is the candidate standard for PDLF's testing; it is examined in Pass 3 and whenever `anvil-agent-references` is updated.
+Anvil's `data-models` and `server-code` skills call `$app-testing`, and `anvil-yaml` calls `anvil db apply-schema --force`, to test against the agent's temporary database. `$app-testing` is not yet published in `anvil-agent-references`. When Anvil publishes it, it is assessed as a complement to the local runtime of the test suite, and examined whenever `anvil-agent-references` is updated.
 
 ### E3. Anvil CLI `watch` for the shared pull procedure
 
 Step 18 holds the one pull procedure that Steps 30 and 33 use. Examine whether the Anvil CLI's two-way sync (`anvil watch`) replaces it, before the first build on the test application.
 
-### E4. Delete Step 24's set of six
+### E4. Delete Step 24's step files
 
 Step 24 is not used and has `c24-placeholder.md`. Delete `c24-build-plan.md`, `c24-config.md`, `c24-reference.md`, `c24-explainer.md`, `c24-decision-tree.html` and `c24-module.md` from `C:\pdlf\app-factory\phase-c-design-and-plan\`.
 
 ### E5. Pass 3
 
-Design the testing scheme, user help documentation and video documentation. The testing scheme covers what Pass 2 found the steps cannot yet test: payment and email webhooks against the gateways' test modes, scheduled tasks, AI features, and the per-instance schema migration.
+Design the user help documentation and the video documentation. Testing is designed in the test suite (`project-library-global\test-suite\`).
 
 ### E7. Sort `mb-3-cs` decisions out of `project-library-global`
 
@@ -89,7 +97,7 @@ Decisions and specifications that apply to `mb-3-cs` alone (tiers, onboarding, p
 
 ### E8. Cloudflare R2
 
-`mb-3-cs` and `mb-4-ecom` offload webhook payloads, logs and backups to Cloudflare R2. Cloudflare is registered Deferred in the skills catalog; it is documented with `mb-sysdoc-creator` before the first step that uses it.
+Each client has one or two R2 buckets of its own, in a Cloudflare account dedicated to it, and leaves with them on exit (`adr-client-r2-storage-and-exit-handover`). Cloudflare is registered Deferred in the skills catalog; document it with `mb-sysdoc-creator` before the first step that uses it, and confirm which S3-compatible library runs on Anvil's server Python.
 
 ### E6. Correct the release mechanism in the no-staging ADR
 
@@ -127,11 +135,6 @@ Step 17 records every schema change in the project library's schema migration lo
 
 `docs\medusa-develop.zip` (61 MB) and `docs\rea-main.zip` (16 MB) are third-party source archives inside a documentation repository. Keep them outside the repository (for example in `C:\dev\dev-mb-4-ecom\wip`), and keep in the library only a note of where they are and what they are for, so the repository and GBrain hold documentation only. Step 12's `research` reads them from there.
 
-### F8. Correct "multi-tenant" in the `mb-4-ecom` reports
+### F8. Retire the Gemini report
 
-`docs\report from discussion with gemini.md` (and the copy in `mb-3-cs-project-library\docs-local\See what can be used from this report.md`) call the five-app structure "multi-tenant". Mark the term as wrong for the model, so no agent reads it as permission for a shared database, and remove the duplicate copy from the `mb-3-cs` library.
-
-### F9. Shared architecture, written once
-
-`mb-3-cs` and `mb-4-ecom` share the five-app structure, the Vault, payments, webhooks, Brevo email, App 5 and Cloudflare R2. Everything they share lives once in `project-library-global`; each project library holds only what is particular to its application. This is the rule item E7 applies.
-
+`mb-4-ecom-project-library\docs\mb-4-ecom-architecture-report.md` replaces `docs\report from discussion with gemini.md`, whose statements on multi-tenancy, self-creating tables, PgBouncer and a central R2 account do not apply. Delete `docs\report from discussion with gemini.md` and the copy in `mb-3-cs-project-library\docs-local\See what can be used from this report.md`. The original transcript, `docs\important discussion with Gemini.md`, stays as source material.

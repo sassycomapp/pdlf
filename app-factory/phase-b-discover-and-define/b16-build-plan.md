@@ -1,7 +1,7 @@
 ---
 title: "b16-build-plan"
 doc-id: "mb-625b446e"
-updated: "2026-10-21"
+updated: "2026-10-22"
 ---
 
 ## From `16-build-notes.md`
@@ -150,6 +150,8 @@ Ends with the gate `domain-locked` (Step 16).
 - the security review `mb-sentinel-review` checks for sensitive data or security-relevant entities before the gate; a finding stops the step and goes to the developer; the review's record in the ledger is checked, so that its run is proven, not assumed.
 - for an existing application, an existing `CONTEXT.md` is reconciled with the application's authoritative schema before any term is locked;
 - the term "multi-tenant" is never used for the five-app model, because the model gives every client its own app and database;
+- where the application is built from a reference platform, the reference's domain terms are adopted or renamed in `CONTEXT.md`;
+- a term the application shares with another Mybizz application keeps the same name in both, as `spec-nomenclature` records;
 
 **BFT level:** Full (gate).
 

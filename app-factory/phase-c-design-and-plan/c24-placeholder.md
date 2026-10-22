@@ -1,10 +1,10 @@
 ---
 title: "c24-placeholder"
-updated: "2026-10-20"
+updated: "2026-10-22"
 doc-id: "mb-d477a958"
 ---
 
-Placeholder only. Step 24 is not used. The number is kept so that every other step keeps its number; it has no set of six.
+Placeholder only. Step 24 is not used. The number is kept so that every other step keeps its number; it has no set of seven.
 
 ## From `pdlf-build-plan.md`: step entry
 

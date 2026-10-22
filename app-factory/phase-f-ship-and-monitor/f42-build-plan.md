@@ -1,7 +1,7 @@
 ---
 title: "f42-build-plan"
 doc-id: "mb-204ff45b"
-updated: "2026-10-21"
+updated: "2026-10-22"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -24,7 +24,7 @@ Ends with the gates `production-released` (Step 44) and `released` (Step 46). Th
 **Standards:** [[[default:specifications-global/spec-five-app-architecture-model|Five-App Architecture Model]]](C:/dev/project-library-global/specifications-global/spec-five-app-architecture-model.md), [[[default:specifications-global/spec-deployment|Deployment]]](C:/dev/project-library-global/specifications-global/spec-deployment.md).
 
 **Must be built so that:**
-- before the clone, every client instance is backed up;
+- before the clone, every client instance is backed up to its own R2 bucket;
 - when the release changes the schema, the developer applies it to App 3 and then to every client instance, following `wizard` instructions made from the migration plan;
 - a high-risk release may be rolled out first to some client instances by version tag, then to the rest, as the deployment specification sets out;
 - rollback re-points App 2 to the last good commit and republishes, as the deployment specification sets out; a schema change is rolled back by hand in each client instance;

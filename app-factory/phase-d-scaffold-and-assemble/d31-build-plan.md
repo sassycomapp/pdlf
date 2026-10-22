@@ -1,7 +1,7 @@
 ---
 title: "d31-build-plan"
 doc-id: "mb-ea170848"
-updated: "2026-10-21"
+updated: "2026-10-22"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -28,6 +28,7 @@ Ends with the gate `architecture-verified` (Step 34).
 
 **Must be built so that:**
 - every shared custom component is a module of its own in `scaffold-plan.md`, built before the forms that use it;
+- the modules for the common aspects (Vault, payments, webhooks, email, R2 storage and exit export, heartbeat, management endpoints) follow the same structure in every Mybizz application, per [[[default:adr-global/adr-common-architecture-across-mybizz-applications|Common Architecture Across Mybizz Applications]]](C:/dev/project-library-global/adr-global/adr-common-architecture-across-mybizz-applications.md);
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

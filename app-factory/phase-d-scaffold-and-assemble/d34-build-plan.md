@@ -1,7 +1,7 @@
 ---
 title: "d34-build-plan"
 doc-id: "mb-08fb22cb"
-updated: "2026-10-20"
+updated: "2026-10-22"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -29,6 +29,9 @@ Ends with the gate `architecture-verified` (Step 34).
 - `anvil --json validate .` over the whole app → the audit report.
 
 **Testing:** the whole app validates; every table, form and stub traces to a locked decision.
+
+**Must be built so that:**
+- the audit checks the skeleton against [[[default:policy-global/pol-common-aspects-for-mybizz-anvil-applications|Common Aspects for Mybizz Anvil Applications]]](C:/dev/project-library-global/policy-global/pol-common-aspects-for-mybizz-anvil-applications.md) and confirms the client instance needs no code of its own;
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

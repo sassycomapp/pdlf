@@ -1,15 +1,15 @@
 ---
 title: "app-factory-explainer"
 doc-id: "mb-bcfa10bb"
-updated: "2026-10-12"
+updated: "2026-10-22"
 ---
 # PDLF — The App Factory
 
 ## What it is
 
-The app factory (`C:\pdlf\app-factory\`) holds PDLF's build, one folder per phase: `phase-a-init`, `phase-b-discover-and-define`, `phase-c-design-and-plan`, `phase-d-scaffold-and-assemble`, `phase-e-build-and-verify` and `phase-f-ship-and-monitor`. Each phase folder holds the set of six for each of its steps: its build plan, config, reference, explainer, decision tree and module (`b16-build-plan.md` to `b16-module.md`). A module is one finished step, compiled into a single unit. When PDLF builds an application, the modules are what run.
+The app factory (`C:\pdlf\app-factory\`) holds PDLF's build, one folder per phase: `phase-a-init`, `phase-b-discover-and-define`, `phase-c-design-and-plan`, `phase-d-scaffold-and-assemble`, `phase-e-build-and-verify` and `phase-f-ship-and-monitor`. Each phase folder holds the set of seven for each of its steps: its build plan, test specification, config, reference, explainer, decision tree and module (`b16-build-plan.md` to `b16-module.md`). The test specification states what the step must prove and which tests of the test suite in `project-library-global` it runs ([[[pdlf:pdlf-library/pdlf-explainer-docs/pdlf-testing-explainer]]](C:/pdlf/pdlf-library/pdlf-explainer-docs/pdlf-testing-explainer.md)). A module is one finished step, compiled into a single unit. When PDLF builds an application, the modules are what run.
 
-Each name is the phase letter followed by the step number, so `b16-module.md` is always Step 16. Module `a01` is the orchestrator, which runs the others. Modules 02 to 10 are the entry points for work on existing applications (new features, updates, returning to another app of a five-app set). Modules 11 to 46 are the pipeline that builds an application. Numbers 13 and 25 are not used; each keeps a placeholder file. Inserted steps carry a lowercase letter after the number, only to keep the files in order: 35a, 38a, 40b and 42a.
+Each name is the phase letter followed by the step number, so `b16-module.md` is always Step 16. Module `a01` is the orchestrator, which runs the others. Modules 02 to 10 are the entry points for work on existing applications (new features, updates, returning to another app of a five-app set). Modules 11 to 46 are the pipeline that builds an application. Numbers 13, 24 and 25 are not used; each keeps a placeholder file. Inserted steps carry a lowercase letter after the number, only to keep the files in order: 35a, 38a, 40b and 42a.
 
 ## How it works
 
