@@ -145,8 +145,7 @@ Each build plan's **Testing** line becomes `{step}-test-spec.md` with one senten
 4. **`pdlf-todo.md`:** remove E1 (resolved on 2026-10-22: skills brought to their pinned versions).
 5. **Two testing policies:** `pdlf-library\policy-local\pol-testing-and-quality.md` and `project-library-global\policy-global\pol-testing-and-quality.md` differ. Settle into one home (the global one, rewritten on 2026-10-22 to the test suite) and remove or reduce the local one to PDLF-only content.
 6. **A stray copy of PDLF documents** sits in `app-factory\phase-c-design-and-plan\pdlf-library\` (6 files: `pdlf-todo`, `pol-anvil-platform`, `spec-skill-context-pack`, `spec-skill-design`, `app-factory-explainer`, `pdlf-explainer`). Compare with the real ones in `pdlf-library\` and delete the stray folder.
-7. **`pdlf-library\docs-local\pdlf-testing-seed-material`:** check whether anything in it is still needed now that the test suite exists; delete it if not.
-8. **The working model (section 2 and 3 of this handover)** is written as a PDLF document near the orchestrator, so the orchestrator understands what it is dealing with: proposed home `pdlf-library\docs-local\pdlf-operating-model.md`, linked from `pdlf-build-plan.md`.
+7. **The working model (section 2 and 3 of this handover)** is written as a PDLF document near the orchestrator, so the orchestrator understands what it is dealing with: proposed home `pdlf-library\docs-local\pdlf-operating-model.md`, linked from `pdlf-build-plan.md`.
 
 ## 11. Working with David
 
