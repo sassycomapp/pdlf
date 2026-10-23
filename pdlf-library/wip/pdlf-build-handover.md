@@ -92,12 +92,20 @@ Skills not yet built (video documentation and similar) come last and are not nee
 
 ## 6. How Claude uses GBrain
 
-Claude has no access to David's computer. GBrain is reached through David, in batches:
-1. Claude writes its search terms into one file.
-2. One read-only script on David's PC runs `gbrain search` for each term and writes all results to one file in `C:\temp`.
-3. David attaches that file.
+Claude has no access to David's computer. GBrain is reached through the search library, the public repository `mb-gbrain-searches` at `C:\mybizz\mb-gbrain-searches` (`/mnt/c/mybizz/mb-gbrain-searches`). Its `README.md` carries the full rules.
 
-David's addition, to be built first in the next session: a dedicated repository (for example `mb-gbrain-searches`, readable by Claude) that keeps every search script and its results. It becomes a search library: Claude can re-read past results instead of repeating searches, and OpenCode agents can use Claude's searches, which steers their thinking with better queries. Scope it with David before building: repository name, folder layout, file naming, whether it is a GBrain source, and the script itself.
+1. Claude gives David one command that writes `queries/{yyyy-mm-dd}-{topic}.md` (one search term per line) and runs the script:
+   `cd /mnt/c/mybizz/mb-gbrain-searches && printf '%s\n' "term one" "term two" > queries/{name}.md && bash scripts/run-search.sh {name}`
+2. The script runs `gbrain search "{term}" --source-id __all__ --limit 10 --snippet-chars 800 --json` for each term, across every source, writes `results/{name}.md`, then commits and pushes that repository only.
+3. Claude reads `results/{name}.md` from GitHub (`git clone https://github.com/sassycomapp/mb-gbrain-searches`). Each result shows `source:page`, its score and up to 800 characters of its text. A result is a pointer: the file it names is read before anything in it is applied.
+
+Rules:
+- Claude reads past results in `results/` before running a new search, and never repeats a search it already holds.
+- The script only reads GBrain. It never upgrades GBrain; GBrain 0.59.18.0 stays until David decides otherwise.
+- The script never overwrites a results file; a re-run takes a new name.
+- The repository is not a GBrain source, has no `mb-doc-check` hook and is not in `commit-all.sh`, so the recorded output is never rewritten.
+- OpenCode agents only read it.
+- `results/2026-10-23-pdlf-corrections-2.md` holds searches for the section 10 corrections ("Daily Intentions Tracker", "mb-5-pdlf test application", "pol-testing-and-quality", "app-factory-docs-update-method", "b11-test-spec").
 
 ## 7. Phase B: where Pass 1 starts
 
@@ -161,7 +169,6 @@ Each build plan's **Testing** line becomes `{step}-test-spec.md` with one senten
 
 ## 12. First actions in the next session
 
-1. Scope and build the GBrain search library (section 6) with David.
-2. Clone `pdlf` and `project-library-global`; read `pdlf-build-plan.md`, `app-factory-docs-update-method.md`, the `b11` suite and `b11-test-spec.md`.
-3. Propose the corrections of section 10 as one batch; on approval, write them.
-4. Start Pass 1 with `b11`, then `b12`, `b14`, `b15`, `b16`: for each, the plan first, then the files.
+1. Clone `pdlf` and `project-library-global`; read `pdlf-build-plan.md`, `app-factory-docs-update-method.md`, the `b11` suite and `b11-test-spec.md`.
+2. Propose the corrections of section 10 as one batch; on approval, write them.
+3. Start Pass 1 with `b11`, then `b12`, `b14`, `b15`, `b16`: for each, the plan first, then the files.
