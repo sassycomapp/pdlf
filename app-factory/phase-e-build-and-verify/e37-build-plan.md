@@ -1,7 +1,7 @@
 ---
 title: "e37-build-plan"
 doc-id: "mb-78301dea"
-updated: "2026-10-22"
+updated: "2026-10-23"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -56,6 +56,6 @@ verified 2026-09-18) are referenced from [[[pdlf:pdlf-library/policy-local/pol-t
 their checks are not yet built into the actual step files that do
 testing work. Deferred to Phase E, when those step files are rebuilt.
 
-The testing suite implemented in PDLF is to be relooked at the same time, not separately. Real, preserved seed material exists from an earlier MB-3-CS testing iteration (test taxonomy, a working Anvil-context test technique, real Anvil/M3-specific pass/fail criteria) — see [[[pdlf:pdlf-library/docs-local/pdlf-testing-seed-material/pdlf-testing-seed-material-readme|Seed Material (from MB-3-CS)]]](C:/pdlf/pdlf-library/docs-local/pdlf-testing-seed-material/pdlf-testing-seed-material-README.md) for what's there and how to use it when this work is actually picked up.
+This step's testing is its test specification, drawn from the test suite in `C:\dev\project-library-global\test-suite\`.
 
 > **Changed since:** The earlier lists carried the Suite A/B integration and the testing relook as two separate items; they are one job and are merged here.

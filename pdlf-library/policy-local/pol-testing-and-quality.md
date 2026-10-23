@@ -1,7 +1,7 @@
 ---
 title: "pol-testing-and-quality"
 doc-id: "mb-6296454f"
-updated: "2026-10-20"
+updated: "2026-10-23"
 ---
 # PDLF Policy — Testing and Quality
 
@@ -117,7 +117,7 @@ and confirmed no such file was ever created; its intended content already lives 
   (verified 2026-09-18). Sections 1–3 restated what this policy already
   covers as checklist items; Sections 4–5 (Test Plan Shape, RBAC Verification) are content
   this policy doesn't yet have locally — the description above is now the only surviving
-  record of that shape. Related preserved source material: `docs-local/pdlf-testing-seed-material/`.
+  record of that shape.
 
 **Deferred, not yet done:** integrating the retired chk-anvil-app-testing.md's checks (file
 gone; its Sections 4–5 shape survives only in the description above) directly into
