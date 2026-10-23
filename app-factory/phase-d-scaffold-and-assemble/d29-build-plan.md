@@ -1,7 +1,7 @@
 ---
 title: "d29-build-plan"
 doc-id: "mb-095646a3"
-updated: "2026-10-22"
+updated: "2026-10-23"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -29,7 +29,7 @@ Ends with the gate `architecture-verified` (Step 34).
 6. Applies no schema change the agent proposes. The schema is fixed at Step 17; a proposed change goes back to Step 17.
 7. Pulls the result locally at Step 30, where it is validated.
 
-**Testing:** every approved screen has a form; every form validates (`anvil --json validate`); the UI conformance scans pass (Material 3 components only, no `HTMLTemplate`, no hard-coded colours, no data rules or secrets in forms), as `d29-test-spec.md` sets out. **Layers with no skill:** security (forms hold no data rules; the scans check this here, Step 34 checks it for the whole app).
+**Testing:** every approved screen has a form; every form validates (`anvil --json validate`); the UI conformance scans pass (Material 3 components only, no `HTMLTemplate`, no hard-coded colours, dark mode, no data rules or secrets in forms), as `d29-test-spec.md` sets out. **Layers with no skill:** security (forms hold no data rules; the scans check this here, Step 34 checks it for the whole app).
 
 **Standards:** [[[default:specifications-global/spec-anvil-platform-standards|Anvil Platform Standards]]](C:/dev/project-library-global/specifications-global/spec-anvil-platform-standards.md) section 9, [[[default:specifications-global/spec-ui-standards|UI Standards]]](C:/dev/project-library-global/specifications-global/spec-ui-standards.md), [[[default:specifications-global/spec-material-3-theme|Material 3 Theme]]](C:/dev/project-library-global/specifications-global/spec-material-3-theme.md).
 

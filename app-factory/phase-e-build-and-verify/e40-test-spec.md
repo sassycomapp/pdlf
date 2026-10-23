@@ -1,13 +1,13 @@
 ---
 title: "e40-test-spec"
-updated: "2026-10-22"
+updated: "2026-10-23"
 doc-id: "mb-57eabeaa"
 ---
 # Step 40: Architecture scan — Test Specification
 
 **Proves:** The scan reports with evidence and changes nothing.
 
-Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-library-global/test-suite/ts-catalogue.md). Evidence is saved in `{slug}-project-library\pdlf-outputs\e40\`.
+Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-library-global/test-suite/ts-catalogue.md) and, for the PR tests, in [[[pdlf:pdlf-library/specifications-local/spec-pdlf-process-tests]]](C:/pdlf/pdlf-library/specifications-local/spec-pdlf-process-tests.md). Evidence is saved in `{slug}-project-library\pdlf-outputs\e40\`.
 
 | Test | Applied here |
 |---|---|

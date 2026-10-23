@@ -1,7 +1,7 @@
 ---
 title: "pol-anvil-platform"
 doc-id: "mb-f219a912"
-updated: "2026-10-20"
+updated: "2026-10-23"
 ---
 # PDLF Policy — Anvil Platform
 
@@ -15,14 +15,11 @@ updated: "2026-10-20"
 
 The agent changes `anvil.yaml` only through Anvil's `anvil-yaml` skill, which Anvil issues for that purpose, and validates every change with `anvil --json validate anvil.yaml`. It never changes `dependencies`; David changes them in the Anvil editor. A schema change reaches the live app only when David applies it in Anvil's Data Tables view.
 
-### Two repositories
+### Code and documents are kept apart
 
-Every application has two repositories:
+Every business has one code repository per app it develops (`{slug}-app1`, `{slug}-app2`, `{slug}-app3`, `{slug}-app5`), each an Anvil app holding `anvil.yaml`, `client_code/`, `server_code/` and `theme/`, and one project library, `{slug}-project-library`, which holds everything else: documents, decisions and PDLF records.
 
-- **the code repository**, which is the Anvil app (App 1, the development workspace): `anvil.yaml`, `client_code/`, `server_code/`, `theme/`;
-- **the documentation repository**, which holds everything else: documents, decisions, PDLF records.
-
-They are never mixed: no project documents in the code repository, no code in the documentation repository. Client-facing material that the application itself serves to its users, such as help documents, is part of the application, not project documentation; it lives in `theme/assets` under the rules below.
+They are never mixed: no project documents in a code repository, no code in the project library. Client-facing material that the application itself serves to its users, such as help documents, is part of the application, not project documentation; it lives in `theme/assets` under the rules below.
 
 ### What goes to Anvil
 
@@ -48,7 +45,7 @@ Nothing secret, internal or for paying clients only ever goes in either. Materia
 Every application follows [[[default:specifications-global/spec-five-app-architecture-model|Five-App Architecture Model]]](C:/dev/project-library-global/specifications-global/spec-five-app-architecture-model.md):
 
 - All development happens in App 1.
-- Release is the clone of App 1's approved, tagged code into App 2, `master_template`. David performs it at Step 42. There is no separate staging or production environment.
+- Release is App 1's approved, tagged release, pushed into App 2's repository (`master_template`) by David at Step 42. There is no separate staging or production environment.
 - Client instances (App 4) are cloned from `blank_client_template` (App 3) and run on `master_template`. The agent never adds a form or server module to a client instance: doing so silently and permanently cuts that instance off from future updates.
 
 ### No multi-tenancy

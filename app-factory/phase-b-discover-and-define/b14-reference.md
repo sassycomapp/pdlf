@@ -1,7 +1,7 @@
 ---
 title: "b14-reference"
 doc-id: "mb-708686df"
-updated: "2026-10-13"
+updated: "2026-10-23"
 ---
 
 ## From `14-plan-ceo-review.md`
@@ -153,12 +153,9 @@ review touches gets checked against `project-library-global`.
 - A real reason to diverge from a global standard goes through a deviation
   request to the developer — the same mechanism used everywhere else in PDLF,
   not a new one.
-- Depends on `project-library-global` already being a real, GBrain-registered,
-  queryable source. Per [[[pdlf:pdlf-library/adr-local/project-library-global-registration|Project Library Global Registration]]](C:/pdlf/pdlf-library/adr-local/project-library-global-registration.md),
-  exactly where PDLF verifies this foundational layer is in place is still
-  open (Step 11 check vs. a separate bootstrap procedure) — if it is not yet
-  registered when Step 14 runs, that is itself a deviation request, not a
-  silent skip.
+- Depends on `project-library-global` being a registered, queryable GBrain
+  source. The foundation checks of [[[pdlf:app-factory/phase-b-discover-and-define/b11-build-plan|Step 11 Build Plan]]](C:/pdlf/app-factory/phase-b-discover-and-define/b11-build-plan.md) verify that GBrain answers and
+  that the source `default` is registered.
 - Mechanics confirmed, not assumed: [[[pdlf:app-factory/phase-b-discover-and-define/b14-reference|/plan-ceo-review]]](C:/pdlf/app-factory/phase-b-discover-and-define/b14-reference.md)'s `SKILL.md` has zero
   awareness of `project-library-global` — no reference to it anywhere in
   source. The conflict check is therefore entirely OpenCode's own structured

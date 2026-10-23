@@ -5,124 +5,46 @@ updated: "2026-10-23"
 ---
 # PDLF Policy — Testing and Quality
 
-**Binding.** The agent must comply during Step 35 (build loop) through Step 39 (triage) and the
-`build-verified` gate. No exceptions without a deviation request.
+**Binding.** The agent complies from Step 35 (the build loop) to Step 39 (triage) and the `build-verified` gate. No exceptions without a deviation the developer decides.
+
+How every application is tested is set by the test suite, [[[default:test-suite/ts-method|Test Suite — Method]]](C:/dev/project-library-global/test-suite/ts-method.md), and by [[[default:policy-global/pol-testing-and-quality|Policy — Testing and Quality]]](C:/dev/project-library-global/policy-global/pol-testing-and-quality.md): the order of the levels, the local runtime, the two connections, the backups around hosted runs, sign-off and the findings files. This policy holds only what PDLF adds: the order in which the build loop runs its steps.
 
 ---
 
 ## What
 
-### Three-level testing methodology
+### The per-feature loop
 
-Every feature built in Step 35 passes through three testing levels in strict sequence:
+Every feature runs this loop, in this order:
 
-| Level | Scope | Precondition |
-|---|---|---|
-| 1 — Pure logic | Local Python, no Anvil imports, fully deterministic | None — written first, run constantly |
-| 2 — Uplink integration | Local Python + live Anvil via Uplink, server-side only | Level 1 passes + pre-integration backup created |
-| 3 — Manual verification | Browser-based, complete feature | Levels 1 and 2 pass |
+| Step | What it does |
+|---|---|
+| 35 | Build the feature test-first; Levels 1 and 2 of the test suite. |
+| 35A | Broader test coverage and supply-chain checks. |
+| 40 | Architecture scan: a read-only report. |
+| 40B | Apply the remediation the developer approved at Step 40, if any. |
+| 36 | Design check against the approved screens. |
+| 37 | Code review and security review. |
+| 38 | Functional and regression testing (Level 3), report only. |
+| 38A | Pipeline results consolidated. |
+| 39 | Triage of the findings of Steps 36 to 38; the `build-verified` gate. |
 
-Level 2 tests use the **Development Environment's** Uplink key (not Staging). The Development
-Environment auto-tracks the latest code and has its own Uplink keys — no manual publish is
-needed per feature cycle. The formal Staging publish is a single event at Step 42.
+### Remediation is retested
 
-### Two backups per feature
+Remediation from Step 40B is retested by Steps 36 to 38 before the gate. The `build-verified` gate therefore sits at Step 39, after the retest.
 
-- **Pre-integration backup:** before any integration code touches the live app (before Level 2). Protects against the integration attempt itself going wrong.
-- **Post-success backup:** after Level 2 passes and before Level 3. The known-good checkpoint.
+### One feature at a time
 
-Never skip either backup. "One backup after testing passes" is insufficient — the first backup
-is the safety net for the integration attempt that produces the second.
-
-### Feature signoff
-
-A feature is not complete until the entire loop below is passed and the developer signs off.
-After signoff:
-
-- The feature is a **known-good baseline**. Later breakage is attributable to something done
-  after this point, not to this feature.
-- The Step Receipt records the signoff.
-- Proceed to the next feature only after signoff.
-
-### Pure logic modules
-
-A Pure Logic Module has zero `import anvil` statements, no Data Tables access, no server calls,
-no side effects, and is fully deterministic. Server Modules are thin wrappers around Pure Logic
-Modules — they handle auth and persistence; the pure module handles the business rule. This is
-not a style preference. It is what makes Level 1 testing possible.
-
-### Uplink rules
-
-- Always use a Server Uplink key (not Client) for server-side integration testing.
-- Never hardcode the Uplink key — read from environment variable.
-- Always disconnect after the operation.
-- Restart the Anvil server runtime after Designer changes, before the next Uplink test.
-- Mark test data with `source='Test'` and verify cleanup.
-
-### Full per-feature loop (corrected 2026-07-12)
-
-Step 35's three-level testing is the start of a larger per-feature loop, not the whole of it.
-The full sequence, in order:
-
-```
-35  — Build feature. Three-level testing (above), two backups.
-35A — Testing: CI checks + broader test coverage.
-40  — Architecture scan (optional, read-only report).
-40B — Apply developer-approved remediation from Step 40, if any.
-36  — design check with GStack browse against the approved screens — retest, post-remediation.
-37  — Matt Pocock code-review and GStack /cso --diff — standards, spec and security review.
-38  — GStack /qa-only — functional + regression testing, report only.
-38A — CI/pipeline results consolidated.
-39  — triage — processes findings from 36–38. build-verified gate evaluated here.
-```
-
-Remediation (40B) is retested by 36–38, not shipped straight through — this is why the
-`build-verified` gate sits at 39, after the retest, and not at 40, before it.
-
-### Artifact persistence requirement (new, 2026-07-12)
-
-Steps 36, 37 and 38 each write their findings to `step-36-findings.md`, `step-37-findings.md` and `step-38-findings.md`, including a clean-pass statement. OpenCode verifies each file exists before marking its step complete; a missing file is a step failure requiring developer attention, not a silent pass. None of these steps fixes anything: every fix is decided at Step 39 and made at Step 35, because agents never commit.
+The next feature enters Step 35 only after the developer has signed off the current one at Step 39.
 
 ---
 
 ## Why
 
-Built on mb-3-cs's already-validated testing methodology — not invented for PDLF. The developer
-was emphatic: "code all in one" is "a really fast way to land in trouble... deep trouble that
-you cannot dig your way out of." Two backups per feature is stricter than it looks and
-deliberate: the pre-integration backup protects against the integration attempt itself.
-
-The loop reorder and artifact-persistence requirement (2026-07-12) both close a real gap: the
-original sequence let unverified remediation ship, and let review/QA findings go unrecorded
-by assumption rather than by confirmed behavior.
+Remediation that ships without a retest can break what the reviews had just passed. Running Steps 36 to 38 after Step 40B, and placing the gate after them, means nothing reaches the gate unverified. One feature at a time keeps every signed-off feature a known-good baseline, so a later fault can be traced to what came after it.
 
 ---
 
 ## Where
 
-Steps 35 through 39, and the `build-verified` gate. This policy is itself the detailed
-reference — there is no separate mechanics file. An earlier reference to
-`stepwise/step-16-testing-policy.md` was removed 2026-07-18: Step 16 is domain modeling,
-not testing — this pointer predated a renumbering and was never corrected. Investigated
-and confirmed no such file was ever created; its intended content already lives here.
-
-**Runnable checklists (added 2026-07-18):**
-- [[[pdlf:pdlf-library/templates-local/chk-pdlf-self-test|PDLF Self-Test Checklist]]](C:/pdlf/pdlf-library/templates-local/chk-pdlf-self-test.md) — tests PDLF's own orchestration (execution
-  discipline, gate integrity, ledger schema, skill invocation correctness, documentation
-  consistency, deviation mechanism). Not about testing an Anvil app — about testing PDLF
-  itself.
-- The earlier `chk-anvil-app-testing.md` (MB-3-CS era) — operationalized this policy's content (and
-  [[[default:specifications-global/spec-testing-methodology-standards|Testing Methodology]]](C:/dev/project-library-global/specifications-global/spec-testing-methodology-standards.md)) into runnable pass/fail
-  items for testing an Anvil app PDLF builds. Retired; no longer on disk anywhere
-  (verified 2026-09-18). Sections 1–3 restated what this policy already
-  covers as checklist items; Sections 4–5 (Test Plan Shape, RBAC Verification) are content
-  this policy doesn't yet have locally — the description above is now the only surviving
-  record of that shape.
-
-**Deferred, not yet done:** integrating the retired chk-anvil-app-testing.md's checks (file
-gone; its Sections 4–5 shape survives only in the description above) directly into
-Steps 35A, 36, 37, 38, and 39 themselves, so running those steps actually exercises the
-checklist rather than the checklist sitting separately from the pipeline. Addressed when
-Phase E is reached.
-
-**Source:** [[[pdlf:pdlf-library/specifications-local/spec-skill-design|Spec: Skill Design]]](C:/pdlf/pdlf-library/specifications-local/spec-skill-design.md) §2.8, §2.6.
+Steps 35 to 40B and the `build-verified` gate. PDLF's own orchestration is tested with [[[pdlf:pdlf-library/templates-local/chk-pdlf-self-test|PDLF Self-Test Checklist]]](C:/pdlf/pdlf-library/templates-local/chk-pdlf-self-test.md).

@@ -1,7 +1,7 @@
 ---
 title: "pol-sequential-enforcement-and-deviation"
 doc-id: "mb-bdadd132"
-updated: "2026-10-12"
+updated: "2026-10-23"
 ---
 # PDLF Policy — Sequential Enforcement and Deviation
 
@@ -34,22 +34,7 @@ The agent never passes a gate without David's yes. Cupcake enforces this. A pass
 
 ### Deviations
 
-If the agent cannot complete a step as written, it stops and presents a deviation request:
-
-```
-DEVIATION REQUEST — Step N
-
-Prescribed: <skill or action>
-Status: BLOCKED
-Reason: <specific reason, in plain language>
-
-Options:
-  A) Authorize an alternative — <what would be done instead, and what it costs>
-  B) Resolve the blocker — <what is needed>
-  C) Skip this step — <what is lost>
-
-Your decision? (A/B/C)
-```
+If the agent cannot complete a step as written, it stops and presents a deviation request, in the form set in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md): what was prescribed, why it is blocked, and the options with what each costs.
 
 The agent never chooses for David. Every deviation is recorded in the `deviations` table: what happened, the options presented, the decision and when.
 

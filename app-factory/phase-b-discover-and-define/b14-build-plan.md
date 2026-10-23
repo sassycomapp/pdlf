@@ -1,7 +1,7 @@
 ---
 title: "b14-build-plan"
 doc-id: "mb-4d5937f5"
-updated: "2026-10-22"
+updated: "2026-10-23"
 ---
 
 ## From `14-build-notes.md`
@@ -81,11 +81,9 @@ own structured comparison, run alongside the skill invocation — not something
 the skill surfaces on its own. This closes the "not yet verified" item carried
 in the original `step-14-build-notes.md`.
 
-Still open, per [[[pdlf:pdlf-library/adr-local/project-library-global-registration|Project Library Global Registration]]](C:/pdlf/pdlf-library/adr-local/project-library-global-registration.md): exactly
-where PDLF verifies `project-library-global` itself is registered and
-queryable (Step 11 check vs. separate bootstrap procedure). Step 14 treats a
-missing registration as a deviation request, not a silent skip, but does not
-resolve where that check belongs.
+`project-library-global` is registered and queryable before Step 14 runs:
+the foundation checks of [[[pdlf:app-factory/phase-b-discover-and-define/b11-build-plan|Step 11 Build Plan]]](C:/pdlf/app-factory/phase-b-discover-and-define/b11-build-plan.md) verify that GBrain answers and that the
+source `default` is registered.
 
 ## Learnings
 

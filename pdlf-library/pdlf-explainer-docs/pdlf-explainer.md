@@ -1,7 +1,7 @@
 ---
 title: "pdlf-explainer"
 doc-id: "mb-4ba5a053"
-updated: "2026-10-22"
+updated: "2026-10-23"
 ---
 # PDLF — How It Works
 
@@ -33,16 +33,18 @@ PDLF has one instruction file for agents, `C:\pdlf\AGENTS.md`, which sits under 
 
 ### Starting
 
-David chooses an application and starts the orchestrator in OpenCode. The orchestrator asks him what kind of work this is, and from his answers chooses the entry point:
+David starts the orchestrator in OpenCode with `/pdlf-init`. It offers the entry points, Steps 2 to 10, and David chooses exactly one:
 
 | Work | Entry point |
 |---|---|
-| A new application | Step 11 |
-| A new feature for an existing application | An entry point in Steps 2 to 10 |
-| An update or upgrade of an existing application | An entry point in Steps 2 to 10 |
-| Returning to another app of an existing five-app set | An entry point in Steps 2 to 10 |
+| A new application with no prior context | 02 |
+| A new application with context (partly developed, not yet through PDLF) | 03 |
+| A new feature for App 1, or for App 3 or App 5 | 04, or 09 |
+| An update to App 1, or to App 3 or App 5 | 05, or 10 |
+| A release into App 2 (`master_template`) | 06 |
+| Creating App 3 (`blank_client_template`) or App 5 (management) | 07, or 08 |
 
-Steps 2 to 10 are reserved for these entry points and are designed in steps work. A new application starts from three pre-project files that David supplies: a brief, scoping ideas, and constraints and notes. An existing application brings its own context, read from its two repositories.
+A new application with no prior context starts from three pre-project files that David fills in: a brief, scoping ideas, and constraints and notes. An existing application brings its own context, read from its repositories. Where each entry joins the pipeline is set in [[[pdlf:app-factory/pdlf-build-plan|PDLF Build Plan]]](C:/pdlf/app-factory/pdlf-build-plan.md), section 4.
 
 ### The pattern of every step
 
@@ -61,23 +63,23 @@ Why the same pattern everywhere: a pattern written once and enforced by the orch
 
 ### Phases and gates
 
-The pipeline runs in phases. Each phase ends at a gate: a hard stop where David approves a commitment before anything is built on it. The gates in the current step design are `domain-locked`, `concept-locked`, `wireframes-approved`, `architecture-verified`, `build-verified` (once per feature), `production-released` and `released`. Which gates exist, where they sit and why is settled in steps work; [[[pdlf:pdlf-library/docs-local/pdlf-built-report|Step Mapping]]](C:/pdlf/pdlf-library/docs-local/pdlf-built-report.md) holds the current list.
+The pipeline runs in phases. Each phase ends at a gate: a hard stop where David approves a commitment before anything is built on it. The gates in the current step design are `domain-locked`, `concept-locked`, `wireframes-approved`, `architecture-verified`, `build-verified` (once per feature), `production-released` and `released`. Where each gate sits and what it locks is in [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md).
 
 At a gate, the orchestrator presents a gate summary and waits for David's explicit yes or no. A passed gate is never silently undone; reopening it is a recorded decision. PDLF never passes a gate without David's approval, and Cupcake enforces this. The procedure is in [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md).
 
 ### Building features
 
-Features are built one at a time, in a loop. Each feature is built, tested at three levels, reviewed and passed through its own `build-verified` gate before the next feature begins. The three levels are:
+Features are built one at a time, in a loop. Each feature is built, tested, reviewed and passed through its own `build-verified` gate before the next feature begins. Its tests run in levels, each only after the one before passes:
 
 1. **Logic alone**: the feature's business rules, written without any Anvil code, tested on their own.
-2. **Connected**: the feature tested against the live Anvil application through Anvil Uplink, with a backup taken before and after.
-3. **By hand**: David tries the finished feature in the browser and signs it off.
+2. **Connected**: the feature tested against the Anvil application through Anvil Uplink, first on the Anvil App Server on David's computer, then on hosted App 1 only for what needs Anvil's hosted service, with a backup before and after a hosted run.
+3. **In the browser**: the feature tested by real flows, and David signs it off.
 
-Review and QA findings are always written to a file, including a statement when a review finds nothing; a claimed review that left no file did not happen. How PDLF tests is being designed as a subject of its own; until then, the current rules are in [[[pdlf:pdlf-library/policy-local/pol-testing-and-quality|Policy: Testing and Quality]]](C:/pdlf/pdlf-library/policy-local/pol-testing-and-quality.md).
+Review and QA findings are always written to a file, including a statement when a review finds nothing; a claimed review that left no file did not happen. How PDLF tests is set out in the test suite ([[[default:test-suite/ts-method|Test Suite — Method]]](C:/dev/project-library-global/test-suite/ts-method.md)), the global testing policy ([[[default:policy-global/pol-testing-and-quality|Policy — Testing and Quality]]](C:/dev/project-library-global/policy-global/pol-testing-and-quality.md)) and PDLF's own [[[pdlf:pdlf-library/policy-local/pol-testing-and-quality|Policy: Testing and Quality]]](C:/pdlf/pdlf-library/policy-local/pol-testing-and-quality.md), which binds the build loop.
 
 ### Finishing
 
-PDLF builds the whole five-app structure of the business in one pipeline. It releases the application to `master_template` by cloning App 1's approved code into App 2, which David performs as a gated step. It then builds the remaining apps of the set, including one verified client instance, the provisioning procedure, and the README every client instance must carry. The steps after Step 46 that build the remaining apps are added in steps work.
+PDLF builds the whole five-app structure of the business in one pipeline. It releases the application to `master_template`: David pushes App 1's approved, tagged release into App 2's repository, as a gated step. It then builds the remaining apps of the set, including one verified client instance, the provisioning procedure, and the README every client instance must carry. The steps after Step 46 that build the remaining apps are added in steps work.
 
 ## 3. The ledger
 
@@ -107,7 +109,7 @@ The rules are in [[[pdlf:pdlf-library/policy-local/pol-memory-and-knowledge|Poli
 
 ## 5. Skills
 
-PDLF uses skills from four families:
+PDLF uses skills from these families:
 
 | Family | Contributes |
 |---|---|
@@ -115,6 +117,8 @@ PDLF uses skills from four families:
 | Matt Pocock | Domain modelling (a locked shared vocabulary and decisions), turning the plan into tickets, triage of findings, architecture health. |
 | Magdoub wireframe | Structural wireframes first, then polished wireframes. |
 | Anvil (`anvil-agent-references`) | How Anvil itself works: server code, client forms, data models and the rest, issued by Anvil. |
+| Magnus919 | Secure software engineering and security audit methods. |
+| MyBizz | Sentinel's security review (`mb-sentinel-review`), diagram scoping (`mb-archify-scope`) with Archify, and close-out. |
 
 The skills catalog in mybizz-os ([[[mybizz-os-docs:os-reference-docs/skills-catalog|Skills Catalog]]](C:/mybizz/mybizz-os-docs/os-reference-docs/skills-catalog.md)) is the single register of which skills are installed. Which skill each step uses is decided in that step's design.
 

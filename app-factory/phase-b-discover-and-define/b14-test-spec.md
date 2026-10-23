@@ -1,13 +1,13 @@
 ---
 title: "b14-test-spec"
-updated: "2026-10-22"
+updated: "2026-10-23"
 doc-id: "mb-b0c6e8a1"
 ---
 # Step 14: CEO review — Test Specification
 
 **Proves:** The scope, data, regulatory position and exit are settled and fit Anvil and the Hobby plan.
 
-Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-library-global/test-suite/ts-catalogue.md). Evidence is saved in `{slug}-project-library\pdlf-outputs\b14\`.
+Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-library-global/test-suite/ts-catalogue.md) and, for the PR tests, in [[[pdlf:pdlf-library/specifications-local/spec-pdlf-process-tests]]](C:/pdlf/pdlf-library/specifications-local/spec-pdlf-process-tests.md). Evidence is saved in `{slug}-project-library\pdlf-outputs\b14\`.
 
 | Test | Applied here |
 |---|---|

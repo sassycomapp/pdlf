@@ -1,13 +1,13 @@
 ---
 title: "c21-test-spec"
-updated: "2026-10-22"
+updated: "2026-10-23"
 doc-id: "mb-e03e65ee"
 ---
 # Step 21: Concept sanity audit — Test Specification
 
 **Proves:** The concept has no contradictions, and `concept-locked` rests on passed tests.
 
-Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-library-global/test-suite/ts-catalogue.md). Evidence is saved in `{slug}-project-library\pdlf-outputs\c21\`.
+Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-library-global/test-suite/ts-catalogue.md) and, for the PR tests, in [[[pdlf:pdlf-library/specifications-local/spec-pdlf-process-tests]]](C:/pdlf/pdlf-library/specifications-local/spec-pdlf-process-tests.md). Evidence is saved in `{slug}-project-library\pdlf-outputs\c21\`.
 
 | Test | Applied here |
 |---|---|

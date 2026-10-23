@@ -1,7 +1,7 @@
 ---
 title: "pdlf-todo"
 doc-id: "mb-13a3fbc9"
-updated: "2026-10-22"
+updated: "2026-10-23"
 ---
 # Active PDLF To-Do List
 
@@ -25,31 +25,31 @@ The rule and its enforcement are set by [[[pdlf:pdlf-library/adr-local/global-co
 
 ### B4. End-to-end proof of the governed memory pipeline
 
-The governed memory pipeline is proven end to end, once, on the first real step run on `mb-5-pdlf`, the test project for PDLF.
+The governed memory pipeline is proven end to end, once, on the first real step run on `mb-3-cs` in Pass 2.
 
 ---
 
 ## C. Testing
 
-### C2. Prove the test suite on `mb-5-pdlf`
+### C2. Prove the test suite on `mb-3-cs`
 
-`mb-5-pdlf` holds no application until the Daily Intentions Tracker is built through PDLF. When it is, Step 11 runs PR-09 to prove the local runtime, both Uplink connections, the `TEST_` users with second factors and the mail catcher; each later step then runs its test specification. Correct any test, template or tool that does not work as written before another application relies on it.
+When `mb-3-cs` is pulled through PDLF in Pass 2, Step 11 runs PR-09 to prove the local runtime, both Uplink connections, the `TEST_` users with second factors and the mail catcher; each later step then runs its test specification. Correct any test, template or tool that does not work as written before another application relies on it.
 
 ---
 
 ## E. Skills and documentation
 
-### E1. Verify Pass 1 against the installed copies
+### E1. Verify the security skills and GBrain results against the steps
 
-Phases B and C were scoped from the issuers' published sources (GStack `c580561`, Matt Pocock `5beb35b`, Anvil `14b1967`, Magdoub wireframe at its GitHub head). Run the verification command from the Phase B session, compare the installed copies, the two Magnus919 skill files, the Anvil CLI and the GBrain results with Steps 01–46, and correct any step that does not match. Step 17 depends on the Anvil CLI (`anvil --json validate`) being installed.
+After Pass 1: compare the two Magnus919 security skill files installed in `~/.config/opencode/skills/`, and the GBrain results the steps were scoped from, with the steps that use them. Correct any step that does not match.
 
 ### E2. Anvil's `$app-testing` skill
 
 Anvil's `data-models` and `server-code` skills call `$app-testing`, and `anvil-yaml` calls `anvil db apply-schema --force`, to test against the agent's temporary database. `$app-testing` is not yet published in `anvil-agent-references`. When Anvil publishes it, it is assessed as a complement to the local runtime of the test suite, and examined whenever `anvil-agent-references` is updated.
 
-### E5. Pass 3: help and video documentation
+### E5. Help and video documentation
 
-Design the user help documentation and the video documentation, as one design job, before `mb-5-pdlf` reaches Phase E.
+Design the user help documentation and the video documentation, as one design job, before `mb-3-cs` reaches Phase E in Pass 2.
 
 ### E8. Cloudflare R2
 

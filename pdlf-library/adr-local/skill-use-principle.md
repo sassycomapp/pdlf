@@ -1,13 +1,12 @@
 ---
 title: "skill-use-principle"
 doc-id: "mb-5a21b240"
-updated: "2026-10-20"
+updated: "2026-10-23"
 ---
 # ADR — Skill-Use Principle
 
 **Status:** Accepted
 
-**Date:** 2026-10-20
 
 ---
 
@@ -21,7 +20,8 @@ PDLF builds Anvil.works applications through steps that use installed skills fro
 2. Before a skill is chosen, its own `SKILL.md` is read, and what it really does is recorded in the step's build plan.
 3. Every skill a step runs produces an output that a named later step, or the developer at a gate, uses. A skill whose output nothing uses is not run.
 4. Skills that overlap are compared on what each one actually does. Each is used where it serves best, and both may run in one step.
-5. Skills are chosen per step by the method in [[[pdlf:pdlf-library/docs-local/pdlf-skills-scoping-strategy|PDLF Skills Scoping Strategy]]](C:/pdlf/pdlf-library/docs-local/pdlf-skills-scoping-strategy.md).
+5. Skill sets are libraries, not pipelines. No skill's output is assumed to reach another skill on its own; each step routes every output deliberately to the step that uses it.
+6. Skills are chosen per step by the method in [[[pdlf:pdlf-library/docs-local/pdlf-skills-scoping-strategy|PDLF Skills Scoping Strategy]]](C:/pdlf/pdlf-library/docs-local/pdlf-skills-scoping-strategy.md).
 
 ## Consequences
 

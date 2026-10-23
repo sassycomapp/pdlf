@@ -1,13 +1,13 @@
 ---
 title: "e39-test-spec"
-updated: "2026-10-22"
+updated: "2026-10-23"
 doc-id: "mb-0bff5864"
 ---
 # Step 39: Triage — Test Specification
 
 **Proves:** Every finding is decided and `build-verified` rests on the whole suite passing.
 
-Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-library-global/test-suite/ts-catalogue.md). Evidence is saved in `{slug}-project-library\pdlf-outputs\e39\`.
+Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-library-global/test-suite/ts-catalogue.md) and, for the PR tests, in [[[pdlf:pdlf-library/specifications-local/spec-pdlf-process-tests]]](C:/pdlf/pdlf-library/specifications-local/spec-pdlf-process-tests.md). Evidence is saved in `{slug}-project-library\pdlf-outputs\e39\`.
 
 | Test | Applied here |
 |---|---|

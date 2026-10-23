@@ -46,16 +46,4 @@ Every feature cycle goes through `/design-review` (visual), `/review` (structura
 (functional + regression) before its `build-verified` gate. These are GStack skills — they
 drive a headless browser for live-site testing, which OpenCode cannot do directly.
 
-## From `pdlf-todo.md`: item C1
-
-### C1. Integrate Suite A and Suite B into Steps 35A, 36, 37, 38, 39, and relook the testing suite
-
-Both testing checklists ([[[pdlf:pdlf-library/templates-local/chk-pdlf-self-test|Chk Pdlf Self Test]]](C:/pdlf/pdlf-library/templates-local/chk-pdlf-self-test.md) exists; the earlier
-`chk-anvil-app-testing.md` was retired and is no longer on disk anywhere —
-verified 2026-09-18) are referenced from [[[pdlf:pdlf-library/policy-local/pol-testing-and-quality|pol-testing-and-quality]]](C:/pdlf/pdlf-library/policy-local/pol-testing-and-quality.md), but
-their checks are not yet built into the actual step files that do
-testing work. Deferred to Phase E, when those step files are rebuilt.
-
 This step's testing is its test specification, drawn from the test suite in `C:\dev\project-library-global\test-suite\`.
-
-> **Changed since:** The earlier lists carried the Suite A/B integration and the testing relook as two separate items; they are one job and are merged here.

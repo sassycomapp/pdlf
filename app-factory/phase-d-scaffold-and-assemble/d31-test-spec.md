@@ -1,13 +1,13 @@
 ---
 title: "d31-test-spec"
-updated: "2026-10-22"
+updated: "2026-10-23"
 doc-id: "mb-c262a8da"
 ---
 # Step 31: Scaffold planning — Test Specification
 
 **Proves:** Every stub is planned with its module, seam, access rule and test, and the scanner's settings match the plan.
 
-Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-library-global/test-suite/ts-catalogue.md). Evidence is saved in `{slug}-project-library\pdlf-outputs\d31\`.
+Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-library-global/test-suite/ts-catalogue.md) and, for the PR tests, in [[[pdlf:pdlf-library/specifications-local/spec-pdlf-process-tests]]](C:/pdlf/pdlf-library/specifications-local/spec-pdlf-process-tests.md). Evidence is saved in `{slug}-project-library\pdlf-outputs\d31\`.
 
 | Test | Applied here |
 |---|---|

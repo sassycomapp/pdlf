@@ -1,7 +1,7 @@
 ---
 title: "c26-reference"
 doc-id: "mb-16a8e604"
-updated: "2026-10-12"
+updated: "2026-10-23"
 ---
 
 ## From `26-wireframe-phase-2.md`
@@ -45,7 +45,7 @@ context-collection, adds Clean and Polished color variants.
 
 ## Reference Files
 
-| [[[pdlf:pdlf-library/templates-local/isa-template-v2\|Isa Template V2]]](C:/pdlf/pdlf-library/templates-local/isa-template-v2.md) | Steps 26, 35, 38, 46 |
+| [[[pdlf:pdlf-library/templates-local/isa-template\|Isa Template V2]]](C:/pdlf/pdlf-library/templates-local/isa-template.md) | Steps 26, 35, 38, 46 |
 | Standards Library | Steps 22/26 (UI) |
 
 ---

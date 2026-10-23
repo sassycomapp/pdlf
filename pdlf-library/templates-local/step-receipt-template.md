@@ -1,7 +1,7 @@
 ---
 title: "step-receipt-template"
 doc-id: "mb-c0c99119"
-updated: "2026-10-13"
+updated: "2026-10-23"
 ---
 # PDLF Step Receipt Template
 
@@ -13,7 +13,7 @@ receipt.
 **Where it's shown:** Inline, in the conversation, at the end of every step — this is what you
 review before deciding whether to say "continue."
 
-**Where it's also saved:** As a file, `{slug}-project-library\pdlf-outputs\{step}\{slug}-{step}-receipt.md`, so
+**Where it's also saved:** As a file, `{slug}-project-library\pdlf-outputs\{step}\{slug}-{step}-{run}-receipt.md`, so
 the full run has a readable, git-tracked history alongside the queryable ledger.
 
 ---
@@ -103,9 +103,9 @@ This is what a real receipt would look like for a gate step (Step 16, `domain-mo
 mode) — filled in with plausible values, so you can see the shape before it's wired up for real.
 
 ```markdown
-# Step Receipt — mb5pdlf — Step 16
+# Step Receipt — mb-3-cs — Step 16
 
-Phase: A   |   Type: skill   |   Status: complete
+Phase: B   |   Type: skill   |   Status: complete
 Started: 2026-07-04 14:02:11+00   |   Completed: 2026-07-04 14:09:47+00
 
 ## What was invoked
@@ -160,4 +160,4 @@ Type "continue" to proceed to the next step, or raise anything you want changed 
 
 *Step Receipt template version 1.0. Consumes: `steps`, `gates`, `bft_records`, `deviations`
 tables from the `pdlf` Postgres database. Produces: inline chat output +
-`{slug}-project-library\pdlf-outputs\{step}\{slug}-{step}-receipt.md`.*
+`{slug}-project-library\pdlf-outputs\{step}\{slug}-{step}-{run}-receipt.md`.*

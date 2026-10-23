@@ -1,19 +1,15 @@
 ---
-title: "isa-template-v2"
+title: "isa-template"
 doc-id: "mb-29fc5945"
-updated: "2026-10-10"
+updated: "2026-10-23"
 ---
-# ISA — Ideal State Artifact (v2)
+# ISA — Ideal State Artifact
 
-> **What this is:** The living done-definition for a project. Created at Step 16, updated
-> at the LEARN junction, and queried at the start of the next initiative. This is the north-star
-> artifact that survives across all junctions.
+> **What this is:** the project's definition of done. It is created at Step 16, updated at Steps 26, 35, 39 and 46, and read at the start of the next build.
 >
-> **Where this lives:** `dev-{slug}\{slug}-project-library\pdlf\isa.md` (per-project, version-controlled)
+> **Where it lives:** `{slug}-project-library\docs-local\isa.md`.
 >
-> **What changed in v2:** Nothing in sections 1–6, 8–11 — they stay hand-authored exactly as
-> before. Only sections 7 and 12 changed: they are now generated from the `isc` table in the
-> `pdlf` Postgres database rather than hand-edited. See the note at the top of each.
+> Sections 7 and 12 are generated from the `isc` table in the `pdlf` database; every other section is written by hand.
 
 ---
 
@@ -69,7 +65,7 @@ updated: "2026-10-10"
 
 ## 8. Test Strategy
 
-*How will the ISCs be verified?*
+*The application's test plan (Step 15) names the tests that prove each ISC. Name the test plan here.*
 
 <!-- fill in -->
 
@@ -83,21 +79,13 @@ updated: "2026-10-10"
 
 ## 10. Decisions
 
-*Key architectural and design decisions, recorded as they're made.*
+*Each key architectural or design decision, with its ADR in `adr-local\`.*
 
-| Decision | Rationale | ADR | Date |
-|----------|-----------|-----|------|
-| | | | |
+| Decision | ADR |
+|----------|-----|
+| | |
 
-## 11. Changelog
-
-*Append-only log of ISA changes.*
-
-| Date | Change | Step |
-|------|--------|------|
-| | ISA created | |
-
-## 12. Verification
+## 11. Verification
 
 > **GENERATED — do not hand-edit this table.** This section is regenerated on request from the
 > `isc` table, showing each ISC's current `status` and `evidence` fields. Filled progressively as
@@ -106,8 +94,3 @@ updated: "2026-10-10"
 | ISC | Verdict | Evidence |
 |-----|---------|----------|
 | <!-- isc_number --> | <!-- status --> | <!-- evidence --> |
-
----
-
-*ISA template version 2.0. Source: LifeOS ISA concept, adapted for pdlf. Sections 7 and 12
-generated from the `isc` table in the `pdlf` Postgres database.*

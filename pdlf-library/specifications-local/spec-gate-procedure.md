@@ -1,7 +1,7 @@
 ---
 title: "spec-gate-procedure"
 doc-id: "mb-e1c94b00"
-updated: "2026-10-13"
+updated: "2026-10-23"
 ---
 # PDLF Gate Procedure
 
@@ -50,7 +50,19 @@ The agent does not proceed past a gate without explicit approval:
 
 ## The Seven Gates
 
-Each gate, the step it follows and what it locks are recorded in that step's config (`{letter}{number}-config.md`). The gates currently sit after Steps 16, 21, 26, 34, 39, 44 and 45 with 46.
+| Gate | At step | What it locks |
+|---|---|---|
+| `domain-locked` | 16 | The domain model and vocabulary |
+| `concept-locked` | 21 | The concept, after a cross-document coherence audit; no feature is added after it without the gate being reopened |
+| `wireframes-approved` | 26 | The wireframes and screens |
+| `architecture-verified` | 34 | The physical Anvil build (Data Tables, forms, scaffolding) matches the locked architecture, before any code is written |
+| `build-verified` | 39 | The feature, after remediation and its retest |
+| `production-released` | 44 | The production release |
+| `released` | 45 and 46 jointly | The release in service |
+
+Each gate's detail is recorded in its step's config (`{letter}{number}-config.md`).
+
+Why these gates: scope drift and architecture drift are the recurring failures. `concept-locked` stops features entering after design is settled, and `architecture-verified` stops the built Anvil app diverging from the agreed architecture before code is written.
 
 ---
 

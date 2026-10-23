@@ -1,7 +1,7 @@
 ---
 title: "e38-reference"
 doc-id: "mb-1c768333"
-updated: "2026-10-12"
+updated: "2026-10-23"
 ---
 
 ## From `38-qa.md`
@@ -52,7 +52,7 @@ not assumed.
 
 ## Reference Files
 
-| [[[pdlf:pdlf-library/templates-local/isa-template-v2\|ISA Template v2]]](C:/pdlf/pdlf-library/templates-local/isa-template-v2.md) | Steps 26, 35, 39, 46 |
+| [[[pdlf:pdlf-library/templates-local/isa-template\|ISA Template v2]]](C:/pdlf/pdlf-library/templates-local/isa-template.md) | Steps 26, 35, 39, 46 |
 
 ---
 

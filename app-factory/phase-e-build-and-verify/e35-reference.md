@@ -1,7 +1,7 @@
 ---
 title: "e35-reference"
 doc-id: "mb-a32fbe97"
-updated: "2026-10-12"
+updated: "2026-10-23"
 ---
 
 ## From `35-build-loop.md`
@@ -83,7 +83,7 @@ Steps 14–15 jointly produce the test plan consumed by Steps 35 and 38.
 ## Reference Files
 
 | `policy-local/pol-testing-and-quality.md` | Step 35 (the build loop) |
-| [[[pdlf:pdlf-library/templates-local/isa-template-v2\|ISA Template v2]]](C:/pdlf/pdlf-library/templates-local/isa-template-v2.md) | Steps 26, 35, 38, 46 |
+| [[[pdlf:pdlf-library/templates-local/isa-template\|ISA Template v2]]](C:/pdlf/pdlf-library/templates-local/isa-template.md) | Steps 26, 35, 38, 46 |
 | Standards Library | Step 35 (testing methodology) |
 
 ---

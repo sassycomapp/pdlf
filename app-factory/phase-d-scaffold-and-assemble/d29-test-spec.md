@@ -1,13 +1,13 @@
 ---
 title: "d29-test-spec"
-updated: "2026-10-22"
+updated: "2026-10-23"
 doc-id: "mb-e4e104aa"
 ---
 # Step 29: Build UI forms — Test Specification
 
 **Proves:** Every approved screen has a form that validates and obeys the UI rules, and the schema is unchanged.
 
-Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-library-global/test-suite/ts-catalogue.md). Evidence is saved in `{slug}-project-library\pdlf-outputs\d29\`.
+Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-library-global/test-suite/ts-catalogue.md) and, for the PR tests, in [[[pdlf:pdlf-library/specifications-local/spec-pdlf-process-tests]]](C:/pdlf/pdlf-library/specifications-local/spec-pdlf-process-tests.md). Evidence is saved in `{slug}-project-library\pdlf-outputs\d29\`.
 
 | Test | Applied here |
 |---|---|

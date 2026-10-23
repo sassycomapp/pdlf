@@ -1,7 +1,7 @@
 ---
 title: "e40-config"
 doc-id: "mb-8575eede"
-updated: "2026-10-12"
+updated: "2026-10-23"
 ---
 
 ## From `step-mapping.md`: this step's rows
@@ -28,7 +28,7 @@ see [[[makepdlf-project-library:stepwise/run-plan|Run Plan]]](C:/dev/dev-makepdl
 
 | Step | Name | Type | BFT | Rationale |
 |---|---|---|---|---|
-| 40 | improve-codebase-architecture | Skill (optional, per feature cycle) | **Light** | Read-only report, no code touched, no gate here (moved to 39 — see [[[pdlf:pdlf-library/adr-local/two-gate-extension]]](C:/pdlf/pdlf-library/adr-local/two-gate-extension.md)). Optional recommendation, not a judgment-heavy step in itself. |
+| 40 | improve-codebase-architecture | Skill (optional, per feature cycle) | **Light** | Read-only report, no code touched, no gate here. Optional recommendation, not a judgment-heavy step in itself. |
 
 ## From `matt-pocock-skills-local-reference.md`: skill used
 

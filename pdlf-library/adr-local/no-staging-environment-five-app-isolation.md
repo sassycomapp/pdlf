@@ -1,97 +1,48 @@
 ---
 title: "adr-no-staging-environment-five-app-isolation"
 doc-id: "mb-5b1e8fd8"
-updated: "2026-10-22"
+updated: "2026-10-23"
 ---
-# ADR — PDLF Does Not Need a Staging/Production Environment Split
+# ADR — PDLF Has No Staging/Production Environment Split
 
 **Status:** Accepted
-
-**Date:** 2026-07-18
-
-**Source:** [[[mb-3-cs-project-library:docs-local/platform-architecture-narrative|platform-architecture-narrative]]](C:/dev/dev-mb-3-cs/mb-3-cs-project-library/docs-local/platform-architecture-narrative.md) (mb-3-cs project library) § 11, The Five-App Structure.
 
 ---
 
 ## Context
 
-Anvil natively supports "Deployment Environments" — a mechanism where a single app can
-have multiple environments (e.g. Development, Staging, Production), each tracking a
-different branch or commit, each with its own URL and its own Data Tables. PDLF's
-original Phase F design (Steps 42–44) was modeled on this generic mechanism: publish to
-a staging environment, run integration/smoke tests there, then promote to a production
-environment via a gate.
-
-The question this ADR resolves: does PDLF actually need this staging/production split?
-Raised because the developer's working style is single-branch, single-environment —
-work directly on `master`/`main`, one click to publish, whatever is pushed goes live
-immediately. On its face this looked like it traded safety for simplicity. It does not.
-The generic staging/production model does not describe how this platform (Mybizz,
-built on the Five-App Structure) actually works.
+Anvil supports Deployment Environments: one app with several environments (for example Development, Staging and Production), each tracking a different branch or commit, each with its own URL and Data Tables. Every client starts on Anvil's Hobby plan, which gives each app one environment and one database. Mybizz is not built as one app with several environments; it is five separate Anvil apps with a dependency chain between them.
 
 ## The Five-App Structure — the part that matters here
 
-The platform is not one Anvil app with multiple environments. It is five separate Anvil
-apps with a dependency chain between them:
-
-| App | Role | Ever seen by real users? |
+| App | Role | Seen by real users? |
 |---|---|---|
-| App 1 — `mb-3-cs` (or equivalent, e.g. `mb4ecom`) | Development workspace. All feature development happens here. | **No.** Explicit key rule: "This is the authoring environment, not the publishing environment. It is never a dependency for any client instance." |
-| App 2 — `master_template` | The sole source of server logic and UI for every client. Receives App 1's tagged releases, pushed into its repository by the developer at Step 42. | No — clients depend on it, but it is never given to a client directly. |
-| App 3 — `blank_client_template` | Clone source for provisioning new clients. Updated only on schema change. | No. |
-| App 4 — `[client-name]-cs` | One per paying client. Depends on App 2. This is the only app real users ever touch. | **Yes — this is production, for real.** |
-| App 5 — `Mybizz_management` | Platform-operator tooling. Deferred, post-launch. | No (operator-only). |
+| App 1 — `{slug}-app1` | Development workspace. All feature development happens here. It is never a dependency of any client instance. | **No.** |
+| App 2 — `master_template` | The sole source of server logic and UI for every client. Receives App 1's tagged releases, pushed into its repository by the developer at Step 42. | No: clients depend on it, but it is never given to a client. |
+| App 3 — `blank_client_template` | The clone source for provisioning new clients. | No. |
+| App 4 — `[client-name]-{vertical}` | One per paying client, on the client's own Anvil account. Depends on App 2. The only app real users touch. | **Yes: this is production.** |
+| App 5 — `{Product}_management` | Platform-operator tooling. | No (operator only). |
 
-Every build step works inside App 1. Every push a build step makes lands in App 1's code
-repo. App 1 is structurally excluded from ever being
-a dependency for a client instance — this isn't a policy PDLF has to enforce, it's a
-property of how the platform's apps are wired together.
+Every build step works inside App 1, and every push a build step makes lands in App 1's repository. App 1 is structurally never a dependency of a client instance; this is how the apps are wired, not a policy PDLF must enforce.
 
-## Why this settles the question
+## Why there is no staging environment
 
-Real users are only ever exposed to App 4, and App 4 only ever changes when App 2 updates,
-and App 2 only updates when the developer deliberately pushes App 1's tagged release into
-App 2's repository at Step 42, after approving the release. No agent performs that action;
-it is the developer's alone.
+Real users see only App 4. App 4 changes only when App 2 changes, and App 2 changes only when the developer pushes App 1's approved, tagged release into App 2's repository at Step 42. No agent performs that action.
 
-This means the risk a staging environment exists to prevent — a broken push reaching a
-live user before anyone reviews it — cannot happen through PDLF's own pipeline, at all,
-regardless of whether the app already has paying clients (like `mb4ecom`) or is brand
-new. This is not a timing argument ("there are no users yet, for now"). It is a
-structural isolation the platform's own architecture enforces, permanently, for as long
-as only the developer releases into App 2.
+So the risk a staging environment exists to prevent — a broken push reaching a live user before anyone reviews it — cannot arise through PDLF's pipeline, whether or not the application already has paying clients. This is structural isolation, permanent for as long as only the developer releases into App 2.
 
-## The developer's mitigation strategy is correctly scoped as a result
+The risk PDLF's build process does carry is that something goes wrong locally and work is lost or hard to recover. That is covered by:
 
-Given the above, the residual risk PDLF's build process actually carries is not
-"broken code reaches a user" — it's "something goes wrong locally and work is lost or
-hard to recover." That risk is fully covered by:
+1. Anvil's synchronisation of App 1 with GitHub, and every commit pushed.
+2. Backups of App 1 around every test run against hosted App 1 (the testing policy).
+3. Backups of every client instance before a release (test RL-02).
 
-1. Anvil's automatic backup of App 1 to GitHub (protects the code repo).
-2. Manual full-app clone backups of App 1 taken between steps (protects the code repo).
-3. Manual full local-disk backups of both the code repo and the docs repo, taken between
-   steps (protects both repos).
-
-These three, taken together, are correctly matched to the actual risk. A staging
-environment would protect against a different risk — live-user exposure — that doesn't
-exist in this architecture. Adding one would be complexity without a corresponding
-safety gain, which fails the developer's own standing test: simple, secure, robust, fit
-for purpose.
+A staging environment would add complexity against a risk this architecture does not have, which fails the credo: simple, secure, robust, fit for purpose.
 
 ## Decision
 
-PDLF does not model a staging/production environment split. Build steps work only
-within the development-workspace app (App 1) and never publish to anything a real user can
-reach. The release that exposes changes to clients is Step 42: the developer pushes App 1's
-tagged release into App 2. Testing before release runs on the Anvil App Server on the
-developer's computer and on a test client instance.
+PDLF has no staging/production environment split. Build steps work only in App 1 and never publish to anything a real user can reach. The release that exposes changes to clients is Step 42: the developer pushes App 1's tagged release into App 2. Testing before release runs on the Anvil App Server on the developer's computer and on the test client instance.
 
 ## Consequences
 
-- Steps 42, 42A, 43 and 44 are built around the release into App 2: Step 42 releases, Step 42A tests every feature on App 2 as released, Step 43 checks the test client instance on the new release, and at Step 44 the developer confirms the release, on the results of Steps 41 to 43 (the `production-released` gate).
-- This ADR is the reference to cite the next time the staging/environment question comes
-  up, rather than re-deriving the argument from scratch.
-- Applies specifically to platforms built on this Five-App dependency model. If PDLF is
-  ever pointed at a project that is a single Anvil app with no dependency-based client
-  isolation, this ADR's conclusion does not automatically carry over — the staging
-  question would need to be re-asked for that project's actual architecture.
+- Steps 42, 42A, 43 and 44 are built around the release into App 2: Step 42 releases, Step 42A tests every feature on App 2 as released, Step 43 checks the test client instance on the new release, and at Step 44 the developer confirms the release on the results of Steps 41 to 43 (the `production-released` gate).

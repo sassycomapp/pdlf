@@ -1,7 +1,7 @@
 ---
 title: "pdlf-build-plan"
 doc-id: "mb-64817b10"
-updated: "2026-10-22"
+updated: "2026-10-23"
 ---
 # PDLF Build Plan
 
@@ -9,7 +9,7 @@ updated: "2026-10-22"
 
 ### Purpose of this document
 
-This is the system build plan for PDLF. It is the single forward-looking document for the PDLF system as a whole: what PDLF is, what it must be, the rules every step is built to, and the decisions that span more than one step. It absorbed the former statement of intent, which is retired. Where any other PDLF document disagrees with this plan, this plan states the intent and the other document is corrected.
+This is the system build plan for PDLF. It is the single forward-looking document for the PDLF system as a whole: what PDLF is, what it must be, the rules every step is built to, and the decisions that span more than one step. Where any other PDLF document disagrees with this plan, this plan states the intent and the other document is corrected.
 
 This plan is a work in progress. PDLF is in its discovery and conceptualisation stage, and this plan changes whenever a better idea replaces an earlier one. An earlier agreement is never a reason to keep something that a better one has replaced.
 
@@ -21,7 +21,7 @@ The work proceeds in three stages. First, PDLF is conceptualised as far as possi
 
 PDLF, the Project Development Lifecycle Framework, is an application development system. It builds Anvil.works applications.
 
-PDLF is a system, not a project. It has no code repository of its own. It lives at `C:\pdlf` (WSL path `/mnt/c/pdlf`), in the private GitHub repository `sassycomapp/pdlf`, and its documents form the GBrain source `pdlf`, which covers the whole of `C:\pdlf`. All work on PDLF happens there. There is no workshop and no second copy.
+PDLF is a system, not a project. It has no code repository of its own. It lives at `C:\pdlf` (WSL path `/mnt/c/pdlf`), in the public GitHub repository `sassycomapp/pdlf`, and its documents form the GBrain source `pdlf`, which covers the whole of `C:\pdlf`. All work on PDLF happens there. There is no workshop and no second copy.
 
 PDLF runs on mybizz-os, the operating system that supplies its memory, governance, documentation tools and close-out. The two are parts of one package: mybizz-os keeps the environment sound, and PDLF uses that environment to build applications.
 
@@ -35,11 +35,13 @@ PDLF is built and run by a team of three:
 | Claude (Anthropic, web interface) | Architect and engineer. Designs PDLF and resolves its technical questions. |
 | OpenCode and its models | The worker. Carries out the steps. |
 
+Claude has no access to David's computer: David runs every command on it. OpenCode works inside fences: Cupcake, the policy engine of mybizz-os, allows or blocks every OpenCode tool call against compiled rules.
+
 David is a project manager acting as developer. He reads code but is not a programmer, so he depends on PDLF and its agents to make the code correct. PDLF therefore carries the responsibility for correct code, and it explains every decision to David in plain language, so that he stays in control without having to judge code himself.
 
 The credo for PDLF, and for everything in it, is: **simple, secure, robust, fit for purpose.** Nothing is kept for ceremony, and nothing is kept for posterity.
 
-**What a project is.** A project is one Mybizz business that PDLF develops. Each project lives in its own folder at `C:\dev\dev-{slug}\`, where the slug is the business's short name (for example `mb-3-cs`, `mb-4-ecom`, `mb-5-pdlf`). Every project folder holds the same scaffold:
+**What a project is.** A project is one Mybizz business that PDLF develops. Each project lives in its own folder at `C:\dev\dev-{slug}\`, where the slug is the business's short name (for example `mb-3-cs`, `mb-4-ecom`). Every project folder holds the same scaffold:
 
 ```
 C:\dev\dev-{slug}\
@@ -56,7 +58,7 @@ Each code repository is one Anvil application and synchronises with Anvil throug
 
 No project data is stored in PDLF; all project data is stored in the project folders at `C:\dev\`.
 
-**Step outputs.** Every project library holds a folder `pdlf-outputs\`, with one folder per step, named as in the app factory: `a01\` to `a10\`, `b11\` to `b16\`, `c17\` to `c28\`, `d29\` to `d34\`, `e35\` to `e40b\` and `f41\` to `f46\`, including `b13\`, `c24\` and `c25\`. Everything a step produces for that project is kept in its folder, whichever skill produced it: the step's receipt, a copy of every artifact a skill saved elsewhere (GStack, for example, saves in its own place), and the artifacts of skills that are told where to save (such as Archify, the Magdoub wireframe skills and Sentinel), which save there directly. Each file name begins with the slug, the step and the run (`app` for the whole application, or the feature's short name), for example `mb-5-pdlf-b15-app-test-plan.md`, so the step and the run that produced it are clear and a feature never overwrites the application's files. Step 11 creates the folders for a new project.
+**Step outputs.** Every project library holds a folder `pdlf-outputs\`, with one folder per step, named as in the app factory: `a01\` to `a10\`, `b11\` to `b16\`, `c17\` to `c28\`, `d29\` to `d34\`, `e35\` to `e40b\` and `f41\` to `f46\`, including `b13\`, `c24\` and `c25\`. Everything a step produces for that project is kept in its folder, whichever skill produced it: the step's receipt, a copy of every artifact a skill saved elsewhere (GStack, for example, saves in its own place), and the artifacts of skills that are told where to save (such as Archify, the Magdoub wireframe skills and Sentinel), which save there directly. Each file name begins with the slug, the step and the run (`app` for the whole application, or the feature's short name), for example `mb-3-cs-b15-app-test-plan.md`, so the step and the run that produced it are clear and a feature never overwrites the application's files. Step 11 creates the folders for a new project.
 
 The business slug is the business's short name as recorded at Step 11, all lowercase, with its hyphens kept. Each app's folder and repository is named `{slug}-app{n}`, with no descriptive word. App 4 lives on the client's own Anvil account and has no folder. Application code is never a GBrain source: agents read it directly from the app folder.
 
@@ -80,7 +82,7 @@ PDLF builds many Anvil applications, each a separate business of Mybizz. Every b
 
 | App | Name | What it is |
 |---|---|---|
-| App 1 | `{dev-workspace}` | The development workspace. All feature work happens here. It is never a dependency of any client instance. |
+| App 1 | `{slug}-app1` | The development workspace. All feature work happens here. It is never a dependency of any client instance. |
 | App 2 | `master_template` | The published dependency. The sole source of all server-side logic and UI forms for every client instance. |
 | App 3 | `blank_client_template` | The provisioning clone source. The sole source from which new client instances are cloned. |
 | App 4 | `[client-name]-{vertical}` | One per paying client: a dedicated, isolated app instance. |
@@ -88,7 +90,7 @@ PDLF builds many Anvil applications, each a separate business of Mybizz. Every b
 
 **Which apps PDLF develops.** PDLF develops Apps 1, 3 and 5. App 2 and App 4 are produced from them, never developed directly.
 
-**App 2 is always a clone of App 1.** It has nothing of its own. It exists so that work in progress on App 1 never reaches clients. Only when David is satisfied with work in App 1 is it released, by cloning App 1's approved code into App 2, as a gated step David approves. That release is a system-wide update, and it reaches every client at once, because every client instance depends on App 2. There is no separate staging or production environment. App 1's documents, in the project library, cover App 2.
+**App 2 always holds a release of App 1.** It has nothing of its own. It exists so that work in progress on App 1 never reaches clients. Only when David is satisfied with work in App 1 is it released: David pushes App 1's approved, tagged release into App 2's repository, as a gated step (Step 42). That release is a system-wide update, and it reaches every client at once, because every client instance depends on App 2. There is no separate staging or production environment. App 1's documents, in the project library, cover App 2.
 
 **App 4 is a clone of App 3.** Every client has its own Anvil account. David owns every one of these accounts, but each account bears the name of the client's business: for a client whose business is `marysyoga.com`, App 3 is cloned into the `marysyoga.com` account, and that instance is the client's App 4. The only thing unique to a client instance is that client's own data, in its own database and data tables, so App 4 has nothing to document and no folder in the project. PDLF builds and verifies one instance, the provisioning procedure, and the README every instance must carry. That first instance is the first real client, also used as the test client. Provisioning each later client follows the procedure as normal business operations, outside the pipeline.
 
@@ -108,9 +110,9 @@ PDLF builds many Anvil applications, each a separate business of Mybizz. Every b
 
 **Design.** Every application uses Anvil's Material 3 theme and David's design standards in `project-library-global`. Design moves in approved stages: structural wireframes, then polished wireframes, then screens. David approves each stage before the next begins.
 
-**Quality.** Every feature is built, tested and signed off by David before the next feature begins. Each feature is tested at three levels: its logic on its own, then connected to the live Anvil application, then by hand in the browser. The findings of every review and every quality check are written to a file; a review that left no file did not happen. How PDLF tests is designed as a component of its own (section 9).
+**Quality.** Every feature is built, tested and signed off by David before the next feature begins. Each feature is tested as the test suite sets out ([[[default:test-suite/ts-method|Test Suite — Method]]](C:/dev/project-library-global/test-suite/ts-method.md)), which includes the testing and quality methodology: its logic on its own, then connected to the Anvil application, then by hand in the browser, each level only after the one before passes. Every step proves itself through its own test specification. The findings of every review and every quality check are written to a file; a review that left no file did not happen.
 
-**First builds.** A small test application, the Daily Intentions Tracker, goes through PDLF first, in `mb-5-pdlf`, so that PDLF's own faults are found cheaply, before they can damage a real business. It can be extended if it proves too small to test PDLF fully. `mb-3-cs` (Mybizz CS, consulting and services) follows, then the other Mybizz businesses, such as `mb-4-ecom` (e-commerce).
+**First builds.** `mb-3-cs` (Mybizz CS, consulting and services) is the first application pulled through PDLF, from beginning to end, to prove PDLF; David backs it up first. The other Mybizz businesses, such as `mb-4-ecom` (e-commerce), follow.
 
 ### 4. Entry points
 
@@ -170,6 +172,8 @@ PDLF runs inside OpenCode, through the OpenCode Build agent and its model.
 - `project-library-global` (`C:\dev\project-library-global`) holds what a good application is: Anvil knowledge, standards, specifications and decisions that apply to every application. It is project-agnostic and permanent, and it is the standard every application is built to.
 - An application's own documentation repository (its `docs-local`) holds what is true of that one application only.
 
+**Documentation linking.** A document links to every document it depends on, written by agents as `[[name]]` and converted by the `mb-doc-check` commit hook to the standard form `[[[source:page]]](path)`. GBrain indexes those links, so a working agent follows them to the underlying source.
+
 The one deliberate exception is nomenclature. All names are defined in a single document, [[[default:specifications-global/spec-nomenclature|Spec: Nomenclature]]](C:/dev/project-library-global/specifications-global/spec-nomenclature.md): one part for what is common to every application and system, and one for PDLF. The terms of one application are defined in that application's own `docs-local\CONTEXT.md`, written at Step 16. A term is defined once.
 
 **Anvil compliance is the central tenet.** All development is fully compliant with Anvil.works: Anvil's standards, specifications, principles and methods are applied throughout every application. The two principal sources of reference for all application development are `C:\mybizz\anvil-agent-references` (the skills issued directly by Anvil, which are how agents apply Anvil correctly) and `C:\dev\project-library-global\anvil-docs` (a compilation of Anvil's own documentation, without its images). They are the principal sources, not the only ones. Where two Anvil sources conflict, the conflict is raised to David, who resolves it; neither source silently wins. Standards and instructions form one consistent whole: a conflict between them is a defect, fixed at its source.
@@ -180,13 +184,13 @@ The one deliberate exception is nomenclature. All names are defined in a single 
 
 **Learning and self-healing.** PDLF must never learn the same lesson twice or repeat a mistake. Each lesson is written once, into the source that will actually be read next time: a lesson about Anvil or about good applications goes into `project-library-global`; a lesson about how PDLF works goes into the step, rule or specification concerned; a lesson about one application goes into that application's own documentation. When a step fails, or David corrects something, PDLF proposes the fix to that source and David approves it. Every lesson is committed to GBrain through the memory governor and `mb-submit-memory`. How each step learns is part of that step's design. Why: a lesson kept in a log is a lesson nobody reads.
 
-**The ledger.** PDLF keeps one database record of every build: database `pdlf` on the Windows PostgreSQL 15 server, port 5433. It holds seven tables: projects, steps, gates, deviations, BFT records, ISC records and triage findings. The ledger is control, not ceremony: it lets the orchestrator refuse to pass a gate that was never approved, and lets a build resume or re-enter where it left off. Its connection details live in `.env`, which never leaves the computer. Detail: [[[pdlf:pdlf-library/specifications-local/spec-postgres-ledger|Spec: Postgres Ledger]]](C:/pdlf/pdlf-library/specifications-local/spec-postgres-ledger.md). An application built by PDLF needs no judgement trail of its own: the ledger records every gate and deviation, and every step explains itself in plain language.
+**The ledger.** PDLF keeps one database record of every build: database `pdlf` on the Windows PostgreSQL 15 server, port 5433. It holds seven tables: projects, steps, gates, deviations, BFT records, ISC records and triage findings. The ledger is control, not ceremony: it lets the orchestrator refuse to pass a gate that was never approved, and lets a build resume or re-enter where it left off. Its connection details live in `.env`, which never leaves the computer. Detail: [[[pdlf:pdlf-library/specifications-local/spec-postgres-ledger|Spec: Postgres Ledger]]](C:/pdlf/pdlf-library/specifications-local/spec-postgres-ledger.md).
 
 **Close-out and commits.** Close-out is the mybizz-os skill `/mb-close-out`, run when David asks for it. Only David commits and pushes, using `commit-all`; agents never do.
 
 **What PDLF refuses.** Ceremony: reports and logs nobody reads, duplicate records, steps that exist only to look careful (stops and checks are not ceremony; they are how David controls the build). Unearned skills. Silent decisions. Shared databases.
 
-**What success means.** PDLF succeeds when it is perpetually learning and self-healing, so that the development lifecycle is stable and dependable; when Anvil's standards are applied throughout every application it builds; and when it consists only of the skills that best serve its objectives. These claims are earned by real builds, starting with the test application, not by design alone.
+**What success means.** PDLF succeeds when it is perpetually learning and self-healing, so that the development lifecycle is stable and dependable; when Anvil's standards are applied throughout every application it builds; and when it consists only of the skills that best serve its objectives. These claims are earned by real builds, starting with `mb-3-cs`, not by design alone. For David, using it, success is five things: agent integrity (the agent never acts first and explains afterwards; every decision has a reason recorded when it is made); build integrity (what is built matches what was agreed, and scope never drifts silently); continuity (a session can stop at any step and resume later with nothing lost); contiguity (every step's output is the next step's input, so no decision falls through a gap); and ease of use for a developer who relies on the agent's technical judgement.
 
 ### 7. The documents and their life cycle
 
@@ -195,11 +199,11 @@ Every PDLF document has one job, and a fact lives in only one of them.
 - **This system build plan** holds what applies to PDLF as a whole. It is forward-looking.
 - **The set of seven.** Every step has seven files in its phase folder, named with the phase letter and step number (here Step 11): `b11-build-plan.md`, `b11-test-spec.md`, `b11-config.md`, `b11-reference.md`, `b11-explainer.md`, `b11-decision-tree.html` and `b11-module.md`. They exist for every step from the start, empty until the step is worked on.
 - **Each step's build plan** (`b11-build-plan.md`) holds that step's design while it is being worked out. Every step's entry, and all other material that belongs to that step, is held there, so that each step carries everything it needs when it is designed.
-- **When a step is built,** its build plan is turned into three documents, the same pattern as the rest of mybizz-os: `b11-config.md` (agent-facing: the step's fixed values, such as its inputs, outputs, file paths, skills, gate and BFT level); `b11-reference.md` (agent-facing: what the agent does, in order); and `b11-explainer.md` (for the agent and for David: what the step is, how it works and why). Its decision tree (`b11-decision-tree.html`) stays beside them, as the picture of the reference, and is kept matching it. Its test specification (`b11-test-spec.md`) states what the step must prove and which tests of the test suite (`C:\dev\project-library-global\test-suite\`) it runs, and is kept matching the step as it changes. The step's module is compiled from these files. The step's build plan is then deleted. A fact lives in only one of the three documents.
+- **When a step is built,** its build plan is turned into three documents, the same pattern as the rest of mybizz-os: `b11-config.md` (agent-facing: the step's fixed values, such as its inputs, outputs, file paths, skills, gate and BFT level); `b11-reference.md` (agent-facing: what the agent does, in order, with a link at each action to the system or source it uses); and `b11-explainer.md` (for the agent and for David: what the step is, how it works and why). Its decision tree (`b11-decision-tree.html`) stays beside them, as the picture of the reference, and is kept matching it. Its test specification (`b11-test-spec.md`) states what the step must prove and which tests of the test suite (`C:\dev\project-library-global\test-suite\`) it runs, and is kept matching the step as it changes. The step's module is compiled from these files. The step's build plan is then deleted. A fact lives in only one of the three documents.
 - **The step documents are functional, not historical.** They describe the step as it is, never how it came to be.
-- **The built report** (`pdlf-library/docs-local/pdlf-built-report.md`) is the historical account of PDLF's own development, and only of PDLF, never of the applications PDLF builds. Entries are only ever added, never edited. Any history worth keeping goes there.
-- **When the last step is built,** this plan is retired to `obsolete/`. Its system-wide content moves into small, single-subject documents in `pdlf-library/docs-local/`.
-- **The older step material** (the existing step files, build notes and the `stepwise` folder) stays in place as source material. It is drawn on when each step is designed, and is not changed before then.
+- **The built report** (`pdlf-library/docs-local/pdlf-built-report.md`) tracks the work done, and being done, to build PDLF, and only PDLF, never the applications PDLF builds. It is a working tool, deleted when PDLF is finished.
+- **When the last step is built,** this plan's system-wide content moves into small, single-subject documents in `pdlf-library/docs-local/`, and this plan is deleted.
+- **A step's existing config, reference and explainer** are source material only. Each is written afresh from the step's closed build plan, replacing the old text completely.
 
 Why: each step is complex enough to need its own plan, and one plan for every step would grow too large to work with. A plan that dissolves into the step's own documents as the step is built leaves nothing behind to drift.
 
@@ -218,9 +222,9 @@ Every step is built to these rules. They are stated once here and not repeated i
 
 ### 9. What is still to be settled
 
-- **Steps work:** the orchestrator's form and its `opencode.json`; which gates exist, where they sit and what each approves; the place and weight of the BFT thinking checkpoints; which `project-library-global` standard each step applies; whether applications receive a `CLAUDE.md`; the steps that build the remaining apps in `phase-g`; and the design of every step, one at a time. The step entries in each step's build plan were written before the four-repository scaffold and the clone release; each is corrected to them when its step is designed, Step 11 first. The detailed list is kept in [[[pdlf:pdlf-library/docs-local/pdlf-todo|Active PDLF To-Do List]]](C:/pdlf/pdlf-library/docs-local/pdlf-todo.md).
+- **Steps work:** the orchestrator's form and its `opencode.json`; which gates exist, where they sit and what each approves; the place and weight of the BFT thinking checkpoints; which `project-library-global` standard each step applies; whether applications receive a `CLAUDE.md`; the steps that build the remaining apps in `phase-g`; and the design of every step, one at a time. The detailed list is kept in [[[pdlf:pdlf-library/docs-local/pdlf-todo|Active PDLF To-Do List]]](C:/pdlf/pdlf-library/docs-local/pdlf-todo.md).
 - **The Cupcake proof:** once the orchestrator exists, an agent deliberately attempts to pass a gate without approval, and Cupcake must block it.
-- **Testing:** designed as a component of its own, starting from a review of the testing disciplines.
+- **Testing:** every step has its test specification (`{step}-test-spec.md`), drawn from the test suite in `C:\dev\project-library-global\test-suite\`, which includes the testing and quality methodology.
 
 ### 10. How each step is designed
 
@@ -238,7 +242,7 @@ Every step is built to these rules. They are stated once here and not repeated i
 
 **4.7 Fit for purpose before thoroughness.** For each step, ask whether it earns its place. Phase C has three near-identical "pull to local" steps (18, 30 and 33): one shared procedure may serve all three. For each review, ask what only it covers, so that the developer is never asked the same question twice.
 
-**4.8 Proven before finished.** A step is recorded as built when its step file is complete, and as finished only after it has run on the test application and been packaged as its module. Phase C is run on the test application as soon as its steps are written, not after the whole pipeline exists.
+**4.8 Proven before finished.** A step is recorded as built when its documents are complete, and as finished only after `mb-3-cs` has been pulled through it and it has been packaged as its module.
 
 ---
 

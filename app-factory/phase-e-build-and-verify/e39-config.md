@@ -1,7 +1,7 @@
 ---
 title: "e39-config"
 doc-id: "mb-a9424736"
-updated: "2026-10-12"
+updated: "2026-10-23"
 ---
 
 ## From `step-mapping.md`: this step's rows
@@ -39,7 +39,7 @@ it is not a sequence claim — see [[[makepdlf-project-library:stepwise/run-plan
 
 | Step | Name | Type | BFT | Rationale |
 |---|---|---|---|---|
-| 39 | triage | Skill + GATE | **Full** | Labels, comments, issue-tracker updates from Steps 37–38 findings. GATE `build-verified` fires here (moved from Step 40 — [[[pdlf:pdlf-library/adr-local/two-gate-extension]]](C:/pdlf/pdlf-library/adr-local/two-gate-extension.md)) — full BFT mandatory regardless of the table's usual Light assignment for triage-type work. |
+| 39 | triage | Skill + GATE | **Full** | Labels, comments, issue-tracker updates from Steps 37–38 findings. GATE `build-verified` fires here ([[[pdlf:pdlf-library/specifications-local/spec-gate-procedure\|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md)) — full BFT mandatory regardless of the table's usual Light assignment for triage-type work. |
 
 ## From `spec-gate-procedure.md`: gate
 

@@ -1,13 +1,13 @@
 ---
 title: "a02-test-spec"
-updated: "2026-10-22"
+updated: "2026-10-23"
 doc-id: "mb-f267b498"
 ---
 # Step 2: Entry point `new-app-no-context` — Test Specification
 
 **Proves:** The entry starts from a recorded, healthy state.
 
-Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-library-global/test-suite/ts-catalogue.md). Evidence is saved in `{slug}-project-library\pdlf-outputs\a02\`.
+Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-library-global/test-suite/ts-catalogue.md) and, for the PR tests, in [[[pdlf:pdlf-library/specifications-local/spec-pdlf-process-tests]]](C:/pdlf/pdlf-library/specifications-local/spec-pdlf-process-tests.md). Evidence is saved in `{slug}-project-library\pdlf-outputs\a02\`.
 
 | Test | Applied here |
 |---|---|

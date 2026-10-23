@@ -1,7 +1,7 @@
 ---
 title: "pol-memory-and-knowledge"
 doc-id: "mb-d07a9e52"
-updated: "2026-10-13"
+updated: "2026-10-23"
 ---
 # PDLF Policy — Memory and Knowledge
 
@@ -61,7 +61,7 @@ When a step fails, or David corrects something, the agent proposes the fix to th
 ### Records each build keeps
 
 - **The ledger** (database `pdlf`) records every step, gate, deviation and thinking checkpoint. It is how the orchestrator enforces order and how a build resumes.
-- **The Step Receipt** for each step is produced from the ledger row that step wrote and saved to `{slug}-project-library\pdlf-outputs\{step}\{slug}-{step}-receipt.md`. It is never written separately.
+- **The Step Receipt** for each step is produced from the ledger row that step wrote and saved to `{slug}-project-library\pdlf-outputs\{step}\{slug}-{step}-{run}-receipt.md`. It is never written separately.
 - **The ISA** (Ideal State Artifact) is the project's definition of "done". Its criteria and verification sections are produced from the ledger's `isc` table, never edited by hand. It is created at Step 16, updated at Steps 26, 35, 39 and 46, and read at the start of the next build.
 
 No other log is kept. A record nobody reads is not kept.
@@ -76,4 +76,4 @@ David cannot personally verify what the agent knows or assumes. GBrain gives eve
 
 ## Where
 
-Every step. The execution sequence is in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md); the ISA template is [[[pdlf:pdlf-library/templates-local/isa-template-v2|ISA Template v2]]](C:/pdlf/pdlf-library/templates-local/isa-template-v2.md).
+Every step. The execution sequence is in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md); the ISA template is [[[pdlf:pdlf-library/templates-local/isa-template|ISA Template]]](C:/pdlf/pdlf-library/templates-local/isa-template.md).

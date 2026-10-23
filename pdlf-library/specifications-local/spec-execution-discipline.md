@@ -1,14 +1,13 @@
 ---
 title: "spec-execution-discipline"
 doc-id: "mb-913cd6af"
-updated: "2026-10-13"
+updated: "2026-10-23"
 ---
 # PDLF Execution Discipline
 
 **Purpose:** This file is the single source of truth for how every PDLF step executes. Each
-step file (11 through 46) references this document rather than inlining
-the execution sequence. When a step file says "Follow the execution sequence in
-specifications-local/spec-execution-discipline.md," the agent loads this file and runs the procedure below.
+step file (01 through 46) references this document rather than inlining
+the execution sequence. When a step file says "Follow the execution sequence in `spec-execution-discipline`," the agent loads this file and runs the procedure below.
 
 **Use:** The orchestrator loads this file at every step. The agent applies the execution
 sequence to the current step and does not skip a substep without a deviation request.
@@ -104,8 +103,7 @@ step numbers listed in that step's `inputs_used` correspond to a ledger row with
 `synthesized = true` or `status = "skipped"`. If so, the Step Receipt for the current
 step must show an INPUT NOTICE warning:
 
-- Synthesized: `INPUT NOTICE: Input from Step {N} was synthesized (test-mode shortcut),
-  not a full skill run. Treat this step's output as provisional to the same degree.`
+- Synthesized: `INPUT NOTICE: Input from Step {N} was synthesized (OpenCode produced it from pre-existing inputs, or an abbreviated test-mode run), not a full skill run. Treat this step's output as provisional to the same degree.`
 - Skipped: `INPUT NOTICE: Input from Step {N} was skipped (developer declined). Treat
   this step's output as provisional.`
 
@@ -143,7 +141,7 @@ step's outputs for a project are all in one place.
 
 ## Checkpoint Writing
 
-The ledger row, the BFT record and the Step Receipt are the complete checkpoint. No separate
-state file, devlog file or completion report. The Step Receipt
+The ledger row, the BFT record and the Step Receipt are the complete checkpoint. No other
+register is kept. The Step Receipt
 is generated from the ledger row just written — it IS the ledger row, formatted for reading.
 Never compose a receipt separately.

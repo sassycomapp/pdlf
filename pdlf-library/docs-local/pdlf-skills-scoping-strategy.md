@@ -2,7 +2,7 @@
 
 title: "pdlf-skills-scoping-strategy"
 doc-id: "mb-bf8e49f0"
-updated: "2026-10-20"
+updated: "2026-10-23"
 
 ---
 
@@ -69,7 +69,7 @@ A finding at any level is resolved at that level, at its source, before the leve
 
 PDLF is in its design stage. Its documents are a work in progress, and the skills work continues that work; it does not audit a finished system.
 
-- **Steps are not fixed.** The app factory currently holds steps 01 to 46 across Phases A to F, with inserted steps such as 35a, 38a, 40b and 42a. More steps may be inserted, and Phase G, the remaining apps, is still to be designed. The steps are rationalised and renumbered later. Until then, steps are referred to by their app-factory codes, never by a count.
+- **Steps are not fixed.** The app factory currently holds steps 01 to 46 across Phases A to F, with inserted steps such as 35a, 38a, 40b and 42a. More steps may be inserted, and Phase G, the remaining apps, is still to be designed. Step numbers are never changed; an inserted step takes a letter after its number. Steps are referred to by their app-factory codes, never by a count.
 - **Phase A holds the entry points.** Steps 02 to 10 are the points at which work joins the pipeline: a new application with or without context, a new feature, an update, and work on Apps 2, 3 and 5.
 - **Design depth varies.** Some steps are designed in depth, as Phase B is. Many are entries and placeholders that indicate a step's function and nothing more.
 - **A step's current skill names its function, not its skill set.** Where a step entry names one skill, that skill indicates what the step is for. It is not the step's skill selection. Each step's skills are selected when the step is developed, and a step almost never uses only one skill.
@@ -84,9 +84,9 @@ Every step is scoped across every layer below. For each layer, the step either n
 | Foundation and workflow | The structured stages of product work: interrogating the idea, plan reviews from several angles, design, QA, shipping, monitoring, and any GStack pipeline that fits.              | GStack.                                                                                                                                                       |
 | Engineering support     | Engineering discipline: domain modelling, tickets, triage, test-first building, debugging, architecture health, walkthroughs for steps only David can perform, writing for agents. | Matt Pocock's skills.                                                                                                                                         |
 | Security                | Prevention in design and build, step-triggered review, and assessment.                                                                                                             | `mb-sentinel-review`; Magnus919's `secure-software-engineering` and `security-audit-methodology`; GStack's `/cso`.                                            |
-| Testing                 | A light testing element in every step, proportionate to what the step produces.                                                                                                    | Designed in Pass 3 as a scheme of its own (section 10). Until then, each step records the testing element it needs.                                           |
-| Documentation           | Documents the step produces for the application, for its developers and, later, for its users.                                                                                     | GStack's documentation skills, MiniMax's document skills, `mb-project-docs`. User help documentation is designed in Pass 3.                                   |
-| Display and diagrams    | Wireframes, UI screens, decision trees, workflows, user flows and feature flows.                                                                                                   | Magdoub `wireframe`; `mb-archify-scope` and Archify. Video documentation is designed in Pass 3. ["[[[data-mybizz-mgt:tools-and-apps/video-creation-suite]]](C:/data-mybizz-mgt/Tools%20and%20apps/video-creation-suite.md)"] |
+| Testing | What the step must prove, in its test specification (`{step}-test-spec.md`). | The test suite in `C:\dev\project-library-global\test-suite\` and PDLF's process tests. |
+| Documentation           | Documents the step produces for the application, for its developers and, later, for its users.                                                                                     | GStack's documentation skills, MiniMax's document skills, `mb-project-docs`. User help documentation is designed as one job with video documentation (to-do E5).                                   |
+| Display and diagrams    | Wireframes, UI screens, decision trees, workflows, user flows and feature flows.                                                                                                   | Magdoub `wireframe`; `mb-archify-scope` and Archify. Video documentation is designed with user help documentation (to-do E5). ["[[[data-mybizz-mgt:tools-and-apps/video-creation-suite]]](C:/data-mybizz-mgt/Tools%20and%20apps/video-creation-suite.md)"] |
 | Memory and learning     | What the step looks up before it acts, and what it teaches the next build.                                                                                                         | GBrain, `mb-submit-memory` with the memory governor, Graphify, GStack's `learn`.                                                                              |
 
 The layers exist so that no kind of skill is forgotten. A step is scoped only when every layer has been considered.
@@ -95,13 +95,13 @@ The layers exist so that no kind of skill is forgotten. A step is scoped only wh
 
 These are settled. Every pass works within them.
 
-1. **Anvil compliance is central.** Anvil's own skill set, `anvil-agent-references`, at `C:\mybizz\anvil-agent-references\skills\` (`server-code`, `anvil-yaml`, `client-forms`, `client-modules`, `data-models`), is central to the PDLF process. It is issued by Anvil itself and is how agents apply Anvil correctly. Every step that touches the application's code, schema, forms or manifest uses the matching Anvil skill. Together with Anvil's documentation compiled in `C:\dev\project-library-global\anvil-docs`, it is the principal source of Anvil knowledge. Mybiz builds applications on the Anvil M3 Material 3 standard strictly
+1. **Anvil compliance is central.** Anvil's own skill set, `anvil-agent-references`, at `C:\mybizz\anvil-agent-references\skills\` (`server-code`, `anvil-yaml`, `client-forms`, `client-modules`, `data-models`), is central to the PDLF process. It is issued by Anvil itself and is how agents apply Anvil correctly. Every step that touches the application's code, schema, forms or manifest uses the matching Anvil skill. Together with Anvil's documentation compiled in `C:\dev\project-library-global\anvil-docs`, it is the principal source of Anvil knowledge. Every Mybizz application is built strictly to Anvil's Material 3 theme.
 2. **Security is paramount.** David is absolutely paranoid about security. Security uses `mb-sentinel-review` and Magnus919's skills, `secure-software-engineering` and `security-audit-methodology`. GStack's `/cso` is also available. Where both `/cso` and `security-audit-methodology` serve a step, both may run. Security is never traded away for simplicity.
 3. **Engineering support comes from Matt Pocock's skills.** Matt's `diagnosing-bugs` is built in wherever it fits its purpose, once its own file has been read.
 4. **GStack is the foundation suite.** Its skills, and possibly some of its pipelines and principal development skills, are used wherever they serve a step.
 5. **All wireframes and UI screens use the Magdoub wireframe skill.**
 6. **Diagrams move to Archify.** Decision trees are written in HTML while the design is still being worked out. Once it is known what the trees must show, PDLF switches over: every decision tree, workflow, user flow and feature flow is then scoped with `mb-archify-scope` and drawn with Archify. Which steps need these diagrams is established as each step is scoped; it may be most of them. This is very important to David.
-7. **Testing is a layer in every step.** Each step includes a light testing element. The testing scheme itself is developed in Pass 3.
+7. **Testing is a layer in every step.** Each step's test specification states what it must prove and which tests it runs.
 
 ## 7. How a skill is chosen
 
@@ -115,7 +115,7 @@ These are settled. Every pass works within them.
 ## 8. Conflicts and rules
 
 1. **Conflicts are resolved to the known source of truth.** Where two documents, two skills or a skill and a rule disagree, the disagreement is resolved by going to the source that actually governs the matter, never by letting one silently win. Where two Anvil sources conflict, the conflict is raised to David, who resolves it.
-2. **`anvil.yaml`.** Only Anvil edits `anvil.yaml`, until that is proven incorrect. Anvil's `anvil-yaml` skill is issued by Anvil and arrived recently, so it may overrule the earlier ruling. Whether it does is established in Pass 1, by reading the `anvil-agent-references` skills and their documentation. Until then, the ruling stands.
+2. **`anvil.yaml`.** An agent changes `anvil.yaml` only through Anvil's `anvil-yaml` skill, and validates every change with `anvil --json validate` ([[[pdlf:pdlf-library/policy-local/pol-anvil-platform|Policy: Anvil Platform]]](C:/pdlf/pdlf-library/policy-local/pol-anvil-platform.md)).
 3. **Rules are editable.** PDLF's structures and David's rules can be changed. When a rule no longer serves PDLF, Claude brings it to David with a proposal, and David decides. The aim is that PDLF works in the end.
 
 ## 9. Sources and memory
@@ -141,44 +141,32 @@ A GBrain search result is a pointer. The file it points to is read before anythi
 
 ## 10. The passes
 
-The skills work is carried out in passes. Each pass builds on the one before it.
+The skills work runs inside PDLF's three passes ([[[pdlf:pdlf-library/docs-local/app-factory-docs-update-method|App Factory Docs Update Method]]](C:/pdlf/pdlf-library/docs-local/app-factory-docs-update-method.md)).
 
-### This strategy
+### Pass 1: the documents
 
-This document sets out how the skills are scoped, so that each pass knows what it is doing. It records the conversation in which the strategy was agreed and needs no GBrain search of its own.
+**Purpose:** from the documents and the operational context, establish what each step does and scope the skills it requires.
 
-### Pass 1: the documented system
-
-**Purpose:** from the documents and the operational context, establish what PDLF does and how it works, and on that basis scope the skills each step requires.
-
-**Operational context:** everything in the step folders; the document suites in `mybizz-config-docs`; the third-party skills' canonical documentation under `C:\mybizz\`; the installed skills themselves; and GBrain, which Pass 1 uses throughout.
+**Operational context:** everything in the step folders; the document suites in `mybizz-config-docs`; the third-party skills' canonical documentation under `C:\mybizz\`; the installed skills at their pinned versions; and GBrain.
 
 **Work:**
 
 1. Make the four checks (section 3), from the outcome down.
 2. For each step, read the skills that could serve it and scope the step across every layer (section 5), choosing skills by the method in section 7.
-3. Settle every conflict found (section 8), including the `anvil.yaml` question.
-4. Find the gaps as the steps and skills are worked through: needed steps that are missing, steps that serve nothing, obligations a step does not meet, and skills no step uses that one should.
+3. Settle every conflict found (section 8).
+4. Find the gaps: needed steps that are missing, steps that serve nothing, obligations a step does not meet, and skills no step uses that one should.
 
-**Produces:** the skills of every step, recorded in each step's build plan with their reasons; any system-wide rule recorded in the system build plan; and the catalog's PDLF Steps column filled in from the steps.
+**Produces:** the skills of every step, recorded in its build plan with their reasons; any system-wide rule recorded in the system build plan; and the catalog's PDLF Steps column filled in from the steps.
 
-### Pass 2: two real applications
+### Pass 2: a real application
 
-**Purpose:** test the Pass 1 mapping against two of the applications PDLF is to build, `mb-3-cs` (Mybizz consulting and services) and `mb-4-ecom` (Mybizz e-commerce).
-
-**Work:** anticipate what building each application actually demands; identify skills and working methods that are still lacking; and, where the applications show it is needed, reshape PDLF's intent.
+**Purpose:** pull `mb-3-cs` (Mybizz consulting and services) through PDLF from beginning to end, so that what building a real application demands corrects the skill mapping. `mb-4-ecom` (Mybizz e-commerce) follows.
 
 **Produces:** corrections to the intent, the steps and the skill mapping, recorded in the same places as Pass 1.
 
-### Pass 3: the deliberately omitted services
+### Services designed on their own
 
-**Purpose:** add the services left out of the first two passes on purpose:
-
-- the **testing suite**, the scheme behind the testing layer in every step, starting from a review of the testing disciplines;
-- **user help documentation** for the applications' users;
-- **video documentation**, such as explainer videos.
-
-**Produces:** each service designed, its skills chosen, and its place in the steps recorded, in the same places as Pass 1.
+User help documentation and video documentation are designed as one job, before `mb-3-cs` reaches Phase E in Pass 2 (to-do E5). Testing is designed: the test suite and each step's test specification.
 
 ## 11. Where the results are recorded
 
@@ -208,6 +196,6 @@ When a step is built, its build plan becomes the step's config, reference and ex
 - **Every layer, every step.** A step scoped for its main function alone misses its security, testing, documentation and memory needs. Naming each layer turns an omission into a checked decision.
 - **Read before choosing.** A skill's name is not what it does. Choosing from names puts the wrong tool in a step that no one will question.
 - **Compare, do not discard.** Skills that look alike often serve different purposes. Keeping both, each where it serves best, uses the resources PDLF already has.
-- **Passes, not one sweep.** The documents alone cannot show what real applications demand, and some services are too large to design alongside everything else. Each pass adds what the previous one could not see.
+- **Passes, not one sweep.** The documents alone cannot show what a real application demands. Each pass adds what the previous one could not see.
 - **One home for each result.** A skill mapping kept in two places drifts. The step build plan is the authority, and the catalog only mirrors it.
 - **Rules serve PDLF.** A rule that stops PDLF from working is changed through a proposal, never worked around.

@@ -1,15 +1,14 @@
 ---
 title: "spec-postgres-ledger"
 doc-id: "mb-dcf9c65e"
-updated: "2026-10-22"
+updated: "2026-10-23"
 ---
 # PDLF Postgres Ledger Specification
 
-**Purpose:** This file is the single source of truth for the PDLF Postgres ledger — the database schema, role, connection method, and operating principles. Based on ADR `[[postgres-ledger-replaces-flat-files]]`.
+**Purpose:** This file is the single source of truth for the PDLF Postgres ledger — the database schema, role, connection method, and operating principles. Based on ADR `[[postgres-ledger]]`.
 
 **Status:** Binding specification.
 
-**Date:** 2026-07-13
 
 ---
 
@@ -42,7 +41,7 @@ where `localhost:5433` is the ledger cluster.
 
 ### Direct Windows PowerShell connection (human-run, not via OpenCode)
 
-Confirmed live, 2026-08-26. A separate, valid connection pattern for a
+A separate connection pattern for a
 developer running commands directly in Windows PowerShell, not through
 OpenCode/WSL:
 
@@ -60,23 +59,11 @@ One confirmed pitfall:
   SQL directly via `-c` instead, or verify the file is BOM-free before
   using `-f`.
 
-Note: an earlier version of this document incorrectly attributed a
-connection failure to `-h localhost` resolving to the IPv6 loopback
-(`::1`) rather than IPv4. Live reproduction (2026-08-26, four-test
-matrix: `localhost`/`127.0.0.1`/`::1`, each with correct and incorrect
-password) confirmed the address was never the cause — `localhost` with
-the correct password succeeds. The original failure was a wrong
-password, not an address issue. Corrected here; either host form is
-fine as long as the real value of `PGPASSWORD` from `.env` is used.
+Either `localhost` or `127.0.0.1` works as the host.
 
 ---
 
 ## Schema
-
-**Corrected 2026-09-05 — this section was rewritten against the live database** (psql
-`\d+` on every table, role `pdlf_agent`, Windows PostgreSQL 15.14). The previous version
-documented an early schema and had drifted from reality for six of the seven tables.
-`triage_findings` already matched and is confirmed unchanged.
 
 Seven tables in schema `public`, owned by `pdlf_agent`, referentially enforced:
 
@@ -84,7 +71,7 @@ Seven tables in schema `public`, owned by `pdlf_agent`, referentially enforced:
 
 | Column | Type | Nullable | Default | Notes |
 |---|---|---|---|---|
-| `slug` | text | NO | — | Primary key. The business slug, hyphens kept (e.g., `mb-5-pdlf`) |
+| `slug` | text | NO | — | Primary key. The business slug, hyphens kept (e.g., `mb-3-cs`) |
 | `project_name` | text | NO | — | Human-readable name |
 | `mode` | text | NO | — | `full` or `test` (CHECK `projects_mode_check`) |
 | `library_path` | text | YES | — | Path to the project's project-library repo |
@@ -184,22 +171,11 @@ UNIQUE constraint: (`project_slug`, `isc_number`).
 
 ### `triage_findings`
 
-**Corrected 2026-08-26 — the version below was stale against the live
-schema.** Eight columns were added and the `source_step` constraint was
-widened, both confirmed live against the running database, in support of a
-security-review layer for PDLF (design work done outside this project's
-own file tree at time of writing — not yet saved to a real path here).
-
-**Confirmed 2026-09-05 — re-verified live (`\d+`); this table's columns are
-unchanged since the 2026-08-26 correction.** One constraint value was
-missing from this spec: the `triage_label` CHECK also allows `clear`
-(six allowed values, not five).
-
 | Column | Type | Notes |
 |---|---|---|
 | `id` | serial | Primary key |
 | `step_id` | integer | FK → `steps(id)`. Identifies which feature-cycle execution this finding belongs to. |
-| `finding_id` | text | Stable identifier from Steps 37-38 findings. No companion table — confirmed against the full seven-table schema list; free-standing identifier. |
+| `finding_id` | text | Stable identifier from Steps 37–38 findings; a free-standing identifier with no companion table. |
 | `source_step` | text | Which step produced this finding: `11, 12, 14, 15, 16, 17, 19, 20, 21, 34, 35, 35A, 36, 37, 38, 38A, 39, 40, 41, 42A, 43, 44, 45, 46` (CHECK). Every step that records a finding: Sentinel's steps and the steps whose test specifications record test failures |
 | `triage_label` | text | One of: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`, `clear` (CHECK includes all six) |
 | `resolution_note` | text | How the finding was resolved (developer-provided) |
@@ -221,25 +197,8 @@ The `build-verified` gate queries this table: every row for the feature's `step_
 
 ## Principles
 
-1. **The ledger is the single source of truth.** If it's not in `pdlf`, it didn't happen.
-   Note, stated plainly: as of 2026-09-05 all seven tables are **empty** — zero rows in
-   every table. This is expected, not a fault: PDLF's build has not yet reached real
-   orchestrator use, and the 2026-07-19 self-test rows were cleaned up after that run.
-   The principle describes how the ledger will operate once PDLF runs projects; it does
-   not describe data that is present today.
-2. **Step sequencing is enforced by the orchestrator, not the database.** Confirmed by
-   live test 2026-07-18: the only foreign key on `steps` is `project_slug → projects(slug)`.
-   There is no inter-step constraint — inserting Step 19 with no Step 16 present succeeds
-   at the schema level. Step dependencies vary per step (see `[[run-plan]]`'s Step
-   Dependencies table) and cannot be expressed as a fixed column-level FK. OpenCode checks
-   `[[run-plan]]`'s dependency table before writing a step's ledger row; this is the actual
-   enforcement point. A database-level trigger was considered and rejected: it would
-   require a second, hand-maintained copy of the dependency graph already defined in
-   `[[run-plan]]`, with no mechanism forcing the two to stay in sync — the same
-   duplicate-source-of-truth failure found and corrected repeatedly elsewhere in this
-   document set. The only writer with legitimate access to this database is OpenCode,
-   operating through a PDLF step (see `AGENTS.md`); a raw write bypassing the orchestrator
-   is already a policy violation before it reaches the schema.
+1. **The ledger is the single source of truth.** If it is not in `pdlf`, it did not happen.
+2. **Step sequencing is enforced by the orchestrator, not the database.** The only foreign key on `steps` is `project_slug → projects(slug)`; there is no inter-step constraint. Step dependencies vary per step and are held in the orchestrator's run order ([[[pdlf:app-factory/phase-a-init/a01-build-plan|Step 1 Build Plan]]](C:/pdlf/app-factory/phase-a-init/a01-build-plan.md)). The orchestrator checks that order before writing a step's ledger row; that is the enforcement point. A database trigger would need a second, hand-maintained copy of the dependency graph, with nothing keeping the two in step. The only legitimate writer is OpenCode, operating through a PDLF step; a raw write that bypasses the orchestrator is a policy violation before it reaches the schema.
 3. **Step Receipts are generated from ledger rows.** The receipt IS the ledger row, formatted for reading — not a separately composed summary.
-4. **No flat files.** Flat-file state management (state file, devlog, completion report) is fully retired.
+4. **No other register.** There is no state file, log or completion report beside the ledger.
 5. **No narrative gloss can diverge from what actually happened.** The receipt is a snapshot of the row at the time it was written.

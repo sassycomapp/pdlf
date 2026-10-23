@@ -1,93 +1,51 @@
 ---
 title: "config"
 doc-id: "mb-dea37a55"
-updated: "2026-10-13"
+updated: "2026-10-23"
 ---
 # PDLF System Configuration
 
-Non-secret reference for all PDLF system configuration. Secrets live in `.env` (git-ignored).
+The non-secret configuration of PDLF. Secrets live in `C:\pdlf\.env`, which Git never tracks.
 
 ---
 
 ## PostgreSQL Ledger
 
-| Setting | Value | Source |
-|---|---|---|
-| Host | `localhost` | `.env` |
-| Port | `5433` | `.env` (`PGPORT`) |
-| Database | `pdlf` | `.env` |
-| Role | `pdlf_agent` | `.env` |
-| Password | `PGPASSWORD` in `.env` | `.env` |
-| Admin role | `postgres` | `.env` |
-| Installation | `C:\Program Files\PostgreSQL\15\` (Windows) | On-disk |
-| psql from WSL | `powershell.exe -Command '$env:PGPASSWORD="..."; & "C:\Program Files\PostgreSQL\15\bin\psql.exe" -h localhost -p 5433 -U pdlf_agent -d pdlf -c "..."'` | Verified 2026-07-09; port 5433 since 2026-10-05 |
-| Tables | `projects`, `steps`, `gates`, `deviations`, `bft_records`, `isc`, `triage_findings` | Verified — all seven exist (schema detail: [[[pdlf:pdlf-library/specifications-local/spec-postgres-ledger\|Spec: Postgres Ledger]]](C:/pdlf/pdlf-library/specifications-local/spec-postgres-ledger.md); re-verified live 2026-09-05) |
+Database `pdlf` on the Windows PostgreSQL 15 server, port 5433, role `pdlf_agent`, password in `.env`. Its connection method, the WSL bridge and its seven tables are set in [[[pdlf:pdlf-library/specifications-local/spec-postgres-ledger|Spec: Postgres Ledger]]](C:/pdlf/pdlf-library/specifications-local/spec-postgres-ledger.md).
 
-## PDLF System Paths
+## Paths
 
 | Setting | Path | Notes |
 |---|---|---|
-| PDLF system home | `/mnt/c/pdlf/` | Project-agnostic: app factory, library, templates |
-| System skill (active) | none — the deployed instance at `/mnt/c/pdlf/` was restructured; the `~/.config/opencode/skills/pdlf/` symlink no longer exists | Development consolidated in this repo (see App factory row). Verified 2026-09-18 |
-| Slug → path resolution | GBrain search | The former `/mnt/c/pdlf/registry/projects.json` no longer exists — verified 2026-09-18 |
-| App factory | `/mnt/c/pdlf/app-factory/` | One folder per phase; step files and module files |
-| Templates | `/mnt/c/pdlf/pdlf-library/templates-local/` | BFT cheatsheet, ISA template, receipt templates |
-| Project template | `/mnt/c/dev/project-template/dev-(SLUG)/(slug)-project-library/` | Folder skeleton used at Step 11 init |
-| Project library (global) | `/mnt/c/dev/project-library-global/` | Shared specs, ADRs, policies, SOPs, standards, templates — referenced directly, never copied
+| PDLF home | `/mnt/c/pdlf/` | The app factory and the PDLF library |
+| App factory | `/mnt/c/pdlf/app-factory/` | One folder per phase; each step's set of seven |
+| Templates | `/mnt/c/pdlf/pdlf-library/templates-local/` | Step Receipt, ISA, BFT checkpoint, self-test checklist, pre-project files |
+| Project template | `/mnt/c/dev/project-template/dev-(SLUG)/` | The scaffold Step 11 copies for a new business |
+| Global library | `/mnt/c/dev/project-library-global/` | Read directly, never copied |
 
-## OpenCode Configuration
+## OpenCode
 
-| Setting | Value | Source |
-|---|---|---|
-| Project config | None yet: `C:\pdlf\opencode.json` is written when the orchestrator is designed; until then the global OpenCode configuration applies | — |
+| Setting | Value |
+|---|---|
+| Project configuration | `C:\pdlf\opencode.json` is written when the orchestrator is designed; until then the global OpenCode configuration applies |
 
-## GStack Configuration
+## GStack
 
 | Setting | Value |
 |---|---|
 | Binary path | `/home/dev-p/.config/opencode/skills/gstack/bin/` |
-| Project slug | `sassycomapp-pdlf` (derived from the GitHub repository) |
+| Project name | `sassycomapp-pdlf`, from the GitHub repository |
 | GStack home | `~/.gstack/projects/sassycomapp-pdlf/` |
 
-## GBrain Configuration
+## GBrain
 
 | Setting | Value |
 |---|---|
-| Source ID (this project) | `pdlf` |
-| Repo path | `/mnt/c/pdlf` |
-| Source ID (project-library-global) | `project-library-global` |
-| Repo path | `/mnt/c/dev/project-library-global` |
-| GitHub remote (project-library-global) | `https://github.com/sassycomapp/project-library-global` (public) |
-| Brain type | PostgreSQL — WSL-native instance, `localhost:5432`, database `gbrain` (migrated from PGLite; verified 2026-09-05) |
+| PDLF's source | `pdlf`, covering `/mnt/c/pdlf` |
+| The global library's source | `default`, covering `/mnt/c/dev/project-library-global` |
+| Each business's source | `{slug}-project-library`, covering its project library |
+| Federation | Every documentation source is federated, so one search covers all of them |
+| Application code | Never a GBrain source; agents read it directly, and Graphify answers questions about it |
+| Database | GBrain's own PostgreSQL in WSL, `localhost:5432`, database `gbrain` |
 
-`project-library-global` registration confirmed 2026-07-19 — real GitHub remote exists,
-GBrain source registered. This is what makes
-[[[pdlf:pdlf-library/adr-local/global-content-discovery-and-application-discipline|ADR Global Content Discovery and Application Discipline]]](C:/pdlf/pdlf-library/adr-local/global-content-discovery-and-application-discipline.md)'s discovery mechanism
-actually usable, not just designed.
-
-Every project PDLF builds also registers two further sources: `project-library-global`
-(shared infrastructure, registered once, checked every Step 11 run — not per-project) and
-`sassycomapp-{slug}-project-library` plus `{slug}-code` per project. All PDLF sources are
-registered Isolated (`federated=false`); GBrain queries must explicitly nominate a source,
-never unscoped. See [[[pdlf:pdlf-library/policy-local/pol-memory-and-knowledge|Policy: Memory and Knowledge]]](C:/pdlf/pdlf-library/policy-local/pol-memory-and-knowledge.md).
-
-## WSL → Windows Bridge
-
-PostgreSQL runs on Windows. OpenCode runs in WSL. Connection requires `powershell.exe`
-to pass the `PGPASSWORD` environment variable into the Windows context.
-
-Do NOT try `export PGPASSWORD=... && /mnt/c/.../psql.exe` — WSL's binfmt does not pass
-Linux env vars to Windows executables. Use the PowerShell pattern:
-
-```
-powershell.exe -Command '$env:PGPASSWORD="..."; & "C:\Program Files\PostgreSQL\15\bin\psql.exe" -h localhost -p 5433 -U pdlf_agent -d pdlf -c "SQL HERE"'
-```
-
-| Role | Provider | Status |
-|---|---|---|
-| Embedding | OpenAI (text-embedding-3-large) | ✓ active |
-| Chat / Expand | OpenAI (gpt-5.2) | ✓ active, will move to Anthropic |
-| Reranker | ZeroEntropy | ✓ confirmed active |
----
-
-*Config version 2.1. Last updated: 2026-09-18. Reflects the app-factory phase folders (2026-10-11).*
+The list of every repository and its GBrain source is [[[mybizz-os-docs:os-reference-docs/repo-organization|Repo Organization]]](C:/mybizz/mybizz-os-docs/os-reference-docs/repo-organization.md).

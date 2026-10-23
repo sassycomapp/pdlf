@@ -1,20 +1,20 @@
 ---
 title: "spec-bft"
 doc-id: "mb-5251e43f"
-updated: "2026-10-13"
+updated: "2026-10-23"
 ---
 # PDLF BFT Reference
 
 **Purpose:** This file is the single source of truth for applying de Bono's BODY Frame
 Thinking (BFT) to PDLF steps. It defines the six questions, the three application levels,
 and the anti-rubber-stamping rule. Every step file references this document:
-"Apply BFT per specifications-local/spec-bft.md at the step's assigned level."
+"Apply BFT per `spec-bft` at the step's assigned level."
 
 **Use:** At substep 7 of the execution sequence, the agent consults this file. For Full
 BFT, answer all six questions. For Light, answer BONES and HEALTH only. For None, skip.
 At any gate step, BFT is Full regardless of assigned level.
 
-**Source:** Based on *The Master Thinker's Handbook* by Edward de Bono. The core premise:
+Based on *The Master Thinker's Handbook* by Edward de Bono. The core premise:
 good thinking is not intelligence; good thinking is directing attention deliberately.
 
 ---
@@ -102,23 +102,19 @@ Two questions:
 
 ## BFT Levels
 
-| Level | Questions | When | Step count |
-|---|---|---|---|
-| **Full** | All six (BONES through HEALTH) | Decision-heavy steps where judgment calls are made — architecture, scope, design, review, gate | 27 |
-| **Light** | BONES + HEALTH only | Mostly mechanical steps following locked decisions. Full six-question BFT would produce boilerplate rubber-stamping | 7 |
-| **None** | Nothing — skip BFT | Pure mechanical zero-judgment operations (git pull, file conversion, publish button) | 6 |
+| Level | Questions | When |
+|---|---|---|
+| **Full** | All six (BONES through HEALTH) | Decision-heavy steps where judgment calls are made — architecture, scope, design, review, gate |
+| **Light** | BONES + HEALTH only | Mostly mechanical steps following locked decisions. Full six-question BFT would produce boilerplate rubber-stamping |
+| **None** | Nothing — skip BFT | Pure mechanical zero-judgment operations (git pull, file conversion, publish button) |
 
-Total: 40 steps. Counts corrected 2026-07-18 to match [[[pdlf:pdlf-library/templates-local/bft-checkpoint-cheatsheet-v2|Bft Checkpoint Cheatsheet V2]]](C:/pdlf/pdlf-library/templates-local/bft-checkpoint-cheatsheet-v2.md)
-v2.1, after `to-prd`/`prototype` were removed and the four lettered sub-steps (35A, 38A,
-40B, 42A) received assignments.
-
-The per-step level assignment lives at [[[pdlf:pdlf-library/templates-local/bft-checkpoint-cheatsheet-v2|Bft Checkpoint Cheatsheet V2]]](C:/pdlf/pdlf-library/templates-local/bft-checkpoint-cheatsheet-v2.md).
+Each step's level is set in its own config (`{letter}{number}-config.md`).
 
 ---
 
 ## Gate Rule
 
-Every gate step is Full regardless of its assigned level in the cheatsheet. A gate BFT
+Every gate step is Full regardless of its assigned level. A gate BFT
 must be exhaustive — the developer is about to approve a locked checkpoint that cannot be
 unwound without formal gate reopening. A gate is never a Light or None BFT occasion.
 

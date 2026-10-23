@@ -1,7 +1,7 @@
 ---
 title: "AGENTS"
 doc-id: "mb-a65c6e3a"
-updated: "2026-10-12"
+updated: "2026-10-23"
 ---
 # AGENTS.md — PDLF
 
@@ -15,10 +15,8 @@ The global `AGENTS.md` (`~/.config/opencode/AGENTS.md`) governs everything this 
 
 | Folder | What it holds |
 |---|---|
-| `app-factory/` | The build, one folder per phase (`phase-a-init` to `phase-f-ship-and-monitor`). Each holds the set of six for every step (for example `b11-build-plan.md`, `b11-config.md`, `b11-reference.md`, `b11-explainer.md`, `b11-decision-tree.html` and `b11-module.md`), plus the older step files and build notes kept as source material; `pdlf-build-plan.md` sits at the top. See `app-factory/README.md`. |
+| `app-factory/` | The build, one folder per phase (`phase-a-init` to `phase-f-ship-and-monitor`). Each holds the set of seven for every step (for example `b11-build-plan.md`, `b11-test-spec.md`, `b11-config.md`, `b11-reference.md`, `b11-explainer.md`, `b11-decision-tree.html` and `b11-module.md`); `pdlf-build-plan.md` sits at the top. See `app-factory/README.md`. |
 | `pdlf-library/` | The shared machinery: ADRs, specifications, policies, templates, explainers and working documents. See `pdlf-library/README.md`. |
-| `desktop/` | The developer's working documents. |
-| `obsolete/` | Retired files. |
 
 ## Standing rules
 

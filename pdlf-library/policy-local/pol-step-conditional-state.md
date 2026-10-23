@@ -1,7 +1,7 @@
 ---
 title: "step-conditional-state-policy"
 doc-id: "mb-5a62c5ff"
-updated: "2026-10-12"
+updated: "2026-10-23"
 ---
 # PDLF Conditional Step State Policy
 
@@ -44,18 +44,7 @@ Which steps are conditional, and how each behaves, is stated in that step's own 
 
 ## Downstream Propagation
 
-Before invoking any step, the orchestrator checks whether any upstream step in
-that step's dependency chain has `synthesized = true` or `status = "skipped"`.
-If so, the Step Receipt for the current step must show an INPUT NOTICE warning:
-
-- **Synthesized:** `INPUT NOTICE: Input from Step {N} was synthesized (OpenCode synthesized from pre-existing inputs or abbreviated test-mode run), not a full skill run. Treat this step's output as provisional to the same degree.`
-- **Skipped:** `INPUT NOTICE: Input from Step {N} was skipped (developer declined). No artifact was produced. Treat downstream output as provisional.`
-
-This ensures the taint is visible at every step downstream of a shortcut, not
-just at the step where the shortcut happened.
-
-See [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md) § Synthesized Flag Propagation for the
-full propagation mechanism.
+A step whose input came from a synthesized or skipped step shows an INPUT NOTICE on its Step Receipt, so the shortcut stays visible at every later step. The mechanism and the notice wording are in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md), Synthesized Flag Propagation.
 
 ---
 
@@ -64,17 +53,3 @@ full propagation mechanism.
 In full mode (`projects.mode = "full"`):
 
 - Abbreviation offers are never presented
-
----
-
-## Resolution Note
-
-This policy resolves todo item 5.2 (define "third state" for Step 12).
-
-The original question: "the developer says no to [[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md) at all (using
-only the pre-project docs) — that's different from `synthesized`."
-
-Answer: when the developer declines [[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md), OpenCode synthesizes a
-design doc from the pre-project documents. This is the `synthesized` state —
-an artifact IS produced, but by OpenCode, not by the skill. Step 12 always
-produces a design doc; the `synthesized` flag indicates its provenance.

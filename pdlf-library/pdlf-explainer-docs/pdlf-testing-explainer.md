@@ -1,6 +1,6 @@
 ---
 title: "pdlf-testing-explainer"
-updated: "2026-10-22"
+updated: "2026-10-23"
 doc-id: "mb-2bb4ba8f"
 ---
 # PDLF Testing — How It Works
@@ -17,9 +17,11 @@ Every application is designed and reviewed against OWASP ASVS 5.0 Level 2 princi
 
 | Part | Where | What it does |
 |---|---|---|
-| The test suite | `project-library-global\test-suite\` | The method, the catalogue of 112 tests, the conformance checks, the rule soundness register, two tools and four templates. It serves every Mybizz application. |
+| The test suite | `project-library-global\test-suite\` | The method, the catalogue of 102 application tests, the conformance checks, the rule soundness register, two tools and four templates. It serves every Mybizz application. |
+| PDLF's process tests | [[[pdlf:pdlf-library/specifications-local/spec-pdlf-process-tests\|Spec: PDLF Process Tests]]](C:/pdlf/pdlf-library/specifications-local/spec-pdlf-process-tests.md) | The ten PR tests that prove PDLF ran each step correctly and its records are true. |
 | Each step's test specification | `{step}-test-spec.md`, the seventh file of every step | Names the catalogue tests the step runs and what happens on failure. |
 | Each app's tests | `tests\` in each app's repository | The app's own logic, integration and security tests, built from the templates and its test plan. |
+| PDLF's testing policy | [[[pdlf:pdlf-library/policy-local/pol-testing-and-quality\|Policy: Testing and Quality]]](C:/pdlf/pdlf-library/policy-local/pol-testing-and-quality.md) | Binds the build loop, Steps 35 to 39 and the `build-verified` gate: the order of the per-feature loop, sign-off and the findings files. |
 | The evidence | `pdlf-outputs\{step}\` in the project library | The saved output of every test; receipts take their counts from it. |
 
 ## 3. Where tests run
@@ -41,7 +43,7 @@ At Step 35 a failure stops the work until it is fixed. From Step 35A on, it is r
 
 ## 6. What has to happen
 
-1. The suite is proven on the first application PDLF builds, the Daily Intentions Tracker in `mb-5-pdlf`: test PR-09 at Step 11 proves the test environment, and each later step proves its own tests. No other application relies on the suite before then.
+1. The suite is proven on the first application PDLF builds, `mb-3-cs`: test PR-09 at Step 11 proves the test environment, and each later step proves its own tests. No other application relies on the suite before then.
 2. Any rule found contradictory, out of date or unsafe is entered in [[[default:test-suite/ts-rule-soundness-register]]](C:/dev/project-library-global/test-suite/ts-rule-soundness-register.md), corrected at its source with the developer's approval, and then removed from the register.
 
 ## Why it works this way

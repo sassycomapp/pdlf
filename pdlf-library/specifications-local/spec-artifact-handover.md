@@ -1,19 +1,13 @@
 ---
 title: "pdlf-spec-artifact-handover"
 doc-id: "mb-f1745959"
-updated: "2026-10-20"
+updated: "2026-10-23"
 ---
 # PDLF — Artifact and Handover Specification
 
-Canonical binding technical truth for how artifacts are produced, captured,
-handed over between steps, copied to the safety net, and archived at ship
-time. Implements `pdlf-adr-artifact-saving-convention`. For the naming rules:
-[[[default:specifications-global/spec-nomenclature]]](C:/dev/project-library-global/specifications-global/spec-nomenclature.md). For the narrative account:
-[[pdlf:obsolete/artifact-lifecycle-explainer]].
+The binding detail of how artifacts are produced, captured, handed over between steps and copied to each step's output folder. It implements [[[pdlf:pdlf-library/adr-local/artifact-saving-convention|Artifact-Saving Convention]]](C:/pdlf/pdlf-library/adr-local/artifact-saving-convention.md). Naming rules: [[[default:specifications-global/spec-nomenclature]]](C:/dev/project-library-global/specifications-global/spec-nomenclature.md).
 
-Facts marked "verified 2026-09-11" were checked directly against the live
-environment on that date. Unverified expectations are marked as such and must
-be verified before a module relies on them.
+The save locations below are those of the pinned skill versions (GStack `c580561`, Matt Pocock `5beb35b`). A change of version is checked against this document first.
 
 ---
 
@@ -21,7 +15,7 @@ be verified before a module relies on them.
 
 ### 1.1 GStack skills
 
-All GStack skills save under a per-project folder:
+All GStack skills save under a per-project folder in GStack's state root (`~/.gstack` by default):
 
     ~/.gstack/projects/<gstack-slug>/…
 
@@ -30,9 +24,6 @@ The `<gstack-slug>` is resolved at the start of every skill run by
 Current preambles invoke it as:
 
     eval "$($GSTACK_BIN/gstack-slug 2>/dev/null)" 2>/dev/null || true
-
-Verified per skill 2026-09-11 (all PDLF-relevant skills clean of any
-`~/.claude` path — the June defect is gone from the current install):
 
 | Skill | Native save (from its SKILL.md) |
 |---|---|
@@ -46,7 +37,7 @@ Verified per skill 2026-09-11 (all PDLF-relevant skills clean of any
 ### 1.2 How later skills look for earlier artifacts (mechanism of record
 inside the skills, and why PDLF does not rely on it)
 
-Verified 2026-09-11 in the current SKILL.md files:
+In the skills' own SKILL.md files:
 
 - `/plan-ceo-review` and `/plan-eng-review` glob
   `~/.gstack/projects/$SLUG/*-design-*.md` in their pre-review audit.
@@ -125,7 +116,7 @@ Every project library holds `pdlf-outputs\`, with one folder per step (`a01\` to
 - a copy of every artifact a skill saved elsewhere (for example in GStack's own save location), named `{slug}-{step}-{run}-{name}`;
 - the artifacts of skills that are told where to save (such as Archify, the Magdoub wireframe skills and Sentinel), which save into the step folder directly.
 
-**The run.** `{run}` is `app` when the work is the whole application, or the feature's short name (the feature slug from the entry record) when the work is a feature or an update. For example `mb-5-pdlf-b14-app-ceo-plan.md` and `mb-5-pdlf-b14-reminders-ceo-plan.md`. Why: the feature path runs Steps 12 to 16 again for every feature, so a name without the run would be overwritten, and each feature's outputs stay beside the application's.
+**The run.** `{run}` is `app` when the work is the whole application, or the feature's short name (the feature slug from the entry record) when the work is a feature or an update. For example `mb-3-cs-b14-app-ceo-plan.md` and `mb-3-cs-b14-reminders-ceo-plan.md`. Why: the feature path runs Steps 12 to 16 again for every feature, so a name without the run would be overwritten, and each feature's outputs stay beside the application's.
 
 The step-folder copy is the copy a later step reads when a skill's own save location is unavailable or depends on the skill's mode. It is a snapshot of that step's state; a later step that appends to a skill's own file updates the copy after its append.
 
@@ -141,8 +132,7 @@ HOLD SCOPE / SCOPE REDUCTION the review exists only as conversational output.
 In those modes the orchestrator saves the transcript capture itself and treats
 that capture as the artifact. A missing disk file is a failure only when the
 mode predicted one; it is never treated as failure when the mode predicts
-none — but the capture, the stable copy, and the safety-net copy are still
-required in every mode.
+none — but the capture and the step-folder copy are still required in every mode.
 
 ## 7. Verification-or-deviation
 
@@ -159,14 +149,6 @@ proceed, never an assumption that the skill "probably wrote it."
 - Only the orchestrator, operating through a real PDLF step, writes to the
   ledger. A raw write bypassing a step is a policy violation by definition.
 
-## 9. Watched items and pending corrections
+## 9. Watched item
 
-| # | Item | Status |
-|---|---|---|
-| 2 | End-to-end live verification of the chain (one governed skill run: slug stability, native save, safety-net copy) never performed on the current install | Open — master task list, item 17 |
-| 3 | GStack pinned at 1.58.1.0; upstream at 1.81.0.0 (23 minor versions behind). Upstream fixes may change save behavior | Watched — version upgrade is a separate decision |
-| 4 | Slug cache never reconciles against the git remote; stale entries possible (observed on a placeholder project; heal tracked) | Watched — heal rule in [[[default:specifications-global/spec-nomenclature]]](C:/dev/project-library-global/specifications-global/spec-nomenclature.md) |
-
----
-
-*End of pdlf-spec-artifact-handover*
+GStack caches each project's name by working directory and never reconciles it with the Git remote, so a stale entry is possible. The rule for correcting it is in [[[default:specifications-global/spec-nomenclature]]](C:/dev/project-library-global/specifications-global/spec-nomenclature.md).
