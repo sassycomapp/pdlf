@@ -34,7 +34,7 @@ The config, reference and explainer are written afresh from the closed build pla
 
 Each step's testing is its `{suite}-test-spec.md`, drawn from the test suite, which includes the testing and quality methodology.
 
-**Banned terms:** `makepdlf`, `stepwise`, `mb-5-pdlf`, `mb5pdlf`, Daily Intentions Tracker, test application, staging, `develop` and `stable` branches, dev log, judgement trail, three levels of testing, `anvil db apply-schema` as an agent action.
+**Banned terms:** `makepdlf`, `stepwise`, `mb-5-pdlf`, `mb5pdlf`, Daily Intentions Tracker, test application, staging, `develop` and `stable` branches, dev log, judgement trail, three levels of testing (the method is Levels 1, 2 and 3 of the test suite; use those names), `anvil db apply-schema` as an agent action.
 
 ## Why it works this way
 
