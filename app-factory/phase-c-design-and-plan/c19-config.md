@@ -1,7 +1,7 @@
 ---
 title: "c19-config"
 doc-id: "mb-5e1eb893"
-updated: "2026-10-12"
+updated: "2026-10-23"
 ---
 
 ## From `step-mapping.md`: this step's rows
@@ -10,12 +10,12 @@ updated: "2026-10-12"
 
 | Step | File | Type | Handler | Gate |
 |---|---|---|---|---|
-| 19 | ``[[step-19-to-tickets]]`` | Skill | Matt [[[makepdlf-project-library:stepwise/step-19-to-tickets\|Step 19 to Tickets]]](C:/dev/dev-makepdlf/makepdlf-project-library/stepwise/step-19-to-tickets.md) | |
+| 19 | ``[[step-19-to-tickets]]`` | Skill | Matt Step 19 to Tickets | |
 
 ### Phase B — Design & Plan: phase notes
 
 Exit gates: `concept-locked` (Step 21), `wireframes-approved` (Step 26). For entry
-condition and dependencies, see [[[makepdlf-project-library:stepwise/run-plan|Run Plan]]](C:/dev/dev-makepdlf/makepdlf-project-library/stepwise/run-plan.md).
+condition and dependencies, see Run Plan.
 
 ## From `bft-checkpoint-cheatsheet-v2.md`: BFT level
 

@@ -1,7 +1,7 @@
 ---
 title: "b12-config"
 doc-id: "mb-8b21d27b"
-updated: "2026-10-12"
+updated: "2026-10-23"
 ---
 
 ## From `step-mapping.md`: this step's rows
@@ -10,11 +10,11 @@ updated: "2026-10-12"
 
 | Step | File | Type | Handler | Gate |
 |---|---|---|---|---|
-| 12 | `[[step-12-office-hours]]` | Skill (conditional) | GStack [[[makepdlf-project-library:stepwise/step-12-office-hours\|/office-hours]]](C:/dev/dev-makepdlf/makepdlf-project-library/stepwise/step-12-office-hours.md) | |
+| 12 | `[[step-12-office-hours]]` | Skill (conditional) | GStack /office-hours | |
 
 ### Phase A — Discover & Define: phase notes
 
-Exit gate: `domain-locked` (Step 16). For entry condition and dependencies, see [[[makepdlf-project-library:stepwise/run-plan|Run Plan]]](C:/dev/dev-makepdlf/makepdlf-project-library/stepwise/run-plan.md).
+Exit gate: `domain-locked` (Step 16). For entry condition and dependencies, see Run Plan.
 
 ## From `bft-checkpoint-cheatsheet-v2.md`: BFT level
 

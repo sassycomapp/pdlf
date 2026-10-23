@@ -1,7 +1,7 @@
 ---
 title: "f41-config"
 doc-id: "mb-dccc0401"
-updated: "2026-10-12"
+updated: "2026-10-23"
 ---
 
 ## From `step-mapping.md`: this step's rows
@@ -10,7 +10,7 @@ updated: "2026-10-12"
 
 | Step | File | Type | Handler | Gate |
 |---|---|---|---|---|
-| 41 | `[[step-41-ship]]` | Skill | GStack [[[makepdlf-project-library:stepwise/step-41-ship\|/ship]]](C:/dev/dev-makepdlf/makepdlf-project-library/stepwise/step-41-ship.md) | |
+| 41 | `[[step-41-ship]]` | Skill | GStack /ship | |
 
 ### Phase E — Ship & Monitor: phase notes
 
@@ -21,7 +21,7 @@ currently defined; not yet corrected.
 
 
 Exit gates: `production-released` (Step 44), `released` (Step 46). For entry condition
-and dependencies, see [[[makepdlf-project-library:stepwise/run-plan|Run Plan]]](C:/dev/dev-makepdlf/makepdlf-project-library/stepwise/run-plan.md).
+and dependencies, see Run Plan.
 
 ## From `bft-checkpoint-cheatsheet-v2.md`: BFT level
 

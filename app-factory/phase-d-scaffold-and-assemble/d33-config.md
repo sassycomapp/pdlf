@@ -1,7 +1,7 @@
 ---
 title: "d33-config"
 doc-id: "mb-273c04d9"
-updated: "2026-10-12"
+updated: "2026-10-23"
 ---
 
 ## From `step-mapping.md`: this step's rows
@@ -15,7 +15,7 @@ updated: "2026-10-12"
 ### Phase C — Scaffold & Assemble: phase notes
 
 Exit gate: `architecture-verified` (Step 34). For entry condition and dependencies, see
-[[[makepdlf-project-library:stepwise/run-plan|Run Plan]]](C:/dev/dev-makepdlf/makepdlf-project-library/stepwise/run-plan.md).
+Run Plan.
 
 ## From `bft-checkpoint-cheatsheet-v2.md`: BFT level
 

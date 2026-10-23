@@ -1,7 +1,7 @@
 ---
 title: "f45-config"
 doc-id: "mb-165902b2"
-updated: "2026-10-12"
+updated: "2026-10-23"
 ---
 
 ## From `step-mapping.md`: this step's rows
@@ -21,7 +21,7 @@ currently defined; not yet corrected.
 
 
 Exit gates: `production-released` (Step 44), `released` (Step 46). For entry condition
-and dependencies, see [[[makepdlf-project-library:stepwise/run-plan|Run Plan]]](C:/dev/dev-makepdlf/makepdlf-project-library/stepwise/run-plan.md).
+and dependencies, see Run Plan.
 
 ## From `bft-checkpoint-cheatsheet-v2.md`: BFT level
 

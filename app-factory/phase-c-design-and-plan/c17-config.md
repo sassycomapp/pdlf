@@ -1,7 +1,7 @@
 ---
 title: "c17-config"
 doc-id: "mb-536f2e3d"
-updated: "2026-10-12"
+updated: "2026-10-23"
 ---
 
 ## From `step-mapping.md`: this step's rows
@@ -15,7 +15,7 @@ updated: "2026-10-12"
 ### Phase B — Design & Plan: phase notes
 
 Exit gates: `concept-locked` (Step 21), `wireframes-approved` (Step 26). For entry
-condition and dependencies, see [[[makepdlf-project-library:stepwise/run-plan|Run Plan]]](C:/dev/dev-makepdlf/makepdlf-project-library/stepwise/run-plan.md).
+condition and dependencies, see Run Plan.
 
 ## From `bft-checkpoint-cheatsheet-v2.md`: BFT level
 

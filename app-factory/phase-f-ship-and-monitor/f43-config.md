@@ -1,7 +1,7 @@
 ---
 title: "f43-config"
 doc-id: "mb-c55a9572"
-updated: "2026-10-12"
+updated: "2026-10-23"
 ---
 
 ## From `step-mapping.md`: this step's rows
@@ -10,7 +10,7 @@ updated: "2026-10-12"
 
 | Step | File | Type | Handler | Gate |
 |---|---|---|---|---|
-| 43 | `[[step-43-staging-smoke-test]]` | Skill | GStack [[[makepdlf-project-library:stepwise/step-38-qa\|/qa]]](C:/dev/dev-makepdlf/makepdlf-project-library/stepwise/step-38-qa.md) or `/canary` — smoke test | |
+| 43 | `[[step-43-staging-smoke-test]]` | Skill | GStack /qa or `/canary` — smoke test | |
 
 ### Phase E — Ship & Monitor: phase notes
 
@@ -21,7 +21,7 @@ currently defined; not yet corrected.
 
 
 Exit gates: `production-released` (Step 44), `released` (Step 46). For entry condition
-and dependencies, see [[[makepdlf-project-library:stepwise/run-plan|Run Plan]]](C:/dev/dev-makepdlf/makepdlf-project-library/stepwise/run-plan.md).
+and dependencies, see Run Plan.
 
 ## From `bft-checkpoint-cheatsheet-v2.md`: BFT level
 

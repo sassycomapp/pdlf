@@ -10,24 +10,24 @@ updated: "2026-10-23"
 
 | Step | File | Type | Handler | Gate |
 |---|---|---|---|---|
-| 39 | `[[step-39-triage]]` | Skill + GATE | Matt [[[makepdlf-project-library:stepwise/step-39-triage\|triage]]](C:/dev/dev-makepdlf/makepdlf-project-library/stepwise/step-39-triage.md) | `build-verified` |
+| 39 | `[[step-39-triage]]` | Skill + GATE | Matt triage | `build-verified` |
 
 ### Phase D — Build & Verify (per-feature loop): phase notes
 
 Repeats once per feature/package from Step 19's ticket list, until every feature has
 individually reached `build-verified`. For the loop's actual order and dependencies, see
-[[[makepdlf-project-library:stepwise/run-plan|Run Plan]]](C:/dev/dev-makepdlf/makepdlf-project-library/stepwise/run-plan.md), "Step 35 Feature Loop."
+Run Plan, "Step 35 Feature Loop."
 
 
 Exit gate: `build-verified`, evaluated per feature. For entry condition and dependencies,
-see [[[makepdlf-project-library:stepwise/run-plan|Run Plan]]](C:/dev/dev-makepdlf/makepdlf-project-library/stepwise/run-plan.md).
+see Run Plan.
 
 ### Gate Summary
 
-`build-verified` sits at Step 39 ([[[makepdlf-project-library:stepwise/step-39-triage|triage]]](C:/dev/dev-makepdlf/makepdlf-project-library/stepwise/step-39-triage.md)), not Step 40 — architecture remediation (40,
+`build-verified` sits at Step 39 (triage), not Step 40 — architecture remediation (40,
 40B) must complete and be retested (36, 37, 38) before the gate is evaluated, not after
 (ADR: two-gate-extension). Note this table lists gates in phase order for readability;
-it is not a sequence claim — see [[[makepdlf-project-library:stepwise/run-plan|Run Plan]]](C:/dev/dev-makepdlf/makepdlf-project-library/stepwise/run-plan.md) for the loop's actual internal order.
+it is not a sequence claim — see Run Plan for the loop's actual internal order.
 
 | Gate | After Step |
 |---|---|

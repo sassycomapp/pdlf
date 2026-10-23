@@ -1,7 +1,7 @@
 ---
 title: "e35a-config"
 doc-id: "mb-b18165ee"
-updated: "2026-10-12"
+updated: "2026-10-23"
 ---
 
 ## From `step-mapping.md`: this step's rows
@@ -10,17 +10,17 @@ updated: "2026-10-12"
 
 | Step | File | Type | Handler | Gate |
 |---|---|---|---|---|
-| 35A | [[[makepdlf-project-library:stepwise/step-35a-testing\|Step 35A Testing]]](C:/dev/dev-makepdlf/makepdlf-project-library/stepwise/step-35A-testing.md) | OpenCode | Local-scope `pip-audit` + broader testing | |
+| 35A | Step 35A Testing | OpenCode | Local-scope `pip-audit` + broader testing | |
 
 ### Phase D — Build & Verify (per-feature loop): phase notes
 
 Repeats once per feature/package from Step 19's ticket list, until every feature has
 individually reached `build-verified`. For the loop's actual order and dependencies, see
-[[[makepdlf-project-library:stepwise/run-plan|Run Plan]]](C:/dev/dev-makepdlf/makepdlf-project-library/stepwise/run-plan.md), "Step 35 Feature Loop."
+Run Plan, "Step 35 Feature Loop."
 
 
 Exit gate: `build-verified`, evaluated per feature. For entry condition and dependencies,
-see [[[makepdlf-project-library:stepwise/run-plan|Run Plan]]](C:/dev/dev-makepdlf/makepdlf-project-library/stepwise/run-plan.md).
+see Run Plan.
 
 ## From `bft-checkpoint-cheatsheet-v2.md`: BFT level
 

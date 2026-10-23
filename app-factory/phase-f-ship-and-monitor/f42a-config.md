@@ -1,7 +1,7 @@
 ---
 title: "f42a-config"
 doc-id: "mb-1de372f7"
-updated: "2026-10-12"
+updated: "2026-10-23"
 ---
 
 ## From `step-mapping.md`: this step's rows
@@ -10,7 +10,7 @@ updated: "2026-10-12"
 
 | Step | File | Type | Handler | Gate |
 |---|---|---|---|---|
-| 42A | [[[makepdlf-project-library:stepwise/step-42a-staging-integration-e2e\|Step 42A Staging Integration E2E]]](C:/dev/dev-makepdlf/makepdlf-project-library/stepwise/step-42A-staging-integration-e2e.md) | Skill | GStack/OpenCode — full integration/E2E suite | |
+| 42A | Step 42A Staging Integration E2E | Skill | GStack/OpenCode — full integration/E2E suite | |
 
 ### Phase E — Ship & Monitor: phase notes
 
@@ -21,7 +21,7 @@ currently defined; not yet corrected.
 
 
 Exit gates: `production-released` (Step 44), `released` (Step 46). For entry condition
-and dependencies, see [[[makepdlf-project-library:stepwise/run-plan|Run Plan]]](C:/dev/dev-makepdlf/makepdlf-project-library/stepwise/run-plan.md).
+and dependencies, see Run Plan.
 
 ## From `bft-checkpoint-cheatsheet-v2.md`: BFT level
 

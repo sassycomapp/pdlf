@@ -1,7 +1,7 @@
 ---
 title: "b14-config"
 doc-id: "mb-497c1373"
-updated: "2026-10-12"
+updated: "2026-10-23"
 ---
 
 ## From `step-mapping.md`: this step's rows
@@ -10,11 +10,11 @@ updated: "2026-10-12"
 
 | Step | File | Type | Handler | Gate |
 |---|---|---|---|---|
-| 14 | `[[step-14-plan-ceo-review]]` | Skill | GStack [[[makepdlf-project-library:stepwise/step-14-plan-ceo-review\|/plan-ceo-review]]](C:/dev/dev-makepdlf/makepdlf-project-library/stepwise/step-14-plan-ceo-review.md) | |
+| 14 | `[[step-14-plan-ceo-review]]` | Skill | GStack /plan-ceo-review | |
 
 ### Phase A — Discover & Define: phase notes
 
-Exit gate: `domain-locked` (Step 16). For entry condition and dependencies, see [[[makepdlf-project-library:stepwise/run-plan|Run Plan]]](C:/dev/dev-makepdlf/makepdlf-project-library/stepwise/run-plan.md).
+Exit gate: `domain-locked` (Step 16). For entry condition and dependencies, see Run Plan.
 
 ## From `bft-checkpoint-cheatsheet-v2.md`: BFT level
 

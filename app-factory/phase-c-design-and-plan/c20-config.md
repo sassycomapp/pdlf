@@ -1,7 +1,7 @@
 ---
 title: "c20-config"
 doc-id: "mb-47b5f04b"
-updated: "2026-10-12"
+updated: "2026-10-23"
 ---
 
 ## From `step-mapping.md`: this step's rows
@@ -10,12 +10,12 @@ updated: "2026-10-12"
 
 | Step | File | Type | Handler | Gate |
 |---|---|---|---|---|
-| 20 | `[[step-20-design-consultation]]` | Skill | GStack [[[makepdlf-project-library:stepwise/step-20-design-consultation\|/design-consultation]]](C:/dev/dev-makepdlf/makepdlf-project-library/stepwise/step-20-design-consultation.md) | |
+| 20 | `[[step-20-design-consultation]]` | Skill | GStack /design-consultation | |
 
 ### Phase B — Design & Plan: phase notes
 
 Exit gates: `concept-locked` (Step 21), `wireframes-approved` (Step 26). For entry
-condition and dependencies, see [[[makepdlf-project-library:stepwise/run-plan|Run Plan]]](C:/dev/dev-makepdlf/makepdlf-project-library/stepwise/run-plan.md).
+condition and dependencies, see Run Plan.
 
 ## From `bft-checkpoint-cheatsheet-v2.md`: BFT level
 
