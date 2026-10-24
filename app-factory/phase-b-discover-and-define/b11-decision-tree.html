@@ -29,7 +29,7 @@ flowchart TD
     A5 --> Common
 
     Route -->|"03: with context"| B1["9-10. Ask every repository; check links and anvil.yaml<br/>correct only with permission"]
-    B1 --> B2["11. Create only what is missing; change nothing"]
+    B1 --> B2["11. Create only what is missing; change nothing<br/>reference material: report, move with permission"]
     B2 --> B3[["12. Each app: section 5, only what is missing;<br/>PR-09 always for an app with code"]]
     B3 --> B4["13-14. graphify each app; /cso secret scan<br/>a secret is removed and rotated"]
     B4 --> B5["15-16. Report old names; David confirms data is sound"]
@@ -43,12 +43,12 @@ flowchart TD
 
     subgraph S5["Section 5: setting up one app"]
       direction TB
-      W1["21. wizard: David creates the app in Anvil, connects GitHub,<br/>switches on the Users service, adds the role column"] --> W2{"22. Clone holds anvil.yaml<br/>with the Users service?"}
+      W1["21. wizard: David creates the app in Anvil, connects GitHub,<br/>switches on the Users service, adds the role column"] --> W2{"22. Repository brought in: git init, fetch, checkout;<br/>holds anvil.yaml with the Users service?"}
       W2 -->|"No"| Dev2["Stop: deviation"]
-      W2 -->|"Yes"| W3["23. anvil --json validate (ST-01)<br/>24. AGENTS.md and .gitignore"]
+      W2 -->|"Yes"| W3["23. anvil --json validate (ST-01)<br/>24. AGENTS.md; check .gitignore"]
       W3 --> W4{"25. App 3?"}
       W4 -->|"Yes"| W9(["Done: no code, no test setup"])
-      W4 -->|"No: App 1 or App 5"| W5["26. tests folders and templates"]
+      W4 -->|"No: App 1 or App 5"| W5["26. test templates into the tests folders"]
       W5 --> W6["27. David runs ts_local.sh init for .env<br/>and confirms"]
       W6 --> W7{"28-30. Runtime starts and<br/>PR-09 passes?"}
       W7 -->|"No"| Dev3["Stop: deviation"]

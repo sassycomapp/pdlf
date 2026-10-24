@@ -40,7 +40,7 @@ What the agent does at Step 12, in order. Agent-facing. Fixed values: [[[pdlf:ap
 ## 5. Reference platform
 
 19. Read the reference's analysis listed at Step 03.
-20. Run `research` in this session (sub-agents are blocked): check each claim of the analysis against the reference's primary sources, its source code and official documentation. Read sources on `github.com` and `raw.githubusercontent.com` directly. For any other domain, ask David to run `net-grant --domain {domain} --count {n}`, naming the domain and the count; wait until he confirms.
+20. Run `research` in this session (sub-agents are blocked): check each claim of the analysis against the reference's primary sources, its source code and official documentation. Read the reference's own material in `reference-platform-local\` first. Read sources on `github.com` and `raw.githubusercontent.com` directly. For any other domain, ask David to run `net-grant --domain {domain} --count {n}`, naming the domain and the count; wait until he confirms.
 21. Write `docs-local\reference-platform-research.md`, citing the source of every claim, and separating the reference's business domain and workflows from its technology.
 22. Return to the route chosen at item 2.
 

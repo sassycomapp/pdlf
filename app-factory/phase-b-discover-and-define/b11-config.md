@@ -92,7 +92,7 @@ David sets these in the Anvil editor when he creates the app.
 | Item | Value |
 |---|---|
 | Apps that get it | App 1 and App 5; never App 3 |
-| Folders | `tests\logic\`, `tests\integration\`, `tests\security\` |
+| Folders | `tests\logic\`, `tests\integration\`, `tests\security\`, provided by the project template |
 | Copied into `tests\` | `conftest.py`, `pytest.ini`, `ts-config.yaml` (with `role: app1`) |
 | Copied into `tests\integration\` | `test_pr09_environment.py` |
 | David's command for `.env` | `bash /mnt/c/dev/project-library-global/test-suite/tools/ts_local.sh {app folder} init` |
@@ -108,9 +108,21 @@ David sets these in the Anvil editor when he creates the app.
 | Domain documents | Single context, shared by all the business's apps: the glossary `docs-local\GLOSSARY.md`; decisions in `adr-local\`, one file each, `adr-{kebab-case-name}.md`; `docs\agents\domain.md` states both, as the project template holds it |
 | `CLAUDE.md` | Never created |
 
+## Bringing an app's repository into its folder
+
+The app folder holds the project template's scaffold, so `git clone` cannot be used. In `{slug}-app{n}`:
+
+```
+git init
+git remote add origin https://github.com/sassycomapp/{slug}-app{n}.git
+git fetch origin
+git remote set-head origin -a
+git checkout -t "$(git rev-parse --abbrev-ref origin/HEAD)"
+```
+
 ## App `.gitignore` baseline
 
-`.env`, `.env.*`, credentials, `__pycache__/`, `*.pyc`, `.pytest_cache/`, test output, `.venv/`, `.opencode/`, `.gstack/`.
+The `.gitignore` in every app folder of the project template. It keeps out `.env`, `.env.*`, credentials, `__pycache__/`, `*.pyc`, `.pytest_cache/`, test output, `.venv/`, `graphify-out/`, `.gbrain/`, `.opencode/`, `.gstack/`.
 
 ## Ledger values
 

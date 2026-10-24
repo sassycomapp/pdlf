@@ -41,6 +41,7 @@ The fixed values of Step 12. Agent-facing. What the agent does, in order: [[[pdl
 | Vocabulary and decisions (features) | `{slug}-project-library\docs-local\GLOSSARY.md`; `{slug}-project-library\adr-local\` |
 | Code graph (routes B and C) | Graphify, for the app folder worked on |
 | Reference platform's analysis | The context material listed at Step 03 |
+| Reference platform's own material | `{slug}-project-library\reference-platform-local\`: `source\` (its source code at the pinned release), `reference\` (its API specifications and official documentation), `notes\` |
 | Context pack | [[[pdlf:pdlf-library/specifications-local/spec-skill-context-pack\|Spec: Skill Context Pack]]](C:/pdlf/pdlf-library/specifications-local/spec-skill-context-pack.md) |
 | Common aspects | [[[default:policy-global/pol-common-aspects-for-mybizz-anvil-applications\|Common Aspects for Mybizz Anvil Applications]]](C:/dev/project-library-global/policy-global/pol-common-aspects-for-mybizz-anvil-applications.md) |
 | Compliance facts | [[[default:specifications-global/spec-regulatory-compliance-baseline\|Regulatory Compliance Baseline]]](C:/dev/project-library-global/specifications-global/spec-regulatory-compliance-baseline.md) |
@@ -119,6 +120,7 @@ The fixed values of Step 12. Agent-facing. What the agent does, in order: [[[pdl
 
 | Item | Value |
 |---|---|
+| Read first, with no network | `{slug}-project-library\reference-platform-local\` |
 | Allowed without a grant | `github.com`, `raw.githubusercontent.com` (Cupcake's allowlist) |
 | Any other domain | David runs `net-grant --domain {domain} --count {n}`; the agent states the domain and the count |
 

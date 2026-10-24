@@ -25,7 +25,7 @@ What the agent does at Step 11, in order. Agent-facing. Fixed values: [[[pdlf:ap
 
 9. Ask David for the GitHub address and local path of every repository the business has: each app that exists and the project library.
 10. Check each repository is linked to its GitHub address, and each app folder holds `anvil.yaml`. Report every broken link. Correct one only with David's permission.
-11. Compare the business folder and the project library with the template. Create only what is missing, including any missing `pdlf-outputs\` step folder and `pdlf-tickets\`. Change nothing that exists.
+11. Compare the business folder and the project library with the template. Create only what is missing, including any missing `pdlf-outputs\` step folder and `pdlf-tickets\`. Change nothing that exists. If a reference platform's material is held anywhere in the project library other than `reference-platform-local\`, report it; move it there only with David's permission.
 12. For each existing app, do section 5 from item 22 on, doing only what is missing: where the Users service or its `role` column is missing, give David the `wizard` instructions for that part of item 21; write a missing `AGENTS.md`, `.gitignore` or test file only with David's permission; overwrite nothing. Items 28 to 30 always run for an app that holds code.
 13. Run `graphify` on each existing app to build its code graph.
 14. Run GStack `/cso` as a static scan of every existing public repository for secrets. A secret found: present it to David; it is removed and rotated before the step ends.
@@ -42,11 +42,11 @@ What the agent does at Step 11, in order. Agent-facing. Fixed values: [[[pdlf:ap
 ## 5. Setting up one app
 
 21. Use the `wizard` skill to give David exact numbered instructions: create the app in his Anvil account; connect it to GitHub as `sassycomapp/{slug}-app{n}`; switch on the Users service with the settings in the configuration; add the text column `role` to the Users table in the Data Tables view; give the agent the repository's address. Wait for the address.
-22. Remove `{slug}-app{n}\.gitkeep`, then clone the address into `{slug}-app{n}`. Check the clone holds `anvil.yaml` and that `anvil.yaml` holds the Users service. If not: stop and raise a deviation. Never write `anvil.yaml`.
+22. In `{slug}-app{n}`, which holds the project template's scaffold, bring in the repository with the commands in the configuration, because `git clone` needs an empty folder. If the checkout reports a file in the way: stop and raise a deviation. Check the clone holds `anvil.yaml` and that `anvil.yaml` holds the Users service. If not: stop and raise a deviation. Never write `anvil.yaml`.
 23. Run `anvil --json validate .` in the app folder and save its output in `pdlf-outputs\b11\` (test ST-01).
-24. Write the app's `AGENTS.md` from `C:\mybizz\anvil-agent-references\AGENTS.md`, with its resource paths pointed at `C:\mybizz\anvil-agent-references\`. Write its `.gitignore` from the baseline in the configuration.
+24. Write the app's `AGENTS.md` from `C:\mybizz\anvil-agent-references\AGENTS.md`, with its resource paths pointed at `C:\mybizz\anvil-agent-references\`. Check its `.gitignore` holds the baseline in the configuration; if the folder has none, copy it from the project template's app folder.
 25. App 3: stop here; it holds no code and gets no test setup. App 1 and App 5: continue.
-26. Create `tests\logic\`, `tests\integration\` and `tests\security\`. Copy `conftest.py`, `pytest.ini` and `ts-config.yaml` from the test templates into `tests\`, and set `role: app1` in `ts-config.yaml`. Copy `test_pr09_environment.py` into `tests\integration\`.
+26. Check `tests\logic\`, `tests\integration\` and `tests\security\` exist, and create any that is missing. Copy `conftest.py`, `pytest.ini` and `ts-config.yaml` from the test templates into `tests\`, and set `role: app1` in `ts-config.yaml`. Copy `test_pr09_environment.py` into `tests\integration\`.
 27. Give David the command for `.env` in the configuration, with the app folder filled in. Wait until he confirms. Never read or write `.env`.
 28. Start the local runtime: `bash /mnt/c/dev/project-library-global/test-suite/tools/ts_local.sh {app folder} start`. If it does not start: stop and raise a deviation.
 29. Run test PR-09: `bash /mnt/c/dev/project-library-global/test-suite/tools/ts_local.sh {app folder} run pytest tests/integration/test_pr09_environment.py -m local --junitxml={project library}/pdlf-outputs/b11/{slug}-b11-{run}-pr09.xml`.
