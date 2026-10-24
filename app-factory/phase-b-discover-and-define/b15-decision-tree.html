@@ -2,120 +2,76 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Step 15 — Plan Eng Review Decision Tree (Final)</title>
+<title>Step 15 — Engineering Review Decision Tree</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
 <style>
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-    background: #f5f5f4;
-    padding: 32px;
-    margin: 0;
-  }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; background: #f5f5f4; padding: 32px; margin: 0; }
   h1 { font-size: 19px; color: #1a1a1a; margin: 0 0 20px 0; }
-  .diagram-wrap {
-    background: white;
-    border-radius: 10px;
-    padding: 24px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-    overflow-x: auto;
-  }
+  .diagram-wrap { background: white; border-radius: 10px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); overflow-x: auto; }
   .mermaid { display: flex; justify-content: center; }
 </style>
 </head>
 <body>
-
-<h1>Step 15 — Plan Eng Review Decision Tree (Final)</h1>
-
+<h1>Step 15 — Engineering Review Decision Tree (matches b15-reference)</h1>
 <div class="diagram-wrap">
   <div class="mermaid">
 flowchart TD
-    Start(["Step 14 complete → Step 15 begins"]) --> Q1["Query GBrain<br/>(automatic, read-only)<br/>Sources: {slug}, {slug}-project-library,<br/>project-library-global"]
-    Q1 --> Q2{"Step 14 mode?"}
-
-    Q2 -->|"EXPANSION / SELECTIVE EXPANSION"| P1["GStack-native plan file exists at<br/>~/.gstack/projects/{slug}/ceo-plans/..."]
-    Q2 -->|"HOLD SCOPE / SCOPE REDUCTION"| P2["No GStack-native file.<br/>Only gstack-outputs\step-14-ceo-plan.md<br/>transcript capture exists."]
-
-    P1 --> A1
-    P2 --> A1
-
-    A1["Assemble context:<br/>plan artifact (from P1 or P2)<br/>design-doc.md<br/>design-doc-first-concept.md<br/>/office-hours output (if it ran)"]
-    A1 --> C1["Local/global conflict check<br/>(OpenCode's own comparison —<br/>skill has zero awareness, confirmed<br/>same as Step 14)"]
-    C1 --> C2{"Conflict found?"}
-    C2 -->|"No reason to diverge"| C3["Global wins"]
-    C2 -->|"Real reason to diverge"| C4["Deviation request"]
-    C2 -->|"No conflict"| C5["Proceed"]
-    C3 --> Inv1
-    C4 --> Inv1
-    C5 --> Inv1
-
-    Inv1["Invoke GStack /plan-eng-review.<br/>Paste all context in full text.<br/>State explicitly: 'a design doc already<br/>exists, provided above.'"]
-    Inv1 --> Aud1["Skill's pre-review system audit +<br/>design-doc glob<br/>(same preemption logic as Step 14 —<br/>if synthesized=true at Step 12,<br/>state design doc exists to suppress<br/>the /office-hours re-offer)"]
-
-    Aud1 --> Step0["Step 0: SCOPE CHALLENGE<br/>(different content from Step 14's<br/>mode selection — no EXPANSION/<br/>HOLD/REDUCTION framework here)"]
-
-    Step0 --> S0a["Existing-code-leverage check"]
-    S0a --> S0b["Minimum-change check"]
-    S0b --> S0c{"Complexity trigger:<br/>8+ files OR<br/>2+ new classes/services?"}
-    S0c -->|"Yes"| S0d["STOP — mandatory AskUserQuestion<br/>proposing minimal version.<br/>Does NOT proceed to Section 1<br/>until developer responds."]
-    S0c -->|"No"| S0e["Search-Before-Building<br/>(Layer 1/2/3 + EUREKA)"]
-    S0d --> S0e
-    S0e --> S0f["TODOS.md cross-reference"]
-    S0f --> S0g["Completeness check"]
-    S0g --> S0h["Distribution check<br/>(build/publish pipeline for<br/>new artifact types)"]
-
-    S0h --> Sec1["1. Architecture review<br/>(incl. distribution-architecture<br/>sub-check)"]
-    Sec1 --> Sec1a["AskUserQuestion per finding —<br/>never batched. STOP until<br/>developer responds."]
-    Sec1a --> Sec2["2. Code Quality review"]
-    Sec2 --> Sec2a["AskUserQuestion per finding"]
-    Sec2a --> Sec3["3. Test review —<br/>coverage diagram, E2E decision matrix,<br/>REGRESSION RULE (mandatory, no ask)"]
-    Sec3 --> TPA["Write Test Plan Artifact:<br/>~/.gstack/projects/{slug}/<br/>{user}-{branch}-eng-review-test-plan-<br/>{datetime}.md<br/>(the ONE genuinely separate file)"]
-    TPA --> Sec3a["AskUserQuestion per finding"]
-    Sec3a --> Sec4["4. Performance review"]
-    Sec4 --> Sec4a["AskUserQuestion per finding"]
-
-    Sec4a --> ReqOut["Required Outputs<br/>(written INTO the plan file —<br/>NOT separate documents.<br/>No five-document TDD cluster —<br/>confirmed false, corrected here)"]
-    ReqOut --> RO1["NOT in scope"]
-    RO1 --> RO2["What already exists"]
-    RO2 --> RO3["TODOS.md updates<br/>(individual AskUserQuestion per TODO)"]
-    RO3 --> RO4["Diagrams (ASCII + inline<br/>comment recommendations)"]
-    RO4 --> RO5["Failure modes"]
-    RO5 --> RO6["Worktree parallelization strategy"]
-
-    RO6 --> OV["Outside Voice (default-on)<br/>Independent AI-model review.<br/>Informational, never gates.<br/>Findings need explicit accept/reject —<br/>never auto-incorporated."]
-
-    OV --> Report["## GSTACK REVIEW REPORT<br/>appended to the SAME plan file<br/>(delete-then-append-at-end)"]
-    Report --> Detect{"Active plan file<br/>detected in conversation?<br/>(uncertain in OpenCode context —<br/>see build notes)"}
-    Detect -->|"Yes"| Write1["Report written to plan file.<br/>Terminal line: NO UNRESOLVED DECISIONS<br/>or **UNRESOLVED DECISIONS:** block"]
-    Detect -->|"No / uncertain"| Write2["Skill's own write may silently no-op.<br/>Orchestrator still captures findings<br/>from conversation output —<br/>does not depend on skill's file-write."]
-
-    Write1 --> Cap["Orchestrator captures plan artifact<br/>+ Test Plan Artifact path"]
-    Write2 --> Cap
-
-    Cap --> Copy["Copy/save to gstack-outputs\:<br/>step-15-eng-plan.md<br/>step-15-test-plan.md"]
-    Copy --> Verify{"Both outputs<br/>verified to exist?"}
-    Verify -->|"No"| Dev1["DEVIATION REQUEST"]
-    Verify -->|"Yes"| Ledger["Write steps ledger row:<br/>step_number=15, status=complete,<br/>synthesized=false, artifact_path=..."]
-    Dev1 --> Ledger
-
-    Ledger --> Receipt["Save Step Receipt<br/>Apply BFT — Full"]
-    Receipt --> House["Explain what was done and why.<br/>Present Step Receipt.<br/>Stop. Ask David to run /mb-close-out.<br/>Wait for continue."]
-    House --> Next["Ask: continue to Step 16?"]
-
-    Next --> H1["Step 16 (domain modeling,<br/>gate: domain-locked) needs the<br/>design doc + locked architecture/<br/>test decisions from Step 15."]
-
-    classDef note fill:#eef2ff,stroke:#4f46e5,stroke-width:1px;
-    classDef warn fill:#fef2f2,stroke:#dc2626,stroke-width:1px;
-    classDef fixed fill:#f0fdf4,stroke:#16a34a,stroke-width:1px;
-    class H1 note;
-    class Dev1 warn;
-    class Detect,Write2 warn;
-    class ReqOut,TPA fixed;
+    Start(["Entry record and Step 14's hand-over"]) --> S1{"1. Step 14 complete<br/>and its plan approved?"}
+    S1 -->|"No"| Dev1["Stop: deviation"]
+    S1 -->|"Yes"| S2["2. Carry input notices<br/>3. Read every input; for a feature, the app's documents"]
+    S2 --> DM["4. data-models, steps 1 to 4, and its defaults<br/>5. Schema up front"]
+    DM --> CD["6. codebase-design: pure modules, thin server modules"]
+    CD --> Arch["7. Services, webhooks, tasks, management, heartbeat,<br/>R2, exit, AI, lifecycles as state machines"]
+    Arch --> RefP{"8. Reference platform?"}
+    RefP -->|"Yes"| Map["Map its layers to Anvil; no technology carried"]
+    RefP -->|"No"| Unc
+    Map --> Unc{"9. Uncertain lifecycle?"}
+    Unc -->|"Yes"| Proto["prototype, logic branch; David drives it;<br/>verdict into the plan"]
+    Unc -->|"No"| Fact
+    Proto --> Fact{"10. Anvil fact unanswered?"}
+    Fact -->|"Yes"| Res["research in this session; cite it"]
+    Fact -->|"No"| Fit
+    Res --> Fit["11. Platform fit checked; misfits changed with David<br/>12. Write the Architecture section"]
+    Fit --> ER["13. /plan-eng-review from the project library<br/>design-doc.md as plan and report file<br/>14. Fixed answers"]
+    ER --> Cx{"15. Complexity gate trips?"}
+    Cx -->|"Yes"| Struct["David answers the structure question<br/>and each proposed cut"]
+    Cx -->|"No"| Find
+    Struct --> Find{"16. Next finding or remedy?"}
+    Find -->|"David decides"| Glob{"17. Contradicts a global standard?"}
+    Glob -->|"Yes"| Devn{"David approves a deviation?"}
+    Devn -->|"Yes"| ADR["Write the ADR in adr-local"]
+    Devn -->|"No"| Keep["The standard holds"]
+    ADR --> Find
+    Keep --> Find
+    Glob -->|"No"| Find
+    Find -->|"None left"| OQ["18. Settle the open questions given to Step 15"]
+    OQ --> Rep{"19. Plan amended, report last?<br/>20. GStack test plan exists?"}
+    Rep -->|"No"| Dev2["Stop: deviation"]
+    Rep -->|"Yes"| TM["21. Threat model: boundaries, threats, controls,<br/>owners, documents, test IDs; no open weakness"]
+    TM --> SA["22. Plan of security assessments"]
+    SA --> SD["23. Security Decisions section; report stays last"]
+    SD --> AM["24. Access matrix; parses as YAML"]
+    AM --> TP["25. Test plan: flows, edges, errors, state machines,<br/>catalogue IDs, conformance checks"]
+    TP --> CA["26. Common aspects: where each is met, or its ADR<br/>27. Global-move proposal"]
+    CA --> Dia["28. mb-archify-scope: David approves each Scope Card<br/>archify draws architecture and data flow"]
+    Dia --> Check{"29. DC-04 to DC-08 and DC-01 pass?<br/>results to dc-checks"}
+    Check -->|"No"| Fix["Correct with David"]
+    Fix --> Check
+    Check -->|"Yes"| Appr{"30. David approves plan, test plan,<br/>access matrix and threat model?"}
+    Appr -->|"Correction"| Fix
+    Appr -->|"Approved"| Sen{"31. Sentinel, High: clear?"}
+    Sen -->|"Flag or Escalate"| Stop1(["Stop: David decides"])
+    Sen -->|"Clear"| GL{"32. gitleaks finds a secret?"}
+    GL -->|"Yes"| GLfix["Remove it, run again"]
+    GLfix --> GL
+    GL -->|"No"| Copies{"33. Copies in pdlf-outputs\b15<br/>and every expected file exist?"}
+    Copies -->|"No"| Dev3["Stop: deviation"]
+    Copies -->|"Yes"| Rec["34. Ledger row, Step Receipt, Full BFT"]
+    Rec --> Close(["35. Explain, stop, ask David to run /mb-close-out"])
   </div>
 </div>
-
 <script>
   mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis' } });
 </script>
-
 </body>
 </html>

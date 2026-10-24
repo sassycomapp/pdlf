@@ -63,19 +63,11 @@ This report is a working tool for building PDLF. It is deleted when PDLF is fini
 
 #### Step 15: Engineering review
 
-**Status:** Built. Last changed 2026-08-25.
+**Status:** Built.
 
-**Files:** `app-factory/phase-b-discover-and-define/15-plan-eng-review.md` (the step), `app-factory/phase-b-discover-and-define/15-build-notes.md`, `app-factory/phase-b-discover-and-define/15-decision-tree.html`.
+**Files:** in `app-factory/phase-b-discover-and-define/`: `b15-build-plan.md`, `b15-test-spec.md`, `b15-config.md`, `b15-reference.md`, `b15-explainer.md`, `b15-decision-tree.html`, `b15-module.md` (empty until Pass 3).
 
-**Carried out by:** GStack `/plan-eng-review`.
-
-**What it does:** searches GBrain, finds Step 14's plan according to the scope mode used, and pastes it with the design docs into the skill, stating that a design doc already exists. OpenCode makes the same comparison with `project-library-global` as at Step 14. The skill runs its scope challenge, which stops for the developer if the plan touches 8 or more files or 2 or more new services, then four reviews (architecture, code quality, tests and performance), each finding put to the developer one at a time. It writes a test plan, adds its required outputs (what is out of scope, what already exists, diagrams, failure modes) to the plan, gets a second opinion from another AI, and ends with its review report.
-
-**Produces:** the reviewed plan and the test plan (used later by Steps 35 and 38), with stable copies in the project, plus the Step Receipt.
-
-**BFT level:** Full.
-
-**Decided while building:** the skill produces one separate file, the test plan, not the five architecture documents earlier drafts assumed; whether the skill finds "the active plan file" inside OpenCode is to be watched on the first live run, and does not block the step, because OpenCode captures the findings itself.
+**What it does and produces:** [[[pdlf:app-factory/phase-b-discover-and-define/b15-explainer|Step 15 Explainer]]](C:/pdlf/app-factory/phase-b-discover-and-define/b15-explainer.md); [[[pdlf:app-factory/phase-b-discover-and-define/b15-config|Step 15 Configuration]]](C:/pdlf/app-factory/phase-b-discover-and-define/b15-config.md).
 
 #### Step 16: Domain modeling
 

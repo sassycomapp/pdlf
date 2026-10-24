@@ -29,7 +29,7 @@ Current preambles invoke it as:
 |---|---|
 | `/office-hours` | `~/.gstack/projects/<slug>/{user}-{branch}-design-{datetime}.md`; inside a git repository also `docs/designs/{topic-slug}.md`, which Step 12 moves into its step folder |
 | `/plan-ceo-review` | The working plan it is given (PDLF names the run's `design-doc.md`), amended in place with `## GSTACK REVIEW REPORT` last, in every mode; in SCOPE EXPANSION and SELECTIVE EXPANSION also the CEO summary `~/.gstack/projects/<slug>/ceo-plans/{YYYY-MM-DD}-{feature-slug}.md` |
-| `/plan-eng-review` | Test Plan Artifact `~/.gstack/projects/<slug>/{user}-{branch}-eng-review-test-plan-{datetime}.md`; everything else lands inside the plan file it was handed (append-in-place of `## GSTACK REVIEW REPORT`) |
+| `/plan-eng-review` | The plan and report file it is given (PDLF names the run's `design-doc.md`), amended in place with `## GSTACK REVIEW REPORT` last; its test plan `~/.gstack/projects/<slug>/{user}-{branch}-eng-review-test-plan-{datetime}.md` |
 | `/design-consultation` | `~/.gstack/projects/<slug>/designs/` |
 | `/qa` | `~/.gstack/projects/<slug>/{user}-{branch}-test-outcome-{datetime}.md` |
 | `/review` | Findings persisted to a named path prescribed by the invoking step |

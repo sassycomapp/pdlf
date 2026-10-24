@@ -126,10 +126,18 @@ Per step: close the build plan; check the test spec; write the config, reference
 | b12 | Closed | Written | Written | Written | Written |
 | b13 | Placeholder (step not used) | — | — | — | — |
 | b14 | Closed | Written | Written | Written | Written |
-| b15 | Open (about 1,200 lines; holds a saved copy of GStack `/plan-eng-review` from 1.58.1: remove it and check against `c580561`) | Old | Old | Empty | Old |
+| b15 | Closed | Written | Written | Written | Written |
 | b16 | Open | Old | Old | Empty | Old |
 
-The build plans of `a01` and `e35`, and the reference of `e35`, still say "three levels" of testing and test Level 2 against the live app; they are rewritten to the test suite's Levels 1 to 3 and the local runtime (section 11) when closed. The open build plans b12, b14, b15 and b16 still carry the old test-application wording (`mb5pdlf`, Daily Intentions Tracker, `makepdlf`, `stepwise`); it goes when each plan is closed. The open build plans f42, f42A, f43 and f44 still model a staging and production split and `develop`/`stable` branches; they are rebuilt around the release by push (section 10) when closed. Old configs and references in every phase still link to `makepdlf`/`stepwise` documents that do not exist, or name the retired `two-gate-extension` ADR in plain words; Pass 1 rewrites them afresh.
+The build plans of `a01` and `e35`, and the reference of `e35`, still say "three levels" of testing and test Level 2 against the live app; they are rewritten to the test suite's Levels 1 to 3 and the local runtime (section 11) when closed. The open build plan of b16 still carries the old test-application wording (`mb5pdlf`, Daily Intentions Tracker, `makepdlf`, `stepwise`); it goes when the plan is closed. The open build plans f42, f42A, f43 and f44 still model a staging and production split and `develop`/`stable` branches; they are rebuilt around the release by push (section 10) when closed.
+
+Findings for later steps, settled when each is built:
+- **b16:** the pinned Matt Pocock skills (`5beb35b`) name the glossary `GLOSSARY.md`, not `CONTEXT.md`; PDLF adopts the skills' name, in `docs-local\`, configured through `setup-matt-pocock-skills` (Step 11's fixed answers) and every document that names `CONTEXT.md`.
+- **c23:** GStack's review pipeline runs CEO, design, developer experience, then engineering last, so the engineering review sees the final plan; PDLF runs the engineering review at Step 15 because Step 17 builds the tables from it. Any change `/plan-design-review` makes to the reviewed plan's architecture goes back through `/plan-eng-review`. `/plan-devex-review` does not apply: Mybizz applications are built for end users, not developers.
+- **c26, d31:** forms designed after Step 15 are added to the app's `access-matrix.yaml`.
+- **e38:** GStack's test plan is saved under the project library's GStack name; `/qa-only`, started from an app repository, has another GStack name and does not find it, so the step pastes `test-plan.md` and GStack's test plan into it.
+
+Old configs and references in every phase still link to `makepdlf`/`stepwise` documents that do not exist, or name the retired `two-gate-extension` ADR in plain words; Pass 1 rewrites them afresh.
 
 ## 8. How every step is built
 
@@ -138,13 +146,14 @@ These requirements apply to every step of Pass 1, without exception.
 1. **Do the job; do not discuss it.** First a task list of the supporting structures the step needs, then a task list per document; then the work; then the files. No rounds of findings and questions.
 2. **Ask David only what Claude is truly incapable of deciding.** Claude is the engineer and David is not a programmer. A technical choice is Claude's; only an intent that cannot be found in any document is David's, asked with a recommended answer and its reason.
 3. **Excellence, not shortcuts.** Autonomy is not licence to do less. Every step is engineered fully and checked before it is sent.
-4. **Read the sources first.** The step's old documents, every document it links to, the steps before and after it, the ledger, Sentinel's table, the skills catalogue, and the pinned source of every skill it uses (GStack `c580561`, Matt Pocock `5beb35b`). Design around what a skill really does, including what Cupcake blocks (sub-agents; every domain off the allowlist).
-5. **The order of work.** Close the build plan; correct the test spec; write the config, reference and explainer afresh; generate the decision tree; scan; send.
-6. **The decision tree.** Generated from the reference. Every action box carries the number of its reference item, and every step's numbering starts from 1. Its diagram code is validated before it is sent.
-7. **Supporting structures are fixed at their source,** in the same batch, whenever a step needs them: a shared rule, a template, a tool, a name.
-8. **The scan.** Every file: no dead link, no banned term, no wording about what came before, no dependency on an application's files, every named path real.
-9. **The built report.** The step's entry in `pdlf-built-report.md` is brought to its status, its files and links to its explainer and configuration, in the same batch.
-10. **Delivery.** Each file with the path it replaces or a note that it is new, and the one `REPOS_OVERRIDE` commit command for every repository touched.
+4. **The skills catalogue is the mainstay.** For every step, read `skills-catalog.md` as a whole and draw the skills that best serve the step, never only those its old documents name. Each skill suite's own pipeline (GStack: think, plan, build, review, test, ship, reflect; Matt Pocock: grill, spec, tickets, implement, review) is part of its design and spans several PDLF steps and phases: follow it, and record any step where PDLF departs from it, with the reason. A skill the catalogue gives to a step, or a step a skill's pipeline needs, is written into the catalogue's PDLF steps column in the same batch.
+5. **Read the sources first.** The step's old documents, every document it links to, the steps before and after it, the ledger, Sentinel's table, the skills catalogue, and the pinned source of every skill it uses (GStack `c580561`, Matt Pocock `5beb35b`). Design around what a skill really does, including what Cupcake blocks (sub-agents; every domain off the allowlist).
+6. **The order of work.** Close the build plan; correct the test spec; write the config, reference and explainer afresh; generate the decision tree; scan; send.
+7. **The decision tree.** Generated from the reference. Every action box carries the number of its reference item, and every step's numbering starts from 1. Its diagram code is validated before it is sent.
+8. **Supporting structures are fixed at their source,** in the same batch, whenever a step needs them: a shared rule, a template, a tool, a name.
+9. **The scan.** Every file: no dead link, no banned term, no wording about what came before, no dependency on an application's files, every named path real.
+10. **The built report, every step.** Keeping `pdlf-built-report.md` current is a requirement of every step: its entry is brought to its status, its files and links to its explainer and configuration, in the same batch as the step.
+11. **Delivery.** Each file with the path it replaces or a note that it is new, and the one `REPOS_OVERRIDE` commit command for every repository touched.
 
 ## 9. What each Phase B test spec needs from its build plan
 
@@ -153,7 +162,7 @@ These requirements apply to every step of Pass 1, without exception.
 | b11 | PR-09 (local Anvil App Server, server and client Uplink keys, a `TEST_` user with a second factor, the mail catcher); ST-10 (the app's `.gitignore` covers `.env`; `tests\` holds `conftest.py`, `pytest.ini`, `ts-config.yaml` and `test_pr09_environment.py`); PR-06 | Closed: the test setup is in the b11 build plan; the runtime is `ts_local.sh` (`ts-method` section 3) |
 | b12 | DC-01; DC-02; PR-01; PR-04; PR-06 | Closed |
 | b14 | PR-01; DC-03; DC-01; PR-06; PR-04 | Closed |
-| b15 | DC-04 to DC-08 (test plan with catalogue IDs; `access-matrix.yaml`; threat model; security decisions; conformance checks selected) | `access-matrix.yaml`, the security decisions, the conformance selection; its Testing line says "three levels" (the suite has levels D and 0 to 4, run in order) |
+| b15 | PR-01; DC-04 to DC-08; DC-01; PR-06; PR-04 | Closed |
 | b16 | DC-09; PR-05 (receipts match evidence, `ts_report.py --check`); PR-03 | PR-05 |
 
 PR tests are in `spec-pdlf-process-tests`. Each build plan's **Testing** line becomes `{step}-test-spec.md` with one sentence of what it proves.
@@ -171,6 +180,7 @@ PR tests are in `spec-pdlf-process-tests`. Each build plan's **Testing** line be
 - **Design docs:** each run's concept lives in `docs-local\design\{run}\` (`design-doc.md`, `design-doc-first-concept.md`); a reference platform's research in `docs-local\reference-platform-research.md`. From Step 14 on, `design-doc.md` is the reviewed plan: GStack's plan reviews amend it in place and keep `## GSTACK REVIEW REPORT` as its last section. Later steps read these paths.
 - **Protection levels:** Public, Internal, Personal, Restricted (`spec-security-architecture` section 4).
 - **No `TODOS.md`:** a deferral is written in the plan's NOT in scope section with its reason.
+- **Per app and per run:** `access-matrix.yaml` and `threat-model.md` belong to the app, in `docs-local\design\app{n}\`, and a feature extends them; `test-plan.md` belongs to the run, in `docs-local\design\{run}\`. The threat model holds no open weakness, because the project library is public; an open weakness is a ledger finding.
 - **Artefacts:** named `{slug}-{step}-{run}-{name}`; GStack project name `sassycomapp-{slug}-app{n}` (`artifact-saving-convention`).
 - The `mb-3-cs` test specification is `mb-3-cs-project-library\docs-local\mb-3-cs-test-specification.md`; its Vault details are in `mb-3-cs-vault-implementation.md`.
 - The ledger's `triage_findings.source_step` also allows 35A, 38A, 40, 41, 42A, 43, 44.
