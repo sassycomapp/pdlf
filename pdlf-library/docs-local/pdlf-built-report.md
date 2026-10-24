@@ -1,19 +1,19 @@
 ---
 title: "pdlf-built-report"
 doc-id: "mb-36208a1a"
-updated: "2026-10-11"
+updated: "2026-10-24"
 ---
 # PDLF Built Report
 
 ## Preamble
 
-This document records what has been built of PDLF so far, step by step. It states facts only: for each step, its files and whether it has been built; and, once it is built, what it does, what it produces and what was decided while building it. What each step must achieve is in `pdlf-build-plan.md` (at the top of `app-factory/`); this report never repeats it.
+This document records what has been built of PDLF so far, step by step. For each step it states the step's status and its files, and links the step's explainer and configuration, which say what the step does and what it produces. What each step must achieve is in its own build plan; this report never repeats it.
 
 The steps are listed in the same order and under the same phases as the build plan, so the two can be read side by side. Every step has an entry, whether or not any work has been done on it yet, so that each piece of work is recorded in its place as it happens.
 
-Each entry is updated whenever its step is built, corrected or packaged. A step is recorded as built when its step file is complete. It is finished when it has also been compiled into its module file (`NN-module.md`) in its phase folder. Steps 11, 12, 14, 15 and 16 are built; no module has been packaged yet.
+Each entry is updated whenever its step is built, corrected or packaged. A step has one of four statuses: **not yet built**; **built** (Pass 1: its build plan is closed and its test specification, configuration, reference, explainer and decision tree are written); **proven** (Pass 2: `mb-3-cs` has run through it); **finished** (Pass 3: its module is written).
 
-This report is kept after PDLF is built, as the record of what PDLF consists of.
+This report is a working tool for building PDLF. It is deleted when PDLF is finished.
 
 ## The Built Report
 
@@ -35,35 +35,19 @@ This report is kept after PDLF is built, as the record of what PDLF consists of.
 
 #### Step 11: Init
 
-**Status:** Built. Last changed 2026-08-25.
+**Status:** Built.
 
-**Files:** `app-factory/phase-b-discover-and-define/11-init.md` (the step), `app-factory/phase-b-discover-and-define/11-build-notes.md`, `app-factory/phase-b-discover-and-define/11-project-inventory-build-notes.md`, `app-factory/phase-b-discover-and-define/11-decision-tree-v2.html`.
+**Files:** in `app-factory/phase-b-discover-and-define/`: `b11-build-plan.md`, `b11-test-spec.md`, `b11-config.md`, `b11-reference.md`, `b11-explainer.md`, `b11-decision-tree.html`, `b11-module.md` (empty until Pass 3).
 
-**Carried out by:** OpenCode.
-
-**What it does:** asks whether the application is new or existing, and its slug, then checks the ledger is reachable. For a new application it asks for the GitHub code repository (Anvil creates it; the agent never does), copies the project template to `C:\dev\dev-{slug}\`, links the code repository, creates the documentation repository on GitHub with the developer's permission, and asks the developer to supply the three pre-project files. For an existing application it asks for both GitHub repositories and both local paths, creates only missing folders, and checks the GitHub and GBrain links, correcting them only with permission; the developer then confirms the data is sound. Both routes then set up `AGENTS.md`, the system files and the Matt Pocock skills configuration, register both repositories in GBrain, check that `project-library-global` is registered, insert the application's row in the ledger, and audit everything, correcting nothing without permission.
-
-**Produces:** the two repositories on disk, linked to GitHub; their GBrain sources; the `projects` ledger row; the pre-project files in `dev-{slug}\{slug}-project-library\pre-project\` (new applications); the Step Receipt at `dev-{slug}\{slug}-project-library\pdlf\step-11-receipt.md`.
-
-**BFT level:** Full.
-
-**Decided while building:** one procedure for both entry routes, which differ only in how the repositories are obtained; the old existing-project audit (Steps 2 and 3, SKIP / RE-RUN / RUN-AS-NEW) is retired, because an existing application is redeveloped around its concept, not audited; global reference files are never copied into a project; no git operation ever runs without permission; folders created for an existing application get no `Instructions.md`.
+**What it does and produces:** [[[pdlf:app-factory/phase-b-discover-and-define/b11-explainer|Step 11 Explainer]]](C:/pdlf/app-factory/phase-b-discover-and-define/b11-explainer.md); [[[pdlf:app-factory/phase-b-discover-and-define/b11-config|Step 11 Configuration]]](C:/pdlf/app-factory/phase-b-discover-and-define/b11-config.md).
 
 #### Step 12: Office hours
 
-**Status:** Built. Last changed 2026-08-25.
+**Status:** Built.
 
-**Files:** `app-factory/phase-b-discover-and-define/12-office-hours.md` (the step), `app-factory/phase-b-discover-and-define/12-build-notes.md`, `app-factory/phase-b-discover-and-define/12-decision-tree.html`.
+**Files:** in `app-factory/phase-b-discover-and-define/`: `b12-build-plan.md`, `b12-test-spec.md`, `b12-config.md`, `b12-reference.md`, `b12-explainer.md`, `b12-decision-tree.html`, `b12-module.md` (empty until Pass 3).
 
-**Carried out by:** OpenCode, with GStack `/office-hours` if the developer chooses.
-
-**What it does:** searches GBrain, then gathers the concept. For a new application it reads the three pre-project files and questions the developer until the scope is clear. For an existing application it reads the whole existing documentation through GBrain, separates the durable concept from what followed from it, shows any document that already claims to state the concept, and proposes the split for the developer to confirm or correct. It then always writes a design doc (problem, demand, status quo, target user, constraints, approaches, recommendation, open questions, success criteria) and asks whether to run `/office-hours`. If yes, the draft is pasted into `/office-hours` in full, which skips its interview but still challenges the premise and the alternatives; its result becomes the working design doc.
-
-**Produces:** `docs-local\design-doc-first-concept.md` (written once and never changed, kept to check later for concept drift), `docs-local\design-doc.md` (the working copy), the `/office-hours` file at its own GStack location if it ran, and the Step Receipt. The ledger records whether the design doc was synthesized (`/office-hours` declined), which puts an input notice on later steps.
-
-**BFT level:** Full.
-
-**Decided while building:** the draft must be pasted into `/office-hours` itself, because the skill does not read the project's folders; the first-concept file is a fourth item handed to Step 14.
+**What it does and produces:** [[[pdlf:app-factory/phase-b-discover-and-define/b12-explainer|Step 12 Explainer]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-explainer.md); [[[pdlf:app-factory/phase-b-discover-and-define/b12-config|Step 12 Configuration]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-config.md).
 
 #### Step 13: Not used
 
@@ -71,19 +55,11 @@ This report is kept after PDLF is built, as the record of what PDLF consists of.
 
 #### Step 14: CEO review
 
-**Status:** Built. Last changed 2026-08-25.
+**Status:** Built.
 
-**Files:** `app-factory/phase-b-discover-and-define/14-plan-ceo-review.md` (the step), `app-factory/phase-b-discover-and-define/14-build-notes.md`, `app-factory/phase-b-discover-and-define/14-decision-tree.html`.
+**Files:** in `app-factory/phase-b-discover-and-define/`: `b14-build-plan.md`, `b14-test-spec.md`, `b14-config.md`, `b14-reference.md`, `b14-explainer.md`, `b14-decision-tree.html`, `b14-module.md` (empty until Pass 3).
 
-**Carried out by:** GStack `/plan-ceo-review`.
-
-**What it does:** searches GBrain, checks whether Step 12's design doc was synthesized, and pastes Step 12's four handed-over items into the skill in full, stating that a design doc already exists, so that the skill does not offer to rerun `/office-hours`. Before invoking it, OpenCode compares the project's material with `project-library-global`: the global standard wins unless the developer approves a deviation. The skill then challenges the premise, the developer chooses one of four scope modes (expansion, selective expansion, hold scope, reduction), and the skill works through an 11-section review, putting each finding to the developer one at a time.
-
-**Produces:** the CEO plan, written by the skill to its own GStack location only in the two expansion modes; in the other two modes OpenCode saves the review itself. A stable copy is kept in the project, plus the Step Receipt.
-
-**BFT level:** Full.
-
-**Decided while building:** no branch on how Step 12 produced its design doc; the skill's own design-doc search and save path were read from its source, not assumed; the comparison with `project-library-global` is OpenCode's, because the skill knows nothing of it.
+**What it does and produces:** [[[pdlf:app-factory/phase-b-discover-and-define/b14-explainer|Step 14 Explainer]]](C:/pdlf/app-factory/phase-b-discover-and-define/b14-explainer.md); [[[pdlf:app-factory/phase-b-discover-and-define/b14-config|Step 14 Configuration]]](C:/pdlf/app-factory/phase-b-discover-and-define/b14-config.md).
 
 #### Step 15: Engineering review
 

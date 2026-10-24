@@ -27,8 +27,8 @@ Current preambles invoke it as:
 
 | Skill | Native save (from its SKILL.md) |
 |---|---|
-| `/office-hours` | `~/.gstack/projects/<slug>/{user}-{branch}-design-{datetime}.md` |
-| `/plan-ceo-review` | `~/.gstack/projects/<slug>/ceo-plans/{date}-{feature-slug}.md` — **SCOPE EXPANSION and SELECTIVE EXPANSION only**; in HOLD SCOPE / SCOPE REDUCTION the skill persists nothing to disk |
+| `/office-hours` | `~/.gstack/projects/<slug>/{user}-{branch}-design-{datetime}.md`; inside a git repository also `docs/designs/{topic-slug}.md`, which Step 12 moves into its step folder |
+| `/plan-ceo-review` | The working plan it is given (PDLF names the run's `design-doc.md`), amended in place with `## GSTACK REVIEW REPORT` last, in every mode; in SCOPE EXPANSION and SELECTIVE EXPANSION also the CEO summary `~/.gstack/projects/<slug>/ceo-plans/{YYYY-MM-DD}-{feature-slug}.md` |
 | `/plan-eng-review` | Test Plan Artifact `~/.gstack/projects/<slug>/{user}-{branch}-eng-review-test-plan-{datetime}.md`; everything else lands inside the plan file it was handed (append-in-place of `## GSTACK REVIEW REPORT`) |
 | `/design-consultation` | `~/.gstack/projects/<slug>/designs/` |
 | `/qa` | `~/.gstack/projects/<slug>/{user}-{branch}-test-outcome-{datetime}.md` |
@@ -97,8 +97,8 @@ own handoff material, the full text of the files listed in
 ## 3. Capture–verify–record procedure (every step, in order)
 
 1. Invoke the skill with the pasted context (§2).
-2. Capture the artifact path the skill reports (or capture the conversational
-   output itself when the mode persists nothing — §6).
+2. Capture the artifact path the skill reports, or the working file the step
+   named for it (§6).
 3. Verify the artifact exists on disk at the captured path.
 4. Write the ledger `steps` row with `artifact_path` = the captured path.
 5. Generate and save the Step Receipt at
@@ -126,13 +126,7 @@ Nothing an application produces is kept in `C:\pdlf`. There is no separate outpu
 
 ## 6. Mode-dependent persistence
 
-Some skills persist nothing in some modes. Confirmed: `/plan-ceo-review`
-writes a ceo-plans file only in SCOPE EXPANSION / SELECTIVE EXPANSION; in
-HOLD SCOPE / SCOPE REDUCTION the review exists only as conversational output.
-In those modes the orchestrator saves the transcript capture itself and treats
-that capture as the artifact. A missing disk file is a failure only when the
-mode predicted one; it is never treated as failure when the mode predicts
-none — but the capture and the step-folder copy are still required in every mode.
+Some skills write a file only in some modes. Every such skill PDLF uses is also given a named working file that it writes in every mode, so a step's main artifact never depends on the mode. Confirmed: `/plan-ceo-review` always amends the working plan it is given, the run's `design-doc.md`, and writes its CEO summary to `ceo-plans/` only in SCOPE EXPANSION and SELECTIVE EXPANSION. A mode-dependent file is expected, and its absence is a failure, only in the modes that write it.
 
 ## 7. Verification-or-deviation
 
@@ -142,8 +136,8 @@ proceed, never an assumption that the skill "probably wrote it."
 
 ## 8. Ledger and receipt integration
 
-- The `steps` ledger row records `artifact_path` = the captured native path
-  (or the orchestrator-saved capture path, per §6).
+- The `steps` ledger row records `artifact_path` = the step's main artifact:
+  the captured native path, or the working file the step named (§6).
 - The Step Receipt carries the artifact locations; downstream steps receive
   INPUT NOTICEs through the receipt chain per the conditional-state policy.
 - Only the orchestrator, operating through a real PDLF step, writes to the

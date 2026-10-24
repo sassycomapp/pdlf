@@ -2,111 +2,65 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Step 14 — Plan CEO Review Decision Tree (Final)</title>
+<title>Step 14 — CEO Review Decision Tree</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
 <style>
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-    background: #f5f5f4;
-    padding: 32px;
-    margin: 0;
-  }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; background: #f5f5f4; padding: 32px; margin: 0; }
   h1 { font-size: 19px; color: #1a1a1a; margin: 0 0 20px 0; }
-  .diagram-wrap {
-    background: white;
-    border-radius: 10px;
-    padding: 24px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-    overflow-x: auto;
-  }
+  .diagram-wrap { background: white; border-radius: 10px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); overflow-x: auto; }
   .mermaid { display: flex; justify-content: center; }
 </style>
 </head>
 <body>
-
-<h1>Step 14 — Plan CEO Review Decision Tree (Final)</h1>
-
+<h1>Step 14 — CEO Review Decision Tree (matches b14-reference)</h1>
 <div class="diagram-wrap">
   <div class="mermaid">
 flowchart TD
-    Start(["Step 12 complete → Step 14 begins"]) --> Q1["Query GBrain<br/>(automatic, read-only)<br/>Sources: {slug}, {slug}-project-library,<br/>project-library-global"]
-    Q1 --> Q2{"Step 12 ledger:<br/>synthesized?"}
-
-    Q2 -->|"true (declined /office-hours)"| Q3["Note: design-doc glob at Step 14's<br/>invocation will find nothing —<br/>preemption in item 5 is load-bearing"]
-    Q2 -->|"false (/office-hours ran)"| Q4["Note: GStack-native design doc exists —<br/>skill's own glob will find it,<br/>redundant with paste but harmless"]
-
-    Q3 --> A1
-    Q4 --> A1
-
-    A1["Assemble Step 12's four-artifact handoff:<br/>design-doc.md<br/>design-doc-first-concept.md<br/>/office-hours output (if it ran)<br/>Step 12 Step Receipt"]
-    A1 --> C1["Local/global conflict check:<br/>{slug}-project-library vs project-library-global<br/>(OpenCode's own comparison —<br/>skill has zero awareness of this)"]
-    C1 --> C2{"Conflict found?"}
-    C2 -->|"Yes, no reason to diverge"| C3["Global wins — apply global standard"]
-    C2 -->|"Yes, real reason to diverge"| C4["Deviation request to developer"]
-    C2 -->|"No conflict"| C5["Proceed"]
-    C3 --> Inv1
-    C4 --> Inv1
-    C5 --> Inv1
-
-    Inv1["Invoke GStack /plan-ceo-review.<br/>Paste all four artifacts in full text.<br/>State explicitly: 'a design doc already<br/>exists, provided above.'"]
-    Inv1 --> Aud1["Skill's pre-review system audit runs:<br/>git log/diff/stash, TODO grep,<br/>CLAUDE.md, TODOS.md,<br/>design-doc glob, handoff-note glob"]
-
-    Aud1 --> Aud2{"Skill's own design-doc<br/>glob result"}
-    Aud2 -->|"Found (synthesized=false case)"| Aud3["Read it — redundant confirmation,<br/>no action needed"]
-    Aud2 -->|"Not found (synthesized=true case)"| Aud4{"Prerequisite offer<br/>would normally fire —<br/>preempted by item 5's<br/>explicit statement?"}
-    Aud4 -->|"Preempted correctly"| Aud5["Skill proceeds using the<br/>pasted design doc as source of truth.<br/>No re-ask of Step 12's decision."]
-    Aud4 -->|"Preemption failed / skill still asks"| Aud6["DEVIATION REQUEST —<br/>invocation prompt did not suppress<br/>the re-offer as expected"]
-
-    Aud3 --> Step0
-    Aud5 --> Step0
-    Aud6 -.-> Step0
-
-    Step0["Step 0: Premise Challenge,<br/>dream state mapping,<br/>implementation alternatives,<br/>MODE SELECTION"]
-    Step0 --> Mode{"Developer selects mode<br/>via AskUserQuestion"}
-
-    Mode -->|"SCOPE EXPANSION"| M1["Dream big — 10x check,<br/>platonic ideal, opt-in ceremony"]
-    Mode -->|"SELECTIVE EXPANSION"| M2["Hold scope + cherry-pick —<br/>HOLD SCOPE analysis first,<br/>then individual expansion decisions"]
-    Mode -->|"HOLD SCOPE"| M3["Maximum rigor —<br/>bulletproof the existing scope,<br/>no expansions surfaced"]
-    Mode -->|"SCOPE REDUCTION"| M4["Surgeon mode —<br/>minimum viable version, ruthless cuts"]
-
-    M1 --> Review11
-    M2 --> Review11
-    M3 --> Review11
-    M4 --> Review11
-
-    Review11["11-section deep review<br/>(architecture, error/rescue map,<br/>security, data flow, code quality,<br/>tests, observability, DB/state,<br/>API design, performance, design/UX)<br/>Each finding: individual AskUserQuestion —<br/>never batched (anti-shortcut clause)"]
-
-    Review11 --> Persist{"Mode-dependent<br/>persistence"}
-    Persist -->|"EXPANSION / SELECTIVE EXPANSION"| P1["Skill writes to<br/>~/.gstack/projects/$SLUG/ceo-plans/<br/>{date}-{feature-slug}.md<br/>+ ## GSTACK REVIEW REPORT appended"]
-    Persist -->|"HOLD SCOPE / SCOPE REDUCTION"| P2["Nothing persisted by the skill.<br/>Review exists only as<br/>conversational/plan-mode output."]
-
-    P1 --> Cap1["Orchestrator captures the<br/>GStack-native file path"]
-    P2 --> Cap2["Orchestrator saves the<br/>transcript itself — no source file to copy from"]
-
-    Cap1 --> Copy["Copy/save to<br/>gstack-outputs\step-14-ceo-plan.md"]
-    Cap2 --> Copy
-
-    Copy --> Verify{"Output verified<br/>to exist?"}
-    Verify -->|"No"| Dev1["DEVIATION REQUEST"]
-    Verify -->|"Yes"| Ledger["Write steps ledger row:<br/>step_number=14, status=complete,<br/>synthesized=false, artifact_path=..."]
-    Dev1 --> Ledger
-
-    Ledger --> Receipt["Save Step Receipt<br/>Apply BFT — Full"]
-    Receipt --> House["Explain what was done and why.<br/>Present Step Receipt.<br/>Stop. Ask David to run /mb-close-out.<br/>Wait for continue."]
-    House --> Next["Ask: continue to Step 15?"]
-
-    Next --> H1["Step 15 needs: CEO plan,<br/>design doc, first-concept draft.<br/>Same principle: paste directly —<br/>GStack-native path only reliable<br/>for EXPANSION/SELECTIVE EXPANSION."]
-
-    classDef note fill:#eef2ff,stroke:#4f46e5,stroke-width:1px;
-    classDef warn fill:#fef2f2,stroke:#dc2626,stroke-width:1px;
-    class H1 note;
-    class Aud6,Dev1 warn;
+    Start(["Entry record and Step 12's hand-over"]) --> S1{"1. Step 12 complete<br/>and its design doc approved?"}
+    S1 -->|"No"| Dev1["Stop: deviation"]
+    S1 -->|"Yes"| S2["2. Step 12 synthesized: carry its input notice<br/>3. Read every input; for a feature, the app's plan"]
+    S2 --> SSE["4. secure-software-engineering, requirements phase<br/>no multi-tenant guidance"]
+    SSE --> Sec["5. Write Data Inventory, Regulatory Position,<br/>Security Requirements, Client Exit, Hobby Fit"]
+    Sec --> CEO["6. /plan-ceo-review from the project library<br/>design-doc.md as working plan; fixed answers"]
+    CEO --> Fixed["7. Fixed answers: no /office-hours, strategy depth,<br/>no web search, no TODOS.md, no outside voice,<br/>no promotion, no next review"]
+    Fixed --> Mode["8. David chooses the scope mode"]
+    Mode --> Find{"9. Next finding, addition,<br/>cut or deferral?"}
+    Find -->|"David decides"| Anv{"10. Accepted addition:<br/>can Anvil do it?"}
+    Anv -->|"No"| Chg["Withdraw or change it with David"]
+    Chg --> Find
+    Anv -->|"Yes, or not an addition"| Glob{"11. Contradicts a global standard?"}
+    Glob -->|"Yes"| Devn{"David approves a deviation?"}
+    Devn -->|"Yes"| ADR["Write the ADR in adr-local"]
+    Devn -->|"No"| Keep["The standard holds"]
+    ADR --> Find
+    Keep --> Find
+    Glob -->|"No"| Find
+    Find -->|"None left"| OQ["12. Settle the open questions given to Step 14"]
+    OQ --> Rep{"13. design-doc.md amended,<br/>report last?"}
+    Rep -->|"No"| Dev2["Stop: deviation"]
+    Rep -->|"Yes"| Exp{"14. Expansion mode?"}
+    Exp -->|"Yes"| Sum{"CEO summary exists<br/>at the reported path?"}
+    Sum -->|"No"| Dev3["Stop: deviation"]
+    Sum -->|"Yes"| Own
+    Exp -->|"No"| Own["15. Write Scope and What Must Be Tested<br/>before the review's sections; report stays last"]
+    Own --> Check{"16. DC-03 and DC-01 pass?<br/>results to dc-checks"}
+    Check -->|"No"| Fix["Correct with David"]
+    Fix --> Check
+    Check -->|"Yes"| Appr{"17. David approves<br/>the reviewed plan?"}
+    Appr -->|"Correction"| Fix
+    Appr -->|"Approved"| Sen{"18. Sentinel, Medium: clear?"}
+    Sen -->|"Flag or Escalate"| Stop1(["Stop: David decides"])
+    Sen -->|"Clear"| GL{"19. gitleaks finds a secret?"}
+    GL -->|"Yes"| GLfix["Remove it, run again"]
+    GLfix --> GL
+    GL -->|"No"| Copies{"20. Copies in pdlf-outputs\b14<br/>and every expected file exist?"}
+    Copies -->|"No"| Dev4["Stop: deviation"]
+    Copies -->|"Yes"| Rec["21. Ledger row, Step Receipt, Full BFT"]
+    Rec --> Close(["22. Explain, stop, ask David to run /mb-close-out"])
   </div>
 </div>
-
 <script>
   mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis' } });
 </script>
-
 </body>
 </html>

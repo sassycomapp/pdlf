@@ -125,7 +125,7 @@ Per step: close the build plan; check the test spec; write the config, reference
 | b11 | Closed, with the test setup | Written | Written | Written | Written |
 | b12 | Closed | Written | Written | Written | Written |
 | b13 | Placeholder (step not used) | — | — | — | — |
-| b14 | Open | Old | Old | Empty | Old |
+| b14 | Closed | Written | Written | Written | Written |
 | b15 | Open (about 1,200 lines; holds a saved copy of GStack `/plan-eng-review` from 1.58.1: remove it and check against `c580561`) | Old | Old | Empty | Old |
 | b16 | Open | Old | Old | Empty | Old |
 
@@ -143,7 +143,8 @@ These requirements apply to every step of Pass 1, without exception.
 6. **The decision tree.** Generated from the reference. Every action box carries the number of its reference item, and every step's numbering starts from 1. Its diagram code is validated before it is sent.
 7. **Supporting structures are fixed at their source,** in the same batch, whenever a step needs them: a shared rule, a template, a tool, a name.
 8. **The scan.** Every file: no dead link, no banned term, no wording about what came before, no dependency on an application's files, every named path real.
-9. **Delivery.** Each file with the path it replaces or a note that it is new, and the one `REPOS_OVERRIDE` commit command for every repository touched.
+9. **The built report.** The step's entry in `pdlf-built-report.md` is brought to its status, its files and links to its explainer and configuration, in the same batch.
+10. **Delivery.** Each file with the path it replaces or a note that it is new, and the one `REPOS_OVERRIDE` commit command for every repository touched.
 
 ## 9. What each Phase B test spec needs from its build plan
 
@@ -151,7 +152,7 @@ These requirements apply to every step of Pass 1, without exception.
 |---|---|---|
 | b11 | PR-09 (local Anvil App Server, server and client Uplink keys, a `TEST_` user with a second factor, the mail catcher); ST-10 (the app's `.gitignore` covers `.env`; `tests\` holds `conftest.py`, `pytest.ini`, `ts-config.yaml` and `test_pr09_environment.py`); PR-06 | Closed: the test setup is in the b11 build plan; the runtime is `ts_local.sh` (`ts-method` section 3) |
 | b12 | DC-01; DC-02; PR-01; PR-04; PR-06 | Closed |
-| b14 | DC-03 (scope; data inventory with protection levels; POPIA, GDPR, PCI SAQ A; exit; Hobby fit) | All of DC-03 as outputs |
+| b14 | PR-01; DC-03; DC-01; PR-06; PR-04 | Closed |
 | b15 | DC-04 to DC-08 (test plan with catalogue IDs; `access-matrix.yaml`; threat model; security decisions; conformance checks selected) | `access-matrix.yaml`, the security decisions, the conformance selection; its Testing line says "three levels" (the suite has levels D and 0 to 4, run in order) |
 | b16 | DC-09; PR-05 (receipts match evidence, `ts_report.py --check`); PR-03 | PR-05 |
 
@@ -167,7 +168,9 @@ PR tests are in `spec-pdlf-process-tests`. Each build plan's **Testing** line be
 - **Server functions** return data and raise errors (no envelope). **Money** in whole cents. **Observability:** instances push heartbeats; App 5 never polls.
 - **Schema changes** are applied by David in Anvil's Data Tables view (Step 17); no agent runs `anvil db apply-schema`. `anvil.yaml` changes only through Anvil's `anvil-yaml` skill.
 - **Runs:** `{run}` is `app{n}` for a whole application (`app1`, `app2`, `app3`, `app5`) or the feature slug; a feature slug is unique in the business and never `app{n}`. The ledger's `steps.run` has no default.
-- **Design docs:** each run's concept lives in `docs-local\design\{run}\` (`design-doc.md`, `design-doc-first-concept.md`); a reference platform's research in `docs-local\reference-platform-research.md`. Later steps read these paths.
+- **Design docs:** each run's concept lives in `docs-local\design\{run}\` (`design-doc.md`, `design-doc-first-concept.md`); a reference platform's research in `docs-local\reference-platform-research.md`. From Step 14 on, `design-doc.md` is the reviewed plan: GStack's plan reviews amend it in place and keep `## GSTACK REVIEW REPORT` as its last section. Later steps read these paths.
+- **Protection levels:** Public, Internal, Personal, Restricted (`spec-security-architecture` section 4).
+- **No `TODOS.md`:** a deferral is written in the plan's NOT in scope section with its reason.
 - **Artefacts:** named `{slug}-{step}-{run}-{name}`; GStack project name `sassycomapp-{slug}-app{n}` (`artifact-saving-convention`).
 - The `mb-3-cs` test specification is `mb-3-cs-project-library\docs-local\mb-3-cs-test-specification.md`; its Vault details are in `mb-3-cs-vault-implementation.md`.
 - The ledger's `triage_findings.source_step` also allows 35A, 38A, 40, 41, 42A, 43, 44.
@@ -216,4 +219,4 @@ The three-tier method (pure logic, Uplink integration, verification in the brows
 ## 14. First actions in the next session
 
 1. Clone `pdlf` and `project-library-global`; read `pdlf-build-plan.md`, `app-factory-docs-update-method.md`, the `b11` and `b12` suites (the models of a finished step) and the next step's suite.
-2. Continue Pass 1 with `b14`, `b15`, `b16`, then Phases C, D, E, F and A, built as section 8 sets out.
+2. Continue Pass 1 with `b15`, `b16`, then Phases C, D, E, F and A, built as section 8 sets out.
