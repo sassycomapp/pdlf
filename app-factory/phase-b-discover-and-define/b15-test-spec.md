@@ -7,7 +7,7 @@ doc-id: "mb-19e6d914"
 
 **Proves:** The architecture fits Anvil and obeys Mybizz's rules, and its test plan, access matrix, threat model and security decisions are complete and approved by David.
 
-Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-library-global/test-suite/ts-catalogue.md) and, for the PR tests, in [[[pdlf:pdlf-library/specifications-local/spec-pdlf-process-tests]]](C:/pdlf/pdlf-library/specifications-local/spec-pdlf-process-tests.md). Evidence is saved in `{slug}-project-library\pdlf-outputs\b15\`; the DC results are written to `{slug}-b15-{run}-dc-checks.md`, each with the section or file that shows it.
+Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-library-global/test-suite/ts-catalogue.md) and, for the PR tests, in [[[pdlf:pdlf-library/specifications-local/spec-pdlf-process-tests]]](C:/pdlf/pdlf-library/specifications-local/spec-pdlf-process-tests.md). Evidence is saved in `{slug}-project-library\pdlf-outputs\b15\`; every result is recorded in `{slug}-b15-{run}-checks.xml`, naming its evidence, as `ts-method` section 5 sets out.
 
 | Test | Applied here |
 |---|---|

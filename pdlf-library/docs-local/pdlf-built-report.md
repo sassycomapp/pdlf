@@ -33,6 +33,8 @@ This report is a working tool for building PDLF. It is deleted when PDLF is fini
 
 ### Phase B — Discover and Define
 
+**Phase status:** Built (Pass 1): every step of the phase is built, and the phase ends at the gate `domain-locked` (Step 16).
+
 #### Step 11: Init
 
 **Status:** Built.
@@ -71,19 +73,11 @@ This report is a working tool for building PDLF. It is deleted when PDLF is fini
 
 #### Step 16: Domain modeling
 
-**Status:** Built. Last changed 2026-08-27.
+**Status:** Built.
 
-**Files:** `app-factory/phase-b-discover-and-define/16-domain-modeling.md` (the step), `app-factory/phase-b-discover-and-define/16-build-notes.md`, `app-factory/phase-b-discover-and-define/16-decision-tree.html`.
+**Files:** in `app-factory/phase-b-discover-and-define/`: `b16-build-plan.md`, `b16-test-spec.md`, `b16-config.md`, `b16-reference.md`, `b16-explainer.md`, `b16-decision-tree.html`, `b16-module.md` (empty until Pass 3).
 
-**Carried out by:** Matt Pocock `/grill-with-docs`, which runs a `/grilling` interview using `/domain-modeling`.
-
-**What it does:** searches GBrain and pastes Step 15's plan and test plan into the skill, with the existing `CONTEXT.md`, decision records and code for an existing application. The interview walks the plan one decision at a time, gives a recommended answer, and waits for the developer. As each term is settled it is written to `CONTEXT.md` at once; a decision record is offered only for a decision that is hard to reverse, surprising without context and the result of a real trade-off. The security review `mb-sentinel-review` then checks whether any sensitive data or security-relevant entities were created; a finding stops the step and goes to the developer before the gate. The step checks that the files exist and that the security review left its record in the ledger, then runs the gate.
-
-**Produces:** `CONTEXT.md` (the glossary) and any decision records in `adr-local\`, in the documentation repository, plus the Step Receipt.
-
-**Gate:** `domain-locked`, with full BFT; nothing further happens until the developer approves.
-
-**Decided while building:** `/domain-modeling` cannot run on its own, so the step invokes `/grill-with-docs`; the skill's default file locations are overridden to the project's own; no separate reconciliation mode is needed for an existing application, because the skill checks the code whenever code exists; the security review was added before the gate, and its run is proven by its ledger record, not assumed.
+**What it does and produces:** [[[pdlf:app-factory/phase-b-discover-and-define/b16-explainer|Step 16 Explainer]]](C:/pdlf/app-factory/phase-b-discover-and-define/b16-explainer.md); [[[pdlf:app-factory/phase-b-discover-and-define/b16-config|Step 16 Configuration]]](C:/pdlf/app-factory/phase-b-discover-and-define/b16-config.md).
 
 ### Phase C — Design and Plan
 

@@ -52,10 +52,10 @@ What the agent does at Step 15, in order. Agent-facing. Fixed values: [[[pdlf:ap
 
 ## 6. Check and approval
 
-29. Check the outputs against tests DC-04 to DC-08 and DC-01. Write each result, with the section or file that shows it, to `pdlf-outputs\b15\{slug}-b15-{run}-dc-checks.md`. On a failure: correct with David and check again.
+29. Check the outputs against tests DC-04 to DC-08 and DC-01. Record each result in `pdlf-outputs\b15\{slug}-b15-{run}-checks.xml`, naming the section or file that shows it. On a failure: correct with David and check again.
 30. Present the reviewed plan, the test plan, the access matrix and the threat model to David and ask for his approval. On a correction: make it, then return to item 29.
 31. Run `mb-sentinel-review` for Step 15 at High scrutiny on the architecture, the threat model and the access matrix. On Flag or Escalate: stop and present it to David. Check the review's `triage_findings` row exists.
-32. Run `gitleaks` on the project library's working tree (test PR-06). A secret found: remove it, then run again.
+32. Run `gitleaks` on the project library's working tree (test PR-06) and save its report as `pdlf-outputs\b15\{slug}-b15-{run}-gitleaks.json`. A secret found: remove it, then run again. Record PR-06 in the checks file.
 
 ## 7. The end
 

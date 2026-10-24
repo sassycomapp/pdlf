@@ -53,9 +53,9 @@ contradict a decision already made (see §2.3), the invocation preempts it.
 
 ### 1.3 Matt Pocock skills and OpenCode-native outputs
 
-- `domain-modeling` (via `/grill-with-docs`) → `CONTEXT.md` + ADR folder;
+- `domain-modeling` (via `/grill-with-docs`) → `GLOSSARY.md` + ADR folder;
   PDLF overrides both destinations at invocation (built Step 16:
-  `CONTEXT.md` in the project library's `docs-local\`, ADRs to `adr-local\`).
+  `GLOSSARY.md` in the project library's `docs-local\`, ADRs to `adr-local\`).
 - `to-tickets`, `triage` → `.scratch/` by default; PDLF overrides as each
   step prescribes.
 - OpenCode-native outputs save to the path each step file prescribes

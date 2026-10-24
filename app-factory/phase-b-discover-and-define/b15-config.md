@@ -56,7 +56,7 @@ The fixed values of Step 15. Agent-facing. What the agent does, in order: [[[pdl
 | Lifecycle prototypes, if any | `pdlf-outputs\b15\{slug}-b15-{run}-prototype-{lifecycle}.html` |
 | Global-move proposal, if any | `pdlf-outputs\b15\{slug}-b15-{run}-global-proposals.md` |
 | Step-folder copies | `pdlf-outputs\b15\{slug}-b15-{run}-reviewed-plan.md`, `-test-plan.md`, `-access-matrix.yaml`, `-threat-model.md`, `-gstack-test-plan.md` |
-| Document checks | `pdlf-outputs\b15\{slug}-b15-{run}-dc-checks.md` |
+| Test results | `pdlf-outputs\b15\{slug}-b15-{run}-checks.xml` (JUnit XML, ts-method section 5); gitleaks report `{slug}-b15-{run}-gitleaks.json` |
 | Step Receipt | `pdlf-outputs\b15\{slug}-b15-{run}-receipt.md` |
 | Ledger | the Step 15 `steps` row; its BFT record; its `triage_findings` row |
 

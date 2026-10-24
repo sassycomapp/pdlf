@@ -7,7 +7,7 @@ doc-id: "mb-b0c6e8a1"
 
 **Proves:** The run's scope, data, legal position, client exit and Hobby fit are settled, testable and approved by David.
 
-Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-library-global/test-suite/ts-catalogue.md) and, for the PR tests, in [[[pdlf:pdlf-library/specifications-local/spec-pdlf-process-tests]]](C:/pdlf/pdlf-library/specifications-local/spec-pdlf-process-tests.md). Evidence is saved in `{slug}-project-library\pdlf-outputs\b14\`; the DC results are written to `{slug}-b14-{run}-dc-checks.md`, each with the section of the reviewed plan that shows it.
+Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-library-global/test-suite/ts-catalogue.md) and, for the PR tests, in [[[pdlf:pdlf-library/specifications-local/spec-pdlf-process-tests]]](C:/pdlf/pdlf-library/specifications-local/spec-pdlf-process-tests.md). Evidence is saved in `{slug}-project-library\pdlf-outputs\b14\`; every result is recorded in `{slug}-b14-{run}-checks.xml`, naming its evidence, as `ts-method` section 5 sets out.
 
 | Test | Applied here |
 |---|---|

@@ -1,7 +1,7 @@
 ---
 title: "d34-reference"
 doc-id: "mb-b9f09cb4"
-updated: "2026-10-12"
+updated: "2026-10-24"
 ---
 
 ## From `34-architectural-sanity-audit.md`
@@ -28,7 +28,7 @@ code-writing begins.
 
 ## Inputs Required
 
-- Step 15/16 architecture and domain model (TDD cluster, CONTEXT.md, ADRs)
+- Step 15/16 architecture and domain model (TDD cluster, GLOSSARY.md, ADRs)
 - Step 21 concept audit report
 - Pulled-to-local data tables schema (from 18)
 - Pulled-to-local UI forms (from 30)

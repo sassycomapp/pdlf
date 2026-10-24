@@ -48,7 +48,7 @@ The fixed values of Step 14. Agent-facing. What the agent does, in order: [[[pdl
 | Deviation ADRs, if any | `{slug}-project-library\adr-local\adr-{kebab-case-name}.md` |
 | CEO summary (expansion modes only) | `~/.gstack/projects/sassycomapp-{slug}-project-library/ceo-plans/{YYYY-MM-DD}-{feature-slug}.md`, the path the skill reports; never changed or moved |
 | Step-folder copies | `{slug}-project-library\pdlf-outputs\b14\{slug}-b14-{run}-reviewed-plan.md`; `{slug}-b14-{run}-ceo-summary.md` (expansion modes) |
-| Document checks | `{slug}-project-library\pdlf-outputs\b14\{slug}-b14-{run}-dc-checks.md` |
+| Test results | `{slug}-project-library\pdlf-outputs\b14\{slug}-b14-{run}-checks.xml` (JUnit XML, ts-method section 5); gitleaks report `{slug}-b14-{run}-gitleaks.json` |
 | Step Receipt | `{slug}-project-library\pdlf-outputs\b14\{slug}-b14-{run}-receipt.md` |
 | Ledger | the Step 14 `steps` row; its BFT record; its `triage_findings` row |
 

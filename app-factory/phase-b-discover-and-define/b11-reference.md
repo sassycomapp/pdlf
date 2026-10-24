@@ -63,6 +63,6 @@ What the agent does at Step 11, in order. Agent-facing. Fixed values: [[[pdlf:ap
 
 35. Run `mb-sentinel-review` for Step 11 at High scrutiny on what this step created. On Flag or Escalate: stop and present it to David. Check the review's `triage_findings` row exists.
 36. Run [[[pdlf:pdlf-library/operating-procedures/sop-health-check|SOP: Health Check]]](C:/pdlf/pdlf-library/operating-procedures/sop-health-check.md) as the self-audit. Report every failure. Fix nothing without David's permission.
-37. Check every test in the test specification has passed and its evidence is in `pdlf-outputs\b11\`.
+37. Check every test in the test specification has passed. Record each result whose tool writes no JUnit XML (PR-01, ST-01, PR-06, PR-04, PR-02) in `pdlf-outputs\b11\{slug}-b11-{run}-checks.xml`, naming its evidence; save the `anvil --json validate` output and the gitleaks report beside it.
 38. Write the Step 11 `steps` row with the ledger values in the configuration, the Step Receipt and the Full BFT record.
 39. Explain what was done and why, present the Step Receipt, stop, and ask David to run `/mb-close-out`.

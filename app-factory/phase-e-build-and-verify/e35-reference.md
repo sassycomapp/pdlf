@@ -1,7 +1,7 @@
 ---
 title: "e35-reference"
 doc-id: "mb-a32fbe97"
-updated: "2026-10-23"
+updated: "2026-10-24"
 ---
 
 ## From `35-build-loop.md`
@@ -41,7 +41,7 @@ validated three-level testing methodology.
 - Plan file (Steps 14–15, 23–24 review reports)
 - Step 20 DESIGN.md
 - Step 26 approved wireframes/screens
-- Step 16 CONTEXT.md + ADRs
+- Step 16 GLOSSARY.md + ADRs
 - Step 17 Anvil data tables
 - Step 29 Anvil UI forms
 - Step 31/32 scaffolding

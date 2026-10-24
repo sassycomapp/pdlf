@@ -1,7 +1,7 @@
 ---
 title: "c17-reference"
 doc-id: "mb-0ecf17ed"
-updated: "2026-10-12"
+updated: "2026-10-24"
 ---
 
 ## From `17-create-anvil-data-tables.md`
@@ -21,7 +21,7 @@ ADRs and authoritative schema from Steps 15–16.
 
 ## Inputs Required
 
-- ADRs + CONTEXT.md from Step 16
+- ADRs + GLOSSARY.md from Step 16
 - Authoritative schema from Step 15's TDD cluster
 
 ## Outputs

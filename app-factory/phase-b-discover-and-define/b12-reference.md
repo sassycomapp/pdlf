@@ -32,7 +32,7 @@ What the agent does at Step 12, in order. Agent-facing. Fixed values: [[[pdlf:ap
 
 ## 4. Route C — a feature
 
-15. Read David's statement of the feature in the entry record, the app's approved design doc, `docs-local\CONTEXT.md` and `adr-local\`.
+15. Read David's statement of the feature in the entry record, the app's approved design doc, `docs-local\GLOSSARY.md` and `adr-local\`.
 16. Query the code graph for the code the feature touches.
 17. Run `grilling` with that material, the fixed structure of the design doc and the context pack, as at item 6, until the feature is described and David confirms.
 18. Continue at section 6.
@@ -62,10 +62,10 @@ What the agent does at Step 12, in order. Agent-facing. Fixed values: [[[pdlf:ap
 
 ## 8. Check and approval
 
-33. Check `design-doc.md` against tests DC-01 and DC-02. Write each result, with the section that shows it, to `pdlf-outputs\b12\{slug}-b12-{run}-dc-checks.md`. On a failure: correct the design doc with David and check again.
+33. Check `design-doc.md` against tests DC-01 and DC-02. Record each result in `pdlf-outputs\b12\{slug}-b12-{run}-checks.xml`, naming the section that shows it. On a failure: correct the design doc with David and check again.
 34. Present `design-doc.md` to David and ask for his approval. On a correction: make it, then return to item 33.
 35. Run `mb-sentinel-review` for Step 12 at Medium scrutiny on `design-doc.md`. On Flag or Escalate: stop and present it to David. Check the review's `triage_findings` row exists.
-36. Run `gitleaks` on the project library's working tree (test PR-06). A secret found: remove it, then run again.
+36. Run `gitleaks` on the project library's working tree (test PR-06) and save its report as `pdlf-outputs\b12\{slug}-b12-{run}-gitleaks.json`. A secret found: remove it, then run again. Record PR-06 in the checks file.
 
 ## 9. The end
 

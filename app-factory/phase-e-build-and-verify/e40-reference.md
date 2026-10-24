@@ -1,7 +1,7 @@
 ---
 title: "e40-reference"
 doc-id: "mb-e275399d"
-updated: "2026-10-12"
+updated: "2026-10-24"
 ---
 
 ## From `40-improve-codebase-architecture.md`
@@ -11,7 +11,7 @@ updated: "2026-10-12"
 1. → Decision point: Agent presents RUN/SKIP recommendation for the architecture scan,
    for this feature cycle.
 2. If RUN: run Matt `improve-codebase-architecture` against the current codebase and
-   CONTEXT.md/ADRs. Explore only, read-only — no code changes at this step.
+   GLOSSARY.md/ADRs. Explore only, read-only — no code changes at this step.
 3. Write the HTML report to the OS temp directory, not the repo.
 4. → Handoff: if the developer selects a candidate from the report to act on, proceed to
    Step 40B for developer-approved remediation. If not, or if this step was skipped,
@@ -32,7 +32,7 @@ Step 40B, only with explicit developer approval of specific findings.
 ## Inputs Required
 
 - Live codebase from Step 35 (and 35A)
-- CONTEXT.md + ADRs from Step 16
+- GLOSSARY.md + ADRs from Step 16
 
 ## Outputs
 

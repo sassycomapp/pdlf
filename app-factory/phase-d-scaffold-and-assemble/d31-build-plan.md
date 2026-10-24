@@ -1,7 +1,7 @@
 ---
 title: "d31-build-plan"
 doc-id: "mb-ea170848"
-updated: "2026-10-22"
+updated: "2026-10-24"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -22,7 +22,7 @@ Ends with the gate `architecture-verified` (Step 34).
 - `server-code` and `client-modules` (Anvil): where each module lives and the rules it follows (no `client_code/__init__.py`, server code isolated to the app) → `scaffold-plan.md`, then Step 32.
 - For every stub, `scaffold-plan.md` names the behaviour it will hold and the test from Step 15's test plan that proves it → Step 35.
 
-**Inputs:** the reviewed plan, `CONTEXT.md` and the ADRs, the concept audit, the tickets and the pulled forms.
+**Inputs:** the reviewed plan, `GLOSSARY.md` and the ADRs, the concept audit, the tickets and the pulled forms.
 
 **Standards:** [[[default:specifications-global/spec-anvil-platform-standards|Anvil Platform Standards]]](C:/dev/project-library-global/specifications-global/spec-anvil-platform-standards.md) sections 2 and 3 (server function pattern, three-tier module pattern with pure logic).
 
@@ -33,7 +33,7 @@ Ends with the gate `architecture-verified` (Step 34).
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 
 1. Query GBrain — Context relevant to module/function structure planning
-2. Review Step 15/16 architecture and domain model — TDD cluster, CONTEXT.md, ADRs
+2. Review Step 15/16 architecture and domain model — TDD cluster, GLOSSARY.md, ADRs
 3. Review Step 30 pulled UI form structure
 4. Review Step 21 concept audit report
 5. Plan module/function structure — Determine what stubs to create

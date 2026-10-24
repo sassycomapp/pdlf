@@ -45,6 +45,7 @@ The fixed values of Step 11. Agent-facing. What the agent does, in order: [[[pdl
 | GBrain source | `{slug}-project-library`, federated |
 | Ledger | the `projects` row; the Step 11 `steps` row; its BFT record; its `triage_findings` row |
 | PR-09 evidence | `{slug}-project-library\pdlf-outputs\b11\{slug}-b11-{run}-pr09.xml` |
+| Test results | `{slug}-project-library\pdlf-outputs\b11\{slug}-b11-{run}-checks.xml` (JUnit XML, ts-method section 5); `{slug}-b11-{run}-validate.json`; `{slug}-b11-{run}-gitleaks.json` |
 | Step Receipt | `{slug}-project-library\pdlf-outputs\b11\{slug}-b11-{run}-receipt.md` |
 
 ## Skills and tools
@@ -104,7 +105,7 @@ David sets these in the Anvil editor when he creates the app.
 |---|---|
 | Issue tracker | Local markdown files in `pdlf-tickets\` |
 | Triage labels | `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix` |
-| Domain documents | Single context: `docs-local\CONTEXT.md` and `adr-local\` |
+| Domain documents | Single context, shared by all the business's apps: the glossary `docs-local\GLOSSARY.md`; decisions in `adr-local\`, one file each, `adr-{kebab-case-name}.md`; `docs\agents\domain.md` states both, as the project template holds it |
 | `CLAUDE.md` | Never created |
 
 ## App `.gitignore` baseline

@@ -7,7 +7,7 @@ doc-id: "mb-8ab64548"
 
 **Proves:** The design doc of the run is complete, measurable, bound by the platform's facts and the common aspects, approved by David and free of anything secret.
 
-Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-library-global/test-suite/ts-catalogue.md) and, for the PR tests, in [[[pdlf:pdlf-library/specifications-local/spec-pdlf-process-tests]]](C:/pdlf/pdlf-library/specifications-local/spec-pdlf-process-tests.md). Evidence is saved in `{slug}-project-library\pdlf-outputs\b12\`; the DC results are written to `{slug}-b12-{run}-dc-checks.md`, each with the section of the design doc that shows it.
+Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-library-global/test-suite/ts-catalogue.md) and, for the PR tests, in [[[pdlf:pdlf-library/specifications-local/spec-pdlf-process-tests]]](C:/pdlf/pdlf-library/specifications-local/spec-pdlf-process-tests.md). Evidence is saved in `{slug}-project-library\pdlf-outputs\b12\`; every result is recorded in `{slug}-b12-{run}-checks.xml`, naming its evidence, as `ts-method` section 5 sets out.
 
 | Test | Applied here |
 |---|---|

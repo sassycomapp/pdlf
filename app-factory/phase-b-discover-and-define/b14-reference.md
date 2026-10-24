@@ -36,10 +36,10 @@ What the agent does at Step 14, in order. Agent-facing. Fixed values: [[[pdlf:ap
 
 ## 5. Check and approval
 
-16. Check `design-doc.md` against tests DC-03 and DC-01. Write each result, with the section that shows it, to `pdlf-outputs\b14\{slug}-b14-{run}-dc-checks.md`. On a failure: correct the plan with David and check again.
+16. Check `design-doc.md` against tests DC-03 and DC-01. Record each result in `pdlf-outputs\b14\{slug}-b14-{run}-checks.xml`, naming the section that shows it. On a failure: correct the plan with David and check again.
 17. Present the reviewed plan to David and ask for his approval. On a correction: make it, then return to item 16.
 18. Run `mb-sentinel-review` for Step 14 at Medium scrutiny on the reviewed plan. On Flag or Escalate: stop and present it to David. Check the review's `triage_findings` row exists.
-19. Run `gitleaks` on the project library's working tree (test PR-06). A secret found: remove it, then run again.
+19. Run `gitleaks` on the project library's working tree (test PR-06) and save its report as `pdlf-outputs\b14\{slug}-b14-{run}-gitleaks.json`. A secret found: remove it, then run again. Record PR-06 in the checks file.
 
 ## 6. The end
 

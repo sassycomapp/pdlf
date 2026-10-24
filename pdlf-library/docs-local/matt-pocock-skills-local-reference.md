@@ -1,7 +1,7 @@
 ---
 title: "matt-pocock-skills-local-reference"
 doc-id: "mb-b97bfee0"
-updated: "2026-10-23"
+updated: "2026-10-24"
 ---
 # PDLF — Matt Pocock Skills Local Reference
 
@@ -24,7 +24,7 @@ updated: "2026-10-23"
 
 Each step that uses a Matt Pocock skill records it in its own build plan and config: Steps 16, 19, 39 and 40.
 
-`setup-matt-pocock-skills` runs once per project library, at Step 11, with PDLF's answers fixed in advance ([[[pdlf:app-factory/phase-b-discover-and-define/b11-build-plan|Step 11 Build Plan]]](C:/pdlf/app-factory/phase-b-discover-and-define/b11-build-plan.md)): tickets are local markdown files in `pdlf-tickets\`; the five standard triage labels; a single context, with the glossary at `docs-local\CONTEXT.md` and decisions in `adr-local\`. It writes the `## Agent skills` block into the project library's `AGENTS.md` and its configuration files into `docs\agents\`, and never creates a `CLAUDE.md`. The code repositories need no setup: no Matt Pocock skill writes into them.
+`setup-matt-pocock-skills` runs once per project library, at Step 11, with PDLF's answers fixed in advance ([[[pdlf:app-factory/phase-b-discover-and-define/b11-build-plan|Step 11 Build Plan]]](C:/pdlf/app-factory/phase-b-discover-and-define/b11-build-plan.md)): tickets are local markdown files in `pdlf-tickets\`; the five standard triage labels; a single context, with the glossary at `docs-local\GLOSSARY.md` and decisions in `adr-local\`. It writes the `## Agent skills` block into the project library's `AGENTS.md` and its configuration files into `docs\agents\`, and never creates a `CLAUDE.md`. The code repositories need no setup: no Matt Pocock skill writes into them.
 
 ---
 
@@ -32,7 +32,7 @@ Each step that uses a Matt Pocock skill records it in its own build plan and con
 
 | Skill | Destination |
 |---|---|
-| [[[pdlf:app-factory/phase-b-discover-and-define/b16-reference\|Step 16 Domain Modeling]]](C:/pdlf/app-factory/phase-b-discover-and-define/b16-reference.md), `grill-with-docs` | `docs-local\CONTEXT.md` and `adr-local\` |
+| [[[pdlf:app-factory/phase-b-discover-and-define/b16-reference\|Step 16 Domain Modeling]]](C:/pdlf/app-factory/phase-b-discover-and-define/b16-reference.md), `grill-with-docs` | `docs-local\GLOSSARY.md` and `adr-local\` |
 | [[[pdlf:app-factory/phase-c-design-and-plan/c19-reference\|Step 19 to Tickets]]](C:/pdlf/app-factory/phase-c-design-and-plan/c19-reference.md) | `pdlf-tickets\`, one file per ticket |
 | `triage` | The ledger's `triage_findings` table |
 | `setup-matt-pocock-skills` | `docs\agents\` and the `## Agent skills` block of `AGENTS.md` |

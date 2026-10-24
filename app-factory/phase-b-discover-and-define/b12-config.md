@@ -29,7 +29,7 @@ The fixed values of Step 12. Agent-facing. What the agent does, in order: [[[pdl
 |---|---|---|
 | A, new application | Entry 02; entry 08 for a new App 5 | The three pre-project files; for App 5, also App 1's approved design doc |
 | B, existing application | Entry 03; any app whose folder already holds forms or server modules made outside PDLF | The whole existing documentation through GBrain; the code graph |
-| C, feature | The feature path of entries 04 and 09; an update that changes what the application does | David's statement in the entry record; the application's approved design doc, `CONTEXT.md`, `adr-local\`; the code graph |
+| C, feature | The feature path of entries 04 and 09; an update that changes what the application does | David's statement in the entry record; the application's approved design doc, `GLOSSARY.md`, `adr-local\`; the code graph |
 
 ## Inputs
 
@@ -38,7 +38,7 @@ The fixed values of Step 12. Agent-facing. What the agent does, in order: [[[pdl
 | Entry record and earlier ledger rows | The ledger, through the PowerShell bridge ([[[pdlf:pdlf-library/specifications-local/spec-postgres-ledger\|Spec: Postgres Ledger]]](C:/pdlf/pdlf-library/specifications-local/spec-postgres-ledger.md)) |
 | Pre-project files | `{slug}-project-library\pre-project\project-brief.md`, `scoping-ideas.md`, `constraints-and-notes.md` |
 | The application's approved design doc | For a feature: `{slug}-project-library\docs-local\design\app{n}\design-doc.md` of the app worked on; for a new App 5: `docs-local\design\app1\design-doc.md` |
-| Vocabulary and decisions (features) | `{slug}-project-library\docs-local\CONTEXT.md`; `{slug}-project-library\adr-local\` |
+| Vocabulary and decisions (features) | `{slug}-project-library\docs-local\GLOSSARY.md`; `{slug}-project-library\adr-local\` |
 | Code graph (routes B and C) | Graphify, for the app folder worked on |
 | Reference platform's analysis | The context material listed at Step 03 |
 | Context pack | [[[pdlf:pdlf-library/specifications-local/spec-skill-context-pack\|Spec: Skill Context Pack]]](C:/pdlf/pdlf-library/specifications-local/spec-skill-context-pack.md) |
@@ -54,7 +54,7 @@ The fixed values of Step 12. Agent-facing. What the agent does, in order: [[[pdl
 | Reference-platform research | `{slug}-project-library\docs-local\reference-platform-research.md`, only when a reference platform is used |
 | `/office-hours` design doc | `~/.gstack/projects/sassycomapp-{slug}-project-library/{user}-{branch}-design-{datetime}.md`, the path the skill reports; never changed or moved |
 | Step-folder copies | `{slug}-project-library\pdlf-outputs\b12\{slug}-b12-{run}-design-doc-first-concept.md`, `-design-doc.md`, `-reference-platform-research.md`, `-office-hours-design.md` |
-| Document checks | `{slug}-project-library\pdlf-outputs\b12\{slug}-b12-{run}-dc-checks.md` |
+| Test results | `{slug}-project-library\pdlf-outputs\b12\{slug}-b12-{run}-checks.xml` (JUnit XML, ts-method section 5); gitleaks report `{slug}-b12-{run}-gitleaks.json` |
 | Step Receipt | `{slug}-project-library\pdlf-outputs\b12\{slug}-b12-{run}-receipt.md` |
 | Ledger | the Step 12 `steps` row; its BFT record; its `triage_findings` row |
 

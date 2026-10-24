@@ -1,7 +1,7 @@
 ---
 title: "c19-reference"
 doc-id: "mb-72bd1c28"
-updated: "2026-10-12"
+updated: "2026-10-24"
 ---
 
 ## From `19-to-tickets.md`
@@ -9,7 +9,7 @@ updated: "2026-10-12"
 ## Task Execution Order
 
 1. Run Matt `to-tickets` against the locked plan (Steps 14–16 output) and current
-   CONTEXT.md.
+   GLOSSARY.md.
 2. If existing-project entry: scope to work genuinely outstanding per Step 3's
    disposition table only — not a full re-breakdown of the whole application.
 3. → Decision point: present the ticket breakdown for developer approval before writing
@@ -31,7 +31,7 @@ the sole producer of Step 35's input; no other step feeds it.
 ## Inputs Required
 
 - Locked plan from Steps 14–16 (CEO review, Eng review, domain model + ADRs)
-- CONTEXT.md (domain vocabulary)
+- GLOSSARY.md (domain vocabulary)
 - For existing-project entry: Step 3's disposition table, to scope to outstanding work only
 
 ## Outputs

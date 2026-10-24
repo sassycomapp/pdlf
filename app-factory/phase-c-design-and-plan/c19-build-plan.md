@@ -1,7 +1,7 @@
 ---
 title: "c19-build-plan"
 doc-id: "mb-de445841"
-updated: "2026-10-21"
+updated: "2026-10-24"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -22,7 +22,7 @@ Ends with the gates `concept-locked` (Step 21) and `wireframes-approved` (Step 2
 - `mb-archify-scope`, then `archify`: the user flows of the application and the feature flow of each ticket that spans more than one screen → Steps 21, 22 and 35.
 - `mb-sentinel-review`, Medium → `triage_findings`.
 
-**Inputs:** the CEO plan, the reviewed plan, the test plan, `CONTEXT.md` and the ADRs.
+**Inputs:** the CEO plan, the reviewed plan, the test plan, `GLOSSARY.md` and the ADRs.
 
 **Testing:** each ticket names its acceptance tests from Step 15's test plan → Step 35.
 
@@ -34,7 +34,7 @@ Ends with the gates `concept-locked` (Step 21) and `wireframes-approved` (Step 2
 
 1. Query GBrain — Context relevant to issue decomposition
 3. Read Step 14 CEO plan — `<project-library>/gstack-outputs/step-14-ceo-plan.md` (refined by Step 15)
-4. Read CONTEXT.md + ADRs from Step 16
+4. Read GLOSSARY.md + ADRs from Step 16
 5. Confirm issue tracker config — From `/setup-matt-pocock-skills`
 6. Invoke Matt `to-tickets` — Breaks spec into tracer-bullet issues in dependency order
 7. Verify outputs — Issues published to project issue tracker; STOP if missing

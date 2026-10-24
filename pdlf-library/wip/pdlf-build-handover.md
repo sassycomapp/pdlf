@@ -7,11 +7,11 @@ doc-id: "mb-24ee05ab"
 
 ## 1. What this is
 
-This handover continues the conversations of 2026-10-21 to 2026-10-23 in a fresh context window. Past conversations can be searched; search "PDLF test suite", "pdlf-todo cleanup", "skills pinned", "anvil-cli", "sanity sweep", "apple tree", "mb-5-pdlf removal", "three-tier testing" for detail behind any point here.
+This handover continues the conversations of 2026-10-21 to 2026-10-24 in a fresh context window. Past conversations can be searched; search "PDLF test suite", "pdlf-todo cleanup", "skills pinned", "anvil-cli", "sanity sweep", "apple tree", "mb-5-pdlf removal", "three-tier testing", "Phase B Pass 1", "GLOSSARY.md" for detail behind any point here.
 
 The work is building PDLF: finishing every app-factory step so that PDLF can run an application from conception to release. `mb-3-cs` is the application that will be pulled through PDLF to pressure-test it. The objective is developing PDLF, not developing `mb-3-cs`.
 
-The sanity sweep of PDLF, `project-library-global`, `mybizz-os-docs`, `data-mybizz-mgt`, `dev-root-hub` and `mybizz-config-docs` is complete and committed (section 12). The working model below is stated in full in `pdlf-build-plan.md` (Preamble and sections 5 to 7); this section is its summary. Pass 1 starts next, with `b11`.
+The sanity sweep of PDLF, `project-library-global`, `mybizz-os-docs`, `data-mybizz-mgt`, `dev-root-hub` and `mybizz-config-docs` is complete and committed (section 12). The working model below is stated in full in `pdlf-build-plan.md` (Preamble and sections 5 to 7); this section is its summary. Pass 1 has built Phase B; it continues with Phase C (section 7).
 
 ## 2. The working model
 
@@ -83,7 +83,7 @@ Read `C:\mybizz\mybizz-os-docs\os-reference-docs\repo-organization.md` for every
 
 **System documents** (`C:\mybizz\mybizz-config-docs`): four documents per system (config, reference, explainer, learnings). Written only by its own skills, `mb-sysdoc-creator` and `mb-config-manager`, through OpenCode.
 
-**Each project library** (`C:\dev\dev-{slug}\{slug}-project-library`): `docs-local`, `adr-local`, `pdlf-outputs\{step}\` (every step's receipt and artefacts), `pdlf-tickets`, `docs-local\schema-migration-log.md`, `docs-local\releases\v{n}\`. Application terms go in the project's `CONTEXT.md`.
+**Each project library** (`C:\dev\dev-{slug}\{slug}-project-library`): `docs-local`, `adr-local`, `pdlf-outputs\{step}\` (every step's receipt and artefacts), `pdlf-tickets`, `docs-local\schema-migration-log.md`, `docs-local\releases\v{n}\`. Application terms go in the project's `GLOSSARY.md`.
 
 **Projects:** `mb-3-cs` and `mb-4-ecom` (`C:\dev\dev-mb-3-cs`, `C:\dev\dev-mb-4-ecom`), each with `{slug}-app1`, `-app2`, `-app3`, `-app5` and `{slug}-project-library`. Fixing either project is outside the PDLF work. Notes for `mb-3-cs` from the sweep are in `C:\dev\dev-mb-3-cs\wip\` (`mb-3-cs-notes-from-global-sweep.md`, `mb-3-cs-nomenclature-part3.md`), for when `mb-3-cs` is worked on.
 
@@ -116,23 +116,31 @@ Rules:
 - The script never overwrites a results file; a re-run takes a new name.
 - The repository is not a GBrain source, has no `mb-doc-check` hook and is not in `commit-all.sh`.
 
-## 7. Phase B: where Pass 1 starts
+## 7. Phase C: where Pass 1 continues
 
-Per step: close the build plan; check the test spec; write the config, reference and explainer afresh from the closed plan; generate the decision tree; scan every file; send the files.
+Phase B is built: b11, b12, b14, b15 and b16 are closed, and their suites are the model of a finished step. b13 is a placeholder (step not used). Phase B ends at the gate `domain-locked` (Step 16), which locks the glossary, its decisions, the data design and every other Phase B output (section 9).
+
+Pass 1 continues with Phase C, Steps 17 to 28, in order. Per step: close the build plan; correct the test spec; write the config, reference and explainer afresh from the closed plan; generate the decision tree; scan every file; update the built report; send the files.
 
 | Step | Build plan | Config | Reference | Explainer | Decision tree |
 |---|---|---|---|---|---|
-| b11 | Closed, with the test setup | Written | Written | Written | Written |
-| b12 | Closed | Written | Written | Written | Written |
-| b13 | Placeholder (step not used) | — | — | — | — |
-| b14 | Closed | Written | Written | Written | Written |
-| b15 | Closed | Written | Written | Written | Written |
-| b16 | Open | Old | Old | Empty | Old |
+| c17 | Open: carried-over block | Old | Old | Empty | Old |
+| c18 | Open | Old | Old | Empty | Old |
+| c19 | Open | Old | Old | Empty | Old |
+| c20 | Open | Old | Old | Empty | Old |
+| c21 | Open | Old | Old | Empty | Old |
+| c22 | Open | Old | Old | Empty | Old |
+| c23 | Open | Old | Old | Empty | Old |
+| c24, c25 | Placeholders (steps not used) | — | — | — | — |
+| c26 | Open | Old | Old | Empty | Old |
+| c27 | Open | Old | Old | Empty | Old |
+| c28 | Open | Old | Old | Empty | Old |
 
-The build plans of `a01` and `e35`, and the reference of `e35`, still say "three levels" of testing and test Level 2 against the live app; they are rewritten to the test suite's Levels 1 to 3 and the local runtime (section 11) when closed. The open build plan of b16 still carries the old test-application wording (`mb5pdlf`, Daily Intentions Tracker, `makepdlf`, `stepwise`); it goes when the plan is closed. The open build plans f42, f42A, f43 and f44 still model a staging and production split and `develop`/`stable` branches; they are rebuilt around the release by push (section 10) when closed.
+The build plans of `a01` and `e35`, and the reference of `e35`, still say "three levels" of testing and test Level 2 against the live app; they are rewritten to the test suite's Levels 1 to 3 and the local runtime (section 11) when closed. The open build plans f42, f42A, f43 and f44 still model a staging and production split and `develop`/`stable` branches; they are rebuilt around the release by push (section 10) when closed. Old Phase C to F documents name `docs-local\design-doc.md` and older output folders; they read the run's design folder (section 10) when rewritten.
 
 Findings for later steps, settled when each is built:
-- **b16:** the pinned Matt Pocock skills (`5beb35b`) name the glossary `GLOSSARY.md`, not `CONTEXT.md`; PDLF adopts the skills' name, in `docs-local\`, configured through `setup-matt-pocock-skills` (Step 11's fixed answers) and every document that names `CONTEXT.md`.
+- **c17:** builds the tables from the data design locked at `domain-locked`, named in the glossary's terms, every table `client: none`, checked against the access matrix and the threat model; the agent writes `db_schema` only through `anvil-yaml`, and David applies it in the Data Tables view.
+- **c19:** `to-tickets` reads the glossary and the decisions through `docs\agents\domain.md`; each ticket names its acceptance and security tests by the test plan's catalogue IDs.
 - **c23:** GStack's review pipeline runs CEO, design, developer experience, then engineering last, so the engineering review sees the final plan; PDLF runs the engineering review at Step 15 because Step 17 builds the tables from it. Any change `/plan-design-review` makes to the reviewed plan's architecture goes back through `/plan-eng-review`. `/plan-devex-review` does not apply: Mybizz applications are built for end users, not developers.
 - **c26, d31:** forms designed after Step 15 are added to the app's `access-matrix.yaml`.
 - **e38:** GStack's test plan is saved under the project library's GStack name; `/qa-only`, started from an app repository, has another GStack name and does not find it, so the step pastes `test-plan.md` and GStack's test plan into it.
@@ -155,17 +163,22 @@ These requirements apply to every step of Pass 1, without exception.
 10. **The built report, every step.** Keeping `pdlf-built-report.md` current is a requirement of every step: its entry is brought to its status, its files and links to its explainer and configuration, in the same batch as the step.
 11. **Delivery.** Each file with the path it replaces or a note that it is new, and the one `REPOS_OVERRIDE` commit command for every repository touched.
 
-## 9. What each Phase B test spec needs from its build plan
+## 9. What Phase B hands to Phase C
 
-| Step | Test spec requires | Missing from the build plan |
-|---|---|---|
-| b11 | PR-09 (local Anvil App Server, server and client Uplink keys, a `TEST_` user with a second factor, the mail catcher); ST-10 (the app's `.gitignore` covers `.env`; `tests\` holds `conftest.py`, `pytest.ini`, `ts-config.yaml` and `test_pr09_environment.py`); PR-06 | Closed: the test setup is in the b11 build plan; the runtime is `ts_local.sh` (`ts-method` section 3) |
-| b12 | DC-01; DC-02; PR-01; PR-04; PR-06 | Closed |
-| b14 | PR-01; DC-03; DC-01; PR-06; PR-04 | Closed |
-| b15 | PR-01; DC-04 to DC-08; DC-01; PR-06; PR-04 | Closed |
-| b16 | DC-09; PR-05 (receipts match evidence, `ts_report.py --check`); PR-03 | PR-05 |
+| Item | Where (in `{slug}-project-library\`) | Written at | First read at |
+|---|---|---|---|
+| Design doc, the reviewed plan with the data design | `docs-local\design\{run}\design-doc.md` | 12, 14, 15, 16 | 17 |
+| First concept | `docs-local\design\{run}\design-doc-first-concept.md` | 12 | 21 |
+| Test plan | `docs-local\design\{run}\test-plan.md` | 15 | 19 |
+| Access matrix | `docs-local\design\app{n}\access-matrix.yaml` | 15 | 17 |
+| Threat model | `docs-local\design\app{n}\threat-model.md` | 15 | 17 |
+| Glossary | `docs-local\GLOSSARY.md` | 16 | 17 |
+| Decisions | `adr-local\adr-{kebab-case-name}.md` | 14, 15, 16 | 17 |
+| Reference-platform research | `docs-local\reference-platform-research.md` | 12 | 15, 20 |
+| Diagrams and domain map | `pdlf-outputs\b15\`, `pdlf-outputs\b16\` | 15, 16 | 17, 34 |
+| Receipts and test results | `pdlf-outputs\b11\` to `b16\` | 11 to 16 | 17 (PR-01) |
 
-PR tests are in `spec-pdlf-process-tests`. Each build plan's **Testing** line becomes `{step}-test-spec.md` with one sentence of what it proves.
+Every test result a step records without its own JUnit output goes into `{slug}-{step}-{run}-checks.xml`, and every receipt carries the table `ts_report.py --prefix {slug}-{step}-{run}-` prints (`ts-method` section 5). Phase C steps follow the same rule.
 
 ## 10. Decisions the documents must reflect
 
@@ -177,6 +190,7 @@ PR tests are in `spec-pdlf-process-tests`. Each build plan's **Testing** line be
 - **Server functions** return data and raise errors (no envelope). **Money** in whole cents. **Observability:** instances push heartbeats; App 5 never polls.
 - **Schema changes** are applied by David in Anvil's Data Tables view (Step 17); no agent runs `anvil db apply-schema`. `anvil.yaml` changes only through Anvil's `anvil-yaml` skill.
 - **Runs:** `{run}` is `app{n}` for a whole application (`app1`, `app2`, `app3`, `app5`) or the feature slug; a feature slug is unique in the business and never `app{n}`. The ledger's `steps.run` has no default.
+- **Glossary:** `docs-local\GLOSSARY.md`, the name the pinned Matt Pocock skills use, single context, shared by all the business's apps; ADRs are `adr-local\adr-{kebab-case-name}.md`; `docs\agents\domain.md` in the project template states both.
 - **Design docs:** each run's concept lives in `docs-local\design\{run}\` (`design-doc.md`, `design-doc-first-concept.md`); a reference platform's research in `docs-local\reference-platform-research.md`. From Step 14 on, `design-doc.md` is the reviewed plan: GStack's plan reviews amend it in place and keep `## GSTACK REVIEW REPORT` as its last section. Later steps read these paths.
 - **Protection levels:** Public, Internal, Personal, Restricted (`spec-security-architecture` section 4).
 - **No `TODOS.md`:** a deferral is written in the plan's NOT in scope section with its reason.
@@ -228,5 +242,5 @@ The three-tier method (pure logic, Uplink integration, verification in the brows
 
 ## 14. First actions in the next session
 
-1. Clone `pdlf` and `project-library-global`; read `pdlf-build-plan.md`, `app-factory-docs-update-method.md`, the `b11` and `b12` suites (the models of a finished step) and the next step's suite.
-2. Continue Pass 1 with `b15`, `b16`, then Phases C, D, E, F and A, built as section 8 sets out.
+1. Clone `pdlf` and `project-library-global`; read `pdlf-build-plan.md`, `app-factory-docs-update-method.md`, the Phase B suites (`b11` to `b16`, the models of a finished step), section 9, and the next step's suite.
+2. Continue Pass 1 with Phase C, from `c17`, then Phases D, E, F and A, built as section 8 sets out.

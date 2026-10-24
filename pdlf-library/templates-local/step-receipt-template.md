@@ -1,7 +1,7 @@
 ---
 title: "step-receipt-template"
 doc-id: "mb-c0c99119"
-updated: "2026-10-23"
+updated: "2026-10-24"
 ---
 # PDLF Step Receipt Template
 
@@ -21,7 +21,7 @@ the full run has a readable, git-tracked history alongside the queryable ledger.
 ## Template
 
 ```markdown
-# Step Receipt — {project_slug} — Step {step_number}
+# Step Receipt — {project_slug} — Step {step_number} — {run}
 
 Phase: {phase}   |   Type: {step_type}   |   Status: {status}
 Started: {started_at}   |   Completed: {completed_at}
@@ -37,6 +37,12 @@ Inputs used: {inputs_used}
 Artifact: {artifact_path}
 Synthesized (test-mode shortcut): {synthesized}   <!-- only rendered if TRUE, and rendered
                                                         prominently — never silently omitted -->
+
+## Tests
+
+<!-- the table printed by `ts_report.py {step output folder} --prefix {slug}-{step}-{run}-`, pasted unchanged; its Total
+     row is what test PR-05 checks against the evidence -->
+{ts_report table}
 
 ## BFT checkpoint
 
@@ -112,12 +118,18 @@ Started: 2026-07-04 14:02:11+00   |   Completed: 2026-07-04 14:09:47+00
 
 Skill family: matt-skills
 Skill: /grill-with-docs (using domain-modeling internally)
-Inputs used: {"plan_file": "ceo-plans/checkout-flow-2026-07-04.md", "context_md": "CONTEXT.md"}
+Inputs used: {"plan_file": "ceo-plans/checkout-flow-2026-07-04.md", "glossary": "GLOSSARY.md"}
 
 ## Output
 
-Artifact: dev-{slug}\{slug}-project-library\CONTEXT.md, adr-local/0004-checkout-session-model.md
+Artifact: dev-{slug}\{slug}-project-library\GLOSSARY.md, adr-local/0004-checkout-session-model.md
 Synthesized (test-mode shortcut): false
+
+## Tests
+
+<!-- the table printed by `ts_report.py {step output folder} --prefix {slug}-{step}-{run}-`, pasted unchanged; its Total
+     row is what test PR-05 checks against the evidence -->
+{ts_report table}
 
 ## BFT checkpoint
 
@@ -127,7 +139,7 @@ Muscle:  Logic — glossary terms had to necessarily follow from the reviewed pl
 Nerves:  Analyzing — decomposed the plan into discrete named concepts
 Fat:     Cut "Wishlist" as out-of-scope per ISA section 3
 Skin:    Presented as glossary + ADR pair, conclusion-first
-Health:  Good in itself — terms are consistent with existing CONTEXT.md; good for project — unblocks step 17/19
+Health:  Good in itself — terms are consistent with existing GLOSSARY.md; good for project — unblocks step 17/19
 
 ## Gate status
 

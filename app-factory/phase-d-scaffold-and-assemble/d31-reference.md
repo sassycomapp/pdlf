@@ -1,14 +1,14 @@
 ---
 title: "d31-reference"
 doc-id: "mb-3689e5a4"
-updated: "2026-10-12"
+updated: "2026-10-24"
 ---
 
 ## From `31-scaffold-planning.md`
 
 ## Task Execution Order
 
-1. Review Step 15/16 architecture and domain model (TDD cluster, CONTEXT.md, ADRs)
+1. Review Step 15/16 architecture and domain model (TDD cluster, GLOSSARY.md, ADRs)
 2. Review Step 30 pulled UI form structure
 3. Review Step 21 concept audit report
 4. Plan module/function structure — determine what stubs to create
@@ -25,7 +25,7 @@ before the build loop fills them in.
 
 ## Inputs Required
 
-- Step 15/16 architecture and domain model (TDD cluster, CONTEXT.md, ADRs)
+- Step 15/16 architecture and domain model (TDD cluster, GLOSSARY.md, ADRs)
 - Step 30 pulled UI form structure
 - Step 21 concept audit report
 

@@ -1,14 +1,14 @@
 ---
 title: "c21-reference"
 doc-id: "mb-06a9bf5e"
-updated: "2026-10-12"
+updated: "2026-10-24"
 ---
 
 ## From `21-concept-sanity-audit.md`
 
 ## Task Execution Order
 
-1. Read all Phase B+C inputs: spec (Step 13), CEO review (Step 14), Eng review (Step 15), CONTEXT.md + ADRs (Step 16), DESIGN.md (Step 20)
+1. Read all Phase B+C inputs: spec (Step 13), CEO review (Step 14), Eng review (Step 15), GLOSSARY.md + ADRs (Step 16), DESIGN.md (Step 20)
 2. Cross-reference each document pair for contradictions
 3. Produce short audit report — what was checked, findings, discrepancies, verdict
 4. Save audit report to `<project-library>/pdlf/step-21-concept-audit.md`
@@ -29,7 +29,7 @@ after this gate, no new feature may be added without formal gate reopening.
 - Step 13 spec at `<project-library>/output-matt-skills/step-13-spec.md` — also available as GitHub issue #<number> on project repo
 - Step 14 CEO plan + review report at `<project-library>/output-gstack/step-14-ceo-plan.md`
 - Step 15 Eng review (TDD cluster)
-- Step 16 CONTEXT.md + ADRs
+- Step 16 GLOSSARY.md + ADRs
 - Step 20 DESIGN.md
 
 ## Outputs
