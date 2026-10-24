@@ -16,42 +16,55 @@
 <div class="diagram-wrap">
   <div class="mermaid">
 flowchart TD
-    Start(["Entry record from the orchestrator"]) --> Checks{"Foundation checks pass?<br/>ledger, GBrain, Anvil skills, Phase B skills"}
+    Start(["Entry record from the orchestrator"]) --> Checks{"1-2. Foundation checks pass?<br/>ledger, GBrain, Anvil skills and CLI,<br/>Phase B skills, test tools"}
     Checks -->|"No"| Dev1["Stop: deviation"]
     Checks -->|"Yes"| Route{"Which entry?"}
 
-    Route -->|"02: new business"| A1["Ask slug, name, domain, mode"]
-    A1 --> A2["Copy project template to C:\dev\dev-{slug}<br/>replace names, remove doc-ids"]
-    A2 --> A3["wizard: David creates App 1 in Anvil<br/>and connects it to GitHub"]
-    A3 --> A4{"Clone holds anvil.yaml?"}
-    A4 -->|"No"| Dev2["Stop: deviation"]
-    A4 -->|"Yes"| A5["App 1: Anvil AGENTS.md and .gitignore"]
-    A5 --> A6{"David approves the private<br/>project library on GitHub?"}
-    A6 -->|"No"| Stop1(["Stop: no project without it"])
-    A6 -->|"Yes"| A7["Create and link it<br/>place blank pre-project files"]
-    A7 --> Common
+    Route -->|"02: new business"| A1["3. Ask slug, name, domain, mode"]
+    A1 --> A2["4. Copy project template to C:\dev\dev-{slug}<br/>replace names, remove doc-ids"]
+    A2 --> A3[["5. Set up App 1 (section 5)"]]
+    A3 --> A4{"6. David approves the public<br/>project library on GitHub?"}
+    A4 -->|"No"| Stop1(["Stop: no project without it"])
+    A4 -->|"Yes"| A5["6-7. Create and link it<br/>place blank pre-project files"]
+    A5 --> Common
 
-    Route -->|"03: with context"| B1["Ask address and path of every repository"]
-    B1 --> B2["Check links and anvil.yaml<br/>correct only with permission"]
-    B2 --> B3["Create only missing folders<br/>change nothing; report old names"]
-    B3 --> B4["David confirms the data is sound"]
-    B4 --> Common
+    Route -->|"03: with context"| B1["9-10. Ask every repository; check links and anvil.yaml<br/>correct only with permission"]
+    B1 --> B2["11. Create only what is missing; change nothing"]
+    B2 --> B3[["12. Each app: section 5, only what is missing;<br/>PR-09 always for an app with code"]]
+    B3 --> B4["13-14. graphify each app; /cso secret scan<br/>a secret is removed and rotated"]
+    B4 --> B5["15-16. Report old names; David confirms data is sound"]
+    B5 --> Common
 
-    Route -->|"07 or 08: new app"| C1{"Health check passes?"}
+    Route -->|"07 or 08: new app"| C1{"18. Health check passes?"}
     C1 -->|"No"| Stop2(["Stop"])
-    C1 -->|"Yes"| C2["wizard: David creates App 3 or App 5<br/>clone, AGENTS.md, .gitignore"]
-    C2 --> C3["Record the app in the projects row"]
+    C1 -->|"Yes"| C2[["19. Set up App 3 or App 5 (section 5)"]]
+    C2 --> C3["20. Record the app in the projects row"]
     C3 --> End
 
-    Common["Matt Pocock setup with PDLF's answers<br/>register project library in GBrain"] --> Hook["David adds the library to the commit hook<br/>and commit-all, and confirms"]
-    Hook --> Row["Write the projects row"]
+    subgraph S5["Section 5: setting up one app"]
+      direction TB
+      W1["21. wizard: David creates the app in Anvil, connects GitHub,<br/>switches on the Users service, adds the role column"] --> W2{"22. Clone holds anvil.yaml<br/>with the Users service?"}
+      W2 -->|"No"| Dev2["Stop: deviation"]
+      W2 -->|"Yes"| W3["23. anvil --json validate (ST-01)<br/>24. AGENTS.md and .gitignore"]
+      W3 --> W4{"25. App 3?"}
+      W4 -->|"Yes"| W9(["Done: no code, no test setup"])
+      W4 -->|"No: App 1 or App 5"| W5["26. tests folders and templates"]
+      W5 --> W6["27. David runs ts_local.sh init for .env<br/>and confirms"]
+      W6 --> W7{"28-30. Runtime starts and<br/>PR-09 passes?"}
+      W7 -->|"No"| Dev3["Stop: deviation"]
+      W7 -->|"Yes"| W8(["Done: runtime stopped, evidence saved"])
+    end
+
+    Common["31-32. Matt Pocock setup with PDLF's answers<br/>register project library in GBrain"] --> Hook["33. David adds the library to the commit hook<br/>and commit-all, and confirms"]
+    Hook --> Row["34. Write the projects row"]
     Row --> End
 
-    End["Sentinel review, High"] --> Sen{"Clear?"}
+    End["35. Sentinel review, High"] --> Sen{"Clear?"}
     Sen -->|"Flag or Escalate"| Stop3(["Stop: David decides"])
-    Sen -->|"Clear"| HC["Health check as self-audit<br/>report, fix nothing without permission"]
-    HC --> Rec["Ledger row, Step Receipt, Full BFT"]
-    Rec --> Close(["Explain, stop, ask David to run /mb-close-out"])
+    Sen -->|"Clear"| HC["36. Health check as self-audit<br/>report, fix nothing without permission"]
+    HC --> TS["37. Every test of the test specification passed,<br/>evidence in pdlf-outputs\b11"]
+    TS --> Rec["38. Ledger row, Step Receipt, Full BFT"]
+    Rec --> Close(["39. Explain, stop, ask David to run /mb-close-out"])
   </div>
 </div>
 <script>

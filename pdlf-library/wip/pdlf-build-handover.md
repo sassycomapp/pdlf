@@ -1,6 +1,6 @@
 ---
 title: "pdlf-build-handover"
-updated: "2026-10-23"
+updated: "2026-10-24"
 doc-id: "mb-24ee05ab"
 ---
 # Handover — Building PDLF
@@ -122,7 +122,7 @@ Per step: close the build plan; check the test spec; write the config, reference
 
 | Step | Build plan | Config | Reference | Explainer | Decision tree |
 |---|---|---|---|---|---|
-| b11 | Closed (the model of a finished build plan); needs the test setup of section 8 | Written | Written | Written | Written |
+| b11 | Closed, with the test setup | Written | Written | Written | Written |
 | b12 | Open: gathered `## From …` sections | Old | Old | Empty | Old |
 | b13 | Placeholder (step not used) | — | — | — | — |
 | b14 | Open | Old | Old | Empty | Old |
@@ -135,7 +135,7 @@ The build plans of `a01` and `e35`, and the reference of `e35`, still say "three
 
 | Step | Test spec requires | Missing from the build plan |
 |---|---|---|
-| b11 | PR-09 (local Anvil App Server, server and client Uplink keys, a `TEST_` user with a second factor, the mail catcher); ST-10 (each app's `.gitignore` covers `.env`; `tests\` holds the four templates); PR-06 | The test setup: copy the templates into each app's `tests\`; `.env` keys `ANVIL_UPLINK_KEY`, `ANVIL_CLIENT_KEY`, `TS_TEST_PASSWORD`; start the App Server |
+| b11 | PR-09 (local Anvil App Server, server and client Uplink keys, a `TEST_` user with a second factor, the mail catcher); ST-10 (the app's `.gitignore` covers `.env`; `tests\` holds `conftest.py`, `pytest.ini`, `ts-config.yaml` and `test_pr09_environment.py`); PR-06 | Closed: the test setup is in the b11 build plan; the runtime is `ts_local.sh` (`ts-method` section 3) |
 | b12 | DC-01; DC-02 (sections present; the 14 common aspects stated; no reference platform's technology carried over) | DC-02 |
 | b14 | DC-03 (scope; data inventory with protection levels; POPIA, GDPR, PCI SAQ A; exit; Hobby fit) | All of DC-03 as outputs |
 | b15 | DC-04 to DC-08 (test plan with catalogue IDs; `access-matrix.yaml`; threat model; security decisions; conformance checks selected) | `access-matrix.yaml`, the security decisions, the conformance selection; its Testing line says "three levels" (the suite has levels D and 0 to 4, run in order) |
@@ -199,6 +199,5 @@ The three-tier method (pure logic, Uplink integration, verification in the brows
 
 ## 13. First actions in the next session
 
-1. Clone `pdlf` and `project-library-global` (after David's commit of this handover and `app-factory-docs-update-method.md`); read `pdlf-build-plan.md`, `app-factory-docs-update-method.md`, the `b11` suite and `b11-test-spec.md`.
-2. Bring `b11` up to the test suite (section 8), then rewrite its config, reference and explainer if the change touches them.
-3. Continue Pass 1 with `b12`, `b14`, `b15`, `b16`: for each, the plan first, then the files.
+1. Clone `pdlf` and `project-library-global`; read `pdlf-build-plan.md`, `app-factory-docs-update-method.md`, the `b11` suite (the model of a finished step) and the `b12` suite.
+2. Continue Pass 1 with `b12`, `b14`, `b15`, `b16`: for each, the plan first, then the files.

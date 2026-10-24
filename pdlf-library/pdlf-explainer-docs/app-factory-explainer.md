@@ -1,26 +1,170 @@
 ---
-title: "app-factory-explainer"
-doc-id: "mb-bcfa10bb"
-updated: "2026-10-23"
+title: "pdlf-explainer"
+doc-id: "mb-1cb64793"
+updated: "2026-10-24"
 ---
-# PDLF — The App Factory
+# PDLF — How It Works
 
-## What it is
+This document explains how PDLF works: its parts, how a build runs, and why it runs that way. What PDLF is for, and what it must always be, is stated in [[[pdlf:app-factory/pdlf-build-plan|PDLF Build Plan]]](C:/pdlf/app-factory/pdlf-build-plan.md). Where the two seem to disagree, the build plan is right and this document is corrected.
 
-The app factory (`C:\pdlf\app-factory\`) holds PDLF's build, one folder per phase: `phase-a-init`, `phase-b-discover-and-define`, `phase-c-design-and-plan`, `phase-d-scaffold-and-assemble`, `phase-e-build-and-verify` and `phase-f-ship-and-monitor`. Each phase folder holds the set of seven for each of its steps: its build plan, test specification, config, reference, explainer, decision tree and module (`b16-build-plan.md` to `b16-module.md`). The test specification states what the step must prove and which tests of the test suite in `project-library-global` it runs ([[[pdlf:pdlf-library/pdlf-explainer-docs/pdlf-testing-explainer]]](C:/pdlf/pdlf-library/pdlf-explainer-docs/pdlf-testing-explainer.md)). A module is one finished step, compiled into a single unit. When PDLF builds an application, the modules are what run.
+---
 
-Each name is the phase letter followed by the step number, so `b16-module.md` is always Step 16. Module `a01` is the orchestrator, which runs the others. Modules 02 to 10 are the entry points: a new application, with or without context, and work on an existing application (a new feature, an update, a release into App 2, or creating App 3 or App 5). Modules 11 to 46 are the pipeline that builds an application. Numbers 13, 24 and 25 are not used; each keeps a placeholder file. Inserted steps carry a lowercase letter after the number, only to keep the files in order: 35a, 38a, 40b and 42a.
+## 1. The parts of PDLF
 
-## How it works
+PDLF lives at `C:\pdlf`. It has four parts, and each does one job.
 
-The orchestrator first establishes, by asking David, what kind of work this is. That decides the entry point, and so which modules run. It then runs those modules in order. Each module carries out its step through the same pattern (search, read, do, verify, think, record, explain and stop, close out), described in [[[pdlf:pdlf-library/pdlf-explainer-docs/pdlf-explainer|PDLF Explainer]]](C:/pdlf/pdlf-library/pdlf-explainer-docs/pdlf-explainer.md).
+| Part | Where | What it does |
+|---|---|---|
+| The app factory | `app-factory/` | One folder per phase. Each holds its steps' files, where each step is designed, and one module file per step: the finished step, compiled into one unit. The modules are what actually runs. |
+| The library | `pdlf-library/` | The machinery every module shares: specifications, policies, decisions (ADRs), processes, templates and these explainers. |
+| The orchestrator | Step 1 (module 01) | Runs a build. It establishes where to begin, runs the modules in order, and stops for David at every decision. |
+| The ledger | PostgreSQL database `pdlf` | PDLF's record of each build: steps done, gates passed, deviations decided. |
 
-Every module implements the shared rules in `pdlf-library`, above all [[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md): pass prior outputs in full to the next skill, capture where the output was saved, confirm it exists, record it in the ledger, write a copy to the step's output folder in the project library, and stop with a deviation when something expected is missing. The decisions behind those rules are in [[[pdlf:pdlf-library/adr-local/artifact-saving-convention|ADR: Artifact Saving Convention]]](C:/pdlf/pdlf-library/adr-local/artifact-saving-convention.md).
+PDLF also depends on things it does not own:
 
-## Why it works this way
+- **OpenCode** runs PDLF. Every step is carried out by the OpenCode Build agent and its model.
+- **mybizz-os** supplies memory (GBrain and governed memory), governance (the global `AGENTS.md` and Cupcake), documentation upkeep and close-out.
+- **`project-library-global`** holds the standards every application is built to.
+- **The skill library** supplies specialised skills from GStack, Matt Pocock, Magdoub and Anvil.
 
-Keeping each step as its own module means a step can be built, tested and corrected on its own, without touching the others. Keeping the shared pattern in the orchestrator, rather than repeated in every module, means no module can skip it.
+PDLF has one instruction file for agents, `C:\pdlf\AGENTS.md`, which sits under the global `AGENTS.md`. There is no `CLAUDE.md`. PDLF's own OpenCode settings file (`opencode.json`) is written when the orchestrator is designed.
 
-## What has to happen
+## 2. How a build runs
 
-A step is designed in its phase folder. Its config, reference, explainer, decision tree and test specification are written from its closed build plan. Its module is compiled from those six once the step has been proven on a real application, and only on David's instruction. Until then the module is empty (rule 2 of `C:\pdlf\AGENTS.md`). Modules are built one at a time, not in bulk.
+### Starting
+
+David starts the orchestrator in OpenCode with `/pdlf-init`. It offers the entry points, Steps 2 to 10, and David chooses exactly one:
+
+| Work | Entry point |
+|---|---|
+| A new application with no prior context | 02 |
+| A new application with context (partly developed, not yet through PDLF) | 03 |
+| A new feature for App 1, or for App 3 or App 5 | 04, or 09 |
+| An update to App 1, or to App 3 or App 5 | 05, or 10 |
+| A release into App 2 (`master_template`) | 06 |
+| Creating App 3 (`blank_client_template`) or App 5 (management) | 07, or 08 |
+
+A new application with no prior context starts from three pre-project files that David fills in: a brief, scoping ideas, and constraints and notes. An existing application brings its own context, read from its repositories. Where each entry joins the pipeline is set in [[[pdlf:app-factory/pdlf-build-plan|PDLF Build Plan]]](C:/pdlf/app-factory/pdlf-build-plan.md), section 4.
+
+### The pattern of every step
+
+Every step follows the same pattern. The step's own file says *what* the step does; the orchestrator supplies *how* every step is carried out, identically:
+
+1. **Search.** The step searches GBrain for what is already known about its subject.
+2. **Read.** It reads the actual files the search points to, in full. A search result is a pointer, never the source.
+3. **Do.** It does the step's work, using the skill the step names. If the work is David's (for example, building tables in the Anvil editor), it gives him exact instructions and waits.
+4. **Verify.** It confirms the expected output really exists. If it does not, the step stops and raises a deviation (section 6).
+5. **Think.** It answers the step's thinking checkpoint (BFT, section 8) for what just happened, specifically, never generically.
+6. **Record.** It writes the step's row to the ledger and produces the Step Receipt from that row.
+7. **Explain and stop.** It explains in plain language what was done and why, and waits for David.
+8. **Close out.** It asks David to run `/mb-close-out`. Nothing is committed, pushed or written to memory without it.
+
+Why the same pattern everywhere: a pattern written once and enforced by the orchestrator cannot be skipped by one step and forgotten by another. David only has to learn it once.
+
+### Phases and gates
+
+The pipeline runs in phases. Each phase ends at a gate: a hard stop where David approves a commitment before anything is built on it. The gates in the current step design are `domain-locked`, `concept-locked`, `wireframes-approved`, `architecture-verified`, `build-verified` (once per feature), `production-released` and `released`. Where each gate sits and what it locks is in [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md).
+
+At a gate, the orchestrator presents a gate summary and waits for David's explicit yes or no. A passed gate is never silently undone; reopening it is a recorded decision. PDLF never passes a gate without David's approval, and Cupcake enforces this. The procedure is in [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md).
+
+### Building features
+
+Features are built one at a time, in a loop. Each feature is built, tested, reviewed and passed through its own `build-verified` gate before the next feature begins. Its tests run in levels, each only after the one before passes:
+
+1. **Logic alone**: the feature's business rules, written without any Anvil code, tested on their own.
+2. **Connected**: the feature tested against the Anvil application through Anvil Uplink, first on the Anvil App Server on David's computer, then on hosted App 1 only for what needs Anvil's hosted service, with a backup before and after a hosted run.
+3. **In the browser**: the feature tested by real flows, and David signs it off.
+
+Review and QA findings are always written to a file, including a statement when a review finds nothing; a claimed review that left no file did not happen. How PDLF tests is set out in the test suite ([[[default:test-suite/ts-method|Test Suite — Method]]](C:/dev/project-library-global/test-suite/ts-method.md)), the global testing policy ([[[default:policy-global/pol-testing-and-quality|Policy — Testing and Quality]]](C:/dev/project-library-global/policy-global/pol-testing-and-quality.md)) and PDLF's own [[[pdlf:pdlf-library/policy-local/pol-testing-and-quality|Policy: Testing and Quality]]](C:/pdlf/pdlf-library/policy-local/pol-testing-and-quality.md), which binds the build loop.
+
+### Finishing
+
+PDLF builds the whole five-app structure of the business in one pipeline. It releases the application to `master_template`: David pushes App 1's approved, tagged release into App 2's repository, as a gated step. It then builds the remaining apps of the set, including one verified client instance, the provisioning procedure, and the README every client instance must carry. The steps after Step 46 that build the remaining apps are added in steps work.
+
+## 3. The ledger
+
+The ledger is PDLF's own PostgreSQL database, `pdlf`. It runs on Windows (PostgreSQL 15, port 5433); OpenCode runs in WSL and reaches it through PowerShell, as set out in [[[pdlf:pdlf-library/specifications-local/spec-postgres-ledger|Spec: Postgres Ledger]]](C:/pdlf/pdlf-library/specifications-local/spec-postgres-ledger.md). The connection settings and passwords are in `C:\pdlf\.env`, which is never committed.
+
+It holds seven tables: `projects`, `steps`, `gates`, `deviations`, `bft_records`, `isc` (the criteria for "done") and `triage_findings`.
+
+Why it exists: it is control, not ceremony. Because every step, gate and deviation is a row, the orchestrator can refuse to run a step whose predecessors are not done, refuse to pass a gate that was never approved, and resume a build exactly where it stopped, in any later session. Only the orchestrator, carrying out a PDLF step, writes to it.
+
+The Step Receipt that David reads after each step is produced from the ledger row that step just wrote. It is never written separately, so the report cannot differ from the record.
+
+## 4. Knowledge
+
+Knowledge has three homes, and each fact lives in only one of them:
+
+- `pdlf-library` holds how PDLF works;
+- `project-library-global` holds what a good application is, for every application;
+- each project's own `project-library`, `docs-local`, holds what is true of that application only.
+
+Every documentation repository is a GBrain source, so one search covers all three. New knowledge enters GBrain only through close-out and `mb-submit-memory`, with David's approval.
+
+**Learning.** When a build teaches something, the lesson is written once, into the source the next build will read: an Anvil lesson into `project-library-global`, a lesson about PDLF into the module, rule or specification concerned, a lesson about one application into that application's `docs-local`.
+
+**Self-healing.** When a step fails or David corrects something, PDLF proposes the fix to that source. David approves it, and the fact is recorded in GBrain through `mb-submit-memory`.
+
+The rules are in [[[pdlf:pdlf-library/policy-local/pol-memory-and-knowledge|Policy: Memory and Knowledge]]](C:/pdlf/pdlf-library/policy-local/pol-memory-and-knowledge.md).
+
+## 5. Skills
+
+PDLF uses skills from these families:
+
+| Family | Contributes |
+|---|---|
+| GStack | Structured reviews from different angles (scope, engineering, design, developer experience), QA in a real browser, code review, shipping. |
+| Matt Pocock | Domain modelling (a locked shared vocabulary and decisions), turning the plan into tickets, triage of findings, architecture health. |
+| Magdoub wireframe | Structural wireframes first, then polished wireframes. |
+| Anvil (`anvil-agent-references`) | How Anvil itself works: server code, client forms, data models and the rest, issued by Anvil. |
+| Magnus919 | Secure software engineering and security audit methods. |
+| MyBizz | Sentinel's security review (`mb-sentinel-review`), diagram scoping (`mb-archify-scope`) with Archify, and close-out. |
+
+The skills catalog in mybizz-os ([[[mybizz-os-docs:os-reference-docs/skills-catalog|Skills Catalog]]](C:/mybizz/mybizz-os-docs/os-reference-docs/skills-catalog.md)) is the single register of which skills are installed. Which skill each step uses is decided in that step's design.
+
+When a skill in the library covers a task, the agent must use it; it never improvises the task itself. A skill joins the library only if it earns its place. Before invoking a skill, the agent reads the skill's own file, because a skill's name does not reliably say what it does. The rules are in [[[pdlf:pdlf-library/policy-local/pol-skill-invocation|Policy: Skill Invocation]]](C:/pdlf/pdlf-library/policy-local/pol-skill-invocation.md).
+
+## 6. Deviations
+
+When a step cannot be done as written, the agent never decides what to do. It stops and sets out the options, with what each one costs: an alternative action, resolving the blocker, or skipping the step with its consequence stated. David decides, and the decision is recorded in the ledger. The same applies when what the agent finds in the files disagrees with what David says is true: the disagreement is raised at once and settled as a deviation. The procedure is in [[[pdlf:pdlf-library/policy-local/pol-sequential-enforcement-and-deviation|Policy: Sequential Enforcement and Deviation]]](C:/pdlf/pdlf-library/policy-local/pol-sequential-enforcement-and-deviation.md).
+
+## 7. Artifacts
+
+Each step's outputs (plans, reviews, designs, reports) are written to their canonical place: inside the application's project library, or where a skill saves by design. Every project library has one output folder per step, `pdlf-outputs\{step}\`, and a copy of each output saved elsewhere is written there, so that everything a step produced for that application is in one place. Nothing an application produces is kept in `C:\pdlf`. The rules are in [[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md).
+
+## 8. Thinking checkpoints (BFT)
+
+At each step the agent answers a thinking checkpoint based on Edward de Bono's BODY Frame Thinking: what the essential structure is, what does the work, how the parts connect, what is unnecessary, how the result is presented, and whether it is sound. Steps with real decisions get the full set; mechanical steps get a short one or none; every gate gets the full set. A blank, generic or copied answer counts as no answer. The place and weight of these checkpoints are settled in steps work; the current rules are in [[[pdlf:pdlf-library/policy-local/pol-bft-discipline|Policy: BFT Discipline]]](C:/pdlf/pdlf-library/policy-local/pol-bft-discipline.md).
+
+## 9. Close-out and Git
+
+At the end of every step the agent asks David to run `/mb-close-out`, the mybizz-os close-out. It saves what must be remembered, processes the memory governor's review queue, updates the project's documents, and ends with David running `commit-all` in the WSL terminal, which commits every documentation repository, updates GBrain and pushes.
+
+Agents never commit or push. This keeps every change to the permanent record in David's hands.
+
+## 10. Anvil
+
+PDLF builds for Anvil.works only. The rules are in [[[pdlf:pdlf-library/policy-local/pol-anvil-platform|Policy: Anvil Platform]]](C:/pdlf/pdlf-library/policy-local/pol-anvil-platform.md); the essentials are these.
+
+- **Two repositories per application.** The code repository is the Anvil app (App 1, the development workspace). The documentation repository holds everything else. They are never mixed.
+- **What goes to Anvil.** Everything committed to the code repository is pushed to Anvil; `.gitignore` keeps local-only material, such as `.env`, out. Anvil uses only `anvil.yaml`, `client_code`, `server_code` and `theme`. `theme/assets` and `client_code` are public, so nothing secret or internal goes there. Client documents may be served from `theme/assets/docs`; explainer videos are hosted on YouTube.
+- **`anvil.yaml` is changed only through Anvil's `anvil-yaml` skill**, validated with `anvil --json validate`; David applies schema changes in Anvil's Data Tables view.
+- **No multi-tenancy, ever.** Every client has its own app instance and its own database. No code shares one database between clients and separates them by filtering. AI agents reach for that pattern by default, so it is given to them as context before any code is written: [[[default:adr-global/adr-dependency-based-not-multi-tenant|ADR: Dependency-Based, Not Multi-Tenant]]](C:/dev/project-library-global/adr-global/adr-dependency-based-not-multi-tenant.md).
+- **Each client has its own Anvil account, starting on the Hobby tier, and its own R2 storage.** When a client exits, all its data is written to its R2 bucket and it leaves with that bucket: [[[default:adr-global/adr-client-r2-storage-and-exit-handover|Client R2 Storage and Exit Handover]]](C:/dev/project-library-global/adr-global/adr-client-r2-storage-and-exit-handover.md).
+- **Mybizz applications share everything they can.** `mb-3-cs`, `mb-4-ecom` and later applications are built the same way wherever their business domains allow, in both directions: [[[default:policy-global/pol-common-aspects-for-mybizz-anvil-applications|Common Aspects for Mybizz Anvil Applications]]](C:/dev/project-library-global/policy-global/pol-common-aspects-for-mybizz-anvil-applications.md).
+- **A reference platform supplies the domain, never the technology.** An application built from a reference (for `mb-4-ecom`, Medusa) takes its business domain and workflows, analysed outside the Mybizz process, and rebuilds them in Python for Anvil.
+- **Never add forms or server modules to a client instance.** A client instance runs on `master_template`; anything added directly to it silently and permanently cuts it off from future updates: [[[default:specifications-global/spec-five-app-architecture-model|Five-App Architecture Model]]](C:/dev/project-library-global/specifications-global/spec-five-app-architecture-model.md).
+- **Material 3.** Every application uses Anvil's Material 3 theme and David's design standards in `project-library-global`. Design moves in approved stages: structural wireframes, then polished wireframes, then screens.
+
+## 11. Where things live
+
+| Subject | Document |
+|---|---|
+| What PDLF is for | [[[pdlf:app-factory/pdlf-build-plan\|PDLF Build Plan]]](C:/pdlf/app-factory/pdlf-build-plan.md) |
+| The modules | [[[pdlf:pdlf-library/pdlf-explainer-docs/app-factory-explainer\|App Factory Explainer]]](C:/pdlf/pdlf-library/pdlf-explainer-docs/app-factory-explainer.md) |
+| The orchestrator | [[[pdlf:app-factory/phase-a-init/a01-explainer\|Orchestrator Agent Explainer]]](C:/pdlf/app-factory/phase-a-init/a01-explainer.md) |
+| Step order | [[[pdlf:app-factory/phase-a-init/a01-build-plan\|Run Plan]]](C:/pdlf/app-factory/phase-a-init/a01-build-plan.md) |
+| What each step is | [[[pdlf:pdlf-library/docs-local/pdlf-built-report\|Step Mapping]]](C:/pdlf/pdlf-library/docs-local/pdlf-built-report.md) |
+| The binding rules | [[[pdlf:pdlf-library/policy-local/pol-index\|Policy Index]]](C:/pdlf/pdlf-library/policy-local/pol-INDEX.md) |
+| The execution sequence in detail | [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline\|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md) |
+| Configuration | [[[pdlf:pdlf-library/docs-local/config\|PDLF Configuration]]](C:/pdlf/pdlf-library/docs-local/config.md) |

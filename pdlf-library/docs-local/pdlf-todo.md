@@ -1,7 +1,7 @@
 ---
 title: "pdlf-todo"
 doc-id: "mb-13a3fbc9"
-updated: "2026-10-23"
+updated: "2026-10-24"
 ---
 # Active PDLF To-Do List
 
@@ -33,7 +33,7 @@ The governed memory pipeline is proven end to end, once, on the first real step 
 
 ### C2. Prove the test suite on `mb-3-cs`
 
-When `mb-3-cs` is pulled through PDLF in Pass 2, Step 11 runs PR-09 to prove the local runtime, both Uplink connections, the `TEST_` users with second factors and the mail catcher; each later step then runs its test specification. Correct any test, template or tool that does not work as written before another application relies on it.
+When `mb-3-cs` is pulled through PDLF in Pass 2, Step 11 runs PR-09 to prove the local runtime, both Uplink connections, the `TEST_` users with second factors and the mail catcher; each later step then runs its test specification. The local runtime is started with `ts_local.sh`; an app that uses dependency apps (the Material 3 theme, routing) also needs them served to the App Server, which is settled on this first run. Correct any test, template or tool that does not work as written before another application relies on it.
 
 ---
 
