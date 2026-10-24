@@ -1,7 +1,7 @@
 ---
 title: "pdlf-adr-artifact-saving-convention"
 doc-id: "mb-353516c1"
-updated: "2026-10-23"
+updated: "2026-10-24"
 ---
 # PDLF — Artifact-Saving Convention
 
@@ -21,7 +21,7 @@ GStack skills chain by file: each skill saves its output under a per-project fol
 
 3. **Every artifact is also copied to the step's output folder,** `{slug}-project-library\pdlf-outputs\{step}\`, so all of a step's outputs for a project are in one place. Skills that can be told where to save (Archify, the Magdoub wireframe skills, Sentinel) save there directly.
 
-4. **Copy naming.** Every file in a step's output folder is named `{slug}-{step}-{run}-{name}`, where `{slug}` is the business slug recorded at Step 11 and `{run}` is `app` or the feature's short name, so the step and the run that produced it are clear and a feature never overwrites the application's files.
+4. **Copy naming.** Every file in a step's output folder is named `{slug}-{step}-{run}-{name}`, where `{slug}` is the business slug recorded at Step 11 and `{run}` is `app{n}` for a whole application (`app1`, `app2`, `app3` or `app5`) or the feature's short name, so the step and the run that produced it are clear and a feature never overwrites the application's files.
 
 5. **The naming invariant.** PDLF creates each project library's GitHub repository as `{slug}-project-library` and each code repository as `{slug}-app{n}`, in the `sassycomapp` account. GStack's project name is therefore predictable: `sassycomapp-{slug}-project-library` for a skill run in the project library, and `sassycomapp-{slug}-app{n}` in a code repository. When GStack's cached name differs from the name the remote gives, the remote's name is written into the cache, with the developer's permission.
 

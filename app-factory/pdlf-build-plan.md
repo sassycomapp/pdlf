@@ -1,7 +1,7 @@
 ---
 title: "pdlf-build-plan"
 doc-id: "mb-64817b10"
-updated: "2026-10-23"
+updated: "2026-10-24"
 ---
 # PDLF Build Plan
 
@@ -58,7 +58,7 @@ Each code repository is one Anvil application and synchronises with Anvil throug
 
 No project data is stored in PDLF; all project data is stored in the project folders at `C:\dev\`.
 
-**Step outputs.** Every project library holds a folder `pdlf-outputs\`, with one folder per step, named as in the app factory: `a01\` to `a10\`, `b11\` to `b16\`, `c17\` to `c28\`, `d29\` to `d34\`, `e35\` to `e40b\` and `f41\` to `f46\`, including `b13\`, `c24\` and `c25\`. Everything a step produces for that project is kept in its folder, whichever skill produced it: the step's receipt, a copy of every artifact a skill saved elsewhere (GStack, for example, saves in its own place), and the artifacts of skills that are told where to save (such as Archify, the Magdoub wireframe skills and Sentinel), which save there directly. Each file name begins with the slug, the step and the run (`app` for the whole application, or the feature's short name), for example `mb-3-cs-b15-app-test-plan.md`, so the step and the run that produced it are clear and a feature never overwrites the application's files. Step 11 creates the folders for a new project.
+**Step outputs.** Every project library holds a folder `pdlf-outputs\`, with one folder per step, named as in the app factory: `a01\` to `a10\`, `b11\` to `b16\`, `c17\` to `c28\`, `d29\` to `d34\`, `e35\` to `e40b\` and `f41\` to `f46\`, including `b13\`, `c24\` and `c25\`. Everything a step produces for that project is kept in its folder, whichever skill produced it: the step's receipt, a copy of every artifact a skill saved elsewhere (GStack, for example, saves in its own place), and the artifacts of skills that are told where to save (such as Archify, the Magdoub wireframe skills and Sentinel), which save there directly. Each file name begins with the slug, the step and the run (`app{n}` for a whole application, or the feature's short name), for example `mb-3-cs-b15-app1-test-plan.md`, so the step and the run that produced it are clear and a feature never overwrites the application's files. Step 11 creates the folders for a new project.
 
 The business slug is the business's short name as recorded at Step 11, all lowercase, with its hyphens kept. Each app's folder and repository is named `{slug}-app{n}`, with no descriptive word. App 4 lives on the client's own Anvil account and has no folder. Application code is never a GBrain source: agents read it directly from the app folder.
 
@@ -136,7 +136,7 @@ For every entry point except 02 and 03, the orchestrator asks David questions to
 
 **Why Steps 12 to 16 do not run for App 3.** App 3 holds only App 1's data table schema, one startup module and its dependency on App 2. There is nothing in it to design.
 
-**The entry record.** Before Step 11 or Step 12 runs, the orchestrator establishes the entry record: the entry point chosen; the business slug and the app worked on (1, 3 or 5); the path (a whole application, a feature or an update); for a feature or an update, a short statement of it in David's words and a short name for it (the feature slug), which the orchestrator asks David for; and the project's mode, `full` or `test`. For entries 04 to 10 the orchestrator writes the entry record at once to the ledger row of the step where the entry joins. For entries 02 and 03 no business row exists yet, so the orchestrator passes the entry record to Step 11, which writes the business row first and then the entry record. The mode is kept in the business row, because it belongs to the business, not to one entry. Every step reads the entry record from the ledger and never asks David again for what it already says.
+**The entry record.** Before Step 11 or Step 12 runs, the orchestrator establishes the entry record: the entry point chosen; the business slug and the app worked on (1, 3 or 5); the path (a whole application, a feature or an update); for a feature or an update, a short statement of it in David's words and a short name for it (the feature slug), which the orchestrator asks David for, checks is not already used in the business's ledger rows, and never accepts in the form `app{n}`, so that every run of a step has its own name; and the project's mode, `full` or `test`. For entries 04 to 10 the orchestrator writes the entry record at once to the ledger row of the step where the entry joins. For entries 02 and 03 no business row exists yet, so the orchestrator passes the entry record to Step 11, which writes the business row first and then the entry record. The mode is kept in the business row, because it belongs to the business, not to one entry. Every step reads the entry record from the ledger and never asks David again for what it already says.
 
 **Health check.** Every entry point that works on an app that already exists (04 to 10) first runs the health check, the standard procedure [[[pdlf:pdlf-library/operating-procedures/sop-health-check|SOP: Health Check]]](C:/pdlf/pdlf-library/operating-procedures/sop-health-check.md). Step 11 runs the same procedure as its closing self-audit. No work starts until every check passes. Step 11 is not repeated.
 

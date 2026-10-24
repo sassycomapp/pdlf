@@ -118,5 +118,5 @@ David sets these in the Anvil editor when he creates the app.
 | `step_number` | `11` |
 | `step_type` | `skill` |
 | `skill_family` | `opencode` |
-| `run` | `app` |
+| `run` | `app1` for routes A and B; `app3` or `app5` for route C |
 | `app_number` | 1 for routes A and B; 3 or 5 for route C |

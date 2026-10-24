@@ -43,7 +43,7 @@ Ends with the gate `domain-locked` (Step 16).
 - the `projects` row records the slug, the business's name, the mode, the library path, the GBrain source and every app's path and Anvil address known so far;
 - the security review `mb-sentinel-review` runs on the step's output at High scrutiny, because the app repositories are public and nothing secret may enter them; a Flag or Escalate stops the step; its `triage_findings` row is checked before the step finishes;
 - the step ends with [[[pdlf:pdlf-library/operating-procedures/sop-health-check|SOP: Health Check]]](C:/pdlf/pdlf-library/operating-procedures/sop-health-check.md) as its self-audit: every failure is reported, nothing is fixed without David's permission;
-- its ledger row is `step_type = 'skill'`, `skill_family = 'opencode'`, `run = 'app'`, with `app_number` the app worked on.
+- its ledger row is `step_type = 'skill'`, `skill_family = 'opencode'`, `run = 'app{n}'` and `app_number` = `n`, for the app worked on.
 
 **BFT level:** Full, because Step 11 makes the structural decisions everything else stands on.
 

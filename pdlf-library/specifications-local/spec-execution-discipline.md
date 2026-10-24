@@ -1,7 +1,7 @@
 ---
 title: "spec-execution-discipline"
 doc-id: "mb-913cd6af"
-updated: "2026-10-23"
+updated: "2026-10-24"
 ---
 # PDLF Execution Discipline
 
@@ -25,8 +25,8 @@ Every step follows this sequence. The agent never skips a substep without a devi
 5. If SKILL or OpenCode-native: invoke the skill or perform the documented procedure.
 6. Verify the expected output exists. If missing: STOP, present a deviation request.
 7. Run BFT checkpoint at the step's assigned level (Full / Light / None) per `[[spec-bft]]`.
-8. Write the `steps` ledger row per [[[pdlf:pdlf-library/specifications-local/spec-postgres-ledger]]](C:/pdlf/pdlf-library/specifications-local/spec-postgres-ledger.md): `step_number`, `run` (`app` or the feature slug), `app_number`, `step_type` and `skill_family` in their allowed lowercase values, `status`, `artifact_path`, `synthesized`, and `inputs_used` listing every earlier step whose output this step used, so that input notices reach every later step.
-9. Generate and save the Step Receipt to `{slug}-project-library\pdlf-outputs\{step}\{slug}-{step}-{run}-receipt.md`, where `{run}` is `app` or the feature slug ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 4).
+8. Write the `steps` ledger row per [[[pdlf:pdlf-library/specifications-local/spec-postgres-ledger]]](C:/pdlf/pdlf-library/specifications-local/spec-postgres-ledger.md): `step_number`, `run` (`app{n}` for a whole application, or the feature slug), `app_number`, `step_type` and `skill_family` in their allowed lowercase values, `status`, `artifact_path`, `synthesized`, and `inputs_used` listing every earlier step whose output this step used, so that input notices reach every later step.
+9. Generate and save the Step Receipt to `{slug}-project-library\pdlf-outputs\{step}\{slug}-{step}-{run}-receipt.md`, where `{run}` is `app{n}` for a whole application, or the feature slug ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 4).
 10. Explain to the developer, in plain language, what was done and why, and show the Step Receipt.
 11. STOP and ask the developer to run `/mb-close-out`.
 12. Wait for "continue" to proceed to the next step.

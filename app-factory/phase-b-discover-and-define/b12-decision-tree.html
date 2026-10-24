@@ -2,86 +2,70 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Step 12 — Office Hours Decision Tree (Final)</title>
+<title>Step 12 — Office Hours Decision Tree</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
 <style>
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-    background: #f5f5f4;
-    padding: 32px;
-    margin: 0;
-  }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; background: #f5f5f4; padding: 32px; margin: 0; }
   h1 { font-size: 19px; color: #1a1a1a; margin: 0 0 20px 0; }
-  .diagram-wrap {
-    background: white;
-    border-radius: 10px;
-    padding: 24px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-    overflow-x: auto;
-  }
+  .diagram-wrap { background: white; border-radius: 10px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); overflow-x: auto; }
   .mermaid { display: flex; justify-content: center; }
 </style>
 </head>
 <body>
-
-<h1>Step 12 — Office Hours Decision Tree (Final)</h1>
-
+<h1>Step 12 — Office Hours Decision Tree (matches b12-reference)</h1>
 <div class="diagram-wrap">
   <div class="mermaid">
 flowchart TD
-    Start(["Step 11 complete → Step 12 begins"]) --> Q1["Query GBrain<br/>(automatic, read-only)"]
-    Q1 --> Mode{"Entry mode,<br/>set at Step 11"}
+    Start(["Entry record and earlier ledger rows"]) --> S1{"1. Step 11 complete<br/>for the app worked on?"}
+    S1 -->|"No"| Dev1["Stop: deviation"]
+    S1 -->|"Yes"| S2["2. Choose the route<br/>3. Create docs-local\design\{run}\<br/>keep an existing first concept"]
+    S2 --> Ref{"4. Reference platform?"}
+    Ref -->|"Yes"| R1["19-21. research against primary sources<br/>network grant from David for other domains<br/>write reference-platform-research.md"]
+    R1 --> Route
+    Ref -->|"No"| Route{"Which route?"}
 
-    Mode -->|"New project"| N1["Read the three pre-project docs<br/>from dev-{slug}\{slug}-project-library\pre-project\"]
-    N1 --> N2["Query developer diligently, from scratch"]
-    N2 --> N3{"Scope adequately<br/>described?"}
-    N3 -->|"No"| N4["Ask developer to explain further"]
-    N4 --> N2
-    N3 -->|"Yes"| S1
+    Route -->|"A: new application"| A1["5. Read the pre-project files<br/>App 5: also App 1's design doc"]
+    A1 --> A2["6. grilling until every branch is settled<br/>David confirms"]
+    A2 --> Draft
 
-    Mode -->|"Existing project"| E1["Read whole project-library via GBrain:<br/>identify canonical vs. consequential"]
-    E1 --> E2{"Existing doc already claims<br/>to state the concept?<br/>(old design-doc.md, CONTEXT.md...)"}
-    E2 -->|"Yes"| E3["Surface it explicitly:<br/>'here's what already exists'"]
-    E2 -->|"No"| E4
-    E3 --> E4["Propose canonical/consequential split,<br/>side by side with anything surfaced"]
-    E4 --> E5["Developer confirms or corrects<br/>(propose-and-confirm, not interrogation)"]
-    E5 --> S1
+    Route -->|"B: existing application"| B1["8-9. GBrain: whole documentation<br/>code graph of the app"]
+    B1 --> B2["10-12. Concept versus consequence<br/>show concept claims; report what does not exist"]
+    B2 --> B3["13. David confirms or corrects the split"]
+    B3 --> Draft
 
-    S1["Synthesize design doc:<br/>Problem Statement, Demand Evidence,<br/>Status Quo, Target User & Narrowest Wedge,<br/>Constraints, Approaches Considered,<br/>Recommended Approach, Open Questions,<br/>Success Criteria<br/>(always runs — not conditional)"]
-    S1 --> S2["Save to TWO files:<br/>design-doc-first-concept.md (permanent)<br/>design-doc.md (working copy)"]
-    S2 --> Ask{"Ask developer:<br/>Run /office-hours?"}
+    Route -->|"C: feature"| C1["15-16. Statement, design doc, CONTEXT.md,<br/>ADRs; code graph of what it touches"]
+    C1 --> C2["17. grilling until the feature is described<br/>David confirms"]
+    C2 --> Draft
 
-    Ask -->|"Declines"| Dec1["Ledger: synthesized = true"]
-    Dec1 --> Dec2["Downstream steps get<br/>INPUT NOTICE on receipts"]
-    Dec2 --> Conv1["Verify design-doc.md exists"]
+    Draft["23. Draft in the fixed structure:<br/>platform facts, 14 common aspects,<br/>measurable success, homed open questions"] --> Save["24. Save first concept and working copy"]
+    Save --> OH{"25. David: run /office-hours?<br/>recommended yes"}
+    OH -->|"No"| Check
+    OH -->|"Yes"| O1["27. Start from the project library<br/>paste draft, material, context pack, fixed answers"]
+    O1 --> O2["28. David answers premises and approaches"]
+    O2 --> O3{"29. Reported design doc exists?"}
+    O3 -->|"No"| Dev2["Stop: deviation"]
+    O3 -->|"Yes"| O4{"30. Repo copy in docs\designs?"}
+    O4 -->|"Withheld by its scan"| Dev3["Stop: deviation"]
+    O4 -->|"Yes"| O5["30. Move it to pdlf-outputs\b12<br/>31. Rewrite design-doc.md in the fixed structure<br/>32. Note whether its spec review ran"]
+    O5 --> Check
 
-    Ask -->|"Accepts"| Acc1["Pre-load into /office-hours prompt:<br/>source material (new or existing) +<br/>FULL TEXT of design-doc-first-concept.md<br/>(pasted directly — not just a file path)"]
-    Acc1 --> Acc2["Skill recognizes this as<br/>a 'fully formed plan':<br/>skips interview questions,<br/>still runs Premise Challenge<br/>and Alternatives Generation"]
-    Acc2 --> Acc3["Invoke GStack /office-hours"]
-    Acc3 --> Acc4["Saves to GStack-native path:<br/>~/.gstack/projects/sassycomapp-dev-{slug}\{slug}-project-library/..."]
-    Acc4 --> Acc5["Capture reported output path"]
-    Acc5 --> Acc6["Copy to design-doc.md<br/>(working copy only —<br/>first-concept file untouched)"]
-    Acc6 --> Acc7["Ledger: synthesized = false<br/>GStack-native file never modified or moved"]
-    Acc7 --> Conv1
-
-    Conv1 --> Conv2{"Missing?"}
-    Conv2 -->|"Yes"| Conv3["Deviation request"]
-    Conv2 -->|"No"| Conv4["Write ledger row<br/>Save Step Receipt<br/>Apply BFT — Full"]
-    Conv3 --> Conv4
-    Conv4 --> Conv5["Explain what was done and why.<br/>Present Step Receipt.<br/>Stop. Ask David to run /mb-close-out.<br/>Wait for continue."]
-    Conv5 --> Conv7["Ask: continue to Step 14?"]
-
-    Conv7 --> H1["Step 14 MUST run —<br/>not optional, not skippable"]
-    H1 --> H2["Takes into context, together:<br/>design-doc.md<br/>design-doc-first-concept.md<br/>/office-hours output file, if it ran<br/>Step 12 Step Receipt"]
-
-    classDef note fill:#eef2ff,stroke:#4f46e5,stroke-width:1px;
-    class H2 note;
+    Check{"33. DC-01 and DC-02 pass?<br/>results to dc-checks"} -->|"No"| Fix["Correct with David"]
+    Fix --> Check
+    Check -->|"Yes"| Appr{"34. David approves<br/>the design doc?"}
+    Appr -->|"Correction"| Fix
+    Appr -->|"Approved"| Sen{"35. Sentinel, Medium: clear?"}
+    Sen -->|"Flag or Escalate"| Stop1(["Stop: David decides"])
+    Sen -->|"Clear"| GL{"36. gitleaks finds a secret?"}
+    GL -->|"Yes"| GLfix["Remove it, run again"]
+    GLfix --> GL
+    GL -->|"No"| Copies{"37. Copies in pdlf-outputs\b12<br/>and every expected file exist?"}
+    Copies -->|"No"| Dev4["Stop: deviation"]
+    Copies -->|"Yes"| Rec["38. Ledger row, Step Receipt, Full BFT<br/>synthesized = true when /office-hours did not run"]
+    Rec --> Close(["39. Explain, stop, ask David to run /mb-close-out"])
   </div>
 </div>
-
 <script>
   mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis' } });
 </script>
-
 </body>
 </html>

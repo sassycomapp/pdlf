@@ -1,7 +1,7 @@
 ---
 title: "spec-postgres-ledger"
 doc-id: "mb-dcf9c65e"
-updated: "2026-10-23"
+updated: "2026-10-24"
 ---
 # PDLF Postgres Ledger Specification
 
@@ -93,7 +93,7 @@ Primary key: `slug`. Referenced by `steps`, `gates`, `deviations`, `bft_records`
 | `step_number` | text | NO | — | Step number (11–46, plus lettered sub-steps). **Text, not integer** — text supports lettered sub-steps (e.g. `35A`) |
 | `sort_order` | numeric | NO | — | Numeric ordering value for the step |
 | `phase` | text | YES | — | Phase label |
-| `run` | text | NO | `'app'` | `app` for the whole application, or the feature's short name for a feature or an update |
+| `run` | text | NO | — | `app{n}` for the whole application (`app1`, `app2`, `app3` or `app5`, matching `app_number`), or the feature's short name for a feature or an update |
 | `app_number` | smallint | NO | `1` | The app the row concerns: 1, 2, 3 or 5 (CHECK) |
 | `step_type` | text | NO | — | `skill`, `manual`, `optional`, or `gate` (CHECK; lowercase values) |
 | `skill_family` | text | YES | — | `gstack`, `matt-skills`, `opencode`, `manual`, `anvil`, `mybizz` (Sentinel and the mybizz-os skills), `security`, or NULL (CHECK) |

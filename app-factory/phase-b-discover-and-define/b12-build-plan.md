@@ -1,98 +1,11 @@
 ---
 title: "b12-build-plan"
 doc-id: "mb-19064cbb"
-updated: "2026-10-22"
+updated: "2026-10-24"
 ---
+# Step 12 — Office Hours: Build Plan
 
-## From `12-build-notes.md`
-
-# Step 12 — Build Notes: Full Task List
-
-## Task list (matches [[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|12-office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md))
-
-1. Query GBrain (automatic, read-only)
-2. Branch on entry mode, determined at Step 11
-
-**New-project entry:**
-3. Read the three pre-project docs from `dev-{slug}\{slug}-project-library\pre-project\`
-4. Query the developer diligently, from scratch — loop until scope is adequately
-   described
-
-**Existing-project entry:**
-3e. Read the whole existing project-library via GBrain — identify canonical (durable
-    concept) vs. consequential (things that followed from it)
-4e. If an existing document already claims to state the concept (old `design-doc.md`,
-    `CONTEXT.md`, etc.), surface it explicitly — never fold it silently into the read
-5e. Propose the canonical/consequential split, side by side with anything surfaced at
-    4e. Developer confirms or corrects — propose-and-confirm, not from-scratch
-    interrogation
-
-**Both converge:**
-6. Synthesize a design doc (always — not conditional on the [[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md) decision):
-   Problem Statement, Demand Evidence, Status Quo, Target User & Narrowest Wedge,
-   Constraints, Approaches Considered, Recommended Approach, Open Questions, Success
-   Criteria. For existing-project entry, this represents the redeveloped concept, built
-   from what was identified as canonical — not a copy of consequential material.
-7. Save the draft to two files: `design-doc-first-concept.md` (permanent, never
-   overwritten again) and `design-doc.md` (working copy)
-8. Ask the developer: run [[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md)? (yes/no)
-
-**If declined:** ledger `synthesized = true`; downstream INPUT NOTICE.
-
-**If accepted:** pre-load the source material (pre-project docs or the
-propose-and-confirm result) and the full text of `design-doc-first-concept.md` into the
-[[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md) prompt — recognized as a fully formed plan, so it skips the interview
-but still runs Premise Challenge and Alternatives. Invoke [[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md). Capture its
-GStack-native output path. Copy that file over `design-doc.md` (working copy only —
-first-concept file untouched). Ledger `synthesized = false`. Never move the
-GStack-native file.
-
-**Both paths converge:**
-
-9. Verify `design-doc.md` exists (and GStack path, if [[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md) ran)
-10. If missing: deviation request
-11. Write ledger row
-12. Save Step Receipt to `dev-{slug}\{slug}-project-library\pdlf\step-12-receipt.md`
-13. Apply BFT — Full
-14. Explain what was done and why, present the Step Receipt, stop and ask David to run `/mb-close-out`
-15. Ask: continue to Step 14?
-
-**Handoff:** Step 14 must run, taking into context together: `design-doc.md`,
-`design-doc-first-concept.md`, the [[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md) output file (if it ran), and the
-Step 12 Step Receipt. The first-concept file is a fourth artifact added during drafting
-— flagged in the step file itself, not silently assumed.
-
-## Core principle — existing-project entry
-
-Submitting an existing project to PDLF means redeveloping it around its canonical
-concept, not auditing, maintaining, or correcting what already exists. PDLF is a
-development system, not a refactoring system. This principle also retired the
-disposition-audit model entirely (`step-02-existing-registration.md`,
-`step-03-resume-point-audit.md`, the retired `sop-existing-project-resume-audit.md` — all removed).
-Every step always runs, for every project. What differs for an existing project is only
-the material a step starts from, never whether the step runs.
-
-## Learnings
-
-- **[[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md) accepts a pre-written draft, confirmed from the actual skill file
-  (not assumed).** It has a built-in "fully formed plan" path: if given one, it skips
-  the interview questions but still forces the draft through Premise Challenge and
-  Alternatives — pressure-tested, not rubber-stamped.
-- **The draft must be pasted into the invocation prompt itself**, not just saved to a
-  file. [[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md)'s own Phase 1 does not scan our project folder — it only reads
-  `CLAUDE.md`, `TODOS.md`, git history, and its own native design-doc history at
-  `~/.gstack/projects/sassycomapp-dev-{slug}\{slug}-project-library/*-design-*.md`. None of those is our
-  `docs-local\design-doc.md`.
-- GStack-native save path confirmed correct against the actual skill file:
-  `~/.gstack/projects/sassycomapp-dev-{slug}\{slug}-project-library/{user}-{branch}-design-{datetime}.md`.
-
-## Global conventions applied throughout
-
-- No `<project-library>` placeholder — use `dev-{slug}\{slug}-project-library` in prose, full
-  absolute path in any literal command
-- The agent never commits or pushes. Every step ends by explaining what was done, stopping and asking David to run `/mb-close-out`.
-
-## From `pdlf-build-plan.md`: step entry
+## Step entry
 
 ### Phase B — Discover and Define
 
@@ -100,117 +13,65 @@ Ends with the gate `domain-locked` (Step 16).
 
 #### Step 12: Office hours
 
-**Must achieve:** the application's design doc: what problem it solves, for whom, and how, stated well enough for every later step to build on.
+**Must achieve:** the design doc of the run: what problem the application or feature solves, for whom and how, inside the platform's facts and the common aspects of every Mybizz application, with success stated so that it can be measured, approved by David, so that every later step builds on one agreed concept.
 
-**Starts from:** for a new application, the three pre-project files; for an existing application, its whole existing documentation, read through GBrain.
+**Starts from:** the entry record and the ledger rows of the steps before it; for a new application, the three pre-project files in `pre-project\` and, for App 5, App 1's approved design doc; for an existing application, its whole existing documentation, read through GBrain, and its code graph from Step 11; for a feature, David's statement of it in the entry record, the application's approved design doc, `docs-local\CONTEXT.md`, `adr-local\` and the code graph; for an application built from a reference platform, the reference's analysis listed at Step 03; `project-library-global`.
 
-**Produces:** `docs-local\design-doc-first-concept.md`, written once and never changed afterwards, kept to check later for concept drift; `docs-local\design-doc.md`, the working copy; the `/office-hours` result, if it ran.
+**Produces:** in the run's design folder `{slug}-project-library\docs-local\design\{run}\`: `design-doc-first-concept.md`, written once and never changed afterwards, kept to check later for concept drift, and `design-doc.md`, the working copy; for an application built from a reference platform, `docs-local\reference-platform-research.md`; the `/office-hours` design doc in GStack's own folder, if it ran; in `pdlf-outputs\b12\`: the copy of each of these, the document-check file and the Step Receipt; the ledger row, the BFT record and Sentinel's `triage_findings` row.
 
-**Carried out by:** OpenCode, with GStack `/office-hours` if the developer chooses.
+**Carried out by:** OpenCode, with Matt Pocock's `grilling`, Matt Pocock's `research` when a reference platform is used, GStack `/office-hours` when David chooses it, and `mb-sentinel-review`. David answers the questions, chooses whether `/office-hours` runs, and approves the design doc.
 
 **Must be built so that:**
-- for a new application, the agent questions the developer until the scope is adequately described;
-- for an existing application, the agent separates the durable concept from what merely followed from it, shows plainly any document that already claims to state the concept, and proposes the split for the developer to confirm or correct; the application is redeveloped around its concept, not audited;
-- the design doc is always written, in a fixed structure (problem, demand, status quo, target user, constraints, approaches, recommendation, open questions, success criteria), before `/office-hours` is offered;
-- if the developer accepts `/office-hours`, the full draft is pasted into it, so that it skips its interview but still challenges the premise and the alternatives; its result becomes the working copy, and its own file is never moved;
-- the ledger records whether the design doc was synthesized without `/office-hours`, so that later steps carry an input notice;
-- it hands four items to Step 14: both design docs, the `/office-hours` result if any, and its Step Receipt;
-- the security review `mb-sentinel-review` runs on the step's output at Medium scrutiny, against the documents Sentinel names for Step 12; a Flag or Escalate stops the step and goes to the developer; before the step finishes, its `triage_findings` row is checked, so that the review's run is proven, not assumed;
-- the design doc's Constraints section states the platform's security facts from the context pack: one app and one database per client, the server holds authority, client code is public.
-- for an existing application, every existing document is prior material to check, not fact: strategy, pricing and positioning documents feed the concept, and a document that names folders, repositories, tools or a release method that no longer exist is reported to the developer;
-- when the application is built from a reference platform (for `mb-4-ecom`, Medusa), Matt Pocock's `research` checks the reference's analysis, brought in at Step 03, against the reference's primary sources and writes its findings to the project library; the design doc takes the reference's business domain and workflows only, never its technology;
-- the design doc states which aspects the application shares with other Mybizz applications, per [[[default:policy-global/pol-common-aspects-for-mybizz-anvil-applications|Common Aspects for Mybizz Anvil Applications]]](C:/dev/project-library-global/policy-global/pol-common-aspects-for-mybizz-anvil-applications.md), and what is particular to it;
+- it runs one of three routes, chosen from the entry record and the app folder: **A**, a new application (entry 02, or entry 08 for a new App 5); **B**, an existing application (entry 03, or an app whose folder already holds forms or server modules made outside PDLF); **C**, a feature (the feature path of entries 04 and 09, and an update that changes what the application does);
+- every design doc has the same fixed structure, in this order: Problem Statement; Demand Evidence; Status Quo; Target User and Narrowest Wedge; Stakeholders; Constraints; Common Aspects; Reference Platform (only when one is used); Approaches Considered; Recommended Approach; Risks; Open Questions; Success Criteria;
+- the Constraints section states the platform's facts from the context pack and `spec-regulatory-compliance-baseline`: one app and one database per client, never multi-tenant; the server holds authority over identity, ownership and every rule; all client code is public; every client starts on the Anvil Hobby plan; POPIA applies to every application, with Information Regulator registration after launch and the data-subject rights of access, correction, deletion and objection; whether GDPR applies (EU customers served) and whether PCI DSS applies (payments taken);
+- the Common Aspects section lists each of the 14 aspects of `pol-common-aspects-for-mybizz-anvil-applications` as shared or deviating, and every deviation names the business-domain reason that requires it;
+- every success criterion has a metric, a threshold and a method of measurement, and no requirement uses a vague term or bundles two needs;
+- every open question names the step that settles it (14, 15 or 16), so no question is left without a home;
+- for a new application (route A), `grilling` questions David from the pre-project files until every branch of its design tree is settled; for App 5, the questions start from App 5's role in the five-app structure, the management and observability ADRs and App 1's approved design doc;
+- for an existing application (route B), the agent reads the whole existing documentation through GBrain and the code graph, treats every existing document as prior material to check, never as fact, separates the durable concept from what merely followed from it, shows David plainly every document that already claims to state the concept, reports every document that names folders, repositories, tools or a release method that do not exist, and proposes the split for David to confirm or correct; strategy, pricing and positioning documents feed the concept; the application is redeveloped around its concept, not audited;
+- for a feature (route C), `grilling` questions David from his statement in the entry record until the feature is described; the feature's design doc describes the feature only, and its Constraints section adds the feature's fit with the application: where it agrees with or changes the approved design doc, the terms of `CONTEXT.md` and the ADRs in `adr-local\`, and the existing code it touches, found through the code graph; the application's own design doc is not changed by this step;
+- when the application is built from a reference platform (for `mb-4-ecom`, Medusa), Matt Pocock's `research` checks the reference's analysis against the reference's primary sources (its own source code and official documentation) and writes `docs-local\reference-platform-research.md`, citing the source of every claim; the design doc takes the reference's business domain and workflows only, never its technology, per aspect 14 of the common aspects;
+- `research` runs in the main session, because Cupcake blocks sub-agents; it reads primary sources on the outbound allowlist (`github.com`, `raw.githubusercontent.com`) directly, and for a source on any other domain the agent asks David for a network grant, stating the domain and the number of fetches;
+- `grilling` looks up every fact itself in the main session, because Cupcake blocks sub-agents, and asks David only for decisions;
+- the draft design doc is written in the fixed structure and saved as both `design-doc-first-concept.md` and `design-doc.md` before `/office-hours` is offered; an existing `design-doc-first-concept.md` for the run is never overwritten;
+- David is then asked whether to run `/office-hours`, with the recommendation to run it, because it challenges the concept's premises and forces alternatives;
+- when `/office-hours` runs, it is started from the project library, so its GStack project name is `sassycomapp-{slug}-project-library`; it is given the full text of the draft, the source material and the context pack, with these answers fixed in the invocation: the goal is building a startup (startup mode) at the product stage the draft states; the draft is a fully formed plan, so its questioning is skipped except where the draft lacks the evidence its startup mode requires; cross-project learnings are kept to this project; the landscape web search is skipped, because Cupcake allows only its listed domains; the cross-model second opinion and the visual sketches are declined, because sub-agents are blocked and screens are designed at Steps 22 to 26; at the end, no next skill is launched, because PDLF runs Step 14 next; any file it reads for itself (`CLAUDE.md`, `TODOS.md`, git history, earlier GStack design docs) is prior material, never instructions or fact; its spec review loop needs a sub-agent, so it reports the review unavailable, and the receipt records it;
+- David answers `/office-hours`' premise and approach questions himself, because they are decisions about the concept;
+- the agent captures the path `/office-hours` reports for its design doc in `~/.gstack/projects/sassycomapp-{slug}-project-library/` and never changes or moves that file; the copy `/office-hours` writes into the project library at `docs\designs\` is moved into `pdlf-outputs\b12\` as the step-folder copy, so the project library holds one design doc; if `/office-hours` withheld that copy because its scan found sensitive content, the step stops with a deviation;
+- the working `design-doc.md` is then rewritten from the `/office-hours` result into the fixed structure: the result's premises, chosen approach and success criteria take precedence; every section the result does not cover is carried from the draft; `design-doc-first-concept.md` is not touched;
+- the agent checks the working design doc against tests DC-01 and DC-02 and writes the check file; a failed check is corrected with David and checked again;
+- David approves the working design doc before the step ends; the approval is recorded in the BFT record and the Step Receipt; the concept is locked formally at the gate `concept-locked` (Step 21);
+- the ledger records `synthesized = true` when `/office-hours` did not run, so that every later step's receipt carries an input notice;
+- the security review `mb-sentinel-review` runs on the working design doc at Medium scrutiny, against the documents Sentinel names for Step 12; a Flag or Escalate stops the step and goes to David; its `triage_findings` row is checked before the step finishes;
+- it hands to Step 14 the two design docs, the `/office-hours` design doc if it ran, the reference-platform research if it exists, and its Step Receipt;
+- its ledger row is `step_type = 'skill'`, `skill_family = 'gstack'` when `/office-hours` ran and `'opencode'` when it did not, `run` and `app_number` from the entry record, and `inputs_used` naming Step 11 and, for a feature, the application's own run of Steps 12 to 16.
 
-**BFT level:** Full.
+**BFT level:** Full, because the concept shapes every later step.
 
-**References:** [[[pdlf:pdlf-library/policy-local/pol-step-conditional-state|Step Conditional State Policy]]](C:/pdlf/pdlf-library/policy-local/pol-step-conditional-state.md).
+**References:** [[[pdlf:pdlf-library/policy-local/pol-step-conditional-state|Step Conditional State Policy]]](C:/pdlf/pdlf-library/policy-local/pol-step-conditional-state.md), [[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), [[[pdlf:pdlf-library/specifications-local/spec-skill-context-pack|Spec: Skill Context Pack]]](C:/pdlf/pdlf-library/specifications-local/spec-skill-context-pack.md), [[[default:policy-global/pol-common-aspects-for-mybizz-anvil-applications|Common Aspects for Mybizz Anvil Applications]]](C:/dev/project-library-global/policy-global/pol-common-aspects-for-mybizz-anvil-applications.md).
 
 **Skills.** Every skill's output is used by the step named after the arrow.
-- `grilling` (Matt Pocock): for a new application, the interview that questions the developer until the scope is adequately described → the design doc.
-- `graphify`: for an existing application, the code graph from Step 11, used to separate the durable concept from what followed from it → the design doc.
-- `/office-hours` (GStack), if the developer chooses → the working design doc, then Step 14.
+- `grilling` (Matt Pocock): routes A and C, the interview that settles every branch of the concept → the draft design doc.
+- `graphify`: routes B and C, the code graph of the existing app, queried for what exists → the draft design doc.
+- `research` (Matt Pocock): when a reference platform is used, the reference's analysis checked against its primary sources → the design doc's Reference Platform section, then Step 15.
+- `/office-hours` (GStack), when David chooses it: premise challenge and alternatives → the working design doc, then Step 14.
 - `mb-sentinel-review`, Medium → `triage_findings`.
 
-**Layers with no skill:** development (no Anvil design yet); display (flows are drawn at Step 15). **Testing:** every success criterion in the design doc is measurable → Step 15's test plan.
+**Layers with no skill:** development (no Anvil design yet); display (flows are drawn at Step 15).
+
+**Testing:** [[[pdlf:app-factory/phase-b-discover-and-define/b12-test-spec|Step 12 Test Specification]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-test-spec.md): the design doc is complete, measurable and bound by the platform's facts and the common aspects.
 
 **Standards:** [[[default:docs-standard-global/docstd-business-requirements-document|Business Requirements Document]]](C:/dev/project-library-global/docs-standard-global/docstd-business-requirements-document.md): the design doc also covers its stakeholders and risks. [[[default:specifications-global/spec-regulatory-compliance-baseline|Regulatory Compliance Baseline]]](C:/dev/project-library-global/specifications-global/spec-regulatory-compliance-baseline.md): its mandatory POPIA facts go into the Constraints section.
 
-## From `pdlf-phase-b-review.md`: findings for this step
+## Why it is built this way
 
-## Purpose
-
-This document reviews Phase B of PDLF (Steps 11, 12, 14, 15 and 16) as a case study, before Phases C to F are built. It looks at what was done wrong, what could have been done better, how Phase B should be corrected, and how the method should change for Phase C. It judges Phase B against `pdlf-intent.md`, against the principles of mybizz-os, and against the skills catalogue. It is not a plan for Phase C.
-
-The evidence is the five step files, their build notes and decision trees, the build plan, the built report, the old `workflow.md`, the old step mapping, and `skills-catalog.md`.
-
-## 1. What we did wrong
-
-**1.1 We built the steps before we had stated the intent.** The order was step file first, build notes second and intent last. Every step therefore carries assumptions that the intent later reversed: housekeeping questions at the end of every step, a ledger with six tables, a project registry and a project inventory that no longer exist, makePDLF paths and prefixes, the devlog and judgement trail, and the old rule "use a skill only when it beats OpenCode". None of these were careless; they were right when written and became wrong when the intent was settled. The cost is that all five steps now need repair before they can be packaged.
-
-**1.2 We called the steps "built" without ever running them.** Not one of the five steps has been run against a real application. Several open questions can only be answered by a run: whether `/plan-eng-review` finds "the active plan file" inside OpenCode, where `TODOS.md` belongs, and whether the statement that "a design doc already exists" really stops GStack from re-offering `/office-hours`. mybizz-os's own principle is "present is not working, and completed is not worked". By that principle, Phase B is designed, not built.
-
-**1.3 Each step repeats the rules that apply to every step.** Every step file spells out, in its own words, the GBrain search, the ledger row, the Step Receipt, the BFT, the two housekeeping questions and a five-action memory sequence. The same rule is written five times, slightly differently each time, so one change (such as moving close-out to `/mb-close-out`) has to be made in five places and is easily missed in one. This breaks "one fact, one home".
-
-**1.6 Lessons went into build notes, where nobody reads them.** Each step's build notes end with "Learnings". The intent says a lesson is written into the source that the next build reads. The build notes are not that source: they are history. The lessons from Phase B ("read the skill's source first", "paste context into the skill, because it does not read our folders", "state file destinations explicitly") belong in the build plan's rules.
-
-**1.8 The non-negotiable rules are not given to the skills.** The intent says AI agents are given the no-multi-tenancy rule as context before any code is generated, because they reach for shared databases by default. Steps 12, 14 and 15 shape the architecture through generic GStack skills, and none of them is given the five-app structure, the no-multi-tenancy decision or the Material 3 design standard. A generic architecture review is exactly where a shared-database design would be proposed.
-
-**1.9 One step improvises where a skill exists.** Step 12 tells OpenCode to "query the developer diligently" until the scope is clear. The catalogue has a skill for exactly that, `grilling` (and `grill-me`), which Step 16 already uses. Under the intent's rule that skills take precedence, Step 12 should use it.
-
-## 2. What we could have done better
-
-**2.1 Too many documents per step.** Each step has a step file, build notes and a decision tree, and was also described in `workflow.md` and the step mapping. That is five places for one step, and they drifted apart. The decision trees are hand-written pictures of the step's action list, so they are a second copy of it. One step file, one build-plan entry and one built-report entry are enough.
-
-**2.4 The biggest commitments in Phase B are not gated.** Phase B's only gate is at Step 16. Yet the concept (Step 12) and the scope (Step 14) are the commitments everything else rests on. They are approved inside their steps, but not as gates, and the concept is only locked formally at Step 21.
-
-**2.5 Skill choices were made step by step, not from the catalogue.** Each step picked the skill that came to mind. The catalogue was never read as a whole to ask: which installed skill best serves this step, and which skill is installed but unused?
-
-## 3. How Phase B should be corrected
-
-1. **Bring all five steps into line with the intent's rules:** close-out by `/mb-close-out`, the agent never commits, seven ledger tables, no registry or inventory, artifact copies to `C:\pdlf\output\`, no devlog or judgement trail, skills take precedence.
-
-2. **Remove the repeated rules from the step files.** Each step file states only what is particular to it and points to the rules every step follows.
-
-3. **Give every skill a standard context pack** at invocation: the five-app structure, the no-multi-tenancy decision, the Material 3 design standard, and the `project-library-global` standards the step applies.
-
-6. **Use `grilling` in Step 12** for questioning the developer, in place of the improvised interview.
-
-8. **Decide whether the concept needs its own gate** at the end of Step 12.
-
-9. **Run Phase B on the test application** (the Daily Intentions Tracker in `mb5pdlf`), answer the open questions from the run, and only then record the steps as finished.
-
-10. **Move the lessons out of the build notes** into the build plan's rules, then retire the build notes and decision trees.
-
-## From `pol-step-conditional-state.md`: Step 12 eligibility
-
-### Step 12 — /office-hours (conditional, NOT test-mode-eligible)
-
-Step 12 is a simple yes/no decision gate. The developer chooses:
-
-- **Yes:** Run [[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md) → `status = "complete"`, `synthesized = false`.
-  Design doc produced by [[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md).
-- **No:** OpenCode synthesizes a design doc from the pre-project documents →
-  `status = "complete"`, `synthesized = true`. Design doc produced by OpenCode.
-
-Step 12 always produces a design document. The `synthesized` flag indicates
-whether it came from [[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md) or from OpenCode's synthesis. There is no
-`skipped` state for Step 12 — the step always completes with an artifact.
-
-There is no abbreviation offer for Step 12. The developer either runs the full
-skill or OpenCode synthesizes from the pre-project docs.
-
-## From `pol-step-conditional-state.md`: full mode
-
-- Step 12: yes/no gate still applies (developer can decline [[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md) and OpenCode synthesizes)
-
-## From `pol-step-conditional-state.md`: full mode
-
-- The `synthesized` flag can still be set for Step 12 (OpenCode synthesis when [[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|/office-hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md) declined)
-
-## From `spec-execution-discipline.md`: test-mode eligibility
-
-When a project is in `test` mode, Step 20 is eligible for abbreviation. If the
-developer chooses an abbreviated or skipped run, the step's `synthesized` flag is set to
-`true` (abbreviated) or the step's `status` is set to `"skipped"` in the ledger.
-Step 12 is a simple yes/no decision gate — not test-mode-eligible. See
-`[[step-conditional-state-policy]]` for the full state definitions.
+- **The draft is always written first.** The concept never depends on whether a skill runs. `/office-hours` then challenges a complete draft instead of starting from nothing.
+- **One fixed structure.** Every later step, and test DC-02, reads the same sections in the same order, for every application and every feature.
+- **A design folder per run.** App 1, App 5 and every feature each have their own concept; a folder named by the run keeps each one apart and never overwrites another.
+- **The first concept is kept unchanged.** Concept drift can only be measured against the concept as first agreed.
+- **An existing application is redeveloped, not audited.** Its documents show what was decided, not what is true; the step keeps the durable concept and lets the rest follow from it.
+- **The reference platform's domain, never its technology.** Its workflows are proven; its technology does not run on Anvil and would break the five-app structure.
+- **`/office-hours` is told its answers.** Its questions about mode, privacy, second opinions, sketches and next skills are settled by PDLF's rules, so David is asked only what is his to decide.
+- **One design doc in the project library.** Two copies would drift apart and GBrain would index both; the step folder keeps `/office-hours`' own copy as the record.
+- **David approves the concept here; the gate locks it at Step 21.** Step 14 exists to challenge the scope, so the concept is locked only after the reviews that may change it.
