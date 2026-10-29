@@ -1,10 +1,69 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="doc-id" content="mb-177fd257">
-<title>a01-decision-tree</title>
+<meta charset="UTF-8">
+<title>Step 1 — Orchestrator Decision Tree</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; background: #f5f5f4; padding: 32px; margin: 0; }
+  h1 { font-size: 19px; color: #1a1a1a; margin: 0 0 20px 0; }
+  .diagram-wrap { background: white; border-radius: 10px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); overflow-x: auto; }
+  .mermaid { display: flex; justify-content: center; }
+</style>
 </head>
 <body>
+<h1>Step 1 — Orchestrator Decision Tree (matches a01-reference)</h1>
+<div class="diagram-wrap">
+  <div class="mermaid">
+flowchart TD
+    Start(["David runs /pdlf-init in OpenCode,<br/>opened in C:\dev\dev-{slug}"]) --> S1{"1. Working folder is<br/>a business folder?"}
+    S1 -->|"No"| X1(["Stop: open OpenCode<br/>in the business folder"])
+    S1 -->|"Yes"| S2{"2. Ledger answers?"}
+    S2 -->|"No"| X2["Stop: deviation"]
+    S2 -->|"Yes"| R3{"3. projects row<br/>for the slug?"}
+    R3 -->|"No"| E6
+    R3 -->|"Yes"| R4["4. Read every run;<br/>unfinished, paused or finished"]
+    R4 --> R5{"5. David: continue a run<br/>or take a new entry?"}
+    R5 -->|"Continue"| P14
+    R5 -->|"New entry"| E6
+
+    subgraph S3["Section 3: taking an entry"]
+      direction TB
+      E6["6. David chooses one entry point, 02 to 10"] --> E7{"7. Entries 04 to 10:<br/>health check passes? (PR-02)"}
+      E7 -->|"No"| X3["Stop: each failure a deviation"]
+      E7 -->|"Yes or not needed"| E8["8. Carry out the entry's own reference:<br/>its questions and actions"]
+      E8 --> E9{"9. Feature or update slug valid<br/>and unused?"}
+      E9 -->|"No"| E9b["Ask David for another slug"] --> E9
+      E9 -->|"Yes or not needed"| E10{"10. Entries 02 and 03:<br/>business already in PDLF?"}
+      E10 -->|"Yes"| X4["Stop: deviation"]
+      E10 -->|"No: projects row written<br/>or not needed"| E11["11. Entry row with the entry record (PR-01)"]
+      E11 --> E12["12. Checks file and Step Receipt<br/>(02 and 03: written at Step 11)"]
+      E12 --> E13(["13. Explain, stop, /mb-close-out;<br/>on continue: the route's first step"])
+    end
+
+    E13 --> P14
+    subgraph S4["Section 4: running the run"]
+      direction TB
+      P14{"14. Step's phase built?"} -->|"No"| X5(["Stop: run paused at this step"])
+      P14 -->|"Yes"| P15{"15. Dependencies complete and<br/>earlier gates passed?"}
+      P15 -->|"No"| X6["Stop: deviation"]
+      P15 -->|"Yes"| P16["16. Carry out the step's reference<br/>under the execution discipline,<br/>from substep 0 (row opened)"]
+      P16 --> P17{"17. David says continue:<br/>another step in the route?"}
+      P17 -->|"Yes"| P14
+      P17 -->|"No"| X7(["The run is finished"])
+    end
+
+    P16 -. "a gate in the step" .-> G18
+    subgraph S5["Section 5: at a gate"]
+      direction TB
+      G18["18. After David's yes: give him the<br/>pdlf-gate.sh command; never run it"] --> G19{"19. gates row passed<br/>for the run? (PR-03)"}
+      G19 -->|"No"| X8["Stop: tell David"]
+      G19 -->|"Yes"| G20(["The step continues past its gate"])
+    end
+  </div>
+</div>
+<script>
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis' } });
+</script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 ---
 title: "README"
 doc-id: "mb-ab3dbf19"
-updated: "2026-10-23"
+updated: "2026-10-29"
 ---
 # App Factory
 
@@ -11,7 +11,7 @@ The app factory holds PDLF's build: every step of the pipeline, in the phase it 
 
 | Folder | Steps | What the phase does |
 |---|---|---|
-| `phase-a-init/` | 01–10 | 01 is the orchestrator, which runs every other module. 02–10 are the entry points for work on existing applications. |
+| `phase-a-init/` | 01–10 | 01 is the orchestrator, which resumes or starts a run and runs its steps. 02–10 are the entry points: a new application, an application with context, a feature, an update, a release, App 3 and App 5. |
 | `phase-b-discover-and-define/` | 11–16 | Defines the application. |
 | `phase-c-design-and-plan/` | 17–28 | Designs and plans the application. |
 | `phase-d-scaffold-and-assemble/` | 29–34 | Builds the application's scaffold. |

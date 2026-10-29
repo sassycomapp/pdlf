@@ -1,7 +1,7 @@
 ---
 title: "b11-explainer"
 doc-id: "mb-afda1c7f"
-updated: "2026-10-24"
+updated: "2026-10-29"
 ---
 # Step 11 — Init: Explainer
 
@@ -13,8 +13,8 @@ Step 11 lays the foundation of a Mybizz business, or of a new app in one, before
 
 The orchestrator hands Step 11 the entry record, which says how the work entered PDLF. Step 11 first checks its tools: the ledger, GBrain, Anvil's skills and command-line tool, every skill Phase B uses, and the test tools. Then it takes one of three routes.
 
-- **A new business** (entry 02). David gives the slug, the business's name, its domain and the mode. The agent copies the project template into `C:\dev\dev-{slug}\` and sets up App 1. With David's permission it creates the public project library on GitHub, places the blank pre-project files and asks David to fill them in.
-- **An application with context** (entry 03). The business already has some of its repositories. The agent checks each one, builds the code graph of each existing app, scans the public repositories for secrets, and adds only what is missing. It changes nothing that exists. Reference-platform material kept anywhere other than `reference-platform-local` is reported and moved there with David's permission, because that folder is never committed.
+- **A new business** (entry 02). The orchestrator has already written the business's row with its slug, name and mode. David gives its domain. The agent copies the project template into `C:\dev\dev-{slug}\` and sets up App 1. With David's permission it creates the public project library on GitHub, places the blank pre-project files and asks David to fill them in.
+- **An application with context** (entry 03). The business already has its apps and a project library. With David's permission, the old project library becomes the business's project context: David renames its GitHub repository to `{slug}-project-context`, moves its contents into that folder and re-registers it in GBrain and on the commit tools. The context is then read-only. The agent makes a new project library from the template in the emptied folder, checks each app, builds the code graph of each existing app, scans the public repositories for secrets, and adds only what is missing. Reference-platform material kept anywhere other than `reference-platform-local` is reported and moved there with David's permission, because that folder is never committed.
 - **A new app in an existing business** (entries 07 and 08). The agent checks the business is sound, then sets up only the new app.
 
 Setting up an app follows one pattern. David creates the app in Anvil, which also creates its repository on GitHub. In the same instructions he switches on the Users service with the sign-in settings every Mybizz app uses, and adds a `role` column to its Users table. Each app folder already holds its scaffold from the project template: its `.gitignore`, its README and, for an app that holds code, its `tests` folders. The agent brings the app's repository into that folder, checks it validates, and writes its `AGENTS.md`. An app that holds code (App 1 or App 5) then gets the test suite's templates in its `tests` folders. David runs one command that writes the app's `.env` with new local keys. The agent starts the local runtime, the Anvil App Server on an empty database with a mail catcher beside it, and runs test PR-09. It proves the two Uplink connections, a `TEST_` user signing in with a second factor, and an email reaching the mail catcher. App 3 holds no code, so it gets no test setup.
@@ -33,6 +33,7 @@ For routes A and B the agent then sets up the Matt Pocock skills with PDLF's ans
 - **The template is copied without document identities.** The commit hook gives every document a permanent identity. If the template's identities were copied, every project would share them and the hook would confuse one project's documents with another's.
 - **Tickets stay in the project library.** Tickets are documentation, so they live with the business's documents, never in an app's code.
 - **Nothing existing is changed without permission.** An existing application's material is David's. Step 11 reports what is wrong; David decides.
+- **The old library becomes the context.** Moved whole into its own repository, every document it holds stays unchanged and searchable, while the business is rebuilt in the template's structure beside it. Step 12 reads the context to find the application's concept.
 - **Sentinel reviews Step 11.** The repositories are public, so a secret that slips in at the start would be published with everything after it.
 
 ## What has to happen
@@ -40,6 +41,8 @@ For routes A and B the agent then sets up the Matt Pocock skills with PDLF's ans
 - David creates each app in Anvil, connects it to GitHub, switches on its Users service and adds the `role` column when asked.
 - David runs the command that writes the app's `.env`, and confirms.
 - David approves the creation of the project library on GitHub.
+- For an application with context: David renames the old library's GitHub repository, moves its contents into `{slug}-project-context` and runs the commands the agent gives him.
 - David adds the project library to the commit tools with the lines the agent gives him, and confirms.
+- David runs the OpenCode prompt that refreshes the GBrain and `mb-doc-check` system documents.
 - David fills in the three pre-project files before Step 12.
 - Only David commits, with `commit-all`, after `/mb-close-out`.

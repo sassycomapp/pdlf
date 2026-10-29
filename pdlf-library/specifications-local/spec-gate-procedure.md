@@ -1,7 +1,7 @@
 ---
 title: "spec-gate-procedure"
 doc-id: "mb-e1c94b00"
-updated: "2026-10-24"
+updated: "2026-10-29"
 ---
 # PDLF Gate Procedure
 
@@ -43,7 +43,7 @@ Presented to the developer in this visually distinct format:
 ### 3. Developer Approval
 
 The agent does not proceed past a gate without explicit approval:
-- **Yes:** Gate passes. Ledger row written with gate approval timestamp. Continue to next step.
+- **Yes:** The agent gives the developer the command that records the approval, `bash /mnt/c/mybizz/scripts/pdlf-gate.sh {slug} {gate} {run}`, and waits until the developer confirms it ran. The agent then reads the `gates` row and checks it is passed for this run. Only then does the gate pass. The agent never writes the row: Cupcake's rule `no_agent_gate_approval` blocks it.
 - **No:** Gate blocked. Agent stops and records the blocker. Pipeline does not advance.
 
 ---
@@ -69,7 +69,7 @@ Why these gates: scope drift and architecture drift are the recurring failures. 
 ## After a Gate
 
 A passed gate is a hard checkpoint. After gate approval:
-- The gate's row is written to the `gates` table with timestamp and approval.
+- The gate's row is in the `gates` table, written by the developer with its timestamp.
 - The step's ledger row is written with `completed_at`.
 - A Step Receipt is generated.
 - The agent explains what was done and why, stops, and asks the developer to run `/mb-close-out`.

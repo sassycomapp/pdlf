@@ -1,7 +1,7 @@
 ---
 title: "b12-explainer"
 doc-id: "mb-634cedf5"
-updated: "2026-10-24"
+updated: "2026-10-29"
 ---
 # Step 12 — Office Hours: Explainer
 
@@ -16,7 +16,7 @@ Step 12 runs once for each whole application (App 1, and App 5 when it is create
 Step 12 first gathers the material the concept comes from. The route depends on what already exists.
 
 - **A new application.** The agent reads the three pre-project files and questions David with Matt Pocock's `grilling` skill. It asks a round of numbered questions, each with its recommended answer, and keeps going until every branch of the concept is settled. It looks up facts itself and asks David only for decisions. For App 5, the questions start from App 5's role in the five-app structure and from App 1's design doc.
-- **An existing application.** The agent reads the whole existing documentation through GBrain, and the code graph of the app. It treats every document as material to check, not as fact. It separates the durable concept from what merely followed from it, shows David every document that already claims to state the concept, and reports documents that name things that do not exist. David confirms or corrects the split. The application is redeveloped around its concept, not audited.
+- **An existing application.** The agent reads the whole of the business's existing documentation through GBrain, from its project context when it has one, and the code graph of the app. It treats every document as material to check, not as fact. It separates the durable concept from what merely followed from it, shows David every document that already claims to state the concept, and reports documents that name things that do not exist. David confirms or corrects the split. The application is redeveloped around its concept, not audited.
 - **A feature.** The agent questions David from his description of the feature, and checks it against the application's design doc, its vocabulary, its decisions and the code it touches.
 
 When the application follows a reference platform, such as Medusa for `mb-4-ecom`, Matt Pocock's `research` skill first checks the reference's analysis against the reference's own source code and documentation, kept in the project library's `reference-platform-local` folder, and writes its findings with a source for every claim.

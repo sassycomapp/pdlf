@@ -118,17 +118,17 @@ PDLF builds many Anvil applications, each a separate business of Mybizz. Every b
 
 PDLF is one continuous pipeline. Not all work starts at its beginning: work on an app that already exists does not re-scope what the app is about. The entry point decides where the work joins the pipeline and which steps run.
 
-David starts PDLF by running `/pdlf-init` in OpenCode. This starts Step 1, the orchestrator, whose first job is to offer the entry points. Steps 2 to 10 are the entry points. Their numbers imply no order, and exactly one is chosen:
+David starts PDLF by running `/pdlf-init` in OpenCode opened in the business folder, `C:\dev\dev-{slug}\`. This starts Step 1, the orchestrator, which first offers to continue any unfinished run of the business, and whose first job is to offer the entry points. Steps 2 to 10 are the entry points. Their numbers imply no order, and exactly one is chosen:
 
 | Step | Entry point | App worked on | Where the work joins the pipeline |
 |---|---|---|---|
-| 02 | `new-app-no-context` | App 1 | Step 11, at the project slug question. |
-| 03 | `new-app-with-context` | App 1 | Step 11, at the repository questions. The application may be partly developed but has not yet run through PDLF; the orchestrator establishes what context material exists. |
+| 02 | `new-app-no-context` | App 1 | Step 11, route A. |
+| 03 | `new-app-with-context` | App 1 | Step 11, route B. The application may be partly developed but has not yet run through PDLF; the entry establishes what context material exists, and Step 11 moves the old project library to `{slug}-project-context`. |
 | 04 | `add-feature-main-app` | App 1 | Health check, then the feature path (below). |
 | 05 | `update-main-app` | App 1 | Health check, then the update path (below). |
 | 06 | `compile-master-template` | App 2 | Step 41, then the release in Steps 42 to 44. |
-| 07 | `create-client-template` | App 3 | Step 11, at the project slug question or the repository questions, depending on whether there is existing context or not. Steps 12 to 16 do not run for App 3. |
-| 08 | `create-management-app` | App 5 | Step 11, at the project slug question or the repository questions, depending on whether there is existing context or not. |
+| 07 | `create-client-template` | App 3 | Step 11, route C. Steps 12 to 16 do not run for App 3. |
+| 08 | `create-management-app` | App 5 | Step 11, route C, then Steps 12 to 16. |
 | 09 | `add-feature-management-app` | App 3 or App 5 | Health check, then the feature path (below). |
 | 10 | `update-management-app` | App 3 or App 5 | Health check, then the update path (below). |
 
@@ -136,7 +136,7 @@ For every entry point except 02 and 03, the orchestrator asks David questions to
 
 **Why Steps 12 to 16 do not run for App 3.** App 3 holds only App 1's data table schema, one startup module and its dependency on App 2. There is nothing in it to design.
 
-**The entry record.** Before Step 11 or Step 12 runs, the orchestrator establishes the entry record: the entry point chosen; the business slug and the app worked on (1, 3 or 5); the path (a whole application, a feature or an update); for a feature or an update, a short statement of it in David's words and a short name for it (the feature slug), which the orchestrator asks David for, checks is not already used in the business's ledger rows, and never accepts in the form `app{n}`, so that every run of a step has its own name; and the project's mode, `full` or `test`. For entries 04 to 10 the orchestrator writes the entry record at once to the ledger row of the step where the entry joins. For entries 02 and 03 no business row exists yet, so the orchestrator passes the entry record to Step 11, which writes the business row first and then the entry record. The mode is kept in the business row, because it belongs to the business, not to one entry. Every step reads the entry record from the ledger and never asks David again for what it already says.
+**The entry record.** Before Step 11 or Step 12 runs, the orchestrator establishes the entry record: the entry point chosen; the business slug and the app worked on (1, 3 or 5); the path (a whole application, a feature or an update); for a feature or an update, a short statement of it in David's words and a short name for it (the feature slug), which the orchestrator asks David for, checks is not already used in the business's ledger rows, and never accepts in the form `app{n}`, so that every run of a step has its own name; and the project's mode, `full` or `test`. The entry point writes the entry record into its own ledger row, the row of Step 2 to 10 for the run. For entries 02 and 03 no business row exists yet, so the entry first writes it, with the slug, the business's name and the mode. The mode is kept in the business row, because it belongs to the business, not to one entry. Every step reads the entry record from the ledger and never asks David again for what it already says. Its fields, the routes each run follows and the steps each step depends on are set once, in [[[pdlf:app-factory/phase-a-init/a01-config|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md).
 
 **Health check.** Every entry point that works on an app that already exists (04 to 10) first runs the health check, the standard procedure [[[pdlf:pdlf-library/operating-procedures/sop-health-check|SOP: Health Check]]](C:/pdlf/pdlf-library/operating-procedures/sop-health-check.md). Step 11 runs the same procedure as its closing self-audit. No work starts until every check passes. Step 11 is not repeated.
 
@@ -154,13 +154,13 @@ Why: an update or a feature on an app that is already defined does not need the 
 
 PDLF runs inside OpenCode, through the OpenCode Build agent and its model.
 
-**The orchestrator** is Step 1. It offers the entry points, runs the steps selected for the chosen entry point in order, and stops at every gate. Its design is completed in parts, alongside the steps it runs, and is finished only when every step is designed. When it starts, it reads the ledger and offers to continue any unfinished run at the step where it stopped, so that a run is never begun again from the start.
+**The orchestrator** is Step 1, started by the skill `pdlf-init` (source `C:\pdlf\pdlf-library\skills-local\pdlf-init\SKILL.md`), which points the agent at the orchestrator's own reference and configuration and, for every step, at that step's. It offers the entry points, runs the steps selected for the chosen entry point in order, and stops at every gate. Its design is completed in parts, alongside the steps it runs, and is finished only when every step is designed. When it starts, it reads the ledger and offers to continue any unfinished run at the step where it stopped, so that a run is never begun again from the start.
 
 **Steps and modules.** Every step lives in `app-factory/`, in the folder of its phase: `phase-a-init` (1 to 10), `phase-b-discover-and-define` (11 to 16), `phase-c-design-and-plan` (17 to 28), `phase-d-scaffold-and-assemble` (29 to 34), `phase-e-build-and-verify` (35 to 40b) and `phase-f-ship-and-monitor` (41 to 46); `phase-g` is added for the remaining apps when they are designed. Step numbers are global and never renumbered within a phase, because the number is the step's identity in the ledger, the gates, the receipts and every document. Steps 13, 24 and 25 are not used. Inserted steps carry a lowercase letter after the number, only to keep the files in order: 35a, 38a, 40b and 42a. Every step has the same seven files, the set of seven (section 7), named with the phase letter and the step number, for example `b11-module.md`. Steps 13, 24 and 25 each keep one placeholder file instead. When a step is built, it is compiled into its module: a single, self-contained unit holding the finished step and everything only that step needs. Until then the module is empty. Anything several modules need about how PDLF itself works lives once, in `pdlf-library`.
 
 **What goes to Anvil.** Everything committed to a code repository is pushed to Anvil and stored there, so `.gitignore` keeps out everything that must stay local, such as `.env`, credentials and test output. Anvil uses only `anvil.yaml`, `client_code`, `server_code` and `theme`. Two parts are public: every file in `theme/assets` can be opened by anyone with its link, and the code in `client_code` runs in the user's browser, where it can be read. Nothing secret, internal or for paying clients only ever goes in either. Client-facing documents, such as user guides, may be served from `theme/assets/docs`. Explainer videos are hosted on YouTube and linked or embedded. An agent changes `anvil.yaml` only through Anvil's `anvil-yaml` skill, validates every change with `anvil --json validate anvil.yaml`, and never changes its `dependencies`; schema changes reach the live app only when David applies them in Anvil's Data Tables view. The code repository is pulled to local after every step in which work was done in the Anvil editor.
 
-**Instruction files.** `AGENTS.md` is PDLF's single instruction file; there is no `CLAUDE.md`. A PDLF `opencode.json` is written when the orchestrator is designed, because only then is it known what PDLF needs beyond the global settings.
+**Instruction files.** `AGENTS.md` is PDLF's single instruction file; there is no `CLAUDE.md`. PDLF has no `opencode.json`: OpenCode is opened in the business folder for every run, and the global settings, the global `AGENTS.md` and Cupcake govern it there, so the run can write within its own business and nowhere else.
 
 **Artifacts.** Every artifact is written to its canonical place. Where that place is outside the project's step folder, a copy is also written to the step folder (section 1), so that each step's outputs for a project are all in one place.
 
@@ -222,8 +222,8 @@ Every step is built to these rules. They are stated once here and not repeated i
 
 ### 9. What is still to be settled
 
-- **Steps work:** the orchestrator's form and its `opencode.json`; which gates exist, where they sit and what each approves; the place and weight of the BFT thinking checkpoints; which `project-library-global` standard each step applies; whether applications receive a `CLAUDE.md`; the steps that build the remaining apps in `phase-g`; and the design of every step, one at a time. The detailed list is kept in [[[pdlf:pdlf-library/docs-local/pdlf-todo|Active PDLF To-Do List]]](C:/pdlf/pdlf-library/docs-local/pdlf-todo.md).
-- **The Cupcake proof:** once the orchestrator exists, an agent deliberately attempts to pass a gate without approval, and Cupcake must block it.
+- **Steps work:** which gates exist, where they sit and what each approves; the place and weight of the BFT thinking checkpoints; which `project-library-global` standard each step applies; whether applications receive a `CLAUDE.md`; the steps that build the remaining apps in `phase-g`; and the design of every step, one at a time. The detailed list is kept in [[[pdlf:pdlf-library/docs-local/pdlf-todo|Active PDLF To-Do List]]](C:/pdlf/pdlf-library/docs-local/pdlf-todo.md).
+- **The Cupcake proof:** on the first run, an agent deliberately attempts to write a gate row, and Cupcake's rule `no_agent_gate_approval` must block it (test PR-03).
 - **Testing:** every step has its test specification (`{step}-test-spec.md`), drawn from the test suite in `C:\dev\project-library-global\test-suite\`, which includes the testing and quality methodology.
 
 ### 10. How each step is designed

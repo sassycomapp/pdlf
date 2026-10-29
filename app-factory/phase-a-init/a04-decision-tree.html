@@ -1,10 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="doc-id" content="mb-07cfd30c">
-<title>a04-decision-tree</title>
+<meta charset="UTF-8">
+<title>Step 4 — Entry point 04 Decision Tree</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; background: #f5f5f4; padding: 32px; margin: 0; }
+  h1 { font-size: 19px; color: #1a1a1a; margin: 0 0 20px 0; }
+  .diagram-wrap { background: white; border-radius: 10px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); overflow-x: auto; }
+  .mermaid { display: flex; justify-content: center; }
+</style>
 </head>
 <body>
+<h1>Step 4 — Entry point 04 Decision Tree (matches a04-reference)</h1>
+<div class="diagram-wrap">
+  <div class="mermaid">
+flowchart TD
+    Start(["a01 item 8: entry 04, after the health check"]) --> I1
+    I1["1. Ask David for the feature in his own<br/>words, or the release specification<br/>in docs-local\releases\v{n}\ that<br/>holds it."]
+    I1 --> I2
+    I2["2. Ask David for the feature's short<br/>name: lowercase, hyphens, unique in<br/>the business."]
+    I2 --> I3
+    I3{"3. Check the application run app1 has<br/>passed the gate domain-locked?"}
+    I3 -->|"No"| X3["Stop: deviation"]
+    I3 -->|"Yes"| I4
+    I4["4. Run App 1's whole test suite once as<br/>the baseline (test PR-08), with the<br/>commands in the configuration"]
+    I4 --> I5
+    I5(["5. Return to a01 item 9:<br/>slug checks, entry row, receipt, stop"])
+  </div>
+</div>
+<script>
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis' } });
+</script>
 </body>
 </html>

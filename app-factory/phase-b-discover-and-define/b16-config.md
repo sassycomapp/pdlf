@@ -1,7 +1,7 @@
 ---
 title: "b16-config"
 doc-id: "mb-e2e6e760"
-updated: "2026-10-24"
+updated: "2026-10-29"
 ---
 # Step 16 — Domain Modeling: Configuration
 
@@ -142,4 +142,4 @@ All paths are inside `{slug}-project-library\`.
 | `synthesized` | `false` |
 | `artifact_path` | `docs-local\GLOSSARY.md` |
 | `inputs_used` | Step 15 |
-| `gates` row | `gate_name = 'domain-locked'`, `step_id` = this step's row, `passed = true`, `approved_at` = the time of David's yes |
+| `gates` row | Written by David with `bash /mnt/c/mybizz/scripts/pdlf-gate.sh {slug} domain-locked {run}`: `gate_name = 'domain-locked'`, `step_id` = this step's row, `passed = true`, `approved_at` = the time he ran it; the agent only reads it |

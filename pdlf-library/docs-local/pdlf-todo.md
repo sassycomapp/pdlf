@@ -15,9 +15,18 @@ Action items only. Completed and closed items are not tracked here.
 
 Steps 17–46 are audited and rebuilt one at a time as each phase is reached, with the same rigour as Steps 11/12/14/15/16. Each step is rebuilt with the build rules in section B and ends with `/mb-close-out`. Each rebuilt step writes the project's documents into the folders of the project template (`C:\dev\project-template\dev-(SLUG)\`), as each folder's `README.md` names them. Each phase is built, proven on `mb-3-cs` and finished in the order the [[[pdlf:pdlf-library/docs-local/app-factory-docs-update-method|App Factory Docs Update Method]]](C:/pdlf/pdlf-library/docs-local/app-factory-docs-update-method.md) sets out.
 
-### A2. Build Phase A for Phases A and B
+### A2. Prove Phases A and B on `mb-3-cs`
 
-Build Steps 1 to 10 as the [[[pdlf:pdlf-library/docs-local/app-factory-docs-update-method|App Factory Docs Update Method]]](C:/pdlf/pdlf-library/docs-local/app-factory-docs-update-method.md) sets out: every entry point (Steps 2 to 10); the orchestrator as far as it runs Phases A and B; and the resume check. In the same batch, amend Step 11's route B so that an application with context is made in a copy of the project template, with its existing repositories as the context it brings, and settle how its existing app repositories are carried into the copy. Then David backs up `mb-3-cs`, and `mb-3-cs` runs through Phases A and B by entry point 03.
+Phases A and B are built. They are proven by running `mb-3-cs` through them by entry point 03, in this order:
+
+1. David installs the `pdlf-init` skill with the command in [[[pdlf:app-factory/phase-a-init/a01-config|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md).
+2. Cupcake's rule `no_agent_gate_approval` is compiled with `/mb-compile-rules` and tested by David, block case and allow case.
+3. David proves with `cupcake eval` that, with OpenCode opened in `/mnt/c/dev/dev-mb-3-cs`, a write inside `mb-3-cs-project-library` is allowed and a write inside `/mnt/c/pdlf` is blocked. If the first is blocked, the cross-project rule is corrected before the run.
+4. David runs `bash /mnt/c/mybizz/scripts/pdlf-gate.sh --check`, which must print `ledger answers`.
+5. David backs up `C:\dev\dev-mb-3-cs\`.
+6. David opens OpenCode in `C:\dev\dev-mb-3-cs`, runs `/pdlf-init` and takes entry point 03. The project context `mb-3-cs-project-context` is already moved, so Step 11 checks it and makes the new `mb-3-cs-project-library` from the template.
+
+Whatever fails or is missing is corrected in PDLF, and the run continues from the step corrected.
 
 ---
 

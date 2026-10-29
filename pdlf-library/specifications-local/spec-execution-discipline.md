@@ -1,7 +1,7 @@
 ---
 title: "spec-execution-discipline"
 doc-id: "mb-913cd6af"
-updated: "2026-10-24"
+updated: "2026-10-29"
 ---
 # PDLF Execution Discipline
 
@@ -18,6 +18,7 @@ sequence to the current step and does not skip a substep without a deviation req
 
 Every step follows this sequence. The agent never skips a substep without a deviation request.
 
+0. Open the step's `steps` row with `status = 'in_progress'` and `started_at`, or, when the row exists from an earlier attempt of the same run, set it back to `in_progress`. The open row is how the orchestrator resumes a run that stopped part-way through a step, and the row a gate's approval refers to.
 1. Search GBrain for context relevant to this step's domain, across the federated documentation sources (one search covers the project library `{slug}-project-library`, `default`, which is `project-library-global`, and `pdlf`), adding `anvil-agent-references-code` when the step needs Anvil knowledge. Read the actual file each result points to. Application code is read directly from the app folder, never through GBrain.
 2. Check step type: SKILL / MANUAL / OPTIONAL / GATE.
 3. If OPTIONAL: present recommendation + justification, wait for RUN/SKIP decision.
@@ -25,7 +26,7 @@ Every step follows this sequence. The agent never skips a substep without a devi
 5. If SKILL or OpenCode-native: invoke the skill or perform the documented procedure.
 6. Verify the expected output exists. If missing: STOP, present a deviation request.
 7. Run BFT checkpoint at the step's assigned level (Full / Light / None) per `[[spec-bft]]`.
-8. Write the `steps` ledger row per [[[pdlf:pdlf-library/specifications-local/spec-postgres-ledger]]](C:/pdlf/pdlf-library/specifications-local/spec-postgres-ledger.md): `step_number`, `run` (`app{n}` for a whole application, or the feature slug), `app_number`, `step_type` and `skill_family` in their allowed lowercase values, `status`, `artifact_path`, `synthesized`, and `inputs_used` listing every earlier step whose output this step used, so that input notices reach every later step.
+8. Complete the `steps` ledger row opened at substep 0, per [[[pdlf:pdlf-library/specifications-local/spec-postgres-ledger]]](C:/pdlf/pdlf-library/specifications-local/spec-postgres-ledger.md): `step_number`, `run` (`app{n}` for a whole application, or the feature slug), `app_number`, `step_type` and `skill_family` in their allowed lowercase values, `status`, `artifact_path`, `synthesized`, and `inputs_used` listing every earlier step whose output this step used, so that input notices reach every later step.
 9. Check every test of the step's test specification has its result in the step's output folder, recorded as [[[default:test-suite/ts-method]]](C:/dev/project-library-global/test-suite/ts-method.md) section 5 sets out. Generate and save the Step Receipt, with the table `ts_report.py` prints for this run's evidence in the step's output folder, to `{slug}-project-library\pdlf-outputs\{step}\{slug}-{step}-{run}-receipt.md`, where `{run}` is `app{n}` for a whole application, or the feature slug ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 4).
 10. Explain to the developer, in plain language, what was done and why, and show the Step Receipt.
 11. STOP and ask the developer to run `/mb-close-out`.

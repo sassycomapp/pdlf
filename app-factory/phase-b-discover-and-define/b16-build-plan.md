@@ -1,7 +1,7 @@
 ---
 title: "b16-build-plan"
 doc-id: "mb-625b446e"
-updated: "2026-10-24"
+updated: "2026-10-29"
 ---
 # Step 16 — Domain Modeling: Build Plan
 
@@ -34,7 +34,7 @@ Ends with the gate `domain-locked` (this step).
 - the domain map (the entities and their relationships) is scoped with `mb-archify-scope` and drawn with `archify` into the step folder, and the glossary is not changed by it;
 - the security review `mb-sentinel-review` runs on the glossary and the ADRs at Low/Medium scrutiny, against the documents Sentinel names for Step 16 (the threat models matching the entities, and `sec-requirements-data-table-creation`, because Step 17 builds the tables from this vocabulary); a Flag or Escalate stops the step and goes to David; its `triage_findings` row is checked before the gate;
 - before the gate, the agent closes Phase B with one check of the whole run: every Phase B step of the run (Steps 11, 12, 14, 15 and 16 for a whole application; Steps 12, 14, 15 and 16 for a feature) has its ledger row complete and its Step Receipt; every receipt matches its evidence (test PR-05, `ts_report.py --check`); every test of every Phase B test specification passed; every Sentinel finding of the run has David's decision; the plan's Open Questions section is empty; every hand-over item Phase C reads exists; every input notice is carried;
-- the gate follows `spec-gate-procedure`: Full BFT, the gate summary block, which lists Phase B's outputs and the result of the close-out check, and David's explicit yes or no; on yes the `gates` row is written with its approval time; on no the step stops and records the blocker; the gate is never passed by the agent;
+- the gate follows `spec-gate-procedure`: Full BFT, the gate summary block, which lists Phase B's outputs and the result of the close-out check, and David's explicit yes or no; on yes David records his approval with `pdlf-gate.sh`, which writes the `gates` row with its time, and the agent reads the row; Cupcake blocks the agent from writing it; on no the step stops and records the blocker; the gate is never passed by the agent;
 - after the gate, no term is added and no Phase B output is changed without the gate being reopened by a deviation David authorises;
 - it hands to Phase C (Step 17 first) the glossary, the ADRs, the reviewed plan with its data design, the test plan, the access matrix, the threat model, the domain map and its Step Receipt;
 - its ledger row is `step_type = 'gate'`, `skill_family = 'matt-skills'`, `synthesized = false`, `run` and `app_number` from the entry record, and `inputs_used` naming Step 15.

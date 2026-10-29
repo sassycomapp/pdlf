@@ -1,7 +1,7 @@
 ---
 title: "b12-config"
 doc-id: "mb-8b21d27b"
-updated: "2026-10-24"
+updated: "2026-10-29"
 ---
 # Step 12 — Office Hours: Configuration
 
@@ -28,7 +28,7 @@ The fixed values of Step 12. Agent-facing. What the agent does, in order: [[[pdl
 | Route | When | Starts from |
 |---|---|---|
 | A, new application | Entry 02; entry 08 for a new App 5 | The three pre-project files; for App 5, also App 1's approved design doc |
-| B, existing application | Entry 03; any app whose folder already holds forms or server modules made outside PDLF | The whole existing documentation through GBrain; the code graph |
+| B, existing application | Entry 03; any app whose folder already holds forms or server modules made outside PDLF | The whole documentation of the project context `{slug}-project-context` when the entry record names one, otherwise of the project library, through GBrain; the code graph |
 | C, feature | The feature path of entries 04 and 09; an update that changes what the application does | David's statement in the entry record; the application's approved design doc, `GLOSSARY.md`, `adr-local\`; the code graph |
 
 ## Inputs

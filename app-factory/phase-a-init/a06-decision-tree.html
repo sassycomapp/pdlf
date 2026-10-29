@@ -1,10 +1,30 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="doc-id" content="mb-374c55a9">
-<title>a06-decision-tree</title>
+<meta charset="UTF-8">
+<title>Step 6 — Entry point 06 Decision Tree</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; background: #f5f5f4; padding: 32px; margin: 0; }
+  h1 { font-size: 19px; color: #1a1a1a; margin: 0 0 20px 0; }
+  .diagram-wrap { background: white; border-radius: 10px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); overflow-x: auto; }
+  .mermaid { display: flex; justify-content: center; }
+</style>
 </head>
 <body>
+<h1>Step 6 — Entry point 06 Decision Tree (matches a06-reference)</h1>
+<div class="diagram-wrap">
+  <div class="mermaid">
+flowchart TD
+    Start(["a01 item 8: entry 06, after the health check"]) --> I1
+    I1["1. David confirms App 1's approved work<br/>is to be released into App 2"] --> I2
+    I2{"2. App 1's whole suite passes? (PR-08)"}
+    I2 -->|"No"| X2["Stop: a release starts only<br/>from a passing App 1"]
+    I2 -->|"Yes"| I3(["3. Return to a01 item 9:<br/>entry row, receipt, stop"])
+  </div>
+</div>
+<script>
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis' } });
+</script>
 </body>
 </html>

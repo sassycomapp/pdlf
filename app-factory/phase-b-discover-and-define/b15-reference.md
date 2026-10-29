@@ -1,7 +1,7 @@
 ---
 title: "b15-reference"
 doc-id: "mb-cbf1cd96"
-updated: "2026-10-24"
+updated: "2026-10-29"
 ---
 # Step 15 — Engineering Review: Reference
 
@@ -60,5 +60,5 @@ What the agent does at Step 15, in order. Agent-facing. Fixed values: [[[pdlf:ap
 ## 7. The end
 
 33. Copy the reviewed plan, the test plan, the access matrix, the threat model and GStack's test plan into `pdlf-outputs\b15\` under the names in the configuration. Check every expected file exists. If one is missing: stop and raise a deviation.
-34. Write the Step 15 `steps` row with the ledger values in the configuration, the Step Receipt and the Full BFT record, with David's approval.
+34. Complete the Step 15 `steps` row with the ledger values in the configuration, and write the Step Receipt and the Full BFT record, with David's approval.
 35. Explain what was done and why, present the Step Receipt, stop, and ask David to run `/mb-close-out`.

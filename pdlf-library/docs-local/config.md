@@ -1,7 +1,7 @@
 ---
 title: "config"
 doc-id: "mb-dea37a55"
-updated: "2026-10-23"
+updated: "2026-10-29"
 ---
 # PDLF System Configuration
 
@@ -27,7 +27,8 @@ Database `pdlf` on the Windows PostgreSQL 15 server, port 5433, role `pdlf_agent
 
 | Setting | Value |
 |---|---|
-| Project configuration | `C:\pdlf\opencode.json` is written when the orchestrator is designed; until then the global OpenCode configuration applies |
+| Project configuration | None: PDLF has no `opencode.json`. OpenCode is opened in the business folder for every run, under the global configuration and Cupcake |
+| Orchestrator skill | `pdlf-init`: source `C:\pdlf\pdlf-library\skills-local\pdlf-init\SKILL.md`, installed at `~/.config/opencode/skills/pdlf-init/SKILL.md` |
 
 ## GStack
 

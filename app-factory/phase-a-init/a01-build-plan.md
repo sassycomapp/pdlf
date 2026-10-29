@@ -1,259 +1,60 @@
 ---
 title: "a01-build-plan"
 doc-id: "mb-114d842c"
-updated: "2026-10-21"
+updated: "2026-10-29"
 ---
+# Step 1 — Orchestrator: Build Plan
 
-## From `pdlf-build-plan.md`: step entry
+## Step entry
 
 ### Phase A — Init
 
+Phase A has no gate. Its entry points join the pipeline at the steps the run order names.
+
 #### Step 1: Orchestrator
 
-**Must achieve:** started by `/pdlf-init`, offers David the entry points in Steps 2 to 10, establishes the application (and, where it applies, the step to start from), runs the health check for an existing app, then runs the selected steps in order and stops at every gate for David's approval (section 4).
+**Must achieve:** one run of PDLF for one Mybizz business at a time, carried from its entry point through every step of its route, in order, resumed where it stopped whenever a session ends, and stopped for David at every step and gate, so that no step is skipped, repeated or run out of order and no gate passes without David.
 
-**Carried out by:** OpenCode, as the orchestrator. Designed in parts, alongside the steps it runs.
+**Starts from:** `/pdlf-init`, run by David in OpenCode opened in the business folder `C:\dev\dev-{slug}\`; the ledger; the run order, the routes and the built phases in this step's configuration; each entry point's configuration (Steps 2 to 10); each step's configuration, reference and test specification.
 
-**Must be built so that** (settled with the Phase B scope):
-- it offers the entry points 02 to 10 and David chooses exactly one; where each joins the pipeline is the table in section 4 of [[[pdlf:app-factory/pdlf-build-plan|PDLF Build Plan]]](C:/pdlf/app-factory/pdlf-build-plan.md);
-- before Step 11 or Step 12 runs, it establishes the entry record and writes it to the ledger as section 4 sets out, asking David for the feature or update statement and its short name;
-- for entries 04 to 10 it runs [[[pdlf:pdlf-library/operating-procedures/sop-health-check|SOP: Health Check]]](C:/pdlf/pdlf-library/operating-procedures/sop-health-check.md) first, and starts no work until every check passes;
-- for entry 07 it runs Step 11 and does not run Steps 12 to 16, because App 3 has nothing to design.
+**Produces:** for each run, the entry point's `steps` row holding the entry record; for a new business, its `projects` row; an open `steps` row for every step as it starts; the run carried to its next step or paused at the first step whose phase is not yet built; the a01 test evidence in `{slug}-project-library\pdlf-outputs\a01\`.
 
-**Skills.** The orchestrator runs the steps; each step names its own skills. At run time it uses none itself.
-- [[[pdlf:pdlf-library/operating-procedures/sop-health-check|SOP: Health Check]]](C:/pdlf/pdlf-library/operating-procedures/sop-health-check.md) for entries 04 to 10 → the step where the entry joins.
-- When the orchestrator's agent file and PDLF's `opencode.json` are written, `writing-for-agents` (Matt Pocock) is used, because they are instructions for an agent.
+**Carried out by:** OpenCode's Build agent, through the skill `pdlf-init`, started by David. David chooses the entry point, answers the entry questions, approves every step's outputs and records every gate's approval himself.
 
-**Testing:** the Cupcake proof in section 9 of the system build plan: an agent attempts to pass a gate without approval, and Cupcake must block it.
+**Must be built so that:**
+- David starts it with `/pdlf-init` in OpenCode opened in the business folder, `C:\dev\dev-{slug}\` (WSL `/mnt/c/dev/dev-{slug}`); the business slug is the folder's name without `dev-`; for a new business, David first creates the empty folder; PDLF itself is only read, never written, because no project data is kept in `C:\pdlf`;
+- the skill `pdlf-init` is a thin launcher: it tells the agent to carry out this step's reference with this step's configuration, and, for every step the run reaches, that step's reference with its configuration and test specification under `spec-execution-discipline`; once a step's module is written, the module replaces the three; the skill's source is `C:\pdlf\pdlf-library\skills-local\pdlf-init\SKILL.md` and David installs it with one copy command;
+- PDLF has no `opencode.json` of its own: the global configuration, the global `AGENTS.md` and Cupcake govern the agent, and OpenCode opened in the business folder may write only within it;
+- when it starts, it confirms the ledger answers and the business folder is the working folder, then runs the resume check: it reads every run of the business from the ledger and, for each unfinished run, offers to continue it at the first step of its route that is not complete or skipped; David chooses to continue a run or to take a new entry point;
+- a run whose next step lies in a phase not yet built is reported as paused at that step and is not offered, so the run is never begun again from the start and is resumed when the phase is built;
+- it offers the entry points 02 to 10, and David chooses exactly one; the entry point asks its questions, checks the feature or update name is unused in the business and is never `app{n}`, runs the health check for an existing app, and writes the entry record into its own `steps` row; for entries 02 and 03 it first writes the `projects` row with the slug, the business's name and the mode, because every later row refers to it;
+- it runs the steps of the run's route in order, and only steps of the built phases; before each step it checks the step's dependencies are complete and every gate before it is passed for the run, and stops with a deviation when one is not;
+- every step opens its row with `status = 'in_progress'` at its start, so a run that stopped part-way through a step is resumed at that step;
+- after every step it waits for David to run `/mb-close-out` and say "continue" before the next step, so every session ends at a step boundary;
+- at a gate it presents the gate summary, gives David the `pdlf-gate.sh` command for the gate and run, waits, and reads the `gates` row; it never writes a gate row, and Cupcake's rule `no_agent_gate_approval` blocks any attempt;
+- the routes, the dependencies and the built phases live once, in this step's configuration; each later phase adds its steps to them when it is built, and the orchestrator is extended with it.
 
-## From `orchestrator-run-plan.md`: the whole run plan
+**BFT level:** None for the orchestrator itself: it carries no judgement of its own. Each step it runs applies its own level, and every gate is Full.
 
-# PDLF Run Plan
+**References:** [[[pdlf:app-factory/pdlf-build-plan|PDLF Build Plan]]](C:/pdlf/app-factory/pdlf-build-plan.md), sections 2, 4 and 5; [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md); [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md); [[[pdlf:pdlf-library/specifications-local/spec-postgres-ledger|Spec: Postgres Ledger]]](C:/pdlf/pdlf-library/specifications-local/spec-postgres-ledger.md); [[[pdlf:pdlf-library/policy-local/pol-step-conditional-state|Step Conditional State Policy]]](C:/pdlf/pdlf-library/policy-local/pol-step-conditional-state.md).
 
-**Purpose:** This file is the execution-order decision tree for PDLF's steps.
-While step numbers are stable identifiers, they do not define execution
-order. This file defines which step fires next based on project state, gate outcomes,
-and optional step decisions. The PDLF orchestrator loads this file to determine the next
-step.
+**Skills.** Every skill's output is used by the step named after the arrow.
+- `pdlf-init` (mybizz): starts the orchestrator → every step of the run.
+- `writing-for-agents` (Matt Pocock): whenever `pdlf-init`'s `SKILL.md` is written or changed, because it is an instruction file for an agent → the orchestrator.
 
-**Use:** The orchestrator consults this file after each step completes. Based on the
-current step, project mode (full/test), gate outcomes, and developer decisions, it
-determines the next step and loads the corresponding step's module.
+**Layers with no skill:** every layer of an application, because the orchestrator builds nothing itself: each step names its own skills.
 
----
+**Testing:** [[[pdlf:app-factory/phase-a-init/a01-test-spec|Step 1 Test Specification]]](C:/pdlf/app-factory/phase-a-init/a01-test-spec.md): each entry joins at its step, a step with an incomplete dependency is refused, a run resumes where it stopped, and no gate passes without David.
 
-## Entry Mode
+**Standards:** [[[default:specifications-global/spec-five-app-architecture-model|Five-App Architecture Model]]](C:/dev/project-library-global/specifications-global/spec-five-app-architecture-model.md): the app each entry works on.
 
-Every step always runs, for every project, regardless of whether the project is new or
-existing. There is no disposition audit and no separate existing-project sequence.
+## Why it is built this way
 
-Immediately after Step 11 completes, execution proceeds directly to Step 12, for both
-entry modes:
-
-```
-Step 11 Complete → Step 12
-```
-
-What differs between a new and an existing project is never *whether* a step runs — only
-what material a step starts from. Step 11 itself already asks whether the project is new
-or existing and handles the two cases internally (repo creation and templating vs.
-confirming what already exists). Step 12 does the same: new-project entry works from the
-three pre-project files; existing-project entry works from the whole existing
-project-library, read via GBrain. See [[[pdlf:app-factory/phase-b-discover-and-define/b12-reference|Step 12: Office Hours]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-reference.md) for the full mechanics.
-
-Submitting an existing project to PDLF means redeveloping it around its canonical
-concept — not auditing, maintaining, or correcting what already exists. From Step 12
-onward, an existing project runs exactly the same sequence as a new one; if existing
-material already satisfies what a given step needs, that step completes quickly because
-there's nothing left to change, not because something decided to skip it.
-
----
-
-## Phase Boundaries
-
-Entry into the next phase requires the preceding phase's gate to pass.
-
-| Phase | Steps | Entry Condition | Exit Gate |
-|---|---|---|---|
-| Phase A — Init | 1–10 | Developer starts work | Entry point chosen (Step 1) |
-| Phase B — Discover & Define | 11, 12, 14, 15, 16 | Init complete (Step 11) | `domain-locked` (Step 16) |
-| Phase C — Design & Plan | 17–23, 26–28 | `domain-locked` passed | `concept-locked` (Step 21), `wireframes-approved` (Step 26) |
-| Phase D — Scaffold & Assemble | 29–34 | `wireframes-approved` passed | `architecture-verified` (Step 34) |
-| Phase E — Build & Verify | 35, 35A, 40, 40B, 36, 37, 38, 38A, 39 | `architecture-verified` passed | `build-verified` (Step 39, end of per-feature loop) |
-| Phase F — Ship & Monitor | 41, 42, 42A, 43–46 | `build-verified` passed (all features) | `production-released` (Step 44), `released` (Step 46) |
-
-Step 13 (`to-spec`) and Step 25 (`prototype`) have been removed from the pipeline. They do
-not appear in any phase and have no dependency entries below.
-
----
-
-## Step Dependencies
-
-Each step requires specific preceding steps to have completed successfully. The orchestrator
-checks the ledger before advancing.
-
-| Step | Depends On (Must Be Complete) |
-|---|---|
-| 12 | 11 |
-| 14 | 12 |
-| 15 | 12, 14 |
-| 16 | 15 |
-| 17 | 15, 16 |
-| 18 | 17 |
-| 19 | 14, 15, 16, 17 |
-| 20 | 12 |
-| 21 | 14, 15, 16, 19, 20 |
-| 22 | 19, 20, 21 |
-| 23 | 19, 20, 22 |
-| 26 | 22, 23 |
-| 27 | 26 |
-| 28 | 27 |
-| 29 | 22, 26, 27, 28 |
-| 30 | 29 |
-| 31 | 15, 16, 21, 30 |
-| 32 | 31 |
-| 33 | 32 |
-| 34 | 15, 16, 18, 21, 30, 31, 33 |
-| 35 | 19, 20, 26, 16, 17, 29, 31, 32, 34 |
-| 35A | 35 (same feature cycle) |
-| 40 | 35A, 16 (same feature cycle) |
-| 40B | 40 — requires developer approval of Step 40's report before executing |
-| 36 | 40B (same feature cycle) |
-| 37 | 36 (same feature cycle) |
-| 38 | 37 (same feature cycle) |
-| 38A | 38 (same feature cycle) |
-| 39 | 19, 38A (same feature cycle) |
-| 41 | 39 (`build-verified` gate passed for every feature — not just one) |
-| 42 | 41 |
-| 42A | 42 |
-| 43 | 42A |
-| 44 | 43 |
-| 45 | 44 |
-| 46 | 45 |
-
----
-
-## Gate Branching
-
-At each gate step, the pipeline branches:
-
-```
-Gate Step
-  ├── PASS → Continue to next phase
-  └── FAIL → Stop pipeline, record blocker, do not advance
-```
-
-A failed gate does not auto-resolve. The developer must address the blocker and re-run
-the gate step. A passed gate is a hard checkpoint — it cannot be silently unwound.
-
-`build-verified` (Step 39) is evaluated once per feature cycle. The pipeline does not
-advance to Step 41 until every feature has individually passed its own `build-verified`
-evaluation — see "Step 35 Feature Loop" below. Every gate's procedure also runs a ledger
-integrity check (no orphaned `steps`/`gates`/`isc`/`deviations` rows) before the gate
-summary is presented — see [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md).
-
----
-
-## Optional Step Routing
-
-Steps 12 (conditional yes/no), 27, 28, and 40 (optional skill portion) require a RUN/SKIP
-decision:
-
-```
-Optional Step
-  ├── RUN → Execute full step procedure
-  └── SKIP → Record skip in ledger, proceed to next step
-```
-
-The agent presents a recommendation with justification. The developer decides. A skipped
-step still produces a Step Receipt recording the skip decision.
-
-Step 40's RUN/SKIP decision is made once per feature cycle, not once for the whole project
-— each feature entering the loop gets its own recommendation and decision.
-
----
-
-## Test-Mode Branching
-
-When the project mode is `test`, Step 20 is eligible for abbreviation:
-
-```
-Test Mode — Abbreviated Eligible Step
-  ├── FULL  → Run the complete skill procedure
-  ├── ABBREVIATE → Run a collapsed version, produce a minimal artifact
-  └── SKIP → Record skip, use pre-existing inputs as artifact
-```
-
-Abbreviated steps write `synthesized = true` to the ledger. This tag propagates — any
-downstream step consuming a synthesized artifact shows an INPUT NOTICE warning on its
-receipt. A skipped step writes `status = "skipped"` with similar propagation.
-
-Full mode projects are entirely unaffected. The abbreviation offer is never presented.
-
----
-
-## Step 35 Feature Loop
-
-Steps 35 through 39, including all lettered sub-steps, form a single loop that repeats
-once per feature/package. A feature is not considered complete until it has passed
-through the entire sequence below and reached `build-verified`.
-
-```
-Feature Cycle Entry (one per issue/ticket from Step 19)
-  │
-  ├── Step 35  — Build feature. Internal 3-level testing (pure logic →
-  │              Uplink integration → manual verification), with a backup
-  │              before and after the integration level.
-  │
-  ├── Step 35A — Testing: local-scope pip-audit (dev/test tooling only)
-  │              + broader test coverage for this feature.
-  │
-  ├── Step 40  — Architecture scan (optional, read-only report) for this
-  │              feature's code. Optional — RUN/SKIP decision per feature cycle.
-  │
-  ├── Step 40B — If Step 40 ran and produced findings: developer reviews
-  │              and approves specific fixes. OpenCode applies only the
-  │              approved fixes. Skipped entirely if Step 40 was skipped
-  │              or produced no findings requiring action.
-  │
-  ├── Step 36  — Design review. Runs after remediation, not before —
-  │              this retests the feature as it will actually ship.
-  │
-  ├── Step 37  — Code review. Must persist findings to
-  │              step-37-findings.md, including a clean-pass statement.
-  │
-  ├── Step 38  — QA, cross-feature + regression. Must persist findings to
-  │              step-38-findings.md, including a clean-pass statement.
-  │
-  ├── Step 38A — Capture Anvil's native pip-audit result for this cycle,
-  │              if a server-environment rebuild occurred.
-  │
-  ├── Step 39  — Triage. Processes step-37/38-findings.md for this
-  │              feature. build-verified gate evaluated here.
-  │
-  └── Gate: build-verified (evaluated for this feature only)
-        ├── PASS → This feature is signed off. Record ledger row and
-        │          Step Receipt for this cycle (e.g., 39.1, 39.2 ...).
-        │          Return to Feature Cycle Entry for the next feature,
-        │          OR — if this was the last feature — exit the loop.
-        └── FAIL → Stop this feature's cycle, record blocker, do not
-                   mark this feature signed off. Developer resolves,
-                   re-enters the cycle at the failed step.
-```
-
-Each feature cycle produces its own ledger rows and Step Receipts for every step it
-passes through, not one combined receipt for the whole loop. Do not proceed to the next
-feature until the current one has reached a passed `build-verified` gate. A signed-off
-feature is a known-good baseline. Step 41 is not reachable until every feature from
-Step 19's ticket list has individually reached `build-verified`.
-
----
-
-## Post-Completion
-
-After Step 46 completes:
-- The `released` gate is recorded.
-- The ISA's Verification section is filled and Changelog updated.
-- The registry is updated: `current_step: 46`, `last_gate: "released"`, `active: false`.
-- GBrain is synced and embedded.
-- The project is complete.
+- **Opened in the business folder.** Everything a run writes belongs to one business, and Cupcake lets an agent write only within the folder it was opened in. Opening OpenCode there gives the run exactly the reach it needs, and none into PDLF or another business.
+- **A thin launcher.** The steps' configurations and references are the design; the skill only points the agent at them. While a phase is being proven, a correction to a step is a correction to its documents, and the launcher never changes.
+- **The resume check first.** Each phase is proven by continuing the same `mb-3-cs` run, so the orchestrator must find where a run stopped, from the ledger alone, without David having to remember it.
+- **An open row at every step's start.** A row written only at the end would leave a step that stopped part-way invisible; the open row makes it the step to resume.
+- **Only built phases run.** A step whose documents are not yet built would be carried out from old drafts. Pausing there keeps the run on proven ground.
+- **The entry record in the entry row.** Every step reads how the run began from one place, and an entry point that writes a row is itself a step that can be checked and resumed.
+- **David records every gate.** A gate rests on David's decision, not on the agent's good behaviour; the script and the Cupcake rule make his command the only way a gate row can exist.
+- **One home for the run order.** The routes and dependencies live only in this configuration, so the orchestrator and every step's dependency test read the same order.

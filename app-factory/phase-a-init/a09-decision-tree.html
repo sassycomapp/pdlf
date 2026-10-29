@@ -1,10 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="doc-id" content="mb-b928ba8b">
-<title>a09-decision-tree</title>
+<meta charset="UTF-8">
+<title>Step 9 — Entry point 09 Decision Tree</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; background: #f5f5f4; padding: 32px; margin: 0; }
+  h1 { font-size: 19px; color: #1a1a1a; margin: 0 0 20px 0; }
+  .diagram-wrap { background: white; border-radius: 10px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); overflow-x: auto; }
+  .mermaid { display: flex; justify-content: center; }
+</style>
 </head>
 <body>
+<h1>Step 9 — Entry point 09 Decision Tree (matches a09-reference)</h1>
+<div class="diagram-wrap">
+  <div class="mermaid">
+flowchart TD
+    Start(["a01 item 8: entry 09, after the health check"]) --> I1
+    I1["1. Ask David which app the feature is<br/>for: App 3 or App 5."]
+    I1 --> I2
+    I2["2. Ask David for the feature in his own<br/>words, and its short name."]
+    I2 --> I3
+    I3{"3. Check the app's run app{n} has<br/>passed the gate domain-locked, for<br/>App 5, or is complete at Step 11,<br/>for App 3?"}
+    I3 -->|"No"| X3["Stop: deviation"]
+    I3 -->|"Yes"| I4
+    I4["4. For App 5: run its whole test suite<br/>once as the baseline (test PR-08),<br/>with the commands in the<br/>configuration"]
+    I4 --> I5
+    I5(["5. Return to a01 item 9:<br/>slug checks, entry row, receipt, stop"])
+  </div>
+</div>
+<script>
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis' } });
+</script>
 </body>
 </html>

@@ -54,7 +54,7 @@ flowchart TD
     Close -->|"Yes"| BFT["23. Full BFT for the gate"]
     BFT --> Gate{"24. Gate summary: proceed to Phase C?"}
     Gate -->|"No"| Block(["25. Record the blocker; status blocked; stop"])
-    Gate -->|"Yes"| Row["26. gates row: domain-locked, passed, approved_at"]
+    Gate -->|"Yes"| Row["26. David runs pdlf-gate.sh;<br/>the agent reads the gates row"]
     Row --> Rcp["27. Ledger row, Step Receipt, Full BFT record"]
     Rcp --> End(["28. Explain: Phase B closed, Phase C begins at Step 17;<br/>stop, ask David to run /mb-close-out"])
   </div>

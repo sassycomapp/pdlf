@@ -1,36 +1,42 @@
 ---
 title: "a01-explainer"
 doc-id: "mb-64791255"
-updated: "2026-10-12"
+updated: "2026-10-29"
 ---
-
-## From `orchestrator-agent-explainer.md`: the whole explainer
-
-# PDLF — The Orchestrator (Step 1)
+# Step 1 — Orchestrator: Explainer
 
 ## What it is
 
-The orchestrator is the agent that carries an application through PDLF, from the first question to release. It is Step 1, and its module is `a01-module`. It is not a step of the pipeline in the same sense as Steps 11 to 46: it is what runs them. A skill runs once and finishes; the orchestrator stays in charge until the build is done.
+The orchestrator is the agent that carries one Mybizz business through PDLF. It is Step 1, but it is not a step like the others: it is what runs them. It finds where the business's work stands, takes a new entry point when David starts new work, and runs the steps of the run one at a time, in order, stopping for David after every one.
 
-The orchestrator never runs on its own. It is David's tool. It stops for David at every point where a real decision belongs to him.
+The orchestrator never runs on its own. It is David's tool, and it stops wherever a decision belongs to him.
 
-## Why it exists
+## How it works
 
-**For David.** David cannot personally verify the agent's code. Someone has to hold the discipline so that he does not have to. The orchestrator checks, verifies, stops and asks, so that David's trust rests on structure rather than hope.
+David opens OpenCode in the business folder, `C:\dev\dev-{slug}`, and types `/pdlf-init`. That starts a small skill, `pdlf-init`, which tells the agent to follow this step's reference with this step's configuration. The business's slug is the folder's name.
 
-**For the steps.** Every step repeats the same pattern. If each step file carried its own copy, the copies would drift and one would eventually skip something. The orchestrator owns that pattern once. Step files say *what* a step does; the orchestrator enforces *how* every step is carried out, identically.
+The orchestrator first checks the ledger answers, then looks for unfinished work. Every run of the business is in the ledger: its entry point's row and a row for every step it has reached. A run that has not reached its end is offered to David, at the first step that is not complete. A run whose next step belongs to a phase PDLF has not yet built is reported as paused there, and waits.
 
-## What it does
+When David starts new work, he chooses one of the entry points, Steps 2 to 10: a new application, an application that brings context, a feature, an update, a release, App 3 or App 5. The entry point asks its questions, checks the business is healthy when the app already exists, and writes the entry record into its own row in the ledger. For a new business it first writes the business's row. Every later step reads the entry record from there.
 
-- **Establishes the entry point.** It asks David what kind of work this is (a new application, a new feature, an update, returning to another app of a five-app set) and from his answers chooses where to begin and which modules to run.
-- **Runs the modules in order.** It follows [[[pdlf:app-factory/phase-a-init/a01-build-plan|Run Plan]]](C:/pdlf/app-factory/phase-a-init/a01-build-plan.md) and checks the ledger before every step; it never decides the order itself and never skips a step.
-- **Owns the handoffs.** It passes the full text of earlier outputs into each skill, captures where each output was saved, confirms it exists, records it in the ledger and writes the copy to `output/`. A missing output stops the step with a deviation ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md)).
-- **Applies the rules.** It reads a skill's own file before invoking it; uses the library's skill for every task a skill covers; runs each step's thinking checkpoint; carries out the gate procedure; and handles every deviation by setting out the options and letting David decide.
-- **Explains and stops.** After every step it explains in plain language what was done and why, presents the Step Receipt, and waits.
-- **Asks for close-out.** At the end of every step it asks David to run `/mb-close-out`. It never runs close-out itself, and it never commits or pushes.
+The orchestrator then runs the run's route, the list of its steps in order. Before each step it checks the steps it depends on are complete and every gate before it has passed. It reads the step's configuration, reference and test specification and carries the reference out. Every step opens its own row in the ledger as it starts, and ends by asking David to close out the session. When David says "continue", the next step starts.
 
-Only the orchestrator, carrying out a PDLF step, writes to the ledger.
+At a gate, the step shows David the gate summary. When he says yes, the orchestrator gives him a one-line command, `pdlf-gate.sh`, which records his approval in the ledger. The orchestrator then reads the ledger to check it is there.
 
-## Status
+## Why it works this way
 
-This document defines the orchestrator's role. Its executable form does not exist yet: `app-factory/phase-a-init/01-orchestrator.md` is an old draft and `app-factory/phase-a-init/a01-module.md` is empty. How the orchestrator is configured in OpenCode (including PDLF's own `opencode.json`) is decided when Step 1 is designed, in steps work.
+- **It opens in the business folder.** Everything a run writes belongs to one business. Cupcake lets the agent write only within the folder OpenCode was opened in, so the run can reach its own business and nothing else, PDLF included.
+- **It resumes, never restarts.** PDLF is proven phase by phase on the same `mb-3-cs` run. The orchestrator finds where that run stopped from the ledger alone, so David never has to remember it, and nothing already proven is done again.
+- **Each step opens its row at the start.** A step that stopped part-way through, because a session ended or something failed, is then visible, and is the step the run resumes at.
+- **It runs only the phases that are built.** A step that is not yet built would be carried out from old drafts. The run waits at the first such step until its phase is built.
+- **The skill is only a launcher.** The steps' documents are the design. While a phase is being proven, every correction is made to those documents, and the skill never needs to change.
+- **David records every gate.** A gate is the point where David commits to everything before it. If the agent could write its own approval, the gate would depend on the agent behaving. Cupcake blocks the agent from writing a gate, so a passed gate is always David's decision.
+- **One run order.** The routes and the dependencies are written once, in this step's configuration, so the orchestrator and every step's own check read the same order.
+
+## What has to happen
+
+- David installs the `pdlf-init` skill with the command in the configuration, and again whenever its source changes.
+- David opens OpenCode in the business folder before running `/pdlf-init`. For a new business, he creates the empty folder first.
+- David chooses the run to continue or the entry point to take, and answers the entry's questions.
+- David runs `/mb-close-out` after every step and says "continue" to go on.
+- David records every gate's approval with `pdlf-gate.sh`.

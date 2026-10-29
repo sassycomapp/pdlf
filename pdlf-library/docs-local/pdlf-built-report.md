@@ -19,17 +19,23 @@ This report is a working tool for building PDLF. It is deleted when PDLF is fini
 
 ### Phase A — Init
 
+**Phase status:** Built, for Phases A and B: every entry point and the orchestrator as far as it runs Phases A and B. Phase A has no gate.
+
 #### Step 1: Orchestrator
 
 **Files:** in `app-factory/phase-a-init/`: `a01-build-plan.md`, `a01-test-spec.md`, `a01-config.md`, `a01-reference.md`, `a01-explainer.md`, `a01-decision-tree.html`, `a01-module.md`.
 
-**Status:** Not yet built. Its files are old drafts. It is built next, as far as it runs Phases A and B, with the resume check.
+**Status:** Built, as far as it runs Phases A and B, with the resume check. It is extended with each later phase.
+
+**What it does and produces:** [[[pdlf:app-factory/phase-a-init/a01-explainer|Step 1 Explainer]]](C:/pdlf/app-factory/phase-a-init/a01-explainer.md); [[[pdlf:app-factory/phase-a-init/a01-config|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md). Its launcher skill is `pdlf-library/skills-local/pdlf-init/SKILL.md`.
 
 #### Steps 2 to 10: Entry points
 
 **Files:** in `app-factory/phase-a-init/`: the suites `a02` to `a10`, seven files each.
 
-**Status:** Not yet built. Their files are old drafts. They are built next, with Step 1.
+**Status:** Built. Each is proven the first time a run takes it.
+
+**What they do and produce:** each entry point's explainer and configuration, `a02-explainer.md` to `a10-explainer.md` and `a02-config.md` to `a10-config.md`; the values they share are in [[[pdlf:app-factory/phase-a-init/a01-config|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md).
 
 ### Phase B — Discover and Define
 

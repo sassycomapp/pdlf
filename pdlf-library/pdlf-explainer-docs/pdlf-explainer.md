@@ -1,7 +1,7 @@
 ---
 title: "pdlf-explainer"
 doc-id: "mb-4ba5a053"
-updated: "2026-10-23"
+updated: "2026-10-29"
 ---
 # PDLF — How It Works
 
@@ -27,13 +27,13 @@ PDLF also depends on things it does not own:
 - **`project-library-global`** holds the standards every application is built to.
 - **The skill library** supplies specialised skills from GStack, Matt Pocock, Magdoub and Anvil.
 
-PDLF has one instruction file for agents, `C:\pdlf\AGENTS.md`, which sits under the global `AGENTS.md`. There is no `CLAUDE.md`. PDLF's own OpenCode settings file (`opencode.json`) is written when the orchestrator is designed.
+PDLF has one instruction file for agents, `C:\pdlf\AGENTS.md`, which sits under the global `AGENTS.md`. There is no `CLAUDE.md`. PDLF has no OpenCode settings file of its own: OpenCode is opened in the business folder for every run, under the global settings and Cupcake.
 
 ## 2. How a build runs
 
 ### Starting
 
-David starts the orchestrator in OpenCode with `/pdlf-init`. It offers the entry points, Steps 2 to 10, and David chooses exactly one:
+David opens OpenCode in the business folder, `C:\dev\dev-{slug}`, and starts the orchestrator with `/pdlf-init`. It first offers to continue any unfinished run of the business, at the step where it stopped. Otherwise it offers the entry points, Steps 2 to 10, and David chooses exactly one:
 
 | Work | Entry point |
 |---|---|

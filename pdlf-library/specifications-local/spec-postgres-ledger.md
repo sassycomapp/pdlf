@@ -1,7 +1,7 @@
 ---
 title: "spec-postgres-ledger"
 doc-id: "mb-dcf9c65e"
-updated: "2026-10-24"
+updated: "2026-10-29"
 ---
 # PDLF Postgres Ledger Specification
 
@@ -90,7 +90,7 @@ Primary key: `slug`. Referenced by `steps`, `gates`, `deviations`, `bft_records`
 |---|---|---|---|---|
 | `id` | integer (serial) | NO | sequence | Primary key. Target of FKs from `gates`, `deviations`, `bft_records`, `triage_findings` |
 | `project_slug` | text | NO | — | FK → `projects(slug)` |
-| `step_number` | text | NO | — | Step number (11–46, plus lettered sub-steps). **Text, not integer** — text supports lettered sub-steps (e.g. `35A`) |
+| `step_number` | text | NO | — | Step number: `02` to `10` for an entry point, `11` to `46` for a pipeline step, plus lettered sub-steps. **Text, not integer** — text supports lettered sub-steps (e.g. `35A`) |
 | `sort_order` | numeric | NO | — | Numeric ordering value for the step |
 | `phase` | text | YES | — | Phase label |
 | `run` | text | NO | — | `app{n}` for the whole application (`app1`, `app2`, `app3` or `app5`, matching `app_number`), or the feature's short name for a feature or an update |
@@ -98,7 +98,7 @@ Primary key: `slug`. Referenced by `steps`, `gates`, `deviations`, `bft_records`
 | `step_type` | text | NO | — | `skill`, `manual`, `optional`, or `gate` (CHECK; lowercase values) |
 | `skill_family` | text | YES | — | `gstack`, `matt-skills`, `opencode`, `manual`, `anvil`, `mybizz` (Sentinel and the mybizz-os skills), `security`, or NULL (CHECK) |
 | `skill_name` | text | YES | — | The invoked skill |
-| `inputs_used` | jsonb | YES | — | Input artifacts/steps consumed by this step |
+| `inputs_used` | jsonb | YES | — | Input artifacts/steps consumed by this step. On an entry point's row, the entry record (below) |
 | `artifact_path` | text | YES | — | Path to step output artifact |
 | `synthesized` | boolean | NO | `false` | Whether content was synthesized in test mode. **A separate boolean — not a status value** |
 | `status` | text | NO | `'pending'` | `pending`, `in_progress`, `complete`, `blocked`, `skipped` (CHECK) |
@@ -110,7 +110,9 @@ Primary key: `slug`. Referenced by `steps`, `gates`, `deviations`, `bft_records`
 | `gbrain_query` | text | YES | — | The GBrain query fired at substep 1 |
 | `gbrain_results` | text | YES | — | Summary of the query results |
 
-UNIQUE constraint: (`project_slug`, `step_number`, `run`), so the feature path can run Steps 12 to 16 again for every feature. The only foreign key on `steps` is
+UNIQUE constraint: (`project_slug`, `step_number`, `run`), so the feature path can run Steps 12 to 16 again for every feature.
+
+**The entry record** is the `inputs_used` of the run's entry-point row (`step_number` `02` to `10`). It is written once, when the entry is taken, and every step of the run reads it from there. Its fields and values are set in [[[pdlf:app-factory/phase-a-init/a01-config|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md). The only foreign key on `steps` is
 `project_slug` — there is no inter-step constraint (see Principle 2).
 
 ### `gates`
@@ -123,6 +125,8 @@ UNIQUE constraint: (`project_slug`, `step_number`, `run`), so the feature path c
 | `gate_name` | text | NO | — | Gate identifier (e.g., `domain-locked`) |
 | `passed` | boolean | NO | `false` | Whether gate was approved |
 | `approved_at` | timestamptz | YES | — | When developer approved |
+
+A `gates` row is written only by the developer, with `bash /mnt/c/mybizz/scripts/pdlf-gate.sh {slug} {gate} {run}`. Cupcake's rule `no_agent_gate_approval` blocks any agent from running that script or writing to this table; agents only read it.
 | `notes` | text | YES | — | Free-text gate notes |
 
 ### `deviations`
@@ -198,7 +202,7 @@ The `build-verified` gate queries this table: every row for the feature's `step_
 ## Principles
 
 1. **The ledger is the single source of truth.** If it is not in `pdlf`, it did not happen.
-2. **Step sequencing is enforced by the orchestrator, not the database.** The only foreign key on `steps` is `project_slug → projects(slug)`; there is no inter-step constraint. Step dependencies vary per step and are held in the orchestrator's run order ([[[pdlf:app-factory/phase-a-init/a01-build-plan|Step 1 Build Plan]]](C:/pdlf/app-factory/phase-a-init/a01-build-plan.md)). The orchestrator checks that order before writing a step's ledger row; that is the enforcement point. A database trigger would need a second, hand-maintained copy of the dependency graph, with nothing keeping the two in step. The only legitimate writer is OpenCode, operating through a PDLF step; a raw write that bypasses the orchestrator is a policy violation before it reaches the schema.
+2. **Step sequencing is enforced by the orchestrator, not the database.** The only foreign key on `steps` is `project_slug → projects(slug)`; there is no inter-step constraint. Step dependencies vary per step and are held in the orchestrator's run order ([[[pdlf:app-factory/phase-a-init/a01-config|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md)). The orchestrator checks that order before writing a step's ledger row; that is the enforcement point. A database trigger would need a second, hand-maintained copy of the dependency graph, with nothing keeping the two in step. The only legitimate writer is OpenCode, operating through a PDLF step; a raw write that bypasses the orchestrator is a policy violation before it reaches the schema.
 3. **Step Receipts are generated from ledger rows.** The receipt IS the ledger row, formatted for reading — not a separately composed summary.
 4. **No other register.** There is no state file, log or completion report beside the ledger.
 5. **No narrative gloss can diverge from what actually happened.** The receipt is a snapshot of the row at the time it was written.

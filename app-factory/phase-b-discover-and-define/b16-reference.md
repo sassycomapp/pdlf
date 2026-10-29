@@ -1,7 +1,7 @@
 ---
 title: "b16-reference"
 doc-id: "mb-741c244a"
-updated: "2026-10-24"
+updated: "2026-10-29"
 ---
 # Step 16 — Domain Modeling: Reference
 
@@ -52,9 +52,9 @@ What the agent does at Step 16, in order. Agent-facing. Fixed values: [[[pdlf:ap
 23. Run the Full BFT for the gate.
 24. Present the gate summary block in the configuration, with the outputs it locks and the close-out result. Ask David: "Proceed to Phase C? (yes/no)".
 25. On no: record the blocker, set the step's `status` to `blocked`, stop.
-26. On yes: write the `gates` row (`domain-locked`, `passed = true`, `approved_at`). Record PR-03 in the checks file.
+26. On yes: give David the command that records his approval, `bash /mnt/c/mybizz/scripts/pdlf-gate.sh {slug} domain-locked {run}`, and wait until he confirms it ran. Never run it and never write to the `gates` table. Read the `gates` row and check `domain-locked` is passed for the run; if it is not, stop. Record PR-03 in the checks file.
 
 ## 8. The end
 
-27. Write the Step 16 `steps` row with the ledger values in the configuration, the Step Receipt and the Full BFT record.
+27. Complete the Step 16 `steps` row with the ledger values in the configuration, and write the Step Receipt and the Full BFT record.
 28. Explain what was done and why, and that Phase B is closed and Phase C begins at Step 17. Present the Step Receipt, stop, and ask David to run `/mb-close-out`.

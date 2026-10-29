@@ -1,7 +1,7 @@
 ---
 title: "b16-explainer"
 doc-id: "mb-7df11eae"
-updated: "2026-10-24"
+updated: "2026-10-29"
 ---
 # Step 16 — Domain Modeling: Explainer
 
@@ -25,7 +25,7 @@ Finally the step closes Phase B. It checks every step of the phase for this run:
 - **The skill's own design.** `grill-with-docs` is how Matt Pocock's skills are meant to build a glossary, and its files keep the skills' own names, so every later Matt Pocock skill reads them without being told where they are.
 - **Words and data agree before tables exist.** Step 17 builds the tables next. A table named differently from the glossary would split the business's language at its very first build.
 - **Phase B is checked as a whole.** The gate locks everything Phase B produced, so it is offered only when the whole phase is finished, tested and approved, and nothing is left open.
-- **Only David passes the gate.** The gate is the last stop before work starts in Anvil. After it, nothing from Phase B changes unless David reopens it.
+- **Only David passes the gate.** The gate is the last stop before work starts in Anvil. David records his own approval with `pdlf-gate.sh`, and Cupcake stops the agent from writing it. After it, nothing from Phase B changes unless David reopens it.
 
 ## What has to happen
 
@@ -33,5 +33,5 @@ Finally the step closes Phase B. It checks every step of the phase for this run:
 - David decides each decision record.
 - David decides whether an old glossary file of an existing application is removed.
 - David approves the domain map's scope.
-- David answers the gate: yes to proceed to Phase C, or no to stop.
+- David answers the gate: yes to proceed to Phase C, or no to stop. On yes, he runs the `pdlf-gate.sh` command the agent gives him, which records his approval.
 - Only David commits, with `commit-all`, after `/mb-close-out`.

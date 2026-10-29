@@ -1,7 +1,7 @@
 ---
 title: "b14-reference"
 doc-id: "mb-708686df"
-updated: "2026-10-24"
+updated: "2026-10-29"
 ---
 # Step 14 — CEO Review: Reference
 
@@ -44,5 +44,5 @@ What the agent does at Step 14, in order. Agent-facing. Fixed values: [[[pdlf:ap
 ## 6. The end
 
 20. Copy `design-doc.md` and, in the expansion modes, the CEO summary into `pdlf-outputs\b14\` under the names in the configuration. Check every expected file exists. If one is missing: stop and raise a deviation.
-21. Write the Step 14 `steps` row with the ledger values in the configuration, the Step Receipt and the Full BFT record, with David's approval of the reviewed plan.
+21. Complete the Step 14 `steps` row with the ledger values in the configuration, and write the Step Receipt and the Full BFT record, with David's approval of the reviewed plan.
 22. Explain what was done and why, present the Step Receipt, stop, and ask David to run `/mb-close-out`.

@@ -1,7 +1,7 @@
 ---
 title: "b11-config"
 doc-id: "mb-ea7e8074"
-updated: "2026-10-24"
+updated: "2026-10-29"
 ---
 # Step 11 — Init: Configuration
 
@@ -24,7 +24,9 @@ The fixed values of Step 11. Agent-facing. What the agent does, in order: [[[pdl
 
 | Input | Where |
 |---|---|
-| Entry record | From the orchestrator (build plan section 4) |
+| Entry record | The `inputs_used` of the run's entry-point row ([[[pdlf:app-factory/phase-a-init/a01-config\|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md)) |
+| Business row | The `projects` row: for routes A and B, written by the orchestrator with the slug, the name and the mode |
+| Project context (route B) | `C:\dev\dev-{slug}\{slug}-project-context\`, the business's existing documentation, read-only |
 | Project template | `C:\dev\project-template\dev-(SLUG)\` |
 | Blank pre-project files | `C:\pdlf\pdlf-library\templates-local\pre-project\` |
 | Anvil's `AGENTS.md` template and skills | `C:\mybizz\anvil-agent-references\` |
@@ -42,6 +44,8 @@ The fixed values of Step 11. Agent-facing. What the agent does, in order: [[[pdl
 | App repository | `sassycomapp/{slug}-app{n}` on GitHub, created by David through Anvil |
 | Test setup (App 1, App 5) | `{slug}-app{n}\tests\` and `{slug}-app{n}\.env` |
 | Project library | `C:\dev\dev-{slug}\{slug}-project-library\`, public GitHub repository `sassycomapp/{slug}-project-library` |
+| Project context (route B) | `C:\dev\dev-{slug}\{slug}-project-context\`, GitHub repository `sassycomapp/{slug}-project-context`, GBrain source `{slug}-project-context` |
+| Entry receipt (entries 02 and 03) | `{slug}-project-library\pdlf-outputs\a02\` or `a03\`: the entry's checks file and Step Receipt |
 | GBrain source | `{slug}-project-library`, federated |
 | Ledger | the `projects` row; the Step 11 `steps` row; its BFT record; its `triage_findings` row |
 | PR-09 evidence | `{slug}-project-library\pdlf-outputs\b11\{slug}-b11-{run}-pr09.xml` |
@@ -119,6 +123,26 @@ git fetch origin
 git remote set-head origin -a
 git checkout -t "$(git rev-parse --abbrev-ref origin/HEAD)"
 ```
+
+## The project context (route B)
+
+The commands David runs, one at a time, after renaming the GitHub repository and moving the old library's contents into `{slug}-project-context\`.
+
+| Order | What it does | Command |
+|---|---|---|
+| 1 | Points the context at its new GitHub address | `git -C /mnt/c/dev/dev-{slug}/{slug}-project-context remote set-url origin https://github.com/sassycomapp/{slug}-project-context.git` |
+| 2 | Registers the context in GBrain in place of the old library, after setting a default source that stays | `gbrain sources add {slug}-project-context --path /mnt/c/dev/dev-{slug}/{slug}-project-context && gbrain sources federate {slug}-project-context && gbrain sources default pdlf && gbrain sources remove {slug}-project-library --confirm-destructive` |
+| 3 | Puts the context on the commit tools in place of the old library | `sed -i 's#^{slug}-project-library = /mnt/c/dev/dev-{slug}/{slug}-project-library$#{slug}-project-context = /mnt/c/dev/dev-{slug}/{slug}-project-context#' /mnt/c/mybizz/scripts/mb-doc-check.sources && sed -i 's#^  /mnt/c/dev/dev-{slug}/{slug}-project-library$#  /mnt/c/dev/dev-{slug}/{slug}-project-context#' /mnt/c/mybizz/scripts/commit-all.sh` |
+| 4 | Points the context's own links at its new name; nothing else in it changes | `cd /mnt/c/dev/dev-{slug}/{slug}-project-context && git ls-files -z '*.md' '*.html' \| xargs -0 sed -i -e 's#\[\[\[{slug}-project-library:#[[[{slug}-project-context:#g' -e 's#C:/dev/dev-{slug}/{slug}-project-library/#C:/dev/dev-{slug}/{slug}-project-context/#g'` |
+| 5 | Commits and pushes the context and the scripts, which syncs the context into GBrain | `REPOS_OVERRIDE="/mnt/c/dev/dev-{slug}/{slug}-project-context /mnt/c/mybizz/scripts" bash /mnt/c/mybizz/scripts/commit-all.sh "{slug} library becomes {slug}-project-context"` |
+
+The row of `{slug}-project-context` in `repo-organization.md` names it read-only, with no OpenCode project and no Dream cycle.
+
+## Refreshing the system documents
+
+The OpenCode prompt David runs, in build mode, after the project library or the project context joins GBrain:
+
+> Run `/mb-sysdoc-creator` in Refresh mode for the systems `gbrain` and `mb-doc-check`. The business `{slug}` has new sources. Check each document's list of sources against the output of `gbrain sources list` and against `/mnt/c/mybizz/scripts/mb-doc-check.sources`, and correct only what differs.
 
 ## App `.gitignore` baseline
 

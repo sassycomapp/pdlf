@@ -11,7 +11,7 @@ This handover continues the conversations of 2026-10-21 to 2026-10-29 in a fresh
 
 The work is building PDLF: finishing every app-factory step so that PDLF can run an application from conception to release. `mb-3-cs` is the application that will be pulled through PDLF to pressure-test it. The objective is developing PDLF, not developing `mb-3-cs`.
 
-The sanity sweep of PDLF, `project-library-global`, `mybizz-os-docs`, `data-mybizz-mgt`, `dev-root-hub` and `mybizz-config-docs` is complete and committed (section 12). The working model below is stated in full in `pdlf-build-plan.md` (Preamble and sections 5 to 7); this section is its summary. Phase B is built. PDLF is completed phase by phase (section 4): Phase A is built next, for Phases A and B, and then `mb-3-cs` runs through both (section 7).
+The sanity sweep of PDLF, `project-library-global`, `mybizz-os-docs`, `data-mybizz-mgt`, `dev-root-hub` and `mybizz-config-docs` is complete and committed (section 12). The working model below is stated in full in `pdlf-build-plan.md` (Preamble and sections 5 to 7); this section is its summary. Phases A and B are built. PDLF is completed phase by phase (section 4): `mb-3-cs` now runs through Phases A and B to prove them (section 7).
 
 ## 2. The working model
 
@@ -67,12 +67,13 @@ Read `C:\mybizz\mybizz-os-docs\os-reference-docs\repo-organization.md` for every
 - `pdlf-library\policy-local\` (8): `pol-anvil-platform`, `pol-bft-discipline`, `pol-memory-and-knowledge`, `pol-sequential-enforcement-and-deviation`, `pol-skill-invocation`, `pol-step-conditional-state`, `pol-testing-and-quality` (PDLF-only: the per-feature build loop of Steps 35 to 39 and the `build-verified` gate), `pol-INDEX`.
 - `pdlf-library\specifications-local\` (7): `spec-artifact-handover`, `spec-bft`, `spec-execution-discipline`, `spec-gate-procedure` (holds the seven gates), `spec-pdlf-process-tests` (PR-01 to PR-10), `spec-postgres-ledger`, `spec-skill-context-pack`.
 - `pdlf-library\templates-local\`: `chk-pdlf-self-test`, `isa-template`, `step-receipt-template`, `pre-project\`.
+- `pdlf-library\skills-local\`: `pdlf-init\SKILL.md`, the launcher of the orchestrator, installed at `~/.config/opencode/skills/pdlf-init/SKILL.md`.
 - `pdlf-library\pdlf-explainer-docs\`: `pdlf-explainer`, `app-factory-explainer`, `pdlf-testing-explainer`.
 - `pdlf-library\docs-local\`: `pdlf-todo`, `app-factory-docs-update-method`, `config`, `pdlf-skills-scoping-strategy`, `pdlf-built-report`, `matt-pocock-skills-local-reference`.
 - `pdlf-library\wip\`: this handover; `pdlf-overview-v4` (the planned steps, phase by phase, for judging gaps and surplus); `pdlf-pass2-demand-map` (what `mb-3-cs` and `mb-4-ecom` demand of each step's skills, for the skills scoping strategy). Each is deleted when its work is done.
 
 **Global standards** (`C:\dev\project-library-global`, repository `project-library-global`, GBrain source `default`): what a good Mybizz application is.
-- `adr-global\` (40), `specifications-global\` (24), `policy-global\` (5), `security-global\` (53), `standard-operating-procedures-global\` (3), `docs-standard-global\` (4), `guides-global\` (2), `templates-global\` (4), `rules-cupcake-global\` (21 Cupcake rules).
+- `adr-global\` (40), `specifications-global\` (24), `policy-global\` (5), `security-global\` (53), `standard-operating-procedures-global\` (3), `docs-standard-global\` (4), `guides-global\` (2), `templates-global\` (4), `rules-cupcake-global\` (22 Cupcake rules, `no_agent_gate_approval` among them).
 - `anvil-docs\` (326 pages): Anvil's own documentation, the canonical Anvil reference.
 - `test-suite\`: `ts-method`, `ts-catalogue` (102 application tests), `ts-conformance-checks`, `ts-rule-soundness-register`, `tools\` (`ts_scan.py`, `ts_report.py`), `templates\` (`conftest.py`, `ts-config.yaml`, `access-matrix.yaml`, `pytest.ini`).
 - Tier prices (Launch, Pioneer, Business) are common to every application and live in `adr-tiers-model`.
@@ -125,9 +126,18 @@ Rules:
 
 ## 7. What comes next
 
-### Phase A, then the first run
+### The first run: proving Phases A and B
 
-To-do A2 sets the job: build Steps 1 to 10 (every entry point; the orchestrator as far as it runs Phases A and B; the resume check), and in the same batch amend Step 11's route B so that an application with context is made in a copy of the project template, with its existing repositories as context, settling how its existing app repositories are carried into the copy. The Phase A suites are old drafts. Then David backs up `mb-3-cs` and it runs through Phases A and B by entry point 03.
+Phase A is built: the orchestrator (`a01`), as far as it runs Phases A and B, with the resume check, and the nine entry points (`a02` to `a10`). To-do A2 sets out the proving run in order: install `pdlf-init`, compile and test the gate rule, prove the business folder's write reach with `cupcake eval`, check `pdlf-gate.sh`, back up `mb-3-cs`, then run entry 03 from `C:\dev\dev-mb-3-cs`.
+
+How a run works, in brief:
+- David opens OpenCode in the business folder and runs `/pdlf-init`; the slug is the folder's name.
+- The orchestrator offers any unfinished run at its first step that is not complete, and pauses a run at the first step of a phase not yet built.
+- An entry point writes the entry record into its own `steps` row (`02` to `10`); entries 02 and 03 first write the `projects` row.
+- Every step opens its row as `in_progress` at its start (execution discipline substep 0).
+- David records every gate with `bash /mnt/c/mybizz/scripts/pdlf-gate.sh {slug} {gate} {run}`; Cupcake blocks the agent from it.
+- The routes, dependencies and built phases live once, in `a01-config.md`; each later phase adds its steps there when it is built.
+- For entry 03, the old project library is the read-only project context `{slug}-project-context`; for `mb-3-cs` it is already moved and registered, and Step 11 makes the new library from the template.
 
 ### Phase B, the model
 
@@ -151,7 +161,7 @@ Phase C is built once Phases A and B are proven: Steps 17 to 28, in order. Per s
 | c27 | Open | Old | Old | Empty | Old |
 | c28 | Open | Old | Old | Empty | Old |
 
-The build plans of `a01` and `e35`, and the reference of `e35`, still say "three levels" of testing and test Level 2 against the live app; they are rewritten to the test suite's Levels 1 to 3 and the local runtime (section 11) when closed. The open build plans f42, f42A, f43 and f44 still model a staging and production split and `develop`/`stable` branches; they are rebuilt around the release by push (section 10) when closed. Old Phase C to F documents name `docs-local\design-doc.md` and older output folders; they read the run's design folder (section 10) when rewritten.
+The build plan and the reference of `e35` still say "three levels" of testing and test Level 2 against the live app; they are rewritten to the test suite's Levels 1 to 3 and the local runtime (section 11) when closed. The open build plans f42, f42A, f43 and f44 still model a staging and production split and `develop`/`stable` branches; they are rebuilt around the release by push (section 10) when closed. Old Phase C to F documents name `docs-local\design-doc.md` and older output folders; they read the run's design folder (section 10) when rewritten.
 
 Findings for later steps, settled when each is built:
 - **c17:** builds the tables from the data design locked at `domain-locked`, named in the glossary's terms, every table `client: none`, checked against the access matrix and the threat model; the agent writes `db_schema` only through `anvil-yaml`, and David applies it in the Data Tables view.
@@ -257,6 +267,6 @@ The three-tier method (pure logic, Uplink integration, verification in the brows
 
 ## 14. First actions in the next session
 
-1. Clone `pdlf`, `project-library-global` and `project-template`; read `pdlf-build-plan.md`, `C:\pdlf\pdlf-library\docs-local\app-factory-docs-update-method.md`, the Phase B suites (`b11` to `b16`, the models of a finished step), section 9, and the Phase A suites (`a01` to `a10`).
-2. Build Phase A as to-do A2 and section 7 set out, built as section 8 sets out.
-3. Then David backs up `mb-3-cs`, and `mb-3-cs` runs through Phases A and B.
+1. Clone `pdlf`, `project-library-global`, `project-template` and `mybizz-scripts`; read `pdlf-build-plan.md`, `C:\pdlf\pdlf-library\docs-local\app-factory-docs-update-method.md`, the Phase A suites (`a01` to `a10`), the Phase B suites (`b11` to `b16`) and section 9.
+2. Carry out to-do A2 with David: the proving run of `mb-3-cs` through Phases A and B. Correct PDLF wherever the run fails, and continue the run from the step corrected.
+3. When Phases A and B are proven, write their modules, then build Phase C as section 8 sets out.
