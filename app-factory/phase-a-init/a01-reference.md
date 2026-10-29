@@ -9,7 +9,7 @@ What the orchestrator does, in order. Agent-facing. Fixed values: [[[pdlf:app-fa
 
 ## 1. Start
 
-1. Check the working folder is a business folder, `/home/dev-p/projects/dev-{slug}`, and take the slug from its name. If it is not: stop, and ask David to open OpenCode in the business folder and run `/pdlf-init` again. From here, write every file of the business through the working folder, never through `/mnt/c/dev/dev-{slug}`, as the configuration sets out; a step's paths written as `C:\dev\dev-{slug}\...` or `/mnt/c/dev/dev-{slug}/...` mean the same place under the working folder.
+1. Check the working folder is a business folder, `/home/dev-p/projects/dev-{slug}`, and take the slug from its name. If it is not: stop, and ask David to open OpenCode in the business folder and run `/pdlf-init` again. Check the link is connected with `mountpoint -q /home/dev-p/projects/dev-{slug}`. If it is not: stop, and ask David to run `sudo mount /home/dev-p/projects/dev-{slug}`, because an unconnected link is an empty folder in WSL, and anything written there would never reach the C: drive. From here, write every file of the business through the working folder, never through `/mnt/c/dev/dev-{slug}`, as the configuration sets out; a step's paths written as `C:\dev\dev-{slug}\...` or `/mnt/c/dev/dev-{slug}/...` mean the same place under the working folder.
 2. Check the ledger answers. If it does not: stop and raise a deviation.
 
 ## 2. The resume check

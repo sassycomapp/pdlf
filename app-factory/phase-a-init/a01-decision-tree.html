@@ -16,8 +16,8 @@
 <div class="diagram-wrap">
   <div class="mermaid">
 flowchart TD
-    Start(["David runs /pdlf-init in OpenCode,<br/>opened in C:\dev\dev-{slug}"]) --> S1{"1. Working folder is<br/>a business folder?"}
-    S1 -->|"No"| X1(["Stop: open OpenCode<br/>in the business folder"])
+    Start(["David runs /pdlf-init in OpenCode,<br/>opened in C:\dev\dev-{slug}"]) --> S1{"1. Working folder is a business<br/>folder, and its link connected?"}
+    S1 -->|"No"| X1(["Stop: open OpenCode in the<br/>business folder, or connect the link"])
     S1 -->|"Yes"| S2{"2. Ledger answers?"}
     S2 -->|"No"| X2["Stop: deviation"]
     S2 -->|"Yes"| R3{"3. projects row<br/>for the slug?"}
