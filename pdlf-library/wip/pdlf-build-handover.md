@@ -211,7 +211,7 @@ Every test result a step records without its own JUnit output goes into `{slug}-
 - **No `TODOS.md`:** a deferral is written in the plan's NOT in scope section with its reason.
 - **Per app and per run:** `access-matrix.yaml` and `threat-model.md` belong to the app, in `docs-local\design\app{n}\`, and a feature extends them; `test-plan.md` belongs to the run, in `docs-local\design\{run}\`. The threat model holds no open weakness, because the project library is public; an open weakness is a ledger finding.
 - **Artefacts:** named `{slug}-{step}-{run}-{name}`; GStack project name `sassycomapp-{slug}-app{n}` (`artifact-saving-convention`).
-- The `mb-3-cs` test specification is `mb-3-cs-project-library\docs-local\mb-3-cs-test-specification.md`; its Vault details are in `mb-3-cs-vault-implementation.md`.
+- The `mb-3-cs` context is `C:\dev\dev-mb-3-cs\mb-3-cs-project-context`, read-only: GBrain source `mb-3-cs-project-context`, never opened in OpenCode, because its `AGENTS.md`, `CLAUDE.md` and `opencode.json` are prior material, not instructions. Step 11 makes the new `mb-3-cs-project-library` from the project template. The `mb-3-cs` test specification is `mb-3-cs-project-context\docs-local\mb-3-cs-test-specification.md`; its Vault details are in `mb-3-cs-vault-implementation.md`.
 - The ledger's `triage_findings.source_step` also allows 35A, 38A, 40, 41, 42A, 43, 44.
 
 ## 11. Testing: the three tiers

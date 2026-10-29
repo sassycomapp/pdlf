@@ -1,6 +1,6 @@
 ---
 title: "pdlf-pass2-demand-map"
-updated: "2026-10-21"
+updated: "2026-10-29"
 doc-id: "mb-91e25269"
 ---
 # PDLF Pass 2 — Demand Map
@@ -9,7 +9,7 @@ Working file for Pass 2 of the skills scoping strategy. It lists what `mb-3-cs` 
 
 ## Sources read
 
-- `mb-3-cs-project-library`: `adr-local` (3), `docs-local` (20), `policy-local/development-policy.md`, `V2/mybizz-ai-implementation-spec-v2.md`, `V3/mybizz-ai-implementation-spec-v3 (1).md`.
+- `mb-3-cs-project-context`: `adr-local` (3), `docs-local` (20), `policy-local/development-policy.md`, `V2/mybizz-ai-implementation-spec-v2.md`, `V3/mybizz-ai-implementation-spec-v3 (1).md`.
 - `mb-4-ecom-project-library`: `docs/report from discussion with gemini.md`.
 - `project-library-global`: the decision of every ADR in `adr-global` (44); `spec-integration`, `spec-security-architecture`, `spec-vault-system`, `spec-regulatory-compliance-baseline`, `spec-deployment`, `spec-mastertemplate-notification-system`, `spec-api-specification`, `spec-client-activation-runbook`.
 
