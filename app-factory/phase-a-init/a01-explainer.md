@@ -13,7 +13,7 @@ The orchestrator never runs on its own. It is David's tool, and it stops whereve
 
 ## How it works
 
-David opens OpenCode in the business folder, `C:\dev\dev-{slug}`, and types `/pdlf-init`. That starts a small skill, `pdlf-init`, which tells the agent to follow this step's reference with this step's configuration. The business's slug is the folder's name.
+David opens OpenCode in the business folder, `C:\dev\dev-{slug}`, through its link in his home folder, `~/projects/dev-{slug}`, because the web UI opens only folders there, and types `/pdlf-init`. The agent then writes every file of the business through that link. That starts a small skill, `pdlf-init`, which tells the agent to follow this step's reference with this step's configuration. The business's slug is the folder's name.
 
 The orchestrator first checks the ledger answers, then looks for unfinished work. Every run of the business is in the ledger: its entry point's row and a row for every step it has reached. A run that has not reached its end is offered to David, at the first step that is not complete. A run whose next step belongs to a phase PDLF has not yet built is reported as paused there, and waits.
 
@@ -36,7 +36,7 @@ At a gate, the step shows David the gate summary. When he says yes, the orchestr
 ## What has to happen
 
 - David installs the `pdlf-init` skill with the command in the configuration, and again whenever its source changes.
-- David opens OpenCode in the business folder before running `/pdlf-init`. For a new business, he creates the empty folder first.
+- David opens OpenCode in the business folder, through its link, before running `/pdlf-init`. For a new business, he creates the empty folder and its link first.
 - David chooses the run to continue or the entry point to take, and answers the entry's questions.
 - David runs `/mb-close-out` after every step and says "continue" to go on.
 - David records every gate's approval with `pdlf-gate.sh`.

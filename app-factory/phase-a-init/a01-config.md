@@ -23,9 +23,11 @@ The fixed values of Step 1. Agent-facing. What the agent does, in order: [[[pdlf
 
 | Item | Value |
 |---|---|
-| OpenCode opened in | The business folder, `C:\dev\dev-{slug}\` (WSL `/mnt/c/dev/dev-{slug}`) |
+| OpenCode opened in | The business folder, `C:\dev\dev-{slug}\`, through its link in the home folder, `/home/dev-p/projects/dev-{slug}`, because the OpenCode web UI opens only folders inside `/home/dev-p` |
+| The link | One line in `/etc/fstab`: `/mnt/c/dev/dev-{slug} /home/dev-p/projects/dev-{slug} none bind,nofail 0 0` |
+| The working folder | The folder OpenCode was opened in. Every file of the business is written through it: `{working folder}/{slug}-project-library/...`, `{working folder}/{slug}-app{n}/...`. A path under `/mnt/c/dev/dev-{slug}` names the same file, but Cupcake treats it as another project and blocks the write |
 | The slug | The business folder's name without `dev-`: lowercase letters, digits and hyphens only |
-| A new business | David creates the empty folder `C:\dev\dev-{slug}\` first, then opens OpenCode in it |
+| A new business | David creates the empty folder `C:\dev\dev-{slug}\` and its link first, then opens OpenCode in it |
 | PDLF | `/mnt/c/pdlf`, read only |
 | OpenCode configuration | The global configuration, the global `AGENTS.md` and Cupcake; PDLF has no `opencode.json` of its own |
 | Skill source | `C:\pdlf\pdlf-library\skills-local\pdlf-init\SKILL.md` |
