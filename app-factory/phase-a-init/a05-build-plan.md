@@ -13,7 +13,7 @@ updated: "2026-10-29"
 
 **Must achieve:** an update to App 1 entered into PDLF, after the business is shown healthy, as a feature when it changes what the app does and otherwise at the step David names, with the root cause of a fault found first, so that a correction never re-scopes the application.
 
-**Starts from:** the business folder, in which David opened OpenCode; the business's `projects` row and its application run `app1`; David's answers; the values in [[[pdlf:app-factory/phase-a-init/a01-config|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md).
+**Starts from:** the business folder; App 1, in which David opened OpenCode; the business's `projects` row and its application run `app1`; David's answers; the values in [[[pdlf:app-factory/phase-a-init/a01-config|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md).
 
 **Produces:** the entry-point `steps` row holding the entry record; the health check report; the baseline suite results; the diagnosis, when the update corrects a fault; the checks file and the Step Receipt in `pdlf-outputs\a05\`; the Light BFT record.
 

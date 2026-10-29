@@ -21,7 +21,7 @@ Phases A and B are built. They are proven by running `mb-3-cs` through them by e
 
 1. David installs the `pdlf-init` skill with the command in [[[pdlf:app-factory/phase-a-init/a01-config|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md).
 2. Cupcake's rule `no_agent_gate_approval` is compiled with `/mb-compile-rules` and tested by David, block case and allow case.
-3. David adds the business folder's link, `/mnt/c/dev/dev-mb-3-cs` at `/home/dev-p/projects/dev-mb-3-cs`, and proves with `cupcake eval` that, with OpenCode opened there, a write through the link inside `mb-3-cs-project-library` is allowed and a write inside `/mnt/c/pdlf` is blocked.
+3. David proves with `cupcake eval` that, with OpenCode opened in `projects/mb-3-cs-app1`, a write to `/mnt/c/dev/dev-mb-3-cs/mb-3-cs-project-library` is allowed and a write to `/mnt/c/pdlf` is blocked.
 4. David runs `bash /mnt/c/mybizz/scripts/pdlf-gate.sh --check`, which must print `ledger answers`.
 5. David backs up `C:\dev\dev-mb-3-cs\`.
 6. David opens OpenCode in `C:\dev\dev-mb-3-cs`, runs `/pdlf-init` and takes entry point 03. The project context `mb-3-cs-project-context` is already moved, so Step 11 checks it and makes the new `mb-3-cs-project-library` from the template.

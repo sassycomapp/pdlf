@@ -11,7 +11,7 @@ Step 8 is the entry point `create-management-app`. Its job: App 5, the managemen
 
 ## How it works
 
-David opens OpenCode in the business folder and runs `/pdlf-init`, then chooses this entry. The orchestrator runs the health check, asks its questions, and writes the entry record. The run continues at Step 11, route C.
+David opens `projects/{slug}-app1` in OpenCode and runs `/pdlf-init`, then chooses this entry. The orchestrator runs the health check, asks its questions, and writes the entry record. The run continues at Step 11, route C.
 
 ## Why it works this way
 
@@ -20,6 +20,6 @@ David opens OpenCode in the business folder and runs `/pdlf-init`, then chooses 
 
 ## What has to happen
 
-- David opens OpenCode in the business folder and runs `/pdlf-init`.
+- David opens `projects/{slug}-app1` in OpenCode and runs `/pdlf-init`.
 - David answers the entry's questions.
 - David runs `/mb-close-out` when the entry stops, and says "continue".

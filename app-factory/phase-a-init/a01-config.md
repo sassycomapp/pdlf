@@ -23,11 +23,11 @@ The fixed values of Step 1. Agent-facing. What the agent does, in order: [[[pdlf
 
 | Item | Value |
 |---|---|
-| OpenCode opened in | The business folder, `C:\dev\dev-{slug}\`, through its link in the home folder, `/home/dev-p/projects/dev-{slug}`, because the OpenCode web UI opens only folders inside `/home/dev-p` |
-| The link | One line in `/etc/fstab`: `/mnt/c/dev/dev-{slug} /home/dev-p/projects/dev-{slug} none bind,nofail 0 0`. Checked at every start with `mountpoint -q /home/dev-p/projects/dev-{slug}` |
-| The working folder | The folder OpenCode was opened in. Every file of the business is written through it: `{working folder}/{slug}-project-library/...`, `{working folder}/{slug}-app{n}/...`. A path under `/mnt/c/dev/dev-{slug}` names the same file, but Cupcake treats it as another project and blocks the write |
-| The slug | The business folder's name without `dev-`: lowercase letters, digits and hyphens only |
-| A new business | David creates the empty folder `C:\dev\dev-{slug}\` and its link first, then opens OpenCode in it |
+| OpenCode opened in | The business's App 1 repository, `C:\dev\dev-{slug}\{slug}-app1\`, through its link in the home folder, `/home/dev-p/projects/{slug}-app1`, chosen in the OpenCode project picker, because OpenCode opens only Git repositories inside `/home/dev-p` and App 1 is in every business |
+| The link | One line in `/etc/fstab`: `/mnt/c/dev/dev-{slug}/{slug}-app1 /home/dev-p/projects/{slug}-app1 none bind,nofail 0 0`. Checked at every start with `mountpoint -q /home/dev-p/projects/{slug}-app1` |
+| The working folder | App 1, the folder OpenCode was opened in. Every file of the business is written through its real path: `/mnt/c/dev/dev-{slug}/{slug}-project-library/...`, `/mnt/c/dev/dev-{slug}/{slug}-app{n}/...`. Cupcake allows writes anywhere in the business and blocks every other folder |
+| The slug | The App 1 repository's name without `-app1`: lowercase letters, digits and hyphens only |
+| A new business | David first creates `C:\dev\dev-{slug}\{slug}-app1\`, runs `git init` in it and adds its link, then opens OpenCode in it |
 | PDLF | `/mnt/c/pdlf`, read only |
 | OpenCode configuration | The global configuration, the global `AGENTS.md` and Cupcake; PDLF has no `opencode.json` of its own |
 | Skill source | `C:\pdlf\pdlf-library\skills-local\pdlf-init\SKILL.md` |

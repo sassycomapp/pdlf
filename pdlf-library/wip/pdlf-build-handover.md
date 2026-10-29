@@ -131,7 +131,7 @@ Rules:
 Phase A is built: the orchestrator (`a01`), as far as it runs Phases A and B, with the resume check, and the nine entry points (`a02` to `a10`). To-do A2 sets out the proving run in order: install `pdlf-init`, compile and test the gate rule, prove the business folder's write reach with `cupcake eval`, check `pdlf-gate.sh`, back up `mb-3-cs`, then run entry 03 from `C:\dev\dev-mb-3-cs`.
 
 How a run works, in brief:
-- David opens OpenCode in the business folder and runs `/pdlf-init`; the slug is the folder's name.
+- David opens `projects/{slug}-app1` in OpenCode and runs `/pdlf-init`; the slug is the App 1 repository's name without `-app1`.
 - The orchestrator offers any unfinished run at its first step that is not complete, and pauses a run at the first step of a phase not yet built.
 - An entry point writes the entry record into its own `steps` row (`02` to `10`); entries 02 and 03 first write the `projects` row.
 - Every step opens its row as `in_progress` at its start (execution discipline substep 0).

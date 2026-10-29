@@ -13,7 +13,7 @@ updated: "2026-10-29"
 
 **Must achieve:** a Mybizz business that already has material (apps, documents, a reference platform) but has not run through PDLF, entered with that material named: which apps exist, where the project context is and which reference platform it follows, so that Step 11 sets it up around what exists and Step 12 reads the context.
 
-**Starts from:** the business folder `C:\dev\dev-{slug}\`, in which David opened OpenCode; the business's existing apps and project library; GBrain; David's answers; the values in [[[pdlf:app-factory/phase-a-init/a01-config|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md).
+**Starts from:** the business folder `C:\dev\dev-{slug}\`; App 1, in which David opened OpenCode; the business's existing apps and project library; GBrain; David's answers; the values in [[[pdlf:app-factory/phase-a-init/a01-config|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md).
 
 **Produces:** the entry-point `steps` row holding the entry record; the `projects` row; the checks file and the Step Receipt in `pdlf-outputs\a03\`, written by Step 11; the Light BFT record.
 

@@ -15,17 +15,17 @@ Phase A has no gate. Its entry points join the pipeline at the steps the run ord
 
 **Must achieve:** one run of PDLF for one Mybizz business at a time, carried from its entry point through every step of its route, in order, resumed where it stopped whenever a session ends, and stopped for David at every step and gate, so that no step is skipped, repeated or run out of order and no gate passes without David.
 
-**Starts from:** `/pdlf-init`, run by David in OpenCode opened in the business folder `C:\dev\dev-{slug}\`; the ledger; the run order, the routes and the built phases in this step's configuration; each entry point's configuration (Steps 2 to 10); each step's configuration, reference and test specification.
+**Starts from:** `/pdlf-init`, run by David in OpenCode opened in the business's App 1 repository, `projects/{slug}-app1`; the ledger; the run order, the routes and the built phases in this step's configuration; each entry point's configuration (Steps 2 to 10); each step's configuration, reference and test specification.
 
 **Produces:** for each run, the entry point's `steps` row holding the entry record; for a new business, its `projects` row; an open `steps` row for every step as it starts; the run carried to its next step or paused at the first step whose phase is not yet built; the a01 test evidence in `{slug}-project-library\pdlf-outputs\a01\`.
 
 **Carried out by:** OpenCode's Build agent, through the skill `pdlf-init`, started by David. David chooses the entry point, answers the entry questions, approves every step's outputs and records every gate's approval himself.
 
 **Must be built so that:**
-- David starts it with `/pdlf-init` in OpenCode opened in the business folder, `C:\dev\dev-{slug}\` (WSL `/mnt/c/dev/dev-{slug}`); the business slug is the folder's name without `dev-`; for a new business, David first creates the empty folder; PDLF itself is only read, never written, because no project data is kept in `C:\pdlf`;
+- David starts it with `/pdlf-init` in OpenCode opened in the business's App 1 repository, `projects/{slug}-app1`; the business slug is the App 1 repository's name without `-app1`; every file of the business is written through its real path, `/mnt/c/dev/dev-{slug}/...`; for a new business, David first creates `C:\dev\dev-{slug}\{slug}-app1\`, runs `git init` in it and adds its link; PDLF itself is only read, never written, because no project data is kept in `C:\pdlf`;
 - the skill `pdlf-init` is a thin launcher: it tells the agent to carry out this step's reference with this step's configuration, and, for every step the run reaches, that step's reference with its configuration and test specification under `spec-execution-discipline`; once a step's module is written, the module replaces the three; the skill's source is `C:\pdlf\pdlf-library\skills-local\pdlf-init\SKILL.md` and David installs it with one copy command;
-- PDLF has no `opencode.json` of its own: the global configuration, the global `AGENTS.md` and Cupcake govern the agent, and OpenCode opened in the business folder may write only within it;
-- when it starts, it confirms the ledger answers and the business folder is the working folder, then runs the resume check: it reads every run of the business from the ledger and, for each unfinished run, offers to continue it at the first step of its route that is not complete or skipped; David chooses to continue a run or to take a new entry point;
+- PDLF has no `opencode.json` of its own: the global configuration, the global `AGENTS.md` and Cupcake govern the agent, and OpenCode opened in App 1 may write only within its own business;
+- when it starts, it confirms OpenCode was opened in App 1 and the ledger answers, then runs the resume check: it reads every run of the business from the ledger and, for each unfinished run, offers to continue it at the first step of its route that is not complete or skipped; David chooses to continue a run or to take a new entry point;
 - a run whose next step lies in a phase not yet built is reported as paused at that step and is not offered, so the run is never begun again from the start and is resumed when the phase is built;
 - it offers the entry points 02 to 10, and David chooses exactly one; the entry point asks its questions, checks the feature or update name is unused in the business and is never `app{n}`, runs the health check for an existing app, and writes the entry record into its own `steps` row; for entries 02 and 03 it first writes the `projects` row with the slug, the business's name and the mode, because every later row refers to it;
 - it runs the steps of the run's route in order, and only steps of the built phases; before each step it checks the step's dependencies are complete and every gate before it is passed for the run, and stops with a deviation when one is not;
@@ -50,7 +50,7 @@ Phase A has no gate. Its entry points join the pipeline at the steps the run ord
 
 ## Why it is built this way
 
-- **Opened in the business folder.** Everything a run writes belongs to one business, and Cupcake lets an agent write only within the folder it was opened in. Opening OpenCode there gives the run exactly the reach it needs, and none into PDLF or another business.
+- **Opened in App 1.** OpenCode opens only Git repositories, and App 1 is in every business. Cupcake lets an agent opened in any repository of a business write anywhere in that business, and nowhere else. Opening OpenCode in App 1 gives the run exactly the reach it needs, and none into PDLF or another business.
 - **A thin launcher.** The steps' configurations and references are the design; the skill only points the agent at them. While a phase is being proven, a correction to a step is a correction to its documents, and the launcher never changes.
 - **The resume check first.** Each phase is proven by continuing the same `mb-3-cs` run, so the orchestrator must find where a run stopped, from the ledger alone, without David having to remember it.
 - **An open row at every step's start.** A row written only at the end would leave a step that stopped part-way invisible; the open row makes it the step to resume.

@@ -1,6 +1,6 @@
 ---
 name: pdlf-init
-description: Starts PDLF's orchestrator (Step 1) for one Mybizz business. Resumes an unfinished run or takes a new entry point, then runs the steps of the run in order and stops for the developer at every step and gate. Invoked as /pdlf-init in OpenCode opened in the business folder, through its link /home/dev-p/projects/dev-{slug}. Explicit invocation only; never auto-trigger.
+description: Starts PDLF's orchestrator (Step 1) for one Mybizz business. Resumes an unfinished run or takes a new entry point, then runs the steps of the run in order and stops for the developer at every step and gate. Invoked as /pdlf-init in OpenCode opened in the business's App 1 repository, /home/dev-p/projects/{slug}-app1. Explicit invocation only; never auto-trigger.
 ---
 # pdlf-init
 
@@ -14,7 +14,7 @@ You are PDLF's orchestrator, Step 1. You carry one Mybizz business through PDLF 
 
 ## Never
 
-- Never write a file of the business through `/mnt/c/dev/dev-{slug}`: write it through the working folder, `/home/dev-p/projects/dev-{slug}`. The same path under `/mnt/c` is blocked by Cupcake.
+- Never write a file of the business through the App 1 link: write it through its real path, `/mnt/c/dev/dev-{slug}/...`.
 - Never commit or push. Never run `pdlf-gate.sh` or write to the ledger's `gates` table: David approves every gate.
 - Never read or write an app's `.env`. Never write `anvil.yaml`.
 - Never run a step whose phase `a01-config.md` does not list as built. Never run a step a second time once its row is `complete`.

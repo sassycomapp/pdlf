@@ -13,7 +13,7 @@ updated: "2026-10-29"
 
 **Must achieve:** a new feature for App 3 or App 5 entered into PDLF with its statement and its own short name, after the business is shown healthy, so that Step 12 describes it against that app's approved design.
 
-**Starts from:** the business folder, in which David opened OpenCode; the business's `projects` row and the app's run `app{n}`; David's answers; the values in [[[pdlf:app-factory/phase-a-init/a01-config|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md).
+**Starts from:** the business folder; App 1, in which David opened OpenCode; the business's `projects` row and the app's run `app{n}`; David's answers; the values in [[[pdlf:app-factory/phase-a-init/a01-config|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md).
 
 **Produces:** the entry-point `steps` row holding the entry record; the health check report; the baseline suite results; the checks file and the Step Receipt in `pdlf-outputs\a09\`; the Light BFT record.
 

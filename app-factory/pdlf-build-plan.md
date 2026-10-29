@@ -118,7 +118,7 @@ PDLF builds many Anvil applications, each a separate business of Mybizz. Every b
 
 PDLF is one continuous pipeline. Not all work starts at its beginning: work on an app that already exists does not re-scope what the app is about. The entry point decides where the work joins the pipeline and which steps run.
 
-David starts PDLF by running `/pdlf-init` in OpenCode opened in the business folder, `C:\dev\dev-{slug}\`. This starts Step 1, the orchestrator, which first offers to continue any unfinished run of the business, and whose first job is to offer the entry points. Steps 2 to 10 are the entry points. Their numbers imply no order, and exactly one is chosen:
+David starts PDLF by running `/pdlf-init` in OpenCode opened in the business's App 1 repository, `projects/{slug}-app1`. This starts Step 1, the orchestrator, which first offers to continue any unfinished run of the business, and whose first job is to offer the entry points. Steps 2 to 10 are the entry points. Their numbers imply no order, and exactly one is chosen:
 
 | Step | Entry point | App worked on | Where the work joins the pipeline |
 |---|---|---|---|
@@ -160,7 +160,7 @@ PDLF runs inside OpenCode, through the OpenCode Build agent and its model.
 
 **What goes to Anvil.** Everything committed to a code repository is pushed to Anvil and stored there, so `.gitignore` keeps out everything that must stay local, such as `.env`, credentials and test output. Anvil uses only `anvil.yaml`, `client_code`, `server_code` and `theme`. Two parts are public: every file in `theme/assets` can be opened by anyone with its link, and the code in `client_code` runs in the user's browser, where it can be read. Nothing secret, internal or for paying clients only ever goes in either. Client-facing documents, such as user guides, may be served from `theme/assets/docs`. Explainer videos are hosted on YouTube and linked or embedded. An agent changes `anvil.yaml` only through Anvil's `anvil-yaml` skill, validates every change with `anvil --json validate anvil.yaml`, and never changes its `dependencies`; schema changes reach the live app only when David applies them in Anvil's Data Tables view. The code repository is pulled to local after every step in which work was done in the Anvil editor.
 
-**Instruction files.** `AGENTS.md` is PDLF's single instruction file; there is no `CLAUDE.md`. PDLF has no `opencode.json`: OpenCode is opened in the business folder for every run, and the global settings, the global `AGENTS.md` and Cupcake govern it there, so the run can write within its own business and nowhere else.
+**Instruction files.** `AGENTS.md` is PDLF's single instruction file; there is no `CLAUDE.md`. PDLF has no `opencode.json`: OpenCode is opened in the business's App 1 repository for every run, and the global settings, the global `AGENTS.md` and Cupcake govern it there, so the run can write within its own business and nowhere else.
 
 **Artifacts.** Every artifact is written to its canonical place. Where that place is outside the project's step folder, a copy is also written to the step folder (section 1), so that each step's outputs for a project are all in one place.
 

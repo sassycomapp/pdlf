@@ -11,7 +11,7 @@ Step 6 is the entry point `compile-master-template`. Its job: a release of App 1
 
 ## How it works
 
-David opens OpenCode in the business folder and runs `/pdlf-init`, then chooses this entry. The orchestrator runs the health check, asks its questions, runs the app's whole test suite once as the baseline, and writes the entry record. The run continues at Step 41.
+David opens `projects/{slug}-app1` in OpenCode and runs `/pdlf-init`, then chooses this entry. The orchestrator runs the health check, asks its questions, runs the app's whole test suite once as the baseline, and writes the entry record. The run continues at Step 41.
 
 ## Why it works this way
 
@@ -20,6 +20,6 @@ David opens OpenCode in the business folder and runs `/pdlf-init`, then chooses 
 
 ## What has to happen
 
-- David opens OpenCode in the business folder and runs `/pdlf-init`.
+- David opens `projects/{slug}-app1` in OpenCode and runs `/pdlf-init`.
 - David answers the entry's questions.
 - David runs `/mb-close-out` when the entry stops, and says "continue".

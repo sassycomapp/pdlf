@@ -13,7 +13,7 @@ updated: "2026-10-29"
 
 **Must achieve:** a release of App 1's approved code into App 2, `master_template`, entered into PDLF after the business is shown healthy and App 1's suite passes, so that the release steps start from a sound App 1.
 
-**Starts from:** the business folder, in which David opened OpenCode; the business's `projects` row; App 1; the values in [[[pdlf:app-factory/phase-a-init/a01-config|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md).
+**Starts from:** the business folder; App 1, in which David opened OpenCode; the business's `projects` row; App 1; the values in [[[pdlf:app-factory/phase-a-init/a01-config|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md).
 
 **Produces:** the entry-point `steps` row holding the entry record; the health check report; the baseline suite results; the checks file and the Step Receipt in `pdlf-outputs\a06\`; the Light BFT record.
 

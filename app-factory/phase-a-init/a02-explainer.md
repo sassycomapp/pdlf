@@ -11,7 +11,7 @@ Step 2 is the entry point `new-app-no-context`. Its job: a new Mybizz business, 
 
 ## How it works
 
-David creates the empty business folder, opens OpenCode in it and runs `/pdlf-init`. He chooses this entry and gives the business's name and the mode. The orchestrator writes the business's row and the entry record, and the run continues at Step 11, which copies the project template into the folder.
+David creates the business folder with an empty App 1 repository and its link, opens `projects/{slug}-app1` in OpenCode and runs `/pdlf-init`. He chooses this entry and gives the business's name and the mode. The orchestrator writes the business's row and the entry record, and the run continues at Step 11, which copies the project template into the folder.
 
 ## Why it works this way
 
@@ -20,6 +20,6 @@ David creates the empty business folder, opens OpenCode in it and runs `/pdlf-in
 
 ## What has to happen
 
-- David opens OpenCode in the business folder and runs `/pdlf-init`.
+- David opens `projects/{slug}-app1` in OpenCode and runs `/pdlf-init`.
 - David answers the entry's questions.
 - David runs `/mb-close-out` when the entry stops, and says "continue".

@@ -13,7 +13,7 @@ updated: "2026-10-29"
 
 **Must achieve:** App 3, `blank_client_template`, entered into PDLF for a business whose existing apps are shown healthy, so that Step 11 sets it up; Steps 12 to 16 do not run for it, because it holds only App 1's schema, one startup module and its dependency on App 2.
 
-**Starts from:** the business folder, in which David opened OpenCode; the business's `projects` row; David's answers; the values in [[[pdlf:app-factory/phase-a-init/a01-config|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md).
+**Starts from:** the business folder; App 1, in which David opened OpenCode; the business's `projects` row; David's answers; the values in [[[pdlf:app-factory/phase-a-init/a01-config|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md).
 
 **Produces:** the entry-point `steps` row holding the entry record; the health check report; the checks file and the Step Receipt in `pdlf-outputs\a07\`; the Light BFT record.
 

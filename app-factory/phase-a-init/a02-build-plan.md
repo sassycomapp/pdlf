@@ -13,7 +13,7 @@ updated: "2026-10-29"
 
 **Must achieve:** a new Mybizz business, with no earlier material, entered into PDLF: its business row and its entry record written, so that Step 11 can set the business up from the project template.
 
-**Starts from:** the empty business folder `C:\dev\dev-{slug}\`, in which David opened OpenCode; David's answers; the values in [[[pdlf:app-factory/phase-a-init/a01-config|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md).
+**Starts from:** the business folder `C:\dev\dev-{slug}\`, holding only the empty App 1 repository, in which David opened OpenCode; David's answers; the values in [[[pdlf:app-factory/phase-a-init/a01-config|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md).
 
 **Produces:** the entry-point `steps` row holding the entry record; the `projects` row; the checks file and the Step Receipt in `pdlf-outputs\a02\`, written by Step 11; the Light BFT record.
 
@@ -22,8 +22,8 @@ updated: "2026-10-29"
 **Must be built so that:**
 - it works on App 1, run `app1`, and its run follows the Application route of [[[pdlf:app-factory/phase-a-init/a01-config|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md), joining at Step 11, route A;
 - no health check runs first: the business is not yet set up by PDLF, and Step 11 ends with the health check as its self-audit;
-- it is taken only in an empty business folder, because a folder that already holds material is an application with context (entry 03);
-- it asks only for the business's name and the mode: the slug is the folder's name, and Step 11 asks for the domain;
+- it is taken only when the business folder holds nothing but the empty App 1 repository, because a business that already holds material is an application with context (entry 03);
+- it asks only for the business's name and the mode: the slug is the App 1 repository's name without `-app1`, and Step 11 asks for the domain;
 - it writes the entry record into the `inputs_used` of its own `steps` row, with the fields of [[[pdlf:app-factory/phase-a-init/a01-config|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md), so every step of the run reads how the run began from one place;
 - it changes nothing in the business's folders: it records, and the steps it joins act.
 

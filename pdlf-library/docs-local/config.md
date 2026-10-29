@@ -27,7 +27,7 @@ Database `pdlf` on the Windows PostgreSQL 15 server, port 5433, role `pdlf_agent
 
 | Setting | Value |
 |---|---|
-| Project configuration | None: PDLF has no `opencode.json`. OpenCode is opened in the business folder for every run, under the global configuration and Cupcake |
+| Project configuration | None: PDLF has no `opencode.json`. OpenCode is opened in the business's App 1 repository for every run, under the global configuration and Cupcake |
 | Orchestrator skill | `pdlf-init`: source `C:\pdlf\pdlf-library\skills-local\pdlf-init\SKILL.md`, installed at `~/.config/opencode/skills/pdlf-init/SKILL.md` |
 
 ## GStack

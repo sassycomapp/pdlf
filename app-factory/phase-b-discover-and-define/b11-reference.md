@@ -15,7 +15,7 @@ What the agent does at Step 11, in order. Agent-facing. Fixed values: [[[pdlf:ap
 ## 2. Route A — a new business (entry 02)
 
 3. Take the slug, the business's name and the mode from the `projects` row. Ask David for the business's domain.
-4. Copy the contents of `C:\dev\project-template\dev-(SLUG)\` into `C:\dev\dev-{slug}\`, the empty business folder. Replace `(SLUG)` and `(slug)` in every folder and file name, and `{slug}` and `{project-name}` in every file. Remove every `doc-id` line from the copied documents.
+4. Copy the contents of `C:\dev\project-template\dev-(SLUG)\` into `C:\dev\dev-{slug}\`, the business folder. Replace `(SLUG)` and `(slug)` in every folder and file name, and `{slug}` and `{project-name}` in every file. Remove every `doc-id` line from the copied documents.
 5. Do section 5 for App 1.
 6. Ask David's permission to create the public GitHub repository `sassycomapp/{slug}-project-library`. If he refuses: stop; there is no project without it. On approval: create it and link `{slug}-project-library` to it.
 7. Copy the three blank pre-project files into `pre-project\`, replacing `{project-name}` and removing any `doc-id` line. Ask David to fill them in.

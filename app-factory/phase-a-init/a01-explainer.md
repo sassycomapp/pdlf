@@ -13,7 +13,7 @@ The orchestrator never runs on its own. It is David's tool, and it stops whereve
 
 ## How it works
 
-David opens OpenCode in the business folder, `C:\dev\dev-{slug}`, through its link in his home folder, `~/projects/dev-{slug}`, because the web UI opens only folders there, and types `/pdlf-init`. The agent then writes every file of the business through that link. That starts a small skill, `pdlf-init`, which tells the agent to follow this step's reference with this step's configuration. The business's slug is the folder's name.
+David opens the business's App 1 repository, `projects/{slug}-app1`, in the OpenCode project picker, because OpenCode opens only Git repositories and App 1 is in every business, and types `/pdlf-init`. The agent then writes every file of the business through its real path, `/mnt/c/dev/dev-{slug}`. That starts a small skill, `pdlf-init`, which tells the agent to follow this step's reference with this step's configuration. The business's slug is the App 1 repository's name without `-app1`.
 
 The orchestrator first checks the ledger answers, then looks for unfinished work. Every run of the business is in the ledger: its entry point's row and a row for every step it has reached. A run that has not reached its end is offered to David, at the first step that is not complete. A run whose next step belongs to a phase PDLF has not yet built is reported as paused there, and waits.
 
@@ -25,7 +25,7 @@ At a gate, the step shows David the gate summary. When he says yes, the orchestr
 
 ## Why it works this way
 
-- **It opens in the business folder.** Everything a run writes belongs to one business. Cupcake lets the agent write only within the folder OpenCode was opened in, so the run can reach its own business and nothing else, PDLF included.
+- **It opens in App 1.** Everything a run writes belongs to one business. Cupcake lets an agent opened in any repository of a business write anywhere in that business, so the run can reach its own business and nothing else, PDLF included.
 - **It resumes, never restarts.** PDLF is proven phase by phase on the same `mb-3-cs` run. The orchestrator finds where that run stopped from the ledger alone, so David never has to remember it, and nothing already proven is done again.
 - **Each step opens its row at the start.** A step that stopped part-way through, because a session ended or something failed, is then visible, and is the step the run resumes at.
 - **It runs only the phases that are built.** A step that is not yet built would be carried out from old drafts. The run waits at the first such step until its phase is built.
@@ -36,7 +36,7 @@ At a gate, the step shows David the gate summary. When he says yes, the orchestr
 ## What has to happen
 
 - David installs the `pdlf-init` skill with the command in the configuration, and again whenever its source changes.
-- David opens OpenCode in the business folder, through its link, before running `/pdlf-init`. For a new business, he creates the empty folder and its link first.
+- David opens `projects/{slug}-app1` in OpenCode before running `/pdlf-init`. For a new business, he first creates the App 1 folder, runs `git init` in it and adds its link.
 - David chooses the run to continue or the entry point to take, and answers the entry's questions.
 - David runs `/mb-close-out` after every step and says "continue" to go on.
 - David records every gate's approval with `pdlf-gate.sh`.

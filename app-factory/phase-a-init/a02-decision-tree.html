@@ -19,7 +19,7 @@ flowchart TD
     Start(["a01 item 8: entry 02"]) --> I1
     I1["1. Ask David for the business's name<br/>and the mode, full or test"]
     I1 --> I2
-    I2{"2. Check the business folder is empty?"}
+    I2{"2. Business folder holds only<br/>the empty App 1 repository?"}
     I2 -->|"No"| X2["Stop: deviation"]
     I2 -->|"Yes"| I3
     I3(["3. Return to a01 item 9:<br/>slug checks, business row, entry row, receipt, stop"])

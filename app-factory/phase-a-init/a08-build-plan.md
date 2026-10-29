@@ -13,7 +13,7 @@ updated: "2026-10-29"
 
 **Must achieve:** App 5, the management app, entered into PDLF for a business whose existing apps are shown healthy, so that Step 11 sets it up and Steps 12 to 16 design it: it receives every client instance's heartbeat, flags clients that need a higher plan tier, and runs each client's exit handover.
 
-**Starts from:** the business folder, in which David opened OpenCode; the business's `projects` row and App 1's approved design doc; David's answers; the values in [[[pdlf:app-factory/phase-a-init/a01-config|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md).
+**Starts from:** the business folder; App 1, in which David opened OpenCode; the business's `projects` row and App 1's approved design doc; David's answers; the values in [[[pdlf:app-factory/phase-a-init/a01-config|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md).
 
 **Produces:** the entry-point `steps` row holding the entry record; the health check report; the checks file and the Step Receipt in `pdlf-outputs\a08\`; the Light BFT record.
 
