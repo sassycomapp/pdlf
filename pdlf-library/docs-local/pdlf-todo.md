@@ -1,7 +1,7 @@
 ---
 title: "pdlf-todo"
 doc-id: "mb-13a3fbc9"
-updated: "2026-10-24"
+updated: "2026-10-29"
 ---
 # Active PDLF To-Do List
 
@@ -13,7 +13,11 @@ Action items only. Completed and closed items are not tracked here.
 
 ### A1. Rebuild Steps 17–46, one at a time
 
-Steps 17–46 are audited and rebuilt one at a time as each phase is reached, with the same rigour as Steps 11/12/14/15/16. Each step is rebuilt with the build rules in section B and ends with `/mb-close-out`. Each rebuilt step writes the project's documents into the folders of the project template (`C:\dev\project-template\dev-(SLUG)\`), as each folder's `README.md` names them.
+Steps 17–46 are audited and rebuilt one at a time as each phase is reached, with the same rigour as Steps 11/12/14/15/16. Each step is rebuilt with the build rules in section B and ends with `/mb-close-out`. Each rebuilt step writes the project's documents into the folders of the project template (`C:\dev\project-template\dev-(SLUG)\`), as each folder's `README.md` names them. Each phase is built, proven on `mb-3-cs` and finished in the order the [[[pdlf:pdlf-library/docs-local/app-factory-docs-update-method|App Factory Docs Update Method]]](C:/pdlf/pdlf-library/docs-local/app-factory-docs-update-method.md) sets out.
+
+### A2. Build Phase A for Phases A and B
+
+Build Steps 1 to 10 as the [[[pdlf:pdlf-library/docs-local/app-factory-docs-update-method|App Factory Docs Update Method]]](C:/pdlf/pdlf-library/docs-local/app-factory-docs-update-method.md) sets out: every entry point (Steps 2 to 10); the orchestrator as far as it runs Phases A and B; and the resume check. In the same batch, amend Step 11's route B so that an application with context is made in a copy of the project template, with its existing repositories as the context it brings, and settle how its existing app repositories are carried into the copy. Then David backs up `mb-3-cs`, and `mb-3-cs` runs through Phases A and B by entry point 03.
 
 ---
 
@@ -25,7 +29,7 @@ The rule and its enforcement are set by [[[pdlf:pdlf-library/adr-local/global-co
 
 ### B4. End-to-end proof of the governed memory pipeline
 
-The governed memory pipeline is proven end to end, once, on the first real step run on `mb-3-cs` in Pass 2.
+The governed memory pipeline is proven end to end, once, on the first real step run on `mb-3-cs`.
 
 ---
 
@@ -33,7 +37,7 @@ The governed memory pipeline is proven end to end, once, on the first real step 
 
 ### C2. Prove the test suite on `mb-3-cs`
 
-When `mb-3-cs` is pulled through PDLF in Pass 2, Step 11 runs PR-09 to prove the local runtime, both Uplink connections, the `TEST_` users with second factors and the mail catcher; each later step then runs its test specification. The local runtime is started with `ts_local.sh`; an app that uses dependency apps (the Material 3 theme, routing) also needs them served to the App Server, which is settled on this first run. Correct any test, template or tool that does not work as written before another application relies on it.
+When `mb-3-cs` first runs through Phase B, Step 11 runs PR-09 to prove the local runtime, both Uplink connections, the `TEST_` users with second factors and the mail catcher; each later step then runs its test specification. The local runtime is started with `ts_local.sh`; an app that uses dependency apps (the Material 3 theme, routing) also needs them served to the App Server, which is settled on this first run. Correct any test, template or tool that does not work as written before another application relies on it.
 
 ---
 
@@ -41,7 +45,7 @@ When `mb-3-cs` is pulled through PDLF in Pass 2, Step 11 runs PR-09 to prove the
 
 ### E1. Verify the security skills and GBrain results against the steps
 
-After Pass 1: compare the two Magnus919 security skill files installed in `~/.config/opencode/skills/`, and the GBrain results the steps were scoped from, with the steps that use them. Correct any step that does not match.
+For each phase, before it is proven: compare the two Magnus919 security skill files installed in `~/.config/opencode/skills/`, and the GBrain results the steps were scoped from, with the steps that use them. Correct any step that does not match.
 
 ### E2. Anvil's `$app-testing` skill
 
@@ -49,7 +53,7 @@ Anvil's `data-models` and `server-code` skills call `$app-testing`, and `anvil-y
 
 ### E5. Help and video documentation
 
-Design the user help documentation and the video documentation, as one design job, before `mb-3-cs` reaches Phase E in Pass 2.
+Design the user help documentation and the video documentation, as one design job, before Phase E is built.
 
 ### E8. Cloudflare R2
 
@@ -59,6 +63,6 @@ Each client has one or two R2 buckets of its own, in a Cloudflare account dedica
 
 ## F. Applications
 
-### F1. Align both project libraries with the project template
+### F1. Make `mb-4-ecom` in a copy of the project template
 
-`mb-3-cs-project-library` and `mb-4-ecom-project-library` were made before the project template. Bring each to the template's structure (`docs-local`, `adr-local`, `pdlf-outputs` with one folder per step, `pdlf-tickets`, `pre-project`, the Matt Pocock configuration in `docs\agents`) without changing any existing content. `mb-4-ecom` has `adr` and `docs` where the template has `adr-local` and `docs-local`. Done by Step 11, route B, when each application first enters PDLF; until then, nothing is moved.
+`mb-4-ecom` enters PDLF by entry point 03 after `mb-3-cs`. Step 11 makes it in a copy of the project template, as for `mb-3-cs` (A2), with its existing repositories as the context it brings, and moves its Medusa material from the project library's `wip\` into `reference-platform-local\` (`source\`, `reference\`, `notes\`) with David's permission. Until then, nothing in `mb-4-ecom` is moved.

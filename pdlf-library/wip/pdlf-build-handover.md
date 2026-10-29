@@ -1,17 +1,17 @@
 ---
 title: "pdlf-build-handover"
-updated: "2026-10-24"
+updated: "2026-10-29"
 doc-id: "mb-24ee05ab"
 ---
 # Handover — Building PDLF
 
 ## 1. What this is
 
-This handover continues the conversations of 2026-10-21 to 2026-10-24 in a fresh context window. Past conversations can be searched; search "PDLF test suite", "pdlf-todo cleanup", "skills pinned", "anvil-cli", "sanity sweep", "apple tree", "mb-5-pdlf removal", "three-tier testing", "Phase B Pass 1", "GLOSSARY.md" for detail behind any point here.
+This handover continues the conversations of 2026-10-21 to 2026-10-29 in a fresh context window. Past conversations can be searched; search "PDLF test suite", "pdlf-todo cleanup", "skills pinned", "anvil-cli", "sanity sweep", "apple tree", "mb-5-pdlf removal", "three-tier testing", "Phase B Pass 1", "GLOSSARY.md", "project template scaffold", "phase by phase" for detail behind any point here.
 
 The work is building PDLF: finishing every app-factory step so that PDLF can run an application from conception to release. `mb-3-cs` is the application that will be pulled through PDLF to pressure-test it. The objective is developing PDLF, not developing `mb-3-cs`.
 
-The sanity sweep of PDLF, `project-library-global`, `mybizz-os-docs`, `data-mybizz-mgt`, `dev-root-hub` and `mybizz-config-docs` is complete and committed (section 12). The working model below is stated in full in `pdlf-build-plan.md` (Preamble and sections 5 to 7); this section is its summary. Pass 1 has built Phase B; it continues with Phase C (section 7).
+The sanity sweep of PDLF, `project-library-global`, `mybizz-os-docs`, `data-mybizz-mgt`, `dev-root-hub` and `mybizz-config-docs` is complete and committed (section 12). The working model below is stated in full in `pdlf-build-plan.md` (Preamble and sections 5 to 7); this section is its summary. Phase B is built. PDLF is completed phase by phase (section 4): Phase A is built next, for Phases A and B, and then `mb-3-cs` runs through both (section 7).
 
 ## 2. The working model
 
@@ -40,19 +40,22 @@ Every step has a set of seven in its phase folder in `C:\pdlf\app-factory\`, nam
 | `-decision-tree.html` | The functional map of the step, generated from the reference |
 | `-config.md` | The step's fixed values, including its BFT level |
 | `-test-spec.md` | What the step must prove, drawn from the test suite; grows as the step is developed |
-| `-module.md` | The skill file the orchestrator executes, pulling the other six into one actionable form; written in Pass 3 |
+| `-module.md` | The skill file the orchestrator executes, pulling the other six into one actionable form; written once its step is proven |
 
 There is no separate learnings file per step: a lesson goes straight into the document it concerns (build plan rule 4.6).
 
 `C:\pdlf\app-factory\pdlf-build-plan.md` is the at-a-glance summary of the whole process for the orchestrator. It is deleted when the last step is built. There is no single grand map of tools: each step's reference links to the tools and sources that step uses.
 
-## 4. The passes
+## 4. The order of work
 
-1. **Pass 1 — get the documentation right.** Every step of every phase (B, C, D, E, F, then A): close the build plan, then write the config, reference and explainer afresh from it, generate the decision tree, and check the test spec. Modules are not written.
-2. **Pass 2 — pressure-test the documentation** by pulling `mb-3-cs` through PDLF from beginning to end. What fails or is missing changes PDLF. David backs up `mb-3-cs` first.
-3. **Pass 3 — write the modules** from the proven steps. PDLF is then done.
+PDLF is completed phase by phase. Every phase is **built** (its suites written), then **proven** (`mb-3-cs` runs through it and PDLF is corrected), then **finished** (its modules written).
 
-The method, its steps and its list of banned terms: `C:\pdlf\pdlf-library\docs-local\app-factory-docs-update-method.md`. Every file is scanned against the banned terms before it is sent. The banned wording "three levels of testing" bans only the words: the method is Levels 1, 2 and 3 of the test suite (section 11).
+1. Phase B is built.
+2. Phase A is built for Phases A and B: every entry point, the orchestrator as far as it runs Phases A and B, and the resume check (the orchestrator reads the ledger and offers to continue an unfinished run where it stopped).
+3. Phases A and B are proven, then finished: `mb-3-cs` runs through them by entry point 03, made by Step 11 in a copy of the project template, with its existing repositories as context.
+4. Phases C, D, E and F follow, one at a time: each is built, the orchestrator is extended to run it, the `mb-3-cs` run resumes where it stopped (never from the start), and the phase is proven, then finished.
+
+David backs up `mb-3-cs` before every run. The method, the order of work, its steps and its list of banned terms: `C:\pdlf\pdlf-library\docs-local\app-factory-docs-update-method.md`. Every file is scanned against the banned terms before it is sent. The banned wording "three levels of testing" bans only the words: the method is Levels 1, 2 and 3 of the test suite (section 11).
 
 ## 5. What exists, by category
 
@@ -83,7 +86,11 @@ Read `C:\mybizz\mybizz-os-docs\os-reference-docs\repo-organization.md` for every
 
 **System documents** (`C:\mybizz\mybizz-config-docs`): four documents per system (config, reference, explainer, learnings). Written only by its own skills, `mb-sysdoc-creator` and `mb-config-manager`, through OpenCode.
 
-**Each project library** (`C:\dev\dev-{slug}\{slug}-project-library`): `docs-local`, `adr-local`, `pdlf-outputs\{step}\` (every step's receipt and artefacts), `pdlf-tickets`, `docs-local\schema-migration-log.md`, `docs-local\releases\v{n}\`. Application terms go in the project's `GLOSSARY.md`.
+**The project template** (`C:\dev\project-template`, repository `project-template`): the full scaffold of a Mybizz business, from which Step 11 makes every project. Every folder has a `README.md` stating what belongs in it. It is not a GBrain source and is not in `commit-all.sh`: David commits it by hand with plain `git`. It holds:
+- the app folders, each with its `.gitignore` and `README.md`; App 1 and App 5 also with `tests\logic\`, `tests\integration\`, `tests\security\`, `scripts\` and `theme\assets\docs\`;
+- the project library: `pre-project`, `docs-local` (with `design\`, `strategy\`, `releases\`, `GLOSSARY.md`, `schema-migration-log.md`), `docs-standard-local` (22 standard documents), `adr-local`, `policy-local`, `specifications-local`, `standard-operating-procedures-local`, `guides-local`, `legal-local` (the clause builder's default clauses, Mybizz's agreements with the client, the compliance record and the PAIA manual App 5 publishes), `prompts-local`, `templates-local`, `assets-local`, `ui` (one folder per package, every one kept; the model form folder `(PACKAGE-NAME)\(FORM-NAME)\`), `wireframe`, `docs\agents`, `pdlf-tickets`, `pdlf-outputs\{step}\`, `reports-local` (skill reports outside PDLF), `reference-platform-local` (a reference platform's source, reference and notes, ignored by git and therefore never indexed by GBrain), `.out-of-scope`, `V2`, `wip`.
+
+**Each project library** (`C:\dev\dev-{slug}\{slug}-project-library`) has the template's folders. Application terms go in the project's `GLOSSARY.md`.
 
 **Projects:** `mb-3-cs` and `mb-4-ecom` (`C:\dev\dev-mb-3-cs`, `C:\dev\dev-mb-4-ecom`), each with `{slug}-app1`, `-app2`, `-app3`, `-app5` and `{slug}-project-library`. Fixing either project is outside the PDLF work. Notes for `mb-3-cs` from the sweep are in `C:\dev\dev-mb-3-cs\wip\` (`mb-3-cs-notes-from-global-sweep.md`, `mb-3-cs-nomenclature-part3.md`), for when `mb-3-cs` is worked on.
 
@@ -116,11 +123,19 @@ Rules:
 - The script never overwrites a results file; a re-run takes a new name.
 - The repository is not a GBrain source, has no `mb-doc-check` hook and is not in `commit-all.sh`.
 
-## 7. Phase C: where Pass 1 continues
+## 7. What comes next
+
+### Phase A, then the first run
+
+To-do A2 sets the job: build Steps 1 to 10 (every entry point; the orchestrator as far as it runs Phases A and B; the resume check), and in the same batch amend Step 11's route B so that an application with context is made in a copy of the project template, with its existing repositories as context, settling how its existing app repositories are carried into the copy. The Phase A suites are old drafts. Then David backs up `mb-3-cs` and it runs through Phases A and B by entry point 03.
+
+### Phase B, the model
 
 Phase B is built: b11, b12, b14, b15 and b16 are closed, and their suites are the model of a finished step. b13 is a placeholder (step not used). Phase B ends at the gate `domain-locked` (Step 16), which locks the glossary, its decisions, the data design and every other Phase B output (section 9).
 
-Pass 1 continues with Phase C, Steps 17 to 28, in order. Per step: close the build plan; correct the test spec; write the config, reference and explainer afresh from the closed plan; generate the decision tree; scan every file; update the built report; send the files.
+### Phase C, the next phase to be built
+
+Phase C is built once Phases A and B are proven: Steps 17 to 28, in order. Per step: close the build plan; correct the test spec; write the config, reference and explainer afresh from the closed plan; generate the decision tree; scan every file; update the built report; send the files.
 
 | Step | Build plan | Config | Reference | Explainer | Decision tree |
 |---|---|---|---|---|---|
@@ -145,11 +160,11 @@ Findings for later steps, settled when each is built:
 - **c26, d31:** forms designed after Step 15 are added to the app's `access-matrix.yaml`.
 - **e38:** GStack's test plan is saved under the project library's GStack name; `/qa-only`, started from an app repository, has another GStack name and does not find it, so the step pastes `test-plan.md` and GStack's test plan into it.
 
-Old configs and references in every phase still link to `makepdlf`/`stepwise` documents that do not exist, or name the retired `two-gate-extension` ADR in plain words; Pass 1 rewrites them afresh.
+Old configs and references in every phase still link to `makepdlf`/`stepwise` documents that do not exist, or name the retired `two-gate-extension` ADR in plain words; each is rewritten afresh when its step is built.
 
 ## 8. How every step is built
 
-These requirements apply to every step of Pass 1, without exception.
+These requirements apply to every step built, without exception.
 
 1. **Do the job; do not discuss it.** First a task list of the supporting structures the step needs, then a task list per document; then the work; then the files. No rounds of findings and questions.
 2. **Ask David only what Claude is truly incapable of deciding.** Claude is the engineer and David is not a programmer. A technical choice is Claude's; only an intent that cannot be found in any document is David's, asked with a recommended answer and its reason.
@@ -221,10 +236,10 @@ The three-tier method (pure logic, Uplink integration, verification in the brows
 - `mb-5-pdlf` no longer exists: removed from Anvil, GitHub, David's PC, GBrain, OpenCode, fstab, `commit-all.sh`, `mb-doc-check.sources`, the skills and every document. It is a banned term.
 - The judgement trail is retired; its rules have homes.
 - `docmap.md` matches the real folders; it is rebuilt with `python3 /mnt/c/mybizz/scripts/build-docmap.py --write`.
-- `pdlf-todo.md`: E1 (verify the security skills and GBrain results against the steps) stays open until after Pass 1; E5 (help and video documentation) is done before `mb-3-cs` reaches Phase E.
+- `pdlf-todo.md`: E1 (verify the security skills and GBrain results against the steps) is done for each phase before it is proven; E5 (help and video documentation) is done before Phase E is built.
 - The stray copy of PDLF documents under `phase-c-design-and-plan\pdlf-library\` is gone. `pdlf-build-plan.md` names the test suite and the step test specifications.
-- `project-template` was left out of the sweep: it is rebuilt entirely later.
-- Two links do not match their target's exact name and the hook lists them as older broken links (not blocking): in `pdlf-explainer`, the link to `pol-INDEX` is written `pol-index`; in `pdlf-skills-scoping-strategy`, the link to `data-mybizz-mgt` folder `Tools and apps` is written `tools-and-apps`. Fix both in the first PDLF batch of Pass 1.
+- `project-template` holds the full scaffold (section 5); Steps 11 and 12 and the health check match it.
+- Two links do not match their target's exact name and the hook lists them as older broken links (not blocking): in `pdlf-explainer`, the link to `pol-INDEX` is written `pol-index`; in `pdlf-skills-scoping-strategy`, the link to `data-mybizz-mgt` folder `Tools and apps` is written `tools-and-apps`. Fix both in the Phase A batch.
 
 ## 13. Working with David
 
@@ -242,5 +257,6 @@ The three-tier method (pure logic, Uplink integration, verification in the brows
 
 ## 14. First actions in the next session
 
-1. Clone `pdlf` and `project-library-global`; read `pdlf-build-plan.md`, `app-factory-docs-update-method.md`, the Phase B suites (`b11` to `b16`, the models of a finished step), section 9, and the next step's suite.
-2. Continue Pass 1 with Phase C, from `c17`, then Phases D, E, F and A, built as section 8 sets out.
+1. Clone `pdlf`, `project-library-global` and `project-template`; read `pdlf-build-plan.md`, `C:\pdlf\pdlf-library\docs-local\app-factory-docs-update-method.md`, the Phase B suites (`b11` to `b16`, the models of a finished step), section 9, and the Phase A suites (`a01` to `a10`).
+2. Build Phase A as to-do A2 and section 7 set out, built as section 8 sets out.
+3. Then David backs up `mb-3-cs`, and `mb-3-cs` runs through Phases A and B.

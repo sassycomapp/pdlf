@@ -2,7 +2,7 @@
 
 title: "pdlf-skills-scoping-strategy"
 doc-id: "mb-bf8e49f0"
-updated: "2026-10-23"
+updated: "2026-10-29"
 
 ---
 
@@ -10,11 +10,11 @@ updated: "2026-10-23"
 
 ## 1. What this document is
 
-This document is the strategy by which PDLF's skills are scoped. It states what PDLF is for, the order in which PDLF's purpose is reasoned down to its skills, the layers every step is scoped across, the skill commitments already made, the method by which each skill is chosen, how conflicts are settled, which sources are used, the passes in which the work is done, and where every result is recorded.
+This document is the strategy by which PDLF's skills are scoped. It states what PDLF is for, the order in which PDLF's purpose is reasoned down to its skills, the layers every step is scoped across, the skill commitments already made, the method by which each skill is chosen, how conflicts are settled, which sources are used, the stages in which the work is done, and where every result is recorded.
 
-It is the cornerstone of PDLF's skill selection. Every pass of the skills work is carried out to it.
+It is the cornerstone of PDLF's skill selection. Every stage of the skills work is carried out to it.
 
-It does not map skills to steps. That mapping is the output of the passes (section 10), and it is recorded in the step build plans and the skills catalog (section 11), never here.
+It does not map skills to steps. That mapping is the output of the stages (section 10), and it is recorded in the step build plans and the skills catalog (section 11), never here.
 
 Where this document and the system build plan, `C:\pdlf\app-factory\pdlf-build-plan.md`, disagree about what PDLF is, the build plan is right and this document is corrected. Where they disagree about how skills are scoped, this document is right and the build plan is corrected.
 
@@ -86,7 +86,7 @@ Every step is scoped across every layer below. For each layer, the step either n
 | Security                | Prevention in design and build, step-triggered review, and assessment.                                                                                                             | `mb-sentinel-review`; Magnus919's `secure-software-engineering` and `security-audit-methodology`; GStack's `/cso`.                                            |
 | Testing | What the step must prove, in its test specification (`{step}-test-spec.md`). | The test suite in `C:\dev\project-library-global\test-suite\` and PDLF's process tests. |
 | Documentation           | Documents the step produces for the application, for its developers and, later, for its users.                                                                                     | GStack's documentation skills, MiniMax's document skills, `mb-project-docs`. User help documentation is designed as one job with video documentation (to-do E5).                                   |
-| Display and diagrams    | Wireframes, UI screens, decision trees, workflows, user flows and feature flows.                                                                                                   | Magdoub `wireframe`; `mb-archify-scope` and Archify. Video documentation is designed with user help documentation (to-do E5). ["[[[data-mybizz-mgt:tools-and-apps/video-creation-suite]]](C:/data-mybizz-mgt/Tools%20and%20apps/video-creation-suite.md)"] |
+| Display and diagrams    | Wireframes, UI screens, decision trees, workflows, user flows and feature flows.                                                                                                   | Magdoub `wireframe`; `mb-archify-scope` and Archify. Video documentation is designed with user help documentation (to-do E5). ["[[data-mybizz-mgt:tools-and-apps/video-creation-suite]]"] |
 | Memory and learning     | What the step looks up before it acts, and what it teaches the next build.                                                                                                         | GBrain, `mb-submit-memory` with the memory governor, Graphify, GStack's `learn`.                                                                              |
 
 The layers exist so that no kind of skill is forgotten. A step is scoped only when every layer has been considered.
@@ -139,11 +139,11 @@ Every repository the skills work needs is public. A repository that appears priv
 
 A GBrain search result is a pointer. The file it points to is read before anything is applied from it.
 
-## 10. The passes
+## 10. The stages
 
-The skills work runs inside PDLF's three passes ([[[pdlf:pdlf-library/docs-local/app-factory-docs-update-method|App Factory Docs Update Method]]](C:/pdlf/pdlf-library/docs-local/app-factory-docs-update-method.md)).
+The skills work runs inside the stages every phase of PDLF passes through, built, proven and finished, in the order set out in the [[[pdlf:pdlf-library/docs-local/app-factory-docs-update-method|App Factory Docs Update Method]]](C:/pdlf/pdlf-library/docs-local/app-factory-docs-update-method.md).
 
-### Pass 1: the documents
+### When a phase is built
 
 **Purpose:** from the documents and the operational context, establish what each step does and scope the skills it requires.
 
@@ -158,15 +158,15 @@ The skills work runs inside PDLF's three passes ([[[pdlf:pdlf-library/docs-local
 
 **Produces:** the skills of every step, recorded in its build plan with their reasons; any system-wide rule recorded in the system build plan; and the catalog's PDLF Steps column filled in from the steps.
 
-### Pass 2: a real application
+### When a phase is proven
 
-**Purpose:** pull `mb-3-cs` (Mybizz consulting and services) through PDLF from beginning to end, so that what building a real application demands corrects the skill mapping. `mb-4-ecom` (Mybizz e-commerce) follows.
+**Purpose:** run `mb-3-cs` (Mybizz consulting and services) through the phase, so that what building a real application demands corrects the skill mapping. `mb-4-ecom` (Mybizz e-commerce) follows.
 
-**Produces:** corrections to the intent, the steps and the skill mapping, recorded in the same places as Pass 1.
+**Produces:** corrections to the intent, the steps and the skill mapping, recorded in the same places as when the phase is built.
 
 ### Services designed on their own
 
-User help documentation and video documentation are designed as one job, before `mb-3-cs` reaches Phase E in Pass 2 (to-do E5). Testing is designed: the test suite and each step's test specification.
+User help documentation and video documentation are designed as one job, before Phase E is built (to-do E5). Testing is designed: the test suite and each step's test specification.
 
 ## 11. Where the results are recorded
 
@@ -187,7 +187,7 @@ When a step is built, its build plan becomes the step's config, reference and ex
 
 - **Claude is the engineer.** Claude reads the sources, makes the technical decisions, chooses the skills with their reasons, and tells David plainly where anything is wrong, including in Claude's own work. David is asked only about intent.
 - **David approves every change.** No step build plan, rule or catalog entry is changed without his approval.
-- **The work is done, not discussed.** This strategy closes the scoping conversation. From here the passes are carried out against the documents, with questions raised only where a decision is David's to make.
+- **The work is done, not discussed.** This strategy closes the scoping conversation. From here the stages are carried out against the documents, with questions raised only where a decision is David's to make.
 - **One consistent rule everywhere.** Every step is scoped in the same way, across the same layers, recorded in the same form, so that no agent ever has to choose between methods.
 
 ## 13. Why it works this way

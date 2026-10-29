@@ -1,7 +1,7 @@
 ---
 title: "pdlf-build-plan"
 doc-id: "mb-64817b10"
-updated: "2026-10-24"
+updated: "2026-10-29"
 ---
 # PDLF Build Plan
 
@@ -56,9 +56,9 @@ C:\dev\dev-{slug}\
 
 Each code repository is one Anvil application and synchronises with Anvil through GitHub. The project library holds everything else for all of the business's apps: documents, decisions and PDLF records. Code and documentation are never mixed. One project library serves the whole business because its apps share one design, one vocabulary and one set of decisions; anything specific to one app has its own folder inside the library. The project library is the project's GBrain source.
 
-No project data is stored in PDLF; all project data is stored in the project folders at `C:\dev\`.
+No project data is stored in PDLF; all project data is stored in the project folders at `C:\dev\`. Every project folder is made by Step 11 from the project template, `C:\dev\project-template\dev-(SLUG)\`, in which each folder's `README.md` states what belongs in it.
 
-**Step outputs.** Every project library holds a folder `pdlf-outputs\`, with one folder per step, named as in the app factory: `a01\` to `a10\`, `b11\` to `b16\`, `c17\` to `c28\`, `d29\` to `d34\`, `e35\` to `e40b\` and `f41\` to `f46\`, including `b13\`, `c24\` and `c25\`. Everything a step produces for that project is kept in its folder, whichever skill produced it: the step's receipt, a copy of every artifact a skill saved elsewhere (GStack, for example, saves in its own place), and the artifacts of skills that are told where to save (such as Archify, the Magdoub wireframe skills and Sentinel), which save there directly. Each file name begins with the slug, the step and the run (`app{n}` for a whole application, or the feature's short name), for example `mb-3-cs-b15-app1-test-plan.md`, so the step and the run that produced it are clear and a feature never overwrites the application's files. Step 11 creates the folders for a new project.
+**Step outputs.** Every project library holds a folder `pdlf-outputs\`, with one folder per step, named as in the app factory: `a01\` to `a10\`, `b11\` to `b16\`, `c17\` to `c28\`, `d29\` to `d34\`, `e35\` to `e40b\` and `f41\` to `f46\`, including `b13\`, `c24\` and `c25\`. Everything a step produces for that project is kept in its folder, whichever skill produced it: the step's receipt, a copy of every artifact a skill saved elsewhere (GStack, for example, saves in its own place), and the artifacts of skills that are told where to save (such as Archify, the Magdoub wireframe skills and Sentinel), which save there directly. Each file name begins with the slug, the step and the run (`app{n}` for a whole application, or the feature's short name), for example `mb-3-cs-b15-app1-test-plan.md`, so the step and the run that produced it are clear and a feature never overwrites the application's files. The project template holds these folders, and Step 11 copies them for a new project.
 
 The business slug is the business's short name as recorded at Step 11, all lowercase, with its hyphens kept. Each app's folder and repository is named `{slug}-app{n}`, with no descriptive word. App 4 lives on the client's own Anvil account and has no folder. Application code is never a GBrain source: agents read it directly from the app folder.
 
@@ -112,7 +112,7 @@ PDLF builds many Anvil applications, each a separate business of Mybizz. Every b
 
 **Quality.** Every feature is built, tested and signed off by David before the next feature begins. Each feature is tested as the test suite sets out ([[[default:test-suite/ts-method|Test Suite — Method]]](C:/dev/project-library-global/test-suite/ts-method.md)), which includes the testing and quality methodology: its logic on its own, then connected to the Anvil application, then by hand in the browser, each level only after the one before passes. Every step proves itself through its own test specification. The findings of every review and every quality check are written to a file; a review that left no file did not happen.
 
-**First builds.** `mb-3-cs` (Mybizz CS, consulting and services) is the first application pulled through PDLF, from beginning to end, to prove PDLF; David backs it up first. The other Mybizz businesses, such as `mb-4-ecom` (e-commerce), follow.
+**First builds.** `mb-3-cs` (Mybizz CS, consulting and services) is the first application pulled through PDLF, to prove it. It runs through PDLF phase by phase, as each phase is built, and resumes where it stopped each time a phase is added; it is made in a copy of the project template; and David backs it up before every run ([[[pdlf:pdlf-library/docs-local/app-factory-docs-update-method|App Factory Docs Update Method]]](C:/pdlf/pdlf-library/docs-local/app-factory-docs-update-method.md)). The other Mybizz businesses, such as `mb-4-ecom` (e-commerce), follow.
 
 ### 4. Entry points
 
@@ -154,7 +154,7 @@ Why: an update or a feature on an app that is already defined does not need the 
 
 PDLF runs inside OpenCode, through the OpenCode Build agent and its model.
 
-**The orchestrator** is Step 1. It offers the entry points, runs the steps selected for the chosen entry point in order, and stops at every gate. Its design is completed in parts, alongside the steps it runs, and is finished only when every step is designed.
+**The orchestrator** is Step 1. It offers the entry points, runs the steps selected for the chosen entry point in order, and stops at every gate. Its design is completed in parts, alongside the steps it runs, and is finished only when every step is designed. When it starts, it reads the ledger and offers to continue any unfinished run at the step where it stopped, so that a run is never begun again from the start.
 
 **Steps and modules.** Every step lives in `app-factory/`, in the folder of its phase: `phase-a-init` (1 to 10), `phase-b-discover-and-define` (11 to 16), `phase-c-design-and-plan` (17 to 28), `phase-d-scaffold-and-assemble` (29 to 34), `phase-e-build-and-verify` (35 to 40b) and `phase-f-ship-and-monitor` (41 to 46); `phase-g` is added for the remaining apps when they are designed. Step numbers are global and never renumbered within a phase, because the number is the step's identity in the ledger, the gates, the receipts and every document. Steps 13, 24 and 25 are not used. Inserted steps carry a lowercase letter after the number, only to keep the files in order: 35a, 38a, 40b and 42a. Every step has the same seven files, the set of seven (section 7), named with the phase letter and the step number, for example `b11-module.md`. Steps 13, 24 and 25 each keep one placeholder file instead. When a step is built, it is compiled into its module: a single, self-contained unit holding the finished step and everything only that step needs. Until then the module is empty. Anything several modules need about how PDLF itself works lives once, in `pdlf-library`.
 
@@ -242,7 +242,7 @@ Every step is built to these rules. They are stated once here and not repeated i
 
 **4.7 Fit for purpose before thoroughness.** For each step, ask whether it earns its place. Phase C has three near-identical "pull to local" steps (18, 30 and 33): one shared procedure may serve all three. For each review, ask what only it covers, so that the developer is never asked the same question twice.
 
-**4.8 Proven before finished.** A step is recorded as built when its documents are complete, and as finished only after `mb-3-cs` has been pulled through it and it has been packaged as its module.
+**4.8 Proven before finished.** A step is recorded as built when its documents are complete, as proven when `mb-3-cs` has run through it, and as finished when it has been packaged as its module. The order in which the phases pass through these stages is set out in the [[[pdlf:pdlf-library/docs-local/app-factory-docs-update-method|App Factory Docs Update Method]]](C:/pdlf/pdlf-library/docs-local/app-factory-docs-update-method.md).
 
 ---
 

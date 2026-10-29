@@ -1,7 +1,7 @@
 ---
 title: "pdlf-built-report"
 doc-id: "mb-36208a1a"
-updated: "2026-10-24"
+updated: "2026-10-29"
 ---
 # PDLF Built Report
 
@@ -11,7 +11,7 @@ This document records what has been built of PDLF so far, step by step. For each
 
 The steps are listed in the same order and under the same phases as the build plan, so the two can be read side by side. Every step has an entry, whether or not any work has been done on it yet, so that each piece of work is recorded in its place as it happens.
 
-Each entry is updated whenever its step is built, corrected or packaged. A step has one of four statuses: **not yet built**; **built** (Pass 1: its build plan is closed and its test specification, configuration, reference, explainer and decision tree are written); **proven** (Pass 2: `mb-3-cs` has run through it); **finished** (Pass 3: its module is written).
+Each entry is updated whenever its step is built, corrected or packaged. A step has one of four statuses: **not yet built**; **built** (its build plan is closed and its test specification, configuration, reference, explainer and decision tree are written); **proven** (`mb-3-cs` has run through it); **finished** (its module is written). The order in which the phases reach each status is set out in the [[[pdlf:pdlf-library/docs-local/app-factory-docs-update-method|App Factory Docs Update Method]]](C:/pdlf/pdlf-library/docs-local/app-factory-docs-update-method.md).
 
 This report is a working tool for building PDLF. It is deleted when PDLF is finished.
 
@@ -21,25 +21,25 @@ This report is a working tool for building PDLF. It is deleted when PDLF is fini
 
 #### Step 1: Orchestrator
 
-**File:** `app-factory/phase-a-init/01-orchestrator.md`
+**Files:** in `app-factory/phase-a-init/`: `a01-build-plan.md`, `a01-test-spec.md`, `a01-config.md`, `a01-reference.md`, `a01-explainer.md`, `a01-decision-tree.html`, `a01-module.md`.
 
-**Status:** Old draft, written before `pdlf-intent.md`. Not yet designed.
+**Status:** Not yet built. Its files are old drafts. It is built next, as far as it runs Phases A and B, with the resume check.
 
 #### Steps 2 to 10: Entry points
 
-**Files:** `app-factory/phase-a-init/04-undefined.md` to `10-undefined.md` (placeholders; 2 and 3 have no file).
+**Files:** in `app-factory/phase-a-init/`: the suites `a02` to `a10`, seven files each.
 
-**Status:** Not yet designed.
+**Status:** Not yet built. Their files are old drafts. They are built next, with Step 1.
 
 ### Phase B — Discover and Define
 
-**Phase status:** Built (Pass 1): every step of the phase is built, and the phase ends at the gate `domain-locked` (Step 16).
+**Phase status:** Built: every step of the phase is built, and the phase ends at the gate `domain-locked` (Step 16).
 
 #### Step 11: Init
 
 **Status:** Built.
 
-**Files:** in `app-factory/phase-b-discover-and-define/`: `b11-build-plan.md`, `b11-test-spec.md`, `b11-config.md`, `b11-reference.md`, `b11-explainer.md`, `b11-decision-tree.html`, `b11-module.md` (empty until Pass 3).
+**Files:** in `app-factory/phase-b-discover-and-define/`: `b11-build-plan.md`, `b11-test-spec.md`, `b11-config.md`, `b11-reference.md`, `b11-explainer.md`, `b11-decision-tree.html`, `b11-module.md` (empty until the step is proven).
 
 **What it does and produces:** [[[pdlf:app-factory/phase-b-discover-and-define/b11-explainer|Step 11 Explainer]]](C:/pdlf/app-factory/phase-b-discover-and-define/b11-explainer.md); [[[pdlf:app-factory/phase-b-discover-and-define/b11-config|Step 11 Configuration]]](C:/pdlf/app-factory/phase-b-discover-and-define/b11-config.md).
 
@@ -47,7 +47,7 @@ This report is a working tool for building PDLF. It is deleted when PDLF is fini
 
 **Status:** Built.
 
-**Files:** in `app-factory/phase-b-discover-and-define/`: `b12-build-plan.md`, `b12-test-spec.md`, `b12-config.md`, `b12-reference.md`, `b12-explainer.md`, `b12-decision-tree.html`, `b12-module.md` (empty until Pass 3).
+**Files:** in `app-factory/phase-b-discover-and-define/`: `b12-build-plan.md`, `b12-test-spec.md`, `b12-config.md`, `b12-reference.md`, `b12-explainer.md`, `b12-decision-tree.html`, `b12-module.md` (empty until the step is proven).
 
 **What it does and produces:** [[[pdlf:app-factory/phase-b-discover-and-define/b12-explainer|Step 12 Explainer]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-explainer.md); [[[pdlf:app-factory/phase-b-discover-and-define/b12-config|Step 12 Configuration]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-config.md).
 
@@ -59,7 +59,7 @@ This report is a working tool for building PDLF. It is deleted when PDLF is fini
 
 **Status:** Built.
 
-**Files:** in `app-factory/phase-b-discover-and-define/`: `b14-build-plan.md`, `b14-test-spec.md`, `b14-config.md`, `b14-reference.md`, `b14-explainer.md`, `b14-decision-tree.html`, `b14-module.md` (empty until Pass 3).
+**Files:** in `app-factory/phase-b-discover-and-define/`: `b14-build-plan.md`, `b14-test-spec.md`, `b14-config.md`, `b14-reference.md`, `b14-explainer.md`, `b14-decision-tree.html`, `b14-module.md` (empty until the step is proven).
 
 **What it does and produces:** [[[pdlf:app-factory/phase-b-discover-and-define/b14-explainer|Step 14 Explainer]]](C:/pdlf/app-factory/phase-b-discover-and-define/b14-explainer.md); [[[pdlf:app-factory/phase-b-discover-and-define/b14-config|Step 14 Configuration]]](C:/pdlf/app-factory/phase-b-discover-and-define/b14-config.md).
 
@@ -67,7 +67,7 @@ This report is a working tool for building PDLF. It is deleted when PDLF is fini
 
 **Status:** Built.
 
-**Files:** in `app-factory/phase-b-discover-and-define/`: `b15-build-plan.md`, `b15-test-spec.md`, `b15-config.md`, `b15-reference.md`, `b15-explainer.md`, `b15-decision-tree.html`, `b15-module.md` (empty until Pass 3).
+**Files:** in `app-factory/phase-b-discover-and-define/`: `b15-build-plan.md`, `b15-test-spec.md`, `b15-config.md`, `b15-reference.md`, `b15-explainer.md`, `b15-decision-tree.html`, `b15-module.md` (empty until the step is proven).
 
 **What it does and produces:** [[[pdlf:app-factory/phase-b-discover-and-define/b15-explainer|Step 15 Explainer]]](C:/pdlf/app-factory/phase-b-discover-and-define/b15-explainer.md); [[[pdlf:app-factory/phase-b-discover-and-define/b15-config|Step 15 Configuration]]](C:/pdlf/app-factory/phase-b-discover-and-define/b15-config.md).
 
@@ -75,7 +75,7 @@ This report is a working tool for building PDLF. It is deleted when PDLF is fini
 
 **Status:** Built.
 
-**Files:** in `app-factory/phase-b-discover-and-define/`: `b16-build-plan.md`, `b16-test-spec.md`, `b16-config.md`, `b16-reference.md`, `b16-explainer.md`, `b16-decision-tree.html`, `b16-module.md` (empty until Pass 3).
+**Files:** in `app-factory/phase-b-discover-and-define/`: `b16-build-plan.md`, `b16-test-spec.md`, `b16-config.md`, `b16-reference.md`, `b16-explainer.md`, `b16-decision-tree.html`, `b16-module.md` (empty until the step is proven).
 
 **What it does and produces:** [[[pdlf:app-factory/phase-b-discover-and-define/b16-explainer|Step 16 Explainer]]](C:/pdlf/app-factory/phase-b-discover-and-define/b16-explainer.md); [[[pdlf:app-factory/phase-b-discover-and-define/b16-config|Step 16 Configuration]]](C:/pdlf/app-factory/phase-b-discover-and-define/b16-config.md).
 
