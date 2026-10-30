@@ -2,7 +2,7 @@
 
 title: "pdlf-skills-scoping-strategy"
 doc-id: "mb-bf8e49f0"
-updated: "2026-10-29"
+updated: "2026-10-30"
 
 ---
 
@@ -86,7 +86,7 @@ Every step is scoped across every layer below. For each layer, the step either n
 | Security                | Prevention in design and build, step-triggered review, and assessment.                                                                                                             | `mb-sentinel-review`; Magnus919's `secure-software-engineering` and `security-audit-methodology`; GStack's `/cso`.                                            |
 | Testing | What the step must prove, in its test specification (`{step}-test-spec.md`). | The test suite in `C:\dev\project-library-global\test-suite\` and PDLF's process tests. |
 | Documentation           | Documents the step produces for the application, for its developers and, later, for its users.                                                                                     | GStack's documentation skills, MiniMax's document skills, `mb-project-docs`. User help documentation is designed as one job with video documentation (to-do E5).                                   |
-| Display and diagrams    | Wireframes, UI screens, decision trees, workflows, user flows and feature flows.                                                                                                   | Magdoub `wireframe`; `mb-archify-scope` and Archify. Video documentation is designed with user help documentation (to-do E5). ["[[data-mybizz-mgt:tools-and-apps/video-creation-suite]]"] |
+| Display and diagrams    | Wireframes, UI screens, decision trees, workflows, user flows and feature flows.                                                                                                   | Magdoub `wireframe`; `mb-archify-scope` and Archify. Video documentation is designed with user help documentation (to-do E5). ["[[[data-mybizz-mgt:creative/video-creation-suite/video-creation-suite]]](C:/data-mybizz-mgt/creative/video-creation-suite/video-creation-suite.md)"] |
 | Memory and learning     | What the step looks up before it acts, and what it teaches the next build.                                                                                                         | GBrain, `mb-submit-memory` with the memory governor, Graphify, GStack's `learn`.                                                                              |
 
 The layers exist so that no kind of skill is forgotten. A step is scoped only when every layer has been considered.
