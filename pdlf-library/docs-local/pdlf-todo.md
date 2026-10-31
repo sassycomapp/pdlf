@@ -70,7 +70,17 @@ Design the user help documentation and the video documentation, as one design jo
 
 ### E8. Cloudflare R2
 
-Each client has one or two R2 buckets of its own, in a Cloudflare account dedicated to it, and leaves with them on exit (`adr-client-r2-storage-and-exit-handover`). Cloudflare is registered Deferred in the skills catalog; document it with `mb-sysdoc-creator` before the first step that uses it, and confirm which S3-compatible library runs on Anvil's server Python.
+Each client has one R2 bucket in a free Cloudflare account in the client's own name, on the client's own email address; Mybizz is an invited member with the role Cloudflare R2 Admin, and App 5 creates the bucket and its token (`mb-3-cs` `integration-architecture.md`, Client Storage). Cloudflare is registered Deferred in the skills catalog; document it with `mb-sysdoc-creator` before the first step that uses it, and confirm which S3-compatible library runs on Anvil's server Python.
+
+### E9. Global ADRs to bring in line with the Mybizz business model
+
+The same business model applies to every Mybizz business. Three global ADRs in `C:\dev\project-library-global\adr-global` state it wrongly and are corrected in Part 2, before the next PDLF run reads them at Step 12:
+
+1. `adr-tiers-model.md`: one price for every business — $100 a month per client, $200 a month on a dedicated account, no launch tiers; setup is a guided call (included) or assisted setup at $200 once.
+2. `adr-no-free-trial.md`: every client instance runs on a Mybizz-owned Anvil Business account, two clients per account (the Hobby plan is licensed for personal projects only); the 30-day money-back guarantee on the first paid month stays.
+3. `adr-client-r2-storage-and-exit-handover.md`: one bucket in a free Cloudflare account in the client's own name; Mybizz is an invited member; at exit the export is written into the bucket and Mybizz leaves the account — no ownership transfer.
+
+The same correction applies to `spec-deployment.md`, the PDLF Step 12 file (`b12-build-plan.md`) and `pdlf-build-plan.md`, which state that every client starts on the Hobby plan.
 
 ---
 
