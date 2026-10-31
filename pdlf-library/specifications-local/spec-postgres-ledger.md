@@ -1,7 +1,7 @@
 ---
 title: "spec-postgres-ledger"
 doc-id: "mb-dcf9c65e"
-updated: "2026-10-29"
+updated: "2026-10-31"
 ---
 # PDLF Postgres Ledger Specification
 
@@ -20,15 +20,15 @@ updated: "2026-10-29"
 | Port | `5433` |
 | Database | `pdlf` |
 | Role | `pdlf_agent` |
-| Password | `PGPASSWORD` in `.env` |
+| Password | Held on the Windows side; an agent never sets, reads or passes one. `-w` makes `psql.exe` fail rather than ask for one |
 | Installation | `C:\Program Files\PostgreSQL\15\` (Windows) |
-| WSL bridge | `powershell.exe -Command '$env:PGPASSWORD="..."; & "C:\Program Files\PostgreSQL\15\bin\psql.exe" -h localhost -p 5433 -U pdlf_agent -d pdlf -c "..."'` |
+| WSL bridge | `PSQL='C:\Program Files\PostgreSQL\15\bin\psql.exe'; powershell.exe -NoProfile -Command "& '$PSQL' -h 127.0.0.1 -p 5433 -U pdlf_agent -d pdlf -w -At -v ON_ERROR_STOP=1 -c \"<SQL>\"; exit \$LASTEXITCODE" \| tr -d '\r'` — the one form every agent and script uses, the same as `pdlf-gate.sh` |
 
 PostgreSQL (the ledger) runs on Windows. OpenCode runs in WSL. There are **two independent
 reasons** the direct route is forbidden:
 
-1. **WSL's binfmt does not pass Linux env vars to Windows executables** — an exported
-   `PGPASSWORD` never reaches `psql.exe`.
+1. **WSL's binfmt does not pass Linux env vars to Windows executables** — so no password
+   travels from WSL; the Windows side holds it.
 2. **`localhost:5432` is the wrong server from both sides.** Inside WSL it is a completely
    different PostgreSQL cluster — WSL's own native PostgreSQL 16, hosting GBrain's `gbrain`
    database, not the PDLF ledger. On the Windows side, port 5432 is WSL's localhost relay

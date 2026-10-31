@@ -1,7 +1,7 @@
 ---
 title: "b12-config"
 doc-id: "mb-8b21d27b"
-updated: "2026-10-29"
+updated: "2026-10-31"
 ---
 # Step 12 — Office Hours: Configuration
 
@@ -110,7 +110,7 @@ The fixed values of Step 12. Agent-facing. What the agent does, in order: [[[pdl
 | Skill or tool | Used for |
 |---|---|
 | `grilling` | Routes A and C: the interview |
-| `graphify` | Routes B and C: what the existing app holds |
+| `graphify` | Routes B and C: the existing app's modules; forms, tables and services come from `anvil.yaml` and the form files |
 | `research` | When a reference platform is used: the reference's analysis checked against its primary sources |
 | GStack `/office-hours` | When David chooses it: premise challenge and alternatives |
 | `gitleaks` | Test PR-06 on the project library's working tree |

@@ -1,7 +1,7 @@
 ---
 title: "b15-reference"
 doc-id: "mb-cbf1cd96"
-updated: "2026-10-29"
+updated: "2026-10-31"
 ---
 # Step 15 — Engineering Review: Reference
 
@@ -16,7 +16,7 @@ What the agent does at Step 15, in order. Agent-facing. Fixed values: [[[pdlf:ap
 ## 2. The architecture
 
 4. Apply `data-models`, steps 1 to 4: read `anvil.yaml` and its schema; identify the domain objects, table ownership, create and edit flows and trust boundaries; choose the data shape; decide where behaviour belongs. Apply its defaults in the configuration.
-5. Design the schema up front: a metadata column on every core table, attribute tables for client-defined attributes, `created_at` on every table, money in whole cents, times in UTC; later changes only add.
+5. Design the schema up front: a metadata column on every core table, attribute tables for client-defined attributes, `created_at` on every table, money in whole cents, times in UTC; later changes only add. Mark every table `common` or `trade`, keep the two groups apart, and let no common table link to a trade table ([[[default:adr-global/adr-common-and-trade-modules]]](C:/dev/project-library-global/adr-global/adr-common-and-trade-modules.md)).
 6. Apply `codebase-design`: business rules in pure modules with no Anvil imports, thin server modules for access and storage, every outside service behind one small module.
 7. Design the rest of the Architecture section as the build plan lists it: client settings as data; every external service with its Vault credentials, webhooks, server package and outbound host; webhooks (200 at once, background task, idempotent by transaction id); scheduled tasks within the Hobby plan; the management endpoints and the 15-minute heartbeat; cold data to the client's R2 buckets with an index row and retention; the exit export; AI features that fail gracefully; every lifecycle as a state machine with allowed and forbidden transitions.
 8. For a reference platform: map its layers to Anvil as the build plan lists them; carry over none of its technology.

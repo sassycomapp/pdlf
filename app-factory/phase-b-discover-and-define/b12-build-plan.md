@@ -1,7 +1,7 @@
 ---
 title: "b12-build-plan"
 doc-id: "mb-19064cbb"
-updated: "2026-10-29"
+updated: "2026-10-31"
 ---
 # Step 12 — Office Hours: Build Plan
 
@@ -53,7 +53,7 @@ Ends with the gate `domain-locked` (Step 16).
 
 **Skills.** Every skill's output is used by the step named after the arrow.
 - `grilling` (Matt Pocock): routes A and C, the interview that settles every branch of the concept → the draft design doc.
-- `graphify`: routes B and C, the code graph of the existing app, queried for what exists → the draft design doc.
+- `graphify`: routes B and C, the code graph of the existing app, queried for its modules → the draft design doc; its forms, tables and services are read directly from `anvil.yaml` and the form files.
 - `research` (Matt Pocock): when a reference platform is used, the reference's analysis checked against its primary sources → the design doc's Reference Platform section, then Step 15.
 - `/office-hours` (GStack), when David chooses it: premise challenge and alternatives → the working design doc, then Step 14.
 - `mb-sentinel-review`, Medium → `triage_findings`.

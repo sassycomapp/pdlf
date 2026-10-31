@@ -105,7 +105,7 @@ PDLF builds many Anvil applications, each a separate business of Mybizz. Every b
 | `mb-4-ecom` | `mb-4-ecom-app1.mybizz.live` | `mb-4-ecom-app5.mybizz.live` |
 | `mb-5-hosp` | `mb-5-hosp-app1.mybizz.live` | `mb-5-hosp-app5.mybizz.live` |
 
-An address is the app's repository name followed by `.mybizz.live`. It is set up in two places: in Anvil, as the app's custom domain, and in Cloudflare, as the DNS record Anvil gives, with the proxy off. An address is set up once its app exists in Anvil.
+An address is the app's repository name followed by `.mybizz.live`. It is set up in two places: in Anvil, as the app's custom domain, and in Cloudflare, as the DNS record Anvil gives, proxied. An address is set up once its app exists in Anvil.
 
 **GBrain.** Every project library, like every other documentation repository, is a GBrain source, and all of them can be searched together. When an application re-enters PDLF, PDLF reads its repositories directly.
 

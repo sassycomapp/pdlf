@@ -1,7 +1,7 @@
 ---
 title: "pdlf-todo"
 doc-id: "mb-13a3fbc9"
-updated: "2026-10-29"
+updated: "2026-10-31"
 ---
 # Active PDLF To-Do List
 
@@ -24,7 +24,7 @@ Phases A and B are built. They are proven by running `mb-3-cs` through them by e
 3. David proves with `cupcake eval` that, with OpenCode opened in `projects/mb-3-cs-app1`, a write to `/mnt/c/dev/dev-mb-3-cs/mb-3-cs-project-library` is allowed and a write to `/mnt/c/pdlf` is blocked.
 4. David runs `bash /mnt/c/mybizz/scripts/pdlf-gate.sh --check`, which must print `ledger answers`.
 5. David backs up `C:\dev\dev-mb-3-cs\`.
-6. David opens OpenCode in `C:\dev\dev-mb-3-cs`, runs `/pdlf-init` and takes entry point 03. The project context `mb-3-cs-project-context` is already moved, so Step 11 checks it and makes the new `mb-3-cs-project-library` from the template.
+6. David opens `projects/mb-3-cs-app1` in OpenCode, runs `/pdlf-init` and takes entry point 03. The project context `mb-3-cs-project-context` is already moved, so Step 11 checks it and makes the new `mb-3-cs-project-library` from the template.
 
 Whatever fails or is missing is corrected in PDLF, and the run continues from the step corrected.
 
@@ -43,6 +43,10 @@ The governed memory pipeline is proven end to end, once, on the first real step 
 ---
 
 ## C. Testing
+
+### C3. Secret scan at every commit
+
+`commit-all.sh` runs `gitleaks` on each repository before it commits, and stops that repository's commit when a secret is found, so a key can never reach a public repository again. Built once Phase B is proven.
 
 ### C2. Prove the test suite on `mb-3-cs`
 
@@ -74,4 +78,8 @@ Each client has one or two R2 buckets of its own, in a Cloudflare account dedica
 
 ### F1. Make `mb-4-ecom` in a copy of the project template
 
-`mb-4-ecom` enters PDLF by entry point 03 after `mb-3-cs`. Step 11 makes it in a copy of the project template, as for `mb-3-cs` (A2), with its existing repositories as the context it brings, and moves its Medusa material from the project library's `wip\` into `reference-platform-local\` (`source\`, `reference\`, `notes\`) with David's permission. Until then, nothing in `mb-4-ecom` is moved.
+`mb-4-ecom` enters PDLF by entry point 03 after `mb-3-cs`. Step 11 makes it in a copy of the project template, as for `mb-3-cs` (A2), with its existing repositories as the context it brings, and moves its Medusa material from the project library's `wip\` into `reference-platform-local\` (`source\`, `reference\`, `notes\`) with David's permission. Until then, nothing in `mb-4-ecom` is moved. Before its run, each of its app folders' `opencode.json` allows the Build agent's shell commands (`bash` `"*": "allow"`, with the Plan agent's `bash` `"*": "ask"`), as in `mb-3-cs-app1`, so OpenCode does not ask before every command.
+
+### F2. Make the project template general after each business
+
+When a business is finished, every item its design marked `common` that is not yet in the project template is made general and placed there ([[[default:adr-global/adr-common-and-trade-modules]]](C:/dev/project-library-global/adr-global/adr-common-and-trade-modules.md)), so the next business starts from it. Done first when `mb-3-cs` is finished.

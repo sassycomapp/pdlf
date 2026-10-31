@@ -1,6 +1,6 @@
 ---
 title: "pdlf-user-manual"
-updated: "2026-10-29"
+updated: "2026-10-31"
 doc-id: "mb-6ea8e798"
 ---
 # PDLF User Manual
@@ -54,7 +54,7 @@ How to operate PDLF, step by step. Each step says where it happens: **WSL termin
 
 ## 4. During the run
 
-1. The agent stops at every step. Read what it reports and answer it.
+1. The agent stops at the end of every section with a three-line report, and at the end of every step. Paste each report to Claude, and paste Claude's reply back to the agent.
 2. **A gate:** the agent stops and asks you to approve it. Approve it yourself:
    **WSL terminal:** `bash /mnt/c/mybizz/scripts/pdlf-gate.sh {slug} {gate} {run}`
    Then tell the agent to continue. The agent can never approve a gate.
@@ -62,15 +62,18 @@ How to operate PDLF, step by step. Each step says where it happens: **WSL termin
 4. **Your own actions.** The agent gives exact instructions; you carry them out, then tell it you are done:
    - create an app in Anvil and connect it to GitHub as `{slug}-app{n}`;
    - switch on the app's Users service and add its `role` column;
+   - set App 1's and App 5's web address, `{slug}-app{n}.mybizz.live`, in Anvil and Cloudflare;
    - write the app's `.env` with the command the agent gives;
    - apply a schema change in Anvil's Data Tables view.
 5. **A permission slip:** if the agent needs to write outside its business, it stops and gives you an `mg-grant` line. Run it in the WSL terminal only if you agree, then tell the agent to continue.
-6. **Something fails:** stop the run and bring the failure to Claude. The failure is corrected in PDLF, and the run continues from the step corrected.
+6. **A flag:** when something fails, the agent stops with a block headed `FLAG`. Paste it to Claude, do what Claude gives you, and paste Claude's instruction back to the agent. Never let the agent carry on past a flag on its own. The fault is fixed in PDLF, and the run continues from the item that failed.
+7. **OpenCode asks before every command:** the app's `opencode.json` still makes the Build agent ask. Bring it to Claude.
 
 ## 5. End a session
 
 1. **OpenCode:** run `/mb-close-out`.
-2. **Claude:** ask for the commit command. Run it in the WSL terminal. Only you commit; the agent never does.
+2. **WSL terminal:** run the commit command close-out gives. Only you commit; the agent never does.
+3. **OpenCode:** close the session. The next step starts in a new session (section 2), and the orchestrator resumes the run from the ledger.
 
 ## 6. Never
 

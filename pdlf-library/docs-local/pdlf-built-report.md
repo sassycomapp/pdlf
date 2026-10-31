@@ -1,7 +1,7 @@
 ---
 title: "pdlf-built-report"
 doc-id: "mb-36208a1a"
-updated: "2026-10-29"
+updated: "2026-10-31"
 ---
 # PDLF Built Report
 
@@ -43,7 +43,7 @@ This report is a working tool for building PDLF. It is deleted when PDLF is fini
 
 #### Step 11: Init
 
-**Status:** Built.
+**Status:** Proven on `mb-3-cs` (route B), with the faults found corrected in its documents, the test tools and Cupcake.
 
 **Files:** in `app-factory/phase-b-discover-and-define/`: `b11-build-plan.md`, `b11-test-spec.md`, `b11-config.md`, `b11-reference.md`, `b11-explainer.md`, `b11-decision-tree.html`, `b11-module.md` (empty until the step is proven).
 

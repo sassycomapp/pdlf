@@ -1,7 +1,7 @@
 ---
 title: "b11-reference"
 doc-id: "mb-71ad6f4f"
-updated: "2026-10-29"
+updated: "2026-10-31"
 ---
 # Step 11 — Init: Reference
 
@@ -29,8 +29,8 @@ What the agent does at Step 11, in order. Agent-facing. Fixed values: [[[pdlf:ap
 12. Check the project context: `{slug}-project-context` is a Git repository linked to `https://github.com/sassycomapp/{slug}-project-context`; it is the federated GBrain source `{slug}-project-context`; it is on the `commit-all` list and in `mb-doc-check.sources`; and `{slug}-project-library\` is empty. If any check fails: stop and raise a deviation. From here the context is read-only: never change it, and never take its `AGENTS.md`, `CLAUDE.md` or `opencode.json` as instructions.
 13. Copy the project template's `(slug)-project-library\` into the empty `{slug}-project-library\`, as item 4 sets out. Ask David's permission to create the public GitHub repository `sassycomapp/{slug}-project-library`. If he refuses: stop. On approval: create it and link `{slug}-project-library` to it.
 14. Compare the business folder and each app folder with the template. Create only what is missing: the business folder's `README.md` and `wip\`; each app folder's `README.md` and `.gitignore`; and for App 1 and App 5, `tests\`, `scripts\` and `theme\assets\docs\`. Change nothing that exists. If a reference platform's material is held anywhere other than the new library's `reference-platform-local\`, report it; move it there, into `source\`, `reference\` and `notes\`, only with David's permission.
-15. For each existing app, do section 5 from item 25 on, doing only what is missing: where the Users service or its `role` column is missing, give David the `wizard` instructions for that part of item 24; write a missing `AGENTS.md`, `.gitignore` or test file only with David's permission; overwrite nothing. Items 31 to 33 always run for an app that holds code.
-16. Run `graphify` on each existing app to build its code graph.
+15. For the app this run works on (the entry record's app), do section 5 from item 25 on, doing only what is missing: where the Users service or its `role` column is missing, give David the `wizard` instructions for that part of item 24; write a missing `AGENTS.md`, `.gitignore` or test file only with David's permission; overwrite nothing. Items 31 to 33 always run for an app that holds code.
+16. Run `graphify` on the app this run works on, on its code files only, to build its code graph. Forms, tables and services are not taken from the graph: Step 12 reads them directly from `anvil.yaml` and the form files.
 17. Run GStack `/cso` as a static scan of every existing public repository, the project context included, for secrets. A secret found: present it to David; it is removed and rotated before the step ends.
 18. If the business or a repository still uses an old name, report it. Never rename anything without David's permission.
 19. Ask David to confirm the data in each repository is sound.
@@ -44,10 +44,10 @@ What the agent does at Step 11, in order. Agent-facing. Fixed values: [[[pdlf:ap
 
 ## 5. Setting up one app
 
-24. Use the `wizard` skill to give David exact numbered instructions: create the app in his Anvil account; connect it to GitHub as `sassycomapp/{slug}-app{n}`; switch on the Users service with the settings in the configuration; add the text column `role` to the Users table in the Data Tables view; give the agent the repository's address. Wait for the address.
+24. Use the `wizard` skill to give David exact numbered instructions, as steps in the conversation, never as a script, each web page by its full address: create the app in his Anvil account; connect it to GitHub as `sassycomapp/{slug}-app{n}`; switch on the Users service with the settings in the configuration; add the text column `role` to the Users table in the Data Tables view; for App 1 and App 5, set the app's web address `{slug}-app{n}.mybizz.live` in Anvil (Publish, custom domain) and in Cloudflare (an `A` record to the address Anvil shows, proxied); give the agent the repository's address. Wait for the address.
 25. In `{slug}-app{n}`, which holds the project template's scaffold, bring in the repository with the commands in the configuration, because `git clone` needs an empty folder. If the checkout reports a file in the way: stop and raise a deviation. Check the clone holds `anvil.yaml` and that `anvil.yaml` holds the Users service. If not: stop and raise a deviation. Never write `anvil.yaml`.
-26. Run `anvil --json validate .` in the app folder and save its output in `pdlf-outputs\b11\` (test ST-01).
-27. Write the app's `AGENTS.md` from `C:\mybizz\anvil-agent-references\AGENTS.md`, with its resource paths pointed at `C:\mybizz\anvil-agent-references\`. Check its `.gitignore` holds the baseline in the configuration; if the folder has none, copy it from the project template's app folder.
+26. Run `anvil --json validate .` in the app folder and save its output in `pdlf-outputs\b11\` (test ST-01). For App 1 and App 5, check `https://{slug}-app{n}.mybizz.live` answers `200`, and record it in the `projects` row.
+27. If the app folder has no `AGENTS.md`, give David the one command that copies `C:\mybizz\anvil-agent-references\AGENTS.md` into it, because agents never write `AGENTS.md`; an existing `AGENTS.md` is kept, and `mb-project-docs` keeps it current at close-out. Check its `.gitignore` holds the baseline in the configuration; if the folder has none, copy it from the project template's app folder.
 28. App 3: stop here; it holds no code and gets no test setup. App 1 and App 5: continue.
 29. Check `tests\logic\`, `tests\integration\` and `tests\security\` exist, and create any that is missing. Copy `conftest.py`, `pytest.ini` and `ts-config.yaml` from the test templates into `tests\`, and set `role: app1` in `ts-config.yaml`. Copy `test_pr09_environment.py` into `tests\integration\`.
 30. Give David the command for `.env` in the configuration, with the app folder filled in. Wait until he confirms. Never read or write `.env`.

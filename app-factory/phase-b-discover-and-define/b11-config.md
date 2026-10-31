@@ -1,7 +1,7 @@
 ---
 title: "b11-config"
 doc-id: "mb-ea7e8074"
-updated: "2026-10-29"
+updated: "2026-10-31"
 ---
 # Step 11 — Init: Configuration
 
@@ -58,7 +58,7 @@ The fixed values of Step 11. Agent-facing. What the agent does, in order: [[[pdl
 |---|---|
 | `wizard` | David's exact instructions for creating an app in Anvil and switching on its Users service |
 | `setup-matt-pocock-skills` | The Matt Pocock configuration in `docs\agents\` |
-| `graphify` | Route B: the code graph of the existing app |
+| `graphify` | Route B: the code graph of the run's app, from its code files only |
 | GStack `/cso` | Route B: the secret scan of the existing public repositories |
 | `ts_local.sh` | The local runtime and the PR-09 run |
 | `anvil --json validate .` | Test ST-01 on the cloned app |

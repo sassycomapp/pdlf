@@ -40,7 +40,7 @@ flowchart TD
     B4 -->|"No"| Stop4(["Stop"])
     B4 -->|"Yes"| B5["14. Add only what is missing to the business<br/>and app folders; reference material moved<br/>with permission"]
     B5 --> B6[["15. Each app: section 5, only what is missing;<br/>PR-09 always for an app with code"]]
-    B6 --> B7["16-17. graphify each app; /cso secret scan<br/>a secret is removed and rotated"]
+    B6 --> B7["16-17. graphify the run's app (code only); /cso secret scan<br/>a secret is removed and rotated"]
     B7 --> B8["18-19. Report old names; David confirms data is sound"]
     B8 --> Common
 
@@ -52,9 +52,9 @@ flowchart TD
 
     subgraph S5["Section 5: setting up one app"]
       direction TB
-      W1["24. wizard: David creates the app in Anvil, connects GitHub,<br/>switches on the Users service, adds the role column"] --> W2{"25. Repository brought in: git init, fetch, checkout;<br/>holds anvil.yaml with the Users service?"}
+      W1["24. wizard: David creates the app in Anvil, connects GitHub,<br/>switches on the Users service, adds the role column,<br/>sets App 1 / App 5 web address"] --> W2{"25. Repository brought in: git init, fetch, checkout;<br/>holds anvil.yaml with the Users service?"}
       W2 -->|"No"| Dev2["Stop: deviation"]
-      W2 -->|"Yes"| W3["26. anvil --json validate (ST-01)<br/>27. AGENTS.md; check .gitignore"]
+      W2 -->|"Yes"| W3["26. anvil --json validate (ST-01)<br/>27. AGENTS.md (David copies it if missing); check .gitignore"]
       W3 --> W4{"28. App 3?"}
       W4 -->|"Yes"| W9(["Done: no code, no test setup"])
       W4 -->|"No: App 1 or App 5"| W5["29. test templates into the tests folders"]

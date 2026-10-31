@@ -31,7 +31,7 @@ Every step follows this sequence. The agent never skips a substep without a devi
 9. Check every test of the step's test specification has its result in the step's output folder, recorded as [[[default:test-suite/ts-method]]](C:/dev/project-library-global/test-suite/ts-method.md) section 5 sets out. Generate and save the Step Receipt, with the table `ts_report.py` prints for this run's evidence in the step's output folder, to `{slug}-project-library\pdlf-outputs\{step}\{slug}-{step}-{run}-receipt.md`, where `{run}` is `app{n}` for a whole application, or the feature slug ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 4).
 10. Explain to the developer, in plain language, what was done and why, and show the Step Receipt.
 11. STOP and ask the developer to run `/mb-close-out`.
-12. Wait for "continue" to proceed to the next step.
+12. Wait for "continue". The next step runs in a new OpenCode session, started with `/pdlf-init`, which resumes the run from the ledger.
 
 Applies to every step, including OpenCode-native steps. Feature cycles inside Step 35 each
 follow this sequence individually (35.1, 35.2, etc.).

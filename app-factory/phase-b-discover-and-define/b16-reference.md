@@ -1,7 +1,7 @@
 ---
 title: "b16-reference"
 doc-id: "mb-741c244a"
-updated: "2026-10-29"
+updated: "2026-10-31"
 ---
 # Step 16 — Domain Modeling: Reference
 
@@ -18,10 +18,10 @@ What the agent does at Step 16, in order. Agent-facing. Fixed values: [[[pdlf:ap
 
 5. Start `grill-with-docs` from the project library, `C:\dev\dev-{slug}\{slug}-project-library`. Paste the full text of every input and the context pack. State the fixed answers and the vocabulary rules in the configuration.
 6. `grilling` asks each round's frontier, each question with its recommended answer; David answers. Look up every fact yourself. Never limit or reshape the questions.
-7. As each term is settled, `domain-modeling` writes it into `docs-local\GLOSSARY.md` at once, in its `GLOSSARY-FORMAT.md`. For a feature or App 5, extend the glossary; never rewrite it.
+7. As each term is settled, `domain-modeling` writes it into `docs-local\GLOSSARY.md` at once, in its `GLOSSARY-FORMAT.md`, marked `common` or `trade` ([[[default:adr-global/adr-common-and-trade-modules]]](C:/dev/project-library-global/adr-global/adr-common-and-trade-modules.md)). For a feature or App 5, extend the glossary; never rewrite it.
 8. Apply the vocabulary rules: shared names from `spec-nomenclature`; never "multi-tenant" for the five-app model; a reference platform's terms adopted or renamed.
 9. For an existing application: `domain-modeling` checks each statement against the code graph and shows David each contradiction. Reconcile the prior glossary's terms with the data design before settling them, and write them into `GLOSSARY.md`. Ask David whether the old glossary file is removed.
-10. When a decision is hard to reverse, surprising without context and the result of a real trade-off, offer an ADR. On David's yes, write `adr-local\adr-{kebab-case-name}.md` in the skill's `ADR-FORMAT.md`.
+10. When a decision is hard to reverse, surprising without context and the result of a real trade-off, offer an ADR. On David's yes, write `adr-local\adr-{kebab-case-name}.md` in the skill's `ADR-FORMAT.md`, marked `common` or `trade`.
 11. For an entity whose life is uncertain: build a `prototype`, logic branch, as `pdlf-outputs\b16\{slug}-b16-{run}-prototype-{entity}.html`. David drives it. Settle its terms from the verdict.
 12. Settle every open question the plan gives to Step 16 and remove it from Open Questions.
 13. Continue until the frontier is empty and David confirms the shared understanding.

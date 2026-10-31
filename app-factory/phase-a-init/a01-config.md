@@ -1,7 +1,7 @@
 ---
 title: "a01-config"
 doc-id: "mb-0aff45b8"
-updated: "2026-10-29"
+updated: "2026-10-31"
 ---
 # Step 1 — Orchestrator: Configuration
 
@@ -29,11 +29,12 @@ The fixed values of Step 1. Agent-facing. What the agent does, in order: [[[pdlf
 | The slug | The App 1 repository's name without `-app1`: lowercase letters, digits and hyphens only |
 | A new business | David first creates `C:\dev\dev-{slug}\{slug}-app1\`, runs `git init` in it and adds its link, then opens OpenCode in it |
 | PDLF | `/mnt/c/pdlf`, read only |
+| OpenCode session | One new session per step: the run resumes from the ledger, so a session never carries an earlier step's history |
 | OpenCode configuration | The global configuration, the global `AGENTS.md` and Cupcake; PDLF has no `opencode.json` of its own |
 | Skill source | `C:\pdlf\pdlf-library\skills-local\pdlf-init\SKILL.md` |
 | Skill installed | `~/.config/opencode/skills/pdlf-init/SKILL.md` |
 | David's install command | `mkdir -p ~/.config/opencode/skills/pdlf-init && cp /mnt/c/pdlf/pdlf-library/skills-local/pdlf-init/SKILL.md ~/.config/opencode/skills/pdlf-init/SKILL.md` |
-| Ledger | Database `pdlf`, port 5433, through the PowerShell bridge ([[[pdlf:pdlf-library/specifications-local/spec-postgres-ledger\|Spec: Postgres Ledger]]](C:/pdlf/pdlf-library/specifications-local/spec-postgres-ledger.md)) |
+| Ledger | Database `pdlf`, port 5433, through the PowerShell bridge ([[[pdlf:pdlf-library/specifications-local/spec-postgres-ledger\|Spec: Postgres Ledger]]](C:/pdlf/pdlf-library/specifications-local/spec-postgres-ledger.md)), always with exactly this command, `<SQL>` replaced: `PSQL='C:\Program Files\PostgreSQL\15\bin\psql.exe'; powershell.exe -NoProfile -Command "& '$PSQL' -h 127.0.0.1 -p 5433 -U pdlf_agent -d pdlf -w -At -v ON_ERROR_STOP=1 -c \"<SQL>\"; exit \$LASTEXITCODE" \| tr -d '\r'`. No other method; no password is ever looked for |
 
 ## The built phases
 
