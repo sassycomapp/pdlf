@@ -1,7 +1,7 @@
 ---
 title: "spec-execution-discipline"
 doc-id: "mb-913cd6af"
-updated: "2026-10-29"
+updated: "2026-10-31"
 ---
 # PDLF Execution Discipline
 
@@ -24,6 +24,7 @@ Every step follows this sequence. The agent never skips a substep without a devi
 3. If OPTIONAL: present recommendation + justification, wait for RUN/SKIP decision.
 4. If MANUAL: present instructions + references, wait for "done," verify.
 5. If SKILL or OpenCode-native: invoke the skill or perform the documented procedure.
+5a. Carry out the step's reference one section at a time. At the end of each section, STOP and report in at most three lines, in this form: `Step NN — section k of m done: <what was done>. Next: section j.` Wait for "continue" before the next section.
 6. Verify the expected output exists. If missing: STOP, present a deviation request.
 7. Run BFT checkpoint at the step's assigned level (Full / Light / None) per `[[spec-bft]]`.
 8. Complete the `steps` ledger row opened at substep 0, per [[[pdlf:pdlf-library/specifications-local/spec-postgres-ledger]]](C:/pdlf/pdlf-library/specifications-local/spec-postgres-ledger.md): `step_number`, `run` (`app{n}` for a whole application, or the feature slug), `app_number`, `step_type` and `skill_family` in their allowed lowercase values, `status`, `artifact_path`, `synthesized`, and `inputs_used` listing every earlier step whose output this step used, so that input notices reach every later step.
@@ -34,6 +35,28 @@ Every step follows this sequence. The agent never skips a substep without a devi
 
 Applies to every step, including OpenCode-native steps. Feature cycles inside Step 35 each
 follow this sequence individually (35.1, 35.2, etc.).
+
+---
+
+## Failure and Flag Rules
+
+These rules apply at every substep of every step.
+
+1. **One fix attempt.** When a check or test fails, the agent makes at most one attempt to fix it. If that attempt fails, it STOPS and raises a flag.
+2. **No experimenting.** The agent never writes trial scripts, starts trial servers or processes, or tries an untested alternative. When the reference does not say what to do, it STOPS and raises a flag.
+3. **No changes to shared tools or documents during a run.** The agent never writes to `/mnt/c/pdlf`, `/mnt/c/dev/project-library-global` or `/mnt/c/mybizz`. When one of them is wrong or missing something, it STOPS and raises a flag, and never asks for a grant to change it.
+4. **The flag.** A flag is this block, and the agent then waits:
+
+```
+FLAG — Step NN, section k, item i
+
+Failed: <what failed>
+Exact error: <the error text, copied>
+Tried: <the one fix attempted, or "nothing">
+State: <what is running, what was changed>
+```
+
+The developer takes the flag to the engineer. The fix is made at its source, and the agent continues from the item that failed.
 
 ---
 

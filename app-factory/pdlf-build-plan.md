@@ -1,7 +1,7 @@
 ---
 title: "pdlf-build-plan"
 doc-id: "mb-64817b10"
-updated: "2026-10-29"
+updated: "2026-10-31"
 ---
 # PDLF Build Plan
 
@@ -94,7 +94,18 @@ PDLF builds many Anvil applications, each a separate business of Mybizz. Every b
 
 **App 4 is a clone of App 3.** Every client has its own Anvil account. David owns every one of these accounts, but each account bears the name of the client's business: for a client whose business is `marysyoga.com`, App 3 is cloned into the `marysyoga.com` account, and that instance is the client's App 4. The only thing unique to a client instance is that client's own data, in its own database and data tables, so App 4 has nothing to document and no folder in the project. PDLF builds and verifies one instance, the provisioning procedure, and the README every instance must carry. That first instance is the first real client, also used as the test client. Provisioning each later client follows the procedure as normal business operations, outside the pipeline.
 
-**Hosting.** Apps 1, 2, 3 and 5 are hosted on David's Anvil account, each at a numbered subdomain of the business's domain: for MB-3-CS, `1.mb3cs.site`, `2.mb3cs.site`, `3.mb3cs.site` and `5.mb3cs.site`. App 4 is hosted on the client's own Anvil account.
+**Hosting.** Apps 1, 2, 3 and 5 are hosted on David's Anvil account; App 4 is hosted on the client's own Anvil account. Every web address belongs to the Mybizz domain `mybizz.live`, except App 4's. Only the apps people open have an address: App 1, where the business is built and tested in the browser, and App 5, the management app. App 2 is reached only as a dependency, by its Anvil app ID, and App 3 is only cloned, so neither has an address. Each App 4 uses its client's own domain.
+
+| Business | App 1 | App 5 |
+|---|---|---|
+| Mybizz (the company website) | `mybizz.live` | — |
+| `mb-1-edu` | `mb-1-edu-app1.mybizz.live` | `mb-1-edu-app5.mybizz.live` |
+| `mb-2-subs` | `mb-2-subs-app1.mybizz.live` | `mb-2-subs-app5.mybizz.live` |
+| `mb-3-cs` | `mb-3-cs-app1.mybizz.live` | `mb-3-cs-app5.mybizz.live` |
+| `mb-4-ecom` | `mb-4-ecom-app1.mybizz.live` | `mb-4-ecom-app5.mybizz.live` |
+| `mb-5-hosp` | `mb-5-hosp-app1.mybizz.live` | `mb-5-hosp-app5.mybizz.live` |
+
+An address is the app's repository name followed by `.mybizz.live`. It is set up in two places: in Anvil, as the app's custom domain, and in Cloudflare, as the DNS record Anvil gives, with the proxy off. An address is set up once its app exists in Anvil.
 
 **GBrain.** Every project library, like every other documentation repository, is a GBrain source, and all of them can be searched together. When an application re-enters PDLF, PDLF reads its repositories directly.
 
@@ -112,7 +123,19 @@ PDLF builds many Anvil applications, each a separate business of Mybizz. Every b
 
 **Quality.** Every feature is built, tested and signed off by David before the next feature begins. Each feature is tested as the test suite sets out ([[[default:test-suite/ts-method|Test Suite — Method]]](C:/dev/project-library-global/test-suite/ts-method.md)), which includes the testing and quality methodology: its logic on its own, then connected to the Anvil application, then by hand in the browser, each level only after the one before passes. Every step proves itself through its own test specification. The findings of every review and every quality check are written to a file; a review that left no file did not happen.
 
-**First builds.** `mb-3-cs` (Mybizz CS, consulting and services) is the first application pulled through PDLF, to prove it. It runs through PDLF phase by phase, as each phase is built, and resumes where it stopped each time a phase is added; it is made in a copy of the project template; and David backs it up before every run ([[[pdlf:pdlf-library/docs-local/app-factory-docs-update-method|App Factory Docs Update Method]]](C:/pdlf/pdlf-library/docs-local/app-factory-docs-update-method.md)). The other Mybizz businesses, such as `mb-4-ecom` (e-commerce), follow.
+**First builds.** `mb-3-cs` (Mybizz CS, consulting and services) is the first application pulled through PDLF, to prove it. It runs through PDLF phase by phase, as each phase is built, and resumes where it stopped each time a phase is added; it is made in a copy of the project template; and David backs it up before every run ([[[pdlf:pdlf-library/docs-local/app-factory-docs-update-method|App Factory Docs Update Method]]](C:/pdlf/pdlf-library/docs-local/app-factory-docs-update-method.md)). The other Mybizz businesses follow, one at a time.
+
+**The Mybizz businesses.** PDLF builds five businesses, in this order:
+
+| Order | Slug | Business |
+|---|---|---|
+| 1 | `mb-3-cs` | Consulting and services |
+| 2 | `mb-4-ecom` | E-commerce |
+| 3 to 5 | `mb-1-edu` | Courses and other education services |
+| 3 to 5 | `mb-2-subs` | Subscription businesses |
+| 3 to 5 | `mb-5-hosp` | Hospitality: catering, guest houses, boutique hotels and restaurants |
+
+The order of the last three is set when each is started. Every business is built from the project template, and after each business is finished, what it added that every business needs is made general and placed in the project template, so each later business starts from a broader template.
 
 ### 4. Entry points
 
