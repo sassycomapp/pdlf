@@ -72,9 +72,15 @@ Design the user help documentation and the video documentation, as one design jo
 
 Each client has one R2 bucket in a free Cloudflare account in the client's own name, on the client's own email address; Mybizz is an invited member with the role Cloudflare R2 Admin, and App 5 creates the bucket and its token (`mb-3-cs` `integration-architecture.md`, Client Storage). Cloudflare is registered Deferred in the skills catalog; document it with `mb-sysdoc-creator` before the first step that uses it, and confirm which S3-compatible library runs on Anvil's server Python.
 
-### E9. Hobby-plan wording outside the ADRs
+### E9. Hobby-plan wording in PDLF
 
-`spec-deployment.md`, the PDLF Step 12 file (`b12-build-plan.md`) and `pdlf-build-plan.md` state that every client starts on the Hobby plan. Each is corrected to: each client instance on its own Mybizz-owned Anvil Business account, $150 a month.
+Each client instance runs on its own Mybizz-owned Anvil Business account, at $150 a month; `spec-anvil-platform-standards.md` section 5 holds the Business plan's facts. These PDLF files still state the Hobby plan and are corrected before the next PDLF run reads them:
+
+1. `app-factory/pdlf-build-plan.md` (Client accounts and tiers).
+2. Step 12: `b12-build-plan.md`, `b12-config.md`, `b12-explainer.md`, `b12-test-spec.md` (Constraints section).
+3. Step 14: `b14-build-plan.md`, `b14-config.md`, `b14-reference.md`, `b14-explainer.md`, `b14-test-spec.md`: the Hobby Fit section becomes a Business-plan fit (rows and storage against the account's limits).
+4. Step 15: `b15-build-plan.md`, `b15-reference.md`, `b15-explainer.md`.
+5. `pdlf-explainer.md`, `app-factory-explainer.md` (client account and exit), `pdlf-testing-explainer.md` (one database, no test environment).
 
 ---
 
