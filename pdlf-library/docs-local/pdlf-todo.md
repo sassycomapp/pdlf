@@ -1,7 +1,7 @@
 ---
 title: "pdlf-todo"
 doc-id: "mb-13a3fbc9"
-updated: "2026-10-31"
+updated: "2026-11-01"
 ---
 # Active PDLF To-Do List
 
@@ -74,11 +74,12 @@ Each client has one R2 bucket in a free Cloudflare account in the client's own n
 
 ### E9. Global ADRs to bring in line with the Mybizz business model
 
-The same business model applies to every Mybizz business. Three global ADRs in `C:\dev\project-library-global\adr-global` state it wrongly and are corrected in Part 2, before the next PDLF run reads them at Step 12:
+The same business model applies to every Mybizz business: $150 a month per client, month to month with no contract; each client instance on its own Mybizz-owned Anvil Business account; unlimited staff logins; no add-ons; no free trial and no money-back guarantee, replaced by two demo apps. The global ADRs in `C:\dev\project-library-global\adr-global` that state it wrongly are corrected before the next PDLF run reads them at Step 12:
 
-1. `adr-tiers-model.md`: one price for every business — $100 a month per client, $200 a month on a dedicated account, no launch tiers; setup is a guided call (included) or assisted setup at $200 once.
-2. `adr-no-free-trial.md`: every client instance runs on a Mybizz-owned Anvil Business account, two clients per account (the Hobby plan is licensed for personal projects only); the 30-day money-back guarantee on the first paid month stays.
-3. `adr-client-r2-storage-and-exit-handover.md`: one bucket in a free Cloudflare account in the client's own name; Mybizz is an invited member; at exit the export is written into the bucket and Mybizz leaves the account — no ownership transfer.
+1. `adr-tiers-model.md`: one price, $150 a month per client; assisted setup at $200 once.
+2. `adr-no-free-trial.md`: no trial and no money-back guarantee; prospects use the demo apps (G6); every client instance runs on its own Mybizz-owned Anvil Business account.
+3. `adr-client-r2-storage-and-exit-handover.md`: one bucket in a free Cloudflare account in the client's own name; Mybizz is an invited member; at exit the export is written into the bucket and Mybizz leaves the account.
+4. `adr-dependency-based-not-multi-tenant.md`, `adr-dependency-update-model.md`, `adr-client-instance-readme-five-app-system.md`, `adr-real-time-and-background-tasks.md` and `adr-mybizz-management-visibility.md`: each client instance is on its own Mybizz-owned Anvil Business account, not the client's own account, and App 5 is built before launch.
 
 The same correction applies to `spec-deployment.md`, the PDLF Step 12 file (`b12-build-plan.md`) and `pdlf-build-plan.md`, which state that every client starts on the Hobby plan.
 
@@ -93,3 +94,71 @@ The same correction applies to `spec-deployment.md`, the PDLF Step 12 file (`b12
 ### F2. Make the project template general after each business
 
 When a business is finished, every item its design marked `common` that is not yet in the project template is made general and placed there ([[[default:adr-global/adr-common-and-trade-modules]]](C:/dev/project-library-global/adr-global/adr-common-and-trade-modules.md)), so the next business starts from it. Done first when `mb-3-cs` is finished.
+
+---
+
+## G. `mb-3-cs` features to carry into the design and architecture
+
+### G0. Every G item reaches every document it touches
+
+Each G item is written into every `mb-3-cs` document it affects, once the feature list is final, so PDLF Step 12 builds the build plan from documents that agree. The documents:
+
+- `docs-local\`: `mb-3-cs-concept.md`, `mb-3-cs-architecture-explainer.md`, `mb-3-cs-architecture-reference.md`, `authoritative-schema.md`, `schema-migration-log.md`, `DESIGN.md`, `user-flows.md`, `custom-component-requirements-matrix.md`, `mb-3-cs-test-specification.md`, `mybizz-ai-implementation-spec.md`, `calendar-feature-spec.md`, `sm-syndication-spec.md`, `team-inbox-spec.md`, and `mb-3-cs-feature-list.md` (G1)
+- `docs-standard-local\`: `business-requirements-document.md`, `product-requirements-document.md`, `software-requirements-specification.md`, `scaffold-spec.md`, `globals-contract.md`, `integration-architecture.md`, `observability-requirements.md`, `deployment-procedures.md`, `anvil-ui-build-standard.md`
+- `policy-local\development-policy.md` and `adr-local\`, where a decision changes
+
+The document lists in G2 to G11 name where each item lands first; G0 makes sure none is missed.
+
+### G1. Feature list
+
+The complete categorical feature list of `mb-3-cs` is saved as `docs-local\mb-3-cs-feature-list.md` and is the single source for features and marketing.
+
+### G2. Front-end website editing
+
+Owners and Managers see an Edit button on website pages, landing pages and published blog posts. Edit mode makes every text, image and video editable in place; Save publishes immediately, Cancel discards. In edit mode the AI helper writes or rewrites any selected text in the client's language; this is a new website-text assist in `mybizz-ai-implementation-spec.md`. New blog posts are created in BlogEditorForm and new landing pages in LandingPageEditorForm, where layout, SEO, tracking and scheduling are set.
+
+### G3. App language
+
+The client chooses the app's language: English, French, Portuguese, Spanish, German or Italian. English at launch; French, Portuguese and Spanish next; then German and Italian. From the first build, every screen text comes from a translation table (one row per phrase, one column per language) and is never typed into the Designer; every email template is stored per language; every help video is voiced or subtitled per language. AI (Groq) translates; a native speaker checks each language once. No right-to-left languages.
+
+### G4. Team Inbox and email through Amazon SES
+
+`docs-local\team-inbox-spec.md` specifies every email of `mb-3-cs`, received and sent, through Amazon SES: unlimited addresses on the client's domain in the Team Inbox, DKIM, SPF and DMARC written by App 5 into the client's Cloudflare DNS, campaigns with one-click unsubscribe and SES open and click tracking, suppression, and the 90-day archive to R2. Brevo is removed. Carry it into `authoritative-schema.md`, `integration-architecture.md`, `scaffold-spec.md`, `DESIGN.md`, `user-flows.md`, the concept (F-18, section 9.5), `mb-3-cs-architecture-reference.md` (F-18), `development-policy.md` (the approved exceptions: SES replaces Brevo) and the PRD. Before the first step that uses SES: confirm that `boto3` runs on Anvil's server Python, document SES with `mb-sysdoc-creator`, and confirm the SES receiving region.
+
+David, once: open Mybizz's AWS account, request SES production access, and give Mybizz's Cloudflare user its name for clients to invite.
+
+### G5. Sales features in the CRM
+
+A deals pipeline (stages from lead to won or lost, with value and owner), companies (a business customer with several contacts) and quotes (accepted online, then converted to an invoice).
+
+### G6. Demo apps
+
+`demo.mybizz.live` holds sample data; `try.mybizz.live` starts empty. A scheduled task resets both every night. Every email is sent to the visitor's own address; payments run in each gateway's test mode with test cards.
+
+### G7. Onboarding wizard and import
+
+The wizard steps, in order: app language, business profile, brand palette, system currency, legal acknowledgement, payment gateway, connect the client's domain, import existing contacts. The import maps the columns of a CSV file, with ready-made mappings for HubSpot, Mailchimp and Acuity. Every step has a help video.
+
+### G8. Help videos replace the setup call
+
+Every feature has a short help video, opened from its tooltip in a pop-up, in the client's language. There is no guided setup call. Designed with E5.
+
+### G9. Voice tiers 4 and 5 and sample data in the first build
+
+Voice tiers 4 and 5 and the sample data are specified in `mybizz-ai-implementation-spec.md` and carried into the concept, the architecture reference and the PRD. Carry them into `authoritative-schema.md` (the `sample_rows` table), `scaffold-spec.md` (`sample_data_service` in `server_settings/`), `user-flows.md` (clearing the sample data), `mb-3-cs-test-specification.md` (tier 4, tier 5 and Clear sample data tests) and `DESIGN.md` (the sample data banner). David deletes `docs-local\releases\` once nothing links to it.
+
+### G10. Social media syndication
+
+`docs-local\sm-syndication-spec.md` specifies sharing each published blog post to Facebook, LinkedIn, WhatsApp and Instagram in one tap, with AI captions and full previews, using public share links only. Carry it into `authoritative-schema.md` (`blog_posts.share_captions`), `mybizz-ai-implementation-spec.md` (the social caption assist), `DESIGN.md` (the Share panel and reader share buttons), `user-flows.md` (UF-16), `scaffold-spec.md` (the blog post `Route.meta` tags and the `/_/api/blog-image/{slug}` endpoint) and `mb-3-cs-architecture-reference.md` (F-21).
+
+### G11. The business model in the `mb-3-cs` documents
+
+Carry the business model (E9) into the `mb-3-cs` documents: the concept (section 9 and F-33), F-04 (no upgrade feature: every client has its own account), the PRD capacity row (1,000,000 rows per client on its own Business account) and every other mention of a shared account, Brevo, the free trial or the money-back guarantee.
+
+### G12. Built-in accounts replace the Wave integration
+
+F-28 becomes Accounts, built into Mybizz CS: an expenses record (`expenses`: date, supplier, category, amount, tax, receipt image in R2, notes; `expense_categories`) beside the existing invoices, invoice items, payments and refunds; reports for profit and loss by month, outstanding invoices, tax collected and tax paid, and customer statements; one-click CSV export of customers, invoices, invoice lines, payments, refunds and expenses in the import formats of Wave, Xero and QuickBooks (dates `YYYY-MM-DD`, plain decimal amounts, no currency symbols, UTF-8, one file per record type). The Wave integration is removed. Carry it into the concept (F-28), `mb-3-cs-architecture-reference.md` (F-28), `mybizz-ai-implementation-spec.md` (Phase 5 and the Wave section removed), `authoritative-schema.md`, the PRD (US-27, FR-28), `integration-architecture.md`, `scaffold-spec.md` (`server_accounts/` replaces `server_integrations/wave_service`) and the sample data (three months of expenses).
+
+### G13. R2 bucket layout
+
+Each client's bucket uses these folders: `backups/daily/`, `backups/weekly/`, `history/{table}/`, `audit/{year}/{month}/`, `webhooks/{service}/{year}/{month}/`, `email/messages/{address}/{year}/{month}/`, `email/attachments/`, `expenses/receipts/`, `exports/`. Carry it into `integration-architecture.md` (Client Storage), `team-inbox-spec.md` and `mb-3-cs-architecture-reference.md` (F-29).
