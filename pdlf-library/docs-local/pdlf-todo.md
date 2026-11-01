@@ -72,16 +72,9 @@ Design the user help documentation and the video documentation, as one design jo
 
 Each client has one R2 bucket in a free Cloudflare account in the client's own name, on the client's own email address; Mybizz is an invited member with the role Cloudflare R2 Admin, and App 5 creates the bucket and its token (`mb-3-cs` `integration-architecture.md`, Client Storage). Cloudflare is registered Deferred in the skills catalog; document it with `mb-sysdoc-creator` before the first step that uses it, and confirm which S3-compatible library runs on Anvil's server Python.
 
-### E9. Global ADRs to bring in line with the Mybizz business model
+### E9. Hobby-plan wording outside the ADRs
 
-The same business model applies to every Mybizz business: $150 a month per client, month to month with no contract; each client instance on its own Mybizz-owned Anvil Business account; unlimited staff logins; no add-ons; no free trial and no money-back guarantee, replaced by two demo apps. The global ADRs in `C:\dev\project-library-global\adr-global` that state it wrongly are corrected before the next PDLF run reads them at Step 12:
-
-1. `adr-tiers-model.md`: one price, $150 a month per client; assisted setup at $200 once.
-2. `adr-no-free-trial.md`: no trial and no money-back guarantee; prospects use the demo apps (`mb-3-cs` F-36); every client instance runs on its own Mybizz-owned Anvil Business account.
-3. `adr-client-r2-storage-and-exit-handover.md`: one bucket in a free Cloudflare account in the client's own name; Mybizz is an invited member; at exit the export is written into the bucket and Mybizz leaves the account.
-4. `adr-dependency-based-not-multi-tenant.md`, `adr-dependency-update-model.md`, `adr-client-instance-readme-five-app-system.md`, `adr-real-time-and-background-tasks.md` and `adr-mybizz-management-visibility.md`: each client instance is on its own Mybizz-owned Anvil Business account, not the client's own account, and App 5 is built before launch.
-
-The same correction applies to `spec-deployment.md`, the PDLF Step 12 file (`b12-build-plan.md`) and `pdlf-build-plan.md`, which state that every client starts on the Hobby plan.
+`spec-deployment.md`, the PDLF Step 12 file (`b12-build-plan.md`) and `pdlf-build-plan.md` state that every client starts on the Hobby plan. Each is corrected to: each client instance on its own Mybizz-owned Anvil Business account, $150 a month.
 
 ---
 
@@ -113,5 +106,4 @@ The PRD (Data protection) states that no customer personal data is sent to App 5
 
 1. Open Mybizz's AWS account and request SES production access.
 2. Set up Mybizz's Cloudflare user, which clients invite with the roles Cloudflare R2 Admin and DNS.
-3. Delete `docs-local\releases\` and `docs-local\Anvil Email System — Developer Brief.md`.
-4. Ask Anvil's sales team in writing whether Mybizz may run each client's business app on a Mybizz-owned Business account (BRD AC-6).
+3. Ask Anvil's sales team in writing whether Mybizz may run each client's business app on a Mybizz-owned Business account (BRD AC-6).
