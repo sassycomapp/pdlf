@@ -15,7 +15,7 @@ Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-librar
 | ST-01 | The cloned app validates with `anvil --json validate .`. |
 | ST-12 | The app's Users service has the sign-in settings of `spec-security`. |
 | ST-10 | The app's `.gitignore` covers `.env` and caches; an app that holds code has `tests\` with `conftest.py`, `pytest.ini`, `ts-config.yaml` and `integration\test_pr09_environment.py`; App 3 holds no code. |
-| PR-09 | For an app that holds code: the local runtime starts it on an empty database, both Uplink connections work, a `TEST_` user signs in, and the mail catcher receives an email (`test_pr09_environment.py`, run through `ts_local.sh`). |
+| PR-09 | For an app that holds code: the local runtime starts it on an empty database, both Uplink connections work, a `TEST_` user signs in with a second factor, and the mail catcher receives an email (`test_pr09_environment.py`, run through `ts_local.sh`). |
 | PR-06 | No secret is in any repository the step created or touched; `.env` is not tracked. |
 | PR-04 | Sentinel ran at High. |
 | PR-02 | The health check passes as the step's self-audit. |

@@ -75,7 +75,7 @@ All paths except GStack's are inside `{slug}-project-library\`.
 | Section | Placed | Written by | Holds |
 |---|---|---|---|
 | Architecture | After What Must Be Tested | The agent, before the review | Data design, modules and seams, settings, services, webhooks, tasks, management endpoints and heartbeat, R2 storage, AI features, lifecycles, reference mapping |
-| Security Decisions | After Architecture | The agent, after the review | Sign-in, the Vault's second factor, sessions; secrets with home and maximum age; security events logged; limits; outbound hosts; server packages with their review |
+| Security Decisions | After Architecture | The agent, after the review | Sign-in, second factor and the Vault's own code, sessions; secrets with home and maximum age; security events logged; limits; outbound hosts; server packages with their review |
 
 The review's own sections follow, and GStack's report is always the last section of the file. The Common Aspects section, written at Step 12, is updated in place.
 

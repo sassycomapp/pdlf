@@ -83,7 +83,7 @@ David sets these in the Anvil editor when he creates the app.
 | Setting | Value |
 |---|---|
 | Sign-in | Email and password |
-| Require 2-factor authentication | Off; the Vault has its own authenticator code (`spec-security`) |
+| Require 2-factor authentication | On; authenticator apps and security keys (FIDO2) allowed; "Allow 2-factor reset by email" on |
 | Require secure passwords | On |
 | Email confirmation | Required |
 | Remember-me | At most 7 days |

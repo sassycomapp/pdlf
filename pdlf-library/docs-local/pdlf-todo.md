@@ -40,15 +40,20 @@ The canonical-sources rules are set by [[[pdlf:pdlf-library/policy-local/pol-mem
 
 The skills catalogue (`C:\mybizz\mybizz-os-docs\os-reference-docs\skills-catalog.md`) is a starting point, not a limit. As each step is rebuilt under A1, Claude checks every need of the step against the catalogue. For each need no catalogued skill covers well, Claude searches outside it: Anvil's agent references first, then trusted skill collections on GitHub, then the wider web. Each skill found is checked against [[[pdlf:pdlf-library/adr-local/skill-use-principle]]](C:/pdlf/pdlf-library/adr-local/skill-use-principle.md): it works on Anvil, it is maintained, and its source is trusted. David approves or rejects it; an approved skill is added to the catalogue with its PDLF steps. During a run, an agent that meets a need no skill covers raises a flag, and the gap is closed in PDLF.
 
-The first needs to check, from the `mb-3-cs` design:
+The `mb-3-cs` design's needs, checked:
 
-1. Amazon SES: sending, receiving and the shared inbox.
-2. Accounting: profit and loss, tax, and the Wave, Xero and QuickBooks export formats.
-3. The app in six languages.
-4. Voice and AI through Groq.
-5. The Cloudflare API: R2 storage and DNS records.
-6. PayPal.
-7. Help videos.
+| Need | Skill | Status |
+|---|---|---|
+| Amazon SES: sending, tenants, identities, events | `aws-ses` (AWS, `amazon-ses/skills`) | To install |
+| Cloudflare: R2 storage and DNS records | `cloudflare` and `cf-cli` (Cloudflare, `cloudflare/skills`) | To install |
+| PayPal checkout, orders, refunds, webhooks | `paypal-best-practices` and `paypal-routing` (PayPal, `paypal/AI-Toolkit`) | To install |
+| The app in six languages | A MyBizz skill written by Claude from `spec-translation.md` | To write, then install |
+| Amazon SES receiving | SES's receiving documentation | No skill needed |
+| Accounting export formats | Each vendor's import template, read at Step 15 | No skill needed |
+| Voice and AI through Groq | Groq's API documentation | No skill needed |
+| Help videos | David's video tools; designed at E5 | No skill needed |
+
+The skills marked "To install" are installed together once David settles the install list.
 
 ### B4. End-to-end proof of the governed memory pipeline
 
@@ -110,3 +115,5 @@ Document Amazon SES and Cloudflare with `mb-sysdoc-creator` (both are registered
 2. Set up Mybizz's Cloudflare user, which clients invite with the roles Cloudflare R2 Admin and DNS.
 3. Ask Anvil's sales team in writing whether Mybizz may run each client's business app on a Mybizz-owned Business account (BRD AC-6).
 4. Switch on Zero Data Retention in the Groq console (Settings → Data Controls) for Mybizz's Groq organisation (SR-53a).
+5. In the Anvil editor, switch App 1 to Python 3.14 (Settings → Python versions); App 2 already runs it.
+6. In the Anvil editor, App 1's Users service: "Require 2-factor authentication" on, with "Allow 2-factor reset by email" on.

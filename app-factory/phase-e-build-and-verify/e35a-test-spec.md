@@ -23,7 +23,7 @@ Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-librar
 | IN-16 | Rate limits and safe failure. |
 | IN-17 | Volume at ten times a client. |
 | SC-01 | Passwords and sign-in, when touched. |
-| SC-02 | Sign-in by email and password; the Vault's authenticator code on every open. |
+| SC-02 | Second factor for every account holder; Owner FIDO2; the Vault's own authenticator code on every open. |
 | SC-03 | Step-up on high-value actions. |
 | SC-04 | Sessions, when touched. |
 | SC-07 | Files, links, redirects, when present. |
