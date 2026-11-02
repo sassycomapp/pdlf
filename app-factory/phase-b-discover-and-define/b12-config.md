@@ -1,7 +1,7 @@
 ---
 title: "b12-config"
 doc-id: "mb-8b21d27b"
-updated: "2026-10-31"
+updated: "2026-11-02"
 ---
 # Step 12 — Office Hours: Configuration
 
@@ -28,8 +28,16 @@ The fixed values of Step 12. Agent-facing. What the agent does, in order: [[[pdl
 | Route | When | Starts from |
 |---|---|---|
 | A, new application | Entry 02; entry 08 for a new App 5 | The three pre-project files; for App 5, also App 1's approved design doc |
-| B, existing application | Entry 03; any app whose folder already holds forms or server modules made outside PDLF | The whole documentation of the project context `{slug}-project-context` when the entry record names one, otherwise of the project library, through GBrain; the code graph |
+| B, existing application | Entry 03; any app whose folder already holds forms or server modules made outside PDLF | Every file of the project's documents (Canonical folders), read in full from the folders: the application's canonical specification; the code graph |
 | C, feature | The feature path of entries 04 and 09; an update that changes what the application does | David's statement in the entry record; the application's approved design doc, `GLOSSARY.md`, `adr-local\`; the code graph |
+## Canonical folders
+
+Read in full before any work, as [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md), substep 1, sets out. Every statement in them is a requirement.
+
+| Body | Folders |
+|---|---|
+| `project-library-global` | `adr-global\`, `policy-global\`, `specifications-global\` |
+| The project | `{slug}-project-context\` while it exists: `docs-local\`, `docs-standard-local\`, `policy-local\`, `adr-local\`; `{slug}-project-library\`: `docs-local\`, `docs-standard-local\`, `policy-local\`, `adr-local\` |
 
 ## Inputs
 
@@ -76,6 +84,8 @@ The fixed values of Step 12. Agent-facing. What the agent does, in order: [[[pdl
 | 11 | Risks | Each risk with its likelihood, impact and response |
 | 12 | Open Questions | Each question with the step that settles it: 14, 15 or 16 |
 | 13 | Success Criteria | Each criterion with its metric, threshold and method |
+| 14 | Specification | Route B: every feature, rule and decision of the project's documents, each by name with the document and section that states it; the design doc names them and never restates them in summary, so the documents stay the authority. Routes A and C: the features and decisions settled in this run |
+| 15 | Canonical Sources | Every canonical file read, in `project-library-global` and in the project's documents, with what the design doc takes from it |
 
 ## Platform facts every Constraints section states
 
@@ -84,7 +94,7 @@ The fixed values of Step 12. Agent-facing. What the agent does, in order: [[[pdl
 | One app and one database per client; never multi-tenant | Context pack, items 1 and 2 |
 | The server holds authority over identity, ownership and every rule | Context pack, item 6 |
 | All client code and `theme/assets` are public | Context pack, item 4 |
-| Every client starts on the Anvil Hobby plan | Common aspect 2 |
+| Every client instance runs on its own Mybizz-owned Anvil Business account | Common aspect 2 |
 | POPIA applies: Information Regulator registration after launch; data-subject rights of access, correction, deletion and objection | `spec-regulatory-compliance-baseline` |
 | GDPR applies when EU customers are served; PCI DSS when payments are taken | `spec-regulatory-compliance-baseline` |
 

@@ -1,6 +1,6 @@
 ---
 title: "spec-skill-context-pack"
-updated: "2026-10-23"
+updated: "2026-11-02"
 doc-id: "mb-2849f153"
 ---
 # PDLF — Skill Context Pack (Specification)
@@ -11,7 +11,7 @@ The context pack is the set of platform rules every skill must know before it sh
 
 ## How it is used
 
-At every skill invocation, the orchestrator pastes the full text of every file listed below into the invocation prompt, after the step's own handoff material ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact and Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2). It never pastes a summary, and never only a path.
+At every skill invocation, the orchestrator pastes the full text of every file listed below into the invocation prompt, after the step's own handoff material ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact and Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2). It never pastes a summary, and never only a path. After the pack, it pastes the full text of the canonical files the step read ([[[pdlf:pdlf-library/policy-local/pol-memory-and-knowledge|Policy: Memory and Knowledge]]](C:/pdlf/pdlf-library/policy-local/pol-memory-and-knowledge.md), Canonical sources, rule 5), with this instruction: "These documents are canonical: every statement in them is a requirement. Where your method proposes something they contradict, follow the documents and report the contradiction."
 
 ## The pack
 

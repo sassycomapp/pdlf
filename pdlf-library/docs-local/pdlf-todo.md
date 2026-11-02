@@ -1,7 +1,7 @@
 ---
 title: "pdlf-todo"
 doc-id: "mb-13a3fbc9"
-updated: "2026-11-01"
+updated: "2026-11-02"
 ---
 # Active PDLF To-Do List
 
@@ -32,9 +32,23 @@ Whatever fails or is missing is corrected in PDLF, and the run continues from th
 
 ## B. Rules for building every step
 
-### B1. Global-content query-fetch-apply sequence
+### B1. Canonical folders in every rebuilt step
 
-The rule and its enforcement are set by [[[pdlf:pdlf-library/adr-local/global-content-discovery-and-application-discipline]]](C:/pdlf/pdlf-library/adr-local/global-content-discovery-and-application-discipline.md) and [[[pdlf:pdlf-library/policy-local/pol-memory-and-knowledge]]](C:/pdlf/pdlf-library/policy-local/pol-memory-and-knowledge.md). Every documentation repository is a federated GBrain source, so one search covers everything, and cross-repository links use the standard form `[[[source-id:slug]]](C:/full/path.md)`, written by agents as `[[name]]` and converted by the `mb-doc-check` commit hook. The five-step sequence and its citation requirement are built into each relevant step file (17, 20, 22, 26, 27, 35, 35A, 37, 38, 41–45 at minimum) as that step is rebuilt under A1, after the sequence is checked against that setup.
+The canonical-sources rules are set by [[[pdlf:pdlf-library/policy-local/pol-memory-and-knowledge]]](C:/pdlf/pdlf-library/policy-local/pol-memory-and-knowledge.md) (Canonical sources) and [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md) (substep 1). Steps 12, 14, 15 and 16 carry their Canonical folders table. Each of Steps 17–46 gets its own table as it is rebuilt under A1.
+
+### B2. Skills fit in every rebuilt step
+
+The skills catalogue (`C:\mybizz\mybizz-os-docs\os-reference-docs\skills-catalog.md`) is a starting point, not a limit. As each step is rebuilt under A1, Claude checks every need of the step against the catalogue. For each need no catalogued skill covers well, Claude searches outside it: Anvil's agent references first, then trusted skill collections on GitHub, then the wider web. Each skill found is checked against [[[pdlf:pdlf-library/adr-local/skill-use-principle]]](C:/pdlf/pdlf-library/adr-local/skill-use-principle.md): it works on Anvil, it is maintained, and its source is trusted. David approves or rejects it; an approved skill is added to the catalogue with its PDLF steps. During a run, an agent that meets a need no skill covers raises a flag, and the gap is closed in PDLF.
+
+The first needs to check, from the `mb-3-cs` design:
+
+1. Amazon SES: sending, receiving and the shared inbox.
+2. Accounting: profit and loss, tax, and the Wave, Xero and QuickBooks export formats.
+3. The app in six languages.
+4. Voice and AI through Groq.
+5. The Cloudflare API: R2 storage and DNS records.
+6. PayPal.
+7. Help videos.
 
 ### B4. End-to-end proof of the governed memory pipeline
 
@@ -68,20 +82,6 @@ Anvil's `data-models` and `server-code` skills call `$app-testing`, and `anvil-y
 
 Design the user help documentation and the video documentation, as one design job, before Phase E is built.
 
-### E8. Cloudflare R2
-
-Each client has one R2 bucket in a free Cloudflare account in the client's own name, on the client's own email address; Mybizz is an invited member with the role Cloudflare R2 Admin, and App 5 creates the bucket and its token (`mb-3-cs` `integration-architecture.md`, Client Storage). Cloudflare is registered Deferred in the skills catalog; document it with `mb-sysdoc-creator` before the first step that uses it, and confirm which S3-compatible library runs on Anvil's server Python.
-
-### E9. Hobby-plan wording in PDLF
-
-Each client instance runs on its own Mybizz-owned Anvil Business account, at $150 a month; `spec-anvil-platform-standards.md` section 5 holds the Business plan's facts. These PDLF files still state the Hobby plan and are corrected before the next PDLF run reads them:
-
-1. `app-factory/pdlf-build-plan.md` (Client accounts and tiers).
-2. Step 12: `b12-build-plan.md`, `b12-config.md`, `b12-explainer.md`, `b12-test-spec.md` (Constraints section).
-3. Step 14: `b14-build-plan.md`, `b14-config.md`, `b14-reference.md`, `b14-explainer.md`, `b14-test-spec.md`: the Hobby Fit section becomes a Business-plan fit (rows and storage against the account's limits).
-4. Step 15: `b15-build-plan.md`, `b15-reference.md`, `b15-explainer.md`.
-5. `pdlf-explainer.md`, `app-factory-explainer.md` (client account and exit), `pdlf-testing-explainer.md` (one database, no test environment).
-
 ---
 
 ## F. Applications
@@ -100,16 +100,13 @@ When a business is finished, every item its design marked `common` that is not y
 
 The `mb-3-cs` project context (`docs-local\`, `docs-standard-local\`, `policy-local\`, `adr-local\`) holds the complete, consistent design of every feature in `mb-3-cs-feature-list.md`.
 
-### G1. Before the first step that uses SES
+### G1. Before the first step that uses SES or R2
 
-Confirm that `boto3` runs on Anvil's server Python, document Amazon SES with `mb-sysdoc-creator`, and confirm that SES receives email in `eu-west-1`.
-
-### G2. Personal data sent through App 5
-
-The PRD (Data protection) states that no customer personal data is sent to App 5. Voice tiers 1 to 4 send speech, which can name customers, through App 5 to Groq for transcription; AI assists 6 and 9 send email and communication text. Decide the rule for AI and voice requests through App 5 (pass through without storing, or names removed before sending) and write it into the PRD, the SRS and `mybizz-ai-implementation-spec.md`.
+Document Amazon SES and Cloudflare with `mb-sysdoc-creator` (both are registered Deferred in the skills catalog).
 
 ### G3. David, once
 
 1. Open Mybizz's AWS account and request SES production access.
 2. Set up Mybizz's Cloudflare user, which clients invite with the roles Cloudflare R2 Admin and DNS.
 3. Ask Anvil's sales team in writing whether Mybizz may run each client's business app on a Mybizz-owned Business account (BRD AC-6).
+4. Switch on Zero Data Retention in the Groq console (Settings → Data Controls) for Mybizz's Groq organisation (SR-53a).

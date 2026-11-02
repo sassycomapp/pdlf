@@ -1,7 +1,7 @@
 ---
 title: "b12-explainer"
 doc-id: "mb-634cedf5"
-updated: "2026-10-29"
+updated: "2026-11-02"
 ---
 # Step 12 — Office Hours: Explainer
 
@@ -16,12 +16,12 @@ Step 12 runs once for each whole application (App 1, and App 5 when it is create
 Step 12 first gathers the material the concept comes from. The route depends on what already exists.
 
 - **A new application.** The agent reads the three pre-project files and questions David with Matt Pocock's `grilling` skill. It asks a round of numbered questions, each with its recommended answer, and keeps going until every branch of the concept is settled. It looks up facts itself and asks David only for decisions. For App 5, the questions start from App 5's role in the five-app structure and from App 1's design doc.
-- **An existing application.** The agent reads the whole of the business's existing documentation through GBrain, from its project context when it has one, and the code graph of the app. It treats every document as material to check, not as fact. It separates the durable concept from what merely followed from it, shows David every document that already claims to state the concept, and reports documents that name things that do not exist. David confirms or corrects the split. The application is redeveloped around its concept, not audited.
+- **An existing application.** The agent opens every folder of the business's project documents and reads every file in full, searches GBrain as well, and reads the code graph of the app. The documents are the application's specification, as David has set them: every statement is a requirement. The agent lists every conflict between documents, and every place the code disagrees with them, and David decides each one. The design doc's Specification section then names every feature, rule and decision of the documents, with the document that states it, and David confirms nothing is missing.
 - **A feature.** The agent questions David from his description of the feature, and checks it against the application's design doc, its vocabulary, its decisions and the code it touches.
 
 When the application follows a reference platform, such as Medusa for `mb-4-ecom`, Matt Pocock's `research` skill first checks the reference's analysis against the reference's own source code and documentation, kept in the project library's `reference-platform-local` folder, and writes its findings with a source for every claim.
 
-The agent then writes the draft design doc in one fixed structure of thirteen sections. Its Constraints section always states the platform's facts: one app and one database per client, the server in charge of every rule, all client code public, the Hobby plan, and POPIA. Its Common Aspects section lists each of the fourteen common aspects as shared or deviating. Every success criterion has a metric, a threshold and a method, and every open question names the step that settles it. The draft is saved twice: once as the first concept, which is never changed again, and once as the working copy.
+The agent then writes the draft design doc in one fixed structure of fifteen sections. Its Constraints section always states the platform's facts: one app and one database per client, the server in charge of every rule, all client code public, each client instance on its own Mybizz-owned Anvil Business account, and POPIA. Its Canonical Sources section lists every canonical document read and what the design doc takes from it. Its Common Aspects section lists each of the fourteen common aspects as shared or deviating. Every success criterion has a metric, a threshold and a method, and every open question names the step that settles it. The draft is saved twice: once as the first concept, which is never changed again, and once as the working copy.
 
 David is then asked whether to run GStack's `/office-hours` on the draft, and the recommendation is yes. `/office-hours` is given the whole draft as a fully formed plan, so it skips its interview and goes straight to challenging the premises and forcing alternatives. PDLF answers its other questions in advance; David answers only the premises and the choice of approach. The agent then rewrites the working copy from the result, in the same fixed structure.
 
@@ -33,7 +33,8 @@ Finally the agent checks the design doc against tests DC-01 and DC-02, David app
 - **The first concept is never changed.** Drift can only be seen against the concept as it was first agreed.
 - **One fixed structure.** Every later step and every test reads the same sections in the same order, for every application and every feature.
 - **The platform's facts are written into the concept.** A concept that assumes a shared database or code hidden in the browser is wrong from its first line, and everything built on it inherits the mistake.
-- **An existing application is redeveloped, not audited.** Its documents record what was decided at the time, not what is true. Keeping only the durable concept lets everything else be rebuilt properly.
+- **An existing application's documents are its specification.** David has brought them into line with what the application must be. An agent that treats them as material to check, or squeezes them into a summary, replaces David's specification with its own reading. Naming every feature with its source keeps the documents the authority for every later step.
+- **Canonical documents are read from their folders.** A search returns what it ranks highest; reading the folders in full means nothing is missed.
 - **A reference platform gives its domain, never its technology.** Its workflows are proven by real use. Its technology does not run on Anvil and would break the five-app structure.
 - **`/office-hours` is told its answers.** Many of its questions are settled by PDLF's rules: sub-agents and most websites are blocked, screens come later, and Step 14 is always next. Answering them in advance means David is asked only what is his to decide.
 - **One design doc in the project library.** `/office-hours` also writes a copy into the project library. Two copies would drift apart and GBrain would index both, so that copy is moved into the step folder as the record.
@@ -42,7 +43,7 @@ Finally the agent checks the design doc against tests DC-01 and DC-02, David app
 ## What has to happen
 
 - David answers the interview questions and confirms the shared understanding.
-- For an existing application, David confirms or corrects the split of concept and consequence.
+- For an existing application, David decides each conflict the agent lists and confirms the Specification section is complete.
 - David runs a network grant if the reference-platform research needs a site outside Cupcake's allowlist.
 - David decides whether `/office-hours` runs, and answers its questions on premises and approach.
 - David approves the design doc before the step ends.

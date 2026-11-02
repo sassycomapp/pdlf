@@ -1,7 +1,7 @@
 ---
 title: "b11-config"
 doc-id: "mb-ea7e8074"
-updated: "2026-10-31"
+updated: "2026-11-02"
 ---
 # Step 11 — Init: Configuration
 
@@ -83,7 +83,7 @@ David sets these in the Anvil editor when he creates the app.
 | Setting | Value |
 |---|---|
 | Sign-in | Email and password |
-| Require 2-factor authentication | On; authenticator apps and security keys (FIDO2) allowed |
+| Require 2-factor authentication | Off; the Vault has its own authenticator code (`spec-security`) |
 | Require secure passwords | On |
 | Email confirmation | Required |
 | Remember-me | At most 7 days |

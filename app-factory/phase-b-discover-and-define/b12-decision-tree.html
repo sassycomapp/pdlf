@@ -28,16 +28,16 @@ flowchart TD
     A1 --> A2["6. grilling until every branch is settled<br/>David confirms"]
     A2 --> Draft
 
-    Route -->|"B: existing application"| B1["8-9. GBrain: the project context's whole documentation<br/>code graph of the app"]
-    B1 --> B2["10-12. Concept versus consequence<br/>show concept claims; report what does not exist"]
-    B2 --> B3["13. David confirms or corrects the split"]
+    Route -->|"B: existing application"| B1["8-9. Every project document read in full from its folders,<br/>plus GBrain; code graph of the app"]
+    B1 --> B2["10-12. Documents are the specification<br/>conflicts to David; report what does not exist"]
+    B2 --> B3["13. Specification section: every feature, rule, decision<br/>by source; David confirms complete"]
     B3 --> Draft
 
     Route -->|"C: feature"| C1["15-16. Statement, design doc, CONTEXT.md,<br/>ADRs; code graph of what it touches"]
     C1 --> C2["17. grilling until the feature is described<br/>David confirms"]
     C2 --> Draft
 
-    Draft["23. Draft in the fixed structure:<br/>platform facts, 14 common aspects,<br/>measurable success, homed open questions"] --> Save["24. Save first concept and working copy"]
+    Draft["23. Draft in the fixed structure:<br/>platform facts, 14 common aspects,<br/>measurable success, homed open questions,<br/>Specification, Canonical Sources"] --> Save["24. Save first concept and working copy"]
     Save --> OH{"25. David: run /office-hours?<br/>recommended yes"}
     OH -->|"No"| Check
     OH -->|"Yes"| O1["27. Start from the project library<br/>paste draft, material, context pack, fixed answers"]

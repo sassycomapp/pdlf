@@ -1,7 +1,7 @@
 ---
 title: "b14-config"
 doc-id: "mb-497c1373"
-updated: "2026-10-24"
+updated: "2026-11-02"
 ---
 # Step 14 — CEO Review: Configuration
 
@@ -21,6 +21,14 @@ The fixed values of Step 14. Agent-facing. What the agent does, in order: [[[pdl
 | BFT level | Full |
 | Sentinel scrutiny | Medium |
 | Conditional | No |
+## Canonical folders
+
+Read in full before any work, as [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md), substep 1, sets out. Every statement in them is a requirement.
+
+| Body | Folders |
+|---|---|
+| `project-library-global` | `adr-global\`, `policy-global\`, `specifications-global\`, `security-global\` |
+| The project | `{slug}-project-context\` while it exists: `docs-local\`, `docs-standard-local\`, `policy-local\`, `adr-local\`; `{slug}-project-library\`: `docs-local\`, `docs-standard-local\`, `policy-local\`, `adr-local\` |
 
 ## Inputs
 
@@ -36,7 +44,7 @@ The fixed values of Step 14. Agent-facing. What the agent does, in order: [[[pdl
 | Protection levels | [[[default:specifications-global/spec-security-architecture\|Security Architecture]]](C:/dev/project-library-global/specifications-global/spec-security-architecture.md), section 4 |
 | Retention, GDPR, PCI DSS, legal documents | [[[default:specifications-global/spec-regulatory-compliance-baseline\|Regulatory Compliance Baseline]]](C:/dev/project-library-global/specifications-global/spec-regulatory-compliance-baseline.md) |
 | Client exit | [[[default:adr-global/adr-client-r2-storage-and-exit-handover\|Client R2 Storage and Exit Handover]]](C:/dev/project-library-global/adr-global/adr-client-r2-storage-and-exit-handover.md) |
-| Hobby limits | [[[default:specifications-global/spec-anvil-platform-standards\|Anvil Platform Standards]]](C:/dev/project-library-global/specifications-global/spec-anvil-platform-standards.md), section 5: 1,000 emails a month, 150,000 rows, 10 GB |
+| Business plan limits | [[[default:specifications-global/spec-anvil-platform-standards\|Anvil Platform Standards]]](C:/dev/project-library-global/specifications-global/spec-anvil-platform-standards.md), section 5: 1,000,000 rows, 100 GB; email through Amazon SES |
 | Anvil feasibility | `C:\dev\project-library-global\anvil-docs\`; `C:\mybizz\anvil-agent-references\` |
 | Global standards | [[[default:policy-global/pol-common-aspects-for-mybizz-anvil-applications\|Common Aspects for Mybizz Anvil Applications]]](C:/dev/project-library-global/policy-global/pol-common-aspects-for-mybizz-anvil-applications.md); `adr-global\`; `specifications-global\` |
 
@@ -59,9 +67,9 @@ The fixed values of Step 14. Agent-facing. What the agent does, in order: [[[pdl
 | Data Inventory | After Success Criteria | `secure-software-engineering`, before the review | Every kind of data: owner, readers, writers, protection level, retention |
 | Regulatory Position | After Data Inventory | `secure-software-engineering`, before the review | POPIA; GDPR and PCI DSS SAQ A with reasons; the three legal documents; the annual SAQ A when payments are taken |
 | Security Requirements | After Regulatory Position | `secure-software-engineering`, before the review | Assets, actors, harms, what must never leak, testable acceptance criteria |
-| Client Exit | After Security Requirements | `secure-software-engineering`, before the review | The handover package for this application |
-| Hobby Fit | After Client Exit | `secure-software-engineering`, before the review | A typical client's emails a month, rows and storage against the limits; what shows a higher plan is needed |
-| Scope | After Hobby Fit | The agent, after the review | Goals; non-goals; a reference to the review's NOT in scope section |
+| Client Exit | After Security Requirements | `secure-software-engineering`, before the review | What the exit export writes to the client's bucket for this application |
+| Plan Fit | After Client Exit | `secure-software-engineering`, before the review | A typical client's rows and storage against the Business plan's limits; what shows a client nears them |
+| Scope | After Plan Fit | The agent, after the review | Goals; non-goals; a reference to the review's NOT in scope section |
 | What Must Be Tested | After Scope | The agent, after the review | Each critical flow, role and edge case, with why |
 
 The review's own sections follow, and GStack's report is always the last section of the file.

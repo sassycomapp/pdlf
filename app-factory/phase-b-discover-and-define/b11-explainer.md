@@ -1,7 +1,7 @@
 ---
 title: "b11-explainer"
 doc-id: "mb-afda1c7f"
-updated: "2026-10-29"
+updated: "2026-11-02"
 ---
 # Step 11 — Init: Explainer
 
@@ -17,7 +17,7 @@ The orchestrator hands Step 11 the entry record, which says how the work entered
 - **An application with context** (entry 03). The business already has its apps and a project library. With David's permission, the old project library becomes the business's project context: David renames its GitHub repository to `{slug}-project-context`, moves its contents into that folder and re-registers it in GBrain and on the commit tools. The context is then read-only. The agent makes a new project library from the template in the emptied folder, checks each app, builds the code graph of each existing app, scans the public repositories for secrets, and adds only what is missing. Reference-platform material kept anywhere other than `reference-platform-local` is reported and moved there with David's permission, because that folder is never committed.
 - **A new app in an existing business** (entries 07 and 08). The agent checks the business is sound, then sets up only the new app.
 
-Setting up an app follows one pattern. David creates the app in Anvil, which also creates its repository on GitHub. In the same instructions he switches on the Users service with the sign-in settings every Mybizz app uses, and adds a `role` column to its Users table. Each app folder already holds its scaffold from the project template: its `.gitignore`, its README and, for an app that holds code, its `tests` folders. The agent brings the app's repository into that folder, checks it validates, and writes its `AGENTS.md`. An app that holds code (App 1 or App 5) then gets the test suite's templates in its `tests` folders. David runs one command that writes the app's `.env` with new local keys. The agent starts the local runtime, the Anvil App Server on an empty database with a mail catcher beside it, and runs test PR-09. It proves the two Uplink connections, a `TEST_` user signing in with a second factor, and an email reaching the mail catcher. App 3 holds no code, so it gets no test setup.
+Setting up an app follows one pattern. David creates the app in Anvil, which also creates its repository on GitHub. In the same instructions he switches on the Users service with the sign-in settings every Mybizz app uses, and adds a `role` column to its Users table. Each app folder already holds its scaffold from the project template: its `.gitignore`, its README and, for an app that holds code, its `tests` folders. The agent brings the app's repository into that folder, checks it validates, and writes its `AGENTS.md`. An app that holds code (App 1 or App 5) then gets the test suite's templates in its `tests` folders. David runs one command that writes the app's `.env` with new local keys. The agent starts the local runtime, the Anvil App Server on an empty database with a mail catcher beside it, and runs test PR-09. It proves the two Uplink connections, a `TEST_` user signing in, and an email reaching the mail catcher. App 3 holds no code, so it gets no test setup.
 
 For routes A and B the agent then sets up the Matt Pocock skills with PDLF's answers fixed in advance, registers the project library in GBrain, and gives David the exact lines that bring it under the commit hook and `commit-all`. Every route ends the same way: Sentinel reviews what was created for security, the health check proves the setup is sound, and the step writes its ledger row and receipt, explains itself and asks David to run `/mb-close-out`.
 

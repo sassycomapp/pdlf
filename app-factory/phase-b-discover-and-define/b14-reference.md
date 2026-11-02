@@ -1,7 +1,7 @@
 ---
 title: "b14-reference"
 doc-id: "mb-708686df"
-updated: "2026-10-29"
+updated: "2026-11-02"
 ---
 # Step 14 — CEO Review: Reference
 
@@ -15,8 +15,8 @@ What the agent does at Step 14, in order. Agent-facing. Fixed values: [[[pdlf:ap
 
 ## 2. Security, data and law
 
-4. Run `secure-software-engineering`, at its requirements phase, with the design doc, the context pack, the protection levels, the compliance baseline, the exit ADR and the Hobby limits. State that every client has its own app and database, so its multi-tenant guidance does not apply.
-5. From its result, write the five sections of the configuration (Data Inventory, Regulatory Position, Security Requirements, Client Exit, Hobby Fit) into `design-doc.md`, after Success Criteria, in that order. Give every kind of data its owner, readers, writers, protection level and retention; decide GDPR and PCI DSS SAQ A with their reasons; give every acceptance criterion a test.
+4. Run `secure-software-engineering`, at its requirements phase, with the design doc, the context pack, the protection levels, the compliance baseline, the exit ADR and the Business plan limits. State that every client has its own app and database, so its multi-tenant guidance does not apply.
+5. From its result, write the five sections of the configuration (Data Inventory, Regulatory Position, Security Requirements, Client Exit, Plan Fit) into `design-doc.md`, after Success Criteria, in that order. Give every kind of data its owner, readers, writers, protection level and retention; decide GDPR and PCI DSS SAQ A with their reasons; give every acceptance criterion a test.
 
 ## 3. The review
 
@@ -32,7 +32,7 @@ What the agent does at Step 14, in order. Agent-facing. Fixed values: [[[pdlf:ap
 
 ## 4. The step's own sections
 
-15. Write the Scope section (goals; non-goals; a reference to the review's NOT in scope section) and the What Must Be Tested section (each critical flow, role and edge case the review named, with why) after Hobby Fit, before the review's own sections. Keep GStack's report last.
+15. Write the Scope section (goals; non-goals; a reference to the review's NOT in scope section) and the What Must Be Tested section (each critical flow, role and edge case the review named, with why) after Plan Fit, before the review's own sections. Keep GStack's report last.
 
 ## 5. Check and approval
 

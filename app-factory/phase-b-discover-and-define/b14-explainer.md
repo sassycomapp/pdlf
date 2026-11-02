@@ -1,19 +1,19 @@
 ---
 title: "b14-explainer"
 doc-id: "mb-0111675e"
-updated: "2026-10-24"
+updated: "2026-11-02"
 ---
 # Step 14 — CEO Review: Explainer
 
 ## What it is
 
-Step 14 settles how far the application, or the feature, goes. It challenges the concept David approved at Step 12, and lets David choose whether to widen the scope, hold it or cut it. Around the scope it settles the things that follow from it: what data the application holds and how each kind is protected, which laws apply, what the business must keep secure, how a client leaves with their data, and whether a typical client fits on Anvil's Hobby plan. It also names what must be tested, and why. The result is the reviewed plan that Step 15 turns into an architecture.
+Step 14 settles how far the application, or the feature, goes. It challenges the concept David approved at Step 12, and lets David choose whether to widen the scope, hold it or cut it. Around the scope it settles the things that follow from it: what data the application holds and how each kind is protected, which laws apply, what the business must keep secure, how a client leaves with their data, and whether a typical client fits within the limits of its Anvil Business account. It also names what must be tested, and why. The result is the reviewed plan that Step 15 turns into an architecture.
 
 ## How it works
 
 The step works in the same design doc Step 12 wrote. GStack's reviews are built to amend one plan file and keep their report at its end, so the concept and its reviews live in one document.
 
-First, Magnus919's `secure-software-engineering` skill drafts five new sections: the Data Inventory, the Regulatory Position, the Security Requirements, the Client Exit and the Hobby Fit. Every kind of data gets an owner, its readers and writers, one of four protection levels (Public, Internal, Personal, Restricted) and a retention period.
+First, Magnus919's `secure-software-engineering` skill drafts five new sections: the Data Inventory, the Regulatory Position, the Security Requirements, the Client Exit and the Plan Fit. Every kind of data gets an owner, its readers and writers, one of four protection levels (Public, Internal, Personal, Restricted) and a retention period.
 
 Then GStack's `/plan-ceo-review` reviews the whole plan, those sections included. It challenges the premise, recommends a scope mode, and David chooses one: expansion, selective expansion, hold scope or reduction. The skill then works through its review sections at the level of strategy, putting every finding and every proposed addition, cut or deferral to David one at a time. PDLF answers its other questions in advance.
 

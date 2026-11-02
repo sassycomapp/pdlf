@@ -1,6 +1,6 @@
 ---
 title: "b12-test-spec"
-updated: "2026-10-24"
+updated: "2026-11-02"
 doc-id: "mb-8ab64548"
 ---
 # Step 12: Office hours — Test Specification
@@ -13,7 +13,7 @@ Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-librar
 |---|---|
 | PR-01 | The entry record is complete and Step 11 is complete for the app worked on. |
 | DC-01 | Every success criterion has a metric, a threshold and a method; no requirement uses a vague term or bundles two needs. |
-| DC-02 | Every section of the fixed structure is present, in order; the Constraints section states one app and one database per client, server authority, public client code, the Hobby plan and POPIA; the 14 common aspects are each listed as shared or deviating with its reason; when a reference platform is used, its analysis is checked against its primary sources and only its domain and workflows are taken. |
+| DC-02 | Every section of the fixed structure is present, in order; the Constraints section states one app and one database per client, server authority, public client code, each client instance on its own Mybizz-owned Anvil Business account, and POPIA; for route B, the Specification section names every feature, rule and decision of the project's documents with its source, and none is missing; the Canonical Sources section lists every canonical file read; the 14 common aspects are each listed as shared or deviating with its reason; when a reference platform is used, its analysis is checked against its primary sources and only its domain and workflows are taken. |
 | PR-06 | No secret is in the design docs, the research file or any copy in `pdlf-outputs\b12\` (gitleaks on the project library's working tree). |
 | PR-04 | Sentinel ran at Medium. |
 

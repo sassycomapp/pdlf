@@ -1,6 +1,6 @@
 ---
 title: "pdlf-testing-explainer"
-updated: "2026-10-23"
+updated: "2026-11-02"
 doc-id: "mb-2bb4ba8f"
 ---
 # PDLF Testing — How It Works
@@ -26,7 +26,7 @@ Every application is designed and reviewed against OWASP ASVS 5.0 Level 2 princi
 
 ## 3. Where tests run
 
-The Hobby plan gives App 1 one database and no test environment. Tests therefore run first on the Anvil App Server on the developer's computer, starting from an empty database each time, so nothing live is touched and attacks can be tried freely. Only what needs Anvil's hosted service (sign-up emails, real webhooks, scheduled tasks, headers) is tested on hosted App 1, with `TEST_` data that is removed afterwards. Access rules are always proven by signing in as each role through a client connection.
+App 1 has one database, and Mybizz uses no test environment. Tests therefore run first on the Anvil App Server on the developer's computer, starting from an empty database each time, so nothing live is touched and attacks can be tried freely. Only what needs Anvil's hosted service (sign-up emails, real webhooks, scheduled tasks, headers) is tested on hosted App 1, with `TEST_` data that is removed afterwards. Access rules are always proven by signing in as each role through a client connection.
 
 ## 4. How each phase is tested
 
@@ -49,6 +49,6 @@ At Step 35 a failure stops the work until it is fixed. From Step 35A on, it is r
 ## Why it works this way
 
 - **Level 2 with selected Level 3,** because the costliest failures (a stolen owner account, a forged payment, an unrecorded change to money) get extra protection and the rest gets the standard level.
-- **Local first,** because the Hobby plan has no test database and attacks must never hit a hosted service.
+- **Local first,** because App 1 has no test database and attacks must never hit a hosted service.
 - **Saved evidence,** because a claimed pass proves nothing, and because evidence kept over time is what audits and customers ask for.
 - **One catalogue,** because a test used at many steps must be the same test everywhere.

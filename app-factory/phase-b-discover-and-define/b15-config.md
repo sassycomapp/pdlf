@@ -1,7 +1,7 @@
 ---
 title: "b15-config"
 doc-id: "mb-4401e749"
-updated: "2026-10-24"
+updated: "2026-11-02"
 ---
 # Step 15 — Engineering Review: Configuration
 
@@ -21,6 +21,14 @@ The fixed values of Step 15. Agent-facing. What the agent does, in order: [[[pdl
 | BFT level | Full |
 | Sentinel scrutiny | High |
 | Conditional | No; `prototype` and `research` run only when their condition holds |
+## Canonical folders
+
+Read in full before any work, as [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md), substep 1, sets out. Every statement in them is a requirement.
+
+| Body | Folders |
+|---|---|
+| `project-library-global` | `adr-global\`, `policy-global\`, `specifications-global\`, `security-global\`, `docs-standard-global\`, `anvil-docs\` |
+| The project | `{slug}-project-context\` while it exists: `docs-local\`, `docs-standard-local\`, `policy-local\`, `adr-local\`; `{slug}-project-library\`: `docs-local\`, `docs-standard-local\`, `policy-local\`, `adr-local\` |
 
 ## Inputs
 
@@ -67,7 +75,7 @@ All paths except GStack's are inside `{slug}-project-library\`.
 | Section | Placed | Written by | Holds |
 |---|---|---|---|
 | Architecture | After What Must Be Tested | The agent, before the review | Data design, modules and seams, settings, services, webhooks, tasks, management endpoints and heartbeat, R2 storage, AI features, lifecycles, reference mapping |
-| Security Decisions | After Architecture | The agent, after the review | Sign-in, second factor, sessions; secrets with home and maximum age; security events logged; limits; outbound hosts; server packages with their review |
+| Security Decisions | After Architecture | The agent, after the review | Sign-in, the Vault's second factor, sessions; secrets with home and maximum age; security events logged; limits; outbound hosts; server packages with their review |
 
 The review's own sections follow, and GStack's report is always the last section of the file. The Common Aspects section, written at Step 12, is updated in place.
 

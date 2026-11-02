@@ -1,7 +1,7 @@
 ---
 title: "spec-execution-discipline"
 doc-id: "mb-913cd6af"
-updated: "2026-10-31"
+updated: "2026-11-02"
 ---
 # PDLF Execution Discipline
 
@@ -19,7 +19,14 @@ sequence to the current step and does not skip a substep without a deviation req
 Every step follows this sequence. The agent never skips a substep without a deviation request.
 
 0. Open the step's `steps` row with `status = 'in_progress'` and `started_at`, or, when the row exists from an earlier attempt of the same run, set it back to `in_progress`. The open row is how the orchestrator resumes a run that stopped part-way through a step, and the row a gate's approval refers to.
-1. Search GBrain for context relevant to this step's domain, across the federated documentation sources (one search covers the project library `{slug}-project-library`, `default`, which is `project-library-global`, and `pdlf`), adding `anvil-agent-references-code` when the step needs Anvil knowledge. Read the actual file each result points to. Application code is read directly from the app folder, never through GBrain.
+1. Read the canonical sources ([[[pdlf:pdlf-library/policy-local/pol-memory-and-knowledge|Policy: Memory and Knowledge]]](C:/pdlf/pdlf-library/policy-local/pol-memory-and-knowledge.md), Canonical sources):
+   - List the canonical folders named in the step's configuration, in `project-library-global` and in the project's documents (`{slug}-project-context` while it exists, and `{slug}-project-library`), and read in full every file that bears on the step.
+   - Search GBrain on the step's subject across the federated documentation sources (the project library, the project context while it exists, `default`, which is `project-library-global`, and `pdlf`), adding `anvil-agent-references-code` when the step needs Anvil knowledge. Read in full each file a result points to. GBrain is advisory; where a result differs from its file, follow the file and report the difference.
+   - A step whose configuration has no Canonical folders table reads every folder of the project's documents and every `project-library-global` folder that bears on its subject.
+   - Record each canonical file read; the Step Receipt lists them with what the step applied from each.
+   - Search GBrain again at the start of every later task within the step.
+   - Application code is read directly from the app folder, never through GBrain.
+1a. Every statement in a canonical document is a requirement. Never treat one as prior material, never summarise it in place of carrying it, and never drop or reinterpret a statement. A conflict between canonical documents, or between a canonical document and a skill's output, is put to David with a recommended resolution.
 2. Check step type: SKILL / MANUAL / OPTIONAL / GATE.
 3. If OPTIONAL: present recommendation + justification, wait for RUN/SKIP decision.
 4. If MANUAL: present instructions + references, wait for "done," verify.

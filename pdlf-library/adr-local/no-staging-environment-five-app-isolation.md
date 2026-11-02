@@ -1,7 +1,7 @@
 ---
 title: "adr-no-staging-environment-five-app-isolation"
 doc-id: "mb-5b1e8fd8"
-updated: "2026-10-23"
+updated: "2026-11-02"
 ---
 # ADR — PDLF Has No Staging/Production Environment Split
 
@@ -11,7 +11,7 @@ updated: "2026-10-23"
 
 ## Context
 
-Anvil supports Deployment Environments: one app with several environments (for example Development, Staging and Production), each tracking a different branch or commit, each with its own URL and Data Tables. Every client starts on Anvil's Hobby plan, which gives each app one environment and one database. Mybizz is not built as one app with several environments; it is five separate Anvil apps with a dependency chain between them.
+Anvil supports Deployment Environments: one app with several environments (for example Development, Staging and Production), each tracking a different branch or commit, each with its own URL and Data Tables. Each app has one environment and one database. Mybizz is not built as one app with several environments; it is five separate Anvil apps with a dependency chain between them.
 
 ## The Five-App Structure — the part that matters here
 
@@ -20,7 +20,7 @@ Anvil supports Deployment Environments: one app with several environments (for e
 | App 1 — `{slug}-app1` | Development workspace. All feature development happens here. It is never a dependency of any client instance. | **No.** |
 | App 2 — `master_template` | The sole source of server logic and UI for every client. Receives App 1's tagged releases, pushed into its repository by the developer at Step 42. | No: clients depend on it, but it is never given to a client. |
 | App 3 — `blank_client_template` | The clone source for provisioning new clients. | No. |
-| App 4 — `[client-name]-{vertical}` | One per paying client, on the client's own Anvil account. Depends on App 2. The only app real users touch. | **Yes: this is production.** |
+| App 4 — `[client-name]-{vertical}` | One per paying client, on its own Mybizz-owned Anvil Business account. Depends on App 2. The only app real users touch. | **Yes: this is production.** |
 | App 5 — `{Product}_management` | Platform-operator tooling. | No (operator only). |
 
 Every build step works inside App 1, and every push a build step makes lands in App 1's repository. App 1 is structurally never a dependency of a client instance; this is how the apps are wired, not a policy PDLF must enforce.
