@@ -1,6 +1,6 @@
 ---
 title: "pdlf-user-manual"
-updated: "2026-10-31"
+updated: "2026-11-03"
 doc-id: "mb-6ea8e798"
 ---
 # PDLF User Manual
@@ -68,6 +68,7 @@ How to operate PDLF, step by step. Each step says where it happens: **WSL termin
 5. **A permission slip:** if the agent needs to write outside its business, it stops and gives you an `mg-grant` line. Run it in the WSL terminal only if you agree, then tell the agent to continue.
 6. **A flag:** when something fails, the agent stops with a block headed `FLAG`. Paste it to Claude, do what Claude gives you, and paste Claude's instruction back to the agent. Never let the agent carry on past a flag on its own. The fault is fixed in PDLF, and the run continues from the item that failed.
 7. **OpenCode asks before every command:** the app's `opencode.json` still makes the Build agent ask. Bring it to Claude.
+8. **Anvil shows the app out of sync with GitHub:** in the pop-up, choose **Merge changes**. Never choose **Discard the remote changes**: it overwrites GitHub with the editor's copy, and the work committed from the PC is lost from GitHub.
 
 ## 5. End a session
 
