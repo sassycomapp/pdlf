@@ -1,7 +1,7 @@
 ---
 title: "b12-reference"
 doc-id: "mb-585a9d95"
-updated: "2026-11-02"
+updated: "2026-11-03"
 ---
 # Step 12 — Office Hours: Reference
 
@@ -9,7 +9,7 @@ What the agent does at Step 12, in order. Agent-facing. Fixed values: [[[pdlf:ap
 
 ## 1. Start
 
-1. Read the entry record and the ledger rows of the steps before this one. Check Step 11 is complete for the app worked on (test PR-01). If not: stop and raise a deviation.
+1. Read the entry record and the ledger rows of the steps before this one. Check Step 11 is complete for the app worked on (test PR-01). If not: stop and raise a deviation. Then hand David `mg-grant --path ~/.gstack --count 15` and wait until he confirms it ran ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2.8).
 2. Choose the route in the configuration: **A** new application, **B** existing application, **C** feature. For route B, check the app folder: forms or server modules made outside PDLF make it route B.
 3. Create the run's design folder `docs-local\design\{run}\` if it does not exist. If `design-doc-first-concept.md` already exists in it, keep it and never overwrite it.
 4. If the application is built from a reference platform, do section 5 first.
@@ -58,7 +58,7 @@ What the agent does at Step 12, in order. Agent-facing. Fixed values: [[[pdlf:ap
 29. Capture the path `/office-hours` reports for its design doc. Check the file exists. If not: stop and raise a deviation. Never change or move it.
 30. Check the copy `/office-hours` wrote to `docs\designs\` in the project library. If it is missing because its scan found sensitive content: stop and raise a deviation. Otherwise move it to `pdlf-outputs\b12\{slug}-b12-{run}-office-hours-design.md`, and remove `docs\designs\` if it is then empty.
 31. Rewrite `design-doc.md` from the `/office-hours` design doc in the fixed structure. Its premises, chosen approach and success criteria take precedence, except where they contradict a canonical document: put each such contradiction to David with a recommended resolution. Carry every section it does not cover from the draft, the Specification and Canonical Sources sections always. Never touch `design-doc-first-concept.md`.
-32. Note on the receipt whether the spec review of `/office-hours` ran or was reported unavailable.
+32. Record on the receipt that the spec review of `/office-hours` is replaced by `mb-sentinel-review` (item 35).
 
 ## 8. Check and approval
 
@@ -69,6 +69,6 @@ What the agent does at Step 12, in order. Agent-facing. Fixed values: [[[pdlf:ap
 
 ## 9. The end
 
-37. Copy `design-doc-first-concept.md`, `design-doc.md` and, if it exists, `reference-platform-research.md` into `pdlf-outputs\b12\` under the names in the configuration. Check every expected file exists. If one is missing: stop and raise a deviation.
-38. Complete the Step 12 `steps` row with the ledger values in the configuration, and write the Step Receipt and the Full BFT record, with David's approval of the design doc. When `/office-hours` did not run, set `synthesized = true`.
+37. Copy `design-doc-first-concept.md`, `design-doc.md` and, if it exists, `reference-platform-research.md` into `pdlf-outputs\b12\` under the names in the configuration, and copy `design-doc.md` over the GStack copy of the design doc ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2.7). Check every expected file exists. If one is missing: stop and raise a deviation.
+38. Complete the Step 12 `steps` row with the ledger values in the configuration, and write the Full BFT record and the Step Receipt, from the [[[pdlf:pdlf-library/templates-local/step-receipt-template|Step Receipt Template]]](C:/pdlf/pdlf-library/templates-local/step-receipt-template.md), with David's approval of the design doc. When `/office-hours` did not run, set `synthesized = true`.
 39. Explain what was done and why, present the Step Receipt, stop, and ask David to run `/mb-close-out`.

@@ -1,7 +1,7 @@
 ---
 title: "b14-reference"
 doc-id: "mb-708686df"
-updated: "2026-11-02"
+updated: "2026-11-03"
 ---
 # Step 14 — CEO Review: Reference
 
@@ -9,7 +9,7 @@ What the agent does at Step 14, in order. Agent-facing. Fixed values: [[[pdlf:ap
 
 ## 1. Start
 
-1. Read the entry record and Step 12's ledger row. Check Step 12 is complete for this run and its design doc approved (test PR-01). If not: stop and raise a deviation.
+1. Read the entry record and Step 12's ledger row. Check Step 12 is complete for this run and its design doc approved (test PR-01). If not: stop and raise a deviation. Then hand David `mg-grant --path ~/.gstack --count 15` and wait until he confirms it ran ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2.8).
 2. If Step 12's `synthesized` is `true`, put Step 12's input notice on this step's receipt.
 3. Read every input in the configuration. For a feature, also read the application's reviewed plan.
 
@@ -43,6 +43,6 @@ What the agent does at Step 14, in order. Agent-facing. Fixed values: [[[pdlf:ap
 
 ## 6. The end
 
-20. Copy `design-doc.md` and, in the expansion modes, the CEO summary into `pdlf-outputs\b14\` under the names in the configuration. Check every expected file exists. If one is missing: stop and raise a deviation.
-21. Complete the Step 14 `steps` row with the ledger values in the configuration, and write the Step Receipt and the Full BFT record, with David's approval of the reviewed plan.
+20. Copy `design-doc.md` and, in the expansion modes, the CEO summary into `pdlf-outputs\b14\` under the names in the configuration, and copy `design-doc.md` over the GStack copy of the design doc ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2.7). Check every expected file exists. If one is missing: stop and raise a deviation.
+21. Complete the Step 14 `steps` row with the ledger values in the configuration, and write the Full BFT record and the Step Receipt, from the [[[pdlf:pdlf-library/templates-local/step-receipt-template|Step Receipt Template]]](C:/pdlf/pdlf-library/templates-local/step-receipt-template.md), with David's approval of the reviewed plan.
 22. Explain what was done and why, present the Step Receipt, stop, and ask David to run `/mb-close-out`.

@@ -1,7 +1,7 @@
 ---
 title: "b16-config"
 doc-id: "mb-e2e6e760"
-updated: "2026-10-29"
+updated: "2026-11-03"
 ---
 # Step 16 — Domain Modeling: Configuration
 
@@ -47,6 +47,7 @@ The fixed values of Step 16. Agent-facing. What the agent does, in order: [[[pdl
 | Domain map | `pdlf-outputs\b16\{slug}-b16-{run}-domain-map.*`, written by `archify` |
 | Entity prototypes, if any | `pdlf-outputs\b16\{slug}-b16-{run}-prototype-{entity}.html` |
 | Phase B close-out check | `pdlf-outputs\b16\{slug}-b16-{run}-phase-b-close.md`, with each receipt's `ts_report.py --check` output |
+| GStack copy of the design doc | `~/.gstack/projects/sassycomapp-{slug}-project-library/{user}-{branch}-design-pdlf-{run}.md`, a copy of `design-doc.md`, written at the end of the step and never edited ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover\|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2.7) |
 | Step-folder copies | `pdlf-outputs\b16\{slug}-b16-{run}-glossary.md`; `-adr-{kebab-case-name}.md` for each ADR written |
 | Test results | `pdlf-outputs\b16\{slug}-b16-{run}-checks.xml` (JUnit XML, ts-method section 5); gitleaks report `{slug}-b16-{run}-gitleaks.json` |
 | Step Receipt | `pdlf-outputs\b16\{slug}-b16-{run}-receipt.md` |
@@ -123,6 +124,7 @@ All paths are inside `{slug}-project-library\`.
 | Glossary | `docs-local\GLOSSARY.md` | Step 17 |
 | ADRs | `adr-local\` | Step 17 |
 | Reviewed plan, with the data design | `docs-local\design\{run}\design-doc.md` | Step 17 |
+| GStack copy of the design doc | `~/.gstack/projects/sassycomapp-{slug}-project-library/{user}-{branch}-design-pdlf-{run}.md` | Step 17 |
 | Test plan | `docs-local\design\{run}\test-plan.md` | Step 19 |
 | Access matrix | `docs-local\design\app{n}\access-matrix.yaml` | Step 17 |
 | Threat model | `docs-local\design\app{n}\threat-model.md` | Step 17 |

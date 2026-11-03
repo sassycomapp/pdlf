@@ -1,7 +1,7 @@
 ---
 title: "b16-reference"
 doc-id: "mb-741c244a"
-updated: "2026-10-31"
+updated: "2026-11-03"
 ---
 # Step 16 — Domain Modeling: Reference
 
@@ -9,7 +9,7 @@ What the agent does at Step 16, in order. Agent-facing. Fixed values: [[[pdlf:ap
 
 ## 1. Start
 
-1. Read the entry record and Step 15's ledger row. Check Step 15 is complete for this run and its outputs approved (test PR-01). If not: stop and raise a deviation.
+1. Read the entry record and Step 15's ledger row. Check Step 15 is complete for this run and its outputs approved (test PR-01). If not: stop and raise a deviation. Then hand David `mg-grant --path ~/.gstack --count 15` and wait until he confirms it ran ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2.8).
 2. Carry forward every input notice of Steps 12 to 15 to this step's receipt.
 3. Read every input in the configuration, including the glossary and decisions that exist.
 4. For an existing application: find any existing glossary, under any name, and its decision records, and query the code graph of the app folder. Treat all of it as prior material.
@@ -40,7 +40,7 @@ What the agent does at Step 16, in order. Agent-facing. Fixed values: [[[pdlf:ap
 17. Check the glossary against test DC-09. Record the result in `pdlf-outputs\b16\{slug}-b16-{run}-checks.xml`, naming the terms that show it. On a failure: correct with David and check again.
 18. Run `mb-sentinel-review` for Step 16 at Low/Medium scrutiny on the glossary and the ADRs. On Flag or Escalate: stop and present it to David. Check the review's `triage_findings` row exists.
 19. Run `gitleaks` on the project library's working tree (test PR-06) and save its report as `pdlf-outputs\b16\{slug}-b16-{run}-gitleaks.json`. A secret found: remove it, then run again. Record PR-06 in the checks file.
-20. Copy `GLOSSARY.md` and each ADR written into `pdlf-outputs\b16\` under the names in the configuration.
+20. Copy `GLOSSARY.md` and each ADR written into `pdlf-outputs\b16\` under the names in the configuration, and copy `design-doc.md` over the GStack copy of the design doc ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2.7).
 
 ## 6. Closing Phase B
 
@@ -56,5 +56,5 @@ What the agent does at Step 16, in order. Agent-facing. Fixed values: [[[pdlf:ap
 
 ## 8. The end
 
-27. Complete the Step 16 `steps` row with the ledger values in the configuration, and write the Step Receipt and the Full BFT record.
+27. Complete the Step 16 `steps` row with the ledger values in the configuration, and write the Full BFT record and the Step Receipt, from the [[[pdlf:pdlf-library/templates-local/step-receipt-template|Step Receipt Template]]](C:/pdlf/pdlf-library/templates-local/step-receipt-template.md).
 28. Explain what was done and why, and that Phase B is closed and Phase C begins at Step 17. Present the Step Receipt, stop, and ask David to run `/mb-close-out`.

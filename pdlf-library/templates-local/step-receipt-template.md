@@ -1,7 +1,7 @@
 ---
 title: "step-receipt-template"
 doc-id: "mb-c0c99119"
-updated: "2026-10-24"
+updated: "2026-11-03"
 ---
 # PDLF Step Receipt Template
 
@@ -15,6 +15,10 @@ review before deciding whether to say "continue."
 
 **Where it's also saved:** As a file, `{slug}-project-library\pdlf-outputs\{step}\{slug}-{step}-{run}-receipt.md`, so
 the full run has a readable, git-tracked history alongside the queryable ledger.
+
+**How it is filled:** every section of the template appears in the receipt, in order, filled
+from the ledger. The BFT answers are printed in full, never replaced by a pointer to the
+ledger row. A step adds its own sections after Tests.
 
 ---
 
@@ -47,8 +51,8 @@ Synthesized (test-mode shortcut): {synthesized}   <!-- only rendered if TRUE, an
 ## BFT checkpoint
 
 Level applied: {bft_level}    <!-- full | light | none -->
-<!-- if full or light, render the six fields below; if none, state "No BFT — mechanical
-     pass-through step" and nothing else -->
+<!-- if full, render all six fields below; if light, render Bones and Health; if none, state
+     "No BFT — mechanical pass-through step" and nothing else -->
 Bones:   {bones}
 Muscle:  {muscle}
 Nerves:  {nerves}

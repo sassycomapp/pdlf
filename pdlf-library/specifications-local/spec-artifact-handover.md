@@ -1,7 +1,7 @@
 ---
 title: "pdlf-spec-artifact-handover"
 doc-id: "mb-f1745959"
-updated: "2026-10-24"
+updated: "2026-11-03"
 ---
 # PDLF — Artifact and Handover Specification
 
@@ -50,6 +50,8 @@ In the skills' own SKILL.md files:
 PDLF does not rely on any of these searches for correctness — the handoff
 contract (§2) makes them redundant. Where a skill's own search could
 contradict a decision already made (see §2.3), the invocation preempts it.
+The GStack copy of the design doc (§2.7) keeps the design-doc search
+pointing at the approved design doc.
 
 ### 1.3 Matt Pocock skills and OpenCode-native outputs
 
@@ -93,6 +95,30 @@ those documents belong.
 2.6 **The context pack.** Every skill invocation also receives, after the step's
 own handoff material, the full text of the files listed in
 [[[pdlf:pdlf-library/specifications-local/spec-skill-context-pack|Spec: Skill Context Pack]]](C:/pdlf/pdlf-library/specifications-local/spec-skill-context-pack.md).
+
+2.7 **The GStack copy of the design doc.** GStack's plan reviews find their
+design doc themselves: they take the newest `*-design-*.md` in
+`~/.gstack/projects/<slug>/` and treat it as the foundation of the plan. PDLF
+therefore keeps one GStack copy of the run's approved design doc in that
+folder, named
+`~/.gstack/projects/sassycomapp-{slug}-project-library/{user}-{branch}-design-pdlf-{run}.md`
+(`{user}` and `{branch}` as GStack names its own design docs). Every step that
+writes `design-doc.md` (Steps 12, 14, 15 and 16) ends by copying
+`design-doc.md` over the GStack copy. The GStack copy is never edited;
+`design-doc.md` is the only design doc anyone edits. Why: the copy is always the
+newest design doc in that folder, so every GStack skill in the pipeline finds
+the approved design doc in the place it is built to look, with no change to
+GStack and in every GStack version. GStack keeps two copies of its own design
+doc in the same way.
+
+2.8 **GStack's own prompts and writes.** At the start of every step that runs a
+GStack skill or writes the GStack copy (§2.7), the agent hands David
+`mg-grant --path ~/.gstack --count 15` and waits until he confirms it ran, so no
+write is blocked part-way through the step. Every GStack skill is given two
+fixed answers besides its step's own: its upgrade prompt is declined, because
+tools never change during a run and every upgrade is David's decision, made
+outside a run; and its offer to write routing rules into a project `CLAUDE.md`
+is declined, because PDLF uses no project `CLAUDE.md` and agents never commit.
 
 ## 3. Capture–verify–record procedure (every step, in order)
 
