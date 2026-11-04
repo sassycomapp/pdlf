@@ -1,7 +1,7 @@
 ---
 title: "f41-build-plan"
 doc-id: "mb-4042f695"
-updated: "2026-10-22"
+updated: "2026-11-04"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -32,6 +32,8 @@ Ends with the gates `production-released` (Step 44) and `released` (Step 46). Th
 - the compliance documents named in the CEO plan exist before a first release;
 - `benchmark` (GStack) records the performance baseline of the public pages → Step 45;
 - for the first release, the exit export is proven on the test client: all its data lands in its R2 bucket;
+- for the first release, the legal documents system is proven on the test client, as `spec-legal-documents-and-consent` section 12 sets out: each publish writes its kept copy, the acceptance box blocks an agreement until ticked, the cookie banner loads no embedded content before consent, every choice and acceptance writes its `consents` row, and the nightly archive moves old rows to R2;
+- `media.mybizz.live` is checked to set no cookie;
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 

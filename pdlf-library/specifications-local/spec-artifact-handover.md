@@ -1,7 +1,7 @@
 ---
 title: "pdlf-spec-artifact-handover"
 doc-id: "mb-f1745959"
-updated: "2026-11-03"
+updated: "2026-11-04"
 ---
 # PDLF — Artifact and Handover Specification
 
@@ -113,8 +113,11 @@ doc in the same way.
 
 2.8 **GStack's own prompts and writes.** At the start of every step that runs a
 GStack skill or writes the GStack copy (§2.7), the agent hands David
-`mg-grant --path ~/.gstack --count 15` and waits until he confirms it ran, so no
-write is blocked part-way through the step. Every GStack skill is given two
+`mg-grant --path ~/.gstack --count 15` and waits until he confirms it ran. A
+grant expires within the hour, so the agent hands David the same line again
+immediately before any write to `~/.gstack` that comes more than 30 minutes
+after the last grant he confirmed. No write is then blocked part-way through
+the step. Every GStack skill is given two
 fixed answers besides its step's own: its upgrade prompt is declined, because
 tools never change during a run and every upgrade is David's decision, made
 outside a run; and its offer to write routing rules into a project `CLAUDE.md`

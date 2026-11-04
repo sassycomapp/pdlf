@@ -1,7 +1,7 @@
 ---
 title: "b14-reference"
 doc-id: "mb-708686df"
-updated: "2026-11-03"
+updated: "2026-11-04"
 ---
 # Step 14 — CEO Review: Reference
 
@@ -16,7 +16,7 @@ What the agent does at Step 14, in order. Agent-facing. Fixed values: [[[pdlf:ap
 ## 2. Security, data and law
 
 4. Run `secure-software-engineering`, at its requirements phase, with the design doc, the context pack, the protection levels, the compliance baseline, the exit ADR and the Business plan limits. State that every client has its own app and database, so its multi-tenant guidance does not apply.
-5. From its result, write the five sections of the configuration (Data Inventory, Regulatory Position, Security Requirements, Client Exit, Plan Fit) into `design-doc.md`, after Success Criteria, in that order. Give every kind of data its owner, readers, writers, protection level and retention; decide GDPR and PCI DSS SAQ A with their reasons; give every acceptance criterion a test.
+5. From its result, write the five sections of the configuration (Data Inventory, Regulatory Position, Security Requirements, Client Exit, Plan Fit) into `design-doc.md`, after Canonical Sources, in that order. Give every kind of data its owner, readers, writers, protection level and retention; decide GDPR and PCI DSS SAQ A with their reasons; give every acceptance criterion a test.
 
 ## 3. The review
 

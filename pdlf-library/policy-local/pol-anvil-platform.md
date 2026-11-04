@@ -1,7 +1,7 @@
 ---
 title: "pol-anvil-platform"
 doc-id: "mb-f219a912"
-updated: "2026-10-23"
+updated: "2026-11-04"
 ---
 # PDLF Policy — Anvil Platform
 
@@ -38,7 +38,7 @@ Nothing secret, internal or for paying clients only ever goes in either. Materia
 
 **Documents.** Client-facing documents, such as user guides, may be placed in `theme/assets/docs/`. Anvil does not block this: each document is served by link and can be opened from the application. They are public, as above.
 
-**Videos.** Explainer videos are hosted on YouTube and linked or embedded in the application. They are not placed in `theme/assets/`. Anvil would serve them, but every asset is stored in the Git repository, so large video files would be carried by every clone and push and would make the five apps of a business heavy over time. Anvil's documentation states no size limit for assets, and large videos there are untested.
+**Videos.** Help and explainer videos are stored once per language in a Mybizz-owned Cloudflare R2 bucket published at `media.mybizz.live`, and played in the video component as direct video addresses; they set no cookies ([[[default:policy-global/pol-legal-documents-and-consent|Legal Documents and Consent]]](C:/dev/project-library-global/policy-global/pol-legal-documents-and-consent.md)). They are not placed in `theme/assets/`: every asset is stored in the Git repository, so large video files would be carried by every clone and push and would make the five apps of a business heavy over time. A client's own videos (F-09) are embedded from outside video services and load only after cookie consent.
 
 ### The five-app structure
 

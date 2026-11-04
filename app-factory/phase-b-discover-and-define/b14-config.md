@@ -1,7 +1,7 @@
 ---
 title: "b14-config"
 doc-id: "mb-497c1373"
-updated: "2026-11-03"
+updated: "2026-11-04"
 ---
 # Step 14 — CEO Review: Configuration
 
@@ -65,7 +65,7 @@ Read in full before any work, as [[[pdlf:pdlf-library/specifications-local/spec-
 
 | Section | Placed | Written by | Holds |
 |---|---|---|---|
-| Data Inventory | After Success Criteria | `secure-software-engineering`, before the review | Every kind of data: owner, readers, writers, protection level, retention |
+| Data Inventory | After Canonical Sources | `secure-software-engineering`, before the review | Every kind of data: owner, readers, writers, protection level, retention |
 | Regulatory Position | After Data Inventory | `secure-software-engineering`, before the review | POPIA; GDPR and PCI DSS SAQ A with reasons; the three legal documents; the annual SAQ A when payments are taken |
 | Security Requirements | After Regulatory Position | `secure-software-engineering`, before the review | Assets, actors, harms, what must never leak, testable acceptance criteria |
 | Client Exit | After Security Requirements | `secure-software-engineering`, before the review | What the exit export writes to the client's bucket for this application |
