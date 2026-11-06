@@ -108,6 +108,7 @@ updated: "2026-11-06"
 | `ui\README.md` (project template and mb-3-cs project library) | One folder per `client_code` package path; one file per form, `<FormName>-requirement.md` |
 | `ui\(PACKAGE-NAME)\(FORM-NAME)\` (project template and mb-3-cs project library) | The six wireframe and screen files are removed; `(FORM-NAME)-requirement.md` is added as the model |
 | `test-suite\templates\access-matrix.yaml` | Forms keyed by module path |
+| `spec-nomenclature.md` section 1.7 | One file per form folder, `<FormName>-requirement.md` |
 
 ### Batch 5 — After `m3-custom-theme` Is Finished
 
@@ -120,6 +121,7 @@ updated: "2026-11-06"
 | `mb-form-builder` skill | Written to [[[default:specifications-global/mo-ui-production]]](C:/dev/project-library-global/specifications-global/mo-ui-production.md) section 5, installed, then documented with `mb-sysdoc-creator` and `mb-config-manager` |
 | `skills-catalog.md` | `mb-form-builder` registered; the Magdoub wireframe skill removed from Phase C |
 | PDLF steps C17 to C28 | Rebuilt to [[[default:specifications-global/mo-ui-production]]](C:/dev/project-library-global/specifications-global/mo-ui-production.md): screen requirements are written and approved in Phase C; forms are built per feature after the server code |
+| `wireframe\` folder, with its rows in `README.md` and `AGENTS.md` (project template and mb-3-cs project library) | Removed, together with the Phase C rebuild, because no step writes wireframes |
 
 ## 5. References
 
