@@ -1,6 +1,6 @@
 ---
 title: "spec-skill-context-pack"
-updated: "2026-11-02"
+updated: "2026-11-06"
 doc-id: "mb-2849f153"
 ---
 # PDLF — Skill Context Pack (Specification)
@@ -21,7 +21,7 @@ At every skill invocation, the orchestrator pastes the full text of every file l
 4. [[[pdlf:pdlf-library/policy-local/pol-anvil-platform|Policy: Anvil Platform]]](C:/pdlf/pdlf-library/policy-local/pol-anvil-platform.md): `anvil.yaml` is changed only through Anvil's `anvil-yaml` skill; `client_code` and `theme/assets` are public; what goes to Anvil.
 5. [[[default:specifications-global/spec-anvil-platform-standards|Spec: Anvil Platform Standards]]](C:/dev/project-library-global/specifications-global/spec-anvil-platform-standards.md) and [[[default:adr-global/adr-anvil-platform-constraints|ADR: Anvil Platform Constraints]]](C:/dev/project-library-global/adr-global/adr-anvil-platform-constraints.md): what Anvil can and cannot do.
 6. The defaults of Anvil's `data-models` skill, `C:\mybizz\anvil-agent-references\skills\data-models\SKILL.md`: tables default to no client access; data rules live in model classes and server code; the server holds authority over identity and ownership.
-7. [[[default:specifications-global/spec-m3-design-standards|Spec: M3 Design Standards]]](C:/dev/project-library-global/specifications-global/spec-m3-design-standards.md): every application uses Anvil's Material 3 theme.
+7. [[[default:specifications-global/spec-ui-standards|Spec: UI Standards]]](C:/dev/project-library-global/specifications-global/spec-ui-standards.md): every application uses `m3-custom-theme`.
 
 ## Not applicable to an Anvil application
 

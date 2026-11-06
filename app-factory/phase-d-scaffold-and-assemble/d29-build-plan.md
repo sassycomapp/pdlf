@@ -1,7 +1,7 @@
 ---
 title: "d29-build-plan"
 doc-id: "mb-095646a3"
-updated: "2026-10-23"
+updated: "2026-11-06"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -31,7 +31,7 @@ Ends with the gate `architecture-verified` (Step 34).
 
 **Testing:** every approved screen has a form; every form validates (`anvil --json validate`); the UI conformance scans pass (Material 3 components only, no `HTMLTemplate`, no hard-coded colours, dark mode, no data rules or secrets in forms), as `d29-test-spec.md` sets out. **Layers with no skill:** security (forms hold no data rules; the scans check this here, Step 34 checks it for the whole app).
 
-**Standards:** [[[default:specifications-global/spec-anvil-platform-standards|Anvil Platform Standards]]](C:/dev/project-library-global/specifications-global/spec-anvil-platform-standards.md) section 9, [[[default:specifications-global/spec-ui-standards|UI Standards]]](C:/dev/project-library-global/specifications-global/spec-ui-standards.md), [[[default:specifications-global/spec-material-3-theme|Material 3 Theme]]](C:/dev/project-library-global/specifications-global/spec-material-3-theme.md).
+**Standards:** [[[default:specifications-global/spec-anvil-platform-standards|Anvil Platform Standards]]](C:/dev/project-library-global/specifications-global/spec-anvil-platform-standards.md) section 9, [[[default:specifications-global/spec-ui-standards|UI Standards]]](C:/dev/project-library-global/specifications-global/spec-ui-standards.md), [[[default:specifications-global/mo-ui-production|UI Production Method]]](C:/dev/project-library-global/specifications-global/mo-ui-production.md).
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):
 
