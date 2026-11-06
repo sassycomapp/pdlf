@@ -1,7 +1,7 @@
 ---
 title: "a03-build-plan"
 doc-id: "mb-9d12b137"
-updated: "2026-10-29"
+updated: "2026-11-06"
 ---
 # Step 3 — New application with context: Build Plan
 
@@ -24,7 +24,7 @@ updated: "2026-10-29"
 - no health check runs first: the business is not yet set up by PDLF, and Step 11 ends with the health check as its self-audit;
 - it names the context instead of guessing it: the apps that exist, the project context `{slug}-project-context`, and the reference platform with where its material is kept;
 - the context's documents are found with a GBrain search and confirmed by David, and listed on the Step Receipt Step 11 writes for this entry;
-- moving the old project library to `{slug}-project-context` and placing a reference platform's material are Step 11's, with David's permission;
+- moving the old project library to `{slug}-project-context`, moving its documents into the new project library, retiring the context and placing a reference platform's material are Step 11's, with David's permission;
 - it writes the entry record into the `inputs_used` of its own `steps` row, with the fields of [[[pdlf:app-factory/phase-a-init/a01-config|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md), so every step of the run reads how the run began from one place;
 - it changes nothing in the business's folders: it records, and the steps it joins act.
 

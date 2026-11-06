@@ -1,6 +1,6 @@
 ---
 title: "b11-test-spec"
-updated: "2026-11-02"
+updated: "2026-11-06"
 doc-id: "mb-ec4af50a"
 ---
 # Step 11: Init — Test Specification
@@ -11,7 +11,7 @@ Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-librar
 
 | Test | Applied here |
 |---|---|
-| PR-01 | The `projects` row and the entry record are complete; for route B, the project context `{slug}-project-context` is linked, registered and on the commit tools, and the new project library is made from the template. |
+| PR-01 | The `projects` row and the entry record are complete; for route B, the new project library is made from the template; every file of the project context is moved into it as the approved migration map sets out, with no broken link; and the project context is retired: not in GBrain, not on the commit tools, archived on GitHub and gone from the business folder. |
 | ST-01 | The cloned app validates with `anvil --json validate .`. |
 | ST-12 | The app's Users service has the sign-in settings of `spec-security`. |
 | ST-10 | The app's `.gitignore` covers `.env` and caches; an app that holds code has `tests\` with `conftest.py`, `pytest.ini`, `ts-config.yaml` and `integration\test_pr09_environment.py`; App 3 holds no code. |

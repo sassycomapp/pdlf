@@ -1,7 +1,7 @@
 ---
 title: "b12-build-plan"
 doc-id: "mb-19064cbb"
-updated: "2026-11-02"
+updated: "2026-11-06"
 ---
 # Step 12 — Office Hours: Build Plan
 
@@ -15,7 +15,7 @@ Ends with the gate `domain-locked` (Step 16).
 
 **Must achieve:** the design doc of the run: what problem the application or feature solves, for whom and how, inside the platform's facts and the common aspects of every Mybizz application, with success stated so that it can be measured, approved by David, so that every later step builds on one agreed concept.
 
-**Starts from:** the entry record and the ledger rows of the steps before it; for a new application, the three pre-project files in `pre-project\` and, for App 5, App 1's approved design doc; for an existing application, every file of its project documents (`{slug}-project-context` while it exists, and its project library), read in full from the folders as its canonical specification, and its code graph from Step 11; for a feature, David's statement of it in the entry record, the application's approved design doc, `docs-local\GLOSSARY.md`, `adr-local\` and the code graph; for an application built from a reference platform, the reference's analysis listed at Step 03 and the reference's own material in `reference-platform-local\`; `project-library-global`.
+**Starts from:** the entry record and the ledger rows of the steps before it; for a new application, the three pre-project files in `pre-project\` and, for App 5, App 1's approved design doc; for an existing application, every file of its project documents in its project library, read in full from the folders as its canonical specification, and its code graph from Step 11; for a feature, David's statement of it in the entry record, the application's approved design doc, `docs-local\GLOSSARY.md`, `adr-local\` and the code graph; for an application built from a reference platform, the reference's analysis listed at Step 03 and the reference's own material in `reference-platform-local\`; `project-library-global`.
 
 **Produces:** in the run's design folder `{slug}-project-library\docs-local\design\{run}\`: `design-doc-first-concept.md`, written once and never changed afterwards, kept to check later for concept drift, and `design-doc.md`, the working copy; for an application built from a reference platform, `docs-local\reference-platform-research.md`; the `/office-hours` design doc in GStack's own folder, if it ran; in `pdlf-outputs\b12\`: the copy of each of these, the document-check file and the Step Receipt; the ledger row, the BFT record and Sentinel's `triage_findings` row.
 

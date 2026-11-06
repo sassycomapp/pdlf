@@ -1,7 +1,7 @@
 ---
 title: "b15-config"
 doc-id: "mb-4401e749"
-updated: "2026-11-03"
+updated: "2026-11-06"
 ---
 # Step 15 — Engineering Review: Configuration
 
@@ -28,7 +28,7 @@ Read in full before any work, as [[[pdlf:pdlf-library/specifications-local/spec-
 | Body | Folders |
 |---|---|
 | `project-library-global` | `adr-global\`, `policy-global\`, `specifications-global\`, `security-global\`, `docs-standard-global\`, `anvil-docs\` |
-| The project | `{slug}-project-context\` while it exists: `docs-local\`, `docs-standard-local\`, `policy-local\`, `adr-local\`; `{slug}-project-library\`: `docs-local\`, `docs-standard-local\`, `policy-local\`, `adr-local\` |
+| The project | `{slug}-project-library\`: `docs-local\`, `docs-standard-local\`, `policy-local\`, `adr-local\`, `specifications-local\`, `standard-operating-procedures-local\` |
 
 ## Inputs
 

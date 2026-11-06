@@ -1,7 +1,7 @@
 ---
 title: "b14-config"
 doc-id: "mb-497c1373"
-updated: "2026-11-04"
+updated: "2026-11-06"
 ---
 # Step 14 — CEO Review: Configuration
 
@@ -28,7 +28,7 @@ Read in full before any work, as [[[pdlf:pdlf-library/specifications-local/spec-
 | Body | Folders |
 |---|---|
 | `project-library-global` | `adr-global\`, `policy-global\`, `specifications-global\`, `security-global\` |
-| The project | `{slug}-project-context\` while it exists: `docs-local\`, `docs-standard-local\`, `policy-local\`, `adr-local\`; `{slug}-project-library\`: `docs-local\`, `docs-standard-local\`, `policy-local\`, `adr-local\` |
+| The project | `{slug}-project-library\`: `docs-local\`, `docs-standard-local\`, `policy-local\`, `adr-local\`, `specifications-local\`, `standard-operating-procedures-local\` |
 
 ## Inputs
 

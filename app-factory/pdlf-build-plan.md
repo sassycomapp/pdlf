@@ -1,7 +1,7 @@
 ---
 title: "pdlf-build-plan"
 doc-id: "mb-64817b10"
-updated: "2026-11-04"
+updated: "2026-11-06"
 ---
 # PDLF Build Plan
 
@@ -146,7 +146,7 @@ David starts PDLF by running `/pdlf-init` in OpenCode opened in the business's A
 | Step | Entry point | App worked on | Where the work joins the pipeline |
 |---|---|---|---|
 | 02 | `new-app-no-context` | App 1 | Step 11, route A. |
-| 03 | `new-app-with-context` | App 1 | Step 11, route B. The application may be partly developed but has not yet run through PDLF; the entry establishes what context material exists, and Step 11 moves the old project library to `{slug}-project-context`. |
+| 03 | `new-app-with-context` | App 1 | Step 11, route B. The application may be partly developed but has not yet run through PDLF; the entry establishes what context material exists, and Step 11 moves the old project library to `{slug}-project-context`, moves its documents into the new project library and retires the context. |
 | 04 | `add-feature-main-app` | App 1 | Health check, then the feature path (below). |
 | 05 | `update-main-app` | App 1 | Health check, then the update path (below). |
 | 06 | `compile-master-template` | App 2 | Step 41, then the release in Steps 42 to 44. |

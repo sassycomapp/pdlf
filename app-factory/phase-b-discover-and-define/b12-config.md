@@ -1,7 +1,7 @@
 ---
 title: "b12-config"
 doc-id: "mb-8b21d27b"
-updated: "2026-11-03"
+updated: "2026-11-06"
 ---
 # Step 12 — Office Hours: Configuration
 
@@ -37,7 +37,7 @@ Read in full before any work, as [[[pdlf:pdlf-library/specifications-local/spec-
 | Body | Folders |
 |---|---|
 | `project-library-global` | `adr-global\`, `policy-global\`, `specifications-global\` |
-| The project | `{slug}-project-context\` while it exists: `docs-local\`, `docs-standard-local\`, `policy-local\`, `adr-local\`; `{slug}-project-library\`: `docs-local\`, `docs-standard-local\`, `policy-local\`, `adr-local\` |
+| The project | `{slug}-project-library\`: `docs-local\`, `docs-standard-local\`, `policy-local\`, `adr-local\`, `specifications-local\`, `standard-operating-procedures-local\` |
 
 ## Inputs
 

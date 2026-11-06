@@ -1,7 +1,7 @@
 ---
 title: "b11-config"
 doc-id: "mb-ea7e8074"
-updated: "2026-11-02"
+updated: "2026-11-06"
 ---
 # Step 11 — Init: Configuration
 
@@ -26,7 +26,7 @@ The fixed values of Step 11. Agent-facing. What the agent does, in order: [[[pdl
 |---|---|
 | Entry record | The `inputs_used` of the run's entry-point row ([[[pdlf:app-factory/phase-a-init/a01-config\|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md)) |
 | Business row | The `projects` row: for routes A and B, written by the orchestrator with the slug, the name and the mode |
-| Project context (route B) | `C:\dev\dev-{slug}\{slug}-project-context\`, the business's existing documentation, read-only |
+| Project context (route B) | `C:\dev\dev-{slug}\{slug}-project-context\`, the business's existing documentation, read-only until it is moved into the project library |
 | Project template | `C:\dev\project-template\dev-(SLUG)\` |
 | Blank pre-project files | `C:\pdlf\pdlf-library\templates-local\pre-project\` |
 | Anvil's `AGENTS.md` template and skills | `C:\mybizz\anvil-agent-references\` |
@@ -136,11 +136,35 @@ The commands David runs, one at a time, after renaming the GitHub repository and
 | 4 | Points the context's own links at its new name; nothing else in it changes | `cd /mnt/c/dev/dev-{slug}/{slug}-project-context && git ls-files -z '*.md' '*.html' \| xargs -0 sed -i -e 's#\[\[\[{slug}-project-library:#[[[{slug}-project-context:#g' -e 's#C:/dev/dev-{slug}/{slug}-project-library/#C:/dev/dev-{slug}/{slug}-project-context/#g'` |
 | 5 | Commits and pushes the context and the scripts, which syncs the context into GBrain | `REPOS_OVERRIDE="/mnt/c/dev/dev-{slug}/{slug}-project-context /mnt/c/mybizz/scripts" bash /mnt/c/mybizz/scripts/commit-all.sh "{slug} library becomes {slug}-project-context"` |
 
-The row of `{slug}-project-context` in `repo-organization.md` names it read-only, with no OpenCode project and no Dream cycle.
+While it exists, the row of `{slug}-project-context` in `repo-organization.md` names it read-only, with no OpenCode project and no Dream cycle. The row is removed when the context is retired.
+
+## Moving the project context into the library (route B)
+
+The commands David runs, one at a time, once the agent has written the migration map and David has approved it.
+
+| Order | What it does | Command |
+|---|---|---|
+| 1 | Commits the migration map, because the script runs only on fully committed repositories | `cd ~ && bash /mnt/c/mybizz/scripts/commit-all.sh "{slug} context migration map"` |
+| 2 | Checks the map against both repositories; changes nothing | `cd /mnt/c/mybizz/scripts && python3 /mnt/c/mybizz/scripts/migrate-project-context.py {slug} --check` |
+| 3 | Copies every file, verifies each copy, repairs plain-text mentions, then removes the files from the context | `cd /mnt/c/mybizz/scripts && python3 /mnt/c/mybizz/scripts/migrate-project-context.py {slug} --run` |
+| 4 | Commits both repositories; the commit hook recognises each moved document by its doc-id and rewrites every link to it | `cd ~ && bash /mnt/c/mybizz/scripts/commit-all.sh "migrate {slug} project context into the project library"` |
+| 5 | Lists any link in the project library that points to nothing | `cd ~ && python3 /mnt/c/mybizz/scripts/mb-doc-check.py check --root /mnt/c/dev/dev-{slug}/{slug}-project-library` |
+
+## Retiring the project context (route B)
+
+| Order | What it does | Command |
+|---|---|---|
+| 1 | Shows what removing the context from GBrain would delete; changes nothing | `cd ~ && gbrain sources remove {slug}-project-context --dry-run` |
+| 2 | Removes the context from GBrain | `cd ~ && gbrain sources remove {slug}-project-context --confirm-destructive` |
+| 3 | Takes the context off the commit tools | `cd /mnt/c/mybizz/scripts && sed -i '/^{slug}-project-context = /d' /mnt/c/mybizz/scripts/mb-doc-check.sources && sed -i '\#^  /mnt/c/dev/dev-{slug}/{slug}-project-context$#d' /mnt/c/mybizz/scripts/commit-all.sh` |
+| 4 | Commits the scripts and `repo-organization.md` | `cd ~ && bash /mnt/c/mybizz/scripts/commit-all.sh "retire {slug} project context"` |
+| 5 | Archives the context's repository: on `https://github.com/sassycomapp/{slug}-project-context`, Settings, "Archive this repository" | In the browser |
+| 6 | Lists the files left in the context's folder; changes nothing | `cd /mnt/c/dev/dev-{slug} && find {slug}-project-context -path "*/.git" -prune -o -type f -print` |
+| 7 | Deletes the context's folder, which holds only `.gitignore` and its Git history, kept on GitHub | `cd /mnt/c/dev/dev-{slug} && rm -rf {slug}-project-context` |
 
 ## Refreshing the system documents
 
-The OpenCode prompt David runs, in build mode, after the project library or the project context joins GBrain:
+The OpenCode prompt David runs, in build mode, after the project library or the project context joins or leaves GBrain:
 
 > Run `/mb-sysdoc-creator` in Refresh mode for the systems `gbrain` and `mb-doc-check`. The business `{slug}` has new sources. Check each document's list of sources against the output of `gbrain sources list` and against `/mnt/c/mybizz/scripts/mb-doc-check.sources`, and correct only what differs.
 
