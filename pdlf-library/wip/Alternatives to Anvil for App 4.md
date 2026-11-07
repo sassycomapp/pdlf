@@ -1,8 +1,11 @@
 ---
+
 title: "Alternatives to Anvil for App 4"
 doc-id: "mb-76627bd0"
 updated: "2026-11-07"
+
 ---
+
 # Alternatives to Anvil for App 4
 
 Is anvil.works open source and what license does it have? Is it an MIT license or Apache 2.0 license? Which license does it have?
