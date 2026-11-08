@@ -1,37 +1,34 @@
 ---
 title: "pdlf-session-handover"
 doc-id: "mb-5ef40e06"
-updated: "2026-11-07"
+updated: "2026-11-08"
 ---
-# Session Handover — The Platform Question
+# Session Handover — Hosting Change Batches 3 and 4
 
 For Claude, starting a fresh session with David. Clone every repository the work needs before starting, and confirm every fact at its source before stating it.
 
 ## 1. The subject of the session
 
-- **The problem:** Anvil's Business plan costs $99 a month per client instance. With that cost, the price to a client rises to $150–$200 a month, which the market does not pay. Anvil's constraints also inhibit the applications, even on the Business plan.
-- **David's work so far:** David has found alternative solutions. They may change the five-app structure slightly, or not at all.
-- **The impact:** the new solutions will definitely impact PDLF.
-- **The purpose of the session:** David presents the alternatives; the session works through them with him and settles what they mean for the platform, the five-app structure and PDLF.
-- The session is a scoping discussion: no files, prompts or commands until David agrees the design is ready.
+- **The decision:** every client instance (App 4) runs on the Anvil App Server, as one container on DigitalOcean App Platform, with its own database in one DigitalOcean Managed PostgreSQL cluster per business. Apps 1, 2, 3 and 5 stay on Mybizz's Anvil Business account. The price is $99 a month per client, month to month. The specification is `project-library-global\specifications-global\spec-client-instance-hosting.md`.
+- **The work:** bring every live document into line with that decision, by the task list `C:\pdlf\pdlf-library\wip\hosting-change-task-list.md`.
+- **The rule:** no stale or conflicting remnant of the old hosting model (one Anvil Business account per client, cloning App 3, manual schema changes per client, $150) remains in any live document.
 
 ## 2. Where the work stands
 
 | Work | State |
 |---|---|
-| PDLF Step 15 (`/plan-eng-review`) on `mb-3-cs` App 1 | Closed. Outputs, corrections and close-out committed; the memory review queue is empty |
-| App 1 theme | Switched to `m3-custom-theme` (package `m3`, master branch of the Anvil app `7USO6DVZSIIWA5QX`); theme files match the theme; colours Professional Blue Light; Include Bootstrap 3 and Legacy class names off |
-| App 1 old forms | 91 YAML forms still name the removed theme by `dep_dapp798jbsn8mq` and draw nothing in the designer. Each is replaced, feature by feature, by `mb-form-builder` |
-| Phase C UI tools (batch 5) | Not started. Recorded in `pdlf-todo.md` item A1a; done before Step 17 is rebuilt |
-| PDLF Step 16 (domain modelling) | Not started. Held until the platform question is settled, because a platform change can alter where and how the business's data lives |
+| Batch 1, `project-library-global` | Done and committed |
+| Batch 2, `pdlf` | Delivered; committed when David confirms |
+| Batch 3, `mybizz-os-docs` and `project-template` | Next |
+| Batch 4, `mb-3-cs-project-library` | After batch 3 |
+| `{slug}-app4` repositories | Not created. Created in each business's App 3 run (Step 11, route C) as GitHub repositories only, never in Anvil; Phase G builds their content |
+| PDLF Step 16 (domain modelling) | Waits for batch 4 |
 
 ## 3. Where to read
 
-- The five-app structure: `project-library-global\specifications-global\spec-five-app-architecture-model.md`; `project-library-global\adr-global\adr-client-instance-architecture.md`, `adr-dependency-based-not-multi-tenant.md`, `adr-client-instance-readme-five-app-system.md`, `adr-common-architecture-across-mybizz-applications.md`.
-- Deployment: `project-library-global\specifications-global\spec-deployment.md`.
-- The application: `mb-3-cs-project-library\docs-local\mb-3-cs-concept.md`, `mb-3-cs-architecture-explainer.md`, `mb-3-cs-architecture-reference.md`; the design doc `mb-3-cs-project-library\docs-local\design\app1\design-doc.md`.
+- The decision: `project-library-global\specifications-global\spec-client-instance-hosting.md`, `adr-global\adr-client-instance-architecture.md`, `adr-global\adr-dependency-update-model.md`, `specifications-global\spec-deployment.md`.
+- The task list: `C:\pdlf\pdlf-library\wip\hosting-change-task-list.md`.
 - PDLF: `C:\pdlf\pdlf-library\wip\pdlf-build-handover.md`, `C:\pdlf\pdlf-library\docs-local\pdlf-todo.md`.
-- The Phase C UI plan: `C:\pdlf\pdlf-library\wip\pdlf-phase-c-ui-workflow.md`.
 
 ## 4. Commit rule
 

@@ -1,6 +1,6 @@
 ---
 title: "pdlf-build-handover"
-updated: "2026-10-29"
+updated: "2026-11-08"
 doc-id: "mb-24ee05ab"
 ---
 # Handover — Building PDLF
@@ -93,7 +93,7 @@ Read `C:\mybizz\mybizz-os-docs\os-reference-docs\repo-organization.md` for every
 
 **Each project library** (`C:\dev\dev-{slug}\{slug}-project-library`) has the template's folders. Application terms go in the project's `GLOSSARY.md`.
 
-**Projects:** `mb-3-cs` and `mb-4-ecom` (`C:\dev\dev-mb-3-cs`, `C:\dev\dev-mb-4-ecom`), each with `{slug}-app1`, `-app2`, `-app3`, `-app5` and `{slug}-project-library`. Fixing either project is outside the PDLF work. Notes for `mb-3-cs` from the sweep are in `C:\dev\dev-mb-3-cs\wip\` (`mb-3-cs-notes-from-global-sweep.md`, `mb-3-cs-nomenclature-part3.md`), for when `mb-3-cs` is worked on.
+**Projects:** `mb-3-cs` and `mb-4-ecom` (`C:\dev\dev-mb-3-cs`, `C:\dev\dev-mb-4-ecom`), each with `{slug}-app1`, `-app2`, `-app3`, `-app4`, `-app5` and `{slug}-project-library`. Fixing either project is outside the PDLF work. Notes for `mb-3-cs` from the sweep are in `C:\dev\dev-mb-3-cs\wip\` (`mb-3-cs-notes-from-global-sweep.md`, `mb-3-cs-nomenclature-part3.md`), for when `mb-3-cs` is worked on.
 
 **Code knowledge: Graphify.** Graphify builds a knowledge graph of each app's code and answers agent questions from it (an MCP server). It is the code-knowledge source for every step that reads or changes code (Phases D, E, F); its graph is rebuilt after code changes.
 
@@ -209,7 +209,7 @@ Every test result a step records without its own JUnit output goes into `{slug}-
 
 - Every client starts on the Anvil **Hobby** plan: background and scheduled tasks; no persistent server; no staging; 1,000 emails a month, 150,000 rows, 10 GB.
 - **Release:** App 1's tagged release is pushed into App 2 (`master_template`) by David at Step 42. No `develop`/`stable` branches.
-- **Apps and names:** `{slug}-app1`, `-app2`, `-app3`, `-app5`; role names `master_template`, `blank_client_template`, `[client-name]-{vertical}`, `{Product}_management` (`spec-nomenclature`).
+- **Apps and names:** `{slug}-app1`, `-app2`, `-app3`, `-app4` (the release image definition, a GitHub repository only), `-app5`; role names `master_template`, `blank_client_template`, `[client-name]-{vertical}`, `{Product}_management` (`spec-nomenclature`).
 - **Testing:** first on the Anvil App Server on David's PC (empty database each run); only hosted services on hosted App 1 with `TEST_` data; a server Uplink key sets up data, a client key signed in as a role proves access. Target: OWASP ASVS 5.0 Level 2 principles, Level 3 on payment, administration and high-value paths. Findings files for Steps 36, 37 and 38 are `{slug}-{step}-{run}-findings.md`.
 - **Sign-in:** a second factor for every account holder; the Owner uses FIDO2 only; shoppers buy as guests; remember-me at most 7 days; idle limit 30 minutes; passwords minimum 8, no composition rules.
 - **Server functions** return data and raise errors (no envelope). **Money** in whole cents. **Observability:** instances push heartbeats; App 5 never polls.

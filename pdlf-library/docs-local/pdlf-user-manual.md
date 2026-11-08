@@ -1,6 +1,6 @@
 ---
 title: "pdlf-user-manual"
-updated: "2026-11-03"
+updated: "2026-11-08"
 doc-id: "mb-6ea8e798"
 ---
 # PDLF User Manual
@@ -61,6 +61,7 @@ How to operate PDLF, step by step. Each step says where it happens: **WSL termin
 3. **A deviation:** the agent sets out options. You decide. Ask Claude for the recommended option if unsure.
 4. **Your own actions.** The agent gives exact instructions; you carry them out, then tell it you are done:
    - create an app in Anvil and connect it to GitHub as `{slug}-app{n}`;
+   - in the App 3 run, create the GitHub repository `{slug}-app4` on GitHub, never in Anvil;
    - switch on the app's Users service and add its `role` column;
    - set App 1's and App 5's web address, `{slug}-app{n}.mybizz.live`, in Anvil and Cloudflare;
    - write the app's `.env` with the command the agent gives;

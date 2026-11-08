@@ -1,13 +1,13 @@
 ---
 title: "b14-explainer"
 doc-id: "mb-0111675e"
-updated: "2026-11-02"
+updated: "2026-11-08"
 ---
 # Step 14 — CEO Review: Explainer
 
 ## What it is
 
-Step 14 settles how far the application, or the feature, goes. It challenges the concept David approved at Step 12, and lets David choose whether to widen the scope, hold it or cut it. Around the scope it settles the things that follow from it: what data the application holds and how each kind is protected, which laws apply, what the business must keep secure, how a client leaves with their data, and whether a typical client fits within the limits of its Anvil Business account. It also names what must be tested, and why. The result is the reviewed plan that Step 15 turns into an architecture.
+Step 14 settles how far the application, or the feature, goes. It challenges the concept David approved at Step 12, and lets David choose whether to widen the scope, hold it or cut it. Around the scope it settles the things that follow from it: what data the application holds and how each kind is protected, which laws apply, what the business must keep secure, how a client leaves with their data, and whether a typical client fits within the limits of its container and its share of the business's database cluster. It also names what must be tested, and why. The result is the reviewed plan that Step 15 turns into an architecture.
 
 ## How it works
 

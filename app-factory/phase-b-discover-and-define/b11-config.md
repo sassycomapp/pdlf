@@ -1,7 +1,7 @@
 ---
 title: "b11-config"
 doc-id: "mb-ea7e8074"
-updated: "2026-11-06"
+updated: "2026-11-08"
 ---
 # Step 11 — Init: Configuration
 
@@ -40,8 +40,8 @@ The fixed values of Step 11. Agent-facing. What the agent does, in order: [[[pdl
 | Output | Where |
 |---|---|
 | Business folder | `C:\dev\dev-{slug}\` |
-| App folders | `C:\dev\dev-{slug}\{slug}-app1`, `-app2`, `-app3`, `-app5` |
-| App repository | `sassycomapp/{slug}-app{n}` on GitHub, created by David through Anvil |
+| App folders | `C:\dev\dev-{slug}\{slug}-app1`, `-app2`, `-app3`, `-app4`, `-app5` |
+| App repository | `sassycomapp/{slug}-app{n}` on GitHub, created by David through Anvil; `sassycomapp/{slug}-app4`, created by David on GitHub in the App 3 run |
 | Test setup (App 1, App 5) | `{slug}-app{n}\tests\` and `{slug}-app{n}\.env` |
 | Project library | `C:\dev\dev-{slug}\{slug}-project-library\`, public GitHub repository `sassycomapp/{slug}-project-library` |
 | Project context (route B) | `C:\dev\dev-{slug}\{slug}-project-context\`, GitHub repository `sassycomapp/{slug}-project-context`, GBrain source `{slug}-project-context` |

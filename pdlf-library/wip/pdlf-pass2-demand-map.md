@@ -1,6 +1,6 @@
 ---
 title: "pdlf-pass2-demand-map"
-updated: "2026-10-29"
+updated: "2026-11-08"
 doc-id: "mb-91e25269"
 ---
 # PDLF Pass 2 — Demand Map
@@ -39,14 +39,14 @@ Each demand: what it is · source · steps it touches · what it means for skill
 
 ### D3. Schema changes must reach App 3 and every client instance
 
-- A schema change must be applied to `blank_client_template` and to every existing client instance by hand; no schema change is released without a documented migration plan; schema cannot be rolled back automatically.
-- Source: `adr-local/blank-client-template.md`, `spec-deployment` sections 4 and 5.
+- A schema change only adds tables and nullable columns; it is written into App 3's table definitions and recorded in the schema migration log; the table-change check stops any release that removes, renames or retypes a table or column; each client's App Server adds the change when its container starts on the release image.
+- Source: `adr-local/adr-blank-client-template.md`, `spec-deployment` section 5, `spec-client-instance-hosting` section 6.
 - Steps: c17, f41, f42, f43, f44, Phase G.
-- Skills: the release steps lack a schema-migration task; `wizard` fits the per-instance manual migration; `anvil-yaml` writes the schema; a pre-migration backup is required.
+- Skills: `anvil-yaml` writes the schema; the table-change check runs in the image build; a pre-release backup to each client's R2 bucket is required.
 
 ### D4. Staged rollout and rollback
 
-- High-risk releases are rolled out with version tags to a subset of client instances first; rollback is re-pointing to the last good commit and republishing, not a revert.
+- High-risk releases are rolled out by App 5's Release action to a subset of client instances first; rollback moves client instances back to the previous release image with `auto-migrate` off, not a revert.
 - Source: `spec-deployment` sections 3 and 4.
 - Steps: f42, f43, f44, f45.
 - Skills: Step 42's rollback text must follow the specification; `/canary` per rolled-out instance at f43 and f45.
@@ -116,8 +116,8 @@ Each demand: what it is · source · steps it touches · what it means for skill
 
 ### D14. Provisioning a client instance (App 4)
 
-- Clone App 3, set Secrets, domain, management token, registry, Owner, Vault, webhook registration.
-- Source: `spec-client-activation-runbook`, `adr-client-instance-readme-five-app-system`.
+- App 5's New client action: database and database user, keys and tokens, container from the release image, domain; then registry, Owner, Vault, webhook registration.
+- Source: `spec-client-activation-runbook`, `spec-client-instance-hosting`, `adr-client-instance-readme-five-app-system`.
 - Steps: Phase G.
 - Skills: `wizard` fits the runbook; the client-instance README is a deliverable.
 

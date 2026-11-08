@@ -1,7 +1,7 @@
 ---
 title: "b12-explainer"
 doc-id: "mb-634cedf5"
-updated: "2026-11-02"
+updated: "2026-11-08"
 ---
 # Step 12 — Office Hours: Explainer
 
@@ -21,7 +21,7 @@ Step 12 first gathers the material the concept comes from. The route depends on 
 
 When the application follows a reference platform, such as Medusa for `mb-4-ecom`, Matt Pocock's `research` skill first checks the reference's analysis against the reference's own source code and documentation, kept in the project library's `reference-platform-local` folder, and writes its findings with a source for every claim.
 
-The agent then writes the draft design doc in one fixed structure of fifteen sections. Its Constraints section always states the platform's facts: one app and one database per client, the server in charge of every rule, all client code public, each client instance on its own Mybizz-owned Anvil Business account, and POPIA. Its Canonical Sources section lists every canonical document read and what the design doc takes from it. Its Common Aspects section lists each of the fourteen common aspects as shared or deviating. Every success criterion has a metric, a threshold and a method, and every open question names the step that settles it. The draft is saved twice: once as the first concept, which is never changed again, and once as the working copy.
+The agent then writes the draft design doc in one fixed structure of fifteen sections. Its Constraints section always states the platform's facts: one app and one database per client, the server in charge of every rule, all client code public, each client instance in its own container with its own database, and POPIA. Its Canonical Sources section lists every canonical document read and what the design doc takes from it. Its Common Aspects section lists each of the fourteen common aspects as shared or deviating. Every success criterion has a metric, a threshold and a method, and every open question names the step that settles it. The draft is saved twice: once as the first concept, which is never changed again, and once as the working copy.
 
 David is then asked whether to run GStack's `/office-hours` on the draft, and the recommendation is yes. `/office-hours` is given the whole draft as a fully formed plan, so it skips its interview and goes straight to challenging the premises and forcing alternatives. PDLF answers its other questions in advance; David answers only the premises and the choice of approach. The agent then rewrites the working copy from the result, in the same fixed structure.
 

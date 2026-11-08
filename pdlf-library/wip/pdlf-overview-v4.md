@@ -1,6 +1,6 @@
 ---
 title: "pdlf-overview-v4"
-updated: "2026-10-13"
+updated: "2026-11-08"
 
 doc-id: "mb-4afc2cc8"
 ---
@@ -239,21 +239,21 @@ The loop runs once per ticket from Step 19, in this order: 35, 35A, 40, 40B, 36,
 
 **Step 42, Publish to staging (to be rebuilt).**
 
-- Written for a staging environment that PDLF doesn't have. Under the five-app structure, its job becomes part of the release by cloning App 1 into App 2.
+- Written for a staging environment that PDLF doesn't have. Under the five-app structure, its job becomes the release into App 2 and App 3 and the build of the release image.
 
 **Step 42A, Whole-application test (to be rebuilt).**
 
 - A full integration and end-to-end test of the whole application, added because a quick smoke test only proves the app is up, not that its features work together.
-- This idea stays valuable for the new release: App 1 is tested as a whole before it is cloned into App 2.
+- This idea stays valuable for the new release: the whole application is tested on the test client instance, running the release image.
 
 **Step 43, Smoke test (to be rebuilt).**
 
-- GStack's `/qa` or `/canary` run against the staging address. Its job moves to checking App 2 after the release.
+- GStack's `/qa` or `/canary` run against the staging address. Its job moves to checking the test client instance on the release image.
 
 **Step 44, Release.**
 
 - Today it promotes the tested version from staging to production, with rollback by re-pointing to the previous version rather than reverting code.
-- To be rebuilt as the release you perform: App 1's approved code is cloned into App 2 (`master_template`), which reaches every client at once.
+- To be rebuilt as the release you approve: App 5's Release action moves every client instance to the release image.
 - Gate **released to production**.
 
 **Step 45, Production check: watches the released app.**
@@ -278,9 +278,9 @@ Which steps mention each requirement of the system build plan. A mention is not 
 | Entry points 02 to 10                                                           | none (all empty)                                                |
 | Health check for existing apps                                                  | none                                                            |
 | App 1 built (development workspace)                                             | b11 to f46                                                      |
-| App 2 release by cloning App 1                                                  | none (f44 still describes staging to production)                |
+| App 2 release and release image                                                 | none (f44 still describes staging to production)                |
 | App 3 blank client template                                                     | none                                                            |
-| App 4 first client and provisioning procedure                                   | none                                                            |
+| Test client instance and provisioning procedure                                 | none                                                            |
 | App 5 management app                                                            | none                                                            |
 | No multi-tenancy given to every skill                                           | none                                                            |
 | Anvil skills (anvil-agent-references)                                           | none                                                            |

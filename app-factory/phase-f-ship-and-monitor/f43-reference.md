@@ -1,14 +1,14 @@
 ---
 title: "f43-reference"
 doc-id: "mb-6e45109d"
-updated: "2026-10-12"
+updated: "2026-11-08"
 ---
 
-## From `43-staging-smoke-test.md`
+## Client instance check
 
 ## Task Execution Order
 
-1. Run GStack [[[pdlf:app-factory/phase-e-build-and-verify/e38-reference|/qa]]](C:/pdlf/app-factory/phase-e-build-and-verify/e38-reference.md) or `/canary` — retargeted at Staging URL from Step 42
+1. Run GStack [[[pdlf:app-factory/phase-e-build-and-verify/e38-reference|/qa]]](C:/pdlf/app-factory/phase-e-build-and-verify/e38-reference.md) or `/canary` — at the test client instance, running the release image from Step 42
 2. Follow execution sequence in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md)
 3. Apply BFT per [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md) at assigned level (Full)
 
@@ -16,23 +16,24 @@ updated: "2026-10-12"
 
 ## Description
 
-QA or canary check retargeted at the Staging URL. Confirms the app works
-on live infrastructure before promoting to Production.
+QA or canary check at the test client instance. Confirms the release image works
+on live infrastructure before App 5's Release action moves any client.
 
 ## Inputs Required
 
-- Staging URL from Step 42
+- The test client instance's address
 - Test plan or canary configuration
 
 ## Outputs
 
-- Smoke test report — pass/fail at Staging
+- Smoke test report — pass/fail on the test client instance
+- The test client instance's health baseline
 
 ## Step Table
 
 | Step | Type | Gate | Handled By |
 |---|---|---|---|
-| 43 | Skill (retargeted) | | GStack [[[pdlf:app-factory/phase-e-build-and-verify/e38-reference\|/qa]]](C:/pdlf/app-factory/phase-e-build-and-verify/e38-reference.md) or `/canary`, at Staging URL |
+| 43 | Skill (retargeted) | | GStack [[[pdlf:app-factory/phase-e-build-and-verify/e38-reference\|/qa]]](C:/pdlf/app-factory/phase-e-build-and-verify/e38-reference.md) or `/canary`, at the test client instance |
 
 ## Reference Files
 

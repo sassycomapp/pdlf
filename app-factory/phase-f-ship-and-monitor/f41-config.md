@@ -1,7 +1,7 @@
 ---
 title: "f41-config"
 doc-id: "mb-dccc0401"
-updated: "2026-10-23"
+updated: "2026-11-08"
 ---
 
 ## From `step-mapping.md`: this step's rows
@@ -13,12 +13,6 @@ updated: "2026-10-23"
 | 41 | `[[step-41-ship]]` | Skill | GStack /ship | |
 
 ### Phase E — Ship & Monitor: phase notes
-
-**Note:** Steps 42, 42A, 43, and 44 are flagged for rebuild — see `ToDo.md` item 2. They
-currently model a staging/production environment split that does not apply to this
-platform (see `[[adr-no-staging-environment-five-app-isolation]]`). Listed here as
-currently defined; not yet corrected.
-
 
 Exit gates: `production-released` (Step 44), `released` (Step 46). For entry condition
 and dependencies, see Run Plan.

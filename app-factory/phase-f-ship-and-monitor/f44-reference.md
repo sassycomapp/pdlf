@@ -1,16 +1,16 @@
 ---
 title: "f44-reference"
 doc-id: "mb-ac475804"
-updated: "2026-10-12"
+updated: "2026-11-08"
 ---
 
-## From `44-promote-to-production.md`
+## Release
 
 ## Task Execution Order
 
-1. Developer: Promote the same reviewed commit from Staging to Production in the Anvil IDE
-2. → GATE: Execute gate procedure per [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md)
-3. → GATE: `production-released` — developer approval required. App is now live.
+1. → GATE: Execute gate procedure per [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md)
+2. → GATE: `production-released` — developer approval required.
+3. App 5's Release action moves every client instance to the release image, staged where the release is high-risk.
 4. Follow execution sequence in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md)
 5. Apply BFT per [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md) (Full — gate override)
 
@@ -18,8 +18,9 @@ updated: "2026-10-12"
 
 ## Description
 
-Developer promotes the same reviewed commit to Production. Rollback is
-re-pointing the environment, not `git revert`.
+The developer approves the release, and App 5 moves every client instance to the
+release image. Rollback moves client instances back to the previous release image,
+not `git revert`.
 
 ## Inputs Required
 
@@ -27,20 +28,20 @@ re-pointing the environment, not `git revert`.
 
 ## Outputs
 
-- App running at Production URL
+- Every client instance running the release image
 - GATE `production-released` — Full BFT, gate summary, developer approval required
 
 ## Step Table
 
 | Step | Type | Gate | Handled By |
 |---|---|---|---|
-| 44 | Manual | **GATE** `production-released` | Promote to Production |
+| 44 | Manual | **GATE** `production-released` | Release to every client instance |
 
 ## Gate
 
 | Gate | After Step | What is Locked |
 |---|---|---|
-| `production-released` | 44 | Staging smoke test passed, same commit promoted to Production, databases confirmed separate. App is live. |
+| `production-released` | 44 | Test client instance passed on the release image; every client instance moved to it by App 5's Release action. |
 
 ## Reference Files
 

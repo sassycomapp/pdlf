@@ -1,7 +1,7 @@
 ---
 title: "pdlf-build-plan"
 doc-id: "mb-64817b10"
-updated: "2026-11-06"
+updated: "2026-11-08"
 ---
 # PDLF Build Plan
 
@@ -49,18 +49,19 @@ C:\dev\dev-{slug}\
   {slug}-app1              code repository of App 1, the development workspace
   {slug}-app2              code repository of App 2, master_template
   {slug}-app3              code repository of App 3, blank_client_template
+  {slug}-app4              the release image definition every client instance runs
   {slug}-app5              code repository of App 5, the management tooling
   {slug}-project-library   the project library: the working documentation for the whole business
   wip                      David's temporary working folder; not part of the project
 ```
 
-Each code repository is one Anvil application and synchronises with Anvil through GitHub. The project library holds everything else for all of the business's apps: documents, decisions and PDLF records. Code and documentation are never mixed. One project library serves the whole business because its apps share one design, one vocabulary and one set of decisions; anything specific to one app has its own folder inside the library. The project library is the project's GBrain source.
+Each code repository of Apps 1, 2, 3 and 5 is one Anvil application and synchronises with Anvil through GitHub. `{slug}-app4` is a GitHub repository only: it holds the release image definition, the container start script, the release checks and the image build workflow ([[[default:specifications-global/spec-client-instance-hosting|Client Instance Hosting]]](C:/dev/project-library-global/specifications-global/spec-client-instance-hosting.md)). The project library holds everything else for all of the business's apps: documents, decisions and PDLF records. Code and documentation are never mixed. One project library serves the whole business because its apps share one design, one vocabulary and one set of decisions; anything specific to one app has its own folder inside the library. The project library is the project's GBrain source.
 
 No project data is stored in PDLF; all project data is stored in the project folders at `C:\dev\`. Every project folder is made by Step 11 from the project template, `C:\dev\project-template\dev-(SLUG)\`, in which each folder's `README.md` states what belongs in it.
 
 **Step outputs.** Every project library holds a folder `pdlf-outputs\`, with one folder per step, named as in the app factory: `a01\` to `a10\`, `b11\` to `b16\`, `c17\` to `c28\`, `d29\` to `d34\`, `e35\` to `e40b\` and `f41\` to `f46\`, including `b13\`, `c24\` and `c25\`. Everything a step produces for that project is kept in its folder, whichever skill produced it: the step's receipt, a copy of every artifact a skill saved elsewhere (GStack, for example, saves in its own place), and the artifacts of skills that are told where to save (such as Archify, the Magdoub wireframe skills and Sentinel), which save there directly. Each file name begins with the slug, the step and the run (`app{n}` for a whole application, or the feature's short name), for example `mb-3-cs-b15-app1-test-plan.md`, so the step and the run that produced it are clear and a feature never overwrites the application's files. The project template holds these folders, and Step 11 copies them for a new project.
 
-The business slug is the business's short name as recorded at Step 11, all lowercase, with its hyphens kept. Each app's folder and repository is named `{slug}-app{n}`, with no descriptive word. App 4 lives on its own Mybizz-owned Anvil Business account and has no folder. Application code is never a GBrain source: agents read it directly from the app folder.
+The business slug is the business's short name as recorded at Step 11, all lowercase, with its hyphens kept. Each app's folder and repository is named `{slug}-app{n}`, with no descriptive word. Client instances run on DigitalOcean and have no folder; `{slug}-app4` holds the image they run. Application code is never a GBrain source: agents read it directly from the app folder.
 
 ### 2. Control and gates
 
@@ -84,17 +85,17 @@ PDLF builds many Anvil applications, each a separate business of Mybizz. Every b
 |---|---|---|
 | App 1 | `{slug}-app1` | The development workspace. All feature work happens here. It is never a dependency of any client instance. |
 | App 2 | `master_template` | The published dependency. The sole source of all server-side logic and UI forms for every client instance. |
-| App 3 | `blank_client_template` | The provisioning clone source. The sole source from which new client instances are cloned. |
-| App 4 | `[client-name]-{vertical}` | One per paying client: a dedicated, isolated app instance. |
-| App 5 | `{Product}_management` | The platform operator's internal tooling: provisioning, health monitoring, billing automation and update distribution. |
+| App 3 | `blank_client_template` | The client app: the startup module, the table definitions and the scheduled tasks every client instance runs. |
+| App 4 | `[client-name]-{vertical}` | One per paying client: a dedicated, isolated client instance, running the release image in its own container with its own database. |
+| App 5 | `{Product}_management` | The platform operator's internal tooling: provisioning, health monitoring, billing automation and release distribution. |
 
-**Which apps PDLF develops.** PDLF develops Apps 1, 3 and 5. App 2 and App 4 are produced from them, never developed directly.
+**Which apps PDLF develops.** PDLF develops Apps 1, 3 and 5, and the release image definition in `{slug}-app4`. App 2 and the client instances are produced from them, never developed directly.
 
-**App 2 always holds a release of App 1.** It has nothing of its own. It exists so that work in progress on App 1 never reaches clients. Only when David is satisfied with work in App 1 is it released: David pushes App 1's approved, tagged release into App 2's repository, as a gated step (Step 42). That release is a system-wide update, and it reaches every client at once, because every client instance depends on App 2. There is no separate staging or production environment. App 1's documents, in the project library, cover App 2.
+**App 2 always holds a release of App 1.** It has nothing of its own. It exists so that work in progress on App 1 never reaches clients. Only when David is satisfied with work in App 1 is it released: David pushes App 1's approved, tagged release into App 2's repository, as a gated step (Step 42). That release is built into the release image, and App 5's Release action moves every client instance to it. There is no separate staging or production environment. App 1's documents, in the project library, cover App 2.
 
-**App 4 is a clone of App 3.** Every client instance runs on its own Mybizz-owned Anvil Business account, which bears the name of the client's business: for a client whose business is `marysyoga.com`, App 3 is cloned into the `marysyoga.com` account, and that instance is the client's App 4. The only thing unique to a client instance is that client's own data, in its own database and data tables, so App 4 has nothing to document and no folder in the project. PDLF builds and verifies one instance, the provisioning procedure, and the README every instance must carry. That first instance is the first real client, also used as the test client. Provisioning each later client follows the procedure as normal business operations, outside the pipeline.
+**App 4 runs the release image.** Every client instance runs on the Anvil App Server, as one container on DigitalOcean App Platform named after the client's business, with its own database in the business's DigitalOcean Managed PostgreSQL cluster: for a client whose business is `marysyoga.com`, that container and database are the client's App 4 ([[[default:specifications-global/spec-client-instance-hosting|Client Instance Hosting]]](C:/dev/project-library-global/specifications-global/spec-client-instance-hosting.md)). The only thing unique to a client instance is that client's own data, in its own database, so App 4 has nothing to document and no folder in the project. PDLF builds and verifies the release image, the test client instance, the provisioning procedure, and the README App 3 and `{slug}-app4` carry. The test client instance is a client instance of its own, holding test data only. Provisioning each client follows the procedure as normal business operations, outside the pipeline.
 
-**Hosting.** Apps 1, 2, 3 and 5 are hosted on Mybizz's development account; each App 4 is hosted on its own Mybizz-owned Anvil Business account. Every web address belongs to the Mybizz domain `mybizz.live`, except App 4's. Only the apps people open have an address: App 1, where the business is built and tested in the browser, and App 5, the management app. App 2 is reached only as a dependency, by its Anvil app ID, and App 3 is only cloned, so neither has an address. Each App 4 uses its client's own domain.
+**Hosting.** Apps 1, 2, 3 and 5 are hosted on Mybizz's Anvil Business account; each App 4 runs on DigitalOcean. Every web address belongs to the Mybizz domain `mybizz.live`, except App 4's. Only the apps people open have an address: App 1, where the business is built and tested in the browser, and App 5, the management app. App 2 is reached only as a dependency, by its Anvil app ID, and App 3 only runs inside the release image, so neither has an address. Each App 4 uses its client's own domain, added to its App Platform app.
 
 | Business | App 1 | App 5 |
 |---|---|---|
@@ -109,9 +110,9 @@ An address is the app's repository name followed by `.mybizz.live`. It is set up
 
 **GBrain.** Every project library, like every other documentation repository, is a GBrain source, and all of them can be searched together. When an application re-enters PDLF, PDLF reads its repositories directly.
 
-**Client accounts and tiers.** Each client instance runs on its own Mybizz-owned Anvil Business account, named after the client's business, at $150 a month per client. Server resources are added on that client's account alone, with no change to App 2. A client's transactions run in its own instance; App 2 carries no client load.
+**Client hosting and price.** Each client instance runs in its own container with its own database, at $99 a month per client ([[[default:adr-global/adr-tiers-model|Tiers Model]]](C:/dev/project-library-global/adr-global/adr-tiers-model.md)). Server resources are raised for that client's container alone, with no change to App 2. A client's transactions run in its own instance; App 2 carries no client load.
 
-**Client storage and exit.** Each client has one Cloudflare R2 bucket, in a free Cloudflare account in the client's own name, where Mybizz is an invited member; it holds the raw webhook payloads, archived logs, email bodies and backups. When a client leaves Mybizz, all its data is written to that bucket and Mybizz leaves the account. PDLF builds this exit export into every application and proves it on the test client: [[[default:adr-global/adr-client-r2-storage-and-exit-handover|Client R2 Storage and Exit Handover]]](C:/dev/project-library-global/adr-global/adr-client-r2-storage-and-exit-handover.md).
+**Client storage and exit.** Each client has one Cloudflare R2 bucket, in a free Cloudflare account in the client's own name, where Mybizz is an invited member; it holds the raw webhook payloads, archived logs, email bodies and backups. When a client leaves Mybizz, all its data is written to that bucket and Mybizz leaves the account. PDLF builds this exit export into every application and proves it on the test client instance: [[[default:adr-global/adr-client-r2-storage-and-exit-handover|Client R2 Storage and Exit Handover]]](C:/dev/project-library-global/adr-global/adr-client-r2-storage-and-exit-handover.md).
 
 **Common across applications.** Whatever can be common between Mybizz applications (`mb-3-cs`, `mb-4-ecom` and later ones) is kept common, in both directions: each common aspect is defined once in `project-library-global` and built the same way in every application, and an application deviates only where its business domain requires it, recorded as an ADR in its project library. [[[default:policy-global/pol-common-aspects-for-mybizz-anvil-applications|Common Aspects for Mybizz Anvil Applications]]](C:/dev/project-library-global/policy-global/pol-common-aspects-for-mybizz-anvil-applications.md), [[[default:adr-global/adr-common-architecture-across-mybizz-applications|Common Architecture Across Mybizz Applications]]](C:/dev/project-library-global/adr-global/adr-common-architecture-across-mybizz-applications.md).
 
@@ -277,4 +278,4 @@ Every step's entry is held in its own build plan, `{letter}{number}-build-plan.m
 
 ### Phase G — Remaining apps
 
-**Must achieve:** the steps that build the rest of the five-app set in the same pipeline: `blank_client_template`, the first client instance with the provisioning procedure and the README every instance carries, and the management tooling. Provisioning a client instance opens its Anvil Business account and creates its R2 storage in the client's own Cloudflare account, and follows [[[default:specifications-global/spec-client-activation-runbook|Client Instance Activation Runbook]]](C:/dev/project-library-global/specifications-global/spec-client-activation-runbook.md), with `wizard` instructions for every manual step. App 5 receives the client instances' health metrics, as the observability ADR sets out. Not yet designed.
+**Must achieve:** the steps that build the rest of the five-app set in the same pipeline: `blank_client_template`, the release image and the test client instance, the provisioning procedure and the README App 3 and `{slug}-app4` carry, and the management tooling. Provisioning a client instance creates its container and database on DigitalOcean and its R2 storage in the client's own Cloudflare account, and follows [[[default:specifications-global/spec-client-activation-runbook|Client Instance Activation Runbook]]](C:/dev/project-library-global/specifications-global/spec-client-activation-runbook.md), with `wizard` instructions for every manual step. App 5 receives the client instances' health metrics, as the observability ADR sets out. Not yet designed.

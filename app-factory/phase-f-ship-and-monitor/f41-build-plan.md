@@ -1,14 +1,14 @@
 ---
 title: "f41-build-plan"
 doc-id: "mb-4042f695"
-updated: "2026-11-04"
+updated: "2026-11-08"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
 
 ### Phase F — Ship and Monitor
 
-Ends with the gates `production-released` (Step 44) and `released` (Step 46). The release is the clone of App 1's approved code into App 2, `master_template`, which every client instance depends on.
+Ends with the gates `production-released` (Step 44) and `released` (Step 46). The release is App 1's approved code pushed into App 2, `master_template`, built with App 3 into the release image, and moved to every client instance by App 5's Release action ([[[default:specifications-global/spec-client-instance-hosting|Client Instance Hosting]]](C:/dev/project-library-global/specifications-global/spec-client-instance-hosting.md)).
 
 #### Step 41: Release readiness
 
@@ -28,11 +28,11 @@ Ends with the gates `production-released` (Step 44) and `released` (Step 46). Th
 
 **Must be built so that:**
 - a release is one version of the application (V1, V2 and so on) and carries every feature of that version;
-- when the release changes the schema, its migration plan for App 3 and every client instance exists before the release continues;
+- when the release changes the schema, the change only adds tables and nullable columns, is recorded in the schema migration log, and is ready to be written into App 3's table definitions at Step 42;
 - the compliance documents named in the CEO plan exist before a first release;
 - `benchmark` (GStack) records the performance baseline of the public pages → Step 45;
-- for the first release, the exit export is proven on the test client: all its data lands in its R2 bucket;
-- for the first release, the legal documents system is proven on the test client, as `spec-legal-documents-and-consent` section 12 sets out: each publish writes its kept copy, the acceptance box blocks an agreement until ticked, the cookie banner loads no embedded content before consent, every choice and acceptance writes its `consents` row, and the nightly archive moves old rows to R2;
+- for the first release, the exit export is proven on the test client instance: all its data lands in its R2 bucket;
+- for the first release, the legal documents system is proven on the test client instance, as `spec-legal-documents-and-consent` section 12 sets out: each publish writes its kept copy, the acceptance box blocks an agreement until ticked, the cookie banner loads no embedded content before consent, every choice and acceptance writes its `consents` row, and the nightly archive moves old rows to R2;
 - `media.mybizz.live` is checked to set no cookie;
 
 **Carried over from the old workflow** (to be checked against the step file, then removed):

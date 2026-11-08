@@ -1,13 +1,13 @@
 ---
 title: "a07-explainer"
 doc-id: "mb-e7e98a42"
-updated: "2026-10-29"
+updated: "2026-11-08"
 ---
 # Step 7 — Create App 3: Explainer
 
 ## What it is
 
-Step 7 is the entry point `create-client-template`. Its job: App 3, `blank_client_template`, entered into PDLF for a business whose existing apps are shown healthy, so that Step 11 sets it up; Steps 12 to 16 do not run for it, because it holds only App 1's schema, one startup module and its dependency on App 2.
+Step 7 is the entry point `create-client-template`. Its job: App 3, `blank_client_template`, entered into PDLF for a business whose existing apps are shown healthy, so that Step 11 sets it up; Steps 12 to 16 do not run for it, because it holds only App 1's table definitions, one startup module, the scheduled tasks and its dependency on App 2. The same run creates the business's `{slug}-app4` repository, which holds the release image definition.
 
 ## How it works
 

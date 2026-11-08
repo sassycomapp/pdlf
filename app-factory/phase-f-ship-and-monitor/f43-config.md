@@ -1,7 +1,7 @@
 ---
 title: "f43-config"
 doc-id: "mb-c55a9572"
-updated: "2026-10-23"
+updated: "2026-11-08"
 ---
 
 ## From `step-mapping.md`: this step's rows
@@ -10,15 +10,9 @@ updated: "2026-10-23"
 
 | Step | File | Type | Handler | Gate |
 |---|---|---|---|---|
-| 43 | `[[step-43-staging-smoke-test]]` | Skill | GStack /qa or `/canary` — smoke test | |
+| 43 | `f43-build-plan` | Skill | GStack /qa or `/canary` — smoke test | |
 
 ### Phase E — Ship & Monitor: phase notes
-
-**Note:** Steps 42, 42A, 43, and 44 are flagged for rebuild — see `ToDo.md` item 2. They
-currently model a staging/production environment split that does not apply to this
-platform (see `[[adr-no-staging-environment-five-app-isolation]]`). Listed here as
-currently defined; not yet corrected.
-
 
 Exit gates: `production-released` (Step 44), `released` (Step 46). For entry condition
 and dependencies, see Run Plan.
@@ -29,4 +23,4 @@ and dependencies, see Run Plan.
 
 | Step | Name | Type | BFT | Rationale |
 |---|---|---|---|---|
-| 43 | /qa or /canary at Staging | Skill | **Full** | Smoke test against live Staging — verification decisions before production promotion |
+| 43 | /qa or /canary at the test client instance | Skill | **Full** | Smoke test against the test client instance — verification decisions before the Release action |

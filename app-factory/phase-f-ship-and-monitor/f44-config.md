@@ -1,7 +1,7 @@
 ---
 title: "f44-config"
 doc-id: "mb-1edd98fd"
-updated: "2026-10-23"
+updated: "2026-11-08"
 ---
 
 ## From `step-mapping.md`: this step's rows
@@ -10,15 +10,9 @@ updated: "2026-10-23"
 
 | Step | File | Type | Handler | Gate |
 |---|---|---|---|---|
-| 44 | `[[step-44-promote-to-production]]` | Manual + GATE | Promote to Production | `production-released` |
+| 44 | `f44-build-plan` | Manual + GATE | Release to every client instance | `production-released` |
 
 ### Phase E — Ship & Monitor: phase notes
-
-**Note:** Steps 42, 42A, 43, and 44 are flagged for rebuild — see `ToDo.md` item 2. They
-currently model a staging/production environment split that does not apply to this
-platform (see `[[adr-no-staging-environment-five-app-isolation]]`). Listed here as
-currently defined; not yet corrected.
-
 
 Exit gates: `production-released` (Step 44), `released` (Step 46). For entry condition
 and dependencies, see Run Plan.
@@ -40,10 +34,10 @@ it is not a sequence claim — see Run Plan for the loop's actual internal order
 
 | Step | Name | Type | BFT | Rationale |
 |---|---|---|---|---|
-| 44 | Promote to Production | Manual + GATE | **Full** | GATE `production-released`. Commits the app to real users. Full BFT mandatory. |
+| 44 | Release | Manual + GATE | **Full** | GATE `production-released`. Commits the release to real users. Full BFT mandatory. |
 
 ## From `spec-gate-procedure.md`: gate
 
 | Gate | After Step | What is Locked |
 |---|---|---|
-| `production-released` | 44 | Staging smoke test passed, same commit promoted to Production, databases confirmed separate. App is live. |
+| `production-released` | 44 | Test client instance passed on the release image; every client instance moved to it by App 5's Release action. |

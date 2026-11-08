@@ -14,7 +14,7 @@ Work list for bringing every live document into line with `mybizz-client-instanc
 | # | Structure | Location | Content |
 |---|---|---|---|
 | A1 | New specification `spec-client-instance-hosting.md` | `project-library-global/specifications-global/` | The canonical home of the proposal's sections 1 to 9: the five apps' hosting, the container, the image, the App Server settings, the container keys, the database and its sizes, releases, provisioning, client exit, uptime, costs. Every other document links to it instead of repeating it. |
-| A2 | New code repository per business, `{slug}-app4` | `C:\dev\dev-{slug}\{slug}-app4`, GitHub `sassycomapp/{slug}-app4` | The client instance image: the image definition (`Dockerfile`), the container start script, the table-change check script, the image build workflow (GitHub Actions), and the pinned App Server version. Holds no application code. |
+| A2 | New code repository per business, `{slug}-app4` | `C:\dev\dev-{slug}\{slug}-app4`, GitHub `sassycomapp/{slug}-app4`, created in the App 3 run (Step 11, route C) | The client instance image: the image definition (`Dockerfile`), the container start script, the table-change check script, the image build workflow (GitHub Actions), and the pinned App Server version. Holds no application code. |
 | A3 | Placeholder folder `(slug)-app4` | `project-template/dev-(SLUG)/` | Empty placeholder files with front matter for A2, so every business is created with it. |
 | A4 | DigitalOcean platform set-up section | Inside `spec-client-activation-runbook.md` | One-time set-up per business: DigitalOcean project, Managed PostgreSQL cluster in `LON1`, registry repository, test client instance, API token in App 5's Vault. |
 | A5 | Retire the proposal | `pdlf/pdlf-library/wip/mybizz-client-instance-hosting-proposal.md` | Deleted once batch 1 is committed. Its content lives in A1 and `adr-tiers-model.md`. |
@@ -65,7 +65,7 @@ Work list for bringing every live document into line with `mybizz-client-instanc
 | 2.12 | `pdlf-library/pdlf-explainer-docs/pdlf-explainer.md` and `app-factory-explainer.md` | Line 153: hosting sentence. |
 | 2.13 | `pdlf-library/adr-local/no-staging-environment-five-app-isolation.md` | Lines 22 and 23. |
 | 2.14 | `pdlf-library/policy-local/pol-anvil-platform.md` | Line 49: client instances run App 3 and App 2 from the release image. |
-| 2.15 | `pdlf-library/specifications-local/spec-postgres-ledger.md` | Line 79: add `app4_path`. |
+| 2.15 | `pdlf-library/specifications-local/spec-postgres-ledger.md` | Line 79: client instances have no path; `{slug}-app4` sits beside the other app folders. The ledger's columns stay as they are. |
 | 2.16 | `pdlf-library/wip/pdlf-session-handover.md` | Rewritten for the next session. |
 
 ---

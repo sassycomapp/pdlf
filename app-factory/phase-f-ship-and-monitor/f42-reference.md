@@ -1,33 +1,38 @@
 ---
 title: "f42-reference"
 doc-id: "mb-8ad89930"
-updated: "2026-10-12"
+updated: "2026-11-08"
 ---
 
-## From `42-publish-to-staging.md`
+## Release to App 2
 
 ## Task Execution Order
 
-1. Developer: Publish the pushed commit to the Staging environment in the Anvil IDE
-2. Follow execution sequence in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md)
-3. Apply BFT per [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md) at assigned level (None)
+1. Every client instance copies its data to its own R2 bucket
+2. Developer: Push App 1's tagged release into App 2's repository, and write the release's table changes into App 3's table definitions
+3. The image build workflow in `{slug}-app4` builds and checks the release image, and stores it under the release tag
+4. The whole test suite runs on the release image
+5. App 5 moves the test client instance to the release image
+6. Follow execution sequence in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md)
+7. Apply BFT per [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md) at assigned level (None)
 
 ---
 
 ## Description
 
-Developer publishes the pushed commit to the Staging environment only.
-Production's URL and database are untouched.
+The developer pushes the release into App 2 and App 3. The release image is built,
+checked and tested, and only the test client instance runs it.
 
 ## Outputs
 
-- App running at Staging URL
+- The release image, stored under the release tag
+- The test client instance running the release image
 
 ## Step Table
 
 | Step | Type | Gate | Handled By |
 |---|---|---|---|
-| 42 | Manual | | Publish to Staging |
+| 42 | Manual | | Release to App 2 and build the release image |
 
 ## Reference Files
 

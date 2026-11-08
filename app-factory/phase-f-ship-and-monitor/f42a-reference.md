@@ -1,15 +1,15 @@
 ---
 title: "f42a-reference"
 doc-id: "mb-89d4dfcf"
-updated: "2026-10-12"
+updated: "2026-11-08"
 ---
 
-## From `42a-staging-integration-e2e.md`
+## Release regression test
 
 ## Task Execution Order
 
-1. Confirm the Staging publish from Step 42 has completed.
-2. Run the full integration/E2E suite against the Staging environment — cross-feature
+1. Confirm the test client instance runs the release image from Step 42.
+2. Run the full integration/E2E suite against the test client instance — cross-feature
    flows across the whole application, not a single feature's Level 3 check.
 3. → Decision point: if failures are found, present as a deviation request. Developer
    decides whether to fix before proceeding to the smoke test.
@@ -20,19 +20,19 @@ updated: "2026-10-12"
 
 ## Description
 
-Whole-application verification at Staging, distinct from anything run per-feature during
-the build loop. Added specifically because the Staging smoke test (Step 43) alone was
-found to verify too little — it confirms the app is up, not that it behaves correctly
-across feature interactions. This step closes that gap before Production promotion.
+Whole-application verification on the test client instance, distinct from anything run
+per-feature during the build loop. The smoke test (Step 43) confirms the instance is up;
+this step confirms it behaves correctly across feature interactions, before App 5's
+Release action moves any client.
 
 ## Inputs Required
 
-- Staging environment, published per Step 42
+- The test client instance, running the release image per Step 42
 - Full application feature set (all features that reached `build-verified`)
 
 ## Outputs
 
-- Integration/E2E test results for the whole application at Staging
+- Integration/E2E test results for the whole application on the test client instance
 - Deviation request, if failures are found
 
 ## Step Table
@@ -45,7 +45,7 @@ across feature interactions. This step closes that gap before Production promoti
 
 ## Handoff to Step 43
 
-Step 43 (Staging smoke test) proceeds only once this step's results are clean or any
+Step 43 (client instance check) proceeds only once this step's results are clean or any
 deviations have been resolved.
 
 ---

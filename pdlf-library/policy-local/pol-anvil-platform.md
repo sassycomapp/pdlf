@@ -1,7 +1,7 @@
 ---
 title: "pol-anvil-platform"
 doc-id: "mb-f219a912"
-updated: "2026-11-04"
+updated: "2026-11-08"
 ---
 # PDLF Policy — Anvil Platform
 
@@ -17,7 +17,7 @@ The agent changes `anvil.yaml` only through Anvil's `anvil-yaml` skill, which An
 
 ### Code and documents are kept apart
 
-Every business has one code repository per app it develops (`{slug}-app1`, `{slug}-app2`, `{slug}-app3`, `{slug}-app5`), each an Anvil app holding `anvil.yaml`, `client_code/`, `server_code/` and `theme/`, and one project library, `{slug}-project-library`, which holds everything else: documents, decisions and PDLF records.
+Every business has one code repository per app it develops (`{slug}-app1`, `{slug}-app2`, `{slug}-app3`, `{slug}-app5`), each an Anvil app holding `anvil.yaml`, `client_code/`, `server_code/` and `theme/`; one GitHub repository, `{slug}-app4`, holding the release image definition; and one project library, `{slug}-project-library`, which holds everything else: documents, decisions and PDLF records.
 
 They are never mixed: no project documents in a code repository, no code in the project library. Client-facing material that the application itself serves to its users, such as help documents, is part of the application, not project documentation; it lives in `theme/assets` under the rules below.
 
@@ -45,8 +45,8 @@ Nothing secret, internal or for paying clients only ever goes in either. Materia
 Every application follows [[[default:specifications-global/spec-five-app-architecture-model|Five-App Architecture Model]]](C:/dev/project-library-global/specifications-global/spec-five-app-architecture-model.md):
 
 - All development happens in App 1.
-- Release is App 1's approved, tagged release, pushed into App 2's repository (`master_template`) by David at Step 42. There is no separate staging or production environment.
-- Client instances (App 4) are cloned from `blank_client_template` (App 3) and run on `master_template`. The agent never adds a form or server module to a client instance: doing so silently and permanently cuts that instance off from future updates.
+- Release is App 1's approved, tagged release, pushed into App 2's repository (`master_template`) by David at Step 42, built with App 3 into the release image, and moved to every client instance by App 5's Release action at Step 44. There is no separate staging or production environment.
+- Client instances (App 4) run the release image: App 3 (`blank_client_template`) on `master_template`, on the Anvil App Server ([[[default:specifications-global/spec-client-instance-hosting|Client Instance Hosting]]](C:/dev/project-library-global/specifications-global/spec-client-instance-hosting.md)). The agent never adds a form or server module to App 3: one added there overrides `master_template` for every client, and the image build stops on it.
 
 ### No multi-tenancy
 
@@ -65,7 +65,7 @@ The code repository is pulled to local after every step where work was done in t
 
 ## Why
 
-These are Anvil's own mechanics. Anvil publishes from a Git branch, manages its own configuration file, and serves each client from its own app. Rules that ignore this produce code that works elsewhere but fails on Anvil, or client instances that silently stop receiving updates.
+These are Anvil's own mechanics. Anvil publishes from a Git branch, manages its own configuration file, and the App Server serves each client from its own instance. Rules that ignore this produce code that works elsewhere but fails on Anvil, or client instances that silently stop receiving updates.
 
 ---
 

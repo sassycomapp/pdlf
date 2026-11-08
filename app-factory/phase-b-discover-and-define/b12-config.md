@@ -1,7 +1,7 @@
 ---
 title: "b12-config"
 doc-id: "mb-8b21d27b"
-updated: "2026-11-06"
+updated: "2026-11-08"
 ---
 # Step 12 — Office Hours: Configuration
 
@@ -95,7 +95,7 @@ Read in full before any work, as [[[pdlf:pdlf-library/specifications-local/spec-
 | One app and one database per client; never multi-tenant | Context pack, items 1 and 2 |
 | The server holds authority over identity, ownership and every rule | Context pack, item 6 |
 | All client code and `theme/assets` are public | Context pack, item 4 |
-| Every client instance runs on its own Mybizz-owned Anvil Business account | Common aspect 2 |
+| Every client instance runs in its own container with its own database | Common aspect 2 |
 | POPIA applies: Information Regulator registration after launch; data-subject rights of access, correction, deletion and objection | `spec-regulatory-compliance-baseline` |
 | GDPR applies when EU customers are served; PCI DSS when payments are taken | `spec-regulatory-compliance-baseline` |
 

@@ -1,7 +1,7 @@
 ---
 title: "a06-explainer"
 doc-id: "mb-2becc3e4"
-updated: "2026-10-29"
+updated: "2026-11-08"
 ---
 # Step 6 — Release into App 2: Explainer
 
@@ -15,7 +15,7 @@ David opens `projects/{slug}-app1` in OpenCode and runs `/pdlf-init`, then choos
 
 ## Why it works this way
 
-- **A passing App 1 only.** App 2 is the dependency of every client instance; a fault released into it reaches every client.
+- **A passing App 1 only.** App 2 is built into the release image every client instance runs; a fault released into it reaches every client.
 - **It only records.** An entry point asks and writes the entry record; every change to the business is made by the steps it joins, where it is checked.
 
 ## What has to happen

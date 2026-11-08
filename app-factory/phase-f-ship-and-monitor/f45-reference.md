@@ -1,28 +1,30 @@
 ---
 title: "f45-reference"
 doc-id: "mb-eac0114b"
-updated: "2026-10-12"
+updated: "2026-11-08"
 ---
 
-## From `45-canary-production.md`
+## Production check
 
 ## Task Execution Order
 
-1. Run GStack `/canary` — targeted at Production URL from Step 44
-2. Follow execution sequence in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md)
-3. Apply BFT per [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md) at assigned level (Full)
+1. Run GStack `/canary` — targeted at the test client instance, against its baseline from Step 43
+2. Read every client instance's heartbeat in App 5 for the release version and schema fingerprint
+3. Follow execution sequence in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md)
+4. Apply BFT per [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md) at assigned level (Full)
 
 ---
 
 ## Description
 
 Post-deploy monitoring loop — watches for console errors, performance
-regressions, and page-load failures against the live Production URL.
+regressions, and page-load failures on the test client instance, and reads every client
+instance's heartbeat.
 Contributes to the `released` gate jointly with Step 46.
 
 ## Inputs Required
 
-- Production URL from Step 44
+- The test client instance's address and every client instance's heartbeat
 - Baseline performance data if previously benchmarked
 
 ## Outputs
@@ -33,7 +35,7 @@ Contributes to the `released` gate jointly with Step 46.
 
 | Step | Type | Gate | Handled By |
 |---|---|---|---|
-| 45 | Skill | contributes to `released` | GStack `/canary`, at Production URL |
+| 45 | Skill | contributes to `released` | GStack `/canary`, at the test client instance; App 5 heartbeats |
 
 ## Reference Files
 

@@ -1,7 +1,7 @@
 ---
 title: "pdlf-built-report"
 doc-id: "mb-36208a1a"
-updated: "2026-10-31"
+updated: "2026-11-08"
 ---
 # PDLF Built Report
 
@@ -253,47 +253,11 @@ This report is a working tool for building PDLF. It is deleted when PDLF is fini
 
 ### Phase F — Ship and Monitor
 
-#### Step 41: Ship
+#### Steps 41 to 46: Release readiness, Release to App 2, Release regression test, Client instance check, Release, Production check, Learning
 
-**File:** `app-factory/phase-f-ship-and-monitor/41-ship.md`
+**Files:** `app-factory/phase-f-ship-and-monitor/f41-*` to `f46-*`
 
-**Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
-
-#### Step 42: Publish to staging
-
-**File:** `app-factory/phase-f-ship-and-monitor/42-publish-to-staging.md`
-
-**Status:** Old draft. Still describes staging, which PDLF does not have; to be rebuilt.
-
-#### Step 42A: Staging integration tests
-
-**File:** `app-factory/phase-f-ship-and-monitor/42a-staging-integration-e2e.md`
-
-**Status:** Old draft. Still describes staging, which PDLF does not have; to be rebuilt.
-
-#### Step 43: Staging smoke test
-
-**File:** `app-factory/phase-f-ship-and-monitor/43-staging-smoke-test.md`
-
-**Status:** Old draft. Still describes staging, which PDLF does not have; to be rebuilt.
-
-#### Step 44: Release
-
-**File:** `app-factory/phase-f-ship-and-monitor/44-promote-to-production.md`
-
-**Status:** Old draft. Still describes staging, which PDLF does not have; to be rebuilt.
-
-#### Step 45: Production check
-
-**File:** `app-factory/phase-f-ship-and-monitor/45-canary-production.md`
-
-**Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
-
-#### Step 46: Learning
-
-**File:** `app-factory/phase-f-ship-and-monitor/46-learn-junction.md`
-
-**Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
+**Status:** Step entries aligned to the release image of `spec-client-instance-hosting` (2026-11-08). References and configurations hold their first drafts. Each step is rebuilt at A1 when Phase F is reached.
 
 ### Phase G — Remaining apps
 

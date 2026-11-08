@@ -1,7 +1,7 @@
 ---
 title: "a07-build-plan"
 doc-id: "mb-b0915c10"
-updated: "2026-10-29"
+updated: "2026-11-08"
 ---
 # Step 7 — Create App 3: Build Plan
 
@@ -11,7 +11,7 @@ updated: "2026-10-29"
 
 #### Step 7: Entry point `create-client-template`
 
-**Must achieve:** App 3, `blank_client_template`, entered into PDLF for a business whose existing apps are shown healthy, so that Step 11 sets it up; Steps 12 to 16 do not run for it, because it holds only App 1's schema, one startup module and its dependency on App 2.
+**Must achieve:** App 3, `blank_client_template`, entered into PDLF for a business whose existing apps are shown healthy, so that Step 11 sets it up; Steps 12 to 16 do not run for it, because it holds only App 1's table definitions, one startup module, the scheduled tasks and its dependency on App 2. The same run creates the business's `{slug}-app4` repository, which holds the release image definition.
 
 **Starts from:** the business folder; App 1, in which David opened OpenCode; the business's `projects` row; David's answers; the values in [[[pdlf:app-factory/phase-a-init/a01-config|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md).
 
@@ -42,4 +42,5 @@ updated: "2026-10-29"
 ## Why it is built this way
 
 - **No design steps.** App 3 is built from App 1's schema; there is nothing in it to scope or review.
+- **`{slug}-app4` with App 3.** The release image runs App 3, so the repository that defines the image is created in the same run ([[[default:specifications-global/spec-client-instance-hosting|Client Instance Hosting]]](C:/dev/project-library-global/specifications-global/spec-client-instance-hosting.md)).
 - **The entry record in the entry's own row.** Every step of the run reads it from one place, and the entry is itself a step that is checked and recorded.

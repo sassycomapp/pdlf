@@ -1,7 +1,7 @@
 ---
 title: "b11-reference"
 doc-id: "mb-71ad6f4f"
-updated: "2026-11-06"
+updated: "2026-11-08"
 ---
 # Step 11 — Init: Reference
 
@@ -48,7 +48,7 @@ What the agent does at Step 11, in order. Agent-facing. Fixed values: [[[pdlf:ap
 25. In `{slug}-app{n}`, which holds the project template's scaffold, bring in the repository with the commands in the configuration, because `git clone` needs an empty folder. If the checkout reports a file in the way: stop and raise a deviation. Check the clone holds `anvil.yaml` and that `anvil.yaml` holds the Users service. If not: stop and raise a deviation. Never write `anvil.yaml`.
 26. Run `anvil --json validate .` in the app folder and save its output in `pdlf-outputs\b11\` (test ST-01). For App 1 and App 5, check `https://{slug}-app{n}.mybizz.live` answers `200`, and record it in the `projects` row.
 27. If the app folder has no `AGENTS.md`, give David the one command that copies `C:\mybizz\anvil-agent-references\AGENTS.md` into it, because agents never write `AGENTS.md`; an existing `AGENTS.md` is kept, and `mb-project-docs` keeps it current at close-out. Check its `.gitignore` holds the baseline in the configuration; if the folder has none, copy it from the project template's app folder.
-28. App 3: stop here; it holds no code and gets no test setup. App 1 and App 5: continue.
+28. App 3: use the `wizard` skill to give David exact numbered instructions to create the GitHub repository `sassycomapp/{slug}-app4`, public and empty, never in Anvil; in `{slug}-app4`, bring in the repository with the commands in the configuration; then stop here, because App 3 holds no code and gets no test setup. App 1 and App 5: continue.
 29. Check `tests\logic\`, `tests\integration\` and `tests\security\` exist, and create any that is missing. Copy `conftest.py`, `pytest.ini` and `ts-config.yaml` from the test templates into `tests\`, and set `role: app1` in `ts-config.yaml`. Copy `test_pr09_environment.py` into `tests\integration\`.
 30. Give David the command for `.env` in the configuration, with the app folder filled in. Wait until he confirms. Never read or write `.env`.
 31. Start the local runtime: `bash /mnt/c/dev/project-library-global/test-suite/tools/ts_local.sh {app folder} start`. If it does not start: stop and raise a deviation.

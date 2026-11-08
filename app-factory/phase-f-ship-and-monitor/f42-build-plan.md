@@ -1,50 +1,31 @@
 ---
 title: "f42-build-plan"
 doc-id: "mb-204ff45b"
-updated: "2026-10-22"
+updated: "2026-11-08"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
 
 ### Phase F — Ship and Monitor
 
-Ends with the gates `production-released` (Step 44) and `released` (Step 46). The release is the clone of App 1's approved code into App 2, `master_template`, which every client instance depends on.
+Ends with the gates `production-released` (Step 44) and `released` (Step 46). The release is App 1's approved code pushed into App 2, `master_template`, built with App 3 into the release image, and moved to every client instance by App 5's Release action ([[[default:specifications-global/spec-client-instance-hosting|Client Instance Hosting]]](C:/dev/project-library-global/specifications-global/spec-client-instance-hosting.md)).
 
 #### Step 42: Release to App 2
 
-**Must achieve:** App 1's tagged release is cloned into App 2, `master_template`. This reaches every client instance at once.
+**Must achieve:** App 1's tagged release is pushed into App 2, `master_template`, its table changes are written into App 3's table definitions, the release image is built and checked, and the test client instance runs it.
 
 **Carried out by:** The developer, after approving the release.
 
 **Skills.** Every skill's output is used by the step named after the arrow.
-- `wizard` (Matt Pocock): the developer's instructions to push App 1's tagged release into App 2's repository, and to roll back as below → Step 42A.
+- `wizard` (Matt Pocock): the developer's instructions to push App 1's tagged release into App 2's repository, to write the release's table changes into App 3's table definitions, and to roll back as below → Step 42A.
 
-**Testing:** App 2's code matches App 1's tag exactly.
+**Testing:** App 2's code matches App 1's tag exactly; the release image under the release tag holds App 2, App 3 and `m3` at that release (test RL-04); the table-change check passes (test RL-03).
 
-**Standards:** [[[default:specifications-global/spec-five-app-architecture-model|Five-App Architecture Model]]](C:/dev/project-library-global/specifications-global/spec-five-app-architecture-model.md), [[[default:specifications-global/spec-deployment|Deployment]]](C:/dev/project-library-global/specifications-global/spec-deployment.md).
+**Standards:** [[[default:specifications-global/spec-five-app-architecture-model|Five-App Architecture Model]]](C:/dev/project-library-global/specifications-global/spec-five-app-architecture-model.md), [[[default:specifications-global/spec-deployment|Deployment]]](C:/dev/project-library-global/specifications-global/spec-deployment.md), [[[default:specifications-global/spec-client-instance-hosting|Client Instance Hosting]]](C:/dev/project-library-global/specifications-global/spec-client-instance-hosting.md).
 
 **Must be built so that:**
-- before the clone, every client instance is backed up to its own R2 bucket;
-- when the release changes the schema, the developer applies it to App 3 and then to every client instance, following `wizard` instructions made from the migration plan;
-- a high-risk release may be rolled out first to some client instances by version tag, then to the rest, as the deployment specification sets out;
-- rollback re-points App 2 to the last good commit and republishes, as the deployment specification sets out; a schema change is rolled back by hand in each client instance;
-
-**Carried over from the old workflow** (to be checked against the step file, then removed):
-
-1. Query GBrain — Context relevant to staging deployment
-2. Developer: Publish the pushed commit to Staging environment in Anvil IDE — Production untouched
-3. Verify output — App running at Staging URL; STOP if not reachable
-4. Write Step 42 ledger row — `completed_at`
-5. Generate Step Receipt — `<project-library>/pdlf/outputs/step-42-receipt.md`
-6. Apply BFT — None
-7. Follow execution sequence — Housekeeping, stop, wait for continue
-
-## From `pol-anvil-platform.md`: release note
-
-Steps 42 to 44 still model a staging and production split that Anvil, under the five-app structure, does not have; they are rebuilt around the `develop` → `stable` release in steps work. The reasoning is in [[[pdlf:pdlf-library/adr-local/no-staging-environment-five-app-isolation|ADR: No Staging Environment Five App Isolation]]](C:/pdlf/pdlf-library/adr-local/no-staging-environment-five-app-isolation.md).
-
-## From `pdlf-todo.md`: item A2
-
-### A2. Rebuild Steps 42, 42A, 43, 44
-
-These steps currently model a staging/production environment split that does not apply to this platform. Rebuild them around the actual publishing mechanism: a `develop` → `stable` GitHub merge, performed by the operator, outside PDLF's own pipeline. See [[[pdlf:pdlf-library/adr-local/no-staging-environment-five-app-isolation|ADR No Staging Environment Five App Isolation]]](C:/pdlf/pdlf-library/adr-local/no-staging-environment-five-app-isolation.md) for full reasoning. Deferred to Phase F.
+- before the push, every client instance copies its data to its own R2 bucket;
+- the image build workflow in `{slug}-app4` builds the release image from the release tag and stores it under that tag; the build stops if App 3 holds any form or server module, or if the table-change check finds a table or column removed, renamed or retyped;
+- the whole test suite passes on the release image;
+- App 5 moves the test client instance to the release image, and its App Server adds the release's new tables and columns;
+- rollback moves client instances back to the previous release image with `auto-migrate` off, as the deployment specification sets out;

@@ -1,7 +1,7 @@
 ---
 title: "a06-build-plan"
 doc-id: "mb-370e9733"
-updated: "2026-10-29"
+updated: "2026-11-08"
 ---
 # Step 6 — Release into App 2: Build Plan
 
@@ -22,7 +22,7 @@ updated: "2026-10-29"
 **Must be built so that:**
 - it works on App 2, run `app2`, and its run follows the Release route of [[[pdlf:app-factory/phase-a-init/a01-config|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md), joining at Step 41;
 - the business's health check, [[[pdlf:pdlf-library/operating-procedures/sop-health-check|SOP: Health Check]]](C:/pdlf/pdlf-library/operating-procedures/sop-health-check.md), passes first, before any other work, and its report is saved;
-- the release starts only from an App 1 whose whole suite passes, because App 2 reaches every client at once;
+- the release starts only from an App 1 whose whole suite passes, because App 2 is built into the release image that every client instance runs;
 - it writes the entry record into the `inputs_used` of its own `steps` row, with the fields of [[[pdlf:app-factory/phase-a-init/a01-config|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md), so every step of the run reads how the run began from one place;
 - it changes nothing in the business's folders: it records, and the steps it joins act.
 
@@ -41,5 +41,5 @@ updated: "2026-10-29"
 
 ## Why it is built this way
 
-- **A passing App 1 only.** App 2 is the dependency of every client instance; a fault released into it reaches every client.
+- **A passing App 1 only.** App 2 is built into the release image every client instance runs; a fault released into it reaches every client.
 - **The entry record in the entry's own row.** Every step of the run reads it from one place, and the entry is itself a step that is checked and recorded.

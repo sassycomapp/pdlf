@@ -1,7 +1,7 @@
 ---
 title: "pdlf-todo"
 doc-id: "mb-13a3fbc9"
-updated: "2026-11-07"
+updated: "2026-11-08"
 ---
 # Active PDLF To-Do List
 
@@ -117,7 +117,6 @@ Document Amazon SES and Cloudflare with `mb-sysdoc-creator` (both are registered
 
 1. Open Mybizz's AWS account and request SES production access.
 2. Set up Mybizz's Cloudflare user, which clients invite with the roles Cloudflare R2 Admin and DNS.
-3. Ask Anvil's sales team in writing whether Mybizz may run each client's business app on a Mybizz-owned Business account (BRD AC-6).
-4. Switch on Zero Data Retention in the Groq console (Settings → Data Controls) for Mybizz's Groq organisation (SR-53a).
-5. In the Anvil editor, switch App 1 to Python 3.14 (Settings → Python versions); App 2 already runs it.
-6. In the Anvil editor, App 1's Users service: "Require 2-factor authentication" on, with "Allow 2-factor reset by email" on.
+3. Switch on Zero Data Retention in the Groq console (Settings → Data Controls) for Mybizz's Groq organisation (SR-53a).
+4. In the Anvil editor, switch App 1 to Python 3.14 (Settings → Python versions); App 2 already runs it.
+5. In the Anvil editor, App 1's Users service: "Require 2-factor authentication" on, with "Allow 2-factor reset by email" on.

@@ -1,7 +1,7 @@
 ---
 title: "spec-postgres-ledger"
 doc-id: "mb-dcf9c65e"
-updated: "2026-10-31"
+updated: "2026-11-08"
 ---
 # PDLF Postgres Ledger Specification
 
@@ -76,7 +76,7 @@ Seven tables in schema `public`, owned by `pdlf_agent`, referentially enforced:
 | `mode` | text | NO | — | `full` or `test` (CHECK `projects_mode_check`) |
 | `library_path` | text | YES | — | Path to the project's project-library repo |
 | `gbrain_source_docs` | text | YES | — | GBrain source ID for the project library (`{slug}-project-library`) |
-| `app1_path`, `app2_path`, `app3_path`, `app5_path` | text | YES | — | Local path of each app's code repository (`C:\dev\dev-{slug}\{slug}-app{n}`). App 4 lives on the client's own Anvil account and has no path |
+| `app1_path`, `app2_path`, `app3_path`, `app5_path` | text | YES | — | Local path of each app's code repository (`C:\dev\dev-{slug}\{slug}-app{n}`). Client instances run on DigitalOcean and have no path; `{slug}-app4` sits beside the other app folders at `C:\dev\dev-{slug}\{slug}-app4` |
 | `app1_address`, `app2_address`, `app3_address`, `app5_address` | text | YES | — | Each app's Anvil address. App 2's is recorded at release |
 | `is_active` | boolean | NO | `true` | Whether project is currently active |
 | `created_at` | timestamptz | NO | `now()` | When the project row was created |

@@ -1,6 +1,6 @@
 ---
 title: "sop-health-check"
-updated: "2026-10-24"
+updated: "2026-11-08"
 doc-id: "mb-af372f72"
 ---
 # SOP: Health Check
@@ -20,7 +20,7 @@ Run every check, in this order, for the business `{slug}` and every app folder i
 
 1. **The ledger is reachable.** Connect to database `pdlf` on port 5433 through the PowerShell bridge in [[[pdlf:pdlf-library/specifications-local/spec-postgres-ledger|Spec: Postgres Ledger]]](C:/pdlf/pdlf-library/specifications-local/spec-postgres-ledger.md). All seven tables exist: `projects`, `steps`, `gates`, `deviations`, `bft_records`, `isc`, `triage_findings`.
 2. **The business row matches the disk.** The `projects` row for `{slug}` exists, and every path and GBrain source name it records exists on disk and in GBrain under that name.
-3. **Each app folder is a linked Anvil app.** For each of `{slug}-app1`, `{slug}-app2`, `{slug}-app3` and `{slug}-app5` that has been created (an app folder that is not a Git repository holds only the template's scaffold: it is an app not yet created, and is skipped): it is a Git repository, its remote is `https://github.com/sassycomapp/{slug}-app{n}`, and it holds `anvil.yaml`.
+3. **Each app folder is a linked Anvil app.** For each of `{slug}-app1`, `{slug}-app2`, `{slug}-app3` and `{slug}-app5` that has been created (an app folder that is not a Git repository holds only the template's scaffold: it is an app not yet created, and is skipped): it is a Git repository, its remote is `https://github.com/sassycomapp/{slug}-app{n}`, and it holds `anvil.yaml`. `{slug}-app4`, once created, is a Git repository whose remote is `https://github.com/sassycomapp/{slug}-app4`, and it holds no `anvil.yaml`, because it is not an Anvil app.
 4. **Each app folder is up to date.** After `git fetch`, the folder is not behind GitHub, so nothing made in the Anvil editor is waiting to be pulled.
 5. **Each app folder keeps secrets out.** Its `.gitignore` excludes `.env`, credentials and test output.
 6. **The project library is sound.** `C:\dev\dev-{slug}\{slug}-project-library` is a Git repository linked to `https://github.com/sassycomapp/{slug}-project-library`, has every folder of the project template (`C:\dev\project-template\dev-(SLUG)\(slug)-project-library\`), including `pdlf-tickets\` and `pdlf-outputs\` with one folder per step.

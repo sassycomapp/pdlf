@@ -1,7 +1,7 @@
 ---
 title: "b14-config"
 doc-id: "mb-497c1373"
-updated: "2026-11-06"
+updated: "2026-11-08"
 ---
 # Step 14 — CEO Review: Configuration
 
@@ -44,7 +44,7 @@ Read in full before any work, as [[[pdlf:pdlf-library/specifications-local/spec-
 | Protection levels | [[[default:specifications-global/spec-security-architecture\|Security Architecture]]](C:/dev/project-library-global/specifications-global/spec-security-architecture.md), section 4 |
 | Retention, GDPR, PCI DSS, legal documents | [[[default:specifications-global/spec-regulatory-compliance-baseline\|Regulatory Compliance Baseline]]](C:/dev/project-library-global/specifications-global/spec-regulatory-compliance-baseline.md) |
 | Client exit | [[[default:adr-global/adr-client-r2-storage-and-exit-handover\|Client R2 Storage and Exit Handover]]](C:/dev/project-library-global/adr-global/adr-client-r2-storage-and-exit-handover.md) |
-| Business plan limits | [[[default:specifications-global/spec-anvil-platform-standards\|Anvil Platform Standards]]](C:/dev/project-library-global/specifications-global/spec-anvil-platform-standards.md), section 5: 1,000,000 rows, 100 GB; email through Amazon SES |
+| Client instance limits | [[[default:specifications-global/spec-client-instance-hosting\|Client Instance Hosting]]](C:/dev/project-library-global/specifications-global/spec-client-instance-hosting.md), sections 3 and 4: 1 GiB container memory, 3 database connections, about 100 MB of data a year; email through Amazon SES |
 | Anvil feasibility | `C:\dev\project-library-global\anvil-docs\`; `C:\mybizz\anvil-agent-references\` |
 | Global standards | [[[default:policy-global/pol-common-aspects-for-mybizz-anvil-applications\|Common Aspects for Mybizz Anvil Applications]]](C:/dev/project-library-global/policy-global/pol-common-aspects-for-mybizz-anvil-applications.md); `adr-global\`; `specifications-global\` |
 
@@ -69,7 +69,7 @@ Read in full before any work, as [[[pdlf:pdlf-library/specifications-local/spec-
 | Regulatory Position | After Data Inventory | `secure-software-engineering`, before the review | POPIA; GDPR and PCI DSS SAQ A with reasons; the three legal documents; the annual SAQ A when payments are taken |
 | Security Requirements | After Regulatory Position | `secure-software-engineering`, before the review | Assets, actors, harms, what must never leak, testable acceptance criteria |
 | Client Exit | After Security Requirements | `secure-software-engineering`, before the review | What the exit export writes to the client's bucket for this application |
-| Plan Fit | After Client Exit | `secure-software-engineering`, before the review | A typical client's rows and storage against the Business plan's limits; what shows a client nears them |
+| Plan Fit | After Client Exit | `secure-software-engineering`, before the review | A typical client's memory, database connections and storage against the client instance limits; what shows a client nears them |
 | Scope | After Plan Fit | The agent, after the review | Goals; non-goals; a reference to the review's NOT in scope section |
 | What Must Be Tested | After Scope | The agent, after the review | Each critical flow, role and edge case, with why |
 

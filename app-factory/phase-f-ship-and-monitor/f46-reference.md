@@ -1,7 +1,7 @@
 ---
 title: "f46-reference"
 doc-id: "mb-2630906c"
-updated: "2026-10-23"
+updated: "2026-11-08"
 ---
 
 ## From `46-learn-junction.md`
@@ -59,7 +59,7 @@ The LEARN junction closes the project cycle. ISA update points: 26, 35, 38, 46.
 
 | Gate | After Step | What is Locked |
 |---|---|---|
-| `released` | 45 + 46 | Production deployed, initial canary passed, LEARN complete, ISA Verification/Changelog updated. Cycle closed. |
+| `released` | 45 + 46 | Every client instance on the release, initial canary passed, LEARN complete, ISA Verification/Changelog updated. Cycle closed. |
 
 ---
 

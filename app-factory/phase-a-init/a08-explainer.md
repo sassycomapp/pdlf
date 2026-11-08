@@ -1,13 +1,13 @@
 ---
 title: "a08-explainer"
 doc-id: "mb-714f8928"
-updated: "2026-10-29"
+updated: "2026-11-08"
 ---
 # Step 8 — Create App 5: Explainer
 
 ## What it is
 
-Step 8 is the entry point `create-management-app`. Its job: App 5, the management app, entered into PDLF for a business whose existing apps are shown healthy, so that Step 11 sets it up and Steps 12 to 16 design it: it receives every client instance's heartbeat, flags clients that need a higher plan tier, and runs each client's exit handover.
+Step 8 is the entry point `create-management-app`. Its job: App 5, the management app, entered into PDLF for a business whose existing apps are shown healthy, so that Step 11 sets it up and Steps 12 to 16 design it: it creates, releases to and removes client instances through the DigitalOcean API, receives every client instance's heartbeat, flags clients nearing their container's memory and the business nearing its cluster's client limit, and runs each client's exit handover.
 
 ## How it works
 
