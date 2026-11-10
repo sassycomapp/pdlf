@@ -1,7 +1,7 @@
 ---
 title: "pdlf-todo"
 doc-id: "mb-13a3fbc9"
-updated: "2026-11-08"
+updated: "2026-11-10"
 ---
 # Active PDLF To-Do List
 
@@ -112,6 +112,18 @@ The `mb-3-cs` project context (`docs-local\`, `docs-standard-local\`, `policy-lo
 ### G1. Before the first step that uses SES or R2
 
 Document Amazon SES and Cloudflare with `mb-sysdoc-creator` (both are registered Deferred in the skills catalog).
+
+### G2. Align the design to the M3 custom theme's palettes
+
+The M3 custom theme (`m3-custom-theme`, version `v2.0.0`) holds eight palettes, each light and dark: `default`, `professional_blue`, `warm_coral`, `calm_teal`, `sophisticated_purple`, `sky_blue`, `forest_green` and `desert_rose`. The theme's module `m3x_theming` applies a palette and the light or dark mode (`set_palette`, `set_mode`, `apply_saved`). How the theme's colours work is in `m3-custom-theme.md`, Section 4, in `m3-custom-theme-project-library`.
+
+The `mb-3-cs` design still describes four palettes, its own palette module (`shared/palette_utils.py`) and its own colour values in `palette-tokens.md`. The design is aligned as follows:
+
+1. Delete `docs-local/palette-tokens.md`; the theme holds the colours.
+2. Remove the module `shared/palette_utils.py` from the design; at start-up, App 1 calls `m3x_theming.set_palette` with `business_profile.palette`.
+3. List the eight palette names, default `professional_blue`, and remove every reference to `palette-tokens.md` and `palette_utils.py`, in: `docs-standard-local/authoritative-schema.md`, `globals-contract.md`, `custom-component-requirements-matrix.md`, `software-requirements-specification.md`, `scaffold-spec.md`; `docs-local/mb-3-cs-architecture-reference.md`, `DESIGN.md`, `design/app1/design-doc.md`.
+
+Every other Anvil app that added the theme before 10 November 2026 holds an old copy of the theme's colour list in its own `theme/parameters.yaml`. Apps 2, 3 and 5 and `mb-4-ecom` are checked; each one that has the theme gets the theme's `theme/parameters.yaml`, the same fix as App 1.
 
 ### G3. David, once
 
