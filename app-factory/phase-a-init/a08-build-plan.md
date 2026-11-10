@@ -1,7 +1,7 @@
 ---
 title: "a08-build-plan"
 doc-id: "mb-b38b9010"
-updated: "2026-11-08"
+updated: "2026-11-10"
 ---
 # Step 8 — Create App 5: Build Plan
 
@@ -11,7 +11,7 @@ updated: "2026-11-08"
 
 #### Step 8: Entry point `create-management-app`
 
-**Must achieve:** App 5, the management app, entered into PDLF for a business whose existing apps are shown healthy, so that Step 11 sets it up and Steps 12 to 16 design it: it creates, releases to and removes client instances through the DigitalOcean API, receives every client instance's heartbeat, flags clients nearing their container's memory and the business nearing its cluster's client limit, and runs each client's exit handover.
+**Must achieve:** App 5, the management app, entered into PDLF for a business whose existing apps are shown healthy, so that Step 11 sets it up and Steps 12 to 16 design it: it creates, releases to and removes client instances through the DigitalOcean API, receives every client instance's heartbeat, flags clients nearing their container's memory and the business nearing its cluster's client limit, receives Paddle's billing notifications, suspends and unsuspends clients by their payments, and runs each client's exit handover.
 
 **Starts from:** the business folder; App 1, in which David opened OpenCode; the business's `projects` row and App 1's approved design doc; David's answers; the values in [[[pdlf:app-factory/phase-a-init/a01-config|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md).
 
@@ -22,7 +22,7 @@ updated: "2026-11-08"
 **Must be built so that:**
 - it works on App 5, run `app5`, and its run follows the Management app route of [[[pdlf:app-factory/phase-a-init/a01-config|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md), joining at Step 11, route C;
 - the business's health check, [[[pdlf:pdlf-library/operating-procedures/sop-health-check|SOP: Health Check]]](C:/pdlf/pdlf-library/operating-procedures/sop-health-check.md), passes first, before any other work, and its report is saved;
-- App 5 is designed by Steps 12 to 16 from App 1's approved design doc and its role in the five-app structure: it runs the New client, Release and Remove actions of [[[default:specifications-global/spec-client-instance-hosting|Client Instance Hosting]]](C:/dev/project-library-global/specifications-global/spec-client-instance-hosting.md) through the DigitalOcean API, receives every client instance's heartbeat, flags clients nearing their container's memory and the business nearing its cluster's client limit, and runs the client exit handover of [[[default:adr-global/adr-client-r2-storage-and-exit-handover|Client R2 Storage and Exit Handover]]](C:/dev/project-library-global/adr-global/adr-client-r2-storage-and-exit-handover.md);
+- App 5 is designed by Steps 12 to 16 from App 1's approved design doc and its role in the five-app structure: it runs the New client, Release and Remove actions of [[[default:specifications-global/spec-client-instance-hosting|Client Instance Hosting]]](C:/dev/project-library-global/specifications-global/spec-client-instance-hosting.md) through the DigitalOcean API, receives every client instance's heartbeat, flags clients nearing their container's memory and the business nearing its cluster's client limit, receives Paddle's billing notifications and acts on them as set out in [[[default:specifications-global/spec-client-billing|Client Billing]]](C:/dev/project-library-global/specifications-global/spec-client-billing.md), and runs the client exit handover of [[[default:adr-global/adr-client-r2-storage-and-exit-handover|Client R2 Storage and Exit Handover]]](C:/dev/project-library-global/adr-global/adr-client-r2-storage-and-exit-handover.md);
 - it writes the entry record into the `inputs_used` of its own `steps` row, with the fields of [[[pdlf:app-factory/phase-a-init/a01-config|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md), so every step of the run reads how the run began from one place;
 - it changes nothing in the business's folders: it records, and the steps it joins act.
 

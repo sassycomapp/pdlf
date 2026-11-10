@@ -132,3 +132,9 @@ Every other Anvil app that added the theme before 10 November 2026 holds an old 
 3. Switch on Zero Data Retention in the Groq console (Settings → Data Controls) for Mybizz's Groq organisation (SR-53a).
 4. In the Anvil editor, switch App 1 to Python 3.14 (Settings → Python versions); App 2 already runs it.
 5. In the Anvil editor, App 1's Users service: "Require 2-factor authentication" on, with "Allow 2-factor reset by email" on.
+6. Open Mybizz's Paddle account and complete Paddle's approval of the business; create the subscription product with its $99 monthly price, before tax ([[[default:specifications-global/spec-client-billing|Client Billing]]](C:/dev/project-library-global/specifications-global/spec-client-billing.md)).
+7. In Mybizz's Cloudflare account, create Mybizz's own R2 bucket for App 5, which holds Paddle's billing notifications.
+
+### G4. Export layouts for Wave, Xero and QuickBooks
+
+The Accounts screen of App 1 has three buttons: "Download for Wave", "Download for Xero" and "Download for QuickBooks", with one period (From and To dates, last month by default). Each button downloads one ZIP file holding the period's full books: customers; invoices with their lines and tax; payments and refunds; expenses. Each file is laid out in the exact import format of that package. The column layout of every file for each of the three packages is specified in `docs-standard-local/integration-architecture.md`, and feature-list section 23, FR-28 and SR-48 are brought into line with it.
