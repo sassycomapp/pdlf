@@ -121,7 +121,7 @@ The `mb-3-cs` design still describes four palettes, its own palette module (`sha
 
 1. Delete `docs-local/palette-tokens.md`; the theme holds the colours.
 2. Remove the module `shared/palette_utils.py` from the design; at start-up, App 1 calls `m3x_theming.set_palette` with `business_profile.palette`.
-3. List the eight palette names, default `professional_blue`, and remove every reference to `palette-tokens.md` and `palette_utils.py`, in: `docs-standard-local/authoritative-schema.md`, `globals-contract.md`, `custom-component-requirements-matrix.md`, `software-requirements-specification.md`, `scaffold-spec.md`; `docs-local/mb-3-cs-architecture-reference.md`, `DESIGN.md`, `design/app1/design-doc.md`.
+3. List the eight palette names, default `professional_blue`, and remove every reference to `palette-tokens.md` and `palette_utils.py`, in: `docs-standard-local/authoritative-schema.md`, `globals-contract.md`, `custom-component-requirements-matrix.md`, `software-requirements-specification.md`, `scaffold-spec.md`, `product-requirements-document.md`, `business-requirements-document.md`; `docs-local/mb-3-cs-architecture-reference.md`, `mb-3-cs-architecture-explainer.md`, `DESIGN.md`, `design/app1/design-doc.md`.
 
 Every other Anvil app that added the theme before 10 November 2026 holds an old copy of the theme's colour list in its own `theme/parameters.yaml`. Apps 2, 3 and 5 and `mb-4-ecom` are checked; each one that has the theme gets the theme's `theme/parameters.yaml`, the same fix as App 1.
 
@@ -132,9 +132,20 @@ Every other Anvil app that added the theme before 10 November 2026 holds an old 
 3. Switch on Zero Data Retention in the Groq console (Settings → Data Controls) for Mybizz's Groq organisation (SR-53a).
 4. In the Anvil editor, switch App 1 to Python 3.14 (Settings → Python versions); App 2 already runs it.
 5. In the Anvil editor, App 1's Users service: "Require 2-factor authentication" on, with "Allow 2-factor reset by email" on.
-6. Open Mybizz's Paddle account and complete Paddle's approval of the business; create the subscription product with its $99 monthly price, before tax ([[[default:specifications-global/spec-client-billing|Client Billing]]](C:/dev/project-library-global/specifications-global/spec-client-billing.md)).
+6. Open Mybizz's Paddle account and complete Paddle's approval of the business; create the subscription product with its fixed monthly prices before tax, £79, $99, C$135, €89 and CHF 89, and limit the checkout to Mybizz's markets ([[[default:specifications-global/spec-client-billing|Client Billing]]](C:/dev/project-library-global/specifications-global/spec-client-billing.md)).
 7. In Mybizz's Cloudflare account, create Mybizz's own R2 bucket for App 5, which holds Paddle's billing notifications.
+8. Register Mybizz-Live Ltd for UK VAT at incorporation, as an intending trader; the accountant confirms how Paddle's reverse invoices are entered on the VAT return.
+9. Register Mybizz-Live Ltd with the Information Commissioner's Office and pay its data protection fee, before launch.
 
 ### G4. Export layouts for Wave, Xero and QuickBooks
 
 The Accounts screen of App 1 has three buttons: "Download for Wave", "Download for Xero" and "Download for QuickBooks", with one period (From and To dates, last month by default). Each button downloads one ZIP file holding the period's full books: customers; invoices with their lines and tax; payments and refunds; expenses. Each file is laid out in the exact import format of that package. The column layout of every file for each of the three packages is specified in `docs-standard-local/integration-architecture.md`, and feature-list section 23, FR-28 and SR-48 are brought into line with it.
+
+### G5. Remove Paystack and Portuguese from App 1
+
+The design keeps Stripe as the only card gateway, with PayPal optional, and five languages: English, French, German, Spanish and Italian. App 1's code and tables are brought into line:
+
+1. Remove `server_payments/paystack_service.py` (or `paystack_gateway`), and every call to it.
+2. Remove the `paystack_public_key`, `paystack_connected`, `paystack_connected_at` and `active_gateway` columns from `payment_config`, and `paystack` from every `method` and `gateway` value list.
+3. Remove the Paystack option from Settings → Payment Gateways and from the onboarding wizard.
+4. Remove the Portuguese phrase file (`shared/translations/pt.py`) and `pt` from the language list.

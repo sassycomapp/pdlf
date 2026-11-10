@@ -1,6 +1,6 @@
 ---
 title: "pdlf-pass2-demand-map"
-updated: "2026-11-08"
+updated: "2026-11-10"
 doc-id: "mb-91e25269"
 ---
 # PDLF Pass 2 — Demand Map
@@ -51,7 +51,7 @@ Each demand: what it is · source · steps it touches · what it means for skill
 - Steps: f42, f43, f44, f45.
 - Skills: Step 42's rollback text must follow the specification; `/canary` per rolled-out instance at f43 and f45.
 
-### D5. Payments: Stripe and Paystack, one gateway per instance
+### D5. Payments: Stripe, with PayPal optional
 
 - Payment processing, webhooks (immediate 200, then a background task), idempotency, failure recovery (15-minute hold), PCI DSS where it applies.
 - Source: `spec-integration`, `spec-api-specification`, `adr-webhook-architecture`, `adr-payment-gateway-*`, `user-flows` section 6.
@@ -102,7 +102,7 @@ Each demand: what it is · source · steps it touches · what it means for skill
 
 ### D12. Onboarding, legal acknowledgement and policies
 
-- Resumable onboarding; currency immutable after the first transaction; Owner acknowledges legal responsibility; ClauseBuilder writes the Privacy Policy and Terms; POPIA mandatory, GDPR and PCI DSS conditional; data export and offboarding.
+- Resumable onboarding; currency immutable after the first transaction; Owner acknowledges legal responsibility; ClauseBuilder writes the Privacy Policy and Terms; UK GDPR and the client's own privacy law mandatory, and PCI DSS conditional; data export and offboarding.
 - Source: onboarding ADRs, `adr-legal-policy-…`, `adr-client-data-management-rights-…`, `spec-regulatory-compliance-baseline`.
 - Steps: b14, b15, c19, e35, f41.
 - Skills: regulatory baseline at b14 (already named); a compliance check before release at f41 is not yet named.

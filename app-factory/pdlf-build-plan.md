@@ -1,7 +1,7 @@
 ---
 title: "pdlf-build-plan"
 doc-id: "mb-64817b10"
-updated: "2026-11-08"
+updated: "2026-11-10"
 ---
 # PDLF Build Plan
 
@@ -110,7 +110,7 @@ An address is the app's repository name followed by `.mybizz.live`. It is set up
 
 **GBrain.** Every project library, like every other documentation repository, is a GBrain source, and all of them can be searched together. When an application re-enters PDLF, PDLF reads its repositories directly.
 
-**Client hosting and price.** Each client instance runs in its own container with its own database, at $99 a month per client ([[[default:adr-global/adr-tiers-model|Tiers Model]]](C:/dev/project-library-global/adr-global/adr-tiers-model.md)). Server resources are raised for that client's container alone, with no change to App 2. A client's transactions run in its own instance; App 2 carries no client load.
+**Client hosting and price.** Each client instance runs in its own container with its own database, at £79 a month per client, or the fixed price in the client's currency ([[[default:adr-global/adr-tiers-model|Tiers Model]]](C:/dev/project-library-global/adr-global/adr-tiers-model.md)). Server resources are raised for that client's container alone, with no change to App 2. A client's transactions run in its own instance; App 2 carries no client load.
 
 **Client storage and exit.** Each client has one Cloudflare R2 bucket, in a free Cloudflare account in the client's own name, where Mybizz is an invited member; it holds the raw webhook payloads, archived logs, email bodies and backups. When a client leaves Mybizz, all its data is written to that bucket and Mybizz leaves the account. PDLF builds this exit export into every application and proves it on the test client instance: [[[default:adr-global/adr-client-r2-storage-and-exit-handover|Client R2 Storage and Exit Handover]]](C:/dev/project-library-global/adr-global/adr-client-r2-storage-and-exit-handover.md).
 

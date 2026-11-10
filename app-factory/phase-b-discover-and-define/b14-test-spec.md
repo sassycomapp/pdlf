@@ -1,6 +1,6 @@
 ---
 title: "b14-test-spec"
-updated: "2026-11-08"
+updated: "2026-11-10"
 doc-id: "mb-b0c6e8a1"
 ---
 # Step 14: CEO review — Test Specification
@@ -12,7 +12,7 @@ Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-librar
 | Test | Applied here |
 |---|---|
 | PR-01 | The entry record is complete and Step 12 is complete, with its design doc approved. |
-| DC-03 | The Scope section states goals and non-goals and the review's NOT in scope section gives every exclusion its reason; every kind of data in the Data Inventory has its owner, readers, writers, protection level and retention; the Regulatory Position decides POPIA, GDPR and PCI DSS SAQ A; the Client Exit section names what the exit export writes to the client's bucket; the Plan Fit section shows a typical client within its container's and cluster's limits. |
+| DC-03 | The Scope section states goals and non-goals and the review's NOT in scope section gives every exclusion its reason; every kind of data in the Data Inventory has its owner, readers, writers, protection level and retention; the Regulatory Position records the UK GDPR, names the client's own privacy law and decides PCI DSS SAQ A; the Client Exit section names what the exit export writes to the client's bucket; the Plan Fit section shows a typical client within its container's and cluster's limits. |
 | DC-01 | Every requirement and acceptance criterion the review added is testable: no vague term, no bundled needs. |
 | PR-06 | No secret is in the reviewed plan, any ADR written or any copy in `pdlf-outputs\b14\` (gitleaks on the project library's working tree). |
 | PR-04 | Sentinel ran at Medium. |

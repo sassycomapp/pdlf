@@ -1,6 +1,6 @@
 ---
 title: "pdlf-testing-explainer"
-updated: "2026-11-02"
+updated: "2026-11-10"
 doc-id: "mb-2bb4ba8f"
 ---
 # PDLF Testing — How It Works
@@ -11,7 +11,7 @@ This document explains how PDLF tests the applications it builds. The tests are 
 
 Every Mybizz application must be secure, work fully, keep its data intact and obey Mybizz's rules. Testing proves this step by step, with saved evidence, never with an agent's word.
 
-Every application is designed and reviewed against OWASP ASVS 5.0 Level 2 principles, with Level 3 controls on payment, administration and high-value transaction paths. Mybizz never claims to be "ASVS certified", because ASVS has no certification. The Level 3 controls are: phishing-resistant sign-in for owners, a detailed audit trail of money and access changes, separation of customers, client staff and Mybizz administration, a yearly independent penetration test, and secure development controls. The evidence answers a business customer's questions on SOC 2 Type II readiness, PCI DSS SAQ A, POPIA and GDPR.
+Every application is designed and reviewed against OWASP ASVS 5.0 Level 2 principles, with Level 3 controls on payment, administration and high-value transaction paths. Mybizz never claims to be "ASVS certified", because ASVS has no certification. The Level 3 controls are: phishing-resistant sign-in for owners, a detailed audit trail of money and access changes, separation of customers, client staff and Mybizz administration, a yearly independent penetration test, and secure development controls. The evidence answers a business customer's questions on SOC 2 Type II readiness, PCI DSS SAQ A and GDPR.
 
 ## 2. The parts
 

@@ -1,7 +1,7 @@
 ---
 title: "b12-build-plan"
 doc-id: "mb-19064cbb"
-updated: "2026-11-08"
+updated: "2026-11-10"
 ---
 # Step 12 — Office Hours: Build Plan
 
@@ -24,7 +24,7 @@ Ends with the gate `domain-locked` (Step 16).
 **Must be built so that:**
 - it runs one of three routes, chosen from the entry record and the app folder: **A**, a new application (entry 02, or entry 08 for a new App 5); **B**, an existing application (entry 03, or an app whose folder already holds forms or server modules made outside PDLF); **C**, a feature (the feature path of entries 04 and 09, and an update that changes what the application does);
 - every design doc has the same fixed structure, in this order: Problem Statement; Demand Evidence; Status Quo; Target User and Narrowest Wedge; Stakeholders; Constraints; Common Aspects; Reference Platform (only when one is used); Approaches Considered; Recommended Approach; Risks; Open Questions; Success Criteria; Specification; Canonical Sources;
-- the Constraints section states the platform's facts from the context pack and `spec-regulatory-compliance-baseline`: one app and one database per client, never multi-tenant; the server holds authority over identity, ownership and every rule; all client code is public; every client instance runs in its own container with its own database; POPIA applies to every application, with Information Regulator registration after launch and the data-subject rights of access, correction, deletion and objection; whether GDPR applies (EU customers served) and whether PCI DSS applies (payments taken);
+- the Constraints section states the platform's facts from the context pack and `spec-regulatory-compliance-baseline`: one app and one database per client, never multi-tenant; the server holds authority over identity, ownership and every rule; all client code is public; every client instance runs in its own container with its own database; the UK GDPR applies to every application, with ICO registration before launch and the data-subject rights of access, rectification, erasure, restriction, objection and portability; the client's own privacy law governs the data it controls; whether PCI DSS applies (payments taken);
 - the Common Aspects section lists each of the 14 aspects of `pol-common-aspects-for-mybizz-anvil-applications` as shared or deviating, and every deviation names the business-domain reason that requires it;
 - every success criterion has a metric, a threshold and a method of measurement, and no requirement uses a vague term or bundles two needs;
 - every open question names the step that settles it (14, 15 or 16), so no question is left without a home;
@@ -63,7 +63,7 @@ Ends with the gate `domain-locked` (Step 16).
 
 **Testing:** [[[pdlf:app-factory/phase-b-discover-and-define/b12-test-spec|Step 12 Test Specification]]](C:/pdlf/app-factory/phase-b-discover-and-define/b12-test-spec.md): the design doc is complete, measurable and bound by the platform's facts and the common aspects.
 
-**Standards:** [[[default:docs-standard-global/docstd-business-requirements-document|Business Requirements Document]]](C:/dev/project-library-global/docs-standard-global/docstd-business-requirements-document.md): the design doc also covers its stakeholders and risks. [[[default:specifications-global/spec-regulatory-compliance-baseline|Regulatory Compliance Baseline]]](C:/dev/project-library-global/specifications-global/spec-regulatory-compliance-baseline.md): its mandatory POPIA facts go into the Constraints section.
+**Standards:** [[[default:docs-standard-global/docstd-business-requirements-document|Business Requirements Document]]](C:/dev/project-library-global/docs-standard-global/docstd-business-requirements-document.md): the design doc also covers its stakeholders and risks. [[[default:specifications-global/spec-regulatory-compliance-baseline|Regulatory Compliance Baseline]]](C:/dev/project-library-global/specifications-global/spec-regulatory-compliance-baseline.md): its mandatory UK GDPR facts go into the Constraints section.
 
 ## Why it is built this way
 
