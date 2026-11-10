@@ -1,7 +1,7 @@
 ---
 title: "pdlf-explainer"
 doc-id: "mb-1cb64793"
-updated: "2026-11-08"
+updated: "2026-11-10"
 ---
 # PDLF — How It Works
 
@@ -154,7 +154,7 @@ PDLF builds for Anvil.works only. The rules are in [[[pdlf:pdlf-library/policy-l
 - **Mybizz applications share everything they can.** `mb-3-cs`, `mb-4-ecom` and later applications are built the same way wherever their business domains allow, in both directions: [[[default:policy-global/pol-common-aspects-for-mybizz-anvil-applications|Common Aspects for Mybizz Anvil Applications]]](C:/dev/project-library-global/policy-global/pol-common-aspects-for-mybizz-anvil-applications.md).
 - **A reference platform supplies the domain, never the technology.** An application built from a reference (for `mb-4-ecom`, Medusa) takes its business domain and workflows, analysed outside the Mybizz process, and rebuilds them in Python for Anvil.
 - **Never add forms or server modules to App 3.** Every client instance runs App 3 on `master_template`; a form or module added to App 3 overrides `master_template` for every client, and the image build stops on it: [[[default:specifications-global/spec-five-app-architecture-model|Five-App Architecture Model]]](C:/dev/project-library-global/specifications-global/spec-five-app-architecture-model.md).
-- **Material 3.** Every application uses Anvil's Material 3 theme and David's design standards in `project-library-global`. Design moves in approved stages: structural wireframes, then polished wireframes, then screens.
+- **Material 3.** Every application uses `m3-custom-theme`, the full Material 3 theme built on Anvil's own, as its only theme dependency, and David's design standards in `project-library-global`. Design moves in approved stages: structural wireframes, then polished wireframes, then screens.
 
 ## 11. Where things live
 

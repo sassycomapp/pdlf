@@ -1,7 +1,7 @@
 ---
 title: "b11-config"
 doc-id: "mb-ea7e8074"
-updated: "2026-11-08"
+updated: "2026-11-10"
 ---
 # Step 11 — Init: Configuration
 
@@ -56,7 +56,7 @@ The fixed values of Step 11. Agent-facing. What the agent does, in order: [[[pdl
 
 | Skill or tool | Used for |
 |---|---|
-| `wizard` | David's exact instructions for creating an app in Anvil and switching on its Users service |
+| `wizard` | David's exact instructions for creating an app in Anvil, switching on its Users service and adding its theme dependency |
 | `setup-matt-pocock-skills` | The Matt Pocock configuration in `docs\agents\` |
 | `graphify` | Route B: the code graph of the run's app, from its code files only |
 | GStack `/cso` | Route B: the secret scan of the existing public repositories |
@@ -90,6 +90,16 @@ David sets these in the Anvil editor when he creates the app.
 | Allow visitors to sign up | Off |
 | Embedding | Off |
 | Users table | Text column `role` added in the Data Tables view |
+
+## Theme dependency
+
+| Item | Value |
+|---|---|
+| Apps that get it | App 1 and App 5; App 2 is a clone of App 1 and has it |
+| Dependency | `m3-custom-theme`, app ID `7USO6DVZSIIWA5QX`, package name `m3` |
+| Version | `v2.0.0` |
+| Never alongside | Anvil's Material 3 Theme, app ID `4UK6WHQ6UX7AKELK` |
+| How it is added | The theme's usage guide, section 1 (`m3-custom-theme-project-library\docs\usage-guide.md`) |
 
 ## Test setup
 

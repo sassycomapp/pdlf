@@ -1,6 +1,6 @@
 ---
 title: "b11-test-spec"
-updated: "2026-11-06"
+updated: "2026-11-10"
 doc-id: "mb-ec4af50a"
 ---
 # Step 11: Init — Test Specification
@@ -14,7 +14,7 @@ Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-librar
 | PR-01 | The `projects` row and the entry record are complete; for route B, the new project library is made from the template; every file of the project context is moved into it as the approved migration map sets out, with no broken link; and the project context is retired: not in GBrain, not on the commit tools, archived on GitHub and gone from the business folder. |
 | ST-01 | The cloned app validates with `anvil --json validate .`. |
 | ST-12 | The app's Users service has the sign-in settings of `spec-security`. |
-| ST-10 | The app's `.gitignore` covers `.env` and caches; an app that holds code has `tests\` with `conftest.py`, `pytest.ini`, `ts-config.yaml` and `integration\test_pr09_environment.py`; App 3 holds no code. |
+| ST-10 | App 1 and App 5 depend on `m3-custom-theme` (`7USO6DVZSIIWA5QX`) at `v2.0.0` and on no other theme. The app's `.gitignore` covers `.env` and caches; an app that holds code has `tests\` with `conftest.py`, `pytest.ini`, `ts-config.yaml` and `integration\test_pr09_environment.py`; App 3 holds no code. |
 | PR-09 | For an app that holds code: the local runtime starts it on an empty database, both Uplink connections work, a `TEST_` user signs in with a second factor, and the mail catcher receives an email (`test_pr09_environment.py`, run through `ts_local.sh`). |
 | PR-06 | No secret is in any repository the step created or touched; `.env` is not tracked. |
 | PR-04 | Sentinel ran at High. |
