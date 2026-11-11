@@ -1,7 +1,7 @@
 ---
 title: "b11-build-plan"
 doc-id: "mb-4f446919"
-updated: "2026-11-10"
+updated: "2026-11-11"
 ---
 # Step 11 — Init: Build Plan
 
@@ -27,7 +27,7 @@ Ends with the gate `domain-locked` (Step 16).
 - the slug, the business's name and the mode are read from the `projects` row the orchestrator wrote at the entry; the slug is the App 1 repository's name without `-app1`, all lowercase, with its hyphens kept; Step 11 asks David only for the domain;
 - for a new business, the template is copied with `(SLUG)`, `(slug)`, `{slug}` and `{project-name}` replaced, and every `doc-id` line removed from the copied documents, so each project's documents get their own identity at their first commit;
 - the code repository of App 1, 2, 3 or 5 always comes from Anvil: David creates the app in his Anvil account and connects it to GitHub as `{slug}-app{n}`; the agent gives him exact numbered instructions made with the `wizard` skill, then brings the repository into the app folder, which already holds the project template's scaffold, with `git init`, `git remote add origin`, `git fetch origin` and `git checkout` of the repository's default branch, because `git clone` needs an empty folder; it checks the clone holds `anvil.yaml` and never writes to it;
-- the same `wizard` instructions have App 1 and App 5 depend on `m3-custom-theme` at version `v2.0.0`, the only theme every Mybizz application uses ([[[default:specifications-global/spec-ui-standards|UI Standards]]](C:/dev/project-library-global/specifications-global/spec-ui-standards.md)), so no app starts on Anvil's own Material 3 Theme;
+- the same `wizard` instructions have App 1 and App 5 depend on `m3-custom-theme` on its `master` branch, the only theme every Mybizz application uses ([[[default:specifications-global/spec-ui-standards|UI Standards]]](C:/dev/project-library-global/specifications-global/spec-ui-standards.md)), so no app starts on Anvil's own Material 3 Theme;
 - the same `wizard` instructions have David switch on the app's Users service with the settings of `spec-security`: email and password sign-in; "Require 2-factor authentication", with authenticator apps and security keys (FIDO2) allowed and "Allow 2-factor reset by email" on; "Require secure passwords"; email confirmation required; remember-me at most 7 days; embedding off; new sign-ups off (the access matrix at Step 15 decides them); and add a text column `role` to the Users table in the Data Tables view; the agent then pulls the app and checks `anvil.yaml` holds the Users service;
 - every app folder holds an `AGENTS.md`: where one is missing, David copies Anvil's own template (`C:\mybizz\anvil-agent-references\AGENTS.md`) into it with one command, because agents never write `AGENTS.md`, and `mb-project-docs` keeps it current at close-out; every app folder keeps the `.gitignore` the project template places in it, which keeps out `.env`, credentials, `__pycache__`, test output, the code graph and development files, because everything committed is pushed to Anvil; an app folder without one gets it from the project template; the `.gitignore` is in place before `.env` exists;
 - an app that holds code (App 1, App 5) gets its test setup; App 3 holds no code and gets none: the folders `tests\logic\`, `tests\integration\` and `tests\security\`, which the project template provides; the templates `conftest.py`, `pytest.ini` and `ts-config.yaml` copied into `tests\`, with `role: app1` in `ts-config.yaml`; and `test_pr09_environment.py` copied into `tests\integration\`;

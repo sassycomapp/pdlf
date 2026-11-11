@@ -1,7 +1,7 @@
 ---
 title: "b11-config"
 doc-id: "mb-ea7e8074"
-updated: "2026-11-10"
+updated: "2026-11-11"
 ---
 # Step 11 — Init: Configuration
 
@@ -96,8 +96,8 @@ David sets these in the Anvil editor when he creates the app.
 | Item | Value |
 |---|---|
 | Apps that get it | App 1 and App 5; App 2 is a clone of App 1 and has it |
-| Dependency | `m3-custom-theme`, app ID `7USO6DVZSIIWA5QX`, package name `m3` |
-| Version | `v2.0.0` |
+| Dependency | `m3-custom-theme`, app ID `UGGJBAZUZ74XZ7VU`, package name `m3` |
+| Version | The `master` branch, which holds only the released theme |
 | Never alongside | Anvil's Material 3 Theme, app ID `4UK6WHQ6UX7AKELK` |
 | How it is added | The theme's usage guide, section 1 (`m3-custom-theme-project-library\docs\usage-guide.md`) |
 
