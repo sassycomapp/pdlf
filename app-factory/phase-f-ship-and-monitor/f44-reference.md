@@ -1,7 +1,7 @@
 ---
 title: "f44-reference"
 doc-id: "mb-ac475804"
-updated: "2026-11-08"
+updated: "2026-11-11"
 ---
 
 ## Release
@@ -10,7 +10,7 @@ updated: "2026-11-08"
 
 1. → GATE: Execute gate procedure per [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md)
 2. → GATE: `production-released` — developer approval required.
-3. App 5's Release action moves every client instance to the release image, staged where the release is high-risk.
+3. App 5's Release action verifies the image's signature and moves every client instance to the release image by its digest, in stages: the test client instance, then 10% of client instances, then all, each stage passing its health check before the next.
 4. Follow execution sequence in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md)
 5. Apply BFT per [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md) (Full — gate override)
 

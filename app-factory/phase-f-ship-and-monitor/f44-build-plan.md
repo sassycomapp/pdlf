@@ -1,7 +1,7 @@
 ---
 title: "f44-build-plan"
 doc-id: "mb-c7cb929d"
-updated: "2026-11-08"
+updated: "2026-11-11"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -24,5 +24,5 @@ Ends with the gates `production-released` (Step 44) and `released` (Step 46). Th
 
 **Must be built so that:**
 - App 5's Release action runs only after the gate is approved;
-- a high-risk release goes first to a chosen group of client instances, then to the rest, as the deployment specification sets out;
+- every release is staged, as the deployment specification sets out: the test client instance, then 10% of client instances, then all, each stage passing its health check first; a failed health check rolls that stage back automatically and stops the release;
 - a rollback trigger of the deployment specification, section 9, moves the client instances back to the previous release image at once;

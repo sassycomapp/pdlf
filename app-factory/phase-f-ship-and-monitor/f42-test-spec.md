@@ -1,6 +1,6 @@
 ---
 title: "f42-test-spec"
-updated: "2026-10-23"
+updated: "2026-11-11"
 doc-id: "mb-60334d81"
 ---
 # Step 42: Release to App 2 — Test Specification
@@ -15,6 +15,7 @@ Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-librar
 | RL-03 | Migration tested on the test client; App 3's schema equals App 1's. |
 | RL-04 | App 2 equals the tag. |
 | RL-05 | Every instance reports the release and schema. |
+| RL-19 | The release image is signed; an unsigned or altered image is refused; the test client instance runs it by its digest. |
 | PR-06 | The developer pushed App 2. |
 
 **On failure:** Corrected at once, or rolled back to the last good tag.

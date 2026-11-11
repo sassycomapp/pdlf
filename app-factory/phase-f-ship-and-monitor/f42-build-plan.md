@@ -1,7 +1,7 @@
 ---
 title: "f42-build-plan"
 doc-id: "mb-204ff45b"
-updated: "2026-11-08"
+updated: "2026-11-11"
 ---
 
 ## From `pdlf-build-plan.md`: step entry
@@ -12,7 +12,7 @@ Ends with the gates `production-released` (Step 44) and `released` (Step 46). Th
 
 #### Step 42: Release to App 2
 
-**Must achieve:** App 1's tagged release is pushed into App 2, `master_template`, its table changes are written into App 3's table definitions, the release image is built and checked, and the test client instance runs it.
+**Must achieve:** App 1's tagged release is pushed into App 2, `master_template`, its table changes are written into App 3's table definitions, the release image is built, scanned, signed and checked, and the test client instance runs it by its digest.
 
 **Carried out by:** The developer, after approving the release.
 
@@ -26,6 +26,7 @@ Ends with the gates `production-released` (Step 44) and `released` (Step 46). Th
 **Must be built so that:**
 - before the push, every client instance copies its data to its own R2 bucket;
 - the image build workflow in `{slug}-app4` builds the release image from the release tag and stores it under that tag; the build stops if App 3 holds any form or server module, or if the table-change check finds a table or column removed, renamed or retyped;
+- the image build workflow scans the release image and signs it; the build fails if the image contains end-of-life software, and the release stops while any high or critical finding is older than 14 days;
 - the whole test suite passes on the release image;
-- App 5 moves the test client instance to the release image, and its App Server adds the release's new tables and columns;
+- App 5 verifies the image's signature and moves the test client instance to the release image by its digest, and its App Server adds the release's new tables and columns;
 - rollback moves client instances back to the previous release image with `auto-migrate` off, as the deployment specification sets out;

@@ -1,7 +1,7 @@
 ---
 title: "pdlf-build-plan"
 doc-id: "mb-64817b10"
-updated: "2026-11-10"
+updated: "2026-11-11"
 ---
 # PDLF Build Plan
 
@@ -279,3 +279,11 @@ Every step's entry is held in its own build plan, `{letter}{number}-build-plan.m
 ### Phase G — Remaining apps
 
 **Must achieve:** the steps that build the rest of the five-app set in the same pipeline: `blank_client_template`, the release image and the test client instance, the provisioning procedure and the README App 3 and `{slug}-app4` carry, and the management tooling. Provisioning a client instance creates its container and database on DigitalOcean and its R2 storage in the client's own Cloudflare account, and follows [[[default:specifications-global/spec-client-activation-runbook|Client Instance Activation Runbook]]](C:/dev/project-library-global/specifications-global/spec-client-activation-runbook.md), with `wizard` instructions for every manual step. App 5 receives the client instances' health metrics, as the observability ADR sets out. Not yet designed.
+
+Phase G must also achieve, each item checked as it is set up:
+
+- **The DigitalOcean platform of the business,** as the runbook's platform set-up sets out: the Managed PostgreSQL cluster, Advanced Edition, PostgreSQL 18, 8 GiB, with its standby, storage autoscaling, the Sunday 06:00 UK maintenance window and trusted sources that admit only the business's containers; the provisioning job inside DigitalOcean that creates each client's database user with its three limits ([[[default:specifications-global/spec-client-instance-hosting|Client Instance Hosting]]](C:/dev/project-library-global/specifications-global/spec-client-instance-hosting.md) section 4); the registry; the test client instance.
+- **The test client instance set up exactly as every client is:** its domain proxied through Cloudflare with the web application firewall, DDoS protection and bot blocking on, and its R2 bucket's backup lock rules set.
+- **App 5's operating keys and checks:** the two DigitalOcean access keys with their custom scopes in App 5's Vault ([[[default:security-global/cloud/sec-client-provisioning-security|Client Provisioning Security]]](C:/dev/project-library-global/security-global/cloud/sec-client-provisioning-security.md)); the DigitalOcean Uptime check on App 5's status endpoint; the two CloudWatch alarms on Mybizz's SES account; the Groq organisation spend limit with its alerts ([[[default:adr-global/adr-fair-use-limits|Fair-Use Limits]]](C:/dev/project-library-global/adr-global/adr-fair-use-limits.md)).
+- **The `{slug}-app4` workflows:** the release image scanned at every build and every week, each finding reported to App 5 with its 14-day countdown for high and critical findings, a build containing end-of-life software failed, each image signed at build, and the registry cleaned at every release ([[[default:adr-global/adr-dependency-update-model|Dependency Update Model]]](C:/dev/project-library-global/adr-global/adr-dependency-update-model.md)).
+- **The pre-launch conditions** of Client Instance Hosting section 10, each proved by its test in the catalogue (RL-13 to RL-22).
