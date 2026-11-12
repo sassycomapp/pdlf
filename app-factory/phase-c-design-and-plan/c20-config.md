@@ -19,7 +19,7 @@ The fixed values of Step 20. Agent-facing. What the agent does, in order: [[[pdl
 | Next step | 21 |
 | Gate | None |
 | BFT level | Full |
-| Sentinel scrutiny | Medium |
+| Sentinel scrutiny | None; the design system holds no data, access rule or secret |
 | Conditional | In a test run, David may abbreviate or skip it |
 
 ## Inputs
@@ -62,7 +62,7 @@ The fixed values of Step 20. Agent-facing. What the agent does, in order: [[[pdl
 | Step-folder copy | `pdlf-outputs\c20\{slug}-c20-{run}-design.md` |
 | Test results | `pdlf-outputs\c20\{slug}-c20-{run}-checks.xml` |
 | Step Receipt | `pdlf-outputs\c20\{slug}-c20-{run}-receipt.md` |
-| Ledger | the Step 20 `steps` row; its BFT record; its `triage_findings` row |
+| Ledger | the Step 20 `steps` row; its BFT record |
 
 All paths without a repository name are inside `{slug}-project-library\`.
 

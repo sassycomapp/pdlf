@@ -34,10 +34,10 @@ flowchart TD
     Feat -->|"Yes"| Appr["David approves each one by name"]
     Feat -->|"No"| HasRen
     Appr --> HasRen{"10. Renames on the list?"}
-    HasRen -->|"Yes"| Hand["wizard instructions; David renames by hand<br/>11. David pulls App 1; renames present?"]
+    HasRen -->|"Yes"| Hand["wizard instructions; David renames by hand<br/>11. David pulls the app; renames present?"]
     HasRen -->|"No"| Yaml
     Hand -->|"No"| Dev3["Stop: deviation"]
-    Hand -->|"Yes"| Yaml["12. anvil-yaml writes the whole schema<br/>into db_schema"]
+    Hand -->|"Yes"| Yaml["12. Test copies made current;<br/>anvil-yaml writes the whole schema<br/>into db_schema"]
     Yaml --> Val{"13. anvil validate passes?"}
     Val -->|"No"| ValFix["Correct, run again"]
     ValFix --> Val

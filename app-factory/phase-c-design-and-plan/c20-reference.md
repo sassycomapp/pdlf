@@ -11,7 +11,7 @@ What the agent does at Step 20, in order. Agent-facing. Fixed values: [[[pdlf:ap
 
 1. Read the entry record and Step 19's ledger row. Check Step 19 is complete for this run (test PR-01). If not: stop and raise a deviation.
 2. In a test run: offer David full, abbreviated or skipped, as `pol-step-conditional-state` sets out. On skip: record it and go to step 9.
-3. Carry forward every input notice of Step 19 to this step's receipt. Read every input in the configuration, including the theme guide and the whole component inventory.
+3. Hand David `mg-grant --path ~/.gstack --count 15` and wait until he confirms it ran ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2.8). Carry forward every input notice of Step 19 to this step's receipt. Read every input in the configuration, including the theme guide and the whole component inventory.
 
 ## 2. The design system
 
@@ -22,7 +22,7 @@ What the agent does at Step 20, in order. Agent-facing. Fixed values: [[[pdlf:ap
 ## 3. Checks
 
 7. Check the chosen palette against test DC-12 in light and dark mode, and record the result in the checks file.
-8. Run `mb-sentinel-review` for Step 20 at Medium scrutiny on `DESIGN.md`. On Flag or Escalate: stop and present it to David. Check the review's `triage_findings` row exists (test PR-04). Copy `DESIGN.md` into the step folder.
+8. Copy `DESIGN.md` into the step folder.
 
 ## 4. The end
 

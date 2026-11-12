@@ -5,13 +5,14 @@ doc-id: "mb-957fb9e3"
 ---
 # Step 17: Create Anvil data tables — Test Specification
 
-**Proves:** App 1's schema is exactly the authoritative schema, obeys the data rules, and is applied to the live tables.
+**Proves:** The app's schema is exactly the authoritative schema, obeys the data rules, and is applied to the live tables.
 
 Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-library-global/test-suite/ts-catalogue.md) and, for the PR tests, in [[[pdlf:pdlf-library/specifications-local/spec-pdlf-process-tests]]](C:/pdlf/pdlf-library/specifications-local/spec-pdlf-process-tests.md). Evidence is saved in `{slug}-project-library\pdlf-outputs\c17\`; every result is recorded in `{slug}-c17-{run}-checks.xml`, naming its evidence, as `ts-method` section 5 sets out.
 
 | Test | Applied here |
 |---|---|
 | PR-01 | The entry record is complete, Step 16 is complete and the gate `domain-locked` is passed. |
+| Theme copies current | The app's `tests\component-inventory.yaml` equals the theme's, and the theme keys of `tests\ts-config.yaml` equal the template's. |
 | ST-01 | `anvil --json validate anvil.yaml` reports no error. |
 | ST-06 | No table or column separates clients. |
 | ST-07 | Every table refuses client access and has `created_at`; every core table has `metadata`; the five log and control tables exist; no column holds a secret; times are datetimes. |

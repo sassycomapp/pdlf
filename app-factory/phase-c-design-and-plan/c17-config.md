@@ -34,7 +34,10 @@ The fixed values of Step 17. Agent-facing. What the agent does, in order: [[[pdl
 | Step 16 receipt | `{slug}-project-library\pdlf-outputs\b16\{slug}-b16-{run}-receipt.md` |
 | Authoritative schema | `{slug}-project-library\docs-standard-local\authoritative-schema.md` |
 | Schema migration log | `{slug}-project-library\docs-local\schema-migration-log.md` |
-| App 1's schema | `C:\dev\dev-{slug}\{slug}-app{n}\anvil.yaml`, `db_schema` |
+| The app's schema | `C:\dev\dev-{slug}\{slug}-app{n}\anvil.yaml`, `db_schema` |
+| The app's test copies | `C:\dev\dev-{slug}\{slug}-app{n}\tests\ts-config.yaml` and `tests\component-inventory.yaml` |
+| Theme inventory | `C:\dev\dev-m3-custom-theme\m3-custom-theme-project-library\docs\component-inventory.yaml` |
+| Test configuration template | `C:\dev\project-library-global\test-suite\templates\ts-config.yaml` |
 | Context pack | [[[pdlf:pdlf-library/specifications-local/spec-skill-context-pack\|Spec: Skill Context Pack]]](C:/pdlf/pdlf-library/specifications-local/spec-skill-context-pack.md) |
 
 ## Outputs
@@ -45,6 +48,7 @@ The fixed values of Step 17. Agent-facing. What the agent does, in order: [[[pdl
 | Schema difference list | `pdlf-outputs\c17\{slug}-c17-{run}-schema-diff.md`: additions, renames and removals, table by table |
 | David's instructions | `pdlf-outputs\c17\{slug}-c17-{run}-instructions.md`, written with `wizard` |
 | App schema | `{slug}-app{n}\anvil.yaml`, `db_schema` |
+| App test copies | `{slug}-app{n}\tests\component-inventory.yaml`, equal to the theme's; the theme keys of `{slug}-app{n}\tests\ts-config.yaml`, equal to the template's |
 | Migration log rows | `docs-local\schema-migration-log.md`, one row per change, with its migration plan |
 | Step-folder copies | `pdlf-outputs\c17\{slug}-c17-{run}-authoritative-schema.md`; `-anvil-db-schema.yaml` (the `db_schema` section) |
 | Test results | `pdlf-outputs\c17\{slug}-c17-{run}-checks.xml` (JUnit XML, ts-method section 5); the scanner report `{slug}-c17-{run}-ts-scan.xml` |
@@ -85,7 +89,7 @@ A rename is taken from `schema-migration-log.md`. When a column disappears and a
 | `secure-software-engineering` | Each table's access checked against Step 15's threat model |
 | `wizard` | David's instructions: renames, commit, Resolve |
 | `anvil --json validate anvil.yaml` | Test ST-01 on `anvil.yaml` |
-| `ts_scan.py` | Tests ST-06 and ST-07 on App 1 |
+| `ts_scan.py` | Tests ST-06 and ST-07 on the app |
 | `mb-sentinel-review` | Security review, High scrutiny |
 
 ## Commands David runs

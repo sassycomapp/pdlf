@@ -13,21 +13,21 @@ Ends with the gates `concept-locked` (Step 21) and `screens-approved` (Step 26).
 
 #### Step 18: Pull to local
 
-**Must achieve:** David's local copy of App 1 holds exactly what Anvil holds, after work in the Anvil editor, so that the next step reads the real state of the app.
+**Must achieve:** David's local copy of the app holds exactly what Anvil holds, after work in the Anvil editor, so that the next step reads the real state of the app.
 
-**Starts from:** the Step Receipt of the step before it (Step 17 here; Step 29 and Step 32 when Steps 30 and 33 run this procedure); App 1's local repository.
+**Starts from:** the Step Receipt of the step before it (Step 17 here; Step 29 and Step 32 when Steps 30 and 33 run this procedure); the app's local repository.
 
-**Produces:** App 1's local repository brought level with GitHub; in `pdlf-outputs\c18\`: the test results and the Step Receipt; the ledger row.
+**Produces:** The app's local repository brought level with GitHub; in `pdlf-outputs\c18\`: the test results and the Step Receipt; the ledger row.
 
 **Carried out by:** David runs one command; OpenCode checks the result.
 
 **Must be built so that:**
-- David pulls App 1 with the one command in the configuration;
+- David pulls the app with the one command in the configuration;
 - the agent checks that the working tree is clean, that the local branch `master` equals `origin/master`, and that the change the step before it expects is present; for Step 17, `db_schema` in `anvil.yaml` equals the authoritative schema;
-- the agent runs `anvil --json validate .` on App 1 and stops with a deviation on an error;
+- the agent runs `anvil --json validate .` on the app and stops with a deviation on an error;
 - any file changed that the step before it did not expect, apart from formatting Anvil itself applies, stops the step with a deviation;
 - Steps 30 and 33 run this same procedure and do not repeat it; each names the change it expects;
-- the Anvil CLI's `anvil watch` is not used, because it would send local edits to App 1 without David's push;
+- the Anvil CLI's `anvil watch` is not used, because it would send local edits to the app without David's push;
 - its ledger row is `step_type = 'manual'`, `skill_family = 'manual'`, `synthesized = false`, `run` and `app_number` from the entry record, and `inputs_used` naming Step 17.
 
 **BFT level:** None.

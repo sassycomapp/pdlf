@@ -14,6 +14,5 @@ Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-librar
 | PR-01 | The entry record is complete, Step 21 is complete and `concept-locked` is passed. |
 | DC-16 | Every form the tickets name has its screen requirement; every section is filled; every element names a theme component, or an approved standard component, with its reason; every property is in the theme's documentation; every data column is in the authoritative schema; every text is a phrase key; every role has a scope. |
 | DC-05 | Every form is in `access-matrix.yaml`, keyed by module path, with a scope for every role. |
-| PR-04 | Sentinel ran at Low, and any Flag or Escalate has David's decision. |
 
 **On failure:** The screen requirement or the access matrix is corrected and checked again before the step ends.

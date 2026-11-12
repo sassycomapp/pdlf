@@ -18,7 +18,7 @@ What the agent does at Step 18, in order. Agent-facing. Fixed values: [[[pdlf:ap
 ## 3. Checks
 
 3. Run every check in the configuration, in order. Record each result in the checks file.
-4. On a failed check: stop, present it to David and raise a deviation. Never correct App 1 in this step.
+4. On a failed check: stop, present it to David and raise a deviation. Never correct the app in this step.
 
 ## 4. The end
 

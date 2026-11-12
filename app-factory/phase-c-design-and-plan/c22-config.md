@@ -19,7 +19,7 @@ The fixed values of Step 22. Agent-facing. What the agent does, in order: [[[pdl
 | Next step | 23 |
 | Gate | None |
 | BFT level | Full |
-| Sentinel scrutiny | Low |
+| Sentinel scrutiny | None; access is checked by DC-05, and the server code by Sentinel at Step 35 |
 | Conditional | No |
 
 ## Inputs
@@ -54,7 +54,7 @@ The fixed values of Step 22. Agent-facing. What the agent does, in order: [[[pdl
 | Requirement index | `pdlf-outputs\c22\{slug}-c22-{run}-requirement-index.md`: every form by module path, its ticket, its requirement's path; and every existing form no ticket names |
 | Test results | `pdlf-outputs\c22\{slug}-c22-{run}-checks.xml` |
 | Step Receipt | `pdlf-outputs\c22\{slug}-c22-{run}-receipt.md` |
-| Ledger | the Step 22 `steps` row; its BFT record; its `triage_findings` row |
+| Ledger | the Step 22 `steps` row; its BFT record |
 
 All paths without a repository name are inside `{slug}-project-library\`.
 

@@ -28,7 +28,7 @@ The fixed values of Step 18. Agent-facing. What the agent does, in order: [[[pdl
 |---|---|
 | Step 17 receipt | `{slug}-project-library\pdlf-outputs\c17\{slug}-c17-{run}-receipt.md` |
 | Authoritative schema | `{slug}-project-library\docs-standard-local\authoritative-schema.md` |
-| App 1's local repository | `C:\dev\dev-{slug}\{slug}-app{n}` |
+| The app's local repository | `C:\dev\dev-{slug}\{slug}-app{n}` |
 
 ## Command David runs
 

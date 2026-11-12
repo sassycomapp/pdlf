@@ -17,9 +17,9 @@ Ends with the gates `concept-locked` (Step 21) and `screens-approved` (Step 26).
 
 **Starts from:** the tickets and flows from Step 19; `DESIGN.md` from Step 20; the concept locked at Step 21; the authoritative schema; the access matrix; the glossary; the theme's whole component documentation: `m3-custom-theme-project-library\docs\base-inventory.md`, `docs\components\` and `docs\usage-guide.md`; the model screen requirement `ui\(PACKAGE-NAME)\(FORM-NAME)\(FORM-NAME)-requirement.md`.
 
-**Produces:** `ui\<package path>\<FormName>\<FormName>-requirement.md` for every form the tickets name, each with `status: draft`; each new form's entry in `access-matrix.yaml`; in `pdlf-outputs\c22\`: the requirement index, the test results and the Step Receipt; the ledger row, the BFT record and Sentinel's `triage_findings` row.
+**Produces:** `ui\<package path>\<FormName>\<FormName>-requirement.md` for every form the tickets name, each with `status: draft`; each new form's entry in `access-matrix.yaml`; in `pdlf-outputs\c22\`: the requirement index, the test results and the Step Receipt; the ledger row and the BFT record.
 
-**Carried out by:** OpenCode and `mb-sentinel-review`. David answers the questions the agent cannot settle from the documents.
+**Carried out by:** OpenCode. David answers the questions the agent cannot settle from the documents.
 
 **Must be built so that:**
 - before writing any screen requirement, the agent reads the theme's whole component inventory and every component specification in `docs\components\`;
@@ -44,9 +44,8 @@ Ends with the gates `concept-locked` (Step 21) and `screens-approved` (Step 26).
 **References:** [[[default:specifications-global/mo-ui-production|UI Production Method]]](C:/dev/project-library-global/specifications-global/mo-ui-production.md), [[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), [[[pdlf:pdlf-library/specifications-local/spec-skill-context-pack|Spec: Skill Context Pack]]](C:/pdlf/pdlf-library/specifications-local/spec-skill-context-pack.md), [[[default:test-suite/ts-method|Test Suite — Method]]](C:/dev/project-library-global/test-suite/ts-method.md).
 
 **Skills.** No installed skill writes a screen requirement from a theme's documentation, so OpenCode writes them, from the model and the rules.
-- `mb-sentinel-review`, Low → `triage_findings`.
 
-**Layers with no skill:** display (the requirement is the design; the form is built later by `mb-form-builder`).
+**Layers with no skill:** display (the requirement is the design; the form is built later by `mb-form-builder`); security (each form's access comes from the access matrix, checked by DC-05; data rules live in the server code, which Sentinel reviews at Step 35).
 
 **Testing:** [[[pdlf:app-factory/phase-c-design-and-plan/c22-test-spec|Step 22 Test Specification]]](C:/pdlf/app-factory/phase-c-design-and-plan/c22-test-spec.md): every form has its complete screen requirement, built from the whole theme, and the access matrix lists every form.
 

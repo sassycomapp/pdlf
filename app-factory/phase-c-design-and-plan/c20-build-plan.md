@@ -17,9 +17,9 @@ Ends with the gates `concept-locked` (Step 21) and `screens-approved` (Step 26).
 
 **Starts from:** the reviewed plan, the glossary and the ticket list from Step 19; the business's brand material in `assets-local\`; an existing `DESIGN.md`, when there is one; the theme's documentation: `m3-custom-theme-project-library\docs\usage-guide.md`, `docs\base-inventory.md` and `docs\components\`.
 
-**Produces:** `docs-local\DESIGN.md`; in `pdlf-outputs\c20\`: its copy, the test results and the Step Receipt; the ledger row, the BFT record and Sentinel's `triage_findings` row.
+**Produces:** `docs-local\DESIGN.md`; in `pdlf-outputs\c20\`: its copy, the test results and the Step Receipt; the ledger row and the BFT record.
 
-**Carried out by:** OpenCode, with GStack's `/design-consultation` and `mb-sentinel-review`. David approves `DESIGN.md`.
+**Carried out by:** OpenCode, with GStack's `/design-consultation`. David approves `DESIGN.md`.
 
 **Must be built so that:**
 - `/design-consultation` makes only the choices `m3-custom-theme` leaves to the application: the starting palette, one of the theme's eight, and its mode; whether users may change palette and mode; the menu style; the brand's logo and imagery; the tone of the text; it never defines a colour value, font size or spacing of its own, because the theme's tokens hold them all;
@@ -40,9 +40,8 @@ Ends with the gates `concept-locked` (Step 21) and `screens-approved` (Step 26).
 
 **Skills.** Every skill's output is used by the step named after the arrow.
 - `/design-consultation` (GStack), held to the choices the theme leaves open → `DESIGN.md`, then Steps 22, 23 and 26, and the `layouts` ticket.
-- `mb-sentinel-review`, Medium → `triage_findings`.
 
-**Layers with no skill:** none.
+**Layers with no skill:** security; `DESIGN.md` holds no data, access rule or secret, so Sentinel does not review this step.
 
 **Testing:** [[[pdlf:app-factory/phase-c-design-and-plan/c20-test-spec|Step 20 Test Specification]]](C:/pdlf/app-factory/phase-c-design-and-plan/c20-test-spec.md): the design system is readable in light and dark mode and stays within the theme.
 

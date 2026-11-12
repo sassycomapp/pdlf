@@ -10,7 +10,7 @@ What the agent does at Step 23, in order. Agent-facing. Fixed values: [[[pdlf:ap
 ## 1. Start
 
 1. Read the entry record and Step 22's ledger row. Check Step 22 is complete for this run (test PR-01). If not: stop and raise a deviation.
-2. Carry forward every input notice of Step 22 to this step's receipt.
+2. Hand David `mg-grant --path ~/.gstack --count 15` and wait until he confirms it ran ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2.8). Carry forward every input notice of Step 22 to this step's receipt.
 3. Read every input in the configuration, including the theme's whole component documentation.
 
 ## 2. The reviews

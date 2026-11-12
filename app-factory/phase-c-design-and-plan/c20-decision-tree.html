@@ -21,7 +21,7 @@ flowchart TD
     S1 -->|"No"| Dev1["Stop: deviation"]
     S1 -->|"Yes"| TM{"2. Test run?"}
     TM -->|"Skip"| End
-    TM -->|"Full, abbreviated, or not a test run"| S3["3. Carry notices; read every input,<br/>the theme guide and the whole inventory"]
+    TM -->|"Full, abbreviated, or not a test run"| S3["3. David runs mg-grant for GStack;<br/>carry notices; read every input,<br/>the theme guide and the whole inventory"]
     S3 --> DC["4-5. /design-consultation: palette, mode,<br/>user choice, menu style, logo, tone;<br/>fixed statements written"]
     DC --> Ap{"6. David approves DESIGN.md?"}
     Ap -->|"Changes"| Chg["Correct, present again"]
@@ -29,9 +29,8 @@ flowchart TD
     Ap -->|"Yes"| C12{"7. DC-12 passes?"}
     C12 -->|"No"| Fix["Correct with David"]
     Fix --> C12
-    C12 -->|"Yes"| Sen{"8. Sentinel, Medium: clear?"}
-    Sen -->|"Flag or Escalate"| Stop1(["Stop: David decides"])
-    Sen -->|"Clear"| End(["9. Full BFT, ledger row, Step Receipt<br/>10. Explain, stop, ask David to run /mb-close-out"])
+    C12 -->|"Yes"| Cp["8. Copy DESIGN.md into the step folder"]
+    Cp --> End(["9. Full BFT, ledger row, Step Receipt<br/>10. Explain, stop, ask David to run /mb-close-out"])
   </div>
 </div>
 <script>

@@ -13,6 +13,5 @@ Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-librar
 |---|---|
 | PR-01 | The entry record is complete and Step 19 is complete. |
 | DC-12 | The chosen palette reaches WCAG 2.2 AA contrast in light and dark mode; excluded components are named; no colour, font size or spacing value is defined in `DESIGN.md`. |
-| PR-04 | Sentinel ran at Medium, and any Flag or Escalate has David's decision. |
 
 **On failure:** `DESIGN.md` is corrected with David and checked again before the step ends.

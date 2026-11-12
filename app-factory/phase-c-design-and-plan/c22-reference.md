@@ -32,9 +32,8 @@ What the agent does at Step 22, in order. Agent-facing. Fixed values: [[[pdlf:ap
 ## 3. Checks
 
 8. Check every screen requirement against test DC-16 and every form against DC-05's form rows. Record the results in the checks file, naming the requirements that show them. On a failure: correct the requirement and check again.
-9. Run `mb-sentinel-review` for Step 22 at Low scrutiny on the screen requirements. On Flag or Escalate: stop and present it to David. Check the review's `triage_findings` row exists (test PR-04).
 
 ## 4. The end
 
-10. Run the Full BFT. Complete the Step 22 `steps` row with the ledger values in the configuration, and write the BFT record and the Step Receipt, from the [[[pdlf:pdlf-library/templates-local/step-receipt-template|Step Receipt Template]]](C:/pdlf/pdlf-library/templates-local/step-receipt-template.md), listing every existing form no ticket names.
-11. Explain what was done. Present the Step Receipt, stop, and ask David to run `/mb-close-out`.
+9. Run the Full BFT. Complete the Step 22 `steps` row with the ledger values in the configuration, and write the BFT record and the Step Receipt, from the [[[pdlf:pdlf-library/templates-local/step-receipt-template|Step Receipt Template]]](C:/pdlf/pdlf-library/templates-local/step-receipt-template.md), listing every existing form no ticket names.
+10. Explain what was done. Present the Step Receipt, stop, and ask David to run `/mb-close-out`.

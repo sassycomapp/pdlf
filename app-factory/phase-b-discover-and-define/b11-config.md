@@ -1,7 +1,7 @@
 ---
 title: "b11-config"
 doc-id: "mb-ea7e8074"
-updated: "2026-11-11"
+updated: "2026-11-12"
 ---
 # Step 11 — Init: Configuration
 
@@ -107,7 +107,7 @@ David sets these in the Anvil editor when he creates the app.
 |---|---|
 | Apps that get it | App 1 and App 5; never App 3 |
 | Folders | `tests\logic\`, `tests\integration\`, `tests\security\`, provided by the project template |
-| Copied into `tests\` | `conftest.py`, `pytest.ini`, `ts-config.yaml` (with `role: app1`) |
+| Copied into `tests\` | `conftest.py`, `pytest.ini`, `ts-config.yaml` (with `role: app1`); `component-inventory.yaml` from `C:\dev\dev-m3-custom-theme\m3-custom-theme-project-library\docs\` |
 | Copied into `tests\integration\` | `test_pr09_environment.py` |
 | David's command for `.env` | `bash /mnt/c/dev/project-library-global/test-suite/tools/ts_local.sh {app folder} init` |
 | `.env` keys | `TS_TARGET`, `TS_UPLINK_URL`, `ANVIL_UPLINK_KEY`, `ANVIL_CLIENT_KEY`, `TS_TEST_PASSWORD`, `TS_ROLE_COLUMN` |

@@ -21,7 +21,7 @@ What the agent does at Step 17, in order. Agent-facing. Fixed values: [[[pdlf:ap
 
 ## 3. The difference list
 
-7. Compare the authoritative schema with `db_schema` in App 1's `anvil.yaml`. Write every difference to the schema difference list, sorted by kind as the configuration sets out: additions, renames, removals, type changes.
+7. Compare the authoritative schema with `db_schema` in the app's `anvil.yaml`. Write every difference to the schema difference list, sorted by kind as the configuration sets out: additions, renames, removals, type changes.
 8. Take each rename from `schema-migration-log.md`. Where a column disappears and another appears in the same table with no log row, ask David whether it is a rename.
 9. For a feature run: any rename, removal or type change is a breaking change. Name each one to David and apply it only with his approval.
 
@@ -32,14 +32,14 @@ What the agent does at Step 17, in order. Agent-facing. Fixed values: [[[pdlf:ap
 
 ## 5. The schema in `anvil.yaml`
 
-12. Write the whole authoritative schema into `db_schema` in `anvil.yaml`, only through the `anvil-yaml` skill. Never change `dependencies`.
+12. Make the app's `tests\component-inventory.yaml` equal to the theme inventory, and the keys `component_inventory`, `theme_app_id`, `theme_package` and `approved_components` of the app's `tests\ts-config.yaml` equal to the template's. List every change for the receipt. Then write the whole authoritative schema into `db_schema` in `anvil.yaml`, only through the `anvil-yaml` skill. Never change `dependencies`.
 13. Run `anvil --json validate anvil.yaml` (test ST-01). On an error: correct it and run again.
 14. Compare `db_schema` with the authoritative schema, table by table and column by column. On any difference: correct `anvil.yaml` and compare again.
-15. Run `ts_scan.py` on App 1 and save its report (tests ST-06 and ST-07). On a failure: correct the authoritative schema with David, then repeat from step 12.
+15. Run `ts_scan.py` on the app and save its report (tests ST-06 and ST-07). On a failure: correct the authoritative schema with David, then repeat from step 12.
 
 ## 6. Applying the schema
 
-16. Write David's numbered instructions with `wizard`: the commit command in the configuration; open App 1 in the Anvil editor; click Resolve in the Data Tables view; apply each addition; check each removal and type change by name against the difference list before applying it. List every removal and type change by name in the instructions.
+16. Write David's numbered instructions with `wizard`: the commit command in the configuration; open the app in the Anvil editor; click Resolve in the Data Tables view; apply each addition; check each removal and type change by name against the difference list before applying it. List every removal and type change by name in the instructions.
 17. Wait until David confirms the Data Tables view no longer reports a schema mismatch. If he reports a difference the list does not hold: stop and raise a deviation.
 18. Add one row per change to `schema-migration-log.md`, with its migration plan.
 

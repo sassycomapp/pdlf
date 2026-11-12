@@ -29,9 +29,7 @@ flowchart TD
     AM --> DC{"8. DC-16 and DC-05 pass?"}
     DC -->|"No"| Fix["Correct the requirement"]
     Fix --> DC
-    DC -->|"Yes"| Sen{"9. Sentinel, Low: clear?"}
-    Sen -->|"Flag or Escalate"| Stop1(["Stop: David decides"])
-    Sen -->|"Clear"| End(["10. Full BFT, ledger row, Step Receipt<br/>11. Explain, stop, ask David to run /mb-close-out"])
+    DC -->|"Yes"| End(["9. Full BFT, ledger row, Step Receipt<br/>10. Explain, stop, ask David to run /mb-close-out"])
   </div>
 </div>
 <script>
