@@ -1,6 +1,6 @@
 ---
 title: "pdlf-testing-explainer"
-updated: "2026-11-10"
+updated: "2026-11-12"
 doc-id: "mb-2bb4ba8f"
 ---
 # PDLF Testing — How It Works
@@ -32,7 +32,7 @@ App 1 has one database, and Mybizz uses no test environment. Tests therefore run
 
 - **Phase A:** the orchestrator refuses unapproved gates and missing dependencies; each entry starts healthy.
 - **Phase B:** the test environment works, and the plans are complete: measurable success, data and law settled, test plan, access matrix and threat model written.
-- **Phase C:** the schema matches the design and obeys the data rules; tickets carry their tests; designs, wireframes and screens are readable and conform.
+- **Phase C:** the schema matches the design and obeys the data rules; tickets carry their tests; the design system is readable, and every screen requirement is complete and makes full use of the theme.
 - **Phase D:** forms obey the UI rules; at Step 34 the skeleton passes every static check and implements the threat model before any code is written.
 - **Phase E:** each feature is built test-first and proven through logic, integration, access, attack and browser tests, reviewed independently, and signed off by the developer.
 - **Phase F:** the release is proven, backed up and reversible; every client instance is checked; health is watched; every escaped fault becomes a test.

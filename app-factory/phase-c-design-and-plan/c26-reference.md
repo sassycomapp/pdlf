@@ -1,67 +1,44 @@
 ---
 title: "c26-reference"
 doc-id: "mb-16a8e604"
-updated: "2026-10-23"
+updated: "2026-11-12"
 ---
+# Step 26 — Screens Approved: Reference
 
-## From `26-wireframe-phase-2.md`
+What the agent does at Step 26, in order. Agent-facing. Fixed values: [[[pdlf:app-factory/phase-c-design-and-plan/c26-config|Step 26 Configuration]]](C:/pdlf/app-factory/phase-c-design-and-plan/c26-config.md). The pattern every step follows (search, read, verify, BFT, ledger row, receipt, explain, stop, close-out) is in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md) and is not repeated here. Every skill is invoked with the handover material and the context pack, in full ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2). The gate ceremony is in [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md) and is not repeated here.
 
-## Task Execution Order
+## 1. Start
 
-1. Run Claude Wireframe Skill (Magdoub) — Phase 2
-2. → GATE: Execute gate procedure per [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md)
-3. → GATE: `wireframes-approved` — developer approval required to proceed beyond Phase C
-4. Follow execution sequence in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md)
-5. Apply BFT per [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md) (Full — gate override)
+1. Read the entry record and Step 23's ledger row. Check Step 23 is complete for this run (test PR-01). If not: stop and raise a deviation.
+2. Carry forward every input notice of Steps 22 and 23 to this step's receipt.
+3. Read every input in the configuration.
 
----
+## 2. The findings
 
-## Description
+4. Correct every theme-usage finding and every other high finding in its screen requirement, or in `DESIGN.md`.
+5. For each medium or low finding: show David the finding and its proposed correction, with your recommendation. Correct it, or record it as declined with David's reason.
+6. Write each finding's outcome to the finding outcomes file.
+7. Check every screen requirement against test DC-16 again. On a failure: correct it and check again.
 
-Re-run of the wireframe skill (Magdoub/claude-wireframe-skill) — skips
-context-collection, adds Clean and Polished color variants.
+## 3. Approval
 
-## Inputs Required
+8. Present each screen requirement to David, in the tickets' build order. Correct each change he asks for, and present it again until he approves it. Set its front matter to `status: approved`.
+9. Copy each approved requirement into the step folder.
 
-- Existing `index.html` from Step 22
-- the retired `design-taste.md` + the retired `design-context.md` from Step 22
+## 4. Checks
 
-## Outputs
+10. Run `ts_report.py` with `--check` on the receipts of Steps 21 to 23 of the run (test PR-05). On a failure: present it to David and correct it at its source.
+11. Record DC-16 and PR-05 in the checks file.
 
-- `styles-opt1.css` through `styles-opt5.css` (Clean + Polished variants)
-- GATE `wireframes-approved` — full BFT, gate summary, developer approval required
+## 5. The gate
 
-## Step Table
+12. Check that no finding is open and every screen requirement is approved. If not: return to section 2 or 3. Never offer the gate before.
+13. Run the Full BFT for the gate.
+14. Present the gate summary block in the configuration. Ask David: "Proceed to Phase D? (yes/no)".
+15. On no: record the blocker, set the step's `status` to `blocked`, stop.
+16. On yes: give David the command that records his approval, `bash /mnt/c/mybizz/scripts/pdlf-gate.sh {slug} screens-approved {run}`, and wait until he confirms it ran. Never run it and never write to the `gates` table. Read the `gates` row and check `screens-approved` is passed for the run; if it is not, stop. Record PR-03 in the checks file.
 
-| Step | Type | Gate | Handled By |
-|---|---|---|---|
-| 26 | Tool | **GATE** `wireframes-approved` | Claude Wireframe Skill (Magdoub) — Phase 2 |
+## 6. The end
 
-## Gate
-
-| Gate | After Step | What is Locked |
-|---|---|---|
-| `wireframes-approved` | 26 | Wireframes approved, design system complete. Visual direction locked. |
-
-## Reference Files
-
-| [[[pdlf:pdlf-library/templates-local/isa-template\|Isa Template V2]]](C:/pdlf/pdlf-library/templates-local/isa-template.md) | Steps 26, 35, 38, 46 |
-| Standards Library | Steps 22/26 (UI) |
-
----
-
-## Reference
-
-OpenCode is always the orchestrator. Invoke skills only when they beat OpenCode directly.
-
-For execution sequence: [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md)
-For BFT procedure: [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md)
-For gate procedure: [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md)
-
-GBrain is queried automatically at substep 1. Syncing is asked at substep 10, never auto-run.
-The two housekeeping questions are asked separately, every step, never combined, never auto-run.
-
-The ledger row, Step Receipt, and devlog-index/judgement-trail are the complete checkpoint.
-No separate state file, devlog file, or completion report.
-
-Skills save where designed. PDLF process artifacts go to `<project-library>/pdlf/`.
+17. Complete the Step 26 `steps` row with the ledger values in the configuration, and write the Full BFT record and the Step Receipt, from the [[[pdlf:pdlf-library/templates-local/step-receipt-template|Step Receipt Template]]](C:/pdlf/pdlf-library/templates-local/step-receipt-template.md).
+18. Explain what was done, that Phase C is closed and Phase D begins. Present the Step Receipt, stop, and ask David to run `/mb-close-out`.

@@ -15,10 +15,6 @@ Action items only. Completed and closed items are not tracked here.
 
 Steps 17–46 are audited and rebuilt one at a time as each phase is reached, with the same rigour as Steps 11/12/14/15/16. Each step is rebuilt with the build rules in section B and ends with `/mb-close-out`. Each rebuilt step writes the project's documents into the folders of the project template (`C:\dev\project-template\dev-(SLUG)\`), as each folder's `README.md` names them. Each phase is built, proven on `mb-3-cs` and finished in the order the [[[pdlf:pdlf-library/docs-local/app-factory-docs-update-method|App Factory Docs Update Method]]](C:/pdlf/pdlf-library/docs-local/app-factory-docs-update-method.md) sets out.
 
-### A1a. Phase C UI tools before Step 17
-
-Phase C (Steps 17–28) is rebuilt to the [[[pdlf:pdlf-library/wip/pdlf-phase-c-ui-workflow|PDLF Phase C — UI Workflow]]](C:/pdlf/pdlf-library/wip/pdlf-phase-c-ui-workflow.md). Its batch 5 is done before Step 17 is rebuilt: the test suite scanner reads HTML forms and checks them against `m3-custom-theme`; `ts-config.yaml`, `spec-component-properties.md` and `spec-nomenclature.md` are rebuilt from the theme's documentation; `mb-form-builder` is written, installed and documented, and checks after each run that no form of the feature still has a `form_template.yaml`; `skills-catalog.md` registers it; Steps C17 to C28 are rebuilt to [[[default:specifications-global/mo-ui-production|UI Production]]](C:/dev/project-library-global/specifications-global/mo-ui-production.md).
-
 ### A2. Prove Phases A and B on `mb-3-cs`
 
 Phases A and B are built. They are proven by running `mb-3-cs` through them by entry point 03, in this order:

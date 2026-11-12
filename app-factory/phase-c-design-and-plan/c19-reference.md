@@ -1,75 +1,41 @@
 ---
 title: "c19-reference"
 doc-id: "mb-72bd1c28"
-updated: "2026-10-24"
+updated: "2026-11-12"
 ---
+# Step 19 — Tickets: Reference
 
-## From `19-to-tickets.md`
+What the agent does at Step 19, in order. Agent-facing. Fixed values: [[[pdlf:app-factory/phase-c-design-and-plan/c19-config|Step 19 Configuration]]](C:/pdlf/app-factory/phase-c-design-and-plan/c19-config.md). The pattern every step follows (search, read, verify, BFT, ledger row, receipt, explain, stop, close-out) is in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md) and is not repeated here. Every skill is invoked with the handover material and the context pack, in full ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2).
 
-## Task Execution Order
+## 1. Start
 
-1. Run Matt `to-tickets` against the locked plan (Steps 14–16 output) and current
-   GLOSSARY.md.
-2. If existing-project entry: scope to work genuinely outstanding per Step 3's
-   disposition table only — not a full re-breakdown of the whole application.
-3. → Decision point: present the ticket breakdown for developer approval before writing
-   to the tracker.
-4. Write tickets to the location resolved via the `### Issue tracker` block in
-   `CLAUDE.md`/`AGENTS.md` — never a hardcoded path.
-5. Follow execution sequence in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md).
-6. Apply BFT per [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md) at assigned level.
+1. Read the entry record and Step 18's ledger row. Check Step 18 is complete for this run (test PR-01). If not: stop and raise a deviation.
+2. Carry forward every input notice of Steps 16 to 18 to this step's receipt.
+3. Read every input in the configuration.
 
----
+## 2. The tickets
 
-## Description
+4. Start `to-tickets` with the reviewed plan, the test plan, the glossary and the ADRs. Give it the ticket format, the ticket contents and the build order in the configuration.
+5. Write the tickets to `pdlf-tickets\{run}\`. For a feature run, write only the feature's tickets and record the release's version on each.
+6. Name every form by module path, with its package from `ui\README.md`. Name every table as the authoritative schema names it.
+7. Run `secure-software-engineering` on each ticket against Step 15's threat model, and write its security criteria into the ticket.
+8. Check: every feature of the plan has a ticket; every ticket belongs to a feature; the order has no cycle; every shared custom component comes before the tickets that use it. Correct each failure.
+9. Write the ticket list, in build order, with each ticket's forms.
 
-Decomposes the locked plan into a dependency graph of tickets — either ordinary
-vertical-slice features or, for a wide mechanical refactor, an expand-migrate-contract
-sequence. Each ticket corresponds to one feature cycle in Step 35's build loop. This is
-the sole producer of Step 35's input; no other step feeds it.
+## 3. The flows
 
-## Inputs Required
+10. Run `mb-archify-scope` for the user flows and for each ticket that spans more than one form; David approves each Scope Card. Run `archify` into `pdlf-outputs\c19\`.
 
-- Locked plan from Steps 14–16 (CEO review, Eng review, domain model + ADRs)
-- GLOSSARY.md (domain vocabulary)
-- For existing-project entry: Step 3's disposition table, to scope to outstanding work only
+## 4. Approval
 
-## Outputs
+11. Present the ticket list to David. Correct each change he asks for in the tickets, and present it again until he approves it.
 
-- Tickets written to the configured issue tracker (per `docs/agents/issue-tracker.md`)
-- Each ticket scoped to one feature/package (auth, blog, CRM, etc.)
+## 5. Checks
 
-## Step Table
+12. Check the tickets against test DC-10 and record the result in the checks file, naming the tickets that show it.
+13. Run `mb-sentinel-review` for Step 19 at Medium scrutiny on the tickets. On Flag or Escalate: stop and present it to David. Check the review's `triage_findings` row exists (test PR-04).
 
-| Step | Type | Gate | Handled By |
-|---|---|---|---|
-| 19 | Skill | | Matt `to-tickets` |
+## 6. The end
 
----
-
-## Handoff to Step 20
-
-Step 20 ([[[pdlf:app-factory/phase-c-design-and-plan/c20-reference|/design-consultation]]](C:/pdlf/app-factory/phase-c-design-and-plan/c20-reference.md)) does not consume this step's output directly — it
-proceeds independently from the locked plan. Step 19's tickets are read only by Step 35,
-which begins after the architecture-verified gate (Step 34).
-
----
-
-## Reference
-
-Skill path: `~/.agents/skills/to-tickets/SKILL.md`
-
-`to-tickets` never hardcodes the tracker path — it resolves it through the
-`### Issue tracker` block that `/setup-matt-pocock-skills` writes into `CLAUDE.md`/
-AGENTS.md. If a tracker cannot be resolved, this is a deviation, not a silent fallback.
-
-OpenCode is always the orchestrator. Invoke skills only when they beat OpenCode directly.
-
-For execution sequence: [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md)
-For BFT procedure: [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md)
-
-GBrain is queried automatically at substep 1. Syncing is asked at substep 10, never auto-run.
-The two housekeeping questions are asked separately, every step, never combined, never auto-run.
-
-The ledger row, Step Receipt, and devlog-index/judgement-trail are the complete checkpoint.
-No separate state file, devlog file, or completion report.
+14. Run the Full BFT. Complete the Step 19 `steps` row with the ledger values in the configuration, and write the BFT record and the Step Receipt, from the [[[pdlf:pdlf-library/templates-local/step-receipt-template|Step Receipt Template]]](C:/pdlf/pdlf-library/templates-local/step-receipt-template.md).
+15. Explain what was done. Present the Step Receipt, stop, and ask David to run `/mb-close-out`.

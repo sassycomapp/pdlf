@@ -1,7 +1,7 @@
 ---
 title: "pdlf-adr-artifact-saving-convention"
 doc-id: "mb-353516c1"
-updated: "2026-10-24"
+updated: "2026-11-12"
 ---
 # PDLF — Artifact-Saving Convention
 
@@ -19,7 +19,7 @@ GStack skills chain by file: each skill saves its output under a per-project fol
 
 2. **The orchestrator owns the handoff: paste, capture, verify, record.** The orchestrator pastes the full text of prior artifacts into each skill invocation, so a later skill never depends on finding an earlier skill's file by searching. It captures the output path the skill reports, verifies the artifact exists on disk, and records the location in the ledger (`artifact_path`). If an expected artifact is missing, the step stops with a deviation; it never proceeds silently.
 
-3. **Every artifact is also copied to the step's output folder,** `{slug}-project-library\pdlf-outputs\{step}\`, so all of a step's outputs for a project are in one place. Skills that can be told where to save (Archify, the Magdoub wireframe skills, Sentinel) save there directly.
+3. **Every artifact is also copied to the step's output folder,** `{slug}-project-library\pdlf-outputs\{step}\`, so all of a step's outputs for a project are in one place. Skills that can be told where to save (Archify, Sentinel) save there directly.
 
 4. **Copy naming.** Every file in a step's output folder is named `{slug}-{step}-{run}-{name}`, where `{slug}` is the business slug recorded at Step 11 and `{run}` is `app{n}` for a whole application (`app1`, `app2`, `app3` or `app5`) or the feature's short name, so the step and the run that produced it are clear and a feature never overwrites the application's files.
 

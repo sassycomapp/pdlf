@@ -1,7 +1,7 @@
 ---
 title: "spec-gate-procedure"
 doc-id: "mb-e1c94b00"
-updated: "2026-10-29"
+updated: "2026-11-12"
 ---
 # PDLF Gate Procedure
 
@@ -54,7 +54,7 @@ The agent does not proceed past a gate without explicit approval:
 |---|---|---|
 | `domain-locked` | 16 | The domain model: the glossary, its decisions and the data design they agree with; and with them every output of Phase B, which Phase C builds on |
 | `concept-locked` | 21 | The concept, after a cross-document coherence audit; no feature is added after it without the gate being reopened |
-| `wireframes-approved` | 26 | The wireframes and screens |
+| `screens-approved` | 26 | Every screen requirement, each approved by David; Phase C |
 | `architecture-verified` | 34 | The physical Anvil build (Data Tables, forms, scaffolding) matches the locked architecture, before any code is written |
 | `build-verified` | 39 | The feature, after remediation and its retest |
 | `production-released` | 44 | The production release |

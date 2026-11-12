@@ -1,10 +1,52 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="doc-id" content="mb-9a0787ab">
-<title>c26-decision-tree</title>
+<title>Step 26 — Screens Approved Decision Tree</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; background: #f5f5f4; padding: 32px; margin: 0; }
+  h1 { font-size: 19px; color: #1a1a1a; margin: 0 0 20px 0; }
+  .diagram-wrap { background: white; border-radius: 10px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); overflow-x: auto; }
+  .mermaid { display: flex; justify-content: center; }
+</style>
 </head>
 <body>
+<h1>Step 26 — Screens Approved Decision Tree (matches c26-reference)</h1>
+<div class="diagram-wrap">
+  <div class="mermaid">
+flowchart TD
+    Start(["Steps 22 and 23's outputs"]) --> S1{"1. Step 23 complete?"}
+    S1 -->|"No"| Dev1["Stop: deviation"]
+    S1 -->|"Yes"| S2["2. Carry notices<br/>3. Read every input"]
+    S2 --> Hi["4. Correct every high finding,<br/>every theme-usage finding"]
+    Hi --> ML{"5. Medium or low finding?"}
+    ML -->|"David: correct"| Cor["Correct it"]
+    ML -->|"David: decline"| Dec["Declined, with his reason"]
+    Cor --> Out
+    Dec --> Out["6. Outcomes recorded"]
+    Out --> D16{"7. DC-16 passes again?"}
+    D16 -->|"No"| Fix["Correct"]
+    Fix --> D16
+    D16 -->|"Yes"| Ap{"8. David approves each requirement?"}
+    Ap -->|"Changes"| Chg["Correct, present again"]
+    Chg --> Ap
+    Ap -->|"Yes"| Mark["status: approved<br/>9. Copies"]
+    Mark --> Rc{"10. Receipts of 21 to 23 match evidence?"}
+    Rc -->|"No"| RcFix["Correct at the source"]
+    RcFix --> Rc
+    Rc -->|"Yes"| Open{"12. Any finding open<br/>or requirement not approved?"}
+    Open -->|"Yes"| Hi
+    Open -->|"No"| BFT["13. Full BFT"]
+    BFT --> Gate{"14. Gate summary: proceed to Phase D?"}
+    Gate -->|"No"| Block(["15. Blocker recorded; status blocked; stop"])
+    Gate -->|"Yes"| Row["16. David runs pdlf-gate.sh;<br/>the agent reads the gates row"]
+    Row --> End(["17. Ledger row, Step Receipt<br/>18. Explain: Phase C closed; stop, ask David to run /mb-close-out"])
+  </div>
+</div>
+<script>
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis' } });
+</script>
 </body>
 </html>

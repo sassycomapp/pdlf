@@ -1,7 +1,7 @@
 ---
 title: "README"
 doc-id: "mb-ab3dbf19"
-updated: "2026-10-29"
+updated: "2026-11-12"
 ---
 # App Factory
 
@@ -31,7 +31,7 @@ The app factory holds PDLF's build: every step of the pipeline, in the phase it 
   - `b11-module.md`: the finished step, compiled from the other six. It is written only on David's instruction (rule 2 of `C:\pdlf\AGENTS.md`).
 - Step numbers are global, 01 to 46, behind the phase letter. The number is the step's identity in the ledger, the gates, the receipts and every document, so steps are never renumbered within a phase.
 - Inserted steps carry a lowercase letter after the number, only to keep the files in order: `e35a`, `e38a`, `e40b`, `f42a`.
-- Numbers 13, 24 and 25 are not used as steps. Each keeps one file, `b13-placeholder.md`, `c24-placeholder.md` and `c25-placeholder.md`, so the gap is visible; none has a set of seven.
+- Numbers 13, 24, 25, 27 and 28 are not used as steps. Each keeps one file, `b13-placeholder.md`, `c24-placeholder.md`, `c25-placeholder.md`, `c27-placeholder.md` and `c28-placeholder.md`, so the gap is visible; none has a set of seven.
 
 ## The build plan
 

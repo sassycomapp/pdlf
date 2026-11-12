@@ -1,7 +1,7 @@
 ---
 title: "pdlf-spec-artifact-handover"
 doc-id: "mb-f1745959"
-updated: "2026-11-04"
+updated: "2026-11-12"
 ---
 # PDLF — Artifact and Handover Specification
 
@@ -143,7 +143,7 @@ Every project library holds `pdlf-outputs\`, with one folder per step (`a01\` to
 
 - the Step Receipt, `{slug}-{step}-{run}-receipt.md`;
 - a copy of every artifact a skill saved elsewhere (for example in GStack's own save location), named `{slug}-{step}-{run}-{name}`;
-- the artifacts of skills that are told where to save (such as Archify, the Magdoub wireframe skills and Sentinel), which save into the step folder directly.
+- the artifacts of skills that are told where to save (such as Archify and Sentinel), which save into the step folder directly.
 
 **The run.** `{run}` is `app{n}` when the work is a whole application (`app1`, `app2`, `app3` or `app5`), or the feature's short name (the feature slug from the entry record) when the work is a feature or an update. For example `mb-3-cs-b14-app1-ceo-plan.md`, `mb-3-cs-b14-app5-ceo-plan.md` and `mb-3-cs-b14-reminders-ceo-plan.md`. Why: App 1 and App 5 each run Steps 11 to 16 as a whole application, and the feature path runs Steps 12 to 16 again for every feature, so a name without the run would be overwritten, and each run's outputs stay beside the others.
 

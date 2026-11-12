@@ -1,7 +1,7 @@
 ---
 title: "a01-config"
 doc-id: "mb-0aff45b8"
-updated: "2026-10-31"
+updated: "2026-11-12"
 ---
 # Step 1 — Orchestrator: Configuration
 
@@ -44,7 +44,7 @@ The orchestrator runs only the steps of these phases. A run that reaches a step 
 |---|---|---|
 | A, Init | 1 to 10 | Yes |
 | B, Discover and Define | 11, 12, 14, 15, 16 | Yes |
-| C, Design and Plan | 17 to 23, 26 to 28 | No |
+| C, Design and Plan | 17 to 23, 26 | Yes |
 | D, Scaffold and Assemble | 29 to 34 | No |
 | E, Build and Verify | 35, 35A, 40, 40B, 36, 37, 38, 38A, 39 | No |
 | F, Ship and Monitor | 41, 42, 42A, 43 to 46 | No |
@@ -71,10 +71,10 @@ Every run follows one route: its steps, in this order. A phase not yet built is 
 
 | Route | Steps, in order |
 |---|---|
-| Application | 11, 12, 14, 15, 16 (gate `domain-locked`), then Phases C to F |
-| Management app | 11, 12, 14, 15, 16 (gate `domain-locked`), then Phases C to F |
+| Application | 11, 12, 14, 15, 16 (gate `domain-locked`), 17, 18, 19, 20, 21 (gate `concept-locked`), 22, 23, 26 (gate `screens-approved`), then Phases D to F |
+| Management app | 11, 12, 14, 15, 16 (gate `domain-locked`), 17, 18, 19, 20, 21 (gate `concept-locked`), 22, 23, 26 (gate `screens-approved`), then Phases D to F |
 | Client template | 11, then Phase G |
-| Feature | 12, 14, 15, 16 (gate `domain-locked`), then Phases C to F |
+| Feature | 12, 14, 15, 16 (gate `domain-locked`), 17, 18, 19, 20, 21 (gate `concept-locked`), 22, 23, 26 (gate `screens-approved`), then Phases D to F |
 | Update | The step David names at the entry, then every later step of the Application route |
 | Release | Phase F: 41, 42, 42A, 43, 44 |
 
@@ -89,12 +89,22 @@ A step runs only when every step it depends on is `complete` or `skipped`, and e
 | 14 | Step 12 of the run |
 | 15 | Steps 12 and 14 of the run |
 | 16 | Step 15 of the run |
+| 17 | Step 16 of the run, and the gate `domain-locked` passed for the run |
+| 18 | Step 17 of the run |
+| 19 | Step 18 of the run |
+| 20 | Step 19 of the run |
+| 21 | Step 20 of the run |
+| 22 | Step 21 of the run, and the gate `concept-locked` passed for the run |
+| 23 | Step 22 of the run |
+| 26 | Step 23 of the run |
 
 ## The gates in the built phases
 
 | Gate | At step | David's command |
 |---|---|---|
 | `domain-locked` | 16 | `bash /mnt/c/mybizz/scripts/pdlf-gate.sh {slug} domain-locked {run}` |
+| `concept-locked` | 21 | `bash /mnt/c/mybizz/scripts/pdlf-gate.sh {slug} concept-locked {run}` |
+| `screens-approved` | 26 | `bash /mnt/c/mybizz/scripts/pdlf-gate.sh {slug} screens-approved {run}` |
 
 ## The resume check
 

@@ -1,44 +1,51 @@
 ---
 title: "c18-build-plan"
 doc-id: "mb-1d6a836c"
-updated: "2026-10-22"
+updated: "2026-11-12"
 ---
+# Step 18 — Pull to Local: Build Plan
 
-## From `pdlf-build-plan.md`: step entry
+## Step entry
 
 ### Phase C — Design and Plan
 
-Ends with the gates `concept-locked` (Step 21) and `wireframes-approved` (Step 26).
+Ends with the gates `concept-locked` (Step 21) and `screens-approved` (Step 26).
 
 #### Step 18: Pull to local
 
-**Must achieve:** The code repository is pulled to local after the tables are built.
+**Must achieve:** David's local copy of App 1 holds exactly what Anvil holds, after work in the Anvil editor, so that the next step reads the real state of the app.
 
-**Carried out by:** The developer, by hand.
+**Starts from:** the Step Receipt of the step before it (Step 17 here; Step 29 and Step 32 when Steps 30 and 33 run this procedure); App 1's local repository.
 
-**Skills.** Every skill's output is used by the step named after the arrow.
-- `wizard` (Matt Pocock): the developer's pull instructions → the local repository the next step reads.
+**Produces:** App 1's local repository brought level with GitHub; in `pdlf-outputs\c18\`: the test results and the Step Receipt; the ledger row.
 
-**Shared procedure.** Steps 18, 30 and 33 run this one procedure: the developer pulls App 1's repository to local after work in the Anvil editor; the agent checks that the change it expects is present and stops with a deviation if not. Steps 30 and 33 refer to this step's procedure and do not repeat it. The Anvil CLI's `anvil watch` is not used for this: it is in beta, its handling of conflicting edits is not documented, and it would send an agent's local edits straight to App 1 without the developer's push.
+**Carried out by:** David runs one command; OpenCode checks the result.
 
-**Testing:** the expected change is present locally. **Layers with no skill:** all others; the step only moves code.
+**Must be built so that:**
+- David pulls App 1 with the one command in the configuration;
+- the agent checks that the working tree is clean, that the local branch `master` equals `origin/master`, and that the change the step before it expects is present; for Step 17, `db_schema` in `anvil.yaml` equals the authoritative schema;
+- the agent runs `anvil --json validate .` on App 1 and stops with a deviation on an error;
+- any file changed that the step before it did not expect, apart from formatting Anvil itself applies, stops the step with a deviation;
+- Steps 30 and 33 run this same procedure and do not repeat it; each names the change it expects;
+- the Anvil CLI's `anvil watch` is not used, because it would send local edits to App 1 without David's push;
+- its ledger row is `step_type = 'manual'`, `skill_family = 'manual'`, `synthesized = false`, `run` and `app_number` from the entry record, and `inputs_used` naming Step 17.
 
-**Carried over from the old workflow** (to be checked against the step file, then removed):
+**BFT level:** None.
 
-1. Query GBrain — Context relevant to codebase state
-2. Pull Anvil-connected code repo to local — Updated schema from Step 17
-3. Verify local repo updated — STOP if schema not present
-4. Write Step 18 ledger row — `completed_at`
-5. Generate Step Receipt — `<project-library>/pdlf/outputs/step-18-receipt.md`
-6. Apply BFT — None
-7. Follow execution sequence — Housekeeping, stop, wait for continue
+**Gate:** none.
 
-## From `pdlf-phase-b-review.md`: finding 4.7
+**References:** [[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), [[[default:test-suite/ts-method|Test Suite — Method]]](C:/dev/project-library-global/test-suite/ts-method.md).
 
-**4.7 Fit for purpose before thoroughness.** For each step, ask whether it earns its place. Phase C has three near-identical "pull to local" steps (18, 30 and 33): one shared procedure may serve all three. For each review, ask what only it covers, so that the developer is never asked the same question twice.
+**Skills.** None. One command moves the code; the agent's checks are plain commands.
 
-## From `pol-anvil-platform.md`: pull to local
+**Layers with no skill:** all; the step only moves code.
 
-| Pull | After |
-|---|---|
-| Step 18 | Data tables created in Anvil at Step 17. |
+**Testing:** [[[pdlf:app-factory/phase-c-design-and-plan/c18-test-spec|Step 18 Test Specification]]](C:/pdlf/app-factory/phase-c-design-and-plan/c18-test-spec.md): only the expected change arrived, and the app validates.
+
+**Standards:** [[[default:specifications-global/spec-anvil-platform-standards|Anvil Platform Standards]]](C:/dev/project-library-global/specifications-global/spec-anvil-platform-standards.md).
+
+## Why it is built this way
+
+- **One procedure for three steps.** Steps 18, 30 and 33 all do the same thing after work in the Anvil editor, so they share one procedure and differ only in the change they expect.
+- **The agent checks, David pulls.** Only David runs git; the agent proves the pull brought exactly what was expected and nothing else.
+- **Validate on arrival.** A file Anvil cannot read is caught here, before any later step builds on it.

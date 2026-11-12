@@ -1,6 +1,6 @@
 ---
 title: "c24-placeholder"
-updated: "2026-10-22"
+updated: "2026-11-12"
 doc-id: "mb-d477a958"
 ---
 
@@ -10,7 +10,7 @@ Placeholder only. Step 24 is not used. The number is kept so that every other st
 
 ### Phase C — Design and Plan
 
-Ends with the gates `concept-locked` (Step 21) and `wireframes-approved` (Step 26).
+Ends with the gates `concept-locked` (Step 21) and `screens-approved` (Step 26).
 
 #### Step 24: Not used
 

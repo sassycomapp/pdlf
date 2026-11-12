@@ -1,10 +1,64 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="doc-id" content="mb-00ce10c5">
-<title>c17-decision-tree</title>
+<title>Step 17 — Create Anvil Data Tables Decision Tree</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; background: #f5f5f4; padding: 32px; margin: 0; }
+  h1 { font-size: 19px; color: #1a1a1a; margin: 0 0 20px 0; }
+  .diagram-wrap { background: white; border-radius: 10px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); overflow-x: auto; }
+  .mermaid { display: flex; justify-content: center; }
+</style>
 </head>
 <body>
+<h1>Step 17 — Create Anvil Data Tables Decision Tree (matches c17-reference)</h1>
+<div class="diagram-wrap">
+  <div class="mermaid">
+flowchart TD
+    Start(["Entry record and Step 16's hand-over"]) --> S1{"1. Step 16 complete<br/>and domain-locked passed?"}
+    S1 -->|"No"| Dev1["Stop: deviation"]
+    S1 -->|"Yes"| S2["2. Carry input notices<br/>3. Read every input"]
+    S2 --> AS{"4. Authoritative schema empty?"}
+    AS -->|"Yes"| Write["Write it from the data design with data-models;<br/>David approves"]
+    AS -->|"No"| Agree{"5. Agrees with the data design?"}
+    Agree -->|"No"| Dev2["Stop: deviation"]
+    Agree -->|"Yes"| Sec
+    Write --> Sec["6. secure-software-engineering against the threat model;<br/>findings corrected with David"]
+    Sec --> Diff["7. Difference list: additions, renames,<br/>removals, type changes"]
+    Diff --> Ren{"8. Unlogged column swap?"}
+    Ren -->|"Yes"| AskR["David says whether it is a rename"]
+    Ren -->|"No"| Feat
+    AskR --> Feat{"9. Feature run with a breaking change?"}
+    Feat -->|"Yes"| Appr["David approves each one by name"]
+    Feat -->|"No"| HasRen
+    Appr --> HasRen{"10. Renames on the list?"}
+    HasRen -->|"Yes"| Hand["wizard instructions; David renames by hand<br/>11. David pulls App 1; renames present?"]
+    HasRen -->|"No"| Yaml
+    Hand -->|"No"| Dev3["Stop: deviation"]
+    Hand -->|"Yes"| Yaml["12. anvil-yaml writes the whole schema<br/>into db_schema"]
+    Yaml --> Val{"13. anvil validate passes?"}
+    Val -->|"No"| ValFix["Correct, run again"]
+    ValFix --> Val
+    Val -->|"Yes"| Cmp{"14. db_schema equals the<br/>authoritative schema?"}
+    Cmp -->|"No"| CmpFix["Correct anvil.yaml"]
+    CmpFix --> Cmp
+    Cmp -->|"Yes"| Scan{"15. ts_scan ST-06 and ST-07 pass?"}
+    Scan -->|"No"| ScanFix["Correct the schema with David;<br/>back to 12"]
+    ScanFix --> Yaml
+    Scan -->|"Yes"| Apply["16. wizard instructions: commit, Resolve,<br/>each removal checked by name"]
+    Apply --> Mis{"17. Mismatch still reported?"}
+    Mis -->|"Unlisted difference"| Dev4["Stop: deviation"]
+    Mis -->|"None"| Log["18. Migration log rows"]
+    Log --> Sen{"19. Sentinel, High: clear?"}
+    Sen -->|"Flag or Escalate"| Stop1(["Stop: David decides"])
+    Sen -->|"Clear"| Cp["20. Copies and checks file"]
+    Cp --> End(["21. Light BFT, ledger row, Step Receipt<br/>22. Explain, stop, ask David to run /mb-close-out"])
+  </div>
+</div>
+<script>
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis' } });
+</script>
 </body>
 </html>

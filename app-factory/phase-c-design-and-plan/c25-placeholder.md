@@ -1,7 +1,7 @@
 ---
 title: "c25-placeholder"
 doc-id: "mb-20b0eb96"
-updated: "2026-10-22"
+updated: "2026-11-12"
 ---
 
 Placeholder only. Step 25 is not used. The number is kept so that every other step keeps its number; it has no set of seven.
@@ -10,7 +10,7 @@ Placeholder only. Step 25 is not used. The number is kept so that every other st
 
 ### Phase C — Design and Plan
 
-Ends with the gates `concept-locked` (Step 21) and `wireframes-approved` (Step 26).
+Ends with the gates `concept-locked` (Step 21) and `screens-approved` (Step 26).
 
 #### Step 25: Not used
 

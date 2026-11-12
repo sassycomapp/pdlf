@@ -1,61 +1,30 @@
 ---
 title: "c20-reference"
 doc-id: "mb-64d59065"
-updated: "2026-10-12"
+updated: "2026-11-12"
 ---
+# Step 20 — Design System: Reference
 
-## From `20-design-consultation.md`
+What the agent does at Step 20, in order. Agent-facing. Fixed values: [[[pdlf:app-factory/phase-c-design-and-plan/c20-config|Step 20 Configuration]]](C:/pdlf/app-factory/phase-c-design-and-plan/c20-config.md). The pattern every step follows (search, read, verify, BFT, ledger row, receipt, explain, stop, close-out) is in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md) and is not repeated here. Every skill is invoked with the handover material and the context pack, in full ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2).
 
-## Task Execution Order
+## 1. Start
 
-1. → Decision point: If test mode, present abbreviation offer (full/abbreviate/skip)
-2. Run GStack [[[pdlf:app-factory/phase-c-design-and-plan/c20-reference|/design-consultation]]](C:/pdlf/app-factory/phase-c-design-and-plan/c20-reference.md)
-3. Follow execution sequence in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md)
-4. Apply BFT per [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md) at assigned level (Full)
+1. Read the entry record and Step 19's ledger row. Check Step 19 is complete for this run (test PR-01). If not: stop and raise a deviation.
+2. In a test run: offer David full, abbreviated or skipped, as `pol-step-conditional-state` sets out. On skip: record it and go to step 9.
+3. Carry forward every input notice of Step 19 to this step's receipt. Read every input in the configuration, including the theme guide and the whole component inventory.
 
----
+## 2. The design system
 
-## Description
+4. Start `/design-consultation` from the project library with the inputs and the fixed answers in the configuration. Hold it to the choices in the configuration.
+5. Write `docs-local\DESIGN.md` with each choice and the fixed statements in the configuration. For an existing `DESIGN.md`: bring it to these rules and keep every choice David made that still meets them.
+6. Present `DESIGN.md` to David. Correct each change he asks for, and present it again until he approves it.
 
-Builds the design system from scratch — DESIGN.md + a preview page. Eligible
-for abbreviation in test mode.
+## 3. Checks
 
-## Inputs Required
+7. Check the chosen palette against test DC-12 in light and dark mode, and record the result in the checks file.
+8. Run `mb-sentinel-review` for Step 20 at Medium scrutiny on `DESIGN.md`. On Flag or Escalate: stop and present it to David. Check the review's `triage_findings` row exists (test PR-04). Copy `DESIGN.md` into the step folder.
 
-- Design doc at `<project-library>/docs-local/design-doc.md` — from Step 12 (product context)
-- Repo/README for product understanding
-- Existing DESIGN.md if present
+## 4. The end
 
-## Outputs
-
-- DESIGN.md written to repo root
-- Font/color HTML preview page
-- Design tokens (CSS variables / JSON)
-
-## Step Table
-
-| Step | Type | Gate | Handled By |
-|---|---|---|---|
-| 20 | Skill | | GStack [[[pdlf:app-factory/phase-c-design-and-plan/c20-reference\|/design-consultation]]](C:/pdlf/app-factory/phase-c-design-and-plan/c20-reference.md) |
-
-## Reference Files
-
-| `[[[pdlf:pdlf-library/policy-local/pol-step-conditional-state]]](C:/pdlf/pdlf-library/policy-local/pol-step-conditional-state.md)` | Steps flagged test-mode eligible |
-| Standards Library | Step 20 (M3 design) |
-
----
-
-## Reference
-
-OpenCode is always the orchestrator. Invoke skills only when they beat OpenCode directly.
-
-For execution sequence: [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md)
-For BFT procedure: [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md)
-
-GBrain is queried automatically at substep 1. Syncing is asked at substep 10, never auto-run.
-The two housekeeping questions are asked separately, every step, never combined, never auto-run.
-
-The ledger row, Step Receipt, and devlog-index/judgement-trail are the complete checkpoint.
-No separate state file, devlog file, or completion report.
-
-Skills save where designed. PDLF process artifacts go to `<project-library>/pdlf/`.
+9. Run the Full BFT. Complete the Step 20 `steps` row with the ledger values in the configuration, and write the BFT record and the Step Receipt, from the [[[pdlf:pdlf-library/templates-local/step-receipt-template|Step Receipt Template]]](C:/pdlf/pdlf-library/templates-local/step-receipt-template.md).
+10. Explain what was done. Present the Step Receipt, stop, and ask David to run `/mb-close-out`.

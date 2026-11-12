@@ -1,10 +1,40 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="doc-id" content="mb-dc5ca9dc">
-<title>c23-decision-tree</title>
+<title>Step 23 — Design Review Decision Tree</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; background: #f5f5f4; padding: 32px; margin: 0; }
+  h1 { font-size: 19px; color: #1a1a1a; margin: 0 0 20px 0; }
+  .diagram-wrap { background: white; border-radius: 10px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); overflow-x: auto; }
+  .mermaid { display: flex; justify-content: center; }
+</style>
 </head>
 <body>
+<h1>Step 23 — Design Review Decision Tree (matches c23-reference)</h1>
+<div class="diagram-wrap">
+  <div class="mermaid">
+flowchart TD
+    Start(["Step 22's screen requirements"]) --> S1{"1. Step 22 complete?"}
+    S1 -->|"No"| Dev1["Stop: deviation"]
+    S1 -->|"Yes"| S2["2. Carry notices<br/>3. Read every input and the whole theme documentation"]
+    S2 --> PDR["4. /plan-design-review: ratings and gaps"]
+    PDR --> TU["5. Theme usage: each element against<br/>the whole inventory; better fit = high finding"]
+    TU --> AC["6. Accessibility and always-available controls"]
+    AC --> Sev{"7. Severity settled by the table?"}
+    Sev -->|"No"| Ask["David rates it"]
+    Ask --> Rec
+    Sev -->|"Yes"| Rec["8. No requirement changed"]
+    Rec --> Chk{"9. Every requirement reviewed?"}
+    Chk -->|"No"| More["Review the missing ones"]
+    More --> Chk
+    Chk -->|"Yes"| End(["10. Full BFT, ledger row, Step Receipt<br/>11. Explain, stop, ask David to run /mb-close-out"])
+  </div>
+</div>
+<script>
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis' } });
+</script>
 </body>
 </html>

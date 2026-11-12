@@ -87,75 +87,87 @@ This report is a working tool for building PDLF. It is deleted when PDLF is fini
 
 ### Phase C — Design and Plan
 
+**Phase status:** Built: every step of the phase is written to `mo-ui-production`, and the orchestrator runs it. Not yet proven: `mb-3-cs` has not yet run through it.
+
 #### Step 17: Create Anvil data tables
 
-**File:** `app-factory/phase-c-design-and-plan/17-create-anvil-data-tables.md`
+**Status:** Built.
 
-**Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
+**Files:** in `app-factory/phase-c-design-and-plan/`: `c17-build-plan.md`, `c17-test-spec.md`, `c17-config.md`, `c17-reference.md`, `c17-explainer.md`, `c17-decision-tree.html`, `c17-module.md` (empty until the step is packaged).
+
+**What it does and produces:** [[[pdlf:app-factory/phase-c-design-and-plan/c17-explainer|Step 17 Explainer]]](C:/pdlf/app-factory/phase-c-design-and-plan/c17-explainer.md); [[[pdlf:app-factory/phase-c-design-and-plan/c17-config|Step 17 Configuration]]](C:/pdlf/app-factory/phase-c-design-and-plan/c17-config.md).
 
 #### Step 18: Pull to local
 
-**File:** `app-factory/phase-c-design-and-plan/18-pull-to-local.md`
+**Status:** Built.
 
-**Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
+**Files:** in `app-factory/phase-c-design-and-plan/`: `c18-build-plan.md`, `c18-test-spec.md`, `c18-config.md`, `c18-reference.md`, `c18-explainer.md`, `c18-decision-tree.html`, `c18-module.md` (empty until the step is packaged).
 
-#### Step 19: To tickets
+**What it does and produces:** [[[pdlf:app-factory/phase-c-design-and-plan/c18-explainer|Step 18 Explainer]]](C:/pdlf/app-factory/phase-c-design-and-plan/c18-explainer.md); [[[pdlf:app-factory/phase-c-design-and-plan/c18-config|Step 18 Configuration]]](C:/pdlf/app-factory/phase-c-design-and-plan/c18-config.md).
 
-**File:** `app-factory/phase-c-design-and-plan/19-to-tickets.md`
+#### Step 19: Tickets
 
-**Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
+**Status:** Built.
 
-#### Step 20: Design consultation
+**Files:** in `app-factory/phase-c-design-and-plan/`: `c19-build-plan.md`, `c19-test-spec.md`, `c19-config.md`, `c19-reference.md`, `c19-explainer.md`, `c19-decision-tree.html`, `c19-module.md` (empty until the step is packaged).
 
-**File:** `app-factory/phase-c-design-and-plan/20-design-consultation.md`
+**What it does and produces:** [[[pdlf:app-factory/phase-c-design-and-plan/c19-explainer|Step 19 Explainer]]](C:/pdlf/app-factory/phase-c-design-and-plan/c19-explainer.md); [[[pdlf:app-factory/phase-c-design-and-plan/c19-config|Step 19 Configuration]]](C:/pdlf/app-factory/phase-c-design-and-plan/c19-config.md).
 
-**Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
+#### Step 20: Design system
 
-#### Step 21: Concept sanity audit
+**Status:** Built.
 
-**File:** `app-factory/phase-c-design-and-plan/21-concept-sanity-audit.md`
+**Files:** in `app-factory/phase-c-design-and-plan/`: `c20-build-plan.md`, `c20-test-spec.md`, `c20-config.md`, `c20-reference.md`, `c20-explainer.md`, `c20-decision-tree.html`, `c20-module.md` (empty until the step is packaged).
 
-**Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
+**What it does and produces:** [[[pdlf:app-factory/phase-c-design-and-plan/c20-explainer|Step 20 Explainer]]](C:/pdlf/app-factory/phase-c-design-and-plan/c20-explainer.md); [[[pdlf:app-factory/phase-c-design-and-plan/c20-config|Step 20 Configuration]]](C:/pdlf/app-factory/phase-c-design-and-plan/c20-config.md).
 
-#### Step 22: Wireframes, phase 1
+#### Step 21: Concept check
 
-**File:** `app-factory/phase-c-design-and-plan/22-wireframe-phase-1.md`
+**Status:** Built.
 
-**Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
+**Files:** in `app-factory/phase-c-design-and-plan/`: `c21-build-plan.md`, `c21-test-spec.md`, `c21-config.md`, `c21-reference.md`, `c21-explainer.md`, `c21-decision-tree.html`, `c21-module.md` (empty until the step is packaged).
 
-#### Step 23: Plan design review
+**What it does and produces:** [[[pdlf:app-factory/phase-c-design-and-plan/c21-explainer|Step 21 Explainer]]](C:/pdlf/app-factory/phase-c-design-and-plan/c21-explainer.md); [[[pdlf:app-factory/phase-c-design-and-plan/c21-config|Step 21 Configuration]]](C:/pdlf/app-factory/phase-c-design-and-plan/c21-config.md).
 
-**File:** `app-factory/phase-c-design-and-plan/23-plan-design-review.md`
+#### Step 22: Screen requirements
 
-**Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
+**Status:** Built.
 
-#### Step 24: Plan developer-experience review
+**Files:** in `app-factory/phase-c-design-and-plan/`: `c22-build-plan.md`, `c22-test-spec.md`, `c22-config.md`, `c22-reference.md`, `c22-explainer.md`, `c22-decision-tree.html`, `c22-module.md` (empty until the step is packaged).
 
-**File:** `app-factory/phase-c-design-and-plan/24-plan-devex-review.md`
+**What it does and produces:** [[[pdlf:app-factory/phase-c-design-and-plan/c22-explainer|Step 22 Explainer]]](C:/pdlf/app-factory/phase-c-design-and-plan/c22-explainer.md); [[[pdlf:app-factory/phase-c-design-and-plan/c22-config|Step 22 Configuration]]](C:/pdlf/app-factory/phase-c-design-and-plan/c22-config.md).
 
-**Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
+#### Step 23: Design review
+
+**Status:** Built.
+
+**Files:** in `app-factory/phase-c-design-and-plan/`: `c23-build-plan.md`, `c23-test-spec.md`, `c23-config.md`, `c23-reference.md`, `c23-explainer.md`, `c23-decision-tree.html`, `c23-module.md` (empty until the step is packaged).
+
+**What it does and produces:** [[[pdlf:app-factory/phase-c-design-and-plan/c23-explainer|Step 23 Explainer]]](C:/pdlf/app-factory/phase-c-design-and-plan/c23-explainer.md); [[[pdlf:app-factory/phase-c-design-and-plan/c23-config|Step 23 Configuration]]](C:/pdlf/app-factory/phase-c-design-and-plan/c23-config.md).
+
+#### Step 24: Not used
+
+**Status:** Not used.
 
 #### Step 25: Not used
 
 **Status:** Not used.
 
-#### Step 26: Wireframes, phase 2
+#### Step 26: Screens approved
 
-**File:** `app-factory/phase-c-design-and-plan/26-wireframe-phase-2.md`
+**Status:** Built.
 
-**Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
+**Files:** in `app-factory/phase-c-design-and-plan/`: `c26-build-plan.md`, `c26-test-spec.md`, `c26-config.md`, `c26-reference.md`, `c26-explainer.md`, `c26-decision-tree.html`, `c26-module.md` (empty until the step is packaged).
 
-#### Step 27: Screen production
+**What it does and produces:** [[[pdlf:app-factory/phase-c-design-and-plan/c26-explainer|Step 26 Explainer]]](C:/pdlf/app-factory/phase-c-design-and-plan/c26-explainer.md); [[[pdlf:app-factory/phase-c-design-and-plan/c26-config|Step 26 Configuration]]](C:/pdlf/app-factory/phase-c-design-and-plan/c26-config.md).
 
-**File:** `app-factory/phase-c-design-and-plan/27-screen-production.md`
+#### Step 27: Not used
 
-**Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
+**Status:** Not used.
 
-#### Step 28: Screen to PNG
+#### Step 28: Not used
 
-**File:** `app-factory/phase-c-design-and-plan/28-screen-to-png.md`
-
-**Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
+**Status:** Not used.
 
 ### Phase D — Scaffold and Assemble
 

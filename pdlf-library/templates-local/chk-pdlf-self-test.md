@@ -1,7 +1,7 @@
 ---
 title: "chk-pdlf-self-test"
 doc-id: "mb-afcdd367"
-updated: "2026-10-23"
+updated: "2026-11-12"
 ---
 # Checklist — PDLF Self-Test
 
@@ -33,7 +33,7 @@ Run per step file, or against a live step execution.
 
 ## 2. Gate Integrity
 
-Run per gate (`domain-locked`, `concept-locked`, `wireframes-approved`,
+Run per gate (`domain-locked`, `concept-locked`, `screens-approved`,
 `architecture-verified`, `build-verified`, `production-released`, `released`).
 
 | # | Check | Method |

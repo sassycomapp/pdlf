@@ -1,7 +1,7 @@
 ---
 title: "pdlf-explainer"
 doc-id: "mb-1cb64793"
-updated: "2026-11-10"
+updated: "2026-11-12"
 ---
 # PDLF — How It Works
 
@@ -63,7 +63,7 @@ Why the same pattern everywhere: a pattern written once and enforced by the orch
 
 ### Phases and gates
 
-The pipeline runs in phases. Each phase ends at a gate: a hard stop where David approves a commitment before anything is built on it. The gates in the current step design are `domain-locked`, `concept-locked`, `wireframes-approved`, `architecture-verified`, `build-verified` (once per feature), `production-released` and `released`. Where each gate sits and what it locks is in [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md).
+The pipeline runs in phases. Each phase ends at a gate: a hard stop where David approves a commitment before anything is built on it. The gates in the current step design are `domain-locked`, `concept-locked`, `screens-approved`, `architecture-verified`, `build-verified` (once per feature), `production-released` and `released`. Where each gate sits and what it locks is in [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md).
 
 At a gate, the orchestrator presents a gate summary and waits for David's explicit yes or no. A passed gate is never silently undone; reopening it is a recorded decision. PDLF never passes a gate without David's approval, and Cupcake enforces this. The procedure is in [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md).
 
@@ -115,10 +115,9 @@ PDLF uses skills from these families:
 |---|---|
 | GStack | Structured reviews from different angles (scope, engineering, design, developer experience), QA in a real browser, code review, shipping. |
 | Matt Pocock | Domain modelling (a locked shared vocabulary and decisions), turning the plan into tickets, triage of findings, architecture health. |
-| Magdoub wireframe | Structural wireframes first, then polished wireframes. |
 | Anvil (`anvil-agent-references`) | How Anvil itself works: server code, client forms, data models and the rest, issued by Anvil. |
 | Magnus919 | Secure software engineering and security audit methods. |
-| MyBizz | Sentinel's security review (`mb-sentinel-review`), diagram scoping (`mb-archify-scope`) with Archify, and close-out. |
+| MyBizz | Sentinel's security review (`mb-sentinel-review`), diagram scoping (`mb-archify-scope`) with Archify, form building (`mb-form-builder`), and close-out. |
 
 The skills catalog in mybizz-os ([[[mybizz-os-docs:os-reference-docs/skills-catalog|Skills Catalog]]](C:/mybizz/mybizz-os-docs/os-reference-docs/skills-catalog.md)) is the single register of which skills are installed. Which skill each step uses is decided in that step's design.
 
@@ -154,7 +153,7 @@ PDLF builds for Anvil.works only. The rules are in [[[pdlf:pdlf-library/policy-l
 - **Mybizz applications share everything they can.** `mb-3-cs`, `mb-4-ecom` and later applications are built the same way wherever their business domains allow, in both directions: [[[default:policy-global/pol-common-aspects-for-mybizz-anvil-applications|Common Aspects for Mybizz Anvil Applications]]](C:/dev/project-library-global/policy-global/pol-common-aspects-for-mybizz-anvil-applications.md).
 - **A reference platform supplies the domain, never the technology.** An application built from a reference (for `mb-4-ecom`, Medusa) takes its business domain and workflows, analysed outside the Mybizz process, and rebuilds them in Python for Anvil.
 - **Never add forms or server modules to App 3.** Every client instance runs App 3 on `master_template`; a form or module added to App 3 overrides `master_template` for every client, and the image build stops on it: [[[default:specifications-global/spec-five-app-architecture-model|Five-App Architecture Model]]](C:/dev/project-library-global/specifications-global/spec-five-app-architecture-model.md).
-- **Material 3.** Every application uses `m3-custom-theme`, the full Material 3 theme built on Anvil's own, as its only theme dependency, and David's design standards in `project-library-global`. Design moves in approved stages: structural wireframes, then polished wireframes, then screens.
+- **Material 3.** Every application uses `m3-custom-theme`, the full Material 3 theme built on Anvil's own, as its only theme dependency, and David's design standards in `project-library-global`. Each form is designed as a screen requirement that David approves, then built from it by `mb-form-builder`, using the theme component that serves each element best.
 
 ## 11. Where things live
 

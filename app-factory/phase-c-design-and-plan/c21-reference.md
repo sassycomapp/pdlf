@@ -1,72 +1,38 @@
 ---
 title: "c21-reference"
 doc-id: "mb-06a9bf5e"
-updated: "2026-10-24"
+updated: "2026-11-12"
 ---
+# Step 21 — Concept Check: Reference
 
-## From `21-concept-sanity-audit.md`
+What the agent does at Step 21, in order. Agent-facing. Fixed values: [[[pdlf:app-factory/phase-c-design-and-plan/c21-config|Step 21 Configuration]]](C:/pdlf/app-factory/phase-c-design-and-plan/c21-config.md). The pattern every step follows (search, read, verify, BFT, ledger row, receipt, explain, stop, close-out) is in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md) and is not repeated here. Every skill is invoked with the handover material and the context pack, in full ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2). The gate ceremony is in [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md) and is not repeated here.
 
-## Task Execution Order
+## 1. Start
 
-1. Read all Phase B+C inputs: spec (Step 13), CEO review (Step 14), Eng review (Step 15), GLOSSARY.md + ADRs (Step 16), DESIGN.md (Step 20)
-2. Cross-reference each document pair for contradictions
-3. Produce short audit report — what was checked, findings, discrepancies, verdict
-4. Save audit report to `<project-library>/pdlf/step-21-concept-audit.md`
-5. → GATE: Execute gate procedure per [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|spec-gate-procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md)
-6. → GATE: `concept-locked` — developer approval required. From this point forward, no new feature may be added without formal gate reopening.
-7. Follow execution sequence in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md)
-8. Apply BFT per [[[pdlf:pdlf-library/specifications-local/spec-bft|spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md) (Full — gate override)
+1. Read the entry record and Step 20's ledger row. Check Step 20 is complete or skipped for this run (test PR-01). If not: stop and raise a deviation.
+2. Carry forward every input notice of Steps 17 to 20 to this step's receipt.
+3. Read every concept document in the configuration, in full.
 
----
+## 2. The check
 
-## Description
+4. Check every pair of concept documents for contradictions, and run every fixed check in the configuration except Receipts. Write each pair, what was compared and each contradiction into the concept check report.
+5. For each contradiction: show David the two statements and your recommended correction. Correct the source document with his decision, then check the pair again.
+6. Write the verdict into the report once no contradiction remains.
 
-Cross-references all Phase B+C outputs for consistency. Hard scope freeze —
-after this gate, no new feature may be added without formal gate reopening.
+## 3. Checks
 
-## Inputs Required
+7. Run the Receipts check in the configuration (test PR-05). On a failure: present it to David and correct it at its source.
+8. Record DC-11 and PR-05 in the checks file.
+9. Run `mb-sentinel-review` for Step 21 at Medium scrutiny on the report. On Flag or Escalate: stop and present it to David. Check the review's `triage_findings` row exists (test PR-04).
 
-- Step 13 spec at `<project-library>/output-matt-skills/step-13-spec.md` — also available as GitHub issue #<number> on project repo
-- Step 14 CEO plan + review report at `<project-library>/output-gstack/step-14-ceo-plan.md`
-- Step 15 Eng review (TDD cluster)
-- Step 16 GLOSSARY.md + ADRs
-- Step 20 DESIGN.md
+## 4. The gate
 
-## Outputs
+10. Run the Full BFT for the gate.
+11. Present the gate summary block in the configuration. Ask David: "Proceed to the screen requirements? (yes/no)".
+12. On no: record the blocker, set the step's `status` to `blocked`, stop.
+13. On yes: give David the command that records his approval, `bash /mnt/c/mybizz/scripts/pdlf-gate.sh {slug} concept-locked {run}`, and wait until he confirms it ran. Never run it and never write to the `gates` table. Read the `gates` row and check `concept-locked` is passed for the run; if it is not, stop. Record PR-03 in the checks file.
 
-- Audit report saved to `<project-library>/pdlf/step-21-concept-audit.md`
-- GATE `concept-locked` — full BFT, gate summary, developer approval required
+## 5. The end
 
-## Step Table
-
-| Step | Type | Gate | Handled By |
-|---|---|---|---|
-| 21 | Gate (OpenCode-native) | **GATE** `concept-locked` | OpenCode |
-
-## Gate
-
-| Gate | After Step | What is Locked |
-|---|---|---|
-| `concept-locked` | 21 | Full concept coherence audit passed. Scope frozen. No new feature may be added without formally reopening this gate. |
-
-## Reference Files
-
-| Legacy step ref | Steps 21 and 34 (pending rename) |
-
----
-
-## Reference
-
-OpenCode is always the orchestrator. Invoke skills only when they beat OpenCode directly.
-
-For execution sequence: [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md)
-For BFT procedure: [[[pdlf:pdlf-library/specifications-local/spec-bft|Spec: BFT]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md)
-For gate procedure: [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md)
-
-GBrain is queried automatically at substep 1. Syncing is asked at substep 10, never auto-run.
-The two housekeeping questions are asked separately, every step, never combined, never auto-run.
-
-The ledger row, Step Receipt, and devlog-index/judgement-trail are the complete checkpoint.
-No separate state file, devlog file, or completion report.
-
-Skills save where designed. PDLF process artifacts go to `<project-library>/pdlf/`.
+14. Complete the Step 21 `steps` row with the ledger values in the configuration, and write the Full BFT record and the Step Receipt, from the [[[pdlf:pdlf-library/templates-local/step-receipt-template|Step Receipt Template]]](C:/pdlf/pdlf-library/templates-local/step-receipt-template.md).
+15. Explain what was done and that the concept is locked. Present the Step Receipt, stop, and ask David to run `/mb-close-out`.
