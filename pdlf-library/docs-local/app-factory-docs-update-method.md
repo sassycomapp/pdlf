@@ -1,6 +1,6 @@
 ---
 title: "app-factory-docs-update-method"
-updated: "2026-10-29"
+updated: "2026-11-12"
 doc-id: "mb-567f5152"
 ---
 # App Factory Docs Update Method
@@ -13,18 +13,20 @@ A suite is the set of seven of one step, named by its app-factory code (for exam
 
 ## How PDLF is completed
 
-PDLF is completed phase by phase. Every phase goes through three stages, in this order:
+PDLF is built and proven phase by phase, and finished once, as a whole. Every phase goes through three stages, in this order:
 
 1. **Built.** Every suite of the phase is brought up to date by the method below: the build plan is closed, and the test specification, config, reference, explainer and decision tree are written from it.
 2. **Proven.** `mb-3-cs` runs through the phase. Whatever fails or is missing is corrected in PDLF, and the run continues from the step corrected.
-3. **Finished.** The phase's modules are written from its proven suites.
+3. **Finished.** The phase's modules are written from its proven suites. This stage is taken for every phase together, once `mb-3-cs` has run through the whole of PDLF.
 
 The phases are taken in this order:
 
 1. **Phase B is built.**
 2. **Phase A is built for Phases A and B:** every entry point (Steps 2 to 10); the orchestrator (Step 1) as far as it runs Phases A and B; and the resume check, by which the orchestrator reads the ledger when it starts and offers to continue an unfinished run at the step where it stopped.
-3. **Phases A and B are proven, then finished.** `mb-3-cs` runs through them by entry point 03. Step 11 makes `mb-3-cs` in a copy of the project template, `C:\dev\project-template\`, and the existing repositories of `mb-3-cs` are the context it brings.
-4. **Phases C, D, E and F follow, one at a time.** For each: the phase is built; the orchestrator is extended to run it; the `mb-3-cs` run resumes at the step where it stopped, never from the start; the phase is proven, then finished.
+3. **Phases A and B are proven.** `mb-3-cs` runs through them by entry point 03. Step 11 makes `mb-3-cs` in a copy of the project template, `C:\dev\project-template\`, and the existing repositories of `mb-3-cs` are the context it brings.
+4. **Phases C, D, E and F follow, one at a time.** For each: the phase is built; the orchestrator is extended to run it; the `mb-3-cs` run resumes at the step where it stopped, never from the start; the phase is proven.
+
+5. **PDLF is finished.** Once `mb-3-cs` has run through every phase, PDLF is reviewed as a whole, the developer makes a full backup of `C:\pdlf\`, and then every step's module is written from its proven suite. Each step's build plan stays until its module is written.
 
 An entry point is proven the first time a run takes it. A step is proven when `mb-3-cs` has run through it.
 
@@ -58,7 +60,8 @@ Each step's testing is its `{suite}-test-spec.md`, drawn from the test suite, wh
 - **A backup before every run.** A run writes to `mb-3-cs`'s repositories and to Anvil. The backup lets a failed run be undone without loss.
 - **Written afresh, then scanned.** The old step documents hold outdated locations and methods. Writing from the build plan, and scanning before sending, keeps every one of them out of the finished documents.
 - **The decision tree is generated.** A tree drawn by hand drifts from the reference it pictures; a tree generated from the reference does not (build plan rule 4.5).
-- **Modules last in each phase.** A module is the finished step. It is written only once the step has been proven on `mb-3-cs`.
+- **Modules last of all.** A module is the finished step, written only once the step has been proven on `mb-3-cs`. Building the later phases changes rules that every step shares, so modules written phase by phase would be compiled again after each change. Written once, after the whole run and a review of PDLF, each module is compiled once. The orchestrator runs every step from its configuration, reference and test specification until then.
+- **A full backup before the modules.** Packaging every step at once touches every phase folder; the backup lets it be undone.
 
 ## What has to happen
 

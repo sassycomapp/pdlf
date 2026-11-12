@@ -32,6 +32,10 @@ Phases A and B are built. They are proven by running `mb-3-cs` through them by e
 
 Whatever fails or is missing is corrected in PDLF, and the run continues from the step corrected.
 
+### A3. Finish PDLF: review, backup, modules
+
+Once `mb-3-cs` has run through every phase, PDLF is reviewed as a whole; David backs up `C:\pdlf\` in full; then every step's module is written from its proven suite, and each step's build plan is deleted when its module is written ([[[pdlf:pdlf-library/docs-local/app-factory-docs-update-method|App Factory Docs Update Method]]](C:/pdlf/pdlf-library/docs-local/app-factory-docs-update-method.md)). Before the modules are written, the design of a module is settled with David, together with the change that has `pdlf-init` load a step's module.
+
 ---
 
 ## B. Rules for building every step

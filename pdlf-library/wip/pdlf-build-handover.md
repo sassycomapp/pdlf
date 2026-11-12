@@ -1,6 +1,6 @@
 ---
 title: "pdlf-build-handover"
-updated: "2026-11-08"
+updated: "2026-11-12"
 doc-id: "mb-24ee05ab"
 ---
 # Handover — Building PDLF
@@ -269,4 +269,4 @@ The three-tier method (pure logic, Uplink integration, verification in the brows
 
 1. Clone `pdlf`, `project-library-global`, `project-template` and `mybizz-scripts`; read `pdlf-build-plan.md`, `C:\pdlf\pdlf-library\docs-local\app-factory-docs-update-method.md`, the Phase A suites (`a01` to `a10`), the Phase B suites (`b11` to `b16`) and section 9.
 2. Carry out to-do A2 with David: the proving run of `mb-3-cs` through Phases A and B. Correct PDLF wherever the run fails, and continue the run from the step corrected.
-3. When Phases A and B are proven, write their modules, then build Phase C as section 8 sets out.
+3. When Phases A and B are proven, build Phase C as section 8 sets out. Modules are written for every phase together at the end (to-do A3).
