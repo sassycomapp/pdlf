@@ -1,7 +1,7 @@
 ---
 title: "pdlf-build-plan"
 doc-id: "mb-64817b10"
-updated: "2026-11-11"
+updated: "2026-11-12"
 ---
 # PDLF Build Plan
 
@@ -110,7 +110,7 @@ An address is the app's repository name followed by `.mybizz.live`. It is set up
 
 **GBrain.** Every project library, like every other documentation repository, is a GBrain source, and all of them can be searched together. When an application re-enters PDLF, PDLF reads its repositories directly.
 
-**Client hosting and price.** Each client instance runs in its own container with its own database, at £79 a month per client, or the fixed price in the client's currency ([[[default:adr-global/adr-tiers-model|Tiers Model]]](C:/dev/project-library-global/adr-global/adr-tiers-model.md)). Server resources are raised for that client's container alone, with no change to App 2. A client's transactions run in its own instance; App 2 carries no client load.
+**Client hosting and price.** Each client instance runs in its own container with its own database, at £119 a month or £1,190 a year per client, or the fixed price in the client's currency ([[[default:adr-global/adr-tiers-model|Tiers Model]]](C:/dev/project-library-global/adr-global/adr-tiers-model.md)). Server resources are raised for that client's container alone, with no change to App 2. A client's transactions run in its own instance; App 2 carries no client load.
 
 **Client storage and exit.** Each client has one Cloudflare R2 bucket, in a free Cloudflare account in the client's own name, where Mybizz is an invited member; it holds the raw webhook payloads, archived logs, email bodies and backups. When a client leaves Mybizz, all its data is written to that bucket and Mybizz leaves the account. PDLF builds this exit export into every application and proves it on the test client instance: [[[default:adr-global/adr-client-r2-storage-and-exit-handover|Client R2 Storage and Exit Handover]]](C:/dev/project-library-global/adr-global/adr-client-r2-storage-and-exit-handover.md).
 
@@ -282,7 +282,7 @@ Every step's entry is held in its own build plan, `{letter}{number}-build-plan.m
 
 Phase G must also achieve, each item checked as it is set up:
 
-- **The DigitalOcean platform of the business,** as the runbook's platform set-up sets out: the Managed PostgreSQL cluster, Standard Edition, PostgreSQL 18, 2 GiB (stage 1 of the automatic resizing decision record), storage autoscaling, the Sunday 06:00 UK maintenance window and trusted sources that admit only the business's containers; the provisioning job inside DigitalOcean that creates each client's database user with its three limits ([[[default:specifications-global/spec-client-instance-hosting|Client Instance Hosting]]](C:/dev/project-library-global/specifications-global/spec-client-instance-hosting.md) section 4); the registry; the test client instance.
+- **The DigitalOcean platform of the business,** as the runbook's platform set-up sets out: the Managed PostgreSQL cluster, Advanced Edition with a standby node, PostgreSQL 18, 8 GiB (stage 1 of the automatic resizing decision record), storage autoscaling, the Sunday 06:00 UK maintenance window and trusted sources that admit only the business's containers; the provisioning job inside DigitalOcean that creates each client's database user with its three limits ([[[default:specifications-global/spec-client-instance-hosting|Client Instance Hosting]]](C:/dev/project-library-global/specifications-global/spec-client-instance-hosting.md) section 4); the registry; the test client instance.
 - **The test client instance set up exactly as every client is:** its domain proxied through Cloudflare with the web application firewall, DDoS protection and bot blocking on, and its R2 bucket's backup lock rules set.
 - **App 5's operating keys and checks:** the two DigitalOcean access keys with their custom scopes in App 5's Vault ([[[default:security-global/cloud/sec-client-provisioning-security|Client Provisioning Security]]](C:/dev/project-library-global/security-global/cloud/sec-client-provisioning-security.md)); the DigitalOcean Uptime check on App 5's status endpoint; the two CloudWatch alarms on Mybizz's SES account; the Groq organisation spend limit with its alerts ([[[default:adr-global/adr-fair-use-limits|Fair-Use Limits]]](C:/dev/project-library-global/adr-global/adr-fair-use-limits.md)).
 - **The `{slug}-app4` workflows:** the release image scanned at every build and every week, each finding reported to App 5 with its 14-day countdown for high and critical findings, a build containing end-of-life software failed, each image signed at build, and the registry cleaned at every release ([[[default:adr-global/adr-dependency-update-model|Dependency Update Model]]](C:/dev/project-library-global/adr-global/adr-dependency-update-model.md)).

@@ -1,7 +1,7 @@
 ---
 title: "pdlf-todo"
 doc-id: "mb-13a3fbc9"
-updated: "2026-11-10"
+updated: "2026-11-12"
 ---
 # Active PDLF To-Do List
 
@@ -119,7 +119,7 @@ Document Amazon SES and Cloudflare with `mb-sysdoc-creator` (both are registered
 2. Set up Mybizz's Cloudflare user, which clients invite with the roles Cloudflare R2 Admin and DNS.
 3. Switch on Zero Data Retention in the Groq console (Settings → Data Controls) for Mybizz's Groq organisation (SR-53a).
 4. In the Anvil editor, App 1's Users service: "Require 2-factor authentication" is on; switch on "Allow 2-factor reset by email".
-5. Open Mybizz's Paddle account and complete Paddle's approval of the business; create the subscription product with its fixed monthly prices before tax, £79, $99, C$135, €89 and CHF 89, and limit the checkout to Mybizz's markets ([[[default:specifications-global/spec-client-billing|Client Billing]]](C:/dev/project-library-global/specifications-global/spec-client-billing.md)).
+5. Open Mybizz's Paddle account and complete Paddle's approval of the business; create the subscription product with its fixed monthly prices before tax, £119, $149, C$199, €139 and CHF 139, its annual prices at 10 times the monthly price, and assisted setup as a one-off price of one month's price, and limit the checkout to Mybizz's markets ([[[default:specifications-global/spec-client-billing|Client Billing]]](C:/dev/project-library-global/specifications-global/spec-client-billing.md)).
 6. In Mybizz's Cloudflare account, create Mybizz's own R2 bucket for App 5, which holds Paddle's billing notifications.
 7. Register Mybizz-Live Ltd for UK VAT at incorporation, as an intending trader; the accountant confirms how Paddle's reverse invoices are entered on the VAT return.
 8. Register Mybizz-Live Ltd with the Information Commissioner's Office and pay its data protection fee, before launch.
