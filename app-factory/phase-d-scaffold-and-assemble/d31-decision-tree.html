@@ -1,10 +1,46 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="doc-id" content="mb-1f48f887">
-<title>d31-decision-tree</title>
+<title>Step 31 — Scaffold Plan Decision Tree</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; background: #f5f5f4; padding: 32px; margin: 0; }
+  h1 { font-size: 19px; color: #1a1a1a; margin: 0 0 20px 0; }
+  .diagram-wrap { background: white; border-radius: 10px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); overflow-x: auto; }
+  .mermaid { display: flex; justify-content: center; }
+</style>
 </head>
 <body>
+<h1>Step 31 — Scaffold Plan Decision Tree (matches d31-reference)</h1>
+<div class="diagram-wrap">
+  <div class="mermaid">
+flowchart TD
+    Start(["Steps 17 to 26's hand-over"]) --> S1{"1. Step 26 complete,<br/>screens-approved passed?"}
+    S1 -->|"No"| Dev1["Stop: deviation"]
+    S1 -->|"Yes"| S2["2. Carry notices<br/>3. Read every input"]
+    S2 --> Ex{"4. Existing app?"}
+    Ex -->|"Yes"| G["graphify maps its code"]
+    Ex -->|"No"| CD
+    G --> CD["5. codebase-design: modules at clean seams<br/>6. data-models, server-code, client-modules"]
+    CD --> F["7. Every function planned: name, module,<br/>access, rate limit, behaviour, test"]
+    F --> W["8. scaffold-spec.md written or extended"]
+    W --> Ex2{"9. Existing app?"}
+    Ex2 -->|"Yes"| Disp["Disposition list: keep, rework, remove,<br/>each with its ticket; no code changed"]
+    Ex2 -->|"No"| Sc
+    Disp --> Sc["10. Scanner settings"]
+    Sc --> Ap{"11. David approves?"}
+    Ap -->|"Changes"| Chg["Correct, present again"]
+    Chg --> Ap
+    Ap -->|"Yes"| Tr{"12. Every screen function and ticket<br/>traces to a planned function with access and test?"}
+    Tr -->|"No"| Fix["Correct scaffold-spec.md"]
+    Fix --> Tr
+    Tr -->|"Yes"| End(["13. Copy; 14. Full BFT, ledger row, Step Receipt<br/>15. Explain, stop, ask David to run /mb-close-out"])
+  </div>
+</div>
+<script>
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis' } });
+</script>
 </body>
 </html>

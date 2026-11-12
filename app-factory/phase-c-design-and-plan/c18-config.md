@@ -14,7 +14,7 @@ The fixed values of Step 18. Agent-facing. What the agent does, in order: [[[pdl
 | Step | 18, Pull to local |
 | Phase | C, Design and Plan |
 | Carried out by | David runs the pull; OpenCode checks it |
-| Runs for | Every run that reached Step 17; the same procedure runs as Steps 30 and 33 |
+| Runs for | Every run that reached Step 17; the same procedure runs as Step 33 |
 | Previous step | 17 |
 | Next step | 19 |
 | Gate | None |
@@ -42,7 +42,7 @@ The fixed values of Step 18. Agent-facing. What the agent does, in order: [[[pdl
 |---|---|
 | Clean | `git status --short` prints nothing |
 | Level | `git rev-parse master` equals `git rev-parse origin/master` |
-| Expected change | Step 17: `db_schema` in `anvil.yaml` equals the authoritative schema. Step 30: the forms Step 29 built. Step 33: the modules and functions Step 32 created |
+| Expected change | Step 17: `db_schema` in `anvil.yaml` equals the authoritative schema. Step 33: the modules and functions Step 32 created |
 | Nothing else | `git diff --name-only` between the receipt's recorded commit and `master` lists only files the step before it expected, apart from formatting Anvil itself applies |
 | Validates | `anvil --json validate .` reports no error |
 

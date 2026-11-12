@@ -1,53 +1,12 @@
 ---
 title: "d33-reference"
 doc-id: "mb-768f1d0a"
-updated: "2026-10-12"
+updated: "2026-11-12"
 ---
+# Step 33 — Pull to Local: Reference
 
-## From `33-pull-to-local.md`
+What the agent does at Step 33, in order. Agent-facing. Fixed values: [[[pdlf:app-factory/phase-d-scaffold-and-assemble/d33-config|Step 33 Configuration]]](C:/pdlf/app-factory/phase-d-scaffold-and-assemble/d33-config.md). The pattern every step follows (search, read, verify, BFT, ledger row, receipt, explain, stop, close-out) is in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md) and is not repeated here. Every skill is invoked with the handover material and the context pack, in full ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2).
 
-## Task Execution Order
-
-1. Pull the Anvil-connected code repo to local
-2. Follow execution sequence in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md)
-3. Apply BFT per [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md) at assigned level (None)
-
----
-
-## Description
-
-Pull the Anvil-connected code repo to local so the build loop has the real
-stub structure.
-
-## Outputs
-
-- Updated local code repo with scaffold structure.
-
-## Step Table
-
-| Step | Type | Gate | Handled By |
-|---|---|---|---|
-| 33 | Manual | | Pull to local |
-
-## Reference Files
-
-| [[[pdlf:pdlf-library/policy-local/pol-anvil-platform\|Pol Anvil Platform]]](C:/pdlf/pdlf-library/policy-local/pol-anvil-platform.md) | Steps 17, 18, 29, 30, 32, 33, 41–45 |
-
-Anvil integration is governed by [[[pdlf:pdlf-library/policy-local/pol-anvil-platform|Policy: Anvil Platform]]](C:/pdlf/pdlf-library/policy-local/pol-anvil-platform.md) in full — the detailed reference (the earlier `stepwise/step-6-24-anvil-integration.md` pointer was retired 2026-07-18: the file was never created; its intended content lives in the policy).
-
----
-
-## Reference
-
-OpenCode is always the orchestrator. Invoke skills only when they beat OpenCode directly.
-
-For execution sequence: [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md)
-For BFT procedure: [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md)
-
-GBrain is queried automatically at substep 1. Syncing is asked at substep 10, never auto-run.
-The two housekeeping questions are asked separately, every step, never combined, never auto-run.
-
-The ledger row, Step Receipt, and devlog-index/judgement-trail are the complete checkpoint.
-No separate state file, devlog file, or completion report.
-
-Skills save where designed. PDLF process artifacts go to `<project-library>/pdlf/`.
+1. Read the entry record and Step 32's ledger row. Check Step 32 is complete for this run (test PR-01). If not: stop and raise a deviation.
+2. Run Step 18's procedure, sections 2 to 4 of [[[pdlf:app-factory/phase-c-design-and-plan/c18-reference|Step 18 Reference]]](C:/pdlf/app-factory/phase-c-design-and-plan/c18-reference.md), with the expected change in this step's configuration, and with Step 33's outputs and ledger values.
+3. Explain what was done. Present the Step Receipt, stop, and ask David to run `/mb-close-out`.

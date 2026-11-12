@@ -256,7 +256,7 @@ Every step is built to these rules. They are stated once here and not repeated i
 
 **4.1 Intent first, then the plan, then the step.** For each step, write its build-plan entry first (what it must achieve, what it starts from, what it produces, who carries it out, what it must be built so that), and have the developer approve the entry before the step file is touched. The step file is then written to the entry, never the other way round.
 
-**4.2 Choose skills from the catalogue, deliberately.** For each step, read the catalogue and name the skill that best serves it, with the reason. Read that skill's own source before designing around it, and record what it really does in the build-plan entry. Phase C has clear candidates that were not used in Phase B: Anvil's `data-models`, `anvil-yaml` and `client-forms` for the tables and forms; `wizard`, which walks a person through steps only they can perform, for the manual steps in the Anvil editor (Steps 17, 29 and 32); and `writing-for-agents` whenever a step file is written, because step files are instructions for an agent.
+**4.2 Choose skills from the catalogue, deliberately.** For each step, read the catalogue and name the skill that best serves it, with the reason. Read that skill's own source before designing around it, and record what it really does in the build-plan entry. Phase C has clear candidates that were not used in Phase B: Anvil's `data-models`, `anvil-yaml` and `client-forms` for the tables and forms; `wizard`, which walks a person through steps only they can perform, for the manual steps in the Anvil editor (Step 17); and `writing-for-agents` whenever a step file is written, because step files are instructions for an agent.
 
 **4.3 Anvil and our standards in every step.** Every build-plan entry names the `project-library-global` standard and the Anvil skill it applies. This is the table "which standard each step applies", built step by step instead of afterwards.
 
@@ -266,7 +266,7 @@ Every step is built to these rules. They are stated once here and not repeated i
 
 **4.6 A lesson goes straight into its source.** When building a step teaches something, the lesson is written at once into the build plan's rules, the specification it concerns, or `project-library-global`, never only into a log.
 
-**4.7 Fit for purpose before thoroughness.** For each step, ask whether it earns its place. Phase C has three near-identical "pull to local" steps (18, 30 and 33): one shared procedure may serve all three. For each review, ask what only it covers, so that the developer is never asked the same question twice.
+**4.7 Fit for purpose before thoroughness.** For each step, ask whether it earns its place. The "pull to local" steps (18 and 33) share one procedure. For each review, ask what only it covers, so that the developer is never asked the same question twice.
 
 **4.8 Proven before finished.** A step is recorded as built when its documents are complete, as proven when `mb-3-cs` has run through it, and as finished when it has been packaged as its module. The order in which the phases pass through these stages is set out in the [[[pdlf:pdlf-library/docs-local/app-factory-docs-update-method|App Factory Docs Update Method]]](C:/pdlf/pdlf-library/docs-local/app-factory-docs-update-method.md).
 
@@ -276,7 +276,7 @@ Every step is built to these rules. They are stated once here and not repeated i
 
 ### The steps
 
-Every step's entry is held in its own build plan, `{letter}{number}-build-plan.md`, in its phase folder (section 7). Steps 13, 24, 25, 27 and 28 are not used; each has a placeholder file.
+Every step's entry is held in its own build plan, `{letter}{number}-build-plan.md`, in its phase folder (section 7). Steps 13, 24, 25, 27, 28, 29 and 30 are not used; each has a placeholder file.
 
 ### Phase G — Remaining apps
 

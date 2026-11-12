@@ -16,7 +16,7 @@ The fixed values of Step 26. Agent-facing. What the agent does, in order: [[[pdl
 | Carried out by | OpenCode; David decides findings, approves each screen requirement and answers the gate |
 | Runs for | Every run that reached Step 23 |
 | Previous step | 23 (Steps 24 and 25 are not used) |
-| Next step | The first step of Phase D (Steps 27 and 28 are not used) |
+| Next step | 31, the first step of Phase D (Steps 27 to 30 are not used) |
 | Gate | `screens-approved` ([[[pdlf:pdlf-library/specifications-local/spec-gate-procedure\|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md)) |
 | BFT level | Full (gate) |
 | Sentinel scrutiny | None; Step 22's review covers the same documents |

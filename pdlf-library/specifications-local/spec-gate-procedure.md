@@ -55,7 +55,7 @@ The agent does not proceed past a gate without explicit approval:
 | `domain-locked` | 16 | The domain model: the glossary, its decisions and the data design they agree with; and with them every output of Phase B, which Phase C builds on |
 | `concept-locked` | 21 | The concept, after a cross-document coherence audit; no feature is added after it without the gate being reopened |
 | `screens-approved` | 26 | Every screen requirement, each approved by David; Phase C |
-| `architecture-verified` | 34 | The physical Anvil build (Data Tables, forms, scaffolding) matches the locked architecture, before any code is written |
+| `architecture-verified` | 34 | The app's tables, structure, access and trust boundaries, verified against the locked decisions before any code is written |
 | `build-verified` | 39 | The feature, after remediation and its retest |
 | `production-released` | 44 | The production release |
 | `released` | 45 and 46 jointly | The release in service |

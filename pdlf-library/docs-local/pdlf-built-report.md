@@ -171,41 +171,47 @@ This report is a working tool for building PDLF. It is deleted when PDLF is fini
 
 ### Phase D — Scaffold and Assemble
 
-#### Step 29: Build UI forms
+**Phase status:** Built: every step of the phase is written to the current intent, and the orchestrator runs it. Not yet proven.
 
-**File:** `app-factory/phase-d-scaffold-and-assemble/29-build-ui-forms.md`
+#### Step 29: Not used
 
-**Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
+**Status:** Not used.
 
-#### Step 30: Pull to local
+#### Step 30: Not used
 
-**File:** `app-factory/phase-d-scaffold-and-assemble/30-pull-to-local.md`
+**Status:** Not used.
 
-**Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
+#### Step 31: Scaffold plan
 
-#### Step 31: Scaffold planning
+**Status:** Built.
 
-**File:** `app-factory/phase-d-scaffold-and-assemble/31-scaffold-planning.md`
+**Files:** in `app-factory/phase-d-scaffold-and-assemble/`: `d31-build-plan.md`, `d31-test-spec.md`, `d31-config.md`, `d31-reference.md`, `d31-explainer.md`, `d31-decision-tree.html`, `d31-module.md` (empty until the step is packaged).
 
-**Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
+**What it does and produces:** [[[pdlf:app-factory/phase-d-scaffold-and-assemble/d31-explainer|Step 31 Explainer]]](C:/pdlf/app-factory/phase-d-scaffold-and-assemble/d31-explainer.md); [[[pdlf:app-factory/phase-d-scaffold-and-assemble/d31-config|Step 31 Configuration]]](C:/pdlf/app-factory/phase-d-scaffold-and-assemble/d31-config.md).
 
-#### Step 32: Physical scaffold build
+#### Step 32: Create the scaffold
 
-**File:** `app-factory/phase-d-scaffold-and-assemble/32-physical-scaffold-build.md`
+**Status:** Built.
 
-**Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
+**Files:** in `app-factory/phase-d-scaffold-and-assemble/`: `d32-build-plan.md`, `d32-test-spec.md`, `d32-config.md`, `d32-reference.md`, `d32-explainer.md`, `d32-decision-tree.html`, `d32-module.md` (empty until the step is packaged).
+
+**What it does and produces:** [[[pdlf:app-factory/phase-d-scaffold-and-assemble/d32-explainer|Step 32 Explainer]]](C:/pdlf/app-factory/phase-d-scaffold-and-assemble/d32-explainer.md); [[[pdlf:app-factory/phase-d-scaffold-and-assemble/d32-config|Step 32 Configuration]]](C:/pdlf/app-factory/phase-d-scaffold-and-assemble/d32-config.md).
 
 #### Step 33: Pull to local
 
-**File:** `app-factory/phase-d-scaffold-and-assemble/33-pull-to-local.md`
+**Status:** Built.
 
-**Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
+**Files:** in `app-factory/phase-d-scaffold-and-assemble/`: `d33-build-plan.md`, `d33-test-spec.md`, `d33-config.md`, `d33-reference.md`, `d33-explainer.md`, `d33-decision-tree.html`, `d33-module.md` (empty until the step is packaged).
 
-#### Step 34: Architectural sanity audit
+**What it does and produces:** [[[pdlf:app-factory/phase-d-scaffold-and-assemble/d33-explainer|Step 33 Explainer]]](C:/pdlf/app-factory/phase-d-scaffold-and-assemble/d33-explainer.md); [[[pdlf:app-factory/phase-d-scaffold-and-assemble/d33-config|Step 33 Configuration]]](C:/pdlf/app-factory/phase-d-scaffold-and-assemble/d33-config.md).
 
-**File:** `app-factory/phase-d-scaffold-and-assemble/34-architectural-sanity-audit.md`
+#### Step 34: Architecture audit
 
-**Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
+**Status:** Built.
+
+**Files:** in `app-factory/phase-d-scaffold-and-assemble/`: `d34-build-plan.md`, `d34-test-spec.md`, `d34-config.md`, `d34-reference.md`, `d34-explainer.md`, `d34-decision-tree.html`, `d34-module.md` (empty until the step is packaged).
+
+**What it does and produces:** [[[pdlf:app-factory/phase-d-scaffold-and-assemble/d34-explainer|Step 34 Explainer]]](C:/pdlf/app-factory/phase-d-scaffold-and-assemble/d34-explainer.md); [[[pdlf:app-factory/phase-d-scaffold-and-assemble/d34-config|Step 34 Configuration]]](C:/pdlf/app-factory/phase-d-scaffold-and-assemble/d34-config.md).
 
 ### Phase E — Build and Verify
 

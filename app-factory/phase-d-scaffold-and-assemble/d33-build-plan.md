@@ -1,10 +1,11 @@
 ---
 title: "d33-build-plan"
 doc-id: "mb-b57f0c0c"
-updated: "2026-10-20"
+updated: "2026-11-12"
 ---
+# Step 33 — Pull to Local: Build Plan
 
-## From `pdlf-build-plan.md`: step entry
+## Step entry
 
 ### Phase D — Scaffold and Assemble
 
@@ -12,31 +13,34 @@ Ends with the gate `architecture-verified` (Step 34).
 
 #### Step 33: Pull to local
 
-**Must achieve:** The code repository is pulled to local after the scaffold is built.
+**Must achieve:** David's local copy of the app holds exactly what Anvil holds after the scaffold was pushed, so that Step 34 audits the real state of the app.
 
-**Carried out by:** The developer, by hand.
+**Starts from:** Step 32's receipt and stub list; the app's local repository.
 
-**Skills.** Every skill's output is used by the step named after the arrow.
-- The shared pull procedure of Step 18: after the push, the developer pulls App 1 so that local and Anvil match, including any formatting Anvil applied.
+**Produces:** the app's local repository level with GitHub; in `pdlf-outputs\d33\`: the test results and the Step Receipt; the ledger row.
 
-**Testing:** the pull shows no change other than Anvil's formatting.
+**Carried out by:** David runs one command; OpenCode checks the result.
 
-**Carried over from the old workflow** (to be checked against the step file, then removed):
+**Must be built so that:**
+- the step runs Step 18's pull procedure ([[[pdlf:app-factory/phase-c-design-and-plan/c18-reference|Step 18 Reference]]](C:/pdlf/app-factory/phase-c-design-and-plan/c18-reference.md)); the change it expects is every module and function on Step 32's stub list, and the filled `tests\ts-config.yaml`;
+- any other change, apart from formatting Anvil itself applies, stops the step with a deviation;
+- its ledger row is `step_type = 'manual'`, `skill_family = 'manual'`, `synthesized = false`, `run` and `app_number` from the entry record, and `inputs_used` naming Step 32.
 
-1. Query GBrain — Context relevant to codebase state
-2. Pull Anvil-connected code repo to local — Scaffold structure
-3. Verify local repo updated — STOP if stubs not present
-4. Write Step 33 ledger row — `completed_at`
-5. Generate Step Receipt — `<project-library>/pdlf/outputs/step-33-receipt.md`
-6. Apply BFT — None
-7. Follow execution sequence — Housekeeping, stop, wait for continue
+**BFT level:** None.
 
-## From `pdlf-phase-b-review.md`: finding 4.7
+**Gate:** none.
 
-**4.7 Fit for purpose before thoroughness.** For each step, ask whether it earns its place. Phase C has three near-identical "pull to local" steps (18, 30 and 33): one shared procedure may serve all three. For each review, ask what only it covers, so that the developer is never asked the same question twice.
+**References:** [[[pdlf:app-factory/phase-c-design-and-plan/c18-reference|Step 18 Reference]]](C:/pdlf/app-factory/phase-c-design-and-plan/c18-reference.md); [[[pdlf:app-factory/phase-c-design-and-plan/c18-config|Step 18 Configuration]]](C:/pdlf/app-factory/phase-c-design-and-plan/c18-config.md).
 
-## From `pol-anvil-platform.md`: pull to local
+**Skills.** None; Step 18's procedure is plain commands.
 
-| Pull | After |
-|---|---|
-| Step 33 | The scaffold built in Anvil at Step 32. |
+**Layers with no skill:** all; the step only moves code.
+
+**Testing:** [[[pdlf:app-factory/phase-d-scaffold-and-assemble/d33-test-spec|Step 33 Test Specification]]](C:/pdlf/app-factory/phase-d-scaffold-and-assemble/d33-test-spec.md): only the expected change arrived, and the app validates.
+
+**Standards:** [[[default:specifications-global/spec-anvil-platform-standards|Anvil Platform Standards]]](C:/dev/project-library-global/specifications-global/spec-anvil-platform-standards.md).
+
+## Why it is built this way
+
+- **One procedure.** The pull and its checks are written once, at Step 18; this step names only the change it expects.
+- **Audit the real app.** Step 34 must audit what Anvil holds, including any formatting Anvil applied on the push.

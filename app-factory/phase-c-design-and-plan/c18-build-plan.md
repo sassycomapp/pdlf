@@ -15,7 +15,7 @@ Ends with the gates `concept-locked` (Step 21) and `screens-approved` (Step 26).
 
 **Must achieve:** David's local copy of the app holds exactly what Anvil holds, after work in the Anvil editor, so that the next step reads the real state of the app.
 
-**Starts from:** the Step Receipt of the step before it (Step 17 here; Step 29 and Step 32 when Steps 30 and 33 run this procedure); the app's local repository.
+**Starts from:** the Step Receipt of the step before it (Step 17 here; Step 32 when Step 33 runs this procedure); the app's local repository.
 
 **Produces:** The app's local repository brought level with GitHub; in `pdlf-outputs\c18\`: the test results and the Step Receipt; the ledger row.
 
@@ -26,7 +26,7 @@ Ends with the gates `concept-locked` (Step 21) and `screens-approved` (Step 26).
 - the agent checks that the working tree is clean, that the local branch `master` equals `origin/master`, and that the change the step before it expects is present; for Step 17, `db_schema` in `anvil.yaml` equals the authoritative schema;
 - the agent runs `anvil --json validate .` on the app and stops with a deviation on an error;
 - any file changed that the step before it did not expect, apart from formatting Anvil itself applies, stops the step with a deviation;
-- Steps 30 and 33 run this same procedure and do not repeat it; each names the change it expects;
+- Step 33 runs this same procedure and does not repeat it; it names the change it expects;
 - the Anvil CLI's `anvil watch` is not used, because it would send local edits to the app without David's push;
 - its ledger row is `step_type = 'manual'`, `skill_family = 'manual'`, `synthesized = false`, `run` and `app_number` from the entry record, and `inputs_used` naming Step 17.
 
@@ -46,6 +46,6 @@ Ends with the gates `concept-locked` (Step 21) and `screens-approved` (Step 26).
 
 ## Why it is built this way
 
-- **One procedure for three steps.** Steps 18, 30 and 33 all do the same thing after work in the Anvil editor, so they share one procedure and differ only in the change they expect.
+- **One procedure for two steps.** Steps 18 and 33 do the same thing after work reaches Anvil, so they share one procedure and differ only in the change they expect.
 - **The agent checks, David pulls.** Only David runs git; the agent proves the pull brought exactly what was expected and nothing else.
 - **Validate on arrival.** A file Anvil cannot read is caught here, before any later step builds on it.

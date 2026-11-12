@@ -41,4 +41,4 @@ What the agent does at Step 26, in order. Agent-facing. Fixed values: [[[pdlf:ap
 ## 6. The end
 
 17. Complete the Step 26 `steps` row with the ledger values in the configuration, and write the Full BFT record and the Step Receipt, from the [[[pdlf:pdlf-library/templates-local/step-receipt-template|Step Receipt Template]]](C:/pdlf/pdlf-library/templates-local/step-receipt-template.md).
-18. Explain what was done, that Phase C is closed and Phase D begins. Present the Step Receipt, stop, and ask David to run `/mb-close-out`.
+18. Explain what was done, that Phase C is closed and Phase D begins at Step 31. Present the Step Receipt, stop, and ask David to run `/mb-close-out`.

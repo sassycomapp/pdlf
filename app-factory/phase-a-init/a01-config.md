@@ -45,7 +45,7 @@ The orchestrator runs only the steps of these phases. A run that reaches a step 
 | A, Init | 1 to 10 | Yes |
 | B, Discover and Define | 11, 12, 14, 15, 16 | Yes |
 | C, Design and Plan | 17 to 23, 26 | Yes |
-| D, Scaffold and Assemble | 29 to 34 | No |
+| D, Scaffold and Assemble | 31 to 34 | Yes |
 | E, Build and Verify | 35, 35A, 40, 40B, 36, 37, 38, 38A, 39 | No |
 | F, Ship and Monitor | 41, 42, 42A, 43 to 46 | No |
 
@@ -71,10 +71,10 @@ Every run follows one route: its steps, in this order. A phase not yet built is 
 
 | Route | Steps, in order |
 |---|---|
-| Application | 11, 12, 14, 15, 16 (gate `domain-locked`), 17, 18, 19, 20, 21 (gate `concept-locked`), 22, 23, 26 (gate `screens-approved`), then Phases D to F |
-| Management app | 11, 12, 14, 15, 16 (gate `domain-locked`), 17, 18, 19, 20, 21 (gate `concept-locked`), 22, 23, 26 (gate `screens-approved`), then Phases D to F |
+| Application | 11, 12, 14, 15, 16 (gate `domain-locked`), 17, 18, 19, 20, 21 (gate `concept-locked`), 22, 23, 26 (gate `screens-approved`), 31, 32, 33, 34 (gate `architecture-verified`), then Phases E and F |
+| Management app | 11, 12, 14, 15, 16 (gate `domain-locked`), 17, 18, 19, 20, 21 (gate `concept-locked`), 22, 23, 26 (gate `screens-approved`), 31, 32, 33, 34 (gate `architecture-verified`), then Phases E and F |
 | Client template | 11, then Phase G |
-| Feature | 12, 14, 15, 16 (gate `domain-locked`), 17, 18, 19, 20, 21 (gate `concept-locked`), 22, 23, 26 (gate `screens-approved`), then Phases D to F |
+| Feature | 12, 14, 15, 16 (gate `domain-locked`), 17, 18, 19, 20, 21 (gate `concept-locked`), 22, 23, 26 (gate `screens-approved`), 31, 32, 33, 34 (gate `architecture-verified`), then Phases E and F |
 | Update | The step David names at the entry, then every later step of the Application route |
 | Release | Phase F: 41, 42, 42A, 43, 44 |
 
@@ -97,6 +97,10 @@ A step runs only when every step it depends on is `complete` or `skipped`, and e
 | 22 | Step 21 of the run, and the gate `concept-locked` passed for the run |
 | 23 | Step 22 of the run |
 | 26 | Step 23 of the run |
+| 31 | Step 26 of the run, and the gate `screens-approved` passed for the run |
+| 32 | Step 31 of the run |
+| 33 | Step 32 of the run |
+| 34 | Step 33 of the run |
 
 ## The gates in the built phases
 
@@ -105,6 +109,7 @@ A step runs only when every step it depends on is `complete` or `skipped`, and e
 | `domain-locked` | 16 | `bash /mnt/c/mybizz/scripts/pdlf-gate.sh {slug} domain-locked {run}` |
 | `concept-locked` | 21 | `bash /mnt/c/mybizz/scripts/pdlf-gate.sh {slug} concept-locked {run}` |
 | `screens-approved` | 26 | `bash /mnt/c/mybizz/scripts/pdlf-gate.sh {slug} screens-approved {run}` |
+| `architecture-verified` | 34 | `bash /mnt/c/mybizz/scripts/pdlf-gate.sh {slug} architecture-verified {run}` |
 
 ## The resume check
 
