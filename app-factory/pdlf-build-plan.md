@@ -243,6 +243,8 @@ Every step is built to these rules. They are stated once here and not repeated i
 - **Every artifact goes to its canonical place,** with a copy in the step's output folder, `{slug}-project-library\pdlf-outputs\{step}\`, when its canonical place is elsewhere.
 - **The agent never commits or pushes.** Close-out is `/mb-close-out`, run when the developer asks for it; new knowledge and every lesson reach GBrain only through the memory governor and `mb-submit-memory`.
 - **No application is ever multi-tenant.** Every step that shapes data or code keeps each client's application and database separate.
+- **A change to an approved output needs the developer's authorisation.** When the developer authorises a change to an output that an earlier step produced and he approved, the current step applies the change and records the authorisation on its Step Receipt. The earlier step's copies in `pdlf-outputs` stay unchanged, because its receipt is checked against them.
+- **Every diagram is scoped before it is drawn.** A step that draws a diagram runs `mb-archify-scope`, then `archify`. When Archify's validation fails on routing (an edge through a node, two edges sharing a port, a blocked corridor), the agent makes at most one repair. If that repair fails, it runs `mb-archify-scope`'s recovery and presents the revised Scope Card for the developer's approval, instead of repairing the drawing again.
 
 ### 9. What is still to be settled
 

@@ -1,7 +1,7 @@
 ---
 title: "b16-reference"
 doc-id: "mb-741c244a"
-updated: "2026-11-03"
+updated: "2026-11-12"
 ---
 # Step 16 — Domain Modeling: Reference
 
@@ -29,7 +29,7 @@ What the agent does at Step 16, in order. Agent-facing. Fixed values: [[[pdlf:ap
 ## 3. Glossary and data design
 
 14. Apply `data-models` to check the glossary against the plan's data design: every entity in the glossary has an owner and a place in the data design, and the data design uses only the glossary's terms.
-15. Correct each mismatch with David, in the glossary or in the Architecture section of `design-doc.md`. Keep GStack's report the last section of the plan.
+15. Correct each mismatch with David, in the glossary or in `design-doc.md`. Keep GStack's report the last section of the plan. Then align the wording of the whole of `design-doc.md` with the glossary: replace every term the glossary lists under Avoid with the glossary's term, and keep feature names and flow names as they are. List on the receipt every document outside the hand-over that still uses a replaced term, for David to align.
 
 ## 4. The domain map
 

@@ -36,9 +36,10 @@ flowchart TD
     Ent -->|"No"| OQ
     Proto --> OQ["12. Settle the open questions given to Step 16<br/>13. Until the frontier is empty and David confirms"]
     OQ --> DM{"14. data-models: glossary and<br/>data design agree?"}
-    DM -->|"No"| DMfix["15. Correct with David in the glossary<br/>or the Architecture section; report stays last"]
+    DM -->|"No"| DMfix["15. Correct with David in the glossary<br/>or the plan; report stays last"]
     DMfix --> DM
-    DM -->|"Yes"| Map["16. mb-archify-scope: David approves<br/>archify draws the domain map"]
+    DM -->|"Yes"| Align["15. Align the whole plan's wording with the glossary;<br/>list documents outside the hand-over to align"]
+    Align --> Map["16. mb-archify-scope: David approves<br/>archify draws the domain map"]
     Map --> DC{"17. DC-09 passes?"}
     DC -->|"No"| DCfix["Correct with David"]
     DCfix --> DC

@@ -1,6 +1,6 @@
 ---
 title: "b16-test-spec"
-updated: "2026-10-29"
+updated: "2026-11-12"
 doc-id: "mb-7808f2ff"
 ---
 # Step 16: Domain modeling — Test Specification
@@ -12,7 +12,7 @@ Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-librar
 | Test | Applied here |
 |---|---|
 | PR-01 | The entry record is complete and Step 15 is complete, with its outputs approved. |
-| DC-09 | Every term in `GLOSSARY.md` has one meaning; every entity has an owner and a place in the data design; shared terms match `spec-nomenclature`; "multi-tenant" is never used for the five-app model. |
+| DC-09 | Every term in `GLOSSARY.md` has one meaning; every entity has an owner and a place in the data design; shared terms match `spec-nomenclature`; "multi-tenant" is never used for the five-app model; the reviewed plan uses no term the glossary lists under Avoid, apart from feature and flow names. |
 | PR-05 | Every Phase B receipt of the run (b11 for a whole application, b12, b14, b15) matches its evidence with `ts_report.py --check`. |
 | PR-06 | No secret is in the glossary, any ADR or any copy in `pdlf-outputs\b16\` (gitleaks on the project library's working tree). |
 | PR-04 | Sentinel ran at Low/Medium, and every Sentinel finding of the run's Phase B steps has David's decision. |

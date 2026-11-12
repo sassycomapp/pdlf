@@ -1,7 +1,7 @@
 ---
 title: "b16-config"
 doc-id: "mb-e2e6e760"
-updated: "2026-11-03"
+updated: "2026-11-12"
 ---
 # Step 16 — Domain Modeling: Configuration
 
@@ -43,7 +43,7 @@ The fixed values of Step 16. Agent-facing. What the agent does, in order: [[[pdl
 |---|---|
 | Glossary | `{slug}-project-library\docs-local\GLOSSARY.md`, single context, the skill's `GLOSSARY-FORMAT.md` |
 | ADRs | `{slug}-project-library\adr-local\adr-{kebab-case-name}.md`, the skill's `ADR-FORMAT.md` |
-| Reviewed plan | `docs-local\design\{run}\design-doc.md`, its Architecture section in agreement with the glossary; GStack's report last |
+| Reviewed plan | `docs-local\design\{run}\design-doc.md`, its wording in agreement with the glossary throughout; GStack's report last |
 | Domain map | `pdlf-outputs\b16\{slug}-b16-{run}-domain-map.*`, written by `archify` |
 | Entity prototypes, if any | `pdlf-outputs\b16\{slug}-b16-{run}-prototype-{entity}.html` |
 | Phase B close-out check | `pdlf-outputs\b16\{slug}-b16-{run}-phase-b-close.md`, with each receipt's `ts_report.py --check` output |
@@ -87,6 +87,7 @@ All paths are inside `{slug}-project-library\`.
 | Questions answered | The plan's Open Questions section is empty |
 | Hand-over present | Every item of the hand-over below exists |
 | Input notices carried | Every input notice of Steps 12 to 15 is on this receipt |
+| Documents to align listed | Every document outside the hand-over that still uses a term the glossary replaced is listed on this receipt |
 
 ## Gate summary block
 

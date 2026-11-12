@@ -1,7 +1,7 @@
 ---
 title: "b16-explainer"
 doc-id: "mb-7df11eae"
-updated: "2026-10-29"
+updated: "2026-11-12"
 ---
 # Step 16 — Domain Modeling: Explainer
 
@@ -15,7 +15,7 @@ The step runs Matt Pocock's `grill-with-docs`, which is two skills working toget
 
 The glossary belongs to the business, not to one app. App 1, App 5 and every feature share it, so a later run only adds to it. Words shared with other Mybizz applications keep the names `spec-nomenclature` gives them, and the five-app model is never called "multi-tenant". For an application that already exists, the step checks what its documents say against its code and shows David every contradiction; an old glossary is reconciled into the new one.
 
-Anvil's `data-models` skill then checks the glossary against the data design from Step 15: every thing the glossary names must have an owner and a place in the data design, and the data design must use only the glossary's words. Each mismatch is put right with David. The domain map, a picture of the entities and how they relate, is drawn with Archify. Sentinel reviews the glossary for sensitive data, and `gitleaks` checks nothing secret is in it.
+Anvil's `data-models` skill then checks the glossary against the data design from Step 15: every thing the glossary names must have an owner and a place in the data design, and the data design must use only the glossary's words. Each mismatch is put right with David. The step then aligns the wording of the whole plan with the glossary, so that the plan Phase C builds from speaks the same language, and lists for David every other document that still uses an old word. The domain map, a picture of the entities and how they relate, is drawn with Archify. Sentinel reviews the glossary for sensitive data, and `gitleaks` checks nothing secret is in it.
 
 Finally the step closes Phase B. It checks every step of the phase for this run: each is complete, each receipt matches its evidence, every test passed, every security finding is decided, no open question remains, and everything Phase C needs is in place. Only then does it show David the gate summary and ask whether to proceed to Phase C. On his yes, the gate is recorded and Phase B is locked.
 
@@ -25,6 +25,7 @@ Finally the step closes Phase B. It checks every step of the phase for this run:
 - **The skill's own design.** `grill-with-docs` is how Matt Pocock's skills are meant to build a glossary, and its files keep the skills' own names, so every later Matt Pocock skill reads them without being told where they are.
 - **Words and data agree before tables exist.** Step 17 builds the tables next. A table named differently from the glossary would split the business's language at its very first build.
 - **Phase B is checked as a whole.** The gate locks everything Phase B produced, so it is offered only when the whole phase is finished, tested and approved, and nothing is left open.
+- **The plan speaks the glossary's language.** Phase C builds from the plan, so a replaced word left in it would carry the old meaning straight into tables and screens.
 - **Only David passes the gate.** The gate is the last stop before work starts in Anvil. David records his own approval with `pdlf-gate.sh`, and Cupcake stops the agent from writing it. After it, nothing from Phase B changes unless David reopens it.
 
 ## What has to happen
@@ -33,5 +34,6 @@ Finally the step closes Phase B. It checks every step of the phase for this run:
 - David decides each decision record.
 - David decides whether an old glossary file of an existing application is removed.
 - David approves the domain map's scope.
+- David aligns the documents outside the hand-over that the receipt lists.
 - David answers the gate: yes to proceed to Phase C, or no to stop. On yes, he runs the `pdlf-gate.sh` command the agent gives him, which records his approval.
 - Only David commits, with `commit-all`, after `/mb-close-out`.

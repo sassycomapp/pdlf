@@ -1,7 +1,7 @@
 ---
 title: "pdlf-built-report"
 doc-id: "mb-36208a1a"
-updated: "2026-11-08"
+updated: "2026-11-12"
 ---
 # PDLF Built Report
 
@@ -39,7 +39,7 @@ This report is a working tool for building PDLF. It is deleted when PDLF is fini
 
 ### Phase B — Discover and Define
 
-**Phase status:** Built: every step of the phase is built, and the phase ends at the gate `domain-locked` (Step 16).
+**Phase status:** Proven: every step of the phase has run on `mb-3-cs`, and the run passed the gate `domain-locked` (Step 16).
 
 #### Step 11: Init
 
@@ -51,7 +51,7 @@ This report is a working tool for building PDLF. It is deleted when PDLF is fini
 
 #### Step 12: Office hours
 
-**Status:** Built.
+**Status:** Proven on `mb-3-cs`.
 
 **Files:** in `app-factory/phase-b-discover-and-define/`: `b12-build-plan.md`, `b12-test-spec.md`, `b12-config.md`, `b12-reference.md`, `b12-explainer.md`, `b12-decision-tree.html`, `b12-module.md` (empty until the step is proven).
 
@@ -63,7 +63,7 @@ This report is a working tool for building PDLF. It is deleted when PDLF is fini
 
 #### Step 14: CEO review
 
-**Status:** Built.
+**Status:** Proven on `mb-3-cs`.
 
 **Files:** in `app-factory/phase-b-discover-and-define/`: `b14-build-plan.md`, `b14-test-spec.md`, `b14-config.md`, `b14-reference.md`, `b14-explainer.md`, `b14-decision-tree.html`, `b14-module.md` (empty until the step is proven).
 
@@ -71,7 +71,7 @@ This report is a working tool for building PDLF. It is deleted when PDLF is fini
 
 #### Step 15: Engineering review
 
-**Status:** Built.
+**Status:** Proven on `mb-3-cs`.
 
 **Files:** in `app-factory/phase-b-discover-and-define/`: `b15-build-plan.md`, `b15-test-spec.md`, `b15-config.md`, `b15-reference.md`, `b15-explainer.md`, `b15-decision-tree.html`, `b15-module.md` (empty until the step is proven).
 
@@ -79,7 +79,7 @@ This report is a working tool for building PDLF. It is deleted when PDLF is fini
 
 #### Step 16: Domain modeling
 
-**Status:** Built.
+**Status:** Proven on `mb-3-cs`.
 
 **Files:** in `app-factory/phase-b-discover-and-define/`: `b16-build-plan.md`, `b16-test-spec.md`, `b16-config.md`, `b16-reference.md`, `b16-explainer.md`, `b16-decision-tree.html`, `b16-module.md` (empty until the step is proven).
 

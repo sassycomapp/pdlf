@@ -1,7 +1,7 @@
 ---
 title: "b16-build-plan"
 doc-id: "mb-625b446e"
-updated: "2026-10-29"
+updated: "2026-11-12"
 ---
 # Step 16 — Domain Modeling: Build Plan
 
@@ -17,7 +17,7 @@ Ends with the gate `domain-locked` (this step).
 
 **Starts from:** the items Step 15 handed over (the reviewed plan, the test plan, the app's access matrix and threat model, and Step 15's receipt); the business's `docs-local\GLOSSARY.md` and `adr-local\`, when they exist; for an existing application, its existing glossary under any name, its decision records and its code graph, as prior material; the ledger rows and receipts of every Phase B step of this run; `spec-nomenclature`.
 
-**Produces:** `docs-local\GLOSSARY.md`, the business's glossary, shared by all its apps; any ADR in `adr-local\` (`adr-{kebab-case-name}.md`); the plan's Architecture section brought into agreement with the glossary; the domain map in `pdlf-outputs\b16\`; the Phase B close-out check; the `gates` row of `domain-locked`; in `pdlf-outputs\b16\`: the copies, the test results and the Step Receipt; the ledger row, the BFT record and Sentinel's `triage_findings` row.
+**Produces:** `docs-local\GLOSSARY.md`, the business's glossary, shared by all its apps; any ADR in `adr-local\` (`adr-{kebab-case-name}.md`); the reviewed plan's wording brought into agreement with the glossary throughout; the domain map in `pdlf-outputs\b16\`; the Phase B close-out check; the `gates` row of `domain-locked`; in `pdlf-outputs\b16\`: the copies, the test results and the Step Receipt; the ledger row, the BFT record and Sentinel's `triage_findings` row.
 
 **Carried out by:** OpenCode, with Matt Pocock's `grill-with-docs` (which runs `grilling` with `domain-modeling`), Anvil's `data-models`, `graphify`, Matt Pocock's `prototype` when an entity's life is uncertain, `mb-archify-scope` with `archify`, and `mb-sentinel-review`. David answers the interview, decides each ADR and passes or blocks the gate.
 
@@ -29,7 +29,8 @@ Ends with the gate `domain-locked` (this step).
 - every open question the plan gives to Step 16 is settled and removed from Open Questions, so that Open Questions is empty when Phase B closes;
 - for an existing application, `domain-modeling` checks what the documents say against the code through the code graph and shows David every contradiction; an existing glossary under another name (such as `CONTEXT.md`) and its decisions are prior material: their terms are reconciled with the data design before any term is settled, the settled terms are written into `GLOSSARY.md`, and David decides whether the old file is removed;
 - for a feature, the glossary and the decisions are extended, never rewritten; for App 5, its terms join the same glossary, because the business has one vocabulary;
-- Anvil's `data-models` is used to check that the glossary and the data design agree: every entity in the glossary has an owner and a place in the data design, and the data design uses only the glossary's terms; each mismatch is corrected with David in the glossary or in the plan's Architecture section, and GStack's report stays the last section of the plan;
+- Anvil's `data-models` is used to check that the glossary and the data design agree: every entity in the glossary has an owner and a place in the data design, and the data design uses only the glossary's terms; each mismatch is corrected with David in the glossary or in the plan, and GStack's report stays the last section of the plan;
+- once the glossary is settled, the wording of the whole reviewed plan is aligned with it: a term the glossary lists under Avoid is replaced by the glossary's term, while feature names and flow names stay as they are; every document outside the hand-over that still uses a replaced term is listed on the Step Receipt for David to align, because a document left with an old word carries the drift the glossary exists to stop;
 - an entity whose life is uncertain is proven with `prototype` (logic branch) before its terms are settled;
 - the domain map (the entities and their relationships) is scoped with `mb-archify-scope` and drawn with `archify` into the step folder, and the glossary is not changed by it;
 - the security review `mb-sentinel-review` runs on the glossary and the ADRs at Low/Medium scrutiny, against the documents Sentinel names for Step 16 (the threat models matching the entities, and `sec-requirements-data-table-creation`, because Step 17 builds the tables from this vocabulary); a Flag or Escalate stops the step and goes to David; its `triage_findings` row is checked before the gate;
