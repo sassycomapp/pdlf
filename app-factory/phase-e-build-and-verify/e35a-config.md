@@ -1,31 +1,58 @@
 ---
 title: "e35a-config"
 doc-id: "mb-b18165ee"
-updated: "2026-10-23"
+updated: "2026-11-13"
 ---
+# Step 35A — Testing: Configuration
 
-## From `step-mapping.md`: this step's rows
+The fixed values of Step 35A. Agent-facing. What the agent does, in order: [[[pdlf:app-factory/phase-e-build-and-verify/e35a-reference|Step 35A Reference]]](C:/pdlf/app-factory/phase-e-build-and-verify/e35a-reference.md). What the step is and why: [[[pdlf:app-factory/phase-e-build-and-verify/e35a-explainer|Step 35A Explainer]]](C:/pdlf/app-factory/phase-e-build-and-verify/e35a-explainer.md). What it must prove: [[[pdlf:app-factory/phase-e-build-and-verify/e35a-test-spec|Step 35A Test Specification]]](C:/pdlf/app-factory/phase-e-build-and-verify/e35a-test-spec.md).
 
-### Phase D — Build & Verify (per-feature loop)
+## Identity
 
-| Step | File | Type | Handler | Gate |
-|---|---|---|---|---|
-| 35A | Step 35A Testing | OpenCode | Local-scope `pip-audit` + broader testing | |
+| Item | Value |
+|---|---|
+| Step | 35A, Testing |
+| Phase | E, Build and Verify |
+| Carried out by | OpenCode, with the skills below |
+| Runs for | Every ticket of the run, once each, in build order |
+| Previous step | 35 |
+| Next step | 40 |
+| Gate | None |
+| BFT level | Light |
+| Sentinel scrutiny | None |
+| Conditional | No |
 
-### Phase D — Build & Verify (per-feature loop): phase notes
+## Inputs
 
-Repeats once per feature/package from Step 19's ticket list, until every feature has
-individually reached `build-verified`. For the loop's actual order and dependencies, see
-Run Plan, "Step 35 Feature Loop."
+| Input | Where |
+|---|---|
+| Ticket | `{slug}-project-library\pdlf-tickets\{run}\{ticket}.md` |
+| Test plan | `{slug}-project-library\docs-local\design\{run}\test-plan.md` |
+| The app and its tests | `C:\dev\dev-{slug}\{slug}-app{n}`; `tests\` |
 
+## Outputs
 
-Exit gate: `build-verified`, evaluated per feature. For entry condition and dependencies,
-see Run Plan.
+| Output | Where |
+|---|---|
+| Added tests | `{slug}-app{n}\tests\` |
+| Test audit | `pdlf-outputs\e35a\{slug}-e35a-{run}-{ticket}-test-audit.md` |
+| Ledger | the Step 35A `steps` row for the ticket; its BFT record |
+| Test results | `pdlf-outputs\e35a\{slug}-e35a-{run}-{ticket}-checks.xml` |
+| Step Receipt | `pdlf-outputs\e35a\{slug}-e35a-{run}-{ticket}-receipt.md` |
 
-## From `bft-checkpoint-cheatsheet-v2.md`: BFT level
+All paths without a repository name are inside `{slug}-project-library\`.
 
-### Phase E — Build & Verify (Steps 35–40)
+## Ledger values
 
-| Step | Name | Type | BFT | Rationale |
-|---|---|---|---|---|
-| 35A | Testing (local pip-audit + broader) | OpenCode | **Light** | Dev/test-tooling dependency scan + coverage — mechanical execution of a locked test plan, not a design decision |
+| Column | Value |
+|---|---|
+| `step_number` | `35A` |
+| `step_type` | `skill` |
+| `skill_family` | `matt-skills` |
+| `run` | From the entry record |
+| `ticket` | The ticket's slug |
+| `app_number` | From the entry record |
+| `status` | `complete` when every added test passes |
+| `synthesized` | `false` |
+| `artifact_path` | `{slug}-app{n}\tests\` |
+| `inputs_used` | Step 35 |

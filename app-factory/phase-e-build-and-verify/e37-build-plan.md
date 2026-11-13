@@ -1,49 +1,56 @@
 ---
 title: "e37-build-plan"
 doc-id: "mb-78301dea"
-updated: "2026-10-23"
+updated: "2026-11-13"
 ---
+# Step 37 — Code Review: Build Plan
 
-## From `pdlf-build-plan.md`: step entry
+## Step entry
 
 ### Phase E — Build and Verify
 
-Steps 35 to 40B run once per feature, one feature at a time; the run plan governs the loop. Each feature ends with the gate `build-verified` (Step 39).
+Phase E runs once for each ticket, in the build order of the ticket list; every `{run}` path below carries the ticket as `{ticket}`.
 
 #### Step 37: Code review
 
-**Must achieve:** Reviews the feature's code for bugs that would break in use. Findings are written to `step-37-findings.md`, including a clean-pass statement.
+**Must achieve:** the feature's changes reviewed for bugs that would break in use and for every standard they must meet: its code against the Anvil skills' rules, `project-library-global` and its ticket; its forms and spec sheets against their approved screen requirements; its security by a separate review; with every finding recorded and a clean-pass statement when there is none.
 
-**Carried out by:** Matt Pocock, using `code-review`, with GStack `/cso`.
+**Starts from:** the feature's changes since the previous ticket's gate; the ticket; `scaffold-spec.md`; the approved screen requirements; the test plan.
 
-**Runs:** once per feature.
+**Produces:** the code findings; in `pdlf-outputs\e37\`: the findings, the test results and the Step Receipt; the ledger row, the BFT record and Sentinel's `triage_findings` row.
 
-**Skills.** Every skill's output is used by the step named after the arrow.
-- `code-review` (Matt Pocock): reviews the feature's changes against the project's standards (the Anvil standards in `project-library-global` and the Anvil skills' rules) and against its ticket → `step-37-findings.md`, then Step 39.
-- `/cso --diff` (GStack): a security review of this feature's changes only → `step-37-findings.md`.
-- `mb-sentinel-review`, Very High → `triage_findings`.
-
-**Not used:** GStack `/review`, because it applies fixes itself; fixes are decided at Step 39 and made at Step 35.
+**Carried out by:** OpenCode, with Matt Pocock's `code-review`, GStack's `/cso --diff` and `mb-sentinel-review`, each in its own session.
 
 **Must be built so that:**
-- `code-review` also checks the code against [[[default:policy-global/pol-common-aspects-for-mybizz-anvil-applications|Common Aspects for Mybizz Anvil Applications]]](C:/dev/project-library-global/policy-global/pol-common-aspects-for-mybizz-anvil-applications.md);
+- `code-review` reviews the changes on its two axes: standards (the rules of Anvil's `server-code`, `client-modules`, `client-forms`, `data-models` and `anvil-yaml` skills, [[[default:specifications-global/spec-anvil-platform-standards|Anvil Platform Standards]]](C:/dev/project-library-global/specifications-global/spec-anvil-platform-standards.md), [[[default:policy-global/pol-common-aspects-for-mybizz-anvil-applications|Common Aspects for Mybizz Anvil Applications]]](C:/dev/project-library-global/policy-global/pol-common-aspects-for-mybizz-anvil-applications.md) and [[[default:specifications-global/spec-ui-standards|UI Standards]]](C:/dev/project-library-global/specifications-global/spec-ui-standards.md)) and the ticket (does the change do what the ticket asks);
+- each form and spec sheet is checked against its approved screen requirement, and Anvil's agent is confirmed to have changed only handler bodies;
+- `ts_scan.py` passes on the changed code (ST-02 to ST-12);
+- `/cso --diff` reviews only the feature's changes for security;
+- `mb-sentinel-review` runs at Very High scrutiny on the changes, against the same documents as at Step 35;
+- every finding goes to the findings file with its file, line and severity; with none, the file states a clean pass; nothing is fixed in this step;
+- its ledger row carries the ticket, with `step_type = 'skill'`, `skill_family = 'matt-skills'`, `synthesized = false`, and `inputs_used` naming Step 36.
 
-**Carried over from the old workflow** (to be checked against the step file, then removed):
+**BFT level:** Full.
 
-1. Query GBrain — Context relevant to pre-landing code review
-2. Invoke GStack `/review` — Finds bugs that pass CI but would break in production; auto-fixes obvious ones
-3. Verify outputs — Review report, AUTO-FIXED commits; STOP if missing
-4. Write Step 37 ledger row — `completed_at`
-5. Generate Step Receipt — `<project-library>/pdlf/outputs/step-37-receipt.md`
-6. Apply BFT — Full level
-7. Follow execution sequence — Housekeeping, stop, wait for continue
+**Gate:** none.
 
-## From `pol-testing-and-quality.md`: code review and QA
+**References:** [[[pdlf:pdlf-library/specifications-local/spec-skill-context-pack|Spec: Skill Context Pack]]](C:/pdlf/pdlf-library/specifications-local/spec-skill-context-pack.md); [[[default:test-suite/ts-method|Test Suite — Method]]](C:/dev/project-library-global/test-suite/ts-method.md).
 
-### Code review and QA (Steps 36–38)
+**Skills.** Every skill's output is used by the step named after the arrow.
+- `code-review` (Matt Pocock), with the Anvil skills' rules as its standards → the findings, then Step 39.
+- `/cso --diff` (GStack): the security of the feature's changes → the findings, then Step 39.
+- `mb-sentinel-review`, Very High → `triage_findings`.
 
-Every feature cycle goes through `/design-review` (visual), `/review` (structural), and [[[pdlf:app-factory/phase-e-build-and-verify/e38-reference|/qa]]](C:/pdlf/app-factory/phase-e-build-and-verify/e38-reference.md)
-(functional + regression) before its `build-verified` gate. These are GStack skills — they
-drive a headless browser for live-site testing, which OpenCode cannot do directly.
+**Not used:** GStack's `/review`, because it applies fixes itself; fixes are decided at Step 39 and made at Step 35.
 
-This step's testing is its test specification, drawn from the test suite in `C:\dev\project-library-global\test-suite\`.
+**Layers with no skill:** none.
+
+**Testing:** [[[pdlf:app-factory/phase-e-build-and-verify/e37-test-spec|Step 37 Test Specification]]](C:/pdlf/app-factory/phase-e-build-and-verify/e37-test-spec.md).
+
+**Standards:** [[[default:specifications-global/spec-anvil-platform-standards|Anvil Platform Standards]]](C:/dev/project-library-global/specifications-global/spec-anvil-platform-standards.md); [[[default:policy-global/pol-common-aspects-for-mybizz-anvil-applications|Common Aspects for Mybizz Anvil Applications]]](C:/dev/project-library-global/policy-global/pol-common-aspects-for-mybizz-anvil-applications.md); [[[default:specifications-global/spec-ui-standards|UI Standards]]](C:/dev/project-library-global/specifications-global/spec-ui-standards.md).
+
+## Why it is built this way
+
+- **Anvil's own rules as the standard.** Anvil's skills say how Anvil code, forms and data must be written; reviewing against them catches what Anvil would reject or mishandle.
+- **Separate eyes.** Each review runs in its own session, so no reviewer sees another's conclusions.
+- **Review, not repair.** Findings go to triage, where each is decided.

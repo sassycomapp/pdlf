@@ -1,62 +1,18 @@
 ---
 title: "e36-reference"
 doc-id: "mb-60ebe004"
-updated: "2026-10-12"
+updated: "2026-11-13"
 ---
+# Step 36 — Design Review: Reference
 
-## From `36-design-review.md`
+What the agent does at Step 36, in order. Agent-facing. Fixed values: [[[pdlf:app-factory/phase-e-build-and-verify/e36-config|Step 36 Configuration]]](C:/pdlf/app-factory/phase-e-build-and-verify/e36-config.md). The pattern every step follows (search, read, verify, BFT, ledger row, receipt, explain, stop, close-out) is in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md) and is not repeated here. Every skill is invoked with the handover material and the context pack, in full ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2).
 
-## Task Execution Order
-
-1. Confirm Steps 35A, 40, and 40B (if applicable) have completed for this feature cycle.
-2. Run GStack `/design-review` against the current state — including any remediation
-   applied at Step 40B.
-3. Follow execution sequence in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md).
-4. Apply BFT per [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md) at assigned level (Full).
-
----
-
-## Description
-
-80-item live-site visual audit. Takes before/after screenshots, applies atomic fix
-commits. Deliberately positioned after Step 40B, not directly after Step 35 — this
-retests the feature as it will actually ship, including any architecture remediation,
-rather than reviewing a build that's about to change again.
-
-## Inputs Required
-
-- Live target URL
-- Step 20 DESIGN.md
-- Clean git working tree
-- Confirmation that 35A/40/40B have completed this cycle
-
-## Outputs
-
-- Structured design audit report
-- Before/after screenshots
-- One atomic git commit per fix
-
-## Step Table
-
-| Step | Type | Gate | Handled By |
-|---|---|---|---|
-| 36 | Skill | | GStack `/design-review` |
-
----
-
-## Reference
-
-Position rationale — why this runs after remediation, not before: ADR-0007.
-
-OpenCode is always the orchestrator. Invoke skills only when they beat OpenCode directly.
-
-For execution sequence: [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md)
-For BFT procedure: [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md)
-
-GBrain is queried automatically at substep 1. Syncing is asked at substep 10, never auto-run.
-The two housekeeping questions are asked separately, every step, never combined, never auto-run.
-
-The ledger row, Step Receipt, and devlog-index/judgement-trail are the complete checkpoint.
-No separate state file, devlog file, or completion report.
-
-Skills save where designed. PDLF process artifacts go to `<project-library>/pdlf/`.
+1. Read the entry record and the ledger row of Step 40B for this ticket. Check it is complete or skipped (test PR-01). If not: stop and raise a deviation.
+2. Read the ticket, and every input in the configuration.
+3. Hand David `mg-grant --path ~/.gstack --count 15` and wait until he confirms it ran ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2.8).
+4. With `browse`, open each of the ticket's forms in every view in the configuration, and save a screenshot of each.
+5. Compare each form with its approved screen requirement, element by element. Check theme usage against the inventory and `DESIGN.md`, accessibility against `spec-ui-standards` section 13, the always-available controls, and page addresses and browser storage for anything sensitive.
+6. Write each finding with its form, evidence and severity; with none, write the clean-pass statement. Change no form.
+7. Record every test in the checks file, naming its evidence.
+8. Run the Full BFT. Complete the Step 36 `steps` row with the ledger values in the configuration, and write the BFT record and the Step Receipt, from the [[[pdlf:pdlf-library/templates-local/step-receipt-template|Step Receipt Template]]](C:/pdlf/pdlf-library/templates-local/step-receipt-template.md).
+9. Explain what was done. Present the Step Receipt and stop.

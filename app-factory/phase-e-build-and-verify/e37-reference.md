@@ -1,70 +1,20 @@
 ---
 title: "e37-reference"
 doc-id: "mb-7004c91f"
-updated: "2026-10-12"
+updated: "2026-11-13"
 ---
+# Step 37 — Code Review: Reference
 
-## From `37-review.md`
+What the agent does at Step 37, in order. Agent-facing. Fixed values: [[[pdlf:app-factory/phase-e-build-and-verify/e37-config|Step 37 Configuration]]](C:/pdlf/app-factory/phase-e-build-and-verify/e37-config.md). The pattern every step follows (search, read, verify, BFT, ledger row, receipt, explain, stop, close-out) is in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md) and is not repeated here. Every skill is invoked with the handover material and the context pack, in full ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2).
 
-## Task Execution Order
-
-1. Run GStack `/review`, Standards axis pointed at `specifications-global/`
-   (particularly `[[spec-security]]`, `[[spec-regulatory-compliance-baseline]]`, and, once
-   written, the retired `spec-coding-standards.md`), Spec axis against the originating ticket/plan.
-2. Regardless of outcome, write findings to
-   `<project-library>/pdlf/outputs/step-37-findings.md`. If there are no findings, the
-   file must still be written, stating explicitly "no findings, clean pass."
-3. → Verification point: OpenCode confirms the file exists and is non-empty before this
-   step is marked complete. Absence is always a step failure — never a silent pass.
-4. Follow execution sequence in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md).
-5. Apply BFT per [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md) at assigned level (Full).
-
----
-
-## Description
-
-Pre-landing code review — finds bugs that pass CI but would break in production.
-Auto-fixes the obvious ones. This step's findings are the primary input to Step 39
-([[[pdlf:app-factory/phase-e-build-and-verify/e39-reference|triage]]](C:/pdlf/app-factory/phase-e-build-and-verify/e39-reference.md)); because GStack's own repository states its skills' persistence behavior is
-unverified even by the maintainer, this step cannot be trusted to have written anything
-down without an explicit check.
-
-## Inputs Required
-
-- Current branch's git diff against base branch
-- Plan file / originating ticket (for Plan Completion Audit)
-- `specifications-global/` (Standards axis reference)
-- Optional PR description and TODOS.md
-
-## Outputs
-
-- Review report (Plan Completion Audit, Scope Drift check, specialist findings)
-- One AUTO-FIXED commit per mechanical fix
-- `<project-library>/pdlf/outputs/step-37-findings.md` — mandatory, non-empty, present
-  even on a clean pass
-
-## Step Table
-
-| Step | Type | Gate | Handled By |
-|---|---|---|---|
-| 37 | Skill | | GStack `/review` |
-
----
-
-## Reference
-
-Artifact-persistence requirement rationale: ADR-0009.
-Standards axis pointed at global specs, not a separate CI system: ADR-0012.
-
-OpenCode is always the orchestrator. Invoke skills only when they beat OpenCode directly.
-
-For execution sequence: [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md)
-For BFT procedure: [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md)
-
-GBrain is queried automatically at substep 1. Syncing is asked at substep 10, never auto-run.
-The two housekeeping questions are asked separately, every step, never combined, never auto-run.
-
-The ledger row, Step Receipt, and devlog-index/judgement-trail are the complete checkpoint.
-No separate state file, devlog file, or completion report.
-
-Skills save where designed. PDLF process artifacts go to `<project-library>/pdlf/`.
+1. Read the entry record and the ledger row of Step 36 for this ticket. Check it is complete or skipped (test PR-01). If not: stop and raise a deviation.
+2. Read the ticket, and every input in the configuration.
+3. Hand David `mg-grant --path ~/.gstack --count 15` and wait until he confirms it ran ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2.8).
+4. In its own session, run `code-review` on the feature's changes with the review standards in the configuration. Check each form and spec sheet against its approved screen requirement, and that Anvil's agent changed only handler bodies.
+5. Run `ts_scan.py` on the app.
+6. In its own session, run `/cso --diff` on the feature's changes.
+7. In its own session, run `mb-sentinel-review` for Step 37 at Very High scrutiny. On Flag or Escalate: stop and present it to David. Check the review's `triage_findings` row exists (test PR-04).
+8. Write every finding with its file, line and severity; with none, write the clean-pass statement. Fix nothing.
+9. Record every test in the checks file, naming its evidence.
+10. Run the Full BFT. Complete the Step 37 `steps` row with the ledger values in the configuration, and write the BFT record and the Step Receipt, from the [[[pdlf:pdlf-library/templates-local/step-receipt-template|Step Receipt Template]]](C:/pdlf/pdlf-library/templates-local/step-receipt-template.md).
+11. Explain what was done. Present the Step Receipt and stop.

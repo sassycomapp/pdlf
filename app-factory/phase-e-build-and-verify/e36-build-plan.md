@@ -1,44 +1,56 @@
 ---
 title: "e36-build-plan"
 doc-id: "mb-06eb6076"
-updated: "2026-10-23"
+updated: "2026-11-13"
 ---
+# Step 36 — Design Review: Build Plan
 
-## From `pdlf-build-plan.md`: step entry
+## Step entry
 
 ### Phase E — Build and Verify
 
-Steps 35 to 40B run once per feature, one feature at a time; the run plan governs the loop. Each feature ends with the gate `build-verified` (Step 39).
+Phase E runs once for each ticket, in the build order of the ticket list; every `{run}` path below carries the ticket as `{ticket}`.
 
 #### Step 36: Design review
 
-**Must achieve:** A visual audit of the feature as it will ship, after any fixes from Step 40B.
+**Must achieve:** a visual audit of the feature as it will ship: each of its forms, running, compared with its approved screen requirement on phone and desktop and in light and dark mode, its use of `m3-custom-theme` and its accessibility checked, with every finding recorded and a clean-pass statement when there is none.
 
-**Carried out by:** OpenCode, with GStack `browse`.
+**Starts from:** the feature after Step 40B; the approved screen requirements of the ticket's forms; `DESIGN.md`; the theme's component inventory.
 
-**Runs:** once per feature.
+**Produces:** the design findings; in `pdlf-outputs\e36\`: the screenshots, the findings, the test results and the Step Receipt; the ledger row and the BFT record.
+
+**Carried out by:** OpenCode, with GStack's `browse`.
+
+**Must be built so that:**
+- `browse` opens each of the ticket's forms on hosted App {n}, signed in as each role that may use it, at phone (390 px) and desktop (1440 px) width, in light and dark mode, and saves a screenshot of each;
+- each form is compared with its approved screen requirement: every element present, with the theme component, role, text and empty state the requirement gives, and nothing extra;
+- theme usage is checked: no element shows a plainer component where the requirement names a better one, and no colour, font or spacing differs from the theme;
+- accessibility is checked to [[[default:specifications-global/spec-ui-standards|UI Standards]]](C:/dev/project-library-global/specifications-global/spec-ui-standards.md) section 13: keyboard order, visible focus, names on icon buttons, error messages that say what to fix, and states not shown by colour alone;
+- the always-available controls (tooltips switch, help videos, dashboard) work on every form;
+- nothing sensitive appears in a page address or in browser storage;
+- every finding is written to the findings file with its form, its evidence and its severity; with no finding, the file states a clean pass;
+- no form is changed in this step; fixes are decided at Step 39 and made at Step 35;
+- its ledger row carries the ticket, with `step_type = 'skill'`, `skill_family = 'gstack'`, `synthesized = false`, and `inputs_used` naming Step 40B.
+
+**BFT level:** Full.
+
+**Gate:** none.
+
+**References:** [[[default:specifications-global/spec-ui-standards|UI Standards]]](C:/dev/project-library-global/specifications-global/spec-ui-standards.md); [[[default:specifications-global/mo-ui-production|UI Production Method]]](C:/dev/project-library-global/specifications-global/mo-ui-production.md).
 
 **Skills.** Every skill's output is used by the step named after the arrow.
-- `browse` (GStack): screenshots of the feature as it runs → compared with the approved screen PNG from Step 28 and stage 2 of the two-stage check in the screen and wireframe production standards → `step-36-findings.md`, including a clean-pass statement, then Step 39.
+- `browse` (GStack): each form running, in every width, mode and role → the comparison, then Step 39.
 
-**Not used:** GStack `/design-review`, because it commits each fix itself; agents never commit.
+**Not used:** GStack's `/design-review`, because it commits each fix itself; agents never commit.
 
-**Carried over from the old workflow** (to be checked against the step file, then removed):
+**Layers with no skill:** the comparison with the screen requirement and the theme inventory; no installed skill knows `m3-custom-theme`, so OpenCode makes it.
 
-1. Query GBrain — Context relevant to visual audit
-2. Invoke GStack `/design-review` — 80-item live-site visual audit; before/after screenshots, atomic fix commits
-3. Verify outputs — Design audit report, screenshots, fix commits; STOP if missing
-4. Write Step 36 ledger row — `completed_at`
-5. Generate Step Receipt — `<project-library>/pdlf/outputs/step-36-receipt.md`
-6. Apply BFT — Full level
-7. Follow execution sequence — Housekeeping, stop, wait for continue
+**Testing:** [[[pdlf:app-factory/phase-e-build-and-verify/e36-test-spec|Step 36 Test Specification]]](C:/pdlf/app-factory/phase-e-build-and-verify/e36-test-spec.md).
 
-## From `pol-testing-and-quality.md`: code review and QA
+**Standards:** [[[default:specifications-global/spec-ui-standards|UI Standards]]](C:/dev/project-library-global/specifications-global/spec-ui-standards.md) sections 3, 7, 12 and 13.
 
-### Code review and QA (Steps 36–38)
+## Why it is built this way
 
-Every feature cycle goes through `/design-review` (visual), `/review` (structural), and [[[pdlf:app-factory/phase-e-build-and-verify/e38-reference|/qa]]](C:/pdlf/app-factory/phase-e-build-and-verify/e38-reference.md)
-(functional + regression) before its `build-verified` gate. These are GStack skills — they
-drive a headless browser for live-site testing, which OpenCode cannot do directly.
-
-This step's testing is its test specification, drawn from the test suite in `C:\dev\project-library-global\test-suite\`.
+- **Seen as it ships.** Only the running form, in every width and mode, shows what users will see.
+- **Against the approved design.** The screen requirement David approved is the standard; anything different is a finding.
+- **Review, not repair.** Findings go to triage, so every change is decided and recorded.

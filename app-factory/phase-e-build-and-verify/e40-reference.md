@@ -1,103 +1,16 @@
 ---
 title: "e40-reference"
 doc-id: "mb-e275399d"
-updated: "2026-10-24"
+updated: "2026-11-13"
 ---
+# Step 40 — Architecture Scan: Reference
 
-## From `40-improve-codebase-architecture.md`
+What the agent does at Step 40, in order. Agent-facing. Fixed values: [[[pdlf:app-factory/phase-e-build-and-verify/e40-config|Step 40 Configuration]]](C:/pdlf/app-factory/phase-e-build-and-verify/e40-config.md). The pattern every step follows (search, read, verify, BFT, ledger row, receipt, explain, stop, close-out) is in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md) and is not repeated here. Every skill is invoked with the handover material and the context pack, in full ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2).
 
-## Task Execution Order
-
-1. → Decision point: Agent presents RUN/SKIP recommendation for the architecture scan,
-   for this feature cycle.
-2. If RUN: run Matt `improve-codebase-architecture` against the current codebase and
-   GLOSSARY.md/ADRs. Explore only, read-only — no code changes at this step.
-3. Write the HTML report to the OS temp directory, not the repo.
-4. → Handoff: if the developer selects a candidate from the report to act on, proceed to
-   Step 40B for developer-approved remediation. If not, or if this step was skipped,
-   proceed directly to Step 36.
-5. Follow execution sequence in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md).
-6. Apply BFT per [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md) at assigned level.
-
----
-
-## Description
-
-Independent, read-only architecture health report, run per feature cycle as an optional
-step. Does not modify code and does not carry a gate of its own — the `build-verified`
-gate now lives at Step 39, after remediation (if any) has been retested, not here (see
-ADR-0007). Any actual code change resulting from this step's report happens only at
-Step 40B, only with explicit developer approval of specific findings.
-
-## Inputs Required
-
-- Live codebase from Step 35 (and 35A)
-- GLOSSARY.md + ADRs from Step 16
-
-## Outputs
-
-- Interactive HTML architecture report (if run), written to OS temp directory
-- Developer's selection of which findings (if any) to act on, feeding Step 40B
-
-## Step Table
-
-| Step | Type | Gate | Handled By |
-|---|---|---|---|
-| 40 | Skill (optional, per feature cycle) | | Matt `improve-codebase-architecture` |
-
----
-
-## Handoff to Step 40B
-
-If findings were selected for action, proceed to Step 40B for developer-approved
-remediation. Otherwise, proceed directly to Step 36.
-
----
-
-## Grilling Branch Routing
-
-If the `improve-codebase-architecture` skill's output ends with a "grill through whichever
-one you pick" step, do not invoke any grilling-family skill (`grilling`, `grill-me`,
-`grill-with-docs`). Instead, route that to a deviation request per
-[[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md), presenting the candidate findings as
-the options:
-
-```
-DEVIATION REQUEST — Step 40 (Architecture Finding Selection)
-
-Prescribed tool: grilling-family (not imported — routing to deviation-request flow)
-Status: BLOCKED
-Reason: Architecture scan produced candidate findings requiring developer selection.
-
-Options:
-  A) Select finding(s) — developer specifies which to act on, proceed to Step 40B
-  B) Defer — save report, revisit later
-  C) Skip — no architecture remediation this cycle
-     Impact: Reported findings will not be actioned in this feature cycle
-
-Your decision? (A/B/C)
-```
-
-The agent never decides to invoke grilling. All deviations are recorded in the `deviations`
-table with description, options presented, decision, and timestamp. The developer decides.
-
----
-
-## Reference
-
-Skill path: `~/.agents/skills/improve-codebase-architecture/SKILL.md`
-
-Gate-removal rationale — why `build-verified` is no longer here: ADR-0007.
-
-OpenCode is always the orchestrator. Invoke skills only when they beat OpenCode directly.
-
-For execution sequence: [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md)
-For BFT procedure: [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md)
-
-GBrain is queried automatically at substep 1. Syncing is asked at substep 10, never auto-run.
-The two housekeeping questions are asked separately, every step, never combined, never auto-run.
-
-The ledger row, Step Receipt, and devlog-index/judgement-trail are the complete checkpoint.
-No separate state file, devlog file, or completion report.
-
-Skills save where designed. PDLF process artifacts go to `<project-library>/pdlf/`.
+1. Read the entry record and the ledger row of Step 35A for this ticket. Check it is complete or skipped (test PR-01). If not: stop and raise a deviation.
+2. Read the ticket, and every input in the configuration.
+3. Ask David whether the scan runs for this ticket. On no: record the step `skipped`, write the receipt, stop.
+4. Refresh the code graph with `graphify`. Run `improve-codebase-architecture` read-only. Write each finding to the scan report.
+5. Present each finding to David with your recommendation; record his decision.
+6. Run the Light BFT. Complete the Step 40 `steps` row with the ledger values in the configuration, and write the BFT record and the Step Receipt, from the [[[pdlf:pdlf-library/templates-local/step-receipt-template|Step Receipt Template]]](C:/pdlf/pdlf-library/templates-local/step-receipt-template.md).
+7. Explain what was done. Present the Step Receipt and stop.

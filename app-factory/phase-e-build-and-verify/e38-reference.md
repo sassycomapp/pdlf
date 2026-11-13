@@ -1,75 +1,19 @@
 ---
 title: "e38-reference"
 doc-id: "mb-1c768333"
-updated: "2026-10-23"
+updated: "2026-11-13"
 ---
+# Step 38 — Quality Testing: Reference
 
-## From `38-qa.md`
+What the agent does at Step 38, in order. Agent-facing. Fixed values: [[[pdlf:app-factory/phase-e-build-and-verify/e38-config|Step 38 Configuration]]](C:/pdlf/app-factory/phase-e-build-and-verify/e38-config.md). The pattern every step follows (search, read, verify, BFT, ledger row, receipt, explain, stop, close-out) is in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md) and is not repeated here. Every skill is invoked with the handover material and the context pack, in full ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2).
 
-## Task Execution Order
-
-1. Run GStack [[[pdlf:app-factory/phase-e-build-and-verify/e38-reference|/qa]]](C:/pdlf/app-factory/phase-e-build-and-verify/e38-reference.md) against the live/local URL, covering cross-feature flows and
-   regression testing against everything built before this feature — not limited to the
-   single feature just built (that narrower check is Step 35's Level 3).
-2. Regardless of outcome, write findings to
-   `<project-library>/pdlf/outputs/step-38-findings.md`. If there are no findings, the
-   file must still be written, stating explicitly "no findings, clean pass."
-3. → Verification point: OpenCode confirms the file exists and is non-empty before this
-   step is marked complete. Absence is always a step failure — never a silent pass.
-4. Follow execution sequence in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md).
-5. Apply BFT per [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md) at assigned level (Full).
-
----
-
-## Description
-
-Systematic QA testing and bug fixing. Generates regression tests. Deliberately broader in
-scope than Step 35's Level 3 check — Level 3 verifies the single feature just built; this
-step verifies that feature against everything else in the application (see ADR-0010).
-Like Step 37, its findings feed Step 39 ([[[pdlf:app-factory/phase-e-build-and-verify/e39-reference|triage]]](C:/pdlf/app-factory/phase-e-build-and-verify/e39-reference.md)) directly, so persistence is mandatory,
-not assumed.
-
-## Inputs Required
-
-- Live/local URL
-- Project-scoped test plan (from Steps 14–15)
-- Clean working tree
-- Prior features' state, for regression coverage
-
-## Outputs
-
-- Structured QA report with before/after screenshots
-- One atomic fix commit per verified bug
-- Auto-generated regression test files committed to codebase
-- `<project-library>/pdlf/outputs/step-38-findings.md` — mandatory, non-empty, present
-  even on a clean pass
-
-## Step Table
-
-| Step | Type | Gate | Handled By |
-|---|---|---|---|
-| 38 | Skill | | GStack [[[pdlf:app-factory/phase-e-build-and-verify/e38-reference\|/qa]]](C:/pdlf/app-factory/phase-e-build-and-verify/e38-reference.md) |
-
-## Reference Files
-
-| [[[pdlf:pdlf-library/templates-local/isa-template\|ISA Template v2]]](C:/pdlf/pdlf-library/templates-local/isa-template.md) | Steps 26, 35, 39, 46 |
-
----
-
-## Reference
-
-Artifact-persistence requirement rationale: ADR-0009.
-Scope distinction vs. Step 35 Level 3: ADR-0010.
-
-OpenCode is always the orchestrator. Invoke skills only when they beat OpenCode directly.
-
-For execution sequence: [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md)
-For BFT procedure: [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md)
-
-GBrain is queried automatically at substep 1. Syncing is asked at substep 10, never auto-run.
-The two housekeeping questions are asked separately, every step, never combined, never auto-run.
-
-The ledger row, Step Receipt, and devlog-index/judgement-trail are the complete checkpoint.
-No separate state file, devlog file, or completion report.
-
-Skills save where designed. PDLF process artifacts go to `<project-library>/pdlf/`.
+1. Read the entry record and the ledger row of Step 37 for this ticket. Check it is complete or skipped (test PR-01). If not: stop and raise a deviation.
+2. Read the ticket, and every input in the configuration.
+3. Hand David `mg-grant --path ~/.gstack --count 15` and wait until he confirms it ran ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2.8).
+4. Run `/qa-only` on every action of every spec sheet of the feature, as each role and signed out, with `TEST_` data only. Then run every flow of every earlier signed-off feature again. Test payments end to end in test mode when the feature touches them.
+5. Run `benchmark` on each of the feature's pages.
+6. Write every finding with its evidence and severity; with none, write the clean-pass statement. Fix nothing. Remove the `TEST_` data.
+7. Run `mb-sentinel-review` for Step 38 at High scrutiny on the findings. On Flag or Escalate: stop and present it to David. Check the review's `triage_findings` row exists (test PR-04).
+8. Record every test in the checks file, naming its evidence.
+9. Run the Full BFT. Complete the Step 38 `steps` row with the ledger values in the configuration, and write the BFT record and the Step Receipt, from the [[[pdlf:pdlf-library/templates-local/step-receipt-template|Step Receipt Template]]](C:/pdlf/pdlf-library/templates-local/step-receipt-template.md).
+10. Explain what was done. Present the Step Receipt and stop.

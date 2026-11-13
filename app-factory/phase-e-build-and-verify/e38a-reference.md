@@ -1,73 +1,16 @@
 ---
 title: "e38a-reference"
 doc-id: "mb-ee5b1678"
-updated: "2026-10-12"
+updated: "2026-11-13"
 ---
+# Step 38A — Package Check: Reference
 
-## From `38a-dependency-scan-confirm.md`
+What the agent does at Step 38A, in order. Agent-facing. Fixed values: [[[pdlf:app-factory/phase-e-build-and-verify/e38a-config|Step 38A Configuration]]](C:/pdlf/app-factory/phase-e-build-and-verify/e38a-config.md). The pattern every step follows (search, read, verify, BFT, ledger row, receipt, explain, stop, close-out) is in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md) and is not repeated here. Every skill is invoked with the handover material and the context pack, in full ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2).
 
-## Task Execution Order
-
-1. Confirm whether this feature's work has caused an Anvil server-environment rebuild
-   (e.g., via a package registered through the IDE, or an Uplink-triggered build).
-2. → Decision point: if no rebuild occurred this cycle, record "no new native scan this
-   cycle" and proceed — this is not a failure.
-3. If a rebuild occurred: locate Anvil's native `pip-audit` result in the IDE's Build
-   Output panel.
-4. Record the result (pass, or vulnerabilities found) in the ledger. If vulnerabilities
-   are found, present as a deviation request — developer decides whether to address
-   before continuing.
-5. Follow execution sequence in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md).
-6. Apply BFT per [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md) at assigned level.
-
----
-
-## Description
-
-Anvil already runs `pip-audit` automatically on every server-environment build, covering
-every package registered through the IDE's Package section. PDLF does not duplicate this
-check — this step's entire job is making sure that native result actually gets looked at
-and recorded, since nothing currently captures it automatically. This is the app-level
-half of the dual-scope dependency scan (see ADR-0011); Step 35A covers the other half
-(local dev/test tooling, which Anvil structurally cannot see).
-
-## Inputs Required
-
-- Feature build state from Steps 35–40B
-- Anvil IDE Build Output panel, if a rebuild occurred this cycle
-
-## Outputs
-
-- Ledger record of Anvil's native `pip-audit` result, or confirmation that no rebuild
-  occurred this cycle
-- Deviation request, if vulnerabilities were found and require developer decision
-
-## Step Table
-
-| Step | Type | Gate | Handled By |
-|---|---|---|---|
-| 38A | OpenCode (per feature cycle) | | OpenCode |
-
----
-
-## Handoff to Step 39
-
-Step 39 ([[[pdlf:app-factory/phase-e-build-and-verify/e39-reference|triage]]](C:/pdlf/app-factory/phase-e-build-and-verify/e39-reference.md)) is not blocked by this step's outcome unless a deviation is raised and
-left unresolved.
-
----
-
-## Reference
-
-Design rationale and scope boundary vs. Step 35A: ADR-0011.
-
-OpenCode is always the orchestrator. Invoke skills only when they beat OpenCode directly.
-
-For execution sequence: [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md)
-For BFT procedure: [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md)
-
-GBrain is queried automatically at substep 1. Syncing is asked at substep 10, never auto-run.
-The two housekeeping questions are asked separately, every step, never combined, never auto-run.
-
-The ledger row, Step Receipt, and devlog-index/judgement-trail are the complete checkpoint.
-No separate state file, devlog file, or completion report.
+1. Read the entry record and the ledger row of Step 38 for this ticket. Check it is complete or skipped (test PR-01). If not: stop and raise a deviation.
+2. Read the ticket, and every input in the configuration.
+3. If the feature did not rebuild the server environment: record the step `skipped`, write the receipt, stop.
+4. Give David instructions to copy Anvil's package report from the Anvil editor into the step folder, and wait until he confirms.
+5. Compare the report with Step 35A's `pip-audit` result. Write every finding to `triage_findings`.
+6. Complete the Step 38A `steps` row with the ledger values in the configuration, and write the Step Receipt, from the [[[pdlf:pdlf-library/templates-local/step-receipt-template|Step Receipt Template]]](C:/pdlf/pdlf-library/templates-local/step-receipt-template.md).
+7. Explain what was done. Present the Step Receipt and stop.

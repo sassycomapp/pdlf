@@ -1,48 +1,56 @@
 ---
 title: "e38-build-plan"
 doc-id: "mb-8b5ce355"
-updated: "2026-10-23"
+updated: "2026-11-13"
 ---
+# Step 38 — Quality Testing: Build Plan
 
-## From `pdlf-build-plan.md`: step entry
+## Step entry
 
 ### Phase E — Build and Verify
 
-Steps 35 to 40B run once per feature, one feature at a time; the run plan governs the loop. Each feature ends with the gate `build-verified` (Step 39).
+Phase E runs once for each ticket, in the build order of the ticket list; every `{run}` path below carries the ticket as `{ticket}`.
 
 #### Step 38: Quality testing
 
-**Must achieve:** Tests the feature, and checks that earlier features still work. Findings are written to `step-38-findings.md`, including a clean-pass statement.
+**Must achieve:** the feature tested as users will use it, every action of every spec sheet giving its stated result, every earlier feature still working, and its pages fast enough; with every finding recorded and a clean-pass statement when there is none.
 
-**Carried out by:** GStack, using `/qa-only`.
+**Starts from:** the feature after Step 37; the spec sheets of the ticket's forms; the test plan's critical flows; every earlier signed-off feature.
 
-**Runs:** once per feature.
+**Produces:** the quality findings; the performance results; in `pdlf-outputs\e38\`: the findings, the test results and the Step Receipt; the ledger row, the BFT record and Sentinel's `triage_findings` row.
 
-**Skills.** Every skill's output is used by the step named after the arrow.
-- `/qa-only` (GStack): tests the feature and every earlier feature in a real browser, report only → `step-38-findings.md`, including a clean-pass statement, then Step 39.
-- `mb-sentinel-review`, High → `triage_findings`.
-
-**Not used:** GStack `/qa`, because it commits its own fixes; agents never commit.
+**Carried out by:** OpenCode, with GStack's `/qa-only` and `benchmark`, and `mb-sentinel-review`.
 
 **Must be built so that:**
-- `/qa-only` tests the public pages signed out as well as the admin pages signed in;
+- `/qa-only` carries out every action of every spec sheet of the feature, on hosted App {n} with `TEST_` data only, signed in as each role and signed out for public pages, and checks each gives the result its spec sheet states;
+- `/qa-only` runs every flow of every earlier signed-off feature again, and checks the browser console shows no error and only approved hosts are contacted;
+- payments are tested end to end in test mode when the feature touches them;
+- `benchmark` measures each of the feature's pages against its performance budget;
+- every finding goes to the findings file with its evidence and severity; with none, the file states a clean pass; nothing is fixed in this step; `TEST_` data is removed afterwards;
+- `mb-sentinel-review` runs at High scrutiny on the findings;
+- its ledger row carries the ticket, with `step_type = 'skill'`, `skill_family = 'gstack'`, `synthesized = false`, and `inputs_used` naming Step 37.
 
-**Carried over from the old workflow** (to be checked against the step file, then removed):
+**BFT level:** Full.
 
-1. Query GBrain — Context relevant to QA testing
-2. Invoke GStack `/qa` — Systematic QA testing; bug fixing; generates regression tests
-3. Verify outputs — QA report with before/after screenshots, fix commits, regression test files; STOP if missing
-4. Write Step 38 ledger row — `completed_at`
-5. Generate Step Receipt — `<project-library>/pdlf/outputs/step-38-receipt.md`
-6. Apply BFT — Full level
-7. Follow execution sequence — Housekeeping, stop, wait for continue
+**Gate:** none.
 
-## From `pol-testing-and-quality.md`: code review and QA
+**References:** [[[default:test-suite/ts-method|Test Suite — Method]]](C:/dev/project-library-global/test-suite/ts-method.md).
 
-### Code review and QA (Steps 36–38)
+**Skills.** Every skill's output is used by the step named after the arrow.
+- `/qa-only` (GStack), report only: every spec-sheet action, every earlier flow → the findings, then Step 39.
+- `benchmark` (GStack): each page against its budget → the findings, then Step 39.
+- `mb-sentinel-review`, High → `triage_findings`.
 
-Every feature cycle goes through `/design-review` (visual), `/review` (structural), and [[[pdlf:app-factory/phase-e-build-and-verify/e38-reference|/qa]]](C:/pdlf/app-factory/phase-e-build-and-verify/e38-reference.md)
-(functional + regression) before its `build-verified` gate. These are GStack skills — they
-drive a headless browser for live-site testing, which OpenCode cannot do directly.
+**Not used:** GStack's `/qa`, because it commits its own fixes; agents never commit.
 
-This step's testing is its test specification, drawn from the test suite in `C:\dev\project-library-global\test-suite\`.
+**Layers with no skill:** none.
+
+**Testing:** [[[pdlf:app-factory/phase-e-build-and-verify/e38-test-spec|Step 38 Test Specification]]](C:/pdlf/app-factory/phase-e-build-and-verify/e38-test-spec.md).
+
+**Standards:** [[[default:test-suite/ts-method|Test Suite — Method]]](C:/dev/project-library-global/test-suite/ts-method.md); [[[default:specifications-global/spec-testing-methodology-standards|Testing Methodology Standards]]](C:/dev/project-library-global/specifications-global/spec-testing-methodology-standards.md).
+
+## Why it is built this way
+
+- **The spec sheet is the contract.** Each action it lists must give its stated result for the feature to be done.
+- **Nothing earlier broken.** Every signed-off feature is tested again, so a new feature cannot quietly break an old one.
+- **Fast enough.** Performance is measured, not assumed.

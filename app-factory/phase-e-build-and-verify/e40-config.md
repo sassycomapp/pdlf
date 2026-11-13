@@ -1,43 +1,56 @@
 ---
 title: "e40-config"
 doc-id: "mb-8575eede"
-updated: "2026-10-23"
+updated: "2026-11-13"
 ---
+# Step 40 — Architecture Scan: Configuration
 
-## From `step-mapping.md`: this step's rows
+The fixed values of Step 40. Agent-facing. What the agent does, in order: [[[pdlf:app-factory/phase-e-build-and-verify/e40-reference|Step 40 Reference]]](C:/pdlf/app-factory/phase-e-build-and-verify/e40-reference.md). What the step is and why: [[[pdlf:app-factory/phase-e-build-and-verify/e40-explainer|Step 40 Explainer]]](C:/pdlf/app-factory/phase-e-build-and-verify/e40-explainer.md). What it must prove: [[[pdlf:app-factory/phase-e-build-and-verify/e40-test-spec|Step 40 Test Specification]]](C:/pdlf/app-factory/phase-e-build-and-verify/e40-test-spec.md).
 
-### Phase D — Build & Verify (per-feature loop)
+## Identity
 
-| Step | File | Type | Handler | Gate |
-|---|---|---|---|---|
-| 40 | ``[[step-40-improve-codebase-architecture]]`` | Skill (optional) | Matt Step 40 Improve Codebase Architecture — read-only | |
+| Item | Value |
+|---|---|
+| Step | 40, Architecture Scan |
+| Phase | E, Build and Verify |
+| Carried out by | OpenCode, with the skills below; David decides |
+| Runs for | Every ticket of the run, once each, in build order |
+| Previous step | 35A |
+| Next step | 40B |
+| Gate | None |
+| BFT level | Light |
+| Sentinel scrutiny | None |
+| Conditional | Yes; David decides for each ticket whether it runs |
 
-### Phase D — Build & Verify (per-feature loop): phase notes
+## Inputs
 
-Repeats once per feature/package from Step 19's ticket list, until every feature has
-individually reached `build-verified`. For the loop's actual order and dependencies, see
-Run Plan, "Step 35 Feature Loop."
+| Input | Where |
+|---|---|
+| Scaffold specification | `{slug}-project-library\docs-standard-local\scaffold-spec.md` |
+| The app | `C:\dev\dev-{slug}\{slug}-app{n}` |
 
+## Outputs
 
-Exit gate: `build-verified`, evaluated per feature. For entry condition and dependencies,
-see Run Plan.
+| Output | Where |
+|---|---|
+| Scan report | `pdlf-outputs\e40\{slug}-e40-{run}-{ticket}-scan.md`: each finding and David's decision |
+| Ledger | the Step 40 `steps` row for the ticket; its BFT record |
+| Test results | `pdlf-outputs\e40\{slug}-e40-{run}-{ticket}-checks.xml` |
+| Step Receipt | `pdlf-outputs\e40\{slug}-e40-{run}-{ticket}-receipt.md` |
 
-## From `bft-checkpoint-cheatsheet-v2.md`: BFT level
+All paths without a repository name are inside `{slug}-project-library\`.
 
-### Phase E — Build & Verify (Steps 35–40)
+## Ledger values
 
-| Step | Name | Type | BFT | Rationale |
-|---|---|---|---|---|
-| 40 | improve-codebase-architecture | Skill (optional, per feature cycle) | **Light** | Read-only report, no code touched, no gate here. Optional recommendation, not a judgment-heavy step in itself. |
-
-## From `matt-pocock-skills-local-reference.md`: skill used
-
-| PDLF Step | Matt Pocock Skill | Notes |
-|---|---|---|
-| Step 40 | [[[pdlf:app-factory/phase-e-build-and-verify/e40-reference\|Step 40 Improve Codebase Architecture]]](C:/pdlf/app-factory/phase-e-build-and-verify/e40-reference.md) | Optional architecture health scan, read-only |
-
-## From `matt-pocock-skills-pdlf-compliance.md`: skill in scope
-
-| Skill | Used at | Type | Wrapper or Fat |
-|---|---|---|---|
-| [[[pdlf:app-factory/phase-e-build-and-verify/e40-reference\|Step 40 Improve Codebase Architecture]]](C:/pdlf/app-factory/phase-e-build-and-verify/e40-reference.md) | Step 40 (optional) | User-invoked | Fat, **has an unresolved dependency — see §2** |
+| Column | Value |
+|---|---|
+| `step_number` | `40` |
+| `step_type` | `optional` |
+| `skill_family` | `matt-skills` |
+| `run` | From the entry record |
+| `ticket` | The ticket's slug |
+| `app_number` | From the entry record |
+| `status` | `complete`, or `skipped` when David chooses not to run it |
+| `synthesized` | `false` |
+| `artifact_path` | `pdlf-outputs\e40\{slug}-e40-{run}-{ticket}-scan.md` |
+| `inputs_used` | Step 35A |

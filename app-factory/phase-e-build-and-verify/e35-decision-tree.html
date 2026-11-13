@@ -1,10 +1,47 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="doc-id" content="mb-2e58fab4">
-<title>e35-decision-tree</title>
+<title>Step 35 — Build Decision Tree</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; background: #f5f5f4; padding: 32px; margin: 0; }
+  h1 { font-size: 19px; color: #1a1a1a; margin: 0 0 20px 0; }
+  .diagram-wrap { background: white; border-radius: 10px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); overflow-x: auto; }
+  .mermaid { display: flex; justify-content: center; }
+</style>
 </head>
 <body>
+<h1>Step 35 — Build Decision Tree (matches e35-reference)</h1>
+<div class="diagram-wrap">
+  <div class="mermaid">
+flowchart TD
+    Start(["Ticket, scaffold-spec, approved screens"]) --> S1{"1. Previous step complete?"}
+    S1 -->|"No"| Dev1["Stop: deviation"]
+    S1 -->|"Yes"| Agree{"3. Ticket, screens, schema, SRS agree?"}
+    Agree -->|"No"| Dav["David decides"]
+    Dav --> Agree
+    Agree -->|"Yes"| RT["4. David starts the local runtime"]
+    RT --> Srv["5. tdd: server code into the stubs;<br/>server-code, client-modules, data-models;<br/>security criteria"]
+    Srv --> L12{"6. Levels 0, 1, 2 pass?"}
+    L12 -->|"No"| Dg["diagnosing-bugs, fix"]
+    Dg --> L12
+    L12 -->|"Yes"| R1["7. Claude reviews the server code<br/>8. David commits"]
+    R1 --> FB["9. mb-form-builder builds the forms;<br/>old forms removed"]
+    FB --> R2["10. Claude reviews the forms<br/>11. David commits and opens each form"]
+    R2 --> W["12. Anvil's agent wires handlers;<br/>/review-commit"]
+    W --> R3{"13. Pull, validate, scan;<br/>only handler bodies changed?"}
+    R3 -->|"No"| W
+    R3 -->|"Yes"| RW["14. Rework items cleared;<br/>Levels 0 to 2 again"]
+    RW --> L3["15. Level 3 in the browser, TEST_ data removed<br/>16. David signs off"]
+    L3 --> Sen{"18. Sentinel, High: clear?"}
+    Sen -->|"Flag or Escalate"| Stop1(["Stop: David decides"])
+    Sen -->|"Clear"| End(["19. Full BFT, ledger row, Step Receipt<br/>20. Explain, stop"])
+  </div>
+</div>
+<script>
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis' } });
+</script>
 </body>
 </html>

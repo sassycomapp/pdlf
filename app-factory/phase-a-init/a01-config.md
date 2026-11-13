@@ -1,7 +1,7 @@
 ---
 title: "a01-config"
 doc-id: "mb-0aff45b8"
-updated: "2026-11-12"
+updated: "2026-11-13"
 ---
 # Step 1 — Orchestrator: Configuration
 
@@ -46,7 +46,7 @@ The orchestrator runs only the steps of these phases. A run that reaches a step 
 | B, Discover and Define | 11, 12, 14, 15, 16 | Yes |
 | C, Design and Plan | 17 to 23, 26 | Yes |
 | D, Scaffold and Assemble | 31 to 34 | Yes |
-| E, Build and Verify | 35, 35A, 40, 40B, 36, 37, 38, 38A, 39 | No |
+| E, Build and Verify | 35, 35A, 40, 40B, 36, 37, 38, 38A, 39 | Yes |
 | F, Ship and Monitor | 41, 42, 42A, 43 to 46 | No |
 
 ## The entry points
@@ -71,10 +71,10 @@ Every run follows one route: its steps, in this order. A phase not yet built is 
 
 | Route | Steps, in order |
 |---|---|
-| Application | 11, 12, 14, 15, 16 (gate `domain-locked`), 17, 18, 19, 20, 21 (gate `concept-locked`), 22, 23, 26 (gate `screens-approved`), 31, 32, 33, 34 (gate `architecture-verified`), then Phases E and F |
-| Management app | 11, 12, 14, 15, 16 (gate `domain-locked`), 17, 18, 19, 20, 21 (gate `concept-locked`), 22, 23, 26 (gate `screens-approved`), 31, 32, 33, 34 (gate `architecture-verified`), then Phases E and F |
+| Application | 11, 12, 14, 15, 16 (gate `domain-locked`), 17, 18, 19, 20, 21 (gate `concept-locked`), 22, 23, 26 (gate `screens-approved`), 31, 32, 33, 34 (gate `architecture-verified`), then for each ticket in build order 35, 35A, 40, 40B, 36, 37, 38, 38A, 39 (gate `build-verified` for the ticket), then Phase F |
+| Management app | 11, 12, 14, 15, 16 (gate `domain-locked`), 17, 18, 19, 20, 21 (gate `concept-locked`), 22, 23, 26 (gate `screens-approved`), 31, 32, 33, 34 (gate `architecture-verified`), then for each ticket in build order 35, 35A, 40, 40B, 36, 37, 38, 38A, 39 (gate `build-verified` for the ticket), then Phase F |
 | Client template | 11, then Phase G |
-| Feature | 12, 14, 15, 16 (gate `domain-locked`), 17, 18, 19, 20, 21 (gate `concept-locked`), 22, 23, 26 (gate `screens-approved`), 31, 32, 33, 34 (gate `architecture-verified`), then Phases E and F |
+| Feature | 12, 14, 15, 16 (gate `domain-locked`), 17, 18, 19, 20, 21 (gate `concept-locked`), 22, 23, 26 (gate `screens-approved`), 31, 32, 33, 34 (gate `architecture-verified`), then for each ticket in build order 35, 35A, 40, 40B, 36, 37, 38, 38A, 39 (gate `build-verified` for the ticket), then Phase F |
 | Update | The step David names at the entry, then every later step of the Application route |
 | Release | Phase F: 41, 42, 42A, 43, 44 |
 
@@ -101,6 +101,15 @@ A step runs only when every step it depends on is `complete` or `skipped`, and e
 | 32 | Step 31 of the run |
 | 33 | Step 32 of the run |
 | 34 | Step 33 of the run |
+| 35 | Step 34 of the run and the gate `architecture-verified` passed; for every ticket after the first, Step 39 of the previous ticket and its gate `build-verified` passed |
+| 35A | Step 35 of the ticket |
+| 40 | Step 35A of the ticket |
+| 40B | Step 40 of the ticket |
+| 36 | Step 40B of the ticket |
+| 37 | Step 36 of the ticket |
+| 38 | Step 37 of the ticket |
+| 38A | Step 38 of the ticket |
+| 39 | Step 38A of the ticket |
 
 ## The gates in the built phases
 
@@ -110,6 +119,7 @@ A step runs only when every step it depends on is `complete` or `skipped`, and e
 | `concept-locked` | 21 | `bash /mnt/c/mybizz/scripts/pdlf-gate.sh {slug} concept-locked {run}` |
 | `screens-approved` | 26 | `bash /mnt/c/mybizz/scripts/pdlf-gate.sh {slug} screens-approved {run}` |
 | `architecture-verified` | 34 | `bash /mnt/c/mybizz/scripts/pdlf-gate.sh {slug} architecture-verified {run}` |
+| `build-verified` | 39, once per ticket | `bash /mnt/c/mybizz/scripts/pdlf-gate.sh {slug} build-verified {run} {ticket}` |
 
 ## The resume check
 
@@ -119,6 +129,7 @@ A step runs only when every step it depends on is `complete` or `skipped`, and e
 | That step's row is `in_progress` | Offer to start that step again from its beginning; files an earlier attempt wrote are kept and checked, never overwritten without David's permission |
 | That step's row is `blocked` | Present its `blockers` as a deviation; David decides |
 | That step's phase is not built | Paused: report the run and the step; do not offer it |
+| The run is in Phase E | Unfinished: offer to continue at the first ticket, in build order, without `build-verified`, at its first step that is not `complete` or `skipped` |
 | Every step of the route is `complete` or `skipped` | Finished: not offered |
 
 ## The entry record

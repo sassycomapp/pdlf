@@ -1,16 +1,17 @@
 ---
 title: "e35-test-spec"
-updated: "2026-10-23"
 doc-id: "mb-e4dc7f9d"
+updated: "2026-11-13"
 ---
 # Step 35: Build — Test Specification
 
-**Proves:** The feature is built test-first and proven at Levels 0 to 3, and the developer signs it off.
+**Proves:** The feature is built test-first, its forms match their approved screen requirements, it is proven at Levels 0 to 3, and David signs it off.
 
-Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-library-global/test-suite/ts-catalogue.md) and, for the PR tests, in [[[pdlf:pdlf-library/specifications-local/spec-pdlf-process-tests]]](C:/pdlf/pdlf-library/specifications-local/spec-pdlf-process-tests.md). Evidence is saved in `{slug}-project-library\pdlf-outputs\e35\`.
+Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-library-global/test-suite/ts-catalogue.md) and, for the PR tests, in [[[pdlf:pdlf-library/specifications-local/spec-pdlf-process-tests]]](C:/pdlf/pdlf-library/specifications-local/spec-pdlf-process-tests.md). Evidence is saved in `{slug}-project-library\pdlf-outputs\e35\`; every result is recorded in `{slug}-e35-{run}-{ticket}-checks.xml`, naming its evidence, as `ts-method` section 5 sets out.
 
 | Test | Applied here |
 |---|---|
+| PR-01 | The entry record is complete and Step 34, or the previous ticket's Step 39, is complete. |
 | LG-01 | Each behaviour test-first. |
 | LG-02 | Edges, odd and hostile input. |
 | LG-03 | Lifecycle transitions. |
@@ -25,20 +26,13 @@ Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-librar
 | IN-11 | New tasks correct. |
 | SC-05 | Form checks enforced by the server. |
 | SC-06 | Hostile input harmless. |
-| DM-01 | When the ticket touches this domain rule. |
-| DM-02 | When the ticket touches this domain rule. |
-| DM-03 | When the ticket touches this domain rule. |
-| DM-04 | When the ticket touches this domain rule. |
-| DM-05 | When the ticket touches this domain rule. |
-| DM-06 | When the ticket touches this domain rule. |
-| DM-07 | When the ticket touches this domain rule. |
-| DM-08 | When the ticket touches this domain rule. |
-| DM-09 | When the ticket touches this domain rule. |
-| DM-10 | When the ticket touches this domain rule. |
-| BR-01 | Flows end to end, desktop and mobile. |
+| ST-11 | The ticket's forms obey the UI rules. |
+| DC-13 | Each form holds exactly the components its approved screen requirement names; its spec sheet matches; only handler bodies were changed by Anvil's agent. |
+| DM-01 to DM-10 | Each domain rule the ticket touches. |
+| BR-01 | Flows end to end, desktop and phone. |
 | BR-02 | Edge cases and errors. |
-| BR-09 | The developer signs off. |
 | IN-18 | Hosted test data removed. |
+| BR-09 | David signs the feature off. |
 | PR-07 | No test weakened. |
 | PR-04 | Sentinel ran at High. |
 

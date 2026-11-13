@@ -1,10 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="doc-id" content="mb-6717448d">
-<title>e37-decision-tree</title>
+<title>Step 37 — Code Review Decision Tree</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; background: #f5f5f4; padding: 32px; margin: 0; }
+  h1 { font-size: 19px; color: #1a1a1a; margin: 0 0 20px 0; }
+  .diagram-wrap { background: white; border-radius: 10px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); overflow-x: auto; }
+  .mermaid { display: flex; justify-content: center; }
+</style>
 </head>
 <body>
+<h1>Step 37 — Code Review Decision Tree (matches e37-reference)</h1>
+<div class="diagram-wrap">
+  <div class="mermaid">
+flowchart TD
+    Start(["Feature's changes"]) --> S1{"1. Step 36 complete?"}
+    S1 -->|"No"| Dev1["Stop: deviation"]
+    S1 -->|"Yes"| G["3. David runs mg-grant for GStack"]
+    G --> CR["4. code-review: Anvil skills' rules, standards, ticket;<br/>forms against screen requirements"]
+    CR --> Sc["5. ts_scan"]
+    Sc --> Cso["6. /cso --diff, own session"]
+    Cso --> Sen{"7. Sentinel, Very High: clear?"}
+    Sen -->|"Flag or Escalate"| Stop1(["Stop: David decides"])
+    Sen -->|"Clear"| F["8. Findings or clean pass; nothing fixed"]
+    F --> End(["9. Checks; 10. Full BFT, ledger row, Step Receipt<br/>11. Explain, stop"])
+  </div>
+</div>
+<script>
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis' } });
+</script>
 </body>
 </html>

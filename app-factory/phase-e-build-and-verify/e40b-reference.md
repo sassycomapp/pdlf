@@ -1,67 +1,17 @@
 ---
 title: "e40b-reference"
 doc-id: "mb-7cc93d36"
-updated: "2026-10-12"
+updated: "2026-11-13"
 ---
+# Step 40B — Approved Fixes: Reference
 
-## From `40b-remediation.md`
+What the agent does at Step 40B, in order. Agent-facing. Fixed values: [[[pdlf:app-factory/phase-e-build-and-verify/e40b-config|Step 40B Configuration]]](C:/pdlf/app-factory/phase-e-build-and-verify/e40b-config.md). The pattern every step follows (search, read, verify, BFT, ledger row, receipt, explain, stop, close-out) is in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md) and is not repeated here. Every skill is invoked with the handover material and the context pack, in full ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2).
 
-## Task Execution Order
-
-1. → Decision point: if Step 40 was skipped, or produced no findings, or the developer
-   declined all findings: skip this step entirely, no artifact produced.
-2. If findings were approved: OpenCode applies only the specific, developer-approved
-   fixes from Step 40's report. No fix is applied that was not explicitly approved.
-3. Follow execution sequence in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md).
-4. Apply BFT per [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md) at assigned level.
-
----
-
-## Description
-
-Direct code remediation of findings surfaced by Step 40's read-only architecture scan.
-This is the only point in the loop where architecture-scan findings become actual code
-changes — Step 40 itself never touches code. Exists specifically so that any such change
-is retested by Steps 36–38 before the `build-verified` gate, not shipped unverified (see
-ADR-0007).
-
-## Inputs Required
-
-- Step 40's architecture report
-- Developer's specific approval of which findings to act on
-
-## Outputs
-
-- Code changes, scoped exactly to approved findings
-- Nothing, if Step 40 was skipped or all findings were declined
-
-## Step Table
-
-| Step | Type | Gate | Handled By |
-|---|---|---|---|
-| 40B | OpenCode (per feature cycle, conditional) | | OpenCode |
-
----
-
-## Handoff to Step 36
-
-Step 36 (`/design-review`) runs next and explicitly retests this step's output, not just
-Step 35's original build. If this step produced no changes, Step 36 still runs as normal.
-
----
-
-## Reference
-
-Design rationale — why the `build-verified` gate sits after this step's retest, not before
-Step 40: ADR-0007.
-
-OpenCode is always the orchestrator. Invoke skills only when they beat OpenCode directly.
-
-For execution sequence: [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md)
-For BFT procedure: [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md)
-
-GBrain is queried automatically at substep 1. Syncing is asked at substep 10, never auto-run.
-The two housekeeping questions are asked separately, every step, never combined, never auto-run.
-
-The ledger row, Step Receipt, and devlog-index/judgement-trail are the complete checkpoint.
-No separate state file, devlog file, or completion report.
+1. Read the entry record and the ledger row of Step 40 for this ticket. Check it is complete or skipped (test PR-01). If not: stop and raise a deviation.
+2. Read the ticket, and every input in the configuration.
+3. If Step 40 was skipped or David approved no fix: record the step `skipped`, write the receipt, stop.
+4. Apply each approved fix with `codebase-design` and the Anvil skill for the code it touches. Apply nothing else.
+5. Run every test of the feature and the whole suite. On a failure: find its root cause with `diagnosing-bugs`, fix it, run again. Weaken no test.
+6. Give David the commit command and wait until he confirms it ran.
+7. Run the Light BFT. Complete the Step 40B `steps` row with the ledger values in the configuration, and write the BFT record and the Step Receipt, from the [[[pdlf:pdlf-library/templates-local/step-receipt-template|Step Receipt Template]]](C:/pdlf/pdlf-library/templates-local/step-receipt-template.md).
+8. Explain what was done. Present the Step Receipt and stop.

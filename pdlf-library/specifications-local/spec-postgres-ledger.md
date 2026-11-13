@@ -1,7 +1,7 @@
 ---
 title: "spec-postgres-ledger"
 doc-id: "mb-dcf9c65e"
-updated: "2026-11-08"
+updated: "2026-11-13"
 ---
 # PDLF Postgres Ledger Specification
 
@@ -94,6 +94,7 @@ Primary key: `slug`. Referenced by `steps`, `gates`, `deviations`, `bft_records`
 | `sort_order` | numeric | NO | — | Numeric ordering value for the step |
 | `phase` | text | YES | — | Phase label |
 | `run` | text | NO | — | `app{n}` for the whole application (`app1`, `app2`, `app3` or `app5`, matching `app_number`), or the feature's short name for a feature or an update |
+| `ticket` | text | NO | `''` | The ticket's slug for a row of the Phase E build loop (Steps 35 to 40B), which runs once per ticket; empty for every other step |
 | `app_number` | smallint | NO | `1` | The app the row concerns: 1, 2, 3 or 5 (CHECK) |
 | `step_type` | text | NO | — | `skill`, `manual`, `optional`, or `gate` (CHECK; lowercase values) |
 | `skill_family` | text | YES | — | `gstack`, `matt-skills`, `opencode`, `manual`, `anvil`, `mybizz` (Sentinel and the mybizz-os skills), `security`, or NULL (CHECK) |
@@ -110,7 +111,7 @@ Primary key: `slug`. Referenced by `steps`, `gates`, `deviations`, `bft_records`
 | `gbrain_query` | text | YES | — | The GBrain query fired at substep 1 |
 | `gbrain_results` | text | YES | — | Summary of the query results |
 
-UNIQUE constraint: (`project_slug`, `step_number`, `run`), so the feature path can run Steps 12 to 16 again for every feature.
+UNIQUE constraint: (`project_slug`, `step_number`, `run`, `ticket`), so the feature path can run Steps 12 to 16 again for every feature, and the build loop can run Steps 35 to 40B once for every ticket of a run.
 
 **The entry record** is the `inputs_used` of the run's entry-point row (`step_number` `02` to `10`). It is written once, when the entry is taken, and every step of the run reads it from there. Its fields and values are set in [[[pdlf:app-factory/phase-a-init/a01-config|Step 1 Configuration]]](C:/pdlf/app-factory/phase-a-init/a01-config.md). The only foreign key on `steps` is
 `project_slug` — there is no inter-step constraint (see Principle 2).

@@ -1,106 +1,46 @@
 ---
 title: "e35-reference"
 doc-id: "mb-a32fbe97"
-updated: "2026-10-24"
+updated: "2026-11-13"
 ---
+# Step 35 — Build: Reference
 
-## From `35-build-loop.md`
+What the agent does at Step 35, in order. Agent-facing. Fixed values: [[[pdlf:app-factory/phase-e-build-and-verify/e35-config|Step 35 Configuration]]](C:/pdlf/app-factory/phase-e-build-and-verify/e35-config.md). The pattern every step follows (search, read, verify, BFT, ledger row, receipt, explain, stop, close-out) is in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md) and is not repeated here. Every skill is invoked with the handover material and the context pack, in full ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2). The per-feature method is [[[default:specifications-global/mo-ui-production|UI Production Method]]](C:/dev/project-library-global/specifications-global/mo-ui-production.md) section 4; its order is in the configuration.
 
-## Task Execution Order
+## 1. Start
 
-For each issue from Step 19, in dependency order:
+1. Read the entry record and the ledger row of Step 34 for this ticket. Check it is complete or skipped (test PR-01). If not: stop and raise a deviation.
+2. Read the ticket, and every input in the configuration.
+3. Check that the ticket, its approved screen requirements, the authoritative schema and the SRS agree. On a disagreement: stop and present it to David; a change to an approved screen requirement needs his approval.
+4. Give David the command that starts the local runtime, and wait until he confirms it ran.
 
-1. Write the pure-logic function
-2. Write Level 1 tests and run them locally
-3. → Decision point: Level 1 pass? continue. fail? fix and retry.
-4. Create pre-integration backup
-5. Write server-module (integration) wrapper
-6. Write Level 2 tests
-7. Push to Anvil (git push to branch — no auto-publish)
-8. Run Level 2 tests via Uplink against Development Environment
-9. → Decision point: Level 2 pass? create post-success backup and continue. fail? restore from pre-integration backup, fix, retry.
-10. Pull the repo back to local
-11. Level 3: manual/browser verification of complete feature
-12. → Decision point: Developer signoff on this feature
-13. Generate Step Receipt for 35.N
-14. → Decision point: More issues remain? continue loop. All signed off? exit loop.
-15. Follow execution sequence in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md) (per cycle)
-16. Apply BFT per [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md) at assigned level (Full per feature)
+## 2. Server code
 
----
+5. For each behaviour the ticket names, write its test first with `tdd`, then fill its stub with `server-code`, `client-modules` and `data-models`, inside the module `scaffold-spec.md` sets. Build and test the ticket's security criteria with `secure-software-engineering`. Change any app setting only through `anvil-yaml`. If the feature needs a table that does not exist: stop and raise a deviation to Step 17.
+6. Run Level 0 (`anvil --json validate`, `ts_scan.py`), Level 1 and Level 2. On a failure: find its root cause with `diagnosing-bugs`, fix it, run the level again.
+7. Add each new server function to `access-matrix.yaml`. Write the review package (the changed server code, the ticket, the screen requirements) for Claude, and give it to David. Correct each finding Claude returns, then run step 6 again.
+8. Give David the commit commands in the configuration, written with `wizard`, and wait until he confirms they ran.
 
-## Description
+## 3. Forms
 
-Iterates over each issue from Step 19. One build, test, and signoff cycle per
-feature. Each cycle gets its own `steps` row (35.1, 35.2...). Built on mb-3-cs's
-validated three-level testing methodology.
+9. Run `mb-form-builder` for the ticket's forms. It removes the old forms the ticket replaces.
+10. Write the review package (each form, its spec sheet, its screen requirement) for Claude, and give it to David. Correct each finding.
+11. Give David the commit commands, then his instructions, written with `wizard`, to open each form in Anvil. Success: every component shows, nothing is reported missing, and the form looks as its screen requirement describes.
+12. Give David the wiring task for Anvil's agent, word for word as `mo-ui-production` section 4 sets it, with the ticket's forms by module path, then `/review-commit`. Wait until he confirms both ran.
+13. Give David the pull command; then run `anvil --json validate client_code` and `ts_scan.py`. Write the review package of the Anvil agent's commit for Claude. On any change beyond handler bodies: give David the correction for Anvil's agent, and repeat from step 12.
 
-## Inputs Required (Per Feature Cycle)
+## 4. Rework and Level 3
 
-- The individual issue from Step 19
-- Plan file (Steps 14–15, 23–24 review reports)
-- Step 20 DESIGN.md
-- Step 26 approved wireframes/screens
-- Step 16 GLOSSARY.md + ADRs
-- Step 17 Anvil data tables
-- Step 29 Anvil UI forms
-- Step 31/32 scaffolding
+14. Clear the ticket's items on the rework list, and remove the modules the disposition list marks remove for this ticket. Run Levels 0 to 2 again.
+15. Give David his Level 3 instructions, written with `wizard`: every flow of the ticket in the browser on hosted App {n}, at desktop and phone width, with `TEST_` data only. Remove the `TEST_` data afterwards.
+16. Ask David to sign the feature off against its ticket and its screen requirements (test BR-09).
 
-## Outputs (Per Feature Cycle)
+## 5. Checks
 
-- Production code written into the Anvil app/repo
-- Level 1 tests (pure logic) — run and pass
-- Pre-integration backup
-- Level 2 tests (Uplink integration) — run and pass
-- Post-success backup
-- Level 3 verification (manual/browser)
-- Signoff — this feature is a known-good baseline
-- Step Receipt for 35.N
+17. Record every test in the checks file, naming its evidence.
+18. Run `mb-sentinel-review` for Step 35 at High scrutiny on the feature's code. On Flag or Escalate: stop and present it to David. Check the review's `triage_findings` row exists (test PR-04).
 
-## Step Table
+## 6. The end
 
-| Step | Type | Gate | Handled By |
-|---|---|---|---|
-| 35 | Agent loop | | OpenCode `/build`, feature-by-feature |
-
-## Feature-by-Feature Build Loop
-
-Step 35 is not a single ledger row — it is a loop over the issues produced at Step
-19, one build-test-signoff cycle per feature. Full mechanics: [[[pdlf:pdlf-library/policy-local/pol-testing-and-quality|Policy: Testing and Quality]]](C:/pdlf/pdlf-library/policy-local/pol-testing-and-quality.md).
-
-Each cycle gets its own `steps` row, numbered `35.1`, `35.2`, etc. Each cycle produces
-its own Step Receipt, asks the two housekeeping questions, and stops for "continue."
-The loop does not collapse the per-step stop discipline.
-
-Do not proceed to the next feature until the current one is signed off. A signed-off
-feature is a known-good baseline — later breakage is attributable to something done
-after signoff, not to the feature itself.
-
-## Test Plan Production
-
-Steps 14–15 jointly produce the test plan consumed by Steps 35 and 38.
-
-## Reference Files
-
-| `policy-local/pol-testing-and-quality.md` | Step 35 (the build loop) |
-| [[[pdlf:pdlf-library/templates-local/isa-template\|ISA Template v2]]](C:/pdlf/pdlf-library/templates-local/isa-template.md) | Steps 26, 35, 38, 46 |
-| Standards Library | Step 35 (testing methodology) |
-
----
-
-## Reference
-
-OpenCode is always the orchestrator. Invoke skills only when they beat OpenCode directly.
-
-For execution sequence: [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md)
-For BFT procedure: [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md)
-
-GBrain is queried automatically at substep 1. Syncing is asked at substep 10, never auto-run.
-The two housekeeping questions are asked separately, every step, never combined, never auto-run.
-
-The ledger row, Step Receipt, and devlog-index/judgement-trail are the complete checkpoint.
-No separate state file, devlog file, or completion report.
-
-Skills save where designed. PDLF process artifacts go to `<project-library>/pdlf/`.
-
-- Feature loop cycle skipped or collapsed: one row per feature cycle, no exceptions.
+19. Run the Full BFT. Complete the Step 35 `steps` row with the ledger values in the configuration, and write the BFT record and the Step Receipt, from the [[[pdlf:pdlf-library/templates-local/step-receipt-template|Step Receipt Template]]](C:/pdlf/pdlf-library/templates-local/step-receipt-template.md).
+20. Explain what was done. Present the Step Receipt and stop.

@@ -1,60 +1,74 @@
 ---
 title: "e39-config"
 doc-id: "mb-a9424736"
-updated: "2026-10-23"
+updated: "2026-11-13"
 ---
+# Step 39 — Triage: Configuration
 
-## From `step-mapping.md`: this step's rows
+The fixed values of Step 39. Agent-facing. What the agent does, in order: [[[pdlf:app-factory/phase-e-build-and-verify/e39-reference|Step 39 Reference]]](C:/pdlf/app-factory/phase-e-build-and-verify/e39-reference.md). What the step is and why: [[[pdlf:app-factory/phase-e-build-and-verify/e39-explainer|Step 39 Explainer]]](C:/pdlf/app-factory/phase-e-build-and-verify/e39-explainer.md). What it must prove: [[[pdlf:app-factory/phase-e-build-and-verify/e39-test-spec|Step 39 Test Specification]]](C:/pdlf/app-factory/phase-e-build-and-verify/e39-test-spec.md).
 
-### Phase D — Build & Verify (per-feature loop)
+## Identity
 
-| Step | File | Type | Handler | Gate |
-|---|---|---|---|---|
-| 39 | `[[step-39-triage]]` | Skill + GATE | Matt triage | `build-verified` |
-
-### Phase D — Build & Verify (per-feature loop): phase notes
-
-Repeats once per feature/package from Step 19's ticket list, until every feature has
-individually reached `build-verified`. For the loop's actual order and dependencies, see
-Run Plan, "Step 35 Feature Loop."
-
-
-Exit gate: `build-verified`, evaluated per feature. For entry condition and dependencies,
-see Run Plan.
-
-### Gate Summary
-
-`build-verified` sits at Step 39 (triage), not Step 40 — architecture remediation (40,
-40B) must complete and be retested (36, 37, 38) before the gate is evaluated, not after
-(ADR: two-gate-extension). Note this table lists gates in phase order for readability;
-it is not a sequence claim — see Run Plan for the loop's actual internal order.
-
-| Gate | After Step |
+| Item | Value |
 |---|---|
-| `build-verified` | 39 (per feature) |
+| Step | 39, Triage |
+| Phase | E, Build and Verify |
+| Carried out by | OpenCode, with `triage`; David decides findings and answers the gate |
+| Runs for | Every ticket of the run, once each, in build order |
+| Previous step | 38A |
+| Next step | 35 of the next ticket; after the last ticket, 41 |
+| Gate | `build-verified`, for this ticket ([[[pdlf:pdlf-library/specifications-local/spec-gate-procedure\|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md)) |
+| BFT level | Full (gate) |
+| Sentinel scrutiny | None; Sentinel's findings of Steps 35, 37 and 38 are triaged here |
+| Conditional | No |
 
-## From `bft-checkpoint-cheatsheet-v2.md`: BFT level
+## Inputs
 
-### Phase E — Build & Verify (Steps 35–40)
+| Input | Where |
+|---|---|
+| Findings | `{slug}-project-library\pdlf-outputs\e35a\` to `e38a\`, the ticket's files; `triage_findings` for the ticket |
+| Label vocabulary | `{slug}-project-library\docs\agents\triage-labels.md` |
+| Ticket | `{slug}-project-library\pdlf-tickets\{run}\{ticket}.md` |
+| Rework list | `{slug}-project-library\pdlf-outputs\d34\{slug}-d34-{run}-rework.md` |
 
-| Step | Name | Type | BFT | Rationale |
-|---|---|---|---|---|
-| 39 | triage | Skill + GATE | **Full** | Labels, comments, issue-tracker updates from Steps 37–38 findings. GATE `build-verified` fires here ([[[pdlf:pdlf-library/specifications-local/spec-gate-procedure\|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md)) — full BFT mandatory regardless of the table's usual Light assignment for triage-type work. |
+## Gate summary block
 
-## From `spec-gate-procedure.md`: gate
+```
+██████████████████████████████████████████████
+█  GATE — build-verified
+█
+█  Step: 39   Run: {run}   Ticket: {ticket}   BFT: Full — all six passed
+█  Findings: {n} fixed, {n} declined, 0 open
+█  Suite: passing; receipts of 35 to 38A match their evidence
+█
+█  Lock this feature and start the next? (yes/no)
+██████████████████████████████████████████████
+```
 
-| Gate | After Step | What is Locked |
-|---|---|---|
-| `build-verified` | 39 | Build complete, architecture scan and any developer-approved remediation applied and retested, design review done, code review done, QA passed, triage complete for this feature cycle. Evaluated once per feature — the pipeline does not advance to Step 41 until every feature has individually passed this gate. Features are known-good baselines. |
+## Outputs
 
-## From `matt-pocock-skills-local-reference.md`: skill used
+| Output | Where |
+|---|---|
+| Triage record | `pdlf-outputs\e39\{slug}-e39-{run}-{ticket}-triage.md`: each finding, its label and its decision |
+| Ticket and rework list | `pdlf-tickets\{run}\{ticket}.md` closed; its rework items marked cleared |
+| Ledger | the Step 39 `steps` row for the ticket; the `gates` row of `build-verified`; its BFT record |
+| Test results | `pdlf-outputs\e39\{slug}-e39-{run}-{ticket}-checks.xml` |
+| Step Receipt | `pdlf-outputs\e39\{slug}-e39-{run}-{ticket}-receipt.md` |
 
-| PDLF Step | Matt Pocock Skill | Notes |
-|---|---|---|
-| Step 39 | `triage` | Processes findings from Steps 36–38, gate `build-verified` |
+All paths without a repository name are inside `{slug}-project-library\`.
 
-## From `matt-pocock-skills-pdlf-compliance.md`: skill in scope
+## Ledger values
 
-| Skill | Used at | Type | Wrapper or Fat |
-|---|---|---|---|
-| `triage` | Step 39 | User-invoked | Fat, **has an unresolved dependency — see §2** |
+| Column | Value |
+|---|---|
+| `step_number` | `39` |
+| `step_type` | `gate` |
+| `skill_family` | `matt-skills` |
+| `run` | From the entry record |
+| `ticket` | The ticket's slug |
+| `app_number` | From the entry record |
+| `status` | `complete` after the gate passes; `blocked` when David says no |
+| `synthesized` | `false` |
+| `artifact_path` | `pdlf-outputs\e39\{slug}-e39-{run}-{ticket}-triage.md` |
+| `inputs_used` | Steps 35 to 38A |
+| `gates` row | Written by David with `bash /mnt/c/mybizz/scripts/pdlf-gate.sh {slug} build-verified {run} {ticket}`; the agent only reads it |

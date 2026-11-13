@@ -1,10 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="doc-id" content="mb-fa49b89b">
-<title>e36-decision-tree</title>
+<title>Step 36 — Design Review Decision Tree</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; background: #f5f5f4; padding: 32px; margin: 0; }
+  h1 { font-size: 19px; color: #1a1a1a; margin: 0 0 20px 0; }
+  .diagram-wrap { background: white; border-radius: 10px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); overflow-x: auto; }
+  .mermaid { display: flex; justify-content: center; }
+</style>
 </head>
 <body>
+<h1>Step 36 — Design Review Decision Tree (matches e36-reference)</h1>
+<div class="diagram-wrap">
+  <div class="mermaid">
+flowchart TD
+    Start(["Feature after Step 40B"]) --> S1{"1. Previous step complete or skipped?"}
+    S1 -->|"No"| Dev1["Stop: deviation"]
+    S1 -->|"Yes"| G["3. David runs mg-grant for GStack"]
+    G --> B["4. browse: each form, every width, mode, role;<br/>screenshots"]
+    B --> C["5. Against the screen requirement, theme,<br/>accessibility, controls, sensitive data"]
+    C --> F["6. Findings or clean pass; no form changed"]
+    F --> End(["7. Checks; 8. Full BFT, ledger row, Step Receipt<br/>9. Explain, stop"])
+  </div>
+</div>
+<script>
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis' } });
+</script>
 </body>
 </html>

@@ -1,70 +1,17 @@
 ---
 title: "e35a-reference"
 doc-id: "mb-ca3e2562"
-updated: "2026-10-12"
+updated: "2026-11-13"
 ---
+# Step 35A — Testing: Reference
 
-## From `35a-testing.md`
+What the agent does at Step 35A, in order. Agent-facing. Fixed values: [[[pdlf:app-factory/phase-e-build-and-verify/e35a-config|Step 35A Configuration]]](C:/pdlf/app-factory/phase-e-build-and-verify/e35a-config.md). The pattern every step follows (search, read, verify, BFT, ledger row, receipt, explain, stop, close-out) is in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md) and is not repeated here. Every skill is invoked with the handover material and the context pack, in full ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2).
 
-## Task Execution Order
-
-1. Run `pip-audit` against the local development/test environment only —
-   test frameworks, `anvil-uplink`, and any other tooling installed locally
-   that is never registered through Anvil's IDE Package section.
-2. Run any additional local test coverage beyond Step 35's Levels 1–3, if applicable
-   to this feature.
-3. Record findings. If `pip-audit` reports vulnerabilities, present as a deviation
-   request — developer decides whether to address before continuing.
-4. Follow execution sequence in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md).
-5. Apply BFT per [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md) at assigned level.
-
----
-
-## Description
-
-The first of two dependency-scan touchpoints in the per-feature loop (see ADR-0011). This
-step covers only what Anvil's own native scan structurally cannot see: local development
-and test tooling that never gets registered in the Anvil IDE. It does not audit the app's
-own third-party dependencies — those are Anvil's responsibility, captured at Step 38A, not
-duplicated here.
-
-## Inputs Required
-
-- Local development/test Python environment for this feature cycle
-- Feature build output from Step 35
-
-## Outputs
-
-- `pip-audit` result for the local dev/test environment
-- Any additional local test coverage results
-
-## Step Table
-
-| Step | Type | Gate | Handled By |
-|---|---|---|---|
-| 35A | OpenCode (per feature cycle) | | OpenCode |
-
----
-
-## Handoff to Step 40
-
-Proceeds to Step 40 (architecture scan, optional) regardless of `pip-audit` result, unless
-a vulnerability finding is escalated as a deviation requiring resolution first.
-
----
-
-## Reference
-
-Design rationale and scope boundary vs. Anvil's native scan: ADR-0011.
-`pip-audit` installed via `pipx install pip-audit`.
-
-OpenCode is always the orchestrator. Invoke skills only when they beat OpenCode directly.
-
-For execution sequence: [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md)
-For BFT procedure: [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md)
-
-GBrain is queried automatically at substep 1. Syncing is asked at substep 10, never auto-run.
-The two housekeeping questions are asked separately, every step, never combined, never auto-run.
-
-The ledger row, Step Receipt, and devlog-index/judgement-trail are the complete checkpoint.
-No separate state file, devlog file, or completion report.
+1. Read the entry record and the ledger row of Step 35 for this ticket. Check it is complete or skipped (test PR-01). If not: stop and raise a deviation.
+2. Read the ticket, and every input in the configuration.
+3. With `tdd`, add every edge-case, integration and security test the test plan names for the ticket. Run them. On a failure: return the feature to Step 35 as a deviation.
+4. Run `test-audit` on the feature's tests. Present each weak or duplicate test to David with the correction; apply it on his approval. Weaken no test.
+5. Run `pip-audit` and `/cso --supply-chain`. Write every finding to `triage_findings`.
+6. Record every test in the checks file, naming its evidence.
+7. Run the Light BFT. Complete the Step 35A `steps` row with the ledger values in the configuration, and write the BFT record and the Step Receipt, from the [[[pdlf:pdlf-library/templates-local/step-receipt-template|Step Receipt Template]]](C:/pdlf/pdlf-library/templates-local/step-receipt-template.md).
+8. Explain what was done. Present the Step Receipt and stop.

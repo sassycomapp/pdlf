@@ -1,16 +1,17 @@
 ---
 title: "e35a-test-spec"
-updated: "2026-11-02"
 doc-id: "mb-c4ff5468"
+updated: "2026-11-13"
 ---
 # Step 35A: Testing — Test Specification
 
-**Proves:** The feature holds at its edges, under attack, at volume and through its dependencies.
+**Proves:** The feature passes every edge-case, integration and security test the test plan gives it, its tests are sound, and its tools and packages are checked.
 
-Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-library-global/test-suite/ts-catalogue.md) and, for the PR tests, in [[[pdlf:pdlf-library/specifications-local/spec-pdlf-process-tests]]](C:/pdlf/pdlf-library/specifications-local/spec-pdlf-process-tests.md). Evidence is saved in `{slug}-project-library\pdlf-outputs\e35a\`.
+Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-library-global/test-suite/ts-catalogue.md) and, for the PR tests, in [[[pdlf:pdlf-library/specifications-local/spec-pdlf-process-tests]]](C:/pdlf/pdlf-library/specifications-local/spec-pdlf-process-tests.md). Evidence is saved in `{slug}-project-library\pdlf-outputs\e35a\`; every result is recorded in `{slug}-e35a-{run}-{ticket}-checks.xml`, naming its evidence, as `ts-method` section 5 sets out.
 
 | Test | Applied here |
 |---|---|
+| PR-01 | Step 35 is complete for the ticket. |
 | IN-05 | Failure and contention safe. |
 | IN-06 | Server sets amounts and order. |
 | IN-08 | Outside services fail safely. |
@@ -32,6 +33,7 @@ Tests are defined in [[[default:test-suite/ts-catalogue]]](C:/dev/project-librar
 | SC-12 | Audit trail. |
 | SC-13 | Fail closed. |
 | SC-14 | Client isolation. |
-| ST-13 | Dependencies and static analysis clean. |
+| ST-13 | Dependencies and static analysis clean, or each finding in `triage_findings`. |
+| PR-07 | No test weakened by the audit. |
 
-**On failure:** Each failure is recorded in `triage_findings` and goes to Step 39.
+**On failure:** A failing test returns the feature to Step 35; a finding goes to Step 39.

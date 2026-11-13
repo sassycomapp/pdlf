@@ -1,7 +1,7 @@
 ---
 title: "pdlf-built-report"
 doc-id: "mb-36208a1a"
-updated: "2026-11-12"
+updated: "2026-11-13"
 ---
 # PDLF Built Report
 
@@ -215,59 +215,79 @@ This report is a working tool for building PDLF. It is deleted when PDLF is fini
 
 ### Phase E — Build and Verify
 
+**Phase status:** Built: every step of the phase is written to the current intent, runs once per ticket, and the orchestrator runs it. Not yet proven.
+
 #### Step 35: Build
 
-**File:** `app-factory/phase-e-build-and-verify/35-build-loop.md`
+**Status:** Built.
 
-**Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
+**Files:** in `app-factory/phase-e-build-and-verify/`: `e35-build-plan.md`, `e35-test-spec.md`, `e35-config.md`, `e35-reference.md`, `e35-explainer.md`, `e35-decision-tree.html`, `e35-module.md` (empty until the step is packaged).
+
+**What it does and produces:** [[[pdlf:app-factory/phase-e-build-and-verify/e35-explainer|Step 35 Explainer]]](C:/pdlf/app-factory/phase-e-build-and-verify/e35-explainer.md); [[[pdlf:app-factory/phase-e-build-and-verify/e35-config|Step 35 Configuration]]](C:/pdlf/app-factory/phase-e-build-and-verify/e35-config.md).
 
 #### Step 35A: Testing
 
-**File:** `app-factory/phase-e-build-and-verify/35a-testing.md`
+**Status:** Built.
 
-**Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
+**Files:** in `app-factory/phase-e-build-and-verify/`: `e35a-build-plan.md`, `e35a-test-spec.md`, `e35a-config.md`, `e35a-reference.md`, `e35a-explainer.md`, `e35a-decision-tree.html`, `e35a-module.md` (empty until the step is packaged).
 
-#### Step 36: Design review
-
-**File:** `app-factory/phase-e-build-and-verify/36-design-review.md`
-
-**Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
-
-#### Step 37: Code review
-
-**File:** `app-factory/phase-e-build-and-verify/37-review.md`
-
-**Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
-
-#### Step 38: Quality testing
-
-**File:** `app-factory/phase-e-build-and-verify/38-qa.md`
-
-**Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
-
-#### Step 38A: Dependency check
-
-**File:** `app-factory/phase-e-build-and-verify/38a-dependency-scan-confirm.md`
-
-**Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
-
-#### Step 39: Triage
-
-**File:** `app-factory/phase-e-build-and-verify/39-triage.md`
-
-**Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
+**What it does and produces:** [[[pdlf:app-factory/phase-e-build-and-verify/e35a-explainer|Step 35A Explainer]]](C:/pdlf/app-factory/phase-e-build-and-verify/e35a-explainer.md); [[[pdlf:app-factory/phase-e-build-and-verify/e35a-config|Step 35A Configuration]]](C:/pdlf/app-factory/phase-e-build-and-verify/e35a-config.md).
 
 #### Step 40: Architecture scan
 
-**File:** `app-factory/phase-e-build-and-verify/40-improve-codebase-architecture.md`
+**Status:** Built.
 
-**Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
+**Files:** in `app-factory/phase-e-build-and-verify/`: `e40-build-plan.md`, `e40-test-spec.md`, `e40-config.md`, `e40-reference.md`, `e40-explainer.md`, `e40-decision-tree.html`, `e40-module.md` (empty until the step is packaged).
+
+**What it does and produces:** [[[pdlf:app-factory/phase-e-build-and-verify/e40-explainer|Step 40 Explainer]]](C:/pdlf/app-factory/phase-e-build-and-verify/e40-explainer.md); [[[pdlf:app-factory/phase-e-build-and-verify/e40-config|Step 40 Configuration]]](C:/pdlf/app-factory/phase-e-build-and-verify/e40-config.md).
 
 #### Step 40B: Approved fixes
 
-**File:** `app-factory/phase-e-build-and-verify/40b-remediation.md`
+**Status:** Built.
 
-**Status:** Old draft, written before `pdlf-intent.md`. Not yet rebuilt.
+**Files:** in `app-factory/phase-e-build-and-verify/`: `e40b-build-plan.md`, `e40b-test-spec.md`, `e40b-config.md`, `e40b-reference.md`, `e40b-explainer.md`, `e40b-decision-tree.html`, `e40b-module.md` (empty until the step is packaged).
+
+**What it does and produces:** [[[pdlf:app-factory/phase-e-build-and-verify/e40b-explainer|Step 40B Explainer]]](C:/pdlf/app-factory/phase-e-build-and-verify/e40b-explainer.md); [[[pdlf:app-factory/phase-e-build-and-verify/e40b-config|Step 40B Configuration]]](C:/pdlf/app-factory/phase-e-build-and-verify/e40b-config.md).
+
+#### Step 36: Design review
+
+**Status:** Built.
+
+**Files:** in `app-factory/phase-e-build-and-verify/`: `e36-build-plan.md`, `e36-test-spec.md`, `e36-config.md`, `e36-reference.md`, `e36-explainer.md`, `e36-decision-tree.html`, `e36-module.md` (empty until the step is packaged).
+
+**What it does and produces:** [[[pdlf:app-factory/phase-e-build-and-verify/e36-explainer|Step 36 Explainer]]](C:/pdlf/app-factory/phase-e-build-and-verify/e36-explainer.md); [[[pdlf:app-factory/phase-e-build-and-verify/e36-config|Step 36 Configuration]]](C:/pdlf/app-factory/phase-e-build-and-verify/e36-config.md).
+
+#### Step 37: Code review
+
+**Status:** Built.
+
+**Files:** in `app-factory/phase-e-build-and-verify/`: `e37-build-plan.md`, `e37-test-spec.md`, `e37-config.md`, `e37-reference.md`, `e37-explainer.md`, `e37-decision-tree.html`, `e37-module.md` (empty until the step is packaged).
+
+**What it does and produces:** [[[pdlf:app-factory/phase-e-build-and-verify/e37-explainer|Step 37 Explainer]]](C:/pdlf/app-factory/phase-e-build-and-verify/e37-explainer.md); [[[pdlf:app-factory/phase-e-build-and-verify/e37-config|Step 37 Configuration]]](C:/pdlf/app-factory/phase-e-build-and-verify/e37-config.md).
+
+#### Step 38: Quality testing
+
+**Status:** Built.
+
+**Files:** in `app-factory/phase-e-build-and-verify/`: `e38-build-plan.md`, `e38-test-spec.md`, `e38-config.md`, `e38-reference.md`, `e38-explainer.md`, `e38-decision-tree.html`, `e38-module.md` (empty until the step is packaged).
+
+**What it does and produces:** [[[pdlf:app-factory/phase-e-build-and-verify/e38-explainer|Step 38 Explainer]]](C:/pdlf/app-factory/phase-e-build-and-verify/e38-explainer.md); [[[pdlf:app-factory/phase-e-build-and-verify/e38-config|Step 38 Configuration]]](C:/pdlf/app-factory/phase-e-build-and-verify/e38-config.md).
+
+#### Step 38A: Package check
+
+**Status:** Built.
+
+**Files:** in `app-factory/phase-e-build-and-verify/`: `e38a-build-plan.md`, `e38a-test-spec.md`, `e38a-config.md`, `e38a-reference.md`, `e38a-explainer.md`, `e38a-decision-tree.html`, `e38a-module.md` (empty until the step is packaged).
+
+**What it does and produces:** [[[pdlf:app-factory/phase-e-build-and-verify/e38a-explainer|Step 38A Explainer]]](C:/pdlf/app-factory/phase-e-build-and-verify/e38a-explainer.md); [[[pdlf:app-factory/phase-e-build-and-verify/e38a-config|Step 38A Configuration]]](C:/pdlf/app-factory/phase-e-build-and-verify/e38a-config.md).
+
+#### Step 39: Triage
+
+**Status:** Built.
+
+**Files:** in `app-factory/phase-e-build-and-verify/`: `e39-build-plan.md`, `e39-test-spec.md`, `e39-config.md`, `e39-reference.md`, `e39-explainer.md`, `e39-decision-tree.html`, `e39-module.md` (empty until the step is packaged).
+
+**What it does and produces:** [[[pdlf:app-factory/phase-e-build-and-verify/e39-explainer|Step 39 Explainer]]](C:/pdlf/app-factory/phase-e-build-and-verify/e39-explainer.md); [[[pdlf:app-factory/phase-e-build-and-verify/e39-config|Step 39 Configuration]]](C:/pdlf/app-factory/phase-e-build-and-verify/e39-config.md).
 
 ### Phase F — Ship and Monitor
 
