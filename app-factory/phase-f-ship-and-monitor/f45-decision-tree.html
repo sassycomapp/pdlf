@@ -1,10 +1,34 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="doc-id" content="mb-75dc2563">
-<title>f45-decision-tree</title>
+<title>Step 45 — Production Check Decision Tree</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; background: #f5f5f4; padding: 32px; margin: 0; }
+  h1 { font-size: 19px; color: #1a1a1a; margin: 0 0 20px 0; }
+  .diagram-wrap { background: white; border-radius: 10px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); overflow-x: auto; }
+  .mermaid { display: flex; justify-content: center; }
+</style>
 </head>
 <body>
+<h1>Step 45 — Production Check Decision Tree (matches f45-reference)</h1>
+<div class="diagram-wrap">
+  <div class="mermaid">
+flowchart TD
+    Start(["Release record of Step 44"]) --> G["3. David runs mg-grant for GStack"]
+    G --> C{"4. /canary and heartbeats: rollback trigger?"}
+    C -->|"Yes"| RB(["Rollback at once; stop: deviation"])
+    C -->|"No"| S["5. Post-release assessment; periodic checks scheduled"]
+    S --> Rep["6. Production report"]
+    Rep --> Sen{"Sentinel, Medium: clear?"}
+    Sen -->|"Flag or Escalate"| Stop1(["Stop: David decides"])
+    Sen -->|"Clear"| End(["7. Checks; 8. Full BFT, ledger row, Step Receipt<br/>9. Explain, stop"])
+  </div>
+</div>
+<script>
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis' } });
+</script>
 </body>
 </html>

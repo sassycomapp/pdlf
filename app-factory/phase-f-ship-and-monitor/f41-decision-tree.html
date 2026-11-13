@@ -1,10 +1,40 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="doc-id" content="mb-115e0309">
-<title>f41-decision-tree</title>
+<title>Step 41 — Release Readiness Decision Tree</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; background: #f5f5f4; padding: 32px; margin: 0; }
+  h1 { font-size: 19px; color: #1a1a1a; margin: 0 0 20px 0; }
+  .diagram-wrap { background: white; border-radius: 10px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); overflow-x: auto; }
+  .mermaid { display: flex; justify-content: center; }
+</style>
 </head>
 <body>
+<h1>Step 41 — Release Readiness Decision Tree (matches f41-reference)</h1>
+<div class="diagram-wrap">
+  <div class="mermaid">
+flowchart TD
+    Start(["The run's verified tickets"]) --> S1{"1. Last ticket complete?"}
+    S1 -->|"No"| Dev1["Stop: deviation"]
+    S1 -->|"Yes"| G{"3. Every ticket build-verified?"}
+    G -->|"No"| Dev2["Stop: deviation"]
+    G -->|"Yes"| T{"4. Suite and release tests pass?"}
+    T -->|"No"| B1["Feature back to Step 35"]
+    T -->|"Yes"| Sec{"5. Assessment and /cso clean?"}
+    Sec -->|"No"| B1
+    Sec -->|"Yes"| Bm["6. benchmark baseline<br/>7. Schema additive; migration plan<br/>8. Release notes"]
+    Bm --> F{"9. First release?"}
+    F -->|"Yes"| FR["Legal documents, exit export,<br/>consent system, media host"]
+    F -->|"No"| Rep
+    FR --> Rep["10. Report; David commits, tags, pushes"]
+    Rep --> End(["11. Checks; 12. Full BFT, ledger row, Step Receipt<br/>13. Explain, stop, ask David to run /mb-close-out"])
+  </div>
+</div>
+<script>
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis' } });
+</script>
 </body>
 </html>

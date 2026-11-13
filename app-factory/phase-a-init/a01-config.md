@@ -47,7 +47,7 @@ The orchestrator runs only the steps of these phases. A run that reaches a step 
 | C, Design and Plan | 17 to 23, 26 | Yes |
 | D, Scaffold and Assemble | 31 to 34 | Yes |
 | E, Build and Verify | 35, 35A, 40, 40B, 36, 37, 38, 38A, 39 | Yes |
-| F, Ship and Monitor | 41, 42, 42A, 43 to 46 | No |
+| F, Ship and Monitor | 41, 42, 42A, 43 to 46 | Yes |
 
 ## The entry points
 
@@ -71,12 +71,12 @@ Every run follows one route: its steps, in this order. A phase not yet built is 
 
 | Route | Steps, in order |
 |---|---|
-| Application | 11, 12, 14, 15, 16 (gate `domain-locked`), 17, 18, 19, 20, 21 (gate `concept-locked`), 22, 23, 26 (gate `screens-approved`), 31, 32, 33, 34 (gate `architecture-verified`), then for each ticket in build order 35, 35A, 40, 40B, 36, 37, 38, 38A, 39 (gate `build-verified` for the ticket), then Phase F |
-| Management app | 11, 12, 14, 15, 16 (gate `domain-locked`), 17, 18, 19, 20, 21 (gate `concept-locked`), 22, 23, 26 (gate `screens-approved`), 31, 32, 33, 34 (gate `architecture-verified`), then for each ticket in build order 35, 35A, 40, 40B, 36, 37, 38, 38A, 39 (gate `build-verified` for the ticket), then Phase F |
+| Application | 11, 12, 14, 15, 16 (gate `domain-locked`), 17, 18, 19, 20, 21 (gate `concept-locked`), 22, 23, 26 (gate `screens-approved`), 31, 32, 33, 34 (gate `architecture-verified`), then for each ticket in build order 35, 35A, 40, 40B, 36, 37, 38, 38A, 39 (gate `build-verified` for the ticket), then 41, 42, 42A, 43, 44 (gate `production-released`), 45, 46 (gate `released`) |
+| Management app | 11, 12, 14, 15, 16 (gate `domain-locked`), 17, 18, 19, 20, 21 (gate `concept-locked`), 22, 23, 26 (gate `screens-approved`), 31, 32, 33, 34 (gate `architecture-verified`), then for each ticket in build order 35, 35A, 40, 40B, 36, 37, 38, 38A, 39 (gate `build-verified` for the ticket), then 41, 42, 42A, 43 (each of 42 to 43 recorded `skipped`), 44 (gate `production-released`), 45, 46 (gate `released`) |
 | Client template | 11, then Phase G |
-| Feature | 12, 14, 15, 16 (gate `domain-locked`), 17, 18, 19, 20, 21 (gate `concept-locked`), 22, 23, 26 (gate `screens-approved`), 31, 32, 33, 34 (gate `architecture-verified`), then for each ticket in build order 35, 35A, 40, 40B, 36, 37, 38, 38A, 39 (gate `build-verified` for the ticket), then Phase F |
+| Feature | 12, 14, 15, 16 (gate `domain-locked`), 17, 18, 19, 20, 21 (gate `concept-locked`), 22, 23, 26 (gate `screens-approved`), 31, 32, 33, 34 (gate `architecture-verified`), then for each ticket in build order 35, 35A, 40, 40B, 36, 37, 38, 38A, 39 (gate `build-verified` for the ticket), then 41, 42, 42A, 43, 44 (gate `production-released`), 45, 46 (gate `released`) |
 | Update | The step David names at the entry, then every later step of the Application route |
-| Release | Phase F: 41, 42, 42A, 43, 44 |
+| Release | 41, 42, 42A, 43, 44 (gate `production-released`), 45, 46 (gate `released`) |
 
 ## The dependencies
 
@@ -110,6 +110,13 @@ A step runs only when every step it depends on is `complete` or `skipped`, and e
 | 38 | Step 37 of the ticket |
 | 38A | Step 38 of the ticket |
 | 39 | Step 38A of the ticket |
+| 41 | Step 39 of the run's last ticket and its gate `build-verified` passed; for the Release route, the entry |
+| 42 | Step 41 |
+| 42A | Step 42 |
+| 43 | Step 42A |
+| 44 | Step 43, and no open finding in `triage_findings` for the run |
+| 45 | Step 44 and the gate `production-released` passed |
+| 46 | Step 45 |
 
 ## The gates in the built phases
 
@@ -120,6 +127,8 @@ A step runs only when every step it depends on is `complete` or `skipped`, and e
 | `screens-approved` | 26 | `bash /mnt/c/mybizz/scripts/pdlf-gate.sh {slug} screens-approved {run}` |
 | `architecture-verified` | 34 | `bash /mnt/c/mybizz/scripts/pdlf-gate.sh {slug} architecture-verified {run}` |
 | `build-verified` | 39, once per ticket | `bash /mnt/c/mybizz/scripts/pdlf-gate.sh {slug} build-verified {run} {ticket}` |
+| `production-released` | 44 | `bash /mnt/c/mybizz/scripts/pdlf-gate.sh {slug} production-released {run}` |
+| `released` | 46 | `bash /mnt/c/mybizz/scripts/pdlf-gate.sh {slug} released {run}` |
 
 ## The resume check
 

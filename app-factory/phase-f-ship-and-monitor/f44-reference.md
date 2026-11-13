@@ -1,69 +1,21 @@
 ---
 title: "f44-reference"
 doc-id: "mb-ac475804"
-updated: "2026-11-11"
+updated: "2026-11-13"
 ---
+# Step 44 — Release: Reference
 
-## Release
+What the agent does at Step 44, in order. Agent-facing. Fixed values: [[[pdlf:app-factory/phase-f-ship-and-monitor/f44-config|Step 44 Configuration]]](C:/pdlf/app-factory/phase-f-ship-and-monitor/f44-config.md). The pattern every step follows (search, read, verify, BFT, ledger row, receipt, explain, stop, close-out) is in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md) and is not repeated here. Every skill is invoked with the handover material and the context pack, in full ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2). The gate ceremony is in [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure|Spec: Gate Procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md) and is not repeated here.
 
-## Task Execution Order
-
-1. → GATE: Execute gate procedure per [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md)
-2. → GATE: `production-released` — developer approval required.
-3. App 5's Release action verifies the image's signature and moves every client instance to the release image by its digest, in stages: the test client instance, then 10% of client instances, then all, each stage passing its health check before the next.
-4. Follow execution sequence in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md)
-5. Apply BFT per [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md) (Full — gate override)
-
----
-
-## Description
-
-The developer approves the release, and App 5 moves every client instance to the
-release image. Rollback moves client instances back to the previous release image,
-not `git revert`.
-
-## Inputs Required
-
-- Passing smoke test from Step 43
-
-## Outputs
-
-- Every client instance running the release image
-- GATE `production-released` — Full BFT, gate summary, developer approval required
-
-## Step Table
-
-| Step | Type | Gate | Handled By |
-|---|---|---|---|
-| 44 | Manual | **GATE** `production-released` | Release to every client instance |
-
-## Gate
-
-| Gate | After Step | What is Locked |
-|---|---|---|
-| `production-released` | 44 | Test client instance passed on the release image; every client instance moved to it by App 5's Release action. |
-
-## Reference Files
-
-| [[[pdlf:pdlf-library/policy-local/pol-anvil-platform\|Pol Anvil Platform]]](C:/pdlf/pdlf-library/policy-local/pol-anvil-platform.md) | Steps 17, 18, 29, 30, 32, 33, 41–45 |
-| Standards Library | Steps 41–45 (deployment) |
-
-Anvil integration is governed by [[[pdlf:pdlf-library/policy-local/pol-anvil-platform|Policy: Anvil Platform]]](C:/pdlf/pdlf-library/policy-local/pol-anvil-platform.md) in full — the detailed reference (the earlier `stepwise/step-6-24-anvil-integration.md` pointer was retired 2026-07-18: the file was never created; its intended content lives in the policy).
-
----
-
-## Reference
-
-OpenCode is always the orchestrator. Invoke skills only when they beat OpenCode directly.
-
-For execution sequence: [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md)
-For BFT procedure: [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md)
-For gate procedure: [[[pdlf:pdlf-library/specifications-local/spec-gate-procedure]]](C:/pdlf/pdlf-library/specifications-local/spec-gate-procedure.md)
-
-GBrain is queried automatically at substep 1. Syncing is asked at substep 10, never auto-run.
-The two housekeeping questions are asked separately, every step, never combined, never auto-run.
-
-The ledger row, Step Receipt, and devlog-index/judgement-trail are the complete checkpoint.
-No separate state file, devlog file, or completion report.
-
-Skills save where designed. PDLF process artifacts go to `<project-library>/pdlf/`.
+1. Read the entry record and the ledger row of Step 43 for this run. Check it is complete or skipped (test PR-01). If not: stop and raise a deviation.
+2. Carry forward every input notice to this step's receipt, and read every input in the configuration.
+3. Check `triage_findings` has no open finding for the run. If it has: stop and present them to David.
+4. Run `ts_report.py --check` on the receipts of Steps 41 to 43 (test PR-05). On a failure: correct it at its source.
+5. Run the Full BFT for the gate. Present the gate summary block. Ask David: "Release to every client? (yes/no)".
+6. On no: record the blocker, set the step's `status` to `blocked`, stop.
+7. On yes: give David the command that records his approval, `bash /mnt/c/mybizz/scripts/pdlf-gate.sh {slug} production-released {run}`, and wait until he confirms it ran. Never run it and never write to the `gates` table. Read the `gates` row; if it is not passed, stop. Record PR-03.
+8. For App 1: give David the instructions to run App 5's Release action. Check each stage's health check in App 5 before the next. On a failed stage: confirm it rolled back, stop and raise a deviation.
+9. For App 5: give David the instructions to publish App 5's tagged release in Anvil, and confirm the published version.
+10. Write the release record. Record every test in the checks file, naming its evidence.
+11. Complete the Step 44 `steps` row with the ledger values in the configuration, and write the Full BFT record and the Step Receipt, from the [[[pdlf:pdlf-library/templates-local/step-receipt-template|Step Receipt Template]]](C:/pdlf/pdlf-library/templates-local/step-receipt-template.md).
+12. Explain what was done. Present the Step Receipt, stop, and ask David to run `/mb-close-out`.

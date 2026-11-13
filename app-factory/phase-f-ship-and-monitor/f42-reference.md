@@ -1,59 +1,16 @@
 ---
 title: "f42-reference"
 doc-id: "mb-8ad89930"
-updated: "2026-11-08"
+updated: "2026-11-13"
 ---
+# Step 42 — Release to App 2: Reference
 
-## Release to App 2
+What the agent does at Step 42, in order. Agent-facing. Fixed values: [[[pdlf:app-factory/phase-f-ship-and-monitor/f42-config|Step 42 Configuration]]](C:/pdlf/app-factory/phase-f-ship-and-monitor/f42-config.md). The pattern every step follows (search, read, verify, BFT, ledger row, receipt, explain, stop, close-out) is in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md) and is not repeated here. Every skill is invoked with the handover material and the context pack, in full ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2).
 
-## Task Execution Order
-
-1. Every client instance copies its data to its own R2 bucket
-2. Developer: Push App 1's tagged release into App 2's repository, and write the release's table changes into App 3's table definitions
-3. The image build workflow in `{slug}-app4` builds and checks the release image, and stores it under the release tag
-4. The whole test suite runs on the release image
-5. App 5 moves the test client instance to the release image
-6. Follow execution sequence in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md)
-7. Apply BFT per [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md) at assigned level (None)
-
----
-
-## Description
-
-The developer pushes the release into App 2 and App 3. The release image is built,
-checked and tested, and only the test client instance runs it.
-
-## Outputs
-
-- The release image, stored under the release tag
-- The test client instance running the release image
-
-## Step Table
-
-| Step | Type | Gate | Handled By |
-|---|---|---|---|
-| 42 | Manual | | Release to App 2 and build the release image |
-
-## Reference Files
-
-| [[[pdlf:pdlf-library/policy-local/pol-anvil-platform\|Pol Anvil Platform]]](C:/pdlf/pdlf-library/policy-local/pol-anvil-platform.md) | Steps 17, 18, 29, 30, 32, 33, 41–45 |
-| Standards Library | Steps 41–45 (deployment) |
-
-Anvil integration is governed by [[[pdlf:pdlf-library/policy-local/pol-anvil-platform|Policy: Anvil Platform]]](C:/pdlf/pdlf-library/policy-local/pol-anvil-platform.md) in full — the detailed reference (the earlier `stepwise/step-6-24-anvil-integration.md` pointer was retired 2026-07-18: the file was never created; its intended content lives in the policy).
-
----
-
-## Reference
-
-OpenCode is always the orchestrator. Invoke skills only when they beat OpenCode directly.
-
-For execution sequence: [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md)
-For BFT procedure: [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md)
-
-GBrain is queried automatically at substep 1. Syncing is asked at substep 10, never auto-run.
-The two housekeeping questions are asked separately, every step, never combined, never auto-run.
-
-The ledger row, Step Receipt, and devlog-index/judgement-trail are the complete checkpoint.
-No separate state file, devlog file, or completion report.
-
-Skills save where designed. PDLF process artifacts go to `<project-library>/pdlf/`.
+1. Read the entry record and the ledger row of Step 41 for this run. Check it is complete or skipped (test PR-01). If not: stop and raise a deviation.
+2. Carry forward every input notice to this step's receipt, and read every input in the configuration.
+3. For an App 5 run: record the step `skipped`, write the receipt, stop.
+4. For each item of the order of work in the configuration: give David its instructions, written with `wizard`; wait until he confirms; run its check. On a failed check: stop and raise a deviation; for a failure after item 6, give David the rollback instructions.
+5. Write the image record. Record every test in the checks file, naming its evidence.
+6. Run the Light BFT. Complete the Step 42 `steps` row with the ledger values in the configuration, and write the BFT record and the Step Receipt, from the [[[pdlf:pdlf-library/templates-local/step-receipt-template|Step Receipt Template]]](C:/pdlf/pdlf-library/templates-local/step-receipt-template.md).
+7. Explain what was done. Present the Step Receipt, stop, and ask David to run `/mb-close-out`.

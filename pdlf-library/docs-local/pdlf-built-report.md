@@ -291,11 +291,61 @@ This report is a working tool for building PDLF. It is deleted when PDLF is fini
 
 ### Phase F — Ship and Monitor
 
-#### Steps 41 to 46: Release readiness, Release to App 2, Release regression test, Client instance check, Release, Production check, Learning
+#### Step 41: Release readiness
 
-**Files:** `app-factory/phase-f-ship-and-monitor/f41-*` to `f46-*`
+**Status:** Built.
 
-**Status:** Step entries aligned to the release image of `spec-client-instance-hosting` (2026-11-08). References and configurations hold their first drafts. Each step is rebuilt at A1 when Phase F is reached.
+**Files:** in `app-factory/phase-f-ship-and-monitor/`: `f41-build-plan.md`, `f41-test-spec.md`, `f41-config.md`, `f41-reference.md`, `f41-explainer.md`, `f41-decision-tree.html`, `f41-module.md` (empty until the step is packaged).
+
+**What it does and produces:** [[[pdlf:app-factory/phase-f-ship-and-monitor/f41-explainer|Step 41 Explainer]]](C:/pdlf/app-factory/phase-f-ship-and-monitor/f41-explainer.md); [[[pdlf:app-factory/phase-f-ship-and-monitor/f41-config|Step 41 Configuration]]](C:/pdlf/app-factory/phase-f-ship-and-monitor/f41-config.md).
+
+#### Step 42: Release to App 2
+
+**Status:** Built.
+
+**Files:** in `app-factory/phase-f-ship-and-monitor/`: `f42-build-plan.md`, `f42-test-spec.md`, `f42-config.md`, `f42-reference.md`, `f42-explainer.md`, `f42-decision-tree.html`, `f42-module.md` (empty until the step is packaged).
+
+**What it does and produces:** [[[pdlf:app-factory/phase-f-ship-and-monitor/f42-explainer|Step 42 Explainer]]](C:/pdlf/app-factory/phase-f-ship-and-monitor/f42-explainer.md); [[[pdlf:app-factory/phase-f-ship-and-monitor/f42-config|Step 42 Configuration]]](C:/pdlf/app-factory/phase-f-ship-and-monitor/f42-config.md).
+
+#### Step 42A: Release regression
+
+**Status:** Built.
+
+**Files:** in `app-factory/phase-f-ship-and-monitor/`: `f42a-build-plan.md`, `f42a-test-spec.md`, `f42a-config.md`, `f42a-reference.md`, `f42a-explainer.md`, `f42a-decision-tree.html`, `f42a-module.md` (empty until the step is packaged).
+
+**What it does and produces:** [[[pdlf:app-factory/phase-f-ship-and-monitor/f42a-explainer|Step 42A Explainer]]](C:/pdlf/app-factory/phase-f-ship-and-monitor/f42a-explainer.md); [[[pdlf:app-factory/phase-f-ship-and-monitor/f42a-config|Step 42A Configuration]]](C:/pdlf/app-factory/phase-f-ship-and-monitor/f42a-config.md).
+
+#### Step 43: Client instance check
+
+**Status:** Built.
+
+**Files:** in `app-factory/phase-f-ship-and-monitor/`: `f43-build-plan.md`, `f43-test-spec.md`, `f43-config.md`, `f43-reference.md`, `f43-explainer.md`, `f43-decision-tree.html`, `f43-module.md` (empty until the step is packaged).
+
+**What it does and produces:** [[[pdlf:app-factory/phase-f-ship-and-monitor/f43-explainer|Step 43 Explainer]]](C:/pdlf/app-factory/phase-f-ship-and-monitor/f43-explainer.md); [[[pdlf:app-factory/phase-f-ship-and-monitor/f43-config|Step 43 Configuration]]](C:/pdlf/app-factory/phase-f-ship-and-monitor/f43-config.md).
+
+#### Step 44: Release
+
+**Status:** Built.
+
+**Files:** in `app-factory/phase-f-ship-and-monitor/`: `f44-build-plan.md`, `f44-test-spec.md`, `f44-config.md`, `f44-reference.md`, `f44-explainer.md`, `f44-decision-tree.html`, `f44-module.md` (empty until the step is packaged).
+
+**What it does and produces:** [[[pdlf:app-factory/phase-f-ship-and-monitor/f44-explainer|Step 44 Explainer]]](C:/pdlf/app-factory/phase-f-ship-and-monitor/f44-explainer.md); [[[pdlf:app-factory/phase-f-ship-and-monitor/f44-config|Step 44 Configuration]]](C:/pdlf/app-factory/phase-f-ship-and-monitor/f44-config.md).
+
+#### Step 45: Production check
+
+**Status:** Built.
+
+**Files:** in `app-factory/phase-f-ship-and-monitor/`: `f45-build-plan.md`, `f45-test-spec.md`, `f45-config.md`, `f45-reference.md`, `f45-explainer.md`, `f45-decision-tree.html`, `f45-module.md` (empty until the step is packaged).
+
+**What it does and produces:** [[[pdlf:app-factory/phase-f-ship-and-monitor/f45-explainer|Step 45 Explainer]]](C:/pdlf/app-factory/phase-f-ship-and-monitor/f45-explainer.md); [[[pdlf:app-factory/phase-f-ship-and-monitor/f45-config|Step 45 Configuration]]](C:/pdlf/app-factory/phase-f-ship-and-monitor/f45-config.md).
+
+#### Step 46: Learning
+
+**Status:** Built.
+
+**Files:** in `app-factory/phase-f-ship-and-monitor/`: `f46-build-plan.md`, `f46-test-spec.md`, `f46-config.md`, `f46-reference.md`, `f46-explainer.md`, `f46-decision-tree.html`, `f46-module.md` (empty until the step is packaged).
+
+**What it does and produces:** [[[pdlf:app-factory/phase-f-ship-and-monitor/f46-explainer|Step 46 Explainer]]](C:/pdlf/app-factory/phase-f-ship-and-monitor/f46-explainer.md); [[[pdlf:app-factory/phase-f-ship-and-monitor/f46-config|Step 46 Configuration]]](C:/pdlf/app-factory/phase-f-ship-and-monitor/f46-config.md).
 
 ### Phase G — Remaining apps
 

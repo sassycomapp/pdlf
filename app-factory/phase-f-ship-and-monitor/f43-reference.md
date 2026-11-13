@@ -1,60 +1,20 @@
 ---
 title: "f43-reference"
 doc-id: "mb-6e45109d"
-updated: "2026-11-08"
+updated: "2026-11-13"
 ---
+# Step 43 — Client Instance Check: Reference
 
-## Client instance check
+What the agent does at Step 43, in order. Agent-facing. Fixed values: [[[pdlf:app-factory/phase-f-ship-and-monitor/f43-config|Step 43 Configuration]]](C:/pdlf/app-factory/phase-f-ship-and-monitor/f43-config.md). The pattern every step follows (search, read, verify, BFT, ledger row, receipt, explain, stop, close-out) is in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md) and is not repeated here. Every skill is invoked with the handover material and the context pack, in full ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2).
 
-## Task Execution Order
-
-1. Run GStack [[[pdlf:app-factory/phase-e-build-and-verify/e38-reference|/qa]]](C:/pdlf/app-factory/phase-e-build-and-verify/e38-reference.md) or `/canary` — at the test client instance, running the release image from Step 42
-2. Follow execution sequence in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md)
-3. Apply BFT per [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md) at assigned level (Full)
-
----
-
-## Description
-
-QA or canary check at the test client instance. Confirms the release image works
-on live infrastructure before App 5's Release action moves any client.
-
-## Inputs Required
-
-- The test client instance's address
-- Test plan or canary configuration
-
-## Outputs
-
-- Smoke test report — pass/fail on the test client instance
-- The test client instance's health baseline
-
-## Step Table
-
-| Step | Type | Gate | Handled By |
-|---|---|---|---|
-| 43 | Skill (retargeted) | | GStack [[[pdlf:app-factory/phase-e-build-and-verify/e38-reference\|/qa]]](C:/pdlf/app-factory/phase-e-build-and-verify/e38-reference.md) or `/canary`, at the test client instance |
-
-## Reference Files
-
-| [[[pdlf:pdlf-library/policy-local/pol-anvil-platform\|Pol Anvil Platform]]](C:/pdlf/pdlf-library/policy-local/pol-anvil-platform.md) | Steps 17, 18, 29, 30, 32, 33, 41–45 |
-| Standards Library | Steps 41–45 (deployment) |
-
-Anvil integration is governed by [[[pdlf:pdlf-library/policy-local/pol-anvil-platform|Policy: Anvil Platform]]](C:/pdlf/pdlf-library/policy-local/pol-anvil-platform.md) in full — the detailed reference (the earlier `stepwise/step-6-24-anvil-integration.md` pointer was retired 2026-07-18: the file was never created; its intended content lives in the policy).
-
----
-
-## Reference
-
-OpenCode is always the orchestrator. Invoke skills only when they beat OpenCode directly.
-
-For execution sequence: [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md)
-For BFT procedure: [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md)
-
-GBrain is queried automatically at substep 1. Syncing is asked at substep 10, never auto-run.
-The two housekeeping questions are asked separately, every step, never combined, never auto-run.
-
-The ledger row, Step Receipt, and devlog-index/judgement-trail are the complete checkpoint.
-No separate state file, devlog file, or completion report.
-
-Skills save where designed. PDLF process artifacts go to `<project-library>/pdlf/`.
+1. Read the entry record and the ledger row of Step 42A for this run. Check it is complete or skipped (test PR-01). If not: stop and raise a deviation.
+2. Carry forward every input notice to this step's receipt, and read every input in the configuration.
+3. For an App 5 run: record the step `skipped`, write the receipt, stop.
+4. Hand David `mg-grant --path ~/.gstack --count 15` and wait until he confirms it ran ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2.8).
+5. Check the heartbeat reports the release version and schema fingerprint. Run the quick smoke test with `/qa-only`.
+6. Record the health baseline with `/canary`.
+7. Run SC-14, and at a first release RL-10.
+8. On a failure: give David the rollback instructions; stop and raise a deviation.
+9. Record every test in the checks file, naming its evidence.
+10. Run the Light BFT. Complete the Step 43 `steps` row with the ledger values in the configuration, and write the BFT record and the Step Receipt, from the [[[pdlf:pdlf-library/templates-local/step-receipt-template|Step Receipt Template]]](C:/pdlf/pdlf-library/templates-local/step-receipt-template.md).
+11. Explain what was done. Present the Step Receipt, stop, and ask David to run `/mb-close-out`.

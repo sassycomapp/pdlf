@@ -1,10 +1,39 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="doc-id" content="mb-45383172">
-<title>f44-decision-tree</title>
+<title>Step 44 — Release Decision Tree</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; background: #f5f5f4; padding: 32px; margin: 0; }
+  h1 { font-size: 19px; color: #1a1a1a; margin: 0 0 20px 0; }
+  .diagram-wrap { background: white; border-radius: 10px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); overflow-x: auto; }
+  .mermaid { display: flex; justify-content: center; }
+</style>
 </head>
 <body>
+<h1>Step 44 — Release Decision Tree (matches f44-reference)</h1>
+<div class="diagram-wrap">
+  <div class="mermaid">
+flowchart TD
+    Start(["Results of Steps 41 to 43"]) --> O{"3. Open findings?"}
+    O -->|"Yes"| Dav(["Stop: David decides"])
+    O -->|"No"| R{"4. Receipts match?"}
+    R -->|"No"| RF["Correct at the source"]
+    RF --> R
+    R -->|"Yes"| Gate{"5. Full BFT; gate summary: release?"}
+    Gate -->|"No"| Bl(["6. Blocker recorded; stop"])
+    Gate -->|"Yes"| Row["7. David runs pdlf-gate.sh"]
+    Row --> App{"App 1 or App 5?"}
+    App -->|"App 1"| St["8. Release action in stages;<br/>each health check before the next"]
+    App -->|"App 5"| Pub["9. David publishes App 5's tag in Anvil"]
+    St --> End(["10. Release record, checks<br/>11. Ledger row, Step Receipt<br/>12. Explain, stop"])
+    Pub --> End
+  </div>
+</div>
+<script>
+  mermaid.initialize({ startOnLoad: true, theme: 'default', flowchart: { curve: 'basis' } });
+</script>
 </body>
 </html>

@@ -1,67 +1,19 @@
 ---
 title: "f42a-reference"
 doc-id: "mb-89d4dfcf"
-updated: "2026-11-08"
+updated: "2026-11-13"
 ---
+# Step 42A — Release Regression: Reference
 
-## Release regression test
+What the agent does at Step 42A, in order. Agent-facing. Fixed values: [[[pdlf:app-factory/phase-f-ship-and-monitor/f42a-config|Step 42A Configuration]]](C:/pdlf/app-factory/phase-f-ship-and-monitor/f42a-config.md). The pattern every step follows (search, read, verify, BFT, ledger row, receipt, explain, stop, close-out) is in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline|Spec: Execution Discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md) and is not repeated here. Every skill is invoked with the handover material and the context pack, in full ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2).
 
-## Task Execution Order
-
-1. Confirm the test client instance runs the release image from Step 42.
-2. Run the full integration/E2E suite against the test client instance — cross-feature
-   flows across the whole application, not a single feature's Level 3 check.
-3. → Decision point: if failures are found, present as a deviation request. Developer
-   decides whether to fix before proceeding to the smoke test.
-4. Follow execution sequence in [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md).
-5. Apply BFT per [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md) at assigned level.
-
----
-
-## Description
-
-Whole-application verification on the test client instance, distinct from anything run
-per-feature during the build loop. The smoke test (Step 43) confirms the instance is up;
-this step confirms it behaves correctly across feature interactions, before App 5's
-Release action moves any client.
-
-## Inputs Required
-
-- The test client instance, running the release image per Step 42
-- Full application feature set (all features that reached `build-verified`)
-
-## Outputs
-
-- Integration/E2E test results for the whole application on the test client instance
-- Deviation request, if failures are found
-
-## Step Table
-
-| Step | Type | Gate | Handled By |
-|---|---|---|---|
-| 42A | GStack/OpenCode | | GStack/OpenCode |
-
----
-
-## Handoff to Step 43
-
-Step 43 (client instance check) proceeds only once this step's results are clean or any
-deviations have been resolved.
-
----
-
-## Reference
-
-Design rationale — why the smoke test alone was judged insufficient:
-[[[pdlf:pdlf-library/policy-local/pol-anvil-platform|Policy: Anvil Platform]]](C:/pdlf/pdlf-library/policy-local/pol-anvil-platform.md), updated 2026-07-12.
-
-OpenCode is always the orchestrator. Invoke skills only when they beat OpenCode directly.
-
-For execution sequence: [[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md)
-For BFT procedure: [[[pdlf:pdlf-library/specifications-local/spec-bft]]](C:/pdlf/pdlf-library/specifications-local/spec-bft.md)
-
-GBrain is queried automatically at substep 1. Syncing is asked at substep 10, never auto-run.
-The two housekeeping questions are asked separately, every step, never combined, never auto-run.
-
-The ledger row, Step Receipt, and devlog-index/judgement-trail are the complete checkpoint.
-No separate state file, devlog file, or completion report.
+1. Read the entry record and the ledger row of Step 42 for this run. Check it is complete or skipped (test PR-01). If not: stop and raise a deviation.
+2. Carry forward every input notice to this step's receipt, and read every input in the configuration.
+3. For an App 5 run: record the step `skipped`, write the receipt, stop.
+4. Hand David `mg-grant --path ~/.gstack --count 15` and wait until he confirms it ran ([[[pdlf:pdlf-library/specifications-local/spec-artifact-handover|Spec: Artifact Handover]]](C:/pdlf/pdlf-library/specifications-local/spec-artifact-handover.md), section 2.8).
+5. Run `/qa-only` on every feature's flows on the test client instance, as each role and signed out, in Chrome, Firefox and Safari.
+6. Run the release part of the assessment plan with `security-audit-methodology`.
+7. Write every finding. On a failure: give David the instructions to move the test client instance back to the previous release image; stop and raise a deviation.
+8. Record every test in the checks file, naming its evidence.
+9. Run the Light BFT. Complete the Step 42A `steps` row with the ledger values in the configuration, and write the BFT record and the Step Receipt, from the [[[pdlf:pdlf-library/templates-local/step-receipt-template|Step Receipt Template]]](C:/pdlf/pdlf-library/templates-local/step-receipt-template.md).
+10. Explain what was done. Present the Step Receipt, stop, and ask David to run `/mb-close-out`.
