@@ -1,7 +1,7 @@
 ---
 title: "pdlf-session-handover"
 doc-id: "mb-5ef40e06"
-updated: "2026-11-08"
+updated: "2026-11-17"
 ---
 # Session Handover — Hosting Change Batches 3 and 4
 
@@ -9,7 +9,7 @@ For Claude, starting a fresh session with David. Clone every repository the work
 
 ## 1. The subject of the session
 
-- **The decision:** every client instance (App 4) runs on the Anvil App Server, as one container on DigitalOcean App Platform, with its own database in one DigitalOcean Managed PostgreSQL cluster per business. Apps 1, 2, 3 and 5 stay on Mybizz's Anvil Business account. The price is $99 a month per client, month to month. The specification is `project-library-global\specifications-global\spec-client-instance-hosting.md`.
+- **The decision:** every client instance (App 4) runs on the Anvil App Server, as one container on a Mybizz Hetzner application server, with its own database in Mybizz's Ubicloud managed PostgreSQL service. Apps 1, 2, 3 and 5 stay on Mybizz's Anvil Business account. The price is $99 a month per client, month to month. The specification is `project-library-global\specifications-global\spec-client-instance-hosting.md`.
 - **The work:** bring every live document into line with that decision, by the task list `C:\pdlf\pdlf-library\wip\hosting-change-task-list.md`.
 - **The rule:** no stale or conflicting remnant of the old hosting model (one Anvil Business account per client, cloning App 3, manual schema changes per client, $150) remains in any live document.
 

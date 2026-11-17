@@ -1,7 +1,7 @@
 ---
 title: "adr-no-staging-environment-five-app-isolation"
 doc-id: "mb-5b1e8fd8"
-updated: "2026-11-08"
+updated: "2026-11-17"
 ---
 # ADR — PDLF Has No Staging/Production Environment Split
 
@@ -20,7 +20,7 @@ Anvil supports Deployment Environments: one app with several environments (for e
 | App 1 — `{slug}-app1` | Development workspace. All feature development happens here. It is never a dependency of any client instance. | **No.** |
 | App 2 — `master_template` | The sole source of server logic and UI for every client. Receives App 1's tagged releases, pushed into its repository by the developer at Step 42. | No: it is built into the release image, but it is never given to a client. |
 | App 3 — `blank_client_template` | The client app every client instance runs, inside the release image. | No. |
-| App 4 — `[client-name]-{vertical}` | One per paying client: a container running the release image, with its own database, on DigitalOcean. The only app real users touch. | **Yes: this is production.** |
+| App 4 — `[client-name]-{vertical}` | One per paying client: a container running the release image, on a Mybizz Hetzner application server, with its own database in Mybizz's Ubicloud service. The only app real users touch. | **Yes: this is production.** |
 | App 5 — `{Product}_management` | Platform-operator tooling. | No (operator only). |
 
 Every build step works inside App 1, and every push a build step makes lands in App 1's repository. App 1 is structurally never a dependency of a client instance; this is how the apps are wired, not a policy PDLF must enforce.

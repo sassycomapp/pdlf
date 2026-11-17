@@ -1,7 +1,7 @@
 ---
 title: "f45-build-plan"
 doc-id: "mb-1628cc4a"
-updated: "2026-11-13"
+updated: "2026-11-17"
 ---
 # Step 45 — Production Check: Build Plan
 
@@ -23,7 +23,7 @@ Ends with the gates `production-released` (Step 44) and `released` (Step 46). Fo
 
 **Must be built so that:**
 - `/canary` watches the released app against its baseline: errors below 5%, response times within 20%, every heartbeat arriving (RL-09); for App 1, the test client instance is watched;
-- App 5 reads every client instance's heartbeat: each reports the release version and schema fingerprint and passes its smoke test (RL-05); App 5 flags any client near its container's memory and the business near its cluster's client limit (RL-12);
+- App 5 reads every client instance's heartbeat: each reports the release version and schema fingerprint and passes its smoke test (RL-05); App 5 flags any client near its container's memory the business near its servers' last free places, and Mybizz near the next database stage (RL-12);
 - `security-audit-methodology` runs the post-release part of Step 15's assessment plan, and the periodic checks are scheduled (RL-11);
 - `mb-sentinel-review` runs at Medium scrutiny on the production report;
 - a rollback trigger of the deployment specification is acted on at once;
