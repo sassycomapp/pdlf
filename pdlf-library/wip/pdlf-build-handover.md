@@ -70,7 +70,7 @@ Read `C:\mybizz\mybizz-os-docs\os-reference-docs\repo-organization.md` for every
 - `pdlf-library\skills-local\`: `pdlf-init\SKILL.md`, the launcher of the orchestrator, installed at `~/.config/opencode/skills/pdlf-init/SKILL.md`.
 - `pdlf-library\pdlf-explainer-docs\`: `pdlf-explainer`, `app-factory-explainer`, `pdlf-testing-explainer`.
 - `pdlf-library\docs-local\`: `pdlf-todo`, `app-factory-docs-update-method`, `config`, `pdlf-skills-scoping-strategy`, `pdlf-built-report`, `matt-pocock-skills-local-reference`.
-- `pdlf-library\wip\`: this handover; `pdlf-overview-v4` (the planned steps, phase by phase, for judging gaps and surplus); `pdlf-pass2-demand-map` (what `mb-3-cs` and `mb-4-ecom` demand of each step's skills, for the skills scoping strategy). Each is deleted when its work is done.
+- `pdlf-library\wip\`: this handover; `pdlf-pass2-demand-map` (what `mb-3-cs` and `mb-4-ecom` demand of each step's skills, for the skills scoping strategy). Each is deleted when its work is done.
 
 **Global standards** (`C:\dev\project-library-global`, repository `project-library-global`, GBrain source `default`): what a good Mybizz application is.
 - `adr-global\` (40), `specifications-global\` (24), `policy-global\` (5), `security-global\` (53), `standard-operating-procedures-global\` (3), `docs-standard-global\` (4), `guides-global\` (2), `templates-global\` (4), `rules-cupcake-global\` (22 Cupcake rules, `no_agent_gate_approval` among them).

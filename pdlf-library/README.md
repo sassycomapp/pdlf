@@ -17,7 +17,7 @@ The PDLF library holds how PDLF itself works: the machinery every step relies on
 | `operating-procedures/` | PDLF's repeatable procedures, such as the health check. |
 | `skills-local/` | PDLF's own OpenCode skills: `pdlf-init`, which starts the orchestrator. |
 | `templates-local/` | Blank forms PDLF fills in: the Step Receipt, the ISA, the self-test checklist and the pre-project files. |
-| `pdlf-explainer-docs/` | What PDLF, the app factory and PDLF's testing are, how they work and why. |
+| `pdlf-explainer-docs/` | What PDLF, the app factory and PDLF's testing are, how they work and why; the list of every phase and step. |
 | `docs-local/` | PDLF's working documents: the to-do list, the update method, the skills scoping strategy, the built report and the configuration. |
 | `wip/` | Working files of the moment. Not part of PDLF. |
 
