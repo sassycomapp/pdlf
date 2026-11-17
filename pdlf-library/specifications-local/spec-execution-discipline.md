@@ -1,7 +1,7 @@
 ---
 title: "spec-execution-discipline"
 doc-id: "mb-913cd6af"
-updated: "2026-11-02"
+updated: "2026-11-17"
 ---
 # PDLF Execution Discipline
 
@@ -31,7 +31,7 @@ Every step follows this sequence. The agent never skips a substep without a devi
 3. If OPTIONAL: present recommendation + justification, wait for RUN/SKIP decision.
 4. If MANUAL: present instructions + references, wait for "done," verify.
 5. If SKILL or OpenCode-native: invoke the skill or perform the documented procedure.
-5a. Carry out the step's reference one section at a time. At the end of each section, STOP and report in at most three lines, in this form: `Step NN — section k of m done: <what was done>. Next: section j.` Wait for "continue" before the next section.
+5a. Carry out the step's reference section after section without stopping. Stop only for: a test or check that still fails after one fix attempt; a deviation; a decision only David may make; a hand action for David (a terminal command or an action in the Anvil editor); or a gate. At each stop, report what was done, what stopped the work, and what is needed from David. When the step's work is done, go to item 6.
 6. Verify the expected output exists. If missing: STOP, present a deviation request.
 7. Run BFT checkpoint at the step's assigned level (Full / Light / None) per `[[spec-bft]]`.
 8. Complete the `steps` ledger row opened at substep 0, per [[[pdlf:pdlf-library/specifications-local/spec-postgres-ledger]]](C:/pdlf/pdlf-library/specifications-local/spec-postgres-ledger.md): `step_number`, `run` (`app{n}` for a whole application, or the feature slug), `app_number`, `step_type` and `skill_family` in their allowed lowercase values, `status`, `artifact_path`, `synthesized`, and `inputs_used` listing every earlier step whose output this step used, so that input notices reach every later step.
