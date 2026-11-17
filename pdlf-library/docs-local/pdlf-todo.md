@@ -1,7 +1,7 @@
 ---
 title: "pdlf-todo"
 doc-id: "mb-13a3fbc9"
-updated: "2026-11-12"
+updated: "2026-11-17"
 ---
 # Active PDLF To-Do List
 
@@ -32,6 +32,22 @@ Whatever fails or is missing is corrected in PDLF, and the run continues from th
 
 Once `mb-3-cs` has run through every phase, PDLF is reviewed as a whole; David backs up `C:\pdlf\` in full; then every step's module is written from its proven suite, and each step's build plan is deleted when its module is written ([[[pdlf:pdlf-library/docs-local/app-factory-docs-update-method|App Factory Docs Update Method]]](C:/pdlf/pdlf-library/docs-local/app-factory-docs-update-method.md)). Before the modules are written, the design of a module is settled with David, together with the change that has `pdlf-init` load a step's module.
 
+
+### A4. Phase E streamlining: for discussion with David, not agreed
+
+Phase E runs once for every feature ticket, about 37 times for `mb-3-cs`, so its cost in time and money matters. After the first three features run in the normal step-by-step way, these points are discussed with David, and only those he agrees are designed into PDLF:
+
+1. **One run per feature:** the agent runs Steps 35 to 38A without stopping after each section, and stops only for a test that still fails after one fix attempt, for the hand actions in the Anvil editor (the Anvil agent's wiring and Resolve), and for the `build-verified` gate at Step 39, where every finding is shown at once.
+2. **One commit per feature:** one `gcp` per feature, not one per step.
+3. **Model split:** a low-cost model writes the code and runs the tests; a stronger model does the code review (Step 37), the triage (Step 39) and any failure the low-cost model cannot fix in one attempt.
+4. **The safety net stays:** the tests and the gate decide that a feature is done, never the agent's own report.
+
+### A5. Trial: no stop after each clean section
+
+From Step 19 of the `mb-3-cs` run, the agent runs a step's sections without stopping, and stops only for a failure, a deviation, a decision for David, a hand action or a gate ([[[pdlf:pdlf-library/specifications-local/spec-execution-discipline]]](C:/pdlf/pdlf-library/specifications-local/spec-execution-discipline.md), item 5a). The trial is judged at the end of Phase C:
+
+1. **If it does not work** (a problem slips through that a section stop would have caught, or the agent runs on past a stop point): item 5a returns to one section at a time, with a stop after each section.
+2. **If it works:** every step suite already run (Phases A and B, Steps 17 and 18) is checked so that none of its files still calls for a stop after each section, and each one carries the same rule.
 ---
 
 ## B. Rules for building every step
