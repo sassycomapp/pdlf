@@ -1,7 +1,7 @@
 ---
 title: "pdlf-todo"
 doc-id: "mb-13a3fbc9"
-updated: "2026-11-17"
+updated: "2026-11-19"
 ---
 # Active PDLF To-Do List
 
@@ -139,3 +139,10 @@ Document Amazon SES and Cloudflare with `mb-sysdoc-creator` (both are registered
 6. In Mybizz's Cloudflare account, create Mybizz's own R2 bucket for App 5, which holds Paddle's billing notifications.
 7. Register Mybizz-Live Ltd for UK VAT at incorporation, as an intending trader; the accountant confirms how Paddle's reverse invoices are entered on the VAT return.
 8. Register Mybizz-Live Ltd with the Information Commissioner's Office and pay its data protection fee, before launch.
+
+### G4. After the C22 close-out
+
+Two links in `mb-3-cs-project-library` point to the Mybizz-Live marketing plan, [[[data-mybizz-mgt:marketing/mybizz-live-marketing-plan]]](C:/data-mybizz-mgt/marketing/mybizz-live-marketing-plan.md). Claude makes both changes and pushes them once the C22 OpenCode session has closed out:
+
+1. `docs-local/mb-3-cs-concept.md`, section 10: the go-to-market link points to the marketing plan.
+2. `docs-local/brand-profile.md`, line 14 (the source line): the marketing-plan link points to the marketing plan, section 1.
