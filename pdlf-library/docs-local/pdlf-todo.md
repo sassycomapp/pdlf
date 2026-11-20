@@ -142,7 +142,8 @@ Document Amazon SES and Cloudflare with `mb-sysdoc-creator` (both are registered
 
 ### G4. After the C22 close-out
 
-Two links in `mb-3-cs-project-library` point to the Mybizz-Live marketing plan, [[[data-mybizz-mgt:marketing/mybizz-live-marketing-plan]]](C:/data-mybizz-mgt/marketing/mybizz-live-marketing-plan.md). Claude makes both changes and pushes them once the C22 OpenCode session has closed out:
+Two links in `mb-3-cs-project-library` point to the Mybizz-Live marketing plan, [[[data-mybizz-mgt:marketing/mybizz-live-marketing-plan]]](C:/data-mybizz-mgt/marketing/mybizz-live-marketing-plan.md). Claude makes these changes and pushes them once the C22 OpenCode session has closed out:
 
 1. `docs-local/mb-3-cs-concept.md`, section 10: the go-to-market link points to the marketing plan.
 2. `docs-local/brand-profile.md`, line 14 (the source line): the marketing-plan link points to the marketing plan, section 1.
+3. `docs-local/brand-profile.md`, lines 23 and 319: the brand statement "One platform. One price. You own it." becomes "One platform. One price. Your customers. Your data.", the approved statement in [[[data-mybizz-mgt:marketing/brand-assets/profile-texts]]](C:/data-mybizz-mgt/marketing/brand-assets/profile-texts.md).
