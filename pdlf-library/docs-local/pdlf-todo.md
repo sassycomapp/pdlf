@@ -1,7 +1,7 @@
 ---
 title: "pdlf-todo"
 doc-id: "mb-13a3fbc9"
-updated: "2026-11-19"
+updated: "2026-11-24"
 ---
 # Active PDLF To-Do List
 
@@ -147,3 +147,4 @@ Two links in `mb-3-cs-project-library` point to the Mybizz-Live marketing plan, 
 1. `docs-local/mb-3-cs-concept.md`, section 10: the go-to-market link points to the marketing plan.
 2. `docs-local/brand-profile.md`, line 14 (the source line): the marketing-plan link points to the marketing plan, section 1.
 3. `docs-local/brand-profile.md`, lines 23 and 319: the brand statement "One platform. One price. You own it." becomes "One platform. One price. Your customers. Your data.", the approved statement in [[[data-mybizz-mgt:marketing/brand-assets/profile-texts]]](C:/data-mybizz-mgt/marketing/brand-assets/profile-texts.md).
+4. `docs-local/design/app1/access-matrix.yaml`, line 303 (in the `SettingsForm` tabs): `DisplayCurrency` becomes `LocalCurrencies`, with the same rights (Owner all, Manager all, every other role none). This is the one remaining change of the currency rule of [[[default:adr-global/adr-system-currency-selection-and-immutability|System Currency and Local Currencies]]](C:/dev/project-library-global/adr-global/adr-system-currency-selection-and-immutability.md); every other file carries the rule already. The file was held back on 2026-11-24 because the paused C22 run holds uncommitted changes to the same file. Claude makes the change and pushes it after David has committed the C22 work, and checks first that no other `DisplayCurrency` remains anywhere.
