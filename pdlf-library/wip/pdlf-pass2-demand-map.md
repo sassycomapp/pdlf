@@ -102,7 +102,7 @@ Each demand: what it is · source · steps it touches · what it means for skill
 
 ### D12. Onboarding, legal acknowledgement and policies
 
-- Resumable onboarding; currency immutable after the first transaction; Owner acknowledges legal responsibility; ClauseBuilder writes the Privacy Policy and Terms; UK GDPR and the client's own privacy law mandatory, and PCI DSS conditional; data export and offboarding.
+- Resumable onboarding; system currency fixed once confirmed, local currencies market by market (adr-system-currency-selection-and-immutability); Owner acknowledges legal responsibility; ClauseBuilder writes the Privacy Policy and Terms; UK GDPR and the client's own privacy law mandatory, and PCI DSS conditional; data export and offboarding.
 - Source: onboarding ADRs, `adr-legal-policy-…`, `adr-client-data-management-rights-…`, `spec-regulatory-compliance-baseline`.
 - Steps: b14, b15, c19, e35, f41.
 - Skills: regulatory baseline at b14 (already named); a compliance check before release at f41 is not yet named.
