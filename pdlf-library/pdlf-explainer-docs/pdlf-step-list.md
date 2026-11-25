@@ -1,8 +1,7 @@
 ---
-
 title: "pdlf-step-list"
 doc-id: "mb-7c3e91b5"
-updated: "2026-11-17"
+updated: "2026-11-25"
 
 ---
 
@@ -27,26 +26,26 @@ Every phase and step of PDLF, with what each step is principally about. Each ste
 
 ## Phase B — Discover and Define
 
-| Step | Name               | What it does                                                                                  |
-| ---- | ------------------ | --------------------------------------------------------------------------------------------- |
-| 11   | Init               | Sets up the business's folders, repositories, project library and tools                       |
-| 12   | Office hours       | Writes the design doc: what is built, for whom and why                                        |
-| 14   | CEO review         | Settles how far the scope goes, and the data, law and exit that follow from it                |
-| 15   | Engineering review | Turns the scope into an architecture and writes the test plan, access matrix and threat model |
-| 16   | Domain modeling    | Writes the glossary and locks the data design; closes Phase B                                 |
+| Step | Name               | What it does                                                                                  |     |
+| ---- | ------------------ | --------------------------------------------------------------------------------------------- | --- |
+| 11   | Init               | Sets up the business's folders, repositories, project library and tools                       |     |
+| 12   | Office hours       | Writes the design doc: what is built, for whom and why                                        |     |
+| 14   | CEO review         | Settles how far the scope goes, and the data, law and exit that follow from it                |     |
+| 15   | Engineering review | Turns the scope into an architecture and writes the test plan, access matrix and threat model |     |
+| 16   | Domain modeling    | Writes the glossary and locks the data design; closes Phase B                                 |     |
 
 ## Phase C — Design and Plan
 
 | Step | Name                          | What it does                                                               |
 | ---- | ----------------------------- | -------------------------------------------------------------------------- |
 | 17   | Create Anvil data tables 100% | Applies the authoritative schema to the app's tables in Anvil              |
-| 18   | Pull to local 10%             | Brings the local copy of the app level with Anvil                          |
-| 19   | Tickets 80%                   | Breaks the plan into feature tickets, in build order                       |
-| 20   | Design system 50%             | Writes `DESIGN.md`, the app's one design                                   |
-| 21   | Concept check 30%             | Checks the concept documents against each other; locks the concept         |
-| 22   | Screen requirements 250%      | Writes the full design of every form, in words and tables                  |
-| 23   | Design review 100%            | Reviews every screen requirement and `DESIGN.md`, and records the findings |
-| 26   | Screens approved 100%         | Corrects the screen requirements and locks them; closes Phase C            |
+| 18   | Pull to local                 | Brings the local copy of the app level with Anvil                          |
+| 19   | Tickets                       | Breaks the plan into feature tickets, in build order                       |
+| 20   | Design system                 | Writes `DESIGN.md`, the app's one design                                   |
+| 21   | Concept check                 | Checks the concept documents against each other; locks the concept         |
+| 22   | Screen requirements           | Writes the full design of every form, in words and tables                  |
+| 23   | Design review                 | Reviews every screen requirement and `DESIGN.md`, and records the findings |
+| 26   | Screens approved              | Corrects the screen requirements and locks them; closes Phase C            |
 
 ## Phase D — Scaffold and Assemble
 
